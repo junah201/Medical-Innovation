@@ -1,0 +1,21 @@
+@font-face {
+	font-family: "inter";
+	src: url("./static/fonts/Inter.ttf");
+}
+
+body {
+	margin: 0;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "inter";
+}
+
+html {
+	background-image: url(./static/images/default_background.jpg);
+}
