@@ -39,8 +39,17 @@ body {
 	font-family: "Inter", sans-serif;
 }
 
+a,
+a:visited,
+a:hover,
+a:focus,
+a:active {
+	text-decoration: none;
+}
+
 html {
 	background-image: url(./static/images/default_background.jpg);
+	background-size: cover;
 }
 
 .hide-txt {

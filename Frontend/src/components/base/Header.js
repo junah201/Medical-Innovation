@@ -14,7 +14,7 @@ const StyledNav = styled.nav`
 	justify-items: center;
 	align-items: center;
 	justify-content: center;
-	padding 0 200px;
+	padding: 0 200px;
 	border-top: 1px solid #454545;
 `;
 
