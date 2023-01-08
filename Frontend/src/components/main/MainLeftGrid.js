@@ -58,6 +58,10 @@ const StyledGridBottomItem = styled.div`
 	grid-row: 3 / 4;
 	background-color: ${(props) => props.color || "#ffffff"};
 
+	& a:visited {
+		color: #000000;
+	}
+
 	& div {
 		display: flex;
 		flex-direction: column;
@@ -87,6 +91,20 @@ const MainLeftGrid = () => {
 				</a>
 			</StyledGridImgItem>
 			<StyledGridItem color="#2763BA">
+				<h3>재단 소개</h3>
+				<p>
+					과기부 소관 비영리법인 중소벤처기업부 창업기획자 기획재정부
+					지정기부금단체
+				</p>
+				<a href="/support/sponsor">유관그룹</a>
+				<a href="/support/sponsor">협력기관</a>
+			</StyledGridItem>
+			<StyledGridItem color="#2CA48F">
+				<h3>FMI 인베스트먼트</h3>
+				<p>바이오헬스 혁신기업의 지속 가능한 성장과 미래</p>
+				<a href="/support/sponsor">지원현황</a>
+			</StyledGridItem>
+			<StyledGridItem color="#008ACE">
 				<h3>후원 안내</h3>
 				<p>
 					대한민국 보건의료의 발전을 추구하시는 여러분 모두가 후원자가 되어
@@ -94,19 +112,6 @@ const MainLeftGrid = () => {
 				</p>
 				<a href="/support/support">후원하기</a>
 				<a href="/support/sponsors">후원인 명단</a>
-			</StyledGridItem>
-			<StyledGridItem color="#2CA48F">
-				<h3>재단 소개</h3>
-				<p>
-					과기부 소관 비영리법인 중소벤처기업부 창업기획자 기획재정부
-					지정기부금단체
-				</p>
-				<a href="/support/sponsor">협력기관</a>
-			</StyledGridItem>
-			<StyledGridItem color="#008ACE">
-				<h3>FMI 인베스트먼트</h3>
-				<p>바이오헬스 혁신기업의 지속 가능한 성장과 미래</p>
-				<a href="/support/sponsor">유관그룹</a>
 			</StyledGridItem>
 			<StyledGridBottomItem>
 				<div>

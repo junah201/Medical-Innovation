@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-import Header from "../components/base/Header";
 import MainLeftGrid from "../components/main/MainLeftGrid";
 import MainRightGrid from "../components/main/MainRightGrid";
 import Banners from "../components/base/Banners";
@@ -15,7 +14,7 @@ const StyledHomePage = styled.main`
 	padding: 30px;
 `;
 
-const StyledDiv = styled.div`
+const StyledHomeWrapper = styled.div`
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -26,41 +25,38 @@ const StyledDiv = styled.div`
 	}
 `;
 
+const StyledHomeTitle = styled.h1`
+	font-size: 40px;
+	font-weight: 600;
+	text-align: center;
+	margin-bottom: 12px;
+	width: 100%;
+`;
+
+const StyledHomeDescription = styled.span`
+	font-size: 25px;
+	font-weight: 400;
+	text-align: center;
+	display: block;
+	width: 100%;
+`;
+
 const HomePage = () => {
 	return (
-		<div>
-			<Header />
+		<>
 			<StyledHomePage>
-				<h1
-					style={{
-						fontSize: "40px",
-						fontWeight: "600",
-						textAlign: "center",
-						marginBottom: "12px",
-						width: "100%",
-					}}
-				>
-					Foundation for Medical Innovation
-				</h1>
-				<span
-					style={{
-						fontSize: "25px",
-						fontWeight: "400",
-						textAlign: "center",
-						display: "block",
-						width: "100%",
-					}}
-				>
+				<StyledHomeTitle>Foundation for Medical Innovation</StyledHomeTitle>
+				<StyledHomeDescription>
 					재단법인 미래의학연구재단은 과학기술정보통신부 소관 비영리법인 ·
-					지정기부금단체 · 중소밴처기업부 창업기획자 등록기관입니다.
-				</span>
-				<StyledDiv>
+					지정기부금단체 · 중소밴처기업부 등록 창업기획자입니다.
+				</StyledHomeDescription>
+				<StyledHomeWrapper>
 					<MainLeftGrid />
 					<MainRightGrid />
-				</StyledDiv>
-				<Banners />
+				</StyledHomeWrapper>
 			</StyledHomePage>
-		</div>
+			<Banners />
+		</>
 	);
 };
 
