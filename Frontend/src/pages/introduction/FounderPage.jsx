@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import SubNavButton from "../../components/common/SubNavButton";
+import SubNav from "../../components/introduction/SubNav";
 
 import kimhyosoo from "../../static/images/KimHyoSoo.png";
 
@@ -17,12 +17,6 @@ const StyledFounderWrapper = styled.div`
 	flex-direction: column;
 	padding: 30px 80px;
 	width: 1230px;
-`;
-
-const StyledSubNav = styled.nav`
-	display: flex;
-	justify-content: center;
-	margin-bottom: 30px;
 `;
 
 const StyledFounderProfile = styled.div`
@@ -55,28 +49,7 @@ const FounderPage = () => {
 	return (
 		<StyledFounderPage>
 			<StyledFounderWrapper>
-				<StyledSubNav>
-					<SubNavButton
-						href="/introduction/founder"
-						text="설립자 소개"
-						isSelect={true}
-					></SubNavButton>
-					<SubNavButton
-						href="/introduction/message"
-						text="이사장 인사"
-						isSelect={false}
-					></SubNavButton>
-					<SubNavButton
-						href="/introduction/mission_and_history"
-						text="설립 취지 및 연혁"
-						isSelect={false}
-					></SubNavButton>
-					<SubNavButton
-						href="/introduction/orgchart_and_project"
-						text="조직도 및 주요사업"
-						isSelect={false}
-					></SubNavButton>
-				</StyledSubNav>
+				<SubNav select="설립자 소개" />
 				<StyledFounderProfile>
 					<img src={kimhyosoo} alt="김효수 교수" height="300px" />
 					<div>

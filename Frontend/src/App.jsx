@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes, Switch, Redirect } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import Header from "./components/base/Header";
 import Footer from "./components/base/Footer";
@@ -8,6 +8,8 @@ import HomePage from "./pages/HomePage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 
 import FounderPage from "./pages/introduction/FounderPage";
+import ChairmanMessagePage from "./pages/introduction/ChairmanMessagePage";
+
 function App() {
 	return (
 		<>
@@ -17,6 +19,7 @@ function App() {
 				<Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
 				<Route path="/introduction">
 					<Route path="founder" element={<FounderPage />}></Route>
+					<Route path="message" element={<ChairmanMessagePage />}></Route>
 				</Route>
 				<Route path="*" element={<h1>404</h1>} />
 			</Routes>
