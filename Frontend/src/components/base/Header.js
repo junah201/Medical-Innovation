@@ -7,6 +7,11 @@ const StyledHeader = styled.header`
 	background-color: #ffffff;
 `;
 
+const StyledIconWrapper = styled.div`
+	display: flex;
+	padding: 10px 75px;
+`;
+
 const StyledNav = styled.nav`
 	height: 100px;
 	box-shadow: 0px 4px 20px -20px gray;
@@ -38,16 +43,11 @@ const StyledLi = styled.li`
 const Header = () => {
 	return (
 		<StyledHeader>
-			<div
-				style={{
-					display: "flex",
-					padding: "10px 75px",
-				}}
-			>
+			<StyledIconWrapper>
 				<a href="/">
 					<img src={longLogo} width="300px" alt="미래의학연구재단" />
 				</a>
-			</div>
+			</StyledIconWrapper>
 			<StyledNav>
 				<StyledUl>
 					<HeaderNavLi link="/introduction/founder" text="재단소개" />

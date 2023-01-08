@@ -7,7 +7,14 @@ const move = (x) => keyframes`
 	}
 `;
 
-const StyledBannerContainer = styled.div`
+const StyledBannerContainerWrapper = styled.div`
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	background-color: #ffffff;
+`;
+
+const StyledBannersContainer = styled.div`
 	width: 1580px;
 	height: 250px;
 	overflow: hidden;
@@ -25,6 +32,10 @@ const StyledBanners = styled.div`
 	transform: translateX(-${(props) => props.x || 0}px);
 	animation: ${(props) => move(props.x)} 5s;
 	animation-delay: 1s;
+	& img {
+		border: none;
+		overflow: hidden;
+	}
 `;
 
 const dumpData = [
@@ -151,8 +162,8 @@ const Banners = () => {
 	});
 
 	return (
-		<>
-			<StyledBannerContainer>
+		<StyledBannerContainerWrapper>
+			<StyledBannersContainer>
 				<StyledBanners x={bannerIndex * 230}>
 					{dumpData.map((item, index) => {
 						return (
@@ -172,8 +183,8 @@ const Banners = () => {
 						);
 					})}
 				</StyledBanners>
-			</StyledBannerContainer>
-		</>
+			</StyledBannersContainer>
+		</StyledBannerContainerWrapper>
 	);
 };
 
