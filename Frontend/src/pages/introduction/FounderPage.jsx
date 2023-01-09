@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import SubNav from "../../components/introduction/SubNav";
+import BlankDiv from "../../components/common/BlankDiv";
 
 import kimhyosoo from "../../static/images/KimHyoSoo.png";
 
@@ -28,22 +29,33 @@ const StyledFounderProfile = styled.div`
 		justify-content: space-between;
 	}
 
+	& > div > * + * {
+		margin-top: 10px;
+	}
+
 	& > div > h2 {
+		font-size: 25px;
+		border-left: 5px solid #204397;
+		padding-left: 3px;
+	}
+	& > div > h2 > span {
 		font-size: 30px;
 	}
 	& > div > h4 {
 		font-size: 25px;
+		border-left: 5px solid transparent;
+		padding-left: 3px;
 	}
 	& > div > p {
 		font-size: 18px;
 	}
 
 	& > img {
-		margin-right: 50px;
+		margin-left: 50px;
 	}
 
 	& p {
-		padding-left: 10px;
+		padding-left: 16px;
 	}
 `;
 
@@ -57,7 +69,6 @@ const FounderPage = () => {
 			<StyledFounderWrapper>
 				<SubNav select="설립자 소개" />
 				<StyledFounderProfile>
-					<img src={kimhyosoo} alt="김효수 교수" height="300px" />
 					<div>
 						<h2>
 							<span>김효수</span> 교수
@@ -83,6 +94,8 @@ const FounderPage = () => {
 							2008 제1회 아산의학상 (아산사회복지재단)
 						</p>
 					</div>
+
+					<img src={kimhyosoo} alt="김효수 교수" height="300px" width="250px" />
 				</StyledFounderProfile>
 				<br />
 				<br />
@@ -101,6 +114,7 @@ const FounderPage = () => {
 					임상의사로서는 유래가 드물게 4년 동안 기초실험을 직접 수행한
 					생물학자로서, translational research를 실현한 뚝심 있는 의학자입니다.
 					<br />
+					<br />
 					26년간 “심혈관・줄기세포・생물학” 분야에만 매진하면서 거둔 연구의
 					업적은 줄기세포 생물학의 독창적인 기초연구 성과를 진료 현장에 도입해
 					심근경색 치료법인 ‘매직셀’이라는 혁신의료기술을 확립했다. 또
@@ -113,10 +127,12 @@ const FounderPage = () => {
 					잡지에 출판한 논문의 수가 155여편에 달하며, H-INDEX가 92에 도달하고
 					있습니다.
 					<br />
+					<br />
 					김효수 교수는 탁월한 연구 성과를 인정받아서 2008년도 1회 아산의학상
 					대상을 수여하였고, 2014년도에 분쉬의학상 본상을 수상하였으며,
 					수훈내용이 탁월한 연구성과로서는 처음으로 2016년 대통령 훈장인
 					근정훈장을 수상하였습니다.
+					<br />
 					<br />
 					김효수 교수는 줄기세포생물학과 분자생물학을 기반으로 개발한 의학 및
 					생명과학 분야의 원천 기술의 실용화를 위하여 2007년 줄기세포 치료제
@@ -127,10 +143,10 @@ const FounderPage = () => {
 					김교수는 이러한 경험을 바탕으로 2016년에 과학기술정보통신부 소관
 					비영리법인인 재단법인 미래의학연구재단을 설립하였습니다.
 					<br />
+					<br />
 					재단을 통해 대한민국 첨단 바이오 헬스 분야에 건강한 연구생태계를
 					조성하고, 연구자 중심 창업지원, 산학연병간 오픈이노베이션 활성화를
 					통하여 대한민국 미래성장 동력 발굴에 이바지하고자 합니다.
-					<br />
 				</StyledFounderContent>
 			</StyledFounderWrapper>
 		</StyledFounderPage>

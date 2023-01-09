@@ -72,7 +72,7 @@ const StyledStartupContainer = styled.div`
 	padding: 4px;
 	overflow: hidden;
 	background-color: #ffffff;
-	font-size: 12px;
+	font-size: 10px;
 	color: #000000;
 
 	& a:visited {

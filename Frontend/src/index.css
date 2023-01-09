@@ -66,6 +66,10 @@ html::-webkit-scrollbar-track {
 	border-radius: 10px;
 }
 
+img {
+	object-fit: cover;
+}
+
 .hide-txt {
 	overflow: hidden;
 	color: transparent;
