@@ -10,6 +10,7 @@ import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import FounderPage from "./pages/introduction/FounderPage";
 import ChairmanMessagePage from "./pages/introduction/ChairmanMessagePage";
 import MissionAndHistoryPage from "./pages/introduction/MissionAndHistoryPage";
+import OrgchartAndProjectPage from "./pages/introduction/OrgchartAndProjectPage";
 
 function App() {
 	return (
@@ -24,6 +25,10 @@ function App() {
 					<Route
 						path="mission_and_history"
 						element={<MissionAndHistoryPage />}
+					></Route>
+					<Route
+						path="orgchart_and_project"
+						element={<OrgchartAndProjectPage />}
 					></Route>
 				</Route>
 				<Route path="*" element={<h1>404</h1>} />
