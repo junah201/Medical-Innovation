@@ -12,6 +12,9 @@ import ChairmanMessagePage from "./pages/introduction/ChairmanMessagePage";
 import MissionAndHistoryPage from "./pages/introduction/MissionAndHistoryPage";
 import OrgchartAndProjectPage from "./pages/introduction/OrgchartAndProjectPage";
 
+import SponsorshipPage from "./pages/support/SponsorshipPage";
+import BenefitsPage from "./pages/support/BenefitsPage";
+
 function App() {
 	return (
 		<>
@@ -30,6 +33,10 @@ function App() {
 						path="orgchart_and_project"
 						element={<OrgchartAndProjectPage />}
 					></Route>
+				</Route>
+				<Route path="/support">
+					<Route path="sponsorship" element={<SponsorshipPage />}></Route>
+					<Route path="benefits" element={<BenefitsPage />}></Route>
 				</Route>
 				<Route path="*" element={<h1>404</h1>} />
 			</Routes>
