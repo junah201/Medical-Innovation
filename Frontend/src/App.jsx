@@ -9,6 +9,7 @@ import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 
 import FounderPage from "./pages/introduction/FounderPage";
 import ChairmanMessagePage from "./pages/introduction/ChairmanMessagePage";
+import MissionAndHistoryPage from "./pages/introduction/MissionAndHistoryPage";
 
 function App() {
 	return (
@@ -20,6 +21,10 @@ function App() {
 				<Route path="/introduction">
 					<Route path="founder" element={<FounderPage />}></Route>
 					<Route path="message" element={<ChairmanMessagePage />}></Route>
+					<Route
+						path="mission_and_history"
+						element={<MissionAndHistoryPage />}
+					></Route>
 				</Route>
 				<Route path="*" element={<h1>404</h1>} />
 			</Routes>
