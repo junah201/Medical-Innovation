@@ -11,7 +11,7 @@ const StyledSubNavButton = styled.a`
 
 	color: ${(props) => (props.isSelect ? "#204397" : "#494949")};
 	border-bottom: ${(props) =>
-		props.isSelect ? "4px solid #204397" : "1px solid #494949"};
+		props.isSelect ? "4px solid #204397" : "1.5px solid #494949"};
 
 	& + & {
 		margin-left: 10px;

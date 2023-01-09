@@ -28,8 +28,14 @@ const StyledFounderProfile = styled.div`
 		justify-content: space-between;
 	}
 
-	& > h2 {
+	& > div > h2 {
 		font-size: 30px;
+	}
+	& > div > h4 {
+		font-size: 25px;
+	}
+	& > div > p {
+		font-size: 18px;
 	}
 
 	& > img {
