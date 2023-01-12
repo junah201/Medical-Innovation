@@ -47,7 +47,7 @@ a:active {
 	text-decoration: none;
 }
 
-html {
+#root {
 	background-image: url(./static/images/default_background.jpg);
 	background-size: cover;
 }

@@ -15,6 +15,9 @@ import OrgchartAndProjectPage from "./pages/introduction/OrgchartAndProjectPage"
 import SponsorshipPage from "./pages/support/SponsorshipPage";
 import BenefitsPage from "./pages/support/BenefitsPage";
 import SponsorPage from "./pages/support/SponsorPage";
+import HistoryPage from "./pages/support/HistoryPage";
+
+import PostPage from "./pages/PostPage";
 
 function App() {
 	return (
@@ -39,7 +42,9 @@ function App() {
 					<Route path="sponsorship" element={<SponsorshipPage />}></Route>
 					<Route path="benefits" element={<BenefitsPage />}></Route>
 					<Route path="sponsor" element={<SponsorPage />}></Route>
+					<Route path="history" element={<HistoryPage />}></Route>
 				</Route>
+				<Route path="/post/:id" element={<PostPage />} />
 				<Route path="*" element={<h1>404</h1>} />
 			</Routes>
 			<Footer />

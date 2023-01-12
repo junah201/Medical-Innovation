@@ -26,8 +26,8 @@ def get_posts(board_id: int, skip: int = 0, limit: int = 15, db: Session = Depen
     return schemas.PostList(total=total, posts=new_post_list)
 
 
-@router.get("/{board_id}/{post_id}", response_model=schemas.Post)
-def get_post(board_id: int, post_id: int, db: Session = Depends(get_db)):
+@router.get("/{post_id}", response_model=schemas.Post)
+def get_post(post_id: int, db: Session = Depends(get_db)):
     db_post = crud.get_post_by_post_id(db=db, post_id=post_id)
     if not db_post:
         raise HTTPException(
