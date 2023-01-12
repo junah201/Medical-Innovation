@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import BlankDiv from "../common/BlankDiv";
+
 import kimhyosoo from "../../static/images/KimHyoSoo.png";
 import cellTherapy from "../../static/images/세포치료실용화센터.png";
 import cardiovascularLab from "../../static/images/서울대병원심혈관연구실.png";
@@ -77,9 +79,6 @@ const StyledGridBottomItem = styled.div`
 		align-items: center;
 		text-align: center;
 	}
-	& div > img + img {
-		margin-top: 12px;
-	}
 `;
 
 const MainLeftGrid = () => {
@@ -122,7 +121,7 @@ const MainLeftGrid = () => {
 							height="50px"
 							alt="세포치료 실용화 센터"
 						/>
-						<br />
+						<BlankDiv height="10px" />
 						세포치료
 						<br />
 						실용화 센터
@@ -136,7 +135,7 @@ const MainLeftGrid = () => {
 							height="50px"
 							alt="서울대병원 심혈관연구실"
 						/>
-						<br />
+						<BlankDiv height="10px" />
 						서울대병원
 						<br />
 						심혈관연구실
@@ -145,7 +144,7 @@ const MainLeftGrid = () => {
 				<div>
 					<a href="http://www.celltherapy.re.kr/">
 						<img src={snuh} width="50px" height="50px" alt="순환기내과 TAVI" />
-						<br />
+						<BlankDiv height="10px" />
 						순환기내과
 						<br />
 						TAVI
@@ -159,25 +158,38 @@ const MainLeftGrid = () => {
 							height="50px"
 							alt="순환기내과 매직셀"
 						/>
-						<br />
+						<BlankDiv height="10px" />
 						순환기내과
 						<br />
 						매직셀
 					</a>
 				</div>
 				<div>
-					<img
-						src={youtube}
-						width="45px"
-						height="45px"
-						alt="미래의학연구재단 유튜브"
-					/>
-					<img
-						src={facebook}
-						width="45px"
-						height="45px"
-						alt="미래의학연구재단 페이스북"
-					/>
+					<a
+						href="https://www.youtube.com/channel/UCmXV9TzHG-Ys_VxwNinfuNw"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<img
+							src={youtube}
+							width="45px"
+							height="45px"
+							alt="미래의학연구재단 유튜브"
+						/>
+					</a>
+					<BlankDiv height="10px" />
+					<a
+						href="https://www.facebook.com/people/%EB%AF%B8%EB%9E%98%EC%9D%98%ED%95%99%EC%97%B0%EA%B5%AC%EC%9E%AC%EB%8B%A8/100028283547245/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<img
+							src={facebook}
+							width="45px"
+							height="45px"
+							alt="미래의학연구재단 페이스북"
+						/>
+					</a>
 				</div>
 			</StyledGridBottomItem>
 		</StyledGrid>

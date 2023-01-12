@@ -40,7 +40,7 @@ const StyledChairmanProfile = styled.div`
 	}
 
 	& p {
-		padding-left: 10px;
+		padding-left: 16px;
 	}
 `;
 

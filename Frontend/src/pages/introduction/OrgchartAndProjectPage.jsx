@@ -18,13 +18,13 @@ const OrgchartAndProjectPage = () => {
 			<SubNav select="조직도 및 주요사업" />
 			<StyledOrgchartWrapper>
 				<h1>조직도</h1>
-				<BlankDiv height="50px" />
+				<BlankDiv height="30px" />
 				<img src={orgchart} alt="조직도" width="1070px" />
 			</StyledOrgchartWrapper>
 			<BlankDiv height="50px" />
 			<StyledProjectWrapper>
 				<h1>주요사업</h1>
-				<BlankDiv height="50px" />
+				<BlankDiv height="30px" />
 				<img src={mainProject} alt="조직도" width="1070px" />
 			</StyledProjectWrapper>
 		</Page>

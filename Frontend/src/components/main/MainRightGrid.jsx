@@ -1,16 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-import preregistrationStatus from "../../static/images/사전등록현황.png";
+import BlankDiv from "../common/BlankDiv";
 
-/*
-import cellco from "../../static/images/cellco.png";
-import thedonee from "../../static/images/thedonee.png";
-import fintKorea from "../../static/images/fintkorea.png";
-import fortugabio from "../../static/images/fortugabio.png";
-import fitme from "../../static/images/fitme.png";
-import elephant from "../../static/images/엘리펀트.png";
-*/
+import preregistrationStatus from "../../static/images/사전등록현황.png";
 
 const StyledMainLeftGrid = styled.div`
 	display: grid;
@@ -58,7 +51,7 @@ const StyledBottomItem = styled.div`
 `;
 
 const StyledStartupWrapper = styled.div`
-	background-color: #d9d9d9;
+	background-color: #ffffff;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-rows: repeat(2, 1fr);
@@ -71,8 +64,8 @@ const StyledStartupContainer = styled.div`
 	height: 100%;
 	padding: 4px;
 	overflow: hidden;
+	border: 1px solid #e1e1e1;
 	background-color: #ffffff;
-	font-size: 10px;
 	color: #000000;
 
 	& a:visited {
@@ -84,8 +77,8 @@ const StyledStartupContainer = styled.div`
 		font-weight: 600;
 	}
 
-	& > a > p > span {
-		font-size: 14px;
+	& > a > p {
+		font-size: 12.5px;
 	}
 `;
 
@@ -121,13 +114,8 @@ const MainLeftGrid = () => {
 							rel="noopener noreferrer"
 						>
 							<span>주식회사 셀코</span>
-							<br />
-							<br />
-							<p>
-								설립일 <span>2021.01.06</span>
-								<br />
-								대표자 <span>김범수</span>
-							</p>
+							<BlankDiv height="5px" />
+							<p>해양 플랑크톤을 이용한 뼈이식재 제조기술 사업화</p>
 						</a>
 					</StyledStartupContainer>
 					<StyledStartupContainer>
@@ -137,13 +125,8 @@ const MainLeftGrid = () => {
 							rel="noopener noreferrer"
 						>
 							<span>㈜더도니</span>
-							<br />
-							<br />
-							<p>
-								설립일 <span>2020.09.23</span>
-								<br />
-								대표자 <span>이강원</span>
-							</p>
+							<BlankDiv height="5px" />
+							<p>만성신장질환자들을 위한 자가칼륨측정기 개발</p>
 						</a>
 					</StyledStartupContainer>
 					<StyledStartupContainer>
@@ -153,13 +136,8 @@ const MainLeftGrid = () => {
 							rel="noopener noreferrer"
 						>
 							<span>㈜파인트코리아</span>
-							<br />
-							<br />
-							<p>
-								설립일 <span>2021.01.06</span>
-								<br />
-								대표자 <span>김범수</span>
-							</p>
+							<BlankDiv height="5px" />
+							<p>의료용 소재 맞춤제작을 위한 생분해성 복합소재 제조</p>
 						</a>
 					</StyledStartupContainer>
 					<StyledStartupContainer>
@@ -169,12 +147,10 @@ const MainLeftGrid = () => {
 							rel="noopener noreferrer"
 						>
 							<span>㈜포투가바이오</span>
-							<br />
-							<br />
+							<BlankDiv height="5px" />
 							<p>
-								설립일 <span>2021.01.06</span>
-								<br />
-								대표자 <span>김범수</span>
+								나노입자-세포화 기술과 단백질 결합 기술을 융합한 면역항암 플랫폼
+								개발
 							</p>
 						</a>
 					</StyledStartupContainer>
@@ -185,25 +161,18 @@ const MainLeftGrid = () => {
 							rel="noopener noreferrer"
 						>
 							<span>주식회사 핏미</span>
-							<br />
-							<br />
+							<BlankDiv height="5px" />
 							<p>
-								설립일 <span>2021.01.06</span>
-								<br />
-								대표자 <span>김범수</span>
+								AI 기반 성형수술용 의료영상 분석 및 맞춤 보형물 디자인 서비스를
+								제공하는 가상성형 플랫폼
 							</p>
 						</a>
 					</StyledStartupContainer>
 					<StyledStartupContainer>
 						<a href="/" target="_blank" rel="noopener noreferrer">
 							<span>엘리펀트</span>
-							<br />
-							<br />
-							<p>
-								설립일 <span>2021.01.06</span>
-								<br />
-								대표자 <span>김범수</span>
-							</p>
+							<BlankDiv height="5px" />
+							<p>소작기용 탈부착식 액체 기체 흡입기</p>
 						</a>
 					</StyledStartupContainer>
 				</StyledStartupWrapper>
