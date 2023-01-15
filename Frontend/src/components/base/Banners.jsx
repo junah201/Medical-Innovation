@@ -56,6 +56,7 @@ const StyledBannerItem = styled.div`
 	}
 	&:hover img {
 		transform: scale(1.1);
+		transition: transform 0.5s;
 	}
 `;
 

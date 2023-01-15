@@ -20,6 +20,12 @@ const StyledGrid = styled.div`
 const StyledGridImgItem = styled.div`
 	background-color: "#ffffff";
 	overflow: hidden;
+	overflow: hidden;
+
+	&:hover img {
+		transform: scale(1.1);
+		transition: transform 0.5s;
+	}
 `;
 
 const StyledGridItem = styled.div`
@@ -45,6 +51,10 @@ const StyledGridItem = styled.div`
 		text-decoration: none;
 		border: 1px solid #ffffff;
 		padding: 5px 9px;
+	}
+
+	& a:hover {
+		text-decoration: underline;
 	}
 
 	& a + a {
