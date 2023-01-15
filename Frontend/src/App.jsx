@@ -17,7 +17,15 @@ import BenefitsPage from "./pages/support/BenefitsPage";
 import SponsorPage from "./pages/support/SponsorPage";
 import HistoryPage from "./pages/support/HistoryPage";
 
+import OpenInnovationPage from "./pages/programs/OpenInnovationPage";
+import AcceleratingPage from "./pages/programs/AcceleratingPage";
+import ResearchSupportProjectPage from "./pages/programs/ResearchSupportProjectPage";
+
+import AnnouncementPage from "./pages/news/AnnouncementPage";
+
 import PostPage from "./pages/PostPage";
+
+import PostUploadPage from "./pages/admin/PostUploadPage";
 
 function App() {
 	return (
@@ -39,10 +47,24 @@ function App() {
 					></Route>
 				</Route>
 				<Route path="/support">
-					<Route path="sponsorship" element={<SponsorshipPage />}></Route>
-					<Route path="benefits" element={<BenefitsPage />}></Route>
-					<Route path="sponsor" element={<SponsorPage />}></Route>
-					<Route path="history" element={<HistoryPage />}></Route>
+					<Route path="sponsorship" element={<SponsorshipPage />} />
+					<Route path="benefits" element={<BenefitsPage />} />
+					<Route path="sponsor" element={<SponsorPage />} />
+					<Route path="history" element={<HistoryPage />} />
+				</Route>
+				<Route path="/programs">
+					<Route path="openinnovation" element={<OpenInnovationPage />} />
+					<Route path="accelerating" element={<AcceleratingPage />} />
+					<Route
+						path="research_support_project"
+						element={<ResearchSupportProjectPage />}
+					/>
+				</Route>
+				<Route path="/news">
+					<Route path="announcement" element={<AnnouncementPage />} />
+				</Route>
+				<Route path="/admin">
+					<Route path="post_upload" element={<PostUploadPage />} />
 				</Route>
 				<Route path="/post/:id" element={<PostPage />} />
 				<Route path="*" element={<h1>404</h1>} />

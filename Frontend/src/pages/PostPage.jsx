@@ -21,12 +21,11 @@ const PostPage = () => {
 					data.created_at = new Intl.DateTimeFormat("ko", {
 						dateStyle: "long",
 					}).format(new Date(data.created_at));
-
 					setPost(data);
 				});
 			}
 		});
-	}, []);
+	}, [params.id]);
 
 	return (
 		<Page>
@@ -86,6 +85,7 @@ const StyledPostDetail = styled.div`
 const StyledPostContent = styled.p`
 	min-height: 500px;
 	padding: 20px 0;
+	white-space: pre-wrap;
 `;
 
 const StyledPostFiles = styled.div`

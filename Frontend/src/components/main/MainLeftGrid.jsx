@@ -119,8 +119,8 @@ const MainLeftGrid = () => {
 					대한민국 보건의료의 발전을 추구하시는 여러분 모두가 후원자가 되어
 					주십시오.
 				</p>
-				<a href="/support/support">후원하기</a>
-				<a href="/support/sponsors">후원인 명단</a>
+				<a href="/support/sponsorship">후원하기</a>
+				<a href="/support/sponsor">후원인 명단</a>
 			</StyledGridItem>
 			<StyledGridBottomItem>
 				<div>

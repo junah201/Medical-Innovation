@@ -143,6 +143,11 @@ const StyledSponsorItem = styled.div`
 		height: 110px;
 		overflow: hidden;
 	}
+
+	& img:hover {
+		transform: scale(1.2);
+		transition: transform 0.5s;
+	}
 `;
 
 const SponsorItem = ({ item }) => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 import BlankDiv from "../common/BlankDiv";
@@ -24,14 +24,14 @@ const StyledTopGridItem = styled.div`
 		align-items: center;
 		list-style-type: none;
 	}
+`;
 
-	& > li > ol > button {
-		font-size: 25px;
-		font-weight: 600;
-		color: ${(props) => props.color || "#838383"};
-		border: none;
-		background-color: transparent;
-	}
+const StyledTopGridButton = styled.button`
+	font-size: 25px;
+	font-weight: 600;
+	color: ${(props) => props.color || "#838383"};
+	border: none;
+	background-color: transparent;
 `;
 
 const StyledBottomItem = styled.div`
@@ -82,27 +82,126 @@ const StyledStartupContainer = styled.div`
 	}
 `;
 
+const StyledDocumentWrapper = styled.div`
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 262px;
+`;
+
 const MainLeftGrid = () => {
+	const [selcted, setSelected] = React.useState("재단성격");
+	const [posts, setPosts] = React.useState([]);
+
+	useEffect(() => {
+		fetch(`http://localhost:8000/api/v1/post/2/all?limit=6`, {
+			method: "GET",
+			headers: {
+				accept: "application/json",
+			},
+		}).then((res) => {
+			if (res.status === 200) {
+				res.json().then((data) => {
+					setPosts(data.posts);
+					console.log(data);
+				});
+			}
+		});
+	}, []);
+
+	const onClickHandler = (e) => {
+		setSelected(e.target.innerText);
+	};
+
 	return (
 		<StyledMainLeftGrid>
 			<StyledTopGridItem>
 				<li>
 					<ol>
-						<button>공지사항</button>
+						<StyledTopGridButton
+							onClick={onClickHandler}
+							color={selcted === "공지사항" ? "#204397" : "#838383"}
+						>
+							공지사항
+						</StyledTopGridButton>
 					</ol>
 					<ol>
-						<button>행사안내</button>
+						<StyledTopGridButton
+							onClick={onClickHandler}
+							color={selcted === "보도자료" ? "#204397" : "#838383"}
+						>
+							보도자료
+						</StyledTopGridButton>
 					</ol>
 					<ol>
-						<button>보도자료</button>
+						<StyledTopGridButton
+							onClick={onClickHandler}
+							color={selcted === "네트워크" ? "#204397" : "#838383"}
+						>
+							네트워크
+						</StyledTopGridButton>
 					</ol>
 					<ol>
-						<button>네트워크</button>
+						<StyledTopGridButton
+							onClick={onClickHandler}
+							color={selcted === "자료실" ? "#204397" : "#838383"}
+						>
+							자료실
+						</StyledTopGridButton>
 					</ol>
 					<ol>
-						<button>자료실</button>
+						<StyledTopGridButton
+							onClick={onClickHandler}
+							color={selcted === "재단성격" ? "#204397" : "#838383"}
+						>
+							재단성격
+						</StyledTopGridButton>
 					</ol>
 				</li>
+				<BlankDiv height="20px" />
+				{selcted === "공지사항" ? (
+					<>
+						{posts.map((post, index) => {
+							return (
+								<PostItem
+									link={`http://localhost:3000/post/${post.id}`}
+									title={post.title}
+									date={post.created_at}
+									index={index + 1}
+								/>
+							);
+						})}
+					</>
+				) : null}
+				{selcted === "재단성격" ? (
+					<StyledDocumentWrapper>
+						<DocumentItem
+							src="/images/Foundation/비영리법인설립허가증.png"
+							alt="비영리법인설립허가증"
+						/>
+						<DocumentItem
+							src="/images/Foundation/창업기획자 등록증.png"
+							alt="창업기획자 등록증"
+						/>
+						<DocumentItem
+							src="/images/Foundation/지정기부금단체 지정고시 통지서.png"
+							alt="지정기부금단체 지정고시 통지서"
+						/>
+						<DocumentItem
+							src="/images/Foundation/특허증 (1차).png"
+							alt="특허증 (1차)"
+						/>
+						<DocumentItem
+							src="/images/Foundation/특허증 (2차).png"
+							alt="특허증 (2차)"
+						/>
+						<DocumentItem
+							src="/images/Foundation/출원사실증면원 (3차).png"
+							alt="출원사실증면원 (3차)"
+						/>
+					</StyledDocumentWrapper>
+				) : null}
+				<div></div>
 			</StyledTopGridItem>
 			<StyledBottomItem>
 				<h3>스타트업 지원</h3>
@@ -189,6 +288,84 @@ const MainLeftGrid = () => {
 				</div>
 			</StyledBottomItem>
 		</StyledMainLeftGrid>
+	);
+};
+
+const StyledPostItem = styled.a`
+	padding: 10px;
+	display: flex;
+	color: #000000;
+
+	&:visited {
+		color: #000000;
+	}
+
+	&:hover {
+		background-color: #f5f5f5;
+	}
+
+	& + & {
+		border-top: 1px solid #e9ecef;
+	}
+`;
+
+const StyledPostItemIndex = styled.span`
+	width: 10%;
+	text-align: center;
+`;
+
+const StyledPostItemTitle = styled.span`
+	width: 70%;
+
+	&:hover {
+		text-decoration: underline;
+	}
+`;
+
+const StyledPostItemDate = styled.span`
+	width: 20%;
+	text-align: center;
+	justify-content: center;
+	font-size: 12px;
+`;
+
+const PostItem = ({ title, link, index, date }) => {
+	date = new Intl.DateTimeFormat("ko", {
+		dateStyle: "long",
+	}).format(new Date(date));
+
+	return (
+		<StyledPostItem href={link} target="_blank" rel="noopener noreferrer">
+			<StyledPostItemIndex>{index}.</StyledPostItemIndex>
+			<StyledPostItemTitle>{title}</StyledPostItemTitle>
+			<StyledPostItemDate>{date}</StyledPostItemDate>
+		</StyledPostItem>
+	);
+};
+
+const StyledDocumentItem = styled.a`
+	overflow: hidden;
+	width: 123px;
+	height: 175px;
+	border: 1px solid #000000;
+
+	& img {
+		width: 123px;
+		height: 175px;
+		object-fit: cover;
+	}
+
+	&:hover img {
+		transform: scale(1.1);
+		transition: transform 0.5s;
+	}
+`;
+
+const DocumentItem = ({ src, alt }) => {
+	return (
+		<StyledDocumentItem href={src} target="_blank" rel="noopener noreferrer">
+			<img src={src} alt={alt} />
+		</StyledDocumentItem>
 	);
 };
 

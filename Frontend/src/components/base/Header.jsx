@@ -52,8 +52,8 @@ const Header = () => {
 				<StyledUl>
 					<HeaderNavLi link="/introduction/founder" text="재단소개" />
 					<HeaderNavLi link="/support/sponsorship" text="후원안내" />
-					<HeaderNavLi link="/programs" text="사업소개" />
-					<HeaderNavLi link="/news/board" text="재단소식" />
+					<HeaderNavLi link="/programs/openinnovation" text="사업소개" />
+					<HeaderNavLi link="/news/announcement" text="재단소식" />
 					<HeaderNavLi link="/introduction/founder" text="알림마당" />
 				</StyledUl>
 			</StyledNav>
