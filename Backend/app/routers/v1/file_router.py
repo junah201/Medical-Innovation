@@ -20,11 +20,12 @@ UPLOAD_DIRECTORY = "./files"
 async def upload_files(files: list[UploadFile]):
     filenames = []
     for file in files:
-        print(dir(file))
         contents = await file.read()
         utcnow = datetime.utcnow()
         filename = f"{utcnow.timestamp()}-{file.filename}"
-        with open(f"{UPLOAD_DIRECTORY}/{filename}", "wb") as fp:
+        if not os.path.exists(f"{UPLOAD_DIRECTORY}/upload/{file.filename}"):
+            filename = f"{file.filename}"
+        with open(f"{UPLOAD_DIRECTORY}/upload/{filename}", "wb") as fp:
             fp.write(contents)
         filenames.append(filename)
     return {"filenames": filenames}
@@ -32,13 +33,13 @@ async def upload_files(files: list[UploadFile]):
 
 @router.get("/download/{filename}", response_class=FileResponse)
 async def download_file(filename: str):
-    if not os.path.exists(f"{UPLOAD_DIRECTORY}/{filename}"):
+    if not os.path.exists(f"{UPLOAD_DIRECTORY}/upload/{filename}"):
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="File not found"
         )
 
-    return FileResponse(f"{UPLOAD_DIRECTORY}/{filename}")
+    return FileResponse(f"{UPLOAD_DIRECTORY}/upload/{filename}")
 
 
 @router.post("/banner", status_code=status.HTTP_204_NO_CONTENT)
