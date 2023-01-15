@@ -37,3 +37,8 @@ def get_post(post_id: int, db: Session = Depends(get_db)):
     db_post.files = json.loads(db_post.files)
 
     return db_post
+
+
+@router.put("/{post_id}", status_code=status.HTTP_204_NO_CONTENT)
+def update_post(post_id: int, post_update: schemas.PostUpdate, db: Session = Depends(get_db)):
+    crud.update_post(db=db, post_id=post_id, post_content=post_update.content)

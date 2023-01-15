@@ -66,6 +66,10 @@ class PostCreate(BaseModel):
         return v
 
 
+class PostUpdate(BaseModel):
+    content: str
+
+
 class Post(PostCreate):
     id: int
     board: Board

@@ -61,6 +61,12 @@ def create_post(db: Session, post_create: schemas.PostCreate):
     db.commit()
 
 
+def update_post(db: Session, post_id: int, post_content: str):
+    db_post = db.query(models.Post).filter(models.Post.id == post_id).first()
+    db_post.content = post_content
+    db.commit()
+
+
 def get_posts_by_board_id(db: Session, board_id: int, skip: int = 0, limit: int = 15) -> tuple[int, list[models.Post]]:
     db_posts = db.query(models.Post).filter(
         models.Post.board_id == board_id).order_by(models.Post.created_at.desc())
