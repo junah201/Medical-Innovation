@@ -6,3 +6,4 @@ SQLAlchemy == 1.4.45
 pydantic[email]
 passlib == 1.7.4
 python-jose[cryptography]
+python-multipart
