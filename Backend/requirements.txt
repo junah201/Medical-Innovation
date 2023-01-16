@@ -2,3 +2,4 @@ fastapi
 pymysql
 fastapi-jwt-auth == 0.5.0
 uvicorn[standard]
+SQLAlchemy == 1.4.45
