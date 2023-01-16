@@ -5,6 +5,8 @@ import Header from "./components/base/Header";
 import Footer from "./components/base/Footer";
 
 import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 
 import FounderPage from "./pages/introduction/FounderPage";
@@ -33,6 +35,8 @@ function App() {
 			<Header />
 			<Routes>
 				<Route path="/" element={<HomePage />} />
+				<Route path="/login" element={<LoginPage />} />
+				<Route path="/signup" element={<SignupPage />} />
 				<Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
 				<Route path="/introduction">
 					<Route path="founder" element={<FounderPage />}></Route>

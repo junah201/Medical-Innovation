@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import longLogo from "../../static/images/long_logo.png";
+import BlankDiv from "./../common/BlankDiv";
 
 const StyledHeader = styled.header`
 	background-color: #ffffff;
@@ -10,6 +11,33 @@ const StyledHeader = styled.header`
 const StyledIconWrapper = styled.div`
 	display: flex;
 	padding: 10px 75px;
+
+	& img {
+		width: calc(100vw / 5);
+	}
+`;
+
+const StyledLoginHeader = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+	align-items: center;
+
+	& a {
+		text-align: center;
+		text-decoration: none;
+		font-size: 20px;
+		justify-content: center;
+		align-items: center;
+	}
+
+	& a:hover {
+		text-decoration: underline;
+	}
+
+	& a + a {
+		margin-left: 20px;
+	}
 `;
 
 const StyledNav = styled.nav`
@@ -45,8 +73,12 @@ const Header = () => {
 		<StyledHeader>
 			<StyledIconWrapper>
 				<a href="/">
-					<img src={longLogo} width="300px" alt="미래의학연구재단" />
+					<img src={longLogo} alt="미래의학연구재단" />
 				</a>
+				<StyledLoginHeader>
+					<a href="/login">로그인</a>
+					<a href="/signup">회원가입</a>
+				</StyledLoginHeader>
 			</StyledIconWrapper>
 			<StyledNav>
 				<StyledUl>

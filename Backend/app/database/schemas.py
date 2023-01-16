@@ -1,16 +1,19 @@
 from datetime import datetime
-from pydantic import BaseModel, validator, EmailStr
+from pydantic import BaseModel, validator, EmailStr, constr
 from typing import Optional, List
 import json
 
 
 class UserCreate(BaseModel):
     name: str
+    phone: str
+    email: EmailStr
     password: str
     confirm_password: str
-    email: EmailStr
+    birth: str
+    email_enable: bool
 
-    @validator('name', 'password', 'confirm_password', 'email')
+    @validator('name', 'phone', 'email', 'password', 'confirm_password', 'birth')
     def not_empty(cls, v):
         if not v or not v.strip():
             raise ValueError('Cannot be empty')
@@ -21,6 +24,11 @@ class UserCreate(BaseModel):
         if 'password' in values and v != values['password']:
             raise ValueError('Passwords do not match')
         return v
+
+
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: constr(min_length=8)
 
 
 class User(BaseModel):

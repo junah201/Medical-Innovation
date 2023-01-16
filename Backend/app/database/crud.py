@@ -1,19 +1,22 @@
 from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 from app.database import models, schemas
+from app.utils.verify import hash_password
 from datetime import datetime
 import json
 from typing import List
-
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
 def create_user(db: Session, user_create: schemas.UserCreate):
     utcnow = datetime.utcnow()
     db_user = models.User(
         name=user_create.name,
-        password=pwd_context.hash(user_create.password),
+        phone=user_create.phone,
         email=user_create.email,
+        password=hash_password(user_create.password),
+        birth=user_create.birth,
+        email_enable=user_create.email_enable,
+        is_admin=False,
         created_at=utcnow,
         updated_at=utcnow
     )
@@ -23,13 +26,12 @@ def create_user(db: Session, user_create: schemas.UserCreate):
 
 def get_existing_user(db: Session, user_create: schemas.UserCreate):
     return db.query(models.User).filter(
-        (models.User.name == user_create.name) |
-        (models.User.email == user_create.email)
+        models.User.email == user_create.email
     ).first()
 
 
-def get_user_by_name(db: Session, name: str):
-    return db.query(models.User).filter(models.User.name == name).first()
+def get_user_by_email(db: Session, email: str) -> models.User:
+    return db.query(models.User).filter(models.User.email == email).first()
 
 
 def create_board(db: Session, board_create: schemas.BoardCreate):

@@ -14,8 +14,6 @@ from app.database.database import engine, get_db
 
 from app.routers.v1 import user_router, post_router, board_router, file_router
 
-models.Base.metadata.create_all(bind=engine)
-
 app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="./app/static"), name="static")

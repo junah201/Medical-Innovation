@@ -1,2 +1,4 @@
 fastapi
 pymysql
+fastapi-jwt-auth == 0.5.0
+uvicorn[standard]
