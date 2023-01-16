@@ -11,7 +11,7 @@ const BoardPage = ({ boardId, children }) => {
 
 	useEffect(() => {
 		fetch(
-			`http://localhost:8000/api/v1/post/${boardId}/all?limit=${SIZE}&skip=${page}`,
+			`https://port-0-medical-innovation-backend-1jx7m2glcz21n5v.gksl2.cloudtype.app/api/v1/post/${boardId}/all?limit=${SIZE}&skip=${page}`,
 			{
 				method: "GET",
 				headers: {
@@ -141,7 +141,7 @@ const PostItem = ({ idx, item, page }) => {
 			{item.files.length > 0 ? (
 				<StyledPostItemButton>
 					<a
-						href={`http://localhost:8000/api/v1/file/download/${item.files[0]}`}
+						href={`https://port-0-medical-innovation-backend-1jx7m2glcz21n5v.gksl2.cloudtype.app/api/v1/file/download/${item.files[0]}`}
 						target="_blank"
 						rel="noopener noreferrer"
 					>

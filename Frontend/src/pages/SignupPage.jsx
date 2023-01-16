@@ -93,13 +93,16 @@ const SignupPage = () => {
 			email_enable: emailenable,
 		};
 
-		fetch("http://localhost:8000/api/v1/user/create", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(body),
-		}).then((res) => {
+		fetch(
+			"https://port-0-medical-innovation-backend-1jx7m2glcz21n5v.gksl2.cloudtype.app/api/v1/user/create",
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(body),
+			}
+		).then((res) => {
 			if (res.status === 204) {
 				navigate("/login");
 				return;

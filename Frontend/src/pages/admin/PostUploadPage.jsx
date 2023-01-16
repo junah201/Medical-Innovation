@@ -58,14 +58,17 @@ const PostUploadPage = () => {
 
 		console.log(body);
 
-		fetch(`http://localhost:8000/api/v1/post/create`, {
-			method: "POST",
-			headers: {
-				accept: "application/json",
-				"Content-Type": "application/json",
-			},
-			body: body,
-		}).then((res) => {
+		fetch(
+			`https://port-0-medical-innovation-backend-1jx7m2glcz21n5v.gksl2.cloudtype.app/api/v1/post/create`,
+			{
+				method: "POST",
+				headers: {
+					accept: "application/json",
+					"Content-Type": "application/json",
+				},
+				body: body,
+			}
+		).then((res) => {
 			if (res.status === 200) {
 				res.json().then((data) => {
 					console.log(data.filenames[0]);
@@ -87,13 +90,16 @@ const PostUploadPage = () => {
 		const formData = new FormData();
 		formData.append("files", file);
 		console.log(formData);
-		fetch("http://localhost:8000/api/v1/file/upload", {
-			method: "POST",
-			headers: {
-				accept: "application/json",
-			},
-			body: formData,
-		}).then((res) => {
+		fetch(
+			"https://port-0-medical-innovation-backend-1jx7m2glcz21n5v.gksl2.cloudtype.app/api/v1/file/upload",
+			{
+				method: "POST",
+				headers: {
+					accept: "application/json",
+				},
+				body: formData,
+			}
+		).then((res) => {
 			if (res.status === 200) {
 				res.json().then((data) => {
 					console.log(data.filenames[0]);

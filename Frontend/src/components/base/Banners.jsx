@@ -66,12 +66,15 @@ const Banners = () => {
 
 	useEffect(() => {
 		// 배너 이미지 요청
-		fetch("http://localhost:8000/api/v1/file/banners", {
-			method: "GET",
-			headers: {
-				accept: "application/json",
-			},
-		}).then((res) => {
+		fetch(
+			"https://port-0-medical-innovation-backend-1jx7m2glcz21n5v.gksl2.cloudtype.app/api/v1/file/banners",
+			{
+				method: "GET",
+				headers: {
+					accept: "application/json",
+				},
+			}
+		).then((res) => {
 			if (res.status === 200) {
 				res.json().then((data) => {
 					setBanners(data);
@@ -109,7 +112,7 @@ const Banners = () => {
 									rel="noopener noreferrer"
 								>
 									<img
-										src={`http://localhost:8000/api/v1/file/banner/${item.filename}`}
+										src={`https://port-0-medical-innovation-backend-1jx7m2glcz21n5v.gksl2.cloudtype.app/api/v1/file/banner/${item.filename}`}
 										alt={item.name}
 									/>
 								</a>
