@@ -5,13 +5,13 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.exceptions import RequestValidationError
 
 from sqlalchemy.orm import Session
-import datetime
-from typing import List, Dict
 from starlette import status
+from mangum import Mangum
+from typing import List, Dict
+import datetime
 
 from app.database import models, schemas, crud
 from app.database.database import engine, get_db
-
 from app.routers.v1 import user_router, post_router, board_router, file_router
 
 app = FastAPI()
@@ -59,3 +59,5 @@ async def create_user(user_create: schemas.UserCreate, db: Session = Depends(get
         raise HTTPException(status_code=status.HTTP_409_CONFLICT,
                             detail="User already exists.")
     crud.create_user(db=db, user_create=user_create)
+
+lambda_handler = Mangum(app, lifespan="off")
