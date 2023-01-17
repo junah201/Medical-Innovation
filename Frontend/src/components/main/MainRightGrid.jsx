@@ -105,6 +105,10 @@ const StyledStartupContainer = styled.div`
 		color: #000000;
 	}
 
+	& a:link {
+		color: #000000;
+	}
+
 	& > a > span {
 		font-size: 16px;
 		font-weight: 600;

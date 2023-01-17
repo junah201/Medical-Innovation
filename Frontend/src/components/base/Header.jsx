@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 
+import { Desktop } from "../responsive/responsive";
 import AuthContext from "../../context/AuthContext";
 
 import longLogo from "../../static/images/long_logo.png";
@@ -63,7 +64,7 @@ const StyledLoginHeader = styled.div`
 
 	@media screen and (max-width: 991px) {
 		& a {
-			font-size: 16px;
+			font-size: 1vw;
 		}
 	}
 	@media screen and (min-width: 992px) {
@@ -139,7 +140,9 @@ const Header = () => {
 						{!isLoggedIn && (
 							<>
 								<a href="/login">로그인</a>
-								<a href="/signup">회원가입</a>
+								<Desktop>
+									<a href="/signup">회원가입</a>
+								</Desktop>
 							</>
 						)}
 					</StyledLoginHeader>
