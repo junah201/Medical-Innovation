@@ -6,6 +6,7 @@ import Footer from "./components/base/Footer";
 
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
+import LogoutPage from "./pages/LogoutPage";
 import SignupPage from "./pages/SignupPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 
@@ -36,6 +37,7 @@ function App() {
 			<Routes>
 				<Route path="/" element={<HomePage />} />
 				<Route path="/login" element={<LoginPage />} />
+				<Route path="/logout" element={<LogoutPage />} />
 				<Route path="/signup" element={<SignupPage />} />
 				<Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
 				<Route path="/introduction">

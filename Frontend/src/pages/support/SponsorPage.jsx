@@ -15,15 +15,12 @@ const SponsorPage = () => {
 	const [sponsorshipStatus, setSponsorshipStatus] = useState([]);
 
 	useEffect(() => {
-		fetch(
-			"https://port-0-medical-innovation-backend-1jx7m2glcz21n5v.gksl2.cloudtype.app/api/v1/file/banners",
-			{
-				method: "GET",
-				headers: {
-					accept: "application/json",
-				},
-			}
-		).then((res) => {
+		fetch("http://127.0.0.1:8000/api/v1/file/banners", {
+			method: "GET",
+			headers: {
+				accept: "application/json",
+			},
+		}).then((res) => {
 			if (res.status === 200) {
 				res.json().then((data) => {
 					setSponsorshipStatus(data);
@@ -159,7 +156,7 @@ const SponsorItem = ({ item }) => {
 			<a href={item.link} target="_blank" rel="noopener noreferrer">
 				<div>
 					<img
-						src={`https://port-0-medical-innovation-backend-1jx7m2glcz21n5v.gksl2.cloudtype.app/api/v1/file/banner/${item.filename}`}
+						src={`http://127.0.0.1:8000/api/v1/file/banner/${item.filename}`}
 						alt={item.filename}
 					/>
 				</div>

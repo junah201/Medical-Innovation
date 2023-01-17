@@ -34,7 +34,7 @@ const StyledHomeTitle = styled.h1`
 `;
 
 const StyledHomeDescription = styled.span`
-	font-size: 25px;
+	font-size: 24px;
 	font-weight: 400;
 	text-align: center;
 	display: block;

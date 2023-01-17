@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+
+import AuthContext from "../../context/AuthContext";
 
 import longLogo from "../../static/images/long_logo.png";
 import BlankDiv from "./../common/BlankDiv";
@@ -69,6 +71,10 @@ const StyledLi = styled.li`
 `;
 
 const Header = () => {
+	const authCtx = useContext(AuthContext);
+
+	const isLoggedIn = authCtx.isLoggedIn;
+
 	return (
 		<StyledHeader>
 			<StyledIconWrapper>
@@ -76,8 +82,17 @@ const Header = () => {
 					<img src={longLogo} alt="미래의학연구재단" />
 				</a>
 				<StyledLoginHeader>
-					<a href="/login">로그인</a>
-					<a href="/signup">회원가입</a>
+					{isLoggedIn && (
+						<>
+							<a href="/logout">로그아웃</a>
+						</>
+					)}
+					{!isLoggedIn && (
+						<>
+							<a href="/login">로그인</a>
+							<a href="/signup">회원가입</a>
+						</>
+					)}
 				</StyledLoginHeader>
 			</StyledIconWrapper>
 			<StyledNav>
@@ -86,7 +101,6 @@ const Header = () => {
 					<HeaderNavLi link="/support/sponsorship" text="후원안내" />
 					<HeaderNavLi link="/programs/openinnovation" text="사업소개" />
 					<HeaderNavLi link="/news/announcement" text="재단소식" />
-					<HeaderNavLi link="/introduction/founder" text="알림마당" />
 				</StyledUl>
 			</StyledNav>
 		</StyledHeader>

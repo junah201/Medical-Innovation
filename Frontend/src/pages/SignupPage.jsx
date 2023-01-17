@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 
 const StyledSingupPage = styled.main`
 	display: flex;
@@ -14,6 +15,14 @@ const StyledSignupWrapper = styled.div`
 
 const SignupPage = () => {
 	const navigate = useNavigate();
+
+	const authCtx = useContext(AuthContext);
+
+	useEffect(() => {
+		if (authCtx.isLoggedIn) {
+			navigate("/");
+		}
+	}, [authCtx, navigate]);
 
 	const [name, setName] = useState("");
 	const [phone, setPhone] = useState("");
@@ -93,16 +102,13 @@ const SignupPage = () => {
 			email_enable: emailenable,
 		};
 
-		fetch(
-			"https://port-0-medical-innovation-backend-1jx7m2glcz21n5v.gksl2.cloudtype.app/api/v1/user/create",
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(body),
-			}
-		).then((res) => {
+		fetch("http://127.0.0.1:8000/api/v1/user/create", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(body),
+		}).then((res) => {
 			if (res.status === 204) {
 				navigate("/login");
 				return;

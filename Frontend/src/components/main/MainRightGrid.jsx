@@ -90,19 +90,16 @@ const StyledDocumentWrapper = styled.div`
 `;
 
 const MainLeftGrid = () => {
-	const [selcted, setSelected] = React.useState("재단성격");
+	const [selcted, setSelected] = React.useState("공지사항");
 	const [posts, setPosts] = React.useState([]);
 
 	useEffect(() => {
-		fetch(
-			`https://port-0-medical-innovation-backend-1jx7m2glcz21n5v.gksl2.cloudtype.app/api/v1/post/2/all?limit=6`,
-			{
-				method: "GET",
-				headers: {
-					accept: "application/json",
-				},
-			}
-		).then((res) => {
+		fetch(`http://127.0.0.1:8000/api/v1/post/2/all?limit=6`, {
+			method: "GET",
+			headers: {
+				accept: "application/json",
+			},
+		}).then((res) => {
 			if (res.status === 200) {
 				res.json().then((data) => {
 					setPosts(data.posts);
@@ -123,7 +120,7 @@ const MainLeftGrid = () => {
 					<ol>
 						<StyledTopGridButton
 							onClick={onClickHandler}
-							color={selcted === "공지사항" ? "#204397" : "#838383"}
+							color={selcted === "공지사항" ? "#000000" : "#838383"}
 						>
 							공지사항
 						</StyledTopGridButton>
@@ -131,7 +128,7 @@ const MainLeftGrid = () => {
 					<ol>
 						<StyledTopGridButton
 							onClick={onClickHandler}
-							color={selcted === "보도자료" ? "#204397" : "#838383"}
+							color={selcted === "보도자료" ? "#000000" : "#838383"}
 						>
 							보도자료
 						</StyledTopGridButton>
@@ -139,7 +136,7 @@ const MainLeftGrid = () => {
 					<ol>
 						<StyledTopGridButton
 							onClick={onClickHandler}
-							color={selcted === "네트워크" ? "#204397" : "#838383"}
+							color={selcted === "네트워크" ? "#000000" : "#838383"}
 						>
 							네트워크
 						</StyledTopGridButton>
@@ -147,7 +144,7 @@ const MainLeftGrid = () => {
 					<ol>
 						<StyledTopGridButton
 							onClick={onClickHandler}
-							color={selcted === "자료실" ? "#204397" : "#838383"}
+							color={selcted === "자료실" ? "#000000" : "#838383"}
 						>
 							자료실
 						</StyledTopGridButton>
@@ -155,7 +152,7 @@ const MainLeftGrid = () => {
 					<ol>
 						<StyledTopGridButton
 							onClick={onClickHandler}
-							color={selcted === "재단성격" ? "#204397" : "#838383"}
+							color={selcted === "재단성격" ? "#000000" : "#838383"}
 						>
 							재단성격
 						</StyledTopGridButton>
@@ -297,6 +294,9 @@ const MainLeftGrid = () => {
 const StyledPostItem = styled.a`
 	padding: 10px;
 	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
 	color: #000000;
 
 	&:visited {

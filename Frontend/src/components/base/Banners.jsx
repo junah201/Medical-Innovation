@@ -65,16 +65,12 @@ const Banners = () => {
 	const [bannerIndex, setBannerIndex] = useState(0);
 
 	useEffect(() => {
-		// 배너 이미지 요청
-		fetch(
-			"https://port-0-medical-innovation-backend-1jx7m2glcz21n5v.gksl2.cloudtype.app/api/v1/file/banners",
-			{
-				method: "GET",
-				headers: {
-					accept: "application/json",
-				},
-			}
-		).then((res) => {
+		fetch("http://127.0.0.1:8000/api/v1/file/banners", {
+			method: "GET",
+			headers: {
+				accept: "application/json",
+			},
+		}).then((res) => {
 			if (res.status === 200) {
 				res.json().then((data) => {
 					setBanners(data);
@@ -84,7 +80,6 @@ const Banners = () => {
 	}, []);
 
 	useEffect(() => {
-		// 배너 움직임 설정
 		const mover = setInterval(() => {
 			setBannerIndex((bannerIndex) => {
 				if (bannerIndex < banners.length / 2 - 8) {
@@ -102,17 +97,12 @@ const Banners = () => {
 		<StyledBannerContainerWrapper>
 			<StyledBannersContainer>
 				<StyledBanners x={bannerIndex * 190}>
-					{banners.map((item, index) => {
+					{banners.map((item) => {
 						return (
-							<StyledBannerItem>
-								<a
-									href={item.link}
-									key={item.id}
-									target="_blank"
-									rel="noopener noreferrer"
-								>
+							<StyledBannerItem key={item.id}>
+								<a href={item.link} target="_blank" rel="noopener noreferrer">
 									<img
-										src={`https://port-0-medical-innovation-backend-1jx7m2glcz21n5v.gksl2.cloudtype.app/api/v1/file/banner/${item.filename}`}
+										src={`http://127.0.0.1:8000/api/v1/file/banner/${item.filename}`}
 										alt={item.name}
 									/>
 								</a>

@@ -34,7 +34,6 @@ def login(
     Authorize: AuthJWT = Depends(),
 ):
     user = crud.get_user_by_email(db, form_data.username)
-
     if not user:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -92,14 +91,19 @@ def login(
         samesite='lax'
     )
 
-    return {"status": "success", "access_token": access_token, "refresh_token": refresh_token}
+    return {
+        "status": "success",
+        "access_token": access_token,
+        "access_token_expires_in": ACCESS_TOKEN_EXPIRES_IN * 60,
+        "refresh_token": refresh_token,
+        "refresh_token_expires_in": REFRESH_TOKEN_EXPIRES_IN * 60,
+    }
 
 
 @router.get('/refresh')
 def refresh(response: Response, request: Request, Authorize: AuthJWT = Depends(), db: Session = Depends(get_db)):
     try:
         Authorize.jwt_refresh_token_required()
-
         current_user_email = Authorize.get_jwt_subject()
         if not current_user_email:
             raise HTTPException(
@@ -163,3 +167,10 @@ def logout(response: Response, Authorize: AuthJWT = Depends(), db: Session = Dep
     Authorize.unset_jwt_cookies()
     response.set_cookie('logged_in', '', -1)
     return {"status": "success"}
+
+
+@router.get("/test")
+def test(
+    request: Request
+):
+    print(request.cookies)

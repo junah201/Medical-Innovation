@@ -11,7 +11,7 @@ router = APIRouter(
 
 
 @router.post("/create", status_code=status.HTTP_204_NO_CONTENT)
-def create_post(post_create: schemas.PostCreate, db: Session = Depends(get_db)):
+def create_post(post_create: schemas.PostCreate, access_token: str, db: Session = Depends(get_db)):
     crud.create_post(db=db, post_create=post_create)
 
 

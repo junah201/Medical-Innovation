@@ -18,19 +18,19 @@ const SubNav = (props) => {
 				isSelect={props.select === "공지사항"}
 			></SubNavButton>
 			<SubNavButton
-				href="/programs/accelerating"
-				text="연구자 중심 창업지원"
-				isSelect={props.select === "연구자 중심 창업지원"}
+				href="/news/board"
+				text="보도자료"
+				isSelect={props.select === "보도자료"}
 			></SubNavButton>
 			<SubNavButton
-				href="/programs/research_support_project"
-				text="연구발굴지원사업"
-				isSelect={props.select === "연구발굴지원사업"}
+				href="/news/photos"
+				text="사진"
+				isSelect={props.select === "사진"}
 			></SubNavButton>
 			<SubNavButton
-				href="/programs/orgchart_and_project"
-				text="최신 동향 보편적 공유"
-				isSelect={props.select === "최신 동향 보편적 공유"}
+				href="/news/other"
+				text="자료실"
+				isSelect={props.select === "자료실"}
 			></SubNavButton>
 		</StyledSubNav>
 	);
