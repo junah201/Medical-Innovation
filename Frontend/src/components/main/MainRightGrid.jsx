@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 
-import { Desktop, Tablet, Mobile } from "../responsive/responsive";
-
 import BlankDiv from "../common/BlankDiv";
 
 import preregistrationStatus from "../../static/images/사전등록현황.png";
@@ -14,8 +12,8 @@ const StyledMainLeftGrid = styled.div`
 	grid-gap: 10px;
 
 	@media screen and (max-width: 991px) {
-		width: 100%;
-		padding: 10px;
+		width: 100vw;
+		margin: 10px;
 	}
 	@media screen and (min-width: 992px) {
 		width: 50%;
@@ -26,7 +24,7 @@ const StyledTopGridItem = styled.div`
 	background-color: #ffffff;
 	grid-column: 1 / 3;
 	grid-row: 1 / 2;
-	padding: 20px;
+	padding: 15px;
 
 	& > li {
 		display: flex;
@@ -39,7 +37,12 @@ const StyledTopGridItem = styled.div`
 		font-weight: 600;
 	}
 
-	@media screen and (max-width: 991px) {
+	@media screen and (max-width: 350px) {
+		& button {
+			font-size: 12px;
+		}
+	}
+	@media screen and (min-width: 351px) and (max-width: 991px) {
 		& button {
 			font-size: 16px;
 		}

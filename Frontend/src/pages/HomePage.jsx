@@ -46,7 +46,7 @@ const StyledHomeDescription = styled.span`
 	display: block;
 	width: 100%;
 	@media screen and (max-width: 991px) {
-		font-size: 14px;
+		font-size: 2.4vw;
 		font-weight: 600;
 	}
 	@media screen and (min-width: 992px) {

@@ -7,17 +7,28 @@ import cbtci from "../../static/images/세포치료실용화센터CI.png";
 import khidi from "../../static/images/연구중심병원.png";
 import snubio from "../../static/images/협동과정줄기세포생물학.png";
 
-const StyledFotter = styled.footer`
+const StyledFooter = styled.footer`
 	border-top: 1px solid #000000;
+	overflow: hidden;
+	width: 100%;
+
+	& img {
+		overflow: hidden;
+	}
 `;
 
 const StyledBottomFooter = styled.div`
+	overflow: hidden;
 	width: 100vw;
 	height: 100px;
 	background-color: #474747;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
+	& * {
+		text-align: center;
+	}
 
 	&,
 	& * {
@@ -26,6 +37,23 @@ const StyledBottomFooter = styled.div`
 	}
 	& > * + * {
 		margin-left: 30px;
+	}
+
+	@media screen and (max-width: 991px) {
+		flex-direction: column;
+		& * {
+			font-size: 12px;
+		}
+		& br {
+		}
+	}
+	@media screen and (min-width: 992px) {
+		& * {
+			font-size: 20px;
+		}
+
+		& br {
+		}
 	}
 `;
 
@@ -49,14 +77,21 @@ const StyledTopFooter = styled.div`
 `;
 
 const StyledTopFooterItem = styled.a`
-	& img {
-		height: ${(props) => props.height || 60}px;
+	@media screen and (max-width: 991px) {
+		& img {
+			height: ${(props) => (props.height ? 40 : 50)}px;
+		}
+	}
+	@media screen and (min-width: 992px) {
+		& img {
+			height: ${(props) => (props.height ? 40 : 60)}px;
+		}
 	}
 `;
 
 const Footer = () => {
 	return (
-		<StyledFotter>
+		<StyledFooter>
 			<StyledTopFooter>
 				<StyledTopFooterItem href="/" height="50">
 					<img src={longLogo} alt="미래의학연구재단" />
@@ -97,7 +132,7 @@ const Footer = () => {
 				<p>TEL : 02-2072-2226</p>
 				<p>Copyright(c) 2016 재단법인 미래의학연구재단. All rights reserved.</p>
 			</StyledBottomFooter>
-		</StyledFotter>
+		</StyledFooter>
 	);
 };
 
