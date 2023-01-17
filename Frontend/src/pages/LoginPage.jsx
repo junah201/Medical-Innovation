@@ -123,14 +123,16 @@ const LoginPage = () => {
 		}
 		formBody = formBody.join("&");
 
-		fetch("http://127.0.0.1:8000/api/v1/user/login", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-			},
-			credentials: "same-origin",
-			body: formBody,
-		})
+		fetch(
+			"https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/user/login",
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+				},
+				body: formBody,
+			}
+		)
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.status !== "success") {
@@ -144,13 +146,6 @@ const LoginPage = () => {
 
 				navigate("/");
 			});
-		fetch("http://127.0.0.1:8000/api/v1/user/test", {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json;charset=UTF-8",
-			},
-			credentials: "same-origin",
-		});
 	};
 
 	return (

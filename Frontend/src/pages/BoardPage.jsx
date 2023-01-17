@@ -11,7 +11,7 @@ const BoardPage = ({ boardId, children }) => {
 
 	useEffect(() => {
 		fetch(
-			`http://127.0.0.1:8000/api/v1/post/${boardId}/all?limit=${SIZE}&skip=${page}`,
+			`https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/post/${boardId}/all?limit=${SIZE}&skip=${page}`,
 			{
 				method: "GET",
 				headers: {
@@ -141,7 +141,7 @@ const PostItem = ({ idx, item, page }) => {
 			{item.files.length > 0 ? (
 				<StyledPostItemButton>
 					<a
-						href={`http://127.0.0.1:8000/api/v1/file/download/${item.files[0]}`}
+						href={`https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/file/download/${item.files[0]}`}
 						target="_blank"
 						rel="noopener noreferrer"
 					>

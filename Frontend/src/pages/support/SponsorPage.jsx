@@ -15,12 +15,15 @@ const SponsorPage = () => {
 	const [sponsorshipStatus, setSponsorshipStatus] = useState([]);
 
 	useEffect(() => {
-		fetch("http://127.0.0.1:8000/api/v1/file/banners", {
-			method: "GET",
-			headers: {
-				accept: "application/json",
-			},
-		}).then((res) => {
+		fetch(
+			"https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/file/banners",
+			{
+				method: "GET",
+				headers: {
+					accept: "application/json",
+				},
+			}
+		).then((res) => {
 			if (res.status === 200) {
 				res.json().then((data) => {
 					setSponsorshipStatus(data);
@@ -156,7 +159,7 @@ const SponsorItem = ({ item }) => {
 			<a href={item.link} target="_blank" rel="noopener noreferrer">
 				<div>
 					<img
-						src={`http://127.0.0.1:8000/api/v1/file/banner/${item.filename}`}
+						src={`https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/file/banner/${item.filename}`}
 						alt={item.filename}
 					/>
 				</div>

@@ -58,14 +58,17 @@ const PostUploadPage = () => {
 
 		console.log(body);
 
-		fetch(`http://127.0.0.1:8000/api/v1/post/create`, {
-			method: "POST",
-			headers: {
-				accept: "application/json",
-				"Content-Type": "application/json",
-			},
-			body: body,
-		}).then((res) => {
+		fetch(
+			`https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/post/create`,
+			{
+				method: "POST",
+				headers: {
+					accept: "application/json",
+					"Content-Type": "application/json",
+				},
+				body: body,
+			}
+		).then((res) => {
 			if (res.status === 200) {
 				res.json().then((data) => {
 					console.log(data.filenames[0]);
@@ -87,13 +90,16 @@ const PostUploadPage = () => {
 		const formData = new FormData();
 		formData.append("files", file);
 		console.log(formData);
-		fetch("http://127.0.0.1:8000/api/v1/file/upload", {
-			method: "POST",
-			headers: {
-				accept: "application/json",
-			},
-			body: formData,
-		}).then((res) => {
+		fetch(
+			"https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/file/upload",
+			{
+				method: "POST",
+				headers: {
+					accept: "application/json",
+				},
+				body: formData,
+			}
+		).then((res) => {
 			if (res.status === 200) {
 				res.json().then((data) => {
 					console.log(data.filenames[0]);

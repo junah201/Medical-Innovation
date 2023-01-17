@@ -14,6 +14,8 @@ from app.database import models, schemas, crud
 from app.database.database import engine, get_db
 from app.routers.v1 import user_router, post_router, board_router, file_router
 
+models.Base.metadata.create_all(bind=engine, checkfirst=True)
+
 app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="./app/static"), name="static")
@@ -60,4 +62,4 @@ async def create_user(user_create: schemas.UserCreate, db: Session = Depends(get
                             detail="User already exists.")
     crud.create_user(db=db, user_create=user_create)
 
-lambda_handler = Mangum(app, lifespan="off")
+# lambda_handler = Mangum(app, lifespan="off")

@@ -102,13 +102,16 @@ const SignupPage = () => {
 			email_enable: emailenable,
 		};
 
-		fetch("http://127.0.0.1:8000/api/v1/user/create", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(body),
-		}).then((res) => {
+		fetch(
+			"https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/user/create",
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(body),
+			}
+		).then((res) => {
 			if (res.status === 204) {
 				navigate("/login");
 				return;

@@ -131,12 +131,15 @@ const MainLeftGrid = () => {
 	const [posts, setPosts] = React.useState([]);
 
 	useEffect(() => {
-		fetch(`http://127.0.0.1:8000/api/v1/post/2/all?limit=6`, {
-			method: "GET",
-			headers: {
-				accept: "application/json",
-			},
-		}).then((res) => {
+		fetch(
+			`https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/post/2/all?limit=6`,
+			{
+				method: "GET",
+				headers: {
+					accept: "application/json",
+				},
+			}
+		).then((res) => {
 			if (res.status === 200) {
 				res.json().then((data) => {
 					setPosts(data.posts);

@@ -14,13 +14,13 @@ class User(Base):
         comment="유저 고유 번호",
     )
     name = Column(
-        String,
+        String(20),
         unique=False,
         nullable=False,
         comment="이름",
     )
     phone = Column(
-        String,
+        String(20),
         unique=False,
         nullable=True,
         default="01000000000",
@@ -28,18 +28,18 @@ class User(Base):
         comment="전화번호",
     )
     email = Column(
-        String,
+        String(50),
         unique=True,
         nullable=False,
         comment="이메일 주소 (로그인 아이디)",
     )
     password = Column(
-        String,
+        String(60),
         nullable=False,
         comment="해쉬된 비밀번호",
     )
     birth = Column(
-        String,
+        String(10),
         nullable=False,
         default="1900-01-01",
         server_default="1900-01-01",
@@ -48,15 +48,13 @@ class User(Base):
     is_admin = Column(
         BOOLEAN,
         nullable=False,
-        default='f',
-        server_default='f',
+        default=False,
         comment="관리자 여부",
     )
     email_enable = Column(
         BOOLEAN,
         nullable=False,
-        default="t",
-        server_default="t",
+        default=True,
         comment="이메일 수신 여부",
     )
     posts = relationship("Post", back_populates="author")
@@ -82,13 +80,13 @@ class Post(Base):
     __tablename__ = "post"
 
     id = Column(Integer, primary_key=True, unique=True)
-    title = Column(String, nullable=False)
+    title = Column(String(100), nullable=False)
     board_id = Column(Integer, ForeignKey("board.id"))
     board = relationship("Board", back_populates="posts")
-    content = Column(String, nullable=False)
-    author_name = Column(String, ForeignKey("user.name"))
+    content = Column(String(3000), nullable=False)
+    author_name = Column(String(20), ForeignKey("user.name"))
     author = relationship("User", back_populates="posts")
-    files = Column(JSON)
+    files = Column(String(1000))
     created_at = Column(
         DateTime,
         nullable=False,
@@ -111,7 +109,7 @@ class Board(Base):
     __tablename__ = "board"
 
     id = Column(Integer, primary_key=True, unique=True)
-    name = Column(String, nullable=False)
+    name = Column(String(20), nullable=False)
     posts = relationship("Post", back_populates="board")
     created_at = Column(
         DateTime,
@@ -138,25 +136,25 @@ class Banner(Base):
         Integer,
         primary_key=True,
         unique=True,
-        comment="회사명"
+        comment="회사 고유 번호"
     )
     name = Column(
-        String,
+        String(30),
         nullable=False,
         comment="회사명"
     )
     filename = Column(
-        String,
+        String(40),
         nullable=False,
         comment="파일명"
     )
     link = Column(
-        String,
+        String(100),
         nullable=False,
         comment="홈페이지 링크"
     )
     year = Column(
-        String,
+        String(4),
         nullable=False,
         comment="후원 시작 년도"
     )

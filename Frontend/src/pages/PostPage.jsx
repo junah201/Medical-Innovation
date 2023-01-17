@@ -9,12 +9,15 @@ const PostPage = () => {
 	const [post, setPost] = useState(null);
 
 	useEffect(() => {
-		fetch(`http://127.0.0.1:8000/api/v1/post/${params.id}`, {
-			method: "GET",
-			headers: {
-				accept: "application/json",
-			},
-		}).then((res) => {
+		fetch(
+			`https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/post/${params.id}`,
+			{
+				method: "GET",
+				headers: {
+					accept: "application/json",
+				},
+			}
+		).then((res) => {
 			if (res.status === 200) {
 				res.json().then((data) => {
 					console.log(data);
@@ -52,7 +55,7 @@ const PostPage = () => {
 								{post.files.map((file) => {
 									return (
 										<a
-											href={`http://127.0.0.1:8000/api/v1/file/download/${file}`}
+											href={`https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/file/download/${file}`}
 										>
 											{file}
 										</a>
