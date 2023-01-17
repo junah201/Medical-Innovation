@@ -135,7 +135,7 @@ const PostItem = ({ idx, item, page }) => {
 		<StyledPostItem>
 			<span>{page + idx + 1}</span>
 			<StyledPostItemContent>
-				<a href={`http://localhost:3000/post/${item.id}`}>{item.title}</a>
+				<a href={`/post/${item.id}`}>{item.title}</a>
 				<span>게시일 {date}</span>
 			</StyledPostItemContent>
 			{item.files.length > 0 ? (

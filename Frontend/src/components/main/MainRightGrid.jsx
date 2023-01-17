@@ -167,7 +167,7 @@ const MainLeftGrid = () => {
 						{posts.map((post, index) => {
 							return (
 								<PostItem
-									link={`http://localhost:3000/post/${post.id}`}
+									link={`/post/${post.id}`}
 									title={post.title}
 									date={post.created_at}
 									index={index + 1}

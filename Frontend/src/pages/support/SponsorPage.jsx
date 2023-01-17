@@ -40,7 +40,7 @@ const SponsorPage = () => {
 				<StyledSponsorContainer>
 					<SponsorItem
 						item={{
-							link: "http://localhost:3000/introduction/founder",
+							link: "/introduction/founder",
 							name: "김효수",
 							filename: "김효수.png",
 							year: "",
