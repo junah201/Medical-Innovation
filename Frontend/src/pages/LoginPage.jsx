@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { getCookie, setCookie } from "../utils/cookie";
 import AuthContext from "../context/AuthContext";
 
 const StyledLoginPage = styled.main`
@@ -54,16 +53,27 @@ const StyledLoginWrapper = styled.div`
 	}
 
 	& button {
+		height: 45px;
+		margin-top: 10px;
 		width: 100%;
 		background: #204397;
 		border: none;
 		color: #ffffff;
-		padding: 3px;
+		padding: 5px;
 		font-size: 18px;
 		font-weight: 500;
 		text-transform: uppercase;
 		letter-spacing: 1px;
 		cursor: pointer;
+	}
+
+	& a {
+		text-align: center;
+		width: 100%;
+	}
+
+	& a:hover {
+		text-decoration: underline;
 	}
 `;
 
@@ -147,7 +157,7 @@ const LoginPage = () => {
 		<StyledLoginPage>
 			<StyledLoginWrapper>
 				<form onSubmit={onSubmitHandler}>
-					<h1>Login</h1>
+					<h1>로그인</h1>
 					<div>
 						<label>Email</label>
 						<input
@@ -169,6 +179,9 @@ const LoginPage = () => {
 						/>
 					</div>
 					<button type="submit">로그인</button>
+					<div>
+						<a href="/signup">회원가입</a>
+					</div>
 				</form>
 			</StyledLoginWrapper>
 		</StyledLoginPage>

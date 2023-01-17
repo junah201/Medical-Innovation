@@ -31,6 +31,12 @@ const StyledHomeTitle = styled.h1`
 	text-align: center;
 	margin-bottom: 12px;
 	width: 100%;
+
+	@media screen and (max-width: 991px) {
+		display: none;
+	}
+	@media screen and (min-width: 992px) {
+	}
 `;
 
 const StyledHomeDescription = styled.span`
@@ -39,6 +45,15 @@ const StyledHomeDescription = styled.span`
 	text-align: center;
 	display: block;
 	width: 100%;
+	@media screen and (max-width: 991px) {
+		font-size: 14px;
+		font-weight: 600;
+	}
+	@media screen and (min-width: 992px) {
+		& br {
+			display: none;
+		}
+	}
 `;
 
 const HomePage = () => {
@@ -47,8 +62,9 @@ const HomePage = () => {
 			<StyledHomePage>
 				<StyledHomeTitle>Foundation for Medical Innovation</StyledHomeTitle>
 				<StyledHomeDescription>
-					재단법인 미래의학연구재단은 과학기술정보통신부 소관 비영리법인 ·
-					지정기부금단체 · 중소밴처기업부 등록 창업기획자입니다.
+					재단법인 미래의학연구재단은 과학기술정보통신부 소관
+					<br />
+					비영리법인 · 지정기부금단체 · 중소밴처기업부 등록 창업기획자입니다.
 				</StyledHomeDescription>
 				<StyledHomeWrapper>
 					<MainLeftGrid />

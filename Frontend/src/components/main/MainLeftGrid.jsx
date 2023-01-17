@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { Desktop } from "../responsive/responsive";
+
 import BlankDiv from "../common/BlankDiv";
 
 import kimhyosoo from "../../static/images/KimHyoSoo.png";
@@ -93,116 +95,123 @@ const StyledGridBottomItem = styled.div`
 
 const MainLeftGrid = () => {
 	return (
-		<StyledGrid>
-			<StyledGridImgItem>
-				<a href="/introduction/founder">
-					<img src={kimhyosoo} width="250px" alt="김효수" />
-				</a>
-			</StyledGridImgItem>
-			<StyledGridItem color="#2763BA">
-				<h3>재단 소개</h3>
-				<p>
-					과기부 소관 비영리법인 중소벤처기업부 창업기획자 기획재정부
-					지정기부금단체
-				</p>
-				<a href="/support/sponsor">유관그룹</a>
-				<a href="/support/sponsor">협력기관</a>
-			</StyledGridItem>
-			<StyledGridItem color="#2CA48F">
-				<h3>FMI 인베스트먼트</h3>
-				<p>바이오헬스 혁신기업의 지속 가능한 성장과 미래</p>
-				<a href="/support/sponsor">지원현황</a>
-			</StyledGridItem>
-			<StyledGridItem color="#008ACE">
-				<h3>후원 안내</h3>
-				<p>
-					대한민국 보건의료의 발전을 추구하시는 여러분 모두가 후원자가 되어
-					주십시오.
-				</p>
-				<a href="/support/sponsorship">후원하기</a>
-				<a href="/support/sponsor">후원인 명단</a>
-			</StyledGridItem>
-			<StyledGridBottomItem>
-				<div>
-					<a href="http://www.celltherapy.re.kr/">
-						<img
-							src={cellTherapy}
-							width="50px"
-							height="50px"
-							alt="세포치료 실용화 센터"
-						/>
+		<Desktop>
+			<StyledGrid>
+				<StyledGridImgItem>
+					<a href="/introduction/founder">
+						<img src={kimhyosoo} width="250px" alt="김효수" />
+					</a>
+				</StyledGridImgItem>
+				<StyledGridItem color="#2763BA">
+					<h3>재단 소개</h3>
+					<p>
+						과기부 소관 비영리법인 중소벤처기업부 창업기획자 기획재정부
+						지정기부금단체
+					</p>
+					<a href="/support/sponsor">유관그룹</a>
+					<a href="/support/sponsor">협력기관</a>
+				</StyledGridItem>
+				<StyledGridItem color="#2CA48F">
+					<h3>FMI 인베스트먼트</h3>
+					<p>바이오헬스 혁신기업의 지속 가능한 성장과 미래</p>
+					<a href="/support/sponsor">지원현황</a>
+				</StyledGridItem>
+				<StyledGridItem color="#008ACE">
+					<h3>후원 안내</h3>
+					<p>
+						대한민국 보건의료의 발전을 추구하시는 여러분 모두가 후원자가 되어
+						주십시오.
+					</p>
+					<a href="/support/sponsorship">후원하기</a>
+					<a href="/support/sponsor">후원인 명단</a>
+				</StyledGridItem>
+				<StyledGridBottomItem>
+					<div>
+						<a href="http://www.celltherapy.re.kr/">
+							<img
+								src={cellTherapy}
+								width="50px"
+								height="50px"
+								alt="세포치료 실용화 센터"
+							/>
+							<BlankDiv height="10px" />
+							세포치료
+							<br />
+							실용화 센터
+						</a>
+					</div>
+					<div>
+						<a href="https://cardiolabacting.wixsite.com/cvstemcell">
+							<img
+								src={cardiovascularLab}
+								width="50px"
+								height="50px"
+								alt="서울대병원 심혈관연구실"
+							/>
+							<BlankDiv height="10px" />
+							서울대병원
+							<br />
+							심혈관연구실
+						</a>
+					</div>
+					<div>
+						<a href="http://www.celltherapy.re.kr/">
+							<img
+								src={snuh}
+								width="50px"
+								height="50px"
+								alt="순환기내과 TAVI"
+							/>
+							<BlankDiv height="10px" />
+							순환기내과
+							<br />
+							TAVI
+						</a>
+					</div>
+					<div>
+						<a href="https://blog.naver.com/snuh_heart2">
+							<img
+								src={snuh}
+								width="50px"
+								height="50px"
+								alt="순환기내과 매직셀"
+							/>
+							<BlankDiv height="10px" />
+							순환기내과
+							<br />
+							매직셀
+						</a>
+					</div>
+					<div>
+						<a
+							href="https://www.youtube.com/channel/UCmXV9TzHG-Ys_VxwNinfuNw"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<img
+								src={youtube}
+								width="45px"
+								height="45px"
+								alt="미래의학연구재단 유튜브"
+							/>
+						</a>
 						<BlankDiv height="10px" />
-						세포치료
-						<br />
-						실용화 센터
-					</a>
-				</div>
-				<div>
-					<a href="https://cardiolabacting.wixsite.com/cvstemcell">
-						<img
-							src={cardiovascularLab}
-							width="50px"
-							height="50px"
-							alt="서울대병원 심혈관연구실"
-						/>
-						<BlankDiv height="10px" />
-						서울대병원
-						<br />
-						심혈관연구실
-					</a>
-				</div>
-				<div>
-					<a href="http://www.celltherapy.re.kr/">
-						<img src={snuh} width="50px" height="50px" alt="순환기내과 TAVI" />
-						<BlankDiv height="10px" />
-						순환기내과
-						<br />
-						TAVI
-					</a>
-				</div>
-				<div>
-					<a href="https://blog.naver.com/snuh_heart2">
-						<img
-							src={snuh}
-							width="50px"
-							height="50px"
-							alt="순환기내과 매직셀"
-						/>
-						<BlankDiv height="10px" />
-						순환기내과
-						<br />
-						매직셀
-					</a>
-				</div>
-				<div>
-					<a
-						href="https://www.youtube.com/channel/UCmXV9TzHG-Ys_VxwNinfuNw"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<img
-							src={youtube}
-							width="45px"
-							height="45px"
-							alt="미래의학연구재단 유튜브"
-						/>
-					</a>
-					<BlankDiv height="10px" />
-					<a
-						href="https://www.facebook.com/people/%EB%AF%B8%EB%9E%98%EC%9D%98%ED%95%99%EC%97%B0%EA%B5%AC%EC%9E%AC%EB%8B%A8/100028283547245/"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<img
-							src={facebook}
-							width="45px"
-							height="45px"
-							alt="미래의학연구재단 페이스북"
-						/>
-					</a>
-				</div>
-			</StyledGridBottomItem>
-		</StyledGrid>
+						<a
+							href="https://www.facebook.com/people/%EB%AF%B8%EB%9E%98%EC%9D%98%ED%95%99%EC%97%B0%EA%B5%AC%EC%9E%AC%EB%8B%A8/100028283547245/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<img
+								src={facebook}
+								width="45px"
+								height="45px"
+								alt="미래의학연구재단 페이스북"
+							/>
+						</a>
+					</div>
+				</StyledGridBottomItem>
+			</StyledGrid>
+		</Desktop>
 	);
 };
 
