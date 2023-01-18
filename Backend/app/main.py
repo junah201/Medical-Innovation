@@ -19,13 +19,16 @@ models.Base.metadata.create_all(bind=engine, checkfirst=True)
 app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="./app/static"), name="static")
+"""
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["http://localhost:3000",
+                   "https://medical-innovation.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+"""
 
 
 app.include_router(user_router.router)

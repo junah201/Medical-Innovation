@@ -71,15 +71,17 @@ const Banners = () => {
 				method: "GET",
 				headers: {
 					accept: "application/json",
+					"Content-Type": "application/json",
 				},
 			}
-		).then((res) => {
-			if (res.status === 200) {
-				res.json().then((data) => {
-					setBanners(data);
-				});
-			}
-		});
+		)
+			.then((res) => res.json())
+			.then((data) => {
+				setBanners(data);
+			})
+			.catch((e) => {
+				console.log(e);
+			});
 	}, []);
 
 	useEffect(() => {
@@ -94,7 +96,7 @@ const Banners = () => {
 		}, 6000);
 
 		return () => clearInterval(mover);
-	});
+	}, [banners]);
 
 	return (
 		<StyledBannerContainerWrapper>

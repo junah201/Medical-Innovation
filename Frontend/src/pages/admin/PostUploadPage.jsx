@@ -89,7 +89,6 @@ const PostUploadPage = () => {
 		e.preventDefault();
 		const formData = new FormData();
 		formData.append("files", file);
-		console.log(formData);
 		fetch(
 			"https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/file/upload",
 			{
