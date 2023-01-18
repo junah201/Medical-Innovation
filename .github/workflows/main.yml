@@ -15,17 +15,24 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: "3.9"
+          architecture: x64
           cache: "pip"
 
-      - name: "Install Python module"
-        run: (cd Backend;pip list; pip install -r requirements.txt -t lib)
+      - name: Install Python Virtual ENV
+        run: |
+          python -m pip install --upgrade pip
+          python -m venv env
+          source env/bin/activate
+          echo "VIRTUAL ENV:" $VIRTUAL_ENV
 
-      - name: "TEST"
-        run: (cd Backend;pip install -r requirements.txt;pip list;)
+      - name: Install Python module
+        run: |
+        cd Backend
+        pip install -r requirements.txt
 
       - name: Python files to Zip file
         run: |
-          (cd Backend/lib; zip ../../Build.zip -r .)
+          (cd ./venv/lib/python3.9/site-packages; zip -r9 ../../../../Build.zip . )
           (cd Backend; zip ../Build.zip -u -r app/; zip ../Build.zip -u -r files/)
       - name: Upload zip file artifact
         uses: actions/upload-artifact@v2
