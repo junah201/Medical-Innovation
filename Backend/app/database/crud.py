@@ -1,4 +1,3 @@
-from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 from app.database import models, schemas
 from app.utils.verify import hash_password
