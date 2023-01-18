@@ -4,7 +4,8 @@ fastapi-jwt-auth == 0.5.0
 uvicorn[standard]
 SQLAlchemy == 1.4.45
 pydantic[email]
-passlib == 1.7.4
+bcrypt == 4.0.1
+passlib[bcrypt]
 python-jose[cryptography]
 python-multipart
 mangum

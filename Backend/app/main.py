@@ -2,7 +2,7 @@ from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
-from fastapi.exceptions import RequestValidationError
+from fastapi.exceptions import RequestValidationError, HTTPException
 
 from sqlalchemy.orm import Session
 from starlette import status
@@ -48,21 +48,9 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
     content = {'status_code': 10422, 'message': exc_str, 'data': None}
     return JSONResponse(content=content, status_code=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
-
 @app.get("/")
 async def index():
     return f"Notification API (UTC: {datetime.datetime.utcnow().strftime('%Y.%m.%d %H:%M:%S')})"
 
-
-@app.post("/api/v1/user/create", status_code=status.HTTP_204_NO_CONTENT)
-async def create_user(user_create: schemas.UserCreate, db: Session = Depends(get_db)):
-    """
-    Create a new user.
-    """
-    user = crud.get_existing_user(db=db, user_create=user_create)
-    if user:
-        raise HTTPException(status_code=status.HTTP_409_CONFLICT,
-                            detail="User already exists.")
-    crud.create_user(db=db, user_create=user_create)
 
 lambda_handler = Mangum(app, lifespan="off")
