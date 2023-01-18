@@ -62,4 +62,4 @@ async def create_user(user_create: schemas.UserCreate, db: Session = Depends(get
                             detail="User already exists.")
     crud.create_user(db=db, user_create=user_create)
 
-# lambda_handler = Mangum(app, lifespan="off")
+lambda_handler = Mangum(app, lifespan="off")
