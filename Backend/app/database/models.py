@@ -1,10 +1,11 @@
-from sqlalchemy import Column, String, Integer, DateTime, JSON, ForeignKey, BOOLEAN, func
+from sqlalchemy import Column, String, Integer, DateTime, JSON, ForeignKey, BOOLEAN, func, VARCHAR, VARCHAR
 from sqlalchemy.orm import relationship
 from app.database.database import Base
 
 
 class User(Base):
     __tablename__ = "user"
+    __table_args__ = {'mysql_collate': 'utf8_general_ci'}
 
     id = Column(
         Integer,
@@ -14,13 +15,13 @@ class User(Base):
         comment="유저 고유 번호",
     )
     name = Column(
-        String(20),
+        VARCHAR(20),
         unique=False,
         nullable=False,
         comment="이름",
     )
     phone = Column(
-        String(20),
+        VARCHAR(20),
         unique=False,
         nullable=True,
         default="01000000000",
@@ -28,18 +29,18 @@ class User(Base):
         comment="전화번호",
     )
     email = Column(
-        String(50),
+        VARCHAR(50),
         unique=True,
         nullable=False,
         comment="이메일 주소 (로그인 아이디)",
     )
     password = Column(
-        String(60),
+        VARCHAR(60),
         nullable=False,
         comment="해쉬된 비밀번호",
     )
     birth = Column(
-        String(10),
+        VARCHAR(10),
         nullable=False,
         default="1900-01-01",
         server_default="1900-01-01",
@@ -78,15 +79,16 @@ class User(Base):
 
 class Post(Base):
     __tablename__ = "post"
+    __table_args__ = {'mysql_collate': 'utf8_general_ci'}
 
     id = Column(Integer, primary_key=True, unique=True)
-    title = Column(String(100), nullable=False)
+    title = Column(VARCHAR(100), nullable=False)
     board_id = Column(Integer, ForeignKey("board.id"))
     board = relationship("Board", back_populates="posts")
-    content = Column(String(3000), nullable=False)
-    author_name = Column(String(20), ForeignKey("user.name"))
+    content = Column(VARCHAR(3000), nullable=False)
+    author_name = Column(VARCHAR(20), ForeignKey("user.name"))
     author = relationship("User", back_populates="posts")
-    files = Column(String(1000))
+    files = Column(VARCHAR(1000))
     created_at = Column(
         DateTime,
         nullable=False,
@@ -107,9 +109,10 @@ class Post(Base):
 
 class Board(Base):
     __tablename__ = "board"
+    __table_args__ = {'mysql_collate': 'utf8_general_ci'}
 
     id = Column(Integer, primary_key=True, unique=True)
-    name = Column(String(20), nullable=False)
+    name = Column(VARCHAR(20), nullable=False)
     posts = relationship("Post", back_populates="board")
     created_at = Column(
         DateTime,
@@ -131,6 +134,7 @@ class Board(Base):
 
 class Banner(Base):
     __tablename__ = "banner"
+    __table_args__ = {'mysql_collate': 'utf8_general_ci'}
 
     id = Column(
         Integer,
@@ -139,22 +143,22 @@ class Banner(Base):
         comment="회사 고유 번호"
     )
     name = Column(
-        String(30),
+        VARCHAR(30),
         nullable=False,
         comment="회사명"
     )
     filename = Column(
-        String(40),
+        VARCHAR(40),
         nullable=False,
         comment="파일명"
     )
     link = Column(
-        String(100),
+        VARCHAR(100),
         nullable=False,
         comment="홈페이지 링크"
     )
     year = Column(
-        String(4),
+        VARCHAR(4),
         nullable=False,
         comment="후원 시작 년도"
     )

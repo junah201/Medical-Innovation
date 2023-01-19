@@ -167,10 +167,3 @@ def logout(response: Response, Authorize: AuthJWT = Depends(), db: Session = Dep
     Authorize.unset_jwt_cookies()
     response.set_cookie('logged_in', '', -1)
     return {"status": "success"}
-
-
-@router.get("/test")
-def test(
-    request: Request
-):
-    print(request.cookies)
