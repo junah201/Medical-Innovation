@@ -115,6 +115,10 @@ const StyledStartupContainer = styled.div`
 	background-color: #ffffff;
 	color: #000000;
 
+	&:hover a > span {
+		text-decoration: underline;
+	}
+
 	& a:visited {
 		color: #000000;
 	}

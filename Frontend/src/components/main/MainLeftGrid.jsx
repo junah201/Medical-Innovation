@@ -91,6 +91,10 @@ const StyledGridBottomItem = styled.div`
 		align-items: center;
 		text-align: center;
 	}
+
+	& > div:hover > a {
+		text-decoration: underline;
+	}
 `;
 
 const MainLeftGrid = () => {
