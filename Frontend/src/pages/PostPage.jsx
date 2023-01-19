@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
+import MetaTag from "../components/common/MetaTag";
 import Page from "../components/common/Page";
 
 const PostPage = () => {
@@ -20,7 +21,6 @@ const PostPage = () => {
 		).then((res) => {
 			if (res.status === 200) {
 				res.json().then((data) => {
-					console.log(data);
 					data.created_at = new Intl.DateTimeFormat("ko", {
 						dateStyle: "long",
 					}).format(new Date(data.created_at));
@@ -34,6 +34,11 @@ const PostPage = () => {
 		<Page>
 			{post ? (
 				<>
+					<MetaTag
+						title="재단법인 미래의학연구재단"
+						description={post.title}
+						url={window.location.href}
+					/>
 					<h1>{post.title}</h1>
 					<StyledPostDetail>
 						<span>
@@ -52,10 +57,11 @@ const PostPage = () => {
 						{post.files ? (
 							<>
 								<span>첨부파일</span>
-								{post.files.map((file) => {
+								{post.files.map((file, index) => {
 									return (
 										<a
 											href={`https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/file/download/${file}`}
+											key={index}
 										>
 											{file}
 										</a>

@@ -1,6 +1,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
+import MetaTag from "./components/common/MetaTag";
+
 import Header from "./components/base/Header";
 import Footer from "./components/base/Footer";
 

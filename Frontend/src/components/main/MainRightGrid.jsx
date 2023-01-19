@@ -217,6 +217,7 @@ const MainLeftGrid = () => {
 									title={post.title}
 									date={post.created_at}
 									index={index + 1}
+									key={index}
 								/>
 							);
 						})}
