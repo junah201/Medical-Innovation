@@ -4,6 +4,7 @@ import BlankDiv from "../../components/common/BlankDiv";
 
 import Page from "../../components/common/Page";
 import SubNav from "../../components/programs/SubNav";
+import Message from "../../components/common/Message";
 
 const StyledStartupSupportWrapper = styled.div``;
 const SyledBioVentureCompetitionWrapper = styled.div``;
@@ -46,7 +47,7 @@ const AcceleratingPage = () => {
 			<SubNav select="연구자 중심 창업지원" />
 			<StyledStartupSupportWrapper>
 				<h1>연구자 중심 창업지원</h1>
-				<p>
+				<Message>
 					바이오산업분야의 신치료기술 및 신의료기기 개발은 연구개발·임상·제품
 					판매까지 이어지는 기간이 길고 실패 가능성도 크기 때문에 위험도가 큰
 					분야입니다. 따라서 연구자나 초기 스타트업 등에게 충분한 기회를 제공할
@@ -61,7 +62,7 @@ const AcceleratingPage = () => {
 					앞으로도 비영리법인으로써 연구지원이나 싱크탱크에서 한걸음 더 나아간
 					공익적 비즈니스 플랫폼과 엑셀러레이터로써 역할을 수행할 수 있도록
 					최선을 다하겠습니다.
-				</p>
+				</Message>
 			</StyledStartupSupportWrapper>
 			<BlankDiv height="50px" />
 			<SyledBioVentureCompetitionWrapper>

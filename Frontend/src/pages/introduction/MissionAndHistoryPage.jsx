@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Page from "../../components/common/Page";
 import SubNav from "../../components/introduction/SubNav";
 import BlankDiv from "../../components/common/BlankDiv";
+import Message from "../../components/common/Message";
 
 import kimhyosoo from "../../static/images/KimHyoSoo.png";
 import jeonSeungho from "../../static/images/전승호.png";
@@ -31,7 +32,7 @@ const MissionAndHistoryPage = () => {
 			<StyledMissionWrapper>
 				<h1>설립취지</h1>
 				<div>
-					<p>
+					<Message>
 						<span>첫째</span>, 미래의학을 선도할 유망 기술 연구 동향을
 						정기적으로 면밀히 조사하고 그 정보를 적기에 공급함으로써, 대한민국
 						의학 연구수준을 세계적인 수준으로 높이는 계기를 만들어갈 것입니다.
@@ -50,7 +51,7 @@ const MissionAndHistoryPage = () => {
 						공유하고, 개발된 신치료 기술을 효과적으로 전파할 수 있는
 						연구생태계를 발전시킴으로써, 양질의 의료를 국민에게 공급하여
 						대한국민 보건의료의 발전을 추구하고자 합니다.
-					</p>
+					</Message>
 				</div>
 			</StyledMissionWrapper>
 			<br />

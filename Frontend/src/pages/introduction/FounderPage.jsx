@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import Page from "../../components/common/Page";
 import SubNav from "../../components/introduction/SubNav";
+import Message from "../../components/common/Message";
 
 import kimhyosoo from "../../static/images/KimHyoSoo.png";
 
@@ -53,10 +54,6 @@ const StyledFounderProfile = styled.div`
 	}
 `;
 
-const StyledFounderContent = styled.p`
-	font-size: 16px;
-`;
-
 const FounderPage = () => {
 	return (
 		<Page>
@@ -91,7 +88,7 @@ const FounderPage = () => {
 			</StyledFounderProfile>
 			<br />
 			<br />
-			<StyledFounderContent>
+			<Message>
 				김효수 교수는 1978년 서울대학교의예과에 입학한 후, 1984년 의사로서
 				첫발을 내디딘 40년 경력의 임상의사인 동시에, 1992년부터 기초연구에
 				입문하여 30년에 이르는 생명과학자입니다. 서울대학교병원 의생명연구원
@@ -138,7 +135,7 @@ const FounderPage = () => {
 				재단을 통해 대한민국 첨단 바이오 헬스 분야에 건강한 연구생태계를
 				조성하고, 연구자 중심 창업지원, 산학연병간 오픈이노베이션 활성화를
 				통하여 대한민국 미래성장 동력 발굴에 이바지하고자 합니다.
-			</StyledFounderContent>
+			</Message>
 		</Page>
 	);
 };

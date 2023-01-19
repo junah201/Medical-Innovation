@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import Page from "../../components/common/Page";
 import SubNav from "../../components/introduction/SubNav";
+import Message from "../../components/common/Message";
 
 import jeonSeungho from "../../static/images/전승호.png";
 
@@ -54,12 +55,6 @@ const StyledChairmanProfile = styled.div`
 	}
 `;
 
-const StyledChairmanMessageContent = styled.p`
-	font-size: 16px;
-	margin-right: auto;
-	margin-left: auto;
-`;
-
 const ChairmanMessagePage = () => {
 	return (
 		<Page>
@@ -90,7 +85,7 @@ const ChairmanMessagePage = () => {
 			</StyledChairmanProfile>
 			<br />
 			<br />
-			<StyledChairmanMessageContent>
+			<Message>
 				안녕하십니까?
 				<br />
 				<br />
@@ -112,7 +107,7 @@ const ChairmanMessagePage = () => {
 				<br />
 				<br />
 				재단법인 미래의학연구재단 이사장
-			</StyledChairmanMessageContent>
+			</Message>
 		</Page>
 	);
 };
