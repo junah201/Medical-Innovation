@@ -7,6 +7,14 @@ const StyledLoginPage = styled.main`
 	display: flex;
 	justify-content: center;
 	padding: 20px;
+
+	@media screen and (max-width: 991px) {
+		padding: 15;
+		min-height: calc(100vh - 200px);
+	}
+	@media screen and (min-width: 992px) {
+		min-height: calc(100vh - 400px);
+	}
 `;
 
 const StyledLoginWrapper = styled.div`
