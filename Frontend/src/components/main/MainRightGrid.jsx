@@ -7,12 +7,12 @@ import preregistrationStatus from "../../static/images/사전등록현황.png";
 
 const StyledMainLeftGrid = styled.div`
 	display: grid;
-	grid-template-columns: 50% 50%;
+	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 335px 300px;
 	grid-gap: 10px;
 
 	@media screen and (max-width: 991px) {
-		width: 100vw;
+		width: 100%;
 		margin: 10px;
 	}
 	@media screen and (min-width: 992px) {
@@ -66,6 +66,7 @@ const StyledBottomItem = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	overflow: hidden;
 
 	& > div {
 		width: 100%;
@@ -75,6 +76,7 @@ const StyledBottomItem = styled.div`
 
 	& > div > img {
 		width: 100%;
+		overflow: hidden;
 	}
 
 	& > h3 {

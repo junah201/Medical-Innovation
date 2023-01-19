@@ -8,7 +8,6 @@ const move = (x) => keyframes`
 `;
 
 const StyledBannerContainerWrapper = styled.div`
-	width: 100vw;
 	display: flex;
 	justify-content: center;
 	background-color: #ffffff;

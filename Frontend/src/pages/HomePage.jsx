@@ -12,6 +12,12 @@ const StyledHomePage = styled.main`
 	flex-direction: column;
 	align-items: center;
 	padding: 30px;
+
+	@media screen and (max-width: 991px) {
+		padding: 30px 0;
+	}
+	@media screen and (min-width: 992px) {
+	}
 `;
 
 const StyledHomeWrapper = styled.div`
@@ -19,6 +25,12 @@ const StyledHomeWrapper = styled.div`
 	flex-direction: row;
 	justify-content: center;
 	padding: 20px;
+
+	@media screen and (max-width: 991px) {
+		padding: 0px;
+	}
+	@media screen and (min-width: 992px) {
+	}
 
 	& > * + * {
 		margin-left: 40px;
@@ -49,7 +61,12 @@ const StyledHomeDescription = styled.span`
 		font-size: 2.4vw;
 		font-weight: 600;
 	}
-	@media screen and (min-width: 992px) {
+	@media screen and (max-width: 1420px) {
+		& br {
+			display: block;
+		}
+	}
+	@media screen and (min-width: 1421px) {
 		& br {
 			display: none;
 		}

@@ -19,7 +19,6 @@ const StyledFooter = styled.footer`
 
 const StyledBottomFooter = styled.div`
 	overflow: hidden;
-	width: 100vw;
 	height: 100px;
 	background-color: #474747;
 	display: flex;
@@ -58,7 +57,6 @@ const StyledBottomFooter = styled.div`
 `;
 
 const StyledTopFooter = styled.div`
-	width: 100vw;
 	height: 100px;
 	background-color: #ffffff;
 	display: flex;
@@ -67,19 +65,30 @@ const StyledTopFooter = styled.div`
 
 	padding: 0 5%;
 
-	& > * + * {
-		margin-left: 30px;
-	}
-
 	& img {
 		height: 60px;
+	}
+
+	@media screen and (max-width: 991px) {
+		display: block;
+		padding: 0;
+
+		& > div {
+			height: 50px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			justify-items: center;
+		}
+	}
+	@media screen and (min-width: 992px) {
 	}
 `;
 
 const StyledTopFooterItem = styled.a`
 	@media screen and (max-width: 991px) {
 		& img {
-			height: ${(props) => (props.height ? 40 : 50)}px;
+			height: ${(props) => (props.height ? 30 : 40)}px;
 		}
 	}
 	@media screen and (min-width: 992px) {
@@ -93,38 +102,43 @@ const Footer = () => {
 	return (
 		<StyledFooter>
 			<StyledTopFooter>
-				<StyledTopFooterItem href="/" height="50">
-					<img src={longLogo} alt="미래의학연구재단" />
-				</StyledTopFooterItem>
-				<StyledTopFooterItem
-					href="http://www.celltherapy.re.kr"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<img src={cbtci} alt="StyledTopFooter" />
-				</StyledTopFooterItem>
-				<StyledTopFooterItem
-					href="https://www.khidi.or.kr/rndhospital"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<img src={khidi} alt="StyledTopFooter" />
-				</StyledTopFooterItem>
-				<StyledTopFooterItem
-					href="https://www.khidi.or.kr/rndhospital"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<img src={snubio} alt="StyledTopFooter" />
-				</StyledTopFooterItem>
-				<StyledTopFooterItem
-					href="https://www.msit.go.kr/"
-					target="_blank"
-					rel="noopener noreferrer"
-					height="50"
-				>
-					<img src={msitLogo} alt="과학기술정보통신부" />
-				</StyledTopFooterItem>
+				<div>
+					<StyledTopFooterItem href="/" height="50">
+						<img src={longLogo} alt="미래의학연구재단" />
+					</StyledTopFooterItem>
+					<StyledTopFooterItem
+						href="http://www.celltherapy.re.kr"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<img src={cbtci} alt="StyledTopFooter" />
+					</StyledTopFooterItem>
+					<StyledTopFooterItem
+						href="https://www.khidi.or.kr/rndhospital"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<img src={khidi} alt="StyledTopFooter" />
+					</StyledTopFooterItem>
+				</div>
+
+				<div>
+					<StyledTopFooterItem
+						href="https://www.khidi.or.kr/rndhospital"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<img src={snubio} alt="StyledTopFooter" />
+					</StyledTopFooterItem>
+					<StyledTopFooterItem
+						href="https://www.msit.go.kr/"
+						target="_blank"
+						rel="noopener noreferrer"
+						height="50"
+					>
+						<img src={msitLogo} alt="과학기술정보통신부" />
+					</StyledTopFooterItem>
+				</div>
 			</StyledTopFooter>
 			<StyledBottomFooter>
 				<a href="/privacy-policy">개인정보처리방침</a>
