@@ -105,10 +105,28 @@ const StyledPostItemContent = styled.div`
 	margin-right: 1%;
 	display: flex;
 	flex-direction: column;
+	overflow: hidden;
 
 	& > a {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
 		font-size: 16px;
 		display: block;
+	}
+
+	@media screen and (max-width: 991px) {
+		width: 83%;
+
+		& > a {
+			font-size: 14px;
+		}
+
+		& > span {
+			font-size: 12px;
+		}
+	}
+	@media screen and (min-width: 992px) {
 	}
 `;
 
@@ -123,6 +141,12 @@ const StyledPostItemButton = styled.div`
 
 	& a {
 		font-size: 12px;
+	}
+
+	@media screen and (max-width: 991px) {
+		display: none;
+	}
+	@media screen and (min-width: 992px) {
 	}
 `;
 

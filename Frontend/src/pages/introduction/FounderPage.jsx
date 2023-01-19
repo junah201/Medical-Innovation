@@ -41,6 +41,16 @@ const StyledFounderProfile = styled.div`
 	& p {
 		padding-left: 16px;
 	}
+
+	@media screen and (max-width: 991px) {
+		flex-direction: column;
+
+		& > img {
+			margin-left: 0px;
+		}
+	}
+	@media screen and (min-width: 992px) {
+	}
 `;
 
 const StyledFounderContent = styled.p`

@@ -9,11 +9,11 @@ import orgchart from "../../static/images/조직도.png";
 import mainProject from "../../static/images/주요사업.png";
 import supportArea from "../../static/images/지원분야.png";
 
-const StyledOrgchartWrapper = styled.div``;
-
-const StyledProjectWrapper = styled.div``;
-
-const StyledSupportAreasWrapper = styled.div``;
+const StyledOrgchartWrapper = styled.div`
+	& img {
+		width: 100%;
+	}
+`;
 
 const OrgchartAndProjectPage = () => {
 	return (
@@ -22,19 +22,19 @@ const OrgchartAndProjectPage = () => {
 			<StyledOrgchartWrapper>
 				<h1>조직도</h1>
 				<BlankDiv height="30px" />
-				<img src={orgchart} alt="조직도" width="1070px" />
+				<img src={orgchart} alt="조직도" />
 			</StyledOrgchartWrapper>
 			<BlankDiv height="50px" />
-			<StyledProjectWrapper>
+			<StyledOrgchartWrapper>
 				<h1>주요사업</h1>
 				<BlankDiv height="30px" />
-				<img src={mainProject} alt="조직도" width="1070px" />
-			</StyledProjectWrapper>
-			<StyledSupportAreasWrapper>
+				<img src={mainProject} alt="조직도" />
+			</StyledOrgchartWrapper>
+			<StyledOrgchartWrapper>
 				<h1>지원분야</h1>
 				<BlankDiv height="30px" />
-				<img src={supportArea} alt="지원분야" width="1070px" />
-			</StyledSupportAreasWrapper>
+				<img src={supportArea} alt="지원분야" />
+			</StyledOrgchartWrapper>
 		</Page>
 	);
 };

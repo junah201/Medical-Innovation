@@ -86,14 +86,19 @@ const StyledPostDetail = styled.div`
 `;
 
 const StyledPostContent = styled.p`
-	min-height: 500px;
+	min-height: calc(100vh - 700px);
 	padding: 20px 0;
 	white-space: pre-wrap;
 `;
 
 const StyledPostFiles = styled.div`
+	position: relative;
+	bottom: 0;
 	display: flex;
 	flex-direction: column;
+	border: 1px solid #474747;
+	padding: 5px;
+	margin-top: 20px;
 
 	& span {
 		font-size: 16px;

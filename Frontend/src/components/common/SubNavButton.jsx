@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledSubNavButton = styled.a`
-	width: 250px;
-	height: 40px;
+	width: calc(100% / 4);
+	min-height: 40px;
 	text-align: center;
 
 	font-size: 22.5px;
@@ -15,6 +15,19 @@ const StyledSubNavButton = styled.a`
 
 	& + & {
 		margin-left: 10px;
+	}
+
+	word-break: keep-all;
+
+	@media screen and (max-width: 400px) {
+		font-size: 14px;
+		min-height: 25px;
+	}
+	@media screen and (min-width: 401px) and (max-width: 991px) {
+		font-size: 14px;
+		min-height: 30px;
+	}
+	@media screen and (min-width: 992px) {
 	}
 `;
 

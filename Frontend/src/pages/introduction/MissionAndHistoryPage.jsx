@@ -58,7 +58,7 @@ const MissionAndHistoryPage = () => {
 				<h1>역대 이사장</h1>
 				<div>
 					<StyledChairmanItem>
-						<img src={kimhyosoo} alt="김효수" width="150px" height="180px" />
+						<img src={kimhyosoo} alt="김효수" />
 						<div>
 							<h4>제1대 김효수</h4>
 							<br />
@@ -70,7 +70,7 @@ const MissionAndHistoryPage = () => {
 						</div>
 					</StyledChairmanItem>
 					<StyledChairmanItem>
-						<img src={hansangdae} alt="한상대" width="150px" height="180px" />
+						<img src={hansangdae} alt="한상대" />
 						<div>
 							<h4>제2대 한상대</h4>
 							<br />
@@ -84,7 +84,7 @@ const MissionAndHistoryPage = () => {
 						</div>
 					</StyledChairmanItem>
 					<StyledChairmanItem>
-						<img src={jeonSeungho} alt="전승호" width="150px" height="180px" />
+						<img src={jeonSeungho} alt="전승호" />
 						<div>
 							<h4>제3대 전승호</h4>
 							<br />
@@ -280,7 +280,8 @@ const MissionAndHistoryPage = () => {
 
 const StyledChairmanItem = styled.div`
 	border: 1px solid #e1e1e1;
-	width: 330px;
+	width: calc(100% / 3);
+	max-width: 330px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -296,6 +297,7 @@ const StyledChairmanItem = styled.div`
 		margin: 2px;
 		border: 1px solid #e1e1e1;
 		object-fit: cover;
+		width: 100%;
 	}
 `;
 
