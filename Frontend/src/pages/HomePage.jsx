@@ -14,7 +14,7 @@ const StyledHomePage = styled.main`
 	padding: 30px;
 
 	@media screen and (max-width: 991px) {
-		padding: 30px 0;
+		padding: 10px 0;
 	}
 	@media screen and (min-width: 992px) {
 	}
@@ -58,7 +58,7 @@ const StyledHomeDescription = styled.span`
 	display: block;
 	width: 100%;
 	@media screen and (max-width: 991px) {
-		font-size: 2.4vw;
+		font-size: 3vw;
 		font-weight: 600;
 	}
 	@media screen and (max-width: 1420px) {

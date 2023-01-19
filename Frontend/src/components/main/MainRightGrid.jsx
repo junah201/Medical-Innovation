@@ -35,6 +35,8 @@ const StyledTopGridItem = styled.div`
 
 	& button {
 		font-weight: 600;
+		white-space: nowrap;
+		overflow: hidden;
 	}
 
 	@media screen and (max-width: 350px) {
@@ -42,12 +44,17 @@ const StyledTopGridItem = styled.div`
 			font-size: 12px;
 		}
 	}
-	@media screen and (min-width: 351px) and (max-width: 991px) {
+	@media screen and (min-width: 351px) and (max-width: 999px) {
 		& button {
 			font-size: 16px;
 		}
 	}
-	@media screen and (min-width: 992px) {
+	@media screen and (min-width: 1000px) {
+		& button {
+			font-size: 16px;
+		}
+	}
+	@media screen and (min-width: 1075px) {
 		& button {
 			font-size: 20px;
 		}

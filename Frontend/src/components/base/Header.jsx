@@ -100,6 +100,8 @@ const StyledLi = styled.li`
 	display: inline-block;
 
 	& a {
+		white-space: nowrap;
+		overflow: hidden;
 		font-size: 30px;
 		font-weight: 500;
 		text-decoration: none;
