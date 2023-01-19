@@ -25,6 +25,7 @@ import AcceleratingPage from "./pages/programs/AcceleratingPage";
 import ResearchSupportProjectPage from "./pages/programs/ResearchSupportProjectPage";
 
 import AnnouncementPage from "./pages/news/AnnouncementPage";
+import PressReleasePage from "./pages/news/PressReleasePage";
 
 import PostPage from "./pages/PostPage";
 
@@ -68,6 +69,7 @@ function App() {
 				</Route>
 				<Route path="/news">
 					<Route path="announcement" element={<AnnouncementPage />} />
+					<Route path="press_release" element={<PressReleasePage />} />
 				</Route>
 				<Route path="/admin">
 					<Route path="post_upload" element={<PostUploadPage />} />
