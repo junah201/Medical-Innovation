@@ -29,7 +29,7 @@ jobs:
       - name: Python files to Zip file
         run: |
           (cd ./venv/lib/python3.9/site-packages; zip -r9 ../../../../Build.zip . )
-          (cd Backend; zip ../Build.zip -u -r app/; zip ../Build.zip -u -r files/)
+          (cd Backend; zip ../Build.zip -u -r app/; zip ../Build.zip -u -r files/; zip ../Build.zip -u -r new_article_checker.py)
 
       - name: Upload zip file artifact
         uses: actions/upload-artifact@v2
@@ -65,6 +65,13 @@ jobs:
 
       - name: Deploy main App
         run: aws lambda update-function-code --function-name medical-innovation --s3-bucket medical-innovation --s3-key Build.zip
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+
+      - name: Deploy new-article-checker
+        run: aws lambda update-function-code --function-name medical-innovation__new-article-checker --s3-bucket medical-innovation --s3-key Build.zip
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

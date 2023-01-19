@@ -107,6 +107,10 @@ const StyledLi = styled.li`
 		text-decoration: none;
 		color: #000000;
 	}
+	&:hover a {
+		text-decoration: underline;
+	}
+
 	@media screen and (max-width: 991px) {
 		& a {
 			font-size: 16px;

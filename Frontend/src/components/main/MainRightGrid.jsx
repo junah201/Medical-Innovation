@@ -67,6 +67,10 @@ const StyledTopGridButton = styled.button`
 	color: ${(props) => props.color || "#838383"};
 	border: none;
 	background-color: transparent;
+
+	&:hover {
+		text-decoration: underline;
+	}
 `;
 
 const StyledBottomItem = styled.div`
@@ -79,6 +83,7 @@ const StyledBottomItem = styled.div`
 		width: 100%;
 		height: 265px;
 		overflow: hidden;
+		background-color: #ffffff;
 	}
 
 	& > div > img {
@@ -137,7 +142,8 @@ const StyledDocumentWrapper = styled.div`
 
 const MainLeftGrid = () => {
 	const [selcted, setSelected] = React.useState("공지사항");
-	const [posts, setPosts] = React.useState([]);
+	const [noticePosts, setNoticePosts] = React.useState([]);
+	const [pressReleases, setPressReleases] = React.useState([]);
 
 	useEffect(() => {
 		fetch(
@@ -151,7 +157,23 @@ const MainLeftGrid = () => {
 		).then((res) => {
 			if (res.status === 200) {
 				res.json().then((data) => {
-					setPosts(data.posts);
+					setNoticePosts(data.posts);
+					console.log(data);
+				});
+			}
+		});
+		fetch(
+			`https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/post/3/all?limit=6`,
+			{
+				method: "GET",
+				headers: {
+					accept: "application/json",
+				},
+			}
+		).then((res) => {
+			if (res.status === 200) {
+				res.json().then((data) => {
+					setPressReleases(data.posts);
 					console.log(data);
 				});
 			}
@@ -210,10 +232,25 @@ const MainLeftGrid = () => {
 				<BlankDiv height="20px" />
 				{selcted === "공지사항" ? (
 					<>
-						{posts.map((post, index) => {
+						{noticePosts.map((post, index) => {
 							return (
 								<PostItem
 									link={`/post/${post.id}`}
+									title={post.title}
+									date={post.created_at}
+									index={index + 1}
+									key={index}
+								/>
+							);
+						})}
+					</>
+				) : null}
+				{selcted === "보도자료" ? (
+					<>
+						{pressReleases.map((post, index) => {
+							return (
+								<PostItem
+									link={post.content}
 									title={post.title}
 									date={post.created_at}
 									index={index + 1}
@@ -261,7 +298,7 @@ const MainLeftGrid = () => {
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							<span>주식회사 셀코</span>
+							<span>셀코</span>
 							<BlankDiv height="5px" />
 							<p>해양 플랑크톤을 이용한 뼈이식재 제조기술 사업화</p>
 						</a>
@@ -272,7 +309,7 @@ const MainLeftGrid = () => {
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							<span>㈜더도니</span>
+							<span>더도니</span>
 							<BlankDiv height="5px" />
 							<p>만성신장질환자들을 위한 자가칼륨측정기 개발</p>
 						</a>
@@ -283,18 +320,18 @@ const MainLeftGrid = () => {
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							<span>㈜파인트코리아</span>
+							<span>Fint Korea</span>
 							<BlankDiv height="5px" />
 							<p>의료용 소재 맞춤제작을 위한 생분해성 복합소재 제조</p>
 						</a>
 					</StyledStartupContainer>
 					<StyledStartupContainer>
 						<a
-							href="http://www.cellco.co.kr"
+							href="https://fortugabio.com/"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							<span>㈜포투가바이오</span>
+							<span>Fortuga Bio</span>
 							<BlankDiv height="5px" />
 							<p>
 								나노입자-세포화 기술과 단백질 결합 기술을 융합한 면역항암 플랫폼
@@ -308,7 +345,7 @@ const MainLeftGrid = () => {
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							<span>주식회사 핏미</span>
+							<span>핏미</span>
 							<BlankDiv height="5px" />
 							<p>
 								AI 기반 성형수술용 의료영상 분석 및 맞춤 보형물 디자인 서비스를

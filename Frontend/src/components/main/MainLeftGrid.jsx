@@ -97,7 +97,7 @@ const MainLeftGrid = () => {
 	return (
 		<Desktop>
 			<StyledGrid>
-				<StyledGridImgItem>
+				<StyledGridImgItem color="#F8F6F7">
 					<a href="/introduction/founder">
 						<img src={kimhyosoo} width="250px" alt="김효수" />
 					</a>
