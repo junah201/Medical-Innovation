@@ -35,7 +35,7 @@ class User(Base):
         comment="이메일 주소 (로그인 아이디)",
     )
     password = Column(
-        VARCHAR(60),
+        VARCHAR(100),
         nullable=False,
         comment="해쉬된 비밀번호",
     )
