@@ -53,23 +53,21 @@ const PostPage = () => {
 						</span>
 					</StyledPostDetail>
 					<StyledPostContent>{post.content}</StyledPostContent>
-					<StyledPostFiles>
-						{post.files ? (
-							<>
-								<span>첨부파일</span>
-								{post.files.map((file, index) => {
-									return (
-										<a
-											href={`https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/file/download/${file}`}
-											key={index}
-										>
-											{file}
-										</a>
-									);
-								})}
-							</>
-						) : null}
-					</StyledPostFiles>
+					{post.files.length ? (
+						<StyledPostFiles>
+							<span>첨부파일</span>
+							{post.files.map((file, index) => {
+								return (
+									<a
+										href={`https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/file/download/${file}`}
+										key={index}
+									>
+										{file}
+									</a>
+								);
+							})}
+						</StyledPostFiles>
+					) : null}
 				</>
 			) : null}
 		</Page>
