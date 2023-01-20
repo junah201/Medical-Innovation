@@ -10,6 +10,8 @@ import LogoutPage from "./pages/LogoutPage";
 import SignupPage from "./pages/SignupPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 
+import NotFoundPage from "./pages/error/NotFoundPage";
+
 import FounderPage from "./pages/introduction/FounderPage";
 import ChairmanMessagePage from "./pages/introduction/ChairmanMessagePage";
 import MissionAndHistoryPage from "./pages/introduction/MissionAndHistoryPage";
@@ -78,7 +80,7 @@ function App() {
 					<Route path="post_upload" element={<PostUploadPage />} />
 				</Route>
 				<Route path="/post/:id" element={<PostPage />} />
-				<Route path="*" element={<h1>404</h1>} />
+				<Route path="*" element={<NotFoundPage />} />
 			</Routes>
 			<Footer />
 		</>

@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 
 import Page from "../components/common/Page";
 import Message from "../components/common/Message";
