@@ -109,3 +109,18 @@ class Banner(BannerCreate):
 
     class Config:
         orm_mode = True
+
+
+class MouCreate(BaseModel):
+    name: str
+    filename: str
+    link: str
+
+
+class Mou(MouCreate):
+    id: int
+    created_at: datetime
+    updated_at: datetime
+
+    class Config:
+        orm_mode = True

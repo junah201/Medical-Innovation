@@ -112,7 +112,7 @@ const MainLeftGrid = () => {
 						과기부 소관 비영리법인 중소벤처기업부 창업기획자 기획재정부
 						지정기부금단체
 					</p>
-					<a href="/support/sponsor">협력기관</a>
+					<a href="/mou">협력기관</a>
 				</StyledGridItem>
 				<StyledGridItem color="#2CA48F">
 					<h3>FMI 인베스트먼트</h3>

@@ -19,7 +19,7 @@ models.Base.metadata.create_all(bind=engine, checkfirst=True)
 app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="./app/static"), name="static")
-"""
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000",
@@ -28,7 +28,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-"""
 
 
 app.include_router(user_router.router)

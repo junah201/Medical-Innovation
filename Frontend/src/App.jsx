@@ -1,8 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import MetaTag from "./components/common/MetaTag";
-
 import Header from "./components/base/Header";
 import Footer from "./components/base/Footer";
 
@@ -33,6 +31,8 @@ import PostPage from "./pages/PostPage";
 
 import PostUploadPage from "./pages/admin/PostUploadPage";
 
+import MouPage from "./pages/MouPage";
+
 function App() {
 	return (
 		<>
@@ -43,6 +43,7 @@ function App() {
 				<Route path="/logout" element={<LogoutPage />} />
 				<Route path="/signup" element={<SignupPage />} />
 				<Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+				<Route path="/mou" element={<MouPage />} />
 				<Route path="/introduction">
 					<Route path="founder" element={<FounderPage />}></Route>
 					<Route path="message" element={<ChairmanMessagePage />}></Route>

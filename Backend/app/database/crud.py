@@ -33,6 +33,24 @@ def get_user_by_email(db: Session, email: str) -> models.User:
     return db.query(models.User).filter(models.User.email == email).first()
 
 
+def create_mou(db: Session, mou_create: schemas.MouCreate):
+    utcnow = datetime.utcnow()
+    db_mou = models.Mou(
+        name=mou_create.name,
+        filename=mou_create.filename,
+        link=mou_create.link,
+        created_at=utcnow,
+        updated_at=utcnow
+    )
+    db.add(db_mou)
+    db.commit()
+
+
+def get_mous(db: Session):
+    db_mous = db.query(models.Mou).order_by(models.Mou.created_at.desc())
+    return db_mous.all()
+
+
 def create_board(db: Session, board_create: schemas.BoardCreate):
     utcnow = datetime.utcnow()
     db_board = models.Board(
