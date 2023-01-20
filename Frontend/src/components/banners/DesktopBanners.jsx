@@ -106,7 +106,7 @@ const DesktopBanners = () => {
 							<StyledBannerItem key={item.id}>
 								<a href={item.link} target="_blank" rel="noopener noreferrer">
 									<img
-										src={`https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/file/banner/${item.filename}`}
+										src={`https://medical-innovation.s3.ap-northeast-2.amazonaws.com/banner/${item.filename}`}
 										alt={item.name}
 									/>
 								</a>

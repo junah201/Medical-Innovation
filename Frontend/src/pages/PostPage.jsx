@@ -59,7 +59,7 @@ const PostPage = () => {
 							{post.files.map((file, index) => {
 								return (
 									<a
-										href={`https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/file/download/${file}`}
+										href={`https://medical-innovation.s3.ap-northeast-2.amazonaws.com/upload/${file}`}
 										key={index}
 									>
 										{file}

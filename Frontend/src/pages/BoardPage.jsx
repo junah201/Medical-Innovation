@@ -127,6 +127,13 @@ const StyledPostItemContent = styled.div`
 		}
 	}
 	@media screen and (min-width: 992px) {
+		& > a {
+			font-size: 18px;
+		}
+
+		& > span {
+			font-size: 16px;
+		}
 	}
 `;
 
@@ -140,7 +147,7 @@ const StyledPostItemButton = styled.div`
 	padding: 5px;
 
 	& a {
-		font-size: 12px;
+		font-size: 14px;
 	}
 
 	@media screen and (max-width: 991px) {
@@ -165,7 +172,7 @@ const PostItem = ({ idx, item, page }) => {
 			{item.files.length > 0 ? (
 				<StyledPostItemButton>
 					<a
-						href={`https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/file/download/${item.files[0]}`}
+						href={`https://medical-innovation.s3.ap-northeast-2.amazonaws.com/upload/${item.files[0]}`}
 						target="_blank"
 						rel="noopener noreferrer"
 					>

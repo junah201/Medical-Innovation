@@ -11,3 +11,4 @@ mangum
 werkzeug
 requests
 beautifulsoup4
+boto3
