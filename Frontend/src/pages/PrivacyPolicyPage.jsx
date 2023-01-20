@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-const StyledPrivacyPolicyPage = styled.main``;
+import Page from "../components/common/Page";
+import Message from "../components/common/Message";
 
 const PrivacyPolicyPage = () => {
 	return (
-		<StyledPrivacyPolicyPage>
+		<Page>
 			<h1>개인정보처리방침</h1>
-			<p>
+			<Message>
 				1. 수집하는 개인정보의 항목 및 수집방법 (1) 수집하는 개인정보의 항목
 				재단은 최초 회원 가입 또는 서비스 이용 시 이용자로부터 아래와 같은
 				개인정보를 수집하고 있습니다. □ 회원가입의 경우 – 이름, 생년월일,
@@ -166,8 +167,8 @@ const PrivacyPolicyPage = () => {
 				문의하시기 바랍니다. – 개인정보침해신고센터 (www.118.or.kr/ 118) –
 				대검찰청 인터넷범죄수사센터 (www.spo.go.kr / 02-3480-3600) – 경찰청
 				사이버테러대응센터 (www.ctrc.go.kr / 02-392-0330){" "}
-			</p>
-		</StyledPrivacyPolicyPage>
+			</Message>
+		</Page>
 	);
 };
 
