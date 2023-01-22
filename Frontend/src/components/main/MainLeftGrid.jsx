@@ -102,9 +102,15 @@ const MainLeftGrid = () => {
 		<Desktop>
 			<StyledGrid>
 				<StyledGridImgItem color="#F8F6F7">
-					<a href="/introduction/founder">
-						<img src={kimhyosoo} width="250px" alt="김효수" />
-					</a>
+					<div
+						style={{
+							color: "#F8F6F7",
+						}}
+					>
+						<a href="/introduction/founder">
+							<img src={kimhyosoo} width="250px" alt="김효수" />
+						</a>
+					</div>
 				</StyledGridImgItem>
 				<StyledGridItem color="#2763BA">
 					<h3>재단 소개</h3>
