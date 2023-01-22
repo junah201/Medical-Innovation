@@ -9,6 +9,7 @@ const BenefitsPage = () => {
 		<Page>
 			<SubNav select="후원자 혜택" />
 			<h1>후원 혜택</h1>
+			<br/>
 			<StyledBenefitContainer>
 				<BenefitItem
 					src="/images/benefits/기부자명부.png"
@@ -25,11 +26,6 @@ const BenefitsPage = () => {
 					title="기부금 영수증"
 					content="세액공제를 위한 기부금 영수증을 우송해 드립니다."
 				/>
-				<BenefitItem
-					src="/images/benefits/투자기회.png"
-					title="투자 기회 제공"
-					content="미래의학연구재단 액셀러레이터 사업에서 발굴한 우수창업기업에 엔젤투자 기회를 제공하겠습니다."
-				/>
 			</StyledBenefitContainer>
 		</Page>
 	);
@@ -37,6 +33,8 @@ const BenefitsPage = () => {
 
 const StyledBenefitContainer = styled.div`
 	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
 `;
 
 const StyledBenefitItem = styled.div`
