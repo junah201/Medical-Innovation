@@ -143,7 +143,7 @@ const Footer = () => {
 			<StyledBottomFooter>
 				<a href="/privacy-policy">개인정보처리방침</a>
 				<p>(03080) 서울시 종로구 대학로 101, 12634호</p>
-				<p>TEL : 02-2072-2226</p>
+				<p>전화번호 : 02-2072-2226</p>
 				<p>Copyright(c) 2016 재단법인 미래의학연구재단. All rights reserved.</p>
 			</StyledBottomFooter>
 		</StyledFooter>
