@@ -159,7 +159,7 @@ const SponsorItem = ({ item }) => {
 			<a href={item.link} target="_blank" rel="noopener noreferrer">
 				<div>
 					<img
-						src={`https://medical-innovation.s3.ap-northeast-2.amazonaws.com/upload/${item.filename}`}
+						src={`https://medical-innovation.s3.ap-northeast-2.amazonaws.com/banner/${item.filename}`}
 						alt={item.filename}
 					/>
 				</div>
