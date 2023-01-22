@@ -131,7 +131,6 @@ const SignupPage = () => {
 
 	const onBirthChangeHandler = (e) => {
 		setBirth(e.target.value);
-		console.log(e.target.value);
 	};
 
 	const onEmailenableChangeHandler = (e) => {
@@ -194,7 +193,6 @@ const SignupPage = () => {
 				return;
 			}
 			if (res.status === 409) {
-				console.log(res);
 				alert("이미 존재하는 이메일입니다.");
 				return;
 			}

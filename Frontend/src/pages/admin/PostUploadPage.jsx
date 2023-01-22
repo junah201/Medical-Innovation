@@ -56,8 +56,6 @@ const PostUploadPage = () => {
 			files: files,
 		});
 
-		console.log(body);
-
 		fetch(
 			`https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/post/create`,
 			{

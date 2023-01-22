@@ -37,7 +37,6 @@ export const AuthContextProvider = (props) => {
 
 		const remainingTime = calculateRemainingTime(expirationTime);
 
-		console.log(remainingTime);
 		setCookie("access_token", accessToken, {
 			path: "/",
 			expires: new Date(Date.now() + remainingTime),

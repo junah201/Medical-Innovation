@@ -162,7 +162,6 @@ const MainLeftGrid = () => {
 			if (res.status === 200) {
 				res.json().then((data) => {
 					setNoticePosts(data.posts);
-					console.log(data);
 				});
 			}
 		});
@@ -178,7 +177,6 @@ const MainLeftGrid = () => {
 			if (res.status === 200) {
 				res.json().then((data) => {
 					setPressReleases(data.posts);
-					console.log(data);
 				});
 			}
 		});

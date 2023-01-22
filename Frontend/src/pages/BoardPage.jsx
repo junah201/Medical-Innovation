@@ -23,7 +23,6 @@ const BoardPage = ({ boardId, children }) => {
 				res.json().then((data) => {
 					setPosts(data.posts);
 					setTotal(data.total);
-					console.log(data);
 				});
 			}
 		});

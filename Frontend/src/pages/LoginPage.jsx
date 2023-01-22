@@ -146,7 +146,6 @@ const LoginPage = () => {
 				if (data.status !== "success") {
 					return alert(data.detail);
 				}
-				console.log(data);
 				const expirationTime = new Date(
 					new Date().getTime() + +data.access_token_expires_in
 				);
