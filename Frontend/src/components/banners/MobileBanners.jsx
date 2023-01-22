@@ -30,7 +30,7 @@ const StyledBanners = styled.div`
 	padding: 20px 0;
 	grid-gap: 20px;
 	transform: translateX(-${(props) => props.x || 0}px);
-	animation: ${(props) => move(props.x)} 5s;
+	animation: ${(props) => move(props.x)} 3s;
 	animation-delay: 1s;
 `;
 
@@ -93,7 +93,7 @@ const MobileBanners = () => {
 					return 0;
 				}
 			});
-		}, 6000);
+		}, 5000);
 
 		return () => clearInterval(mover);
 	}, [banners]);

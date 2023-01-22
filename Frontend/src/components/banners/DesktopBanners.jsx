@@ -29,7 +29,7 @@ const StyledBanners = styled.div`
 	padding: 30px 0;
 	grid-gap: 30px;
 	transform: translateX(-${(props) => props.x || 0}px);
-	animation: ${(props) => move(props.x)} 5s;
+	animation: ${(props) => move(props.x)} 3s;
 	animation-delay: 1s;
 `;
 
@@ -92,7 +92,7 @@ const DesktopBanners = () => {
 					return 0;
 				}
 			});
-		}, 6000);
+		}, 4000);
 
 		return () => clearInterval(mover);
 	}, [banners]);
