@@ -17,8 +17,18 @@ const StyledMessage = styled.div`
 		margin: 0 5px;
 	}
 
+	& p > span {
+		font-weight: 600;
+		font-size: 24px;
+	}
+
 	@media screen and (max-width: 991px) {
 		font-size: 16px;
+
+		& p > span {
+			font-weight: 600;
+			font-size: 20px;
+		}
 	}
 	@media screen and (min-width: 992px) {
 	}

@@ -56,7 +56,7 @@ const SponsorPage = () => {
 					<SponsorItem
 						item={{
 							link: "/introduction/founder",
-							name: "김효수",
+							name: "김효수 교수",
 							filename: "김효수.png",
 							year: "",
 						}}
@@ -72,7 +72,7 @@ const SponsorPage = () => {
 					<SponsorItem
 						item={{
 							link: "https://www.hanmi.co.kr",
-							name: "한미약품",
+							name: "한미약품(주)",
 							filename: "한미약품.png",
 							year: "",
 						}}
@@ -88,7 +88,7 @@ const SponsorPage = () => {
 					<SponsorItem
 						item={{
 							link: "http://www.genoss.com/",
-							name: "GENOSS.png",
+							name: "(주)제노스",
 							filename: "GENOSS.png",
 							year: "",
 						}}
@@ -96,7 +96,7 @@ const SponsorPage = () => {
 					<SponsorItem
 						item={{
 							link: "http://www.dmgec.com",
-							name: "대명GEC",
+							name: "대명지이씨(주)",
 							filename: "대명GEC.png",
 							year: "",
 						}}

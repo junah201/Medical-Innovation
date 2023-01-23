@@ -307,7 +307,7 @@ const MainLeftGrid = () => {
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							<span>셀코</span>
+							<span>(주)셀코</span>
 							<BlankDiv height="5px" />
 							<p>해양 플랑크톤을 이용한 뼈이식재 제조기술 사업화</p>
 						</a>
@@ -318,7 +318,7 @@ const MainLeftGrid = () => {
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							<span>더도니</span>
+							<span>(주)더도니</span>
 							<BlankDiv height="5px" />
 							<p>만성신장질환자들을 위한 자가칼륨측정기 개발</p>
 						</a>
@@ -329,7 +329,7 @@ const MainLeftGrid = () => {
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							<span>Fint Korea</span>
+							<span>(주)파인트코리아</span>
 							<BlankDiv height="5px" />
 							<p>의료용 소재 맞춤제작을 위한 생분해성 복합소재 제조</p>
 						</a>
@@ -340,7 +340,7 @@ const MainLeftGrid = () => {
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							<span>Fortuga Bio</span>
+							<span>포투가바이오</span>
 							<BlankDiv height="5px" />
 							<p>
 								나노입자-세포화 기술과 단백질 결합 기술을 융합한 면역항암 플랫폼
@@ -354,7 +354,7 @@ const MainLeftGrid = () => {
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							<span>핏미</span>
+							<span>(주)핏미</span>
 							<BlankDiv height="5px" />
 							<p>
 								AI 기반 성형수술용 의료영상 분석 및 맞춤 보형물 디자인 서비스를
