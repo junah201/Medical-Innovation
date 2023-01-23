@@ -16,6 +16,12 @@ const StyledMessage = styled.div`
 	& p > strong {
 		margin: 0 5px;
 	}
+
+	@media screen and (max-width: 991px) {
+		font-size: 16px;
+	}
+	@media screen and (min-width: 992px) {
+	}
 `;
 
 const Message = ({ children }) => {

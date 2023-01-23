@@ -9,6 +9,21 @@ const StyledSponsorContainer = styled.div`
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	grid-gap: 30px;
+
+	@media screen and (max-width: 991px) {
+		grid-template-columns: repeat(2, 1fr);
+		grid-gap: 8px;
+	}
+	@media screen and (min-width: 450px) and (max-width: 991px) {
+		grid-template-columns: repeat(3, 1fr);
+		grid-gap: 10px;
+	}
+	@media screen and (min-width: 992px) and (max-width: 1249px) {
+		grid-template-columns: repeat(3, 1fr);
+		grid-gap: 30px;
+	}
+	@media screen and (min-width: 1250px) {
+	}
 `;
 
 const SponsorPage = () => {
@@ -124,32 +139,56 @@ const StyledSponsorItem = styled.div`
 		font-weight: 500;
 	}
 
-	& h3 {
-		font-weight: 600;
-		padding: 10px 20px;
-		background-color: #f7f7f7;
-		background-color: #ffeb84;
-		background-color: #c8deff;
-		color: #224099;
-		color: #000;
-	}
-
 	& a > div {
 		border: 1px solid #e1e1e1;
-		width: 200px;
-		height: 110px;
+		max-width: 200px;
+		max-height: 110px;
 		overflow: hidden;
 	}
 
 	& img {
-		width: 200px;
-		height: 110px;
+		max-width: 200px;
+		max-height: 110px;
 		overflow: hidden;
 	}
 
 	& img:hover {
 		transform: scale(1.2);
 		transition: transform 0.5s;
+	}
+
+	@media screen and (max-width: 991px) {
+		padding: 10px;
+
+		& p {
+			font-size: 12px;
+			color: #be2526;
+			font-weight: 500;
+		}
+
+		& span {
+			font-size: 18px;
+			text-align: center;
+			color: #222;
+			margin: 10px 0 10px;
+			height: 22px;
+		}
+
+		& a > div {
+			border: 1px solid #e1e1e1;
+			width: 90px;
+			height: 55px;
+			overflow: hidden;
+		}
+
+		& img {
+			width: 90px;
+			height: 44px;
+			overflow: hidden;
+			object-fit: cover;
+		}
+	}
+	@media screen and (min-width: 992px) {
 	}
 `;
 
