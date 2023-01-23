@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import BlankDiv from "../common/BlankDiv";
@@ -145,6 +146,8 @@ const StyledDocumentWrapper = styled.div`
 `;
 
 const MainLeftGrid = () => {
+	const navigate = useNavigate();
+
 	const [selcted, setSelected] = React.useState("공지사항");
 	const [noticePosts, setNoticePosts] = React.useState([]);
 	const [pressReleases, setPressReleases] = React.useState([]);
@@ -183,6 +186,10 @@ const MainLeftGrid = () => {
 	}, []);
 
 	const onClickHandler = (e) => {
+		if (e.target.innerText === "네트워크") {
+			navigate("/mou");
+		}
+
 		setSelected(e.target.innerText);
 	};
 
