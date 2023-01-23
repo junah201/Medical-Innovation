@@ -47,7 +47,7 @@ def create_mou(db: Session, mou_create: schemas.MouCreate):
 
 
 def get_mous(db: Session):
-    db_mous = db.query(models.Mou).order_by(models.Mou.created_at.desc())
+    db_mous = db.query(models.Mou).order_by(models.Mou.name.desc())
     return db_mous.all()
 
 
