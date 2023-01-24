@@ -224,9 +224,9 @@ const MainLeftGrid = () => {
 					<ol>
 						<StyledTopGridButton
 							onClick={onClickHandler}
-							color={selcted === "자료실" ? "#000000" : "#838383"}
+							color={selcted === "지원분야" ? "#000000" : "#838383"}
 						>
-							자료실
+							지원분야
 						</StyledTopGridButton>
 					</ol>
 					<ol>
@@ -267,6 +267,35 @@ const MainLeftGrid = () => {
 								/>
 							);
 						})}
+					</>
+				) : null}
+				{selcted === "지원분야" ? (
+					<>
+						<PostItem
+							link=""
+							title="줄기 세포생물학 기반의 기초연구 분야"
+							index="1"
+							key="1"
+						/>
+						<PostItem
+							link=""
+							title="나노바이오테크놀로지 기반의 첨단 기기/약물 융합임상연구 분야"
+							index="2"
+							key="2"
+						/>
+						<PostItem
+							link=""
+							title="미래의학을 선도하는 첨단 바이오 의약품 및 의료기기 분야"
+							index="3"
+							key="3"
+						/>
+						<PostItem
+							link=""
+							title="빅데이터 또는 AI를 활용한 미래의학 융합기술 분야"
+							index="4"
+							key="4"
+						/>
+						<PostItem link="" title="미래의학 관련 전 분야" index="5" key="5" />
 					</>
 				) : null}
 				{selcted === "재단성격" ? (
@@ -452,7 +481,11 @@ const StyledPostItemDate = styled.span`
 `;
 
 const PostItem = ({ title, link, index, date }) => {
-	date = new Intl.DateTimeFormat("kr", {}).format(new Date(date));
+	try {
+		date = new Intl.DateTimeFormat("kr", {}).format(new Date(date));
+	} catch {
+		date = "";
+	}
 
 	return (
 		<StyledPostItem href={link} target="_blank" rel="noopener noreferrer">
