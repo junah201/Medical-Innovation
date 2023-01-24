@@ -12,22 +12,22 @@ const BenefitsPage = () => {
 			<br />
 			<StyledBenefitContainer>
 				<BenefitItem
-					src="/images/benefits/기부자명부.png"
+					src="/favicon.ico"
 					title="기부자 명부"
 					content="재단법인 미래의학연구재단의 기부자 명부에 올리겠습니다."
 				/>
 				<BenefitItem
-					src="/images/benefits/세금감면.png"
+					src="/favicon.ico"
 					title="세금 감면 혜택"
 					content="우리 재단은 지정기부금단체입니다. 지정기부금 공제 혜택을 받으실 수 있습니다."
 				/>
 				<BenefitItem
-					src="/images/benefits/기부금영수증.png"
+					src="/favicon.ico"
 					title="기부금 영수증"
 					content="지정기부금 세액공제를 위한 기부금 영수증을 우송해 드립니다."
 				/>
 				<BenefitItem
-					src="/images/benefits/기부금영수증.png"
+					src="/favicon.ico"
 					title="세액공제율 한시 상향"
 					content="2022년 기부금 세액공제율이 5% 일시 상향(소득법제59조의4항)되어 연말정산시 지정기부금 세금감면 혜택이 확대됩니다"
 				/>
@@ -80,10 +80,10 @@ const StyledBenefitItem = styled.div`
 
 	& img {
 		border-radius: 50%;
-		width: 100px;
-		height: 100px;
+		width: 50px;
+		height: 50px;
 		overflow: hidden;
-		margin: 10px;
+		margin: 20px;
 	}
 `;
 
