@@ -28,7 +28,7 @@ const SubNav = (props) => {
 				isSelect={props.select === "연구발굴지원사업"}
 			></SubNavButton>
 			<SubNavButton
-				href="/programs/orgchart_and_project"
+				href="/programs/trand"
 				text="최신 동향 보편적 공유"
 				isSelect={props.select === "최신 동향 보편적 공유"}
 			></SubNavButton>

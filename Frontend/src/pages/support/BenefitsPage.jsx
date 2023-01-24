@@ -29,7 +29,7 @@ const BenefitsPage = () => {
 				<BenefitItem
 					src="/favicon.ico"
 					title="세액공제율 한시 상향"
-					content="2022년 기부금 세액공제율이 5% 일시 상향(소득법제59조의4항)되어 연말정산시 지정기부금 세금감면 혜택이 확대됩니다"
+					content="2022년 기부금 세액공제율이 5% 일시 상향되어 연말정산시 세금감면 혜택이 확대됩니다.(소득법제59조의4항)"
 				/>
 			</StyledBenefitContainer>
 		</Page>

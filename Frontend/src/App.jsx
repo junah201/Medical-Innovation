@@ -27,6 +27,7 @@ import SponsorshipFormPage from "./pages/support/SponsorshipFormPage";
 import OpenInnovationPage from "./pages/programs/OpenInnovationPage";
 import AcceleratingPage from "./pages/programs/AcceleratingPage";
 import ResearchSupportProjectPage from "./pages/programs/ResearchSupportProjectPage";
+import TrandPage from "./pages/programs/TrendPage";
 
 import AnnouncementPage from "./pages/news/AnnouncementPage";
 import PressReleasePage from "./pages/news/PressReleasePage";
@@ -75,6 +76,7 @@ function App() {
 						path="research_support_project"
 						element={<ResearchSupportProjectPage />}
 					/>
+					<Route path="trand" element={<TrandPage />} />
 				</Route>
 				<Route path="/news">
 					<Route path="announcement" element={<AnnouncementPage />} />
