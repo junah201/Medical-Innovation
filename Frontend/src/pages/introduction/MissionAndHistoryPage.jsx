@@ -5,10 +5,7 @@ import Page from "../../components/common/Page";
 import SubNav from "../../components/introduction/SubNav";
 import BlankDiv from "../../components/common/BlankDiv";
 import Message from "../../components/common/Message";
-
-import kimhyosoo from "../../static/images/KimHyoSoo.png";
-import jeonSeungho from "../../static/images/전승호.png";
-import hansangdae from "../../static/images/한상대.png";
+import Portrait from "../../components/common/Portrait";
 
 const StyledMissionWrapper = styled.div`
 	& div {
@@ -18,8 +15,8 @@ const StyledMissionWrapper = styled.div`
 
 const StyledChairmanWrapper = styled.div`
 	& > div {
-		display: flex;
-		justify-content: space-evenly;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
 	}
 `;
 
@@ -58,48 +55,36 @@ const MissionAndHistoryPage = () => {
 			<StyledChairmanWrapper>
 				<h1>역대 이사장</h1>
 				<div>
-					<StyledChairmanItem>
-						<img src={kimhyosoo} alt="김효수" />
-						<div>
-							<h4>제1대 김효수</h4>
-							<br />
-							<p>
-								서울대학교병원 의생명연구원장
-								<br />
-								서울대학교병원 순환기내과 교수
-							</p>
-						</div>
-					</StyledChairmanItem>
-					<StyledChairmanItem>
-						<img src={hansangdae} alt="한상대" />
-						<div>
-							<h4>제2대 한상대</h4>
-							<br />
-							<p>
-								한상대법률사무소 변호사
-								<br />
-								제38대 대검찰청 검찰총장
-								<br />
-								고려대학교 법학전문대학원 특임교수
-							</p>
-						</div>
-					</StyledChairmanItem>
-					<StyledChairmanItem>
-						<img src={jeonSeungho} alt="전승호" />
-						<div>
-							<h4>제3대 전승호</h4>
-							<br />
-							<p>
-								대웅제약 대표이사
-								<br />
-								대한약학회 이사
-								<br />
-								KAIST 융합의과학원 자문위원
-								<br />
-								한국신약개발연구조합 이사
-							</p>
-						</div>
-					</StyledChairmanItem>
+					<Portrait
+						src="/images/Chairmans/김효수.png"
+						alt="김효수"
+						name="제1대 김효수"
+						description={[
+							"서울대학교병원 의생명연구원장",
+							"서울대학교병원 순환기내과 교수",
+						]}
+					/>
+					<Portrait
+						src="/images/Chairmans/한상대.png"
+						alt="한상대"
+						name="제2대 한상대"
+						description={[
+							"한상대법률사무소 변호사",
+							"제38대 대검찰청 검찰총장",
+							"고려대학교 법학전문대학원 특임교수",
+						]}
+					/>
+					<Portrait
+						src="/images/Chairmans/전승호.png"
+						alt="전승호"
+						name="제3대 전승호"
+						description={[
+							"대웅제약 대표이사",
+							"대한약학회 이사",
+							"KAIST 융합의과학원 자문위원",
+							"한국신약개발연구조합 이사",
+						]}
+					/>
 				</div>
 			</StyledChairmanWrapper>
 			<br />
