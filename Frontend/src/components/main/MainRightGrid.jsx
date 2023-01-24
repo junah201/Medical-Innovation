@@ -186,7 +186,7 @@ const MainLeftGrid = () => {
 	}, []);
 
 	const onClickHandler = (e) => {
-		if (e.target.innerText === "네트워크") {
+		if (e.target.innerText === "협력기관") {
 			navigate("/mou");
 		}
 
@@ -232,9 +232,9 @@ const MainLeftGrid = () => {
 					<ol>
 						<StyledTopGridButton
 							onClick={onClickHandler}
-							color={selcted === "네트워크" ? "#000000" : "#838383"}
+							color={selcted === "협력기관" ? "#000000" : "#838383"}
 						>
-							네트워크
+							협력기관
 						</StyledTopGridButton>
 					</ol>
 				</li>
