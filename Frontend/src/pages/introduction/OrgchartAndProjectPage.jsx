@@ -17,8 +17,17 @@ const StyledOrgchartWrapper = styled.div`
 
 const StyledDirectorWrapper = styled.div`
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: repeat(5, 1fr);
 	grid-gap: 10px;
+	padding: 40px;
+
+	@media screen and (max-width: 991px) {
+		grid-template-columns: repeat(2, 1fr);
+		padding: 10px;
+	}
+	@media screen and (min-width: 992px) {
+		grid-gap: 20px;
+	}
 `;
 
 const OrgchartAndProjectPage = () => {
