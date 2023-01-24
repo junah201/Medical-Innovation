@@ -1,28 +1,48 @@
-import base64
-from typing import List
-from fastapi import Depends, HTTPException, status
-from fastapi_jwt_auth import AuthJWT
+from datetime import datetime, timedelta
+from typing import Union
+from jose import JWTError, jwt
 from sqlalchemy.orm import Session
-from pydantic import BaseModel
-
-from app.common.config import JWT_PUBLIC_KEY, JWT_PRIVATE_KEY
-from app.database import models
+from starlette import status
+from app.common.config import JWT_SECRET_KEY, ACCESS_TOKEN_EXPIRES_IN, JWT_ALGORITHM
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from fastapi import APIRouter, HTTPException, Depends, Response, Request
+from app.database import crud, schemas, models
 from app.database.database import get_db
 
-
-class Settings(BaseModel):
-    authjwt_algorithm: str = "RS256"
-    authjwt_decode_algorithms: List[str] = ["RS256"]
-    authjwt_token_location: set = {'cookies', 'headers'}
-    authjwt_access_cookie_key: str = 'access_token'
-    authjwt_refresh_cookie_key: str = 'refresh_token'
-    authjwt_cookie_csrf_protect: bool = False
-    authjwt_public_key: str = base64.b64decode(
-        JWT_PUBLIC_KEY).decode('utf-8')
-    authjwt_private_key: str = base64.b64decode(
-        JWT_PRIVATE_KEY).decode('utf-8')
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/user/login")
 
 
-@AuthJWT.load_config
-def get_config():
-    return Settings()
+def create_access_token(data: dict):
+    to_encode = data.copy()
+    expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRES_IN)
+    to_encode.update({"exp": expire})
+    encoded_jwt = jwt.encode(
+        to_encode,
+        JWT_SECRET_KEY,
+        algorithm=JWT_ALGORITHM
+    )
+    return encoded_jwt
+
+
+def get_sub_by_access_token(token: str):
+    payload = jwt.decode(token, JWT_SECRET_KEY, algorithms=[JWT_ALGORITHM])
+
+    return payload.get("sub")
+
+
+async def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    try:
+        email: str = get_sub_by_access_token(token)
+        if email is None:
+            raise credentials_exception
+    except JWTError:
+        raise credentials_exception
+    user = crud.get_user_by_email(db=db, email=email)
+    if user is None:
+        raise credentials_exception
+    return user

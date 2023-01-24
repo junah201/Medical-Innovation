@@ -112,3 +112,20 @@ def create_banner(db: Session, banner_create: schemas.BannerCreate):
     )
     db.add(db_banner)
     db.commit()
+
+
+def create_sponsor(db: Session, sponsor_create: schemas.SponsorCreate, user_id: int):
+    utcnow = datetime.utcnow()
+    db_sponsor = models.Sponsor(
+        user_id=user_id,
+        name=sponsor_create.name,
+        phone=sponsor_create.phone,
+        identification_number=sponsor_create.identification_number,
+        address=sponsor_create.address,
+        usage=sponsor_create.usage,
+        detail=sponsor_create.detail,
+        created_at=utcnow,
+        updated_at=utcnow
+    )
+    db.add(db_sponsor)
+    db.commit()

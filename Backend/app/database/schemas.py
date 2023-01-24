@@ -124,3 +124,28 @@ class Mou(MouCreate):
 
     class Config:
         orm_mode = True
+
+
+class SponsorCreate(BaseModel):
+    name: str
+    phone: str
+    address: str
+    identification_number: str
+    usage: str
+    detail: str
+
+    @validator('name', 'phone', 'address', 'identification_number', 'usage', 'detail')
+    def not_empty(cls, v):
+        if not v or (type(v) == type("") and not v.strip()):
+            raise ValueError('Cannot be empty')
+        return v
+
+
+class Sponsor(SponsorCreate):
+    id: int
+    user: dict
+    created_at: datetime
+    updated_at: datetime
+
+    class Config:
+        orm_mode = True

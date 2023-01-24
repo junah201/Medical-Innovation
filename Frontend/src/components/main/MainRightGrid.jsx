@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { API_URL } from "../../utils/const";
 
 import BlankDiv from "../common/BlankDiv";
 
@@ -153,30 +154,24 @@ const MainLeftGrid = () => {
 	const [pressReleases, setPressReleases] = React.useState([]);
 
 	useEffect(() => {
-		fetch(
-			`https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/post/2/all?limit=6`,
-			{
-				method: "GET",
-				headers: {
-					accept: "application/json",
-				},
-			}
-		).then((res) => {
+		fetch(`${API_URL}/api/v1/post/2/all?limit=6`, {
+			method: "GET",
+			headers: {
+				accept: "application/json",
+			},
+		}).then((res) => {
 			if (res.status === 200) {
 				res.json().then((data) => {
 					setNoticePosts(data.posts);
 				});
 			}
 		});
-		fetch(
-			`https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/post/3/all?limit=6`,
-			{
-				method: "GET",
-				headers: {
-					accept: "application/json",
-				},
-			}
-		).then((res) => {
+		fetch(`${API_URL}/api/v1/post/3/all?limit=6`, {
+			method: "GET",
+			headers: {
+				accept: "application/json",
+			},
+		}).then((res) => {
 			if (res.status === 200) {
 				res.json().then((data) => {
 					setPressReleases(data.posts);
@@ -469,6 +464,7 @@ const StyledPostItemDate = styled.span`
 	text-align: center;
 	justify-content: center;
 	font-size: 12px;
+	min-width: 75px;
 
 	@media screen and (max-width: 991px) {
 		font-size: 8px;

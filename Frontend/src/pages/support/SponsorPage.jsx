@@ -5,6 +5,8 @@ import BlankDiv from "../../components/common/BlankDiv";
 import Page from "../../components/common/Page";
 import SubNav from "../../components/support/SubNav";
 
+import { API_URL } from "../../utils/const";
+
 const StyledSponsorContainer = styled.div`
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
@@ -30,15 +32,12 @@ const SponsorPage = () => {
 	const [sponsorshipStatus, setSponsorshipStatus] = useState([]);
 
 	useEffect(() => {
-		fetch(
-			"https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/file/banners",
-			{
-				method: "GET",
-				headers: {
-					accept: "application/json",
-				},
-			}
-		).then((res) => {
+		fetch(`${API_URL}/api/v1/file/banners`, {
+			method: "GET",
+			headers: {
+				accept: "application/json",
+			},
+		}).then((res) => {
 			if (res.status === 200) {
 				res.json().then((data) => {
 					setSponsorshipStatus(data);

@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 import Page from "../components/common/Page";
 
+import { API_URL } from "../utils/const";
+
 const BoardPage = ({ boardId, children, boardType }) => {
 	const SIZE = 20;
 	const [total, setTotal] = useState(0);
@@ -10,15 +12,12 @@ const BoardPage = ({ boardId, children, boardType }) => {
 	const [posts, setPosts] = useState([]);
 
 	useEffect(() => {
-		fetch(
-			`https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/post/${boardId}/all?limit=${SIZE}&skip=${page}`,
-			{
-				method: "GET",
-				headers: {
-					accept: "application/json",
-				},
-			}
-		).then((res) => {
+		fetch(`${API_URL}/api/v1/post/${boardId}/all?limit=${SIZE}&skip=${page}`, {
+			method: "GET",
+			headers: {
+				accept: "application/json",
+			},
+		}).then((res) => {
 			if (res.status === 200) {
 				res.json().then((data) => {
 					setPosts(data.posts);

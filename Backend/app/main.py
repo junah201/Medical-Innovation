@@ -12,7 +12,7 @@ import datetime
 
 from app.database import models, schemas, crud
 from app.database.database import engine, get_db
-from app.routers.v1 import user_router, post_router, board_router, file_router
+from app.routers.v1 import user_router, post_router, board_router, file_router, sponsor_router
 
 models.Base.metadata.create_all(bind=engine, checkfirst=True)
 
@@ -23,8 +23,11 @@ app.mount("/static", StaticFiles(directory="./app/static"), name="static")
 """
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000",
-                   "https://medical-innovation.vercel.app"],
+    allow_origins=[
+        "http://localhost:3000",
+        "https://medical-innovation.vercel.app",
+        "www.medicalinnovation.co.kr"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -35,6 +38,7 @@ app.include_router(user_router.router)
 app.include_router(post_router.router)
 app.include_router(board_router.router)
 app.include_router(file_router.router)
+app.include_router(sponsor_router.router)
 
 
 @app.exception_handler(RequestValidationError)

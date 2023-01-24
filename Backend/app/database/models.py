@@ -59,6 +59,7 @@ class User(Base):
         comment="이메일 수신 여부",
     )
     posts = relationship("Post", back_populates="author")
+    sponsors = relationship("Sponsor", back_populates="user")
     created_at = Column(
         DateTime,
         nullable=False,
@@ -204,6 +205,66 @@ class Mou(Base):
         VARCHAR(100),
         nullable=False,
         comment="홈페이지 링크"
+    )
+    created_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        comment="생성 시점"
+    )
+    updated_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        onupdate=func.now(),
+        comment="마지막 수정 시점"
+    )
+
+    class Config:
+        orm_mode = True
+
+
+class Sponsor(Base):
+    __tablename__ = "sponsor"
+    __table_args__ = {'mysql_collate': 'utf8_general_ci'}
+
+    id = Column(
+        Integer,
+        primary_key=True,
+        unique=True,
+        comment="후원 고유 번호"
+    )
+    user_id = Column(Integer, ForeignKey("user.id"))
+    user = relationship("User", back_populates="sponsors")
+    name = Column(
+        VARCHAR(100),
+        nullable=False,
+        comment="성명 (단체명)"
+    )
+    phone = Column(
+        VARCHAR(20),
+        nullable=False,
+        comment="전화번호"
+    )
+    identification_number = Column(
+        VARCHAR(100),
+        nullable=False,
+        comment="주민등록번호 (사업자등록번호)"
+    )
+    address = Column(
+        VARCHAR(100),
+        nullable=False,
+        comment="주소"
+    )
+    usage = Column(
+        VARCHAR(20),
+        nullable=False,
+        comment="희망 사용처"
+    )
+    detail = Column(
+        VARCHAR(2000),
+        nullable=False,
+        comment="기부 내용"
     )
     created_at = Column(
         DateTime,

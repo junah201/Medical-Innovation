@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 import Page from "../../components/common/Page";
 
+import { API_URL } from "../../utils/const";
+
 const StyledPostUploadPage = styled.div``;
 
 const PostUploadPage = () => {
@@ -56,17 +58,14 @@ const PostUploadPage = () => {
 			files: files,
 		});
 
-		fetch(
-			`https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/post/create`,
-			{
-				method: "POST",
-				headers: {
-					accept: "application/json",
-					"Content-Type": "application/json",
-				},
-				body: body,
-			}
-		).then((res) => {
+		fetch(`${API_URL}/api/v1/post/create`, {
+			method: "POST",
+			headers: {
+				accept: "application/json",
+				"Content-Type": "application/json",
+			},
+			body: body,
+		}).then((res) => {
 			if (res.status === 200) {
 				res.json().then((data) => {
 					console.log(data.filenames[0]);
@@ -87,16 +86,13 @@ const PostUploadPage = () => {
 		e.preventDefault();
 		const formData = new FormData();
 		formData.append("files", file);
-		fetch(
-			"https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/file/upload",
-			{
-				method: "POST",
-				headers: {
-					accept: "application/json",
-				},
-				body: formData,
-			}
-		).then((res) => {
+		fetch(`${API_URL}/api/v1/file/upload`, {
+			method: "POST",
+			headers: {
+				accept: "application/json",
+			},
+			body: formData,
+		}).then((res) => {
 			if (res.status === 200) {
 				res.json().then((data) => {
 					console.log(data.filenames[0]);

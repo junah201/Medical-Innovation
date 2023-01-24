@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 
+import { API_URL } from "../utils/const";
+
 const StyledSignupPage = styled.main`
 	display: flex;
 	justify-content: center;
@@ -178,16 +180,13 @@ const SignupPage = () => {
 			email_enable: emailenable,
 		};
 
-		fetch(
-			"https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/user/create",
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(body),
-			}
-		).then((res) => {
+		fetch(`${API_URL}/api/v1/user/create`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(body),
+		}).then((res) => {
 			if (res.status === 204) {
 				navigate("/login");
 				return;

@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import { API_URL } from "../utils/const";
 
 const StyledLoginPage = styled.main`
 	display: flex;
@@ -131,16 +132,13 @@ const LoginPage = () => {
 		}
 		formBody = formBody.join("&");
 
-		fetch(
-			"https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/user/login",
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-				},
-				body: formBody,
-			}
-		)
+		fetch(`${API_URL}/api/v1/user/login`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+			},
+			body: formBody,
+		})
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.status !== "success") {

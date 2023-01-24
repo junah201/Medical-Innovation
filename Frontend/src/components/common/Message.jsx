@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledMessage = styled.div`
-	margin-bottom: 60px;
+	margin-bottom: 40px;
 	padding: 20px;
 	border-radius: 10px;
 	background-color: #f7f7f7;

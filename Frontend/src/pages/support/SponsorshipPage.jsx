@@ -1,17 +1,42 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import Page from "../../components/common/Page";
 import SubNav from "../../components/support/SubNav";
 import Message from "../../components/common/Message";
 
-import downloadImg from "../../static/images/약정서다운로드.png";
+import AuthContext from "../../context/AuthContext";
 
 const StyledSponsorshipContainer = styled.div`
 	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	& button {
+		margin: 0 0.5rem;
+		padding: 0.5rem 1rem;
+		border: 1px solid #000;
+		border-radius: 0.5rem;
+		background-color: #fff;
+		font-size: 26px;
+	}
 `;
 
 const SponsorshipPage = () => {
+	const navigate = useNavigate();
+	const authCtx = useContext(AuthContext);
+
+	const isLoggedIn = authCtx.isLoggedIn;
+
+	const handleSponsorship = (e) => {
+		if (!isLoggedIn) {
+			alert("로그인이 필요한 서비스입니다.");
+			return;
+		}
+		navigate("/support/sponsorship_form");
+	};
+
 	return (
 		<Page>
 			<SubNav select="후원하기" />
@@ -53,20 +78,7 @@ const SponsorshipPage = () => {
 				</p>
 			</Message>
 			<StyledSponsorshipContainer>
-				<a href="/기부약정서.pdf" target="_blank">
-					<img
-						src={downloadImg}
-						alt="약정서 다운로드 및 작성"
-						width="200px"
-						height="200px"
-					/>
-				</a>
-				<div>
-					<p>
-						이메일이나 우편으로 가입하실 분은 약정서 파일을 다운로드 받으시어
-						작성하여 발송하여 주시면 됩니다.
-					</p>
-				</div>
+				<button onClick={handleSponsorship}>기부하기</button>
 			</StyledSponsorshipContainer>
 		</Page>
 	);

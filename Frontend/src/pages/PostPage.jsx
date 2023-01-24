@@ -5,20 +5,19 @@ import styled from "styled-components";
 import MetaTag from "../components/common/MetaTag";
 import Page from "../components/common/Page";
 
+import { API_URL } from "../utils/const";
+
 const PostPage = () => {
 	const params = useParams();
 	const [post, setPost] = useState(null);
 
 	useEffect(() => {
-		fetch(
-			`https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/post/${params.id}`,
-			{
-				method: "GET",
-				headers: {
-					accept: "application/json",
-				},
-			}
-		).then((res) => {
+		fetch(`${API_URL}/api/v1/post/${params.id}`, {
+			method: "GET",
+			headers: {
+				accept: "application/json",
+			},
+		}).then((res) => {
 			if (res.status === 200) {
 				res.json().then((data) => {
 					data.created_at = new Intl.DateTimeFormat("ko", {

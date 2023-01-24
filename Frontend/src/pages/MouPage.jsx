@@ -4,6 +4,8 @@ import styled from "styled-components";
 import Page from "../components/common/Page";
 import Message from "./../components/common/Message";
 
+import { API_URL } from "../utils/const";
+
 const StyledMouContainer = styled.div`
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
@@ -29,15 +31,12 @@ const MouPage = () => {
 	const [MoushipStatus, setMoushipStatus] = useState([]);
 
 	useEffect(() => {
-		fetch(
-			"https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/file/mous",
-			{
-				method: "GET",
-				headers: {
-					accept: "application/json",
-				},
-			}
-		).then((res) => {
+		fetch(`${API_URL}/api/v1/file/mous`, {
+			method: "GET",
+			headers: {
+				accept: "application/json",
+			},
+		}).then((res) => {
 			if (res.status === 200) {
 				res.json().then((data) => {
 					setMoushipStatus(data);

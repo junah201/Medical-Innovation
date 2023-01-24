@@ -21,8 +21,6 @@ UPLOAD_DIRECTORY = "./files"
 
 @router.post("/upload")
 async def upload_file(file: UploadFile):
-    print(dir(file))
-
     utcnow = datetime.utcnow()
     filename = f"{utcnow.timestamp()}-{file.filename}"
     s3 = boto3.resource(

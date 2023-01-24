@@ -22,6 +22,7 @@ import SponsorshipPage from "./pages/support/SponsorshipPage";
 import BenefitsPage from "./pages/support/BenefitsPage";
 import SponsorPage from "./pages/support/SponsorPage";
 import HistoryPage from "./pages/support/HistoryPage";
+import SponsorshipFormPage from "./pages/support/SponsorshipFormPage";
 
 import OpenInnovationPage from "./pages/programs/OpenInnovationPage";
 import AcceleratingPage from "./pages/programs/AcceleratingPage";
@@ -65,6 +66,7 @@ function App() {
 					<Route path="benefits" element={<BenefitsPage />} />
 					<Route path="sponsor" element={<SponsorPage />} />
 					<Route path="history" element={<HistoryPage />} />
+					<Route path="sponsorship_form" element={<SponsorshipFormPage />} />
 				</Route>
 				<Route path="/programs">
 					<Route path="openinnovation" element={<OpenInnovationPage />} />

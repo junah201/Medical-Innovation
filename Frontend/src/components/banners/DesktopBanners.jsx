@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 
+import { API_URL } from "../../utils/const";
+
 const move = (x) => keyframes`
 	100%{
 		transform: translateX(-${x + 190}px);
@@ -64,16 +66,13 @@ const DesktopBanners = () => {
 	const [bannerIndex, setBannerIndex] = useState(0);
 
 	useEffect(() => {
-		fetch(
-			"https://azlbeqcjuzmdl6ysht4y7v44vm0tybim.lambda-url.ap-northeast-2.on.aws/api/v1/file/banners",
-			{
-				method: "GET",
-				headers: {
-					accept: "application/json",
-					"Content-Type": "application/json",
-				},
-			}
-		)
+		fetch(`${API_URL}/api/v1/file/banners`, {
+			method: "GET",
+			headers: {
+				accept: "application/json",
+				"Content-Type": "application/json",
+			},
+		})
 			.then((res) => res.json())
 			.then((data) => {
 				setBanners(data);
