@@ -216,14 +216,6 @@ const MainLeftGrid = () => {
 					<ol>
 						<StyledTopGridButton
 							onClick={onClickHandler}
-							color={selcted === "네트워크" ? "#000000" : "#838383"}
-						>
-							네트워크
-						</StyledTopGridButton>
-					</ol>
-					<ol>
-						<StyledTopGridButton
-							onClick={onClickHandler}
 							color={selcted === "지원분야" ? "#000000" : "#838383"}
 						>
 							지원분야
@@ -235,6 +227,14 @@ const MainLeftGrid = () => {
 							color={selcted === "재단성격" ? "#000000" : "#838383"}
 						>
 							재단성격
+						</StyledTopGridButton>
+					</ol>
+					<ol>
+						<StyledTopGridButton
+							onClick={onClickHandler}
+							color={selcted === "네트워크" ? "#000000" : "#838383"}
+						>
+							네트워크
 						</StyledTopGridButton>
 					</ol>
 				</li>
