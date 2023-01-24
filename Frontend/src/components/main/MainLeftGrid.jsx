@@ -121,9 +121,9 @@ const MainLeftGrid = () => {
 					<a href="/mou">협력기관</a>
 				</StyledGridItem>
 				<StyledGridItem color="#2CA48F">
-					<h3>FMI 인베스트먼트</h3>
+					<h3>FMI 벤처투자조합</h3>
 					<p>바이오헬스 혁신기업의 지속 가능한 성장과 미래</p>
-					<a href="/support/sponsor">바로가기</a>
+					<a href="/preparing">바로가기</a>
 				</StyledGridItem>
 				<StyledGridItem color="#008ACE">
 					<h3>후원 안내</h3>

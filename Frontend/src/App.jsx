@@ -11,6 +11,7 @@ import SignupPage from "./pages/SignupPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 
 import NotFoundPage from "./pages/error/NotFoundPage";
+import PreparingPage from "./pages/error/PreparingPage";
 
 import FounderPage from "./pages/introduction/FounderPage";
 import ChairmanMessagePage from "./pages/introduction/ChairmanMessagePage";
@@ -46,6 +47,7 @@ function App() {
 				<Route path="/signup" element={<SignupPage />} />
 				<Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
 				<Route path="/mou" element={<MouPage />} />
+				<Route path="/preparing" element={<PreparingPage />} />
 				<Route path="/introduction">
 					<Route path="founder" element={<FounderPage />}></Route>
 					<Route path="message" element={<ChairmanMessagePage />}></Route>
