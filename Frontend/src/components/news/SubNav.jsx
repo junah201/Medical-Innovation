@@ -23,14 +23,14 @@ const SubNav = (props) => {
 				isSelect={props.select === "보도자료"}
 			></SubNavButton>
 			<SubNavButton
+				href="/news/column"
+				text="기고문"
+				isSelect={props.select === "기고문"}
+			></SubNavButton>
+			<SubNavButton
 				href="/news/photos"
 				text="사진"
 				isSelect={props.select === "사진"}
-			></SubNavButton>
-			<SubNavButton
-				href="/news/other"
-				text="자료실"
-				isSelect={props.select === "자료실"}
 			></SubNavButton>
 		</StyledSubNav>
 	);
