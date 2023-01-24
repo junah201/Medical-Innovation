@@ -8,7 +8,6 @@ import BlankDiv from "../../components/common/BlankDiv";
 
 import orgchart from "../../static/images/조직도.png";
 import mainProject from "../../static/images/주요사업.png";
-import supportArea from "../../static/images/지원분야.png";
 
 const StyledOrgchartWrapper = styled.div`
 	& img {

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import Page from "../components/common/Page";
 
-const BoardPage = ({ boardId, children }) => {
+const BoardPage = ({ boardId, children, boardType }) => {
 	const SIZE = 20;
 	const [total, setTotal] = useState(0);
 	const [page, setPage] = useState(0);
@@ -33,7 +33,14 @@ const BoardPage = ({ boardId, children }) => {
 			{children}
 			<div>
 				{posts.map((item, index) => {
-					return <PostItem idx={index} item={item} page={page} />;
+					return (
+						<PostItem
+							idx={index}
+							item={item}
+							page={page}
+							boardType={boardType}
+						/>
+					);
 				})}
 			</div>
 			<StyledBoardPageButtonWrapper>
@@ -156,7 +163,7 @@ const StyledPostItemButton = styled.div`
 	}
 `;
 
-const PostItem = ({ idx, item, page }) => {
+const PostItem = ({ idx, item, page, boardType }) => {
 	const date = new Intl.DateTimeFormat("ko", {
 		dateStyle: "long",
 	}).format(new Date(item.created_at));
@@ -165,7 +172,11 @@ const PostItem = ({ idx, item, page }) => {
 		<StyledPostItem>
 			<span>{page + idx + 1}</span>
 			<StyledPostItemContent>
-				<a href={`/post/${item.id}`}>{item.title}</a>
+				{boardType === "바로가기" ? (
+					<a href={`${item.content}`}>{item.title}</a>
+				) : (
+					<a href={`/post/${item.id}`}>{item.title}</a>
+				)}
 				<span>게시일 {date}</span>
 			</StyledPostItemContent>
 			{item.files.length > 0 ? (

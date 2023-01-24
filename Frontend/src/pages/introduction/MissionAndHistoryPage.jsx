@@ -264,29 +264,6 @@ const MissionAndHistoryPage = () => {
 	);
 };
 
-const StyledChairmanItem = styled.div`
-	border: 1px solid #e1e1e1;
-	width: calc(100% / 3);
-	max-width: 330px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	text-align: center;
-
-	padding: 10px;
-
-	& > div > h4 {
-		font-size: 20px;
-	}
-
-	& img {
-		margin: 2px;
-		border: 1px solid #e1e1e1;
-		object-fit: cover;
-		width: 100%;
-	}
-`;
-
 const StyledHistoryItem = styled.div`
 	border: 1px solid #e1e1e1;
 	border-radius: 5px;
