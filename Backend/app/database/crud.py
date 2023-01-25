@@ -97,7 +97,7 @@ def get_post_by_post_id(db: Session, post_id: int) -> models.Post:
 
 
 def get_banners(db: Session) -> List[models.Banner]:
-    return db.query(models.Banner).order_by(models.Banner.year.desc()).all()
+    return db.query(models.Banner).order_by(models.Banner.banner_end_at.desc()).filter(models.Banner.banner_end_at > datetime.utcnow()).all()
 
 
 def create_banner(db: Session, banner_create: schemas.BannerCreate):
@@ -107,6 +107,7 @@ def create_banner(db: Session, banner_create: schemas.BannerCreate):
         filename=banner_create.filename,
         link=banner_create.link,
         year=banner_create.year,
+        banner_end_at=banner_create.banner_end_at,
         created_at=utcnow,
         updated_at=utcnow
     )
@@ -128,4 +129,22 @@ def create_sponsor(db: Session, sponsor_create: schemas.SponsorCreate, user_id: 
         updated_at=utcnow
     )
     db.add(db_sponsor)
+    db.commit()
+
+
+def get_sponsoring_companies(db: Session) -> List[models.Banner]:
+    return db.query(models.SponsoringCompany).order_by(models.SponsoringCompany.year.desc()).all()
+
+
+def create_sponsoring_company(db: Session, sponsoring_company_create: schemas.SponsoringCompanyCreate):
+    utcnow = datetime.utcnow()
+    db_sponsoring_company = models.SponsoringCompany(
+        name=sponsoring_company_create.name,
+        filename=sponsoring_company_create.filename,
+        link=sponsoring_company_create.link,
+        year=sponsoring_company_create.year,
+        created_at=utcnow,
+        updated_at=utcnow
+    )
+    db.add(db_sponsoring_company)
     db.commit()

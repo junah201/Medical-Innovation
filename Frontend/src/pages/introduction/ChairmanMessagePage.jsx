@@ -62,7 +62,7 @@ const StyledChairmanProfile = styled.div`
 const ChairmanMessagePage = () => {
 	return (
 		<Page>
-			<SubNav select="이사장 인사" />
+			<SubNav select="이사장 인사말" />
 			<h1>
 				<span>전승호</span> 이사장
 			</h1>

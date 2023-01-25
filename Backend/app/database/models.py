@@ -163,6 +163,11 @@ class Banner(Base):
         nullable=False,
         comment="후원 시작 년도"
     )
+    banner_end_at = Column(
+        DateTime,
+        nullable=True,
+        comment="배너 노출 종료 시점"
+    )
     created_at = Column(
         DateTime,
         nullable=False,
@@ -265,6 +270,54 @@ class Sponsor(Base):
         VARCHAR(2000),
         nullable=False,
         comment="기부 내용"
+    )
+    created_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        comment="생성 시점"
+    )
+    updated_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        onupdate=func.now(),
+        comment="마지막 수정 시점"
+    )
+
+    class Config:
+        orm_mode = True
+
+
+class SponsoringCompany(Base):
+    __tablename__ = "sponsoring_company"
+    __table_args__ = {'mysql_collate': 'utf8_general_ci'}
+
+    id = Column(
+        Integer,
+        primary_key=True,
+        unique=True,
+        comment="회사 고유 번호"
+    )
+    name = Column(
+        VARCHAR(30),
+        nullable=False,
+        comment="회사명"
+    )
+    filename = Column(
+        VARCHAR(40),
+        nullable=False,
+        comment="파일명"
+    )
+    link = Column(
+        VARCHAR(100),
+        nullable=False,
+        comment="홈페이지 링크"
+    )
+    year = Column(
+        VARCHAR(4),
+        nullable=False,
+        comment="후원 시작 년도"
     )
     created_at = Column(
         DateTime,

@@ -100,6 +100,7 @@ class BannerCreate(BaseModel):
     filename: str
     link: str
     year: int
+    banner_end_at: Optional[datetime]
 
 
 class Banner(BannerCreate):
@@ -144,6 +145,22 @@ class SponsorCreate(BaseModel):
 class Sponsor(SponsorCreate):
     id: int
     user: dict
+    created_at: datetime
+    updated_at: datetime
+
+    class Config:
+        orm_mode = True
+
+
+class SponsoringCompanyCreate(BaseModel):
+    name: str
+    filename: str
+    link: str
+    year: int
+
+
+class SponsoringCompany(SponsoringCompanyCreate):
+    id: int
     created_at: datetime
     updated_at: datetime
 

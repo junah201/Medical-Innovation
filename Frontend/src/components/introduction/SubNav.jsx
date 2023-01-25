@@ -19,8 +19,8 @@ const SubNav = (props) => {
 			></SubNavButton>
 			<SubNavButton
 				href="/introduction/message"
-				text="이사장 인사"
-				isSelect={props.select === "이사장 인사"}
+				text="이사장 인사말"
+				isSelect={props.select === "이사장 인사말"}
 			></SubNavButton>
 			<SubNavButton
 				href="/introduction/mission_and_history"

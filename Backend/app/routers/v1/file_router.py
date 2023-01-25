@@ -80,3 +80,20 @@ async def get_banners(db: Session = Depends(get_db)):
 @router.get("/banner/{filename}", response_class=RedirectResponse)
 async def get_banner(filename: str):
     return RedirectResponse(f"https://medical-innovation.s3.ap-northeast-2.amazonaws.com/banner/{filename}")
+
+
+@router.post("/sponsoring_company", status_code=status.HTTP_204_NO_CONTENT)
+async def create_sponsoring_company(sponsoring_company_create: schemas.SponsoringCompanyCreate, db: Session = Depends(get_db)):
+    crud.create_sponsoring_company(
+        db=db, sponsoring_company_create=sponsoring_company_create)
+
+
+@router.get("/sponsoring_companies", response_model=List[schemas.SponsoringCompany])
+async def get_sponsoring_companies(db: Session = Depends(get_db)):
+    db_sponsoring_companies = crud.get_sponsoring_companies(db=db)
+    if not db_sponsoring_companies:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="not found"
+        )
+    return db_sponsoring_companies
