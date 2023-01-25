@@ -10,7 +10,7 @@ import preregistrationStatus from "../../static/images/사전등록현황.png";
 const StyledMainLeftGrid = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 335px 300px;
+	grid-template-rows: 335px 320px;
 	grid-gap: 10px;
 
 	@media screen and (max-width: 991px) {
@@ -96,6 +96,7 @@ const StyledBottomItem = styled.div`
 	& > h3 {
 		font-size: 20px;
 		font-weight: 800;
+		margin-top: 12px;
 	}
 `;
 
