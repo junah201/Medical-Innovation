@@ -67,15 +67,14 @@ def get_boards(db: Session, skip: int = 0, limit: int = 15):
     return db_boards.offset(skip).limit(limit).all()
 
 
-def create_post(db: Session, post_create: schemas.PostCreate):
+def create_post(db: Session, post_create: schemas.PostCreate, author_name: str):
     db_post = models.Post(
         title=post_create.title,
         board_id=post_create.board_id,
         content=post_create.content,
-        author_name=post_create.author_name,
+        author_name=author_name,
         files=json.dumps(post_create.files, ensure_ascii=False),
     )
-
     db.add(db_post)
     db.commit()
 

@@ -3,7 +3,10 @@ import styled from "styled-components";
 
 import MainLeftGrid from "../components/main/MainLeftGrid";
 import MainRightGrid from "../components/main/MainRightGrid";
+
+import Header from "../components/base/Header";
 import Banners from "../components/base/Banners";
+import Footer from "../components/base/Footer";
 
 const StyledHomePage = styled.main`
 	width: 100%;
@@ -76,6 +79,7 @@ const StyledHomeDescription = styled.span`
 const HomePage = () => {
 	return (
 		<>
+			<Header />
 			<StyledHomePage>
 				<StyledHomeTitle>Foundation for Medical Innovation</StyledHomeTitle>
 				<StyledHomeDescription>
@@ -89,6 +93,7 @@ const HomePage = () => {
 				</StyledHomeWrapper>
 			</StyledHomePage>
 			<Banners />
+			<Footer />
 		</>
 	);
 };

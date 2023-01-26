@@ -1,15 +1,14 @@
 from datetime import timedelta, datetime
 
-from fastapi import APIRouter, HTTPException, Depends, Response, Request
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from jose import jwt, JWTError
+from fastapi import APIRouter, HTTPException, Depends
+from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 from starlette import status
 
 from app.database import crud, schemas
 from app.database.database import get_db
 from app.utils.verify import verify_password
-from app.utils.oauth2 import create_access_token, get_sub_by_access_token
+from app.utils.oauth2 import create_access_token
 from app.common.config import ACCESS_TOKEN_EXPIRES_IN
 
 router = APIRouter(
@@ -53,4 +52,5 @@ def login(
         "status": "success",
         "access_token": access_token,
         "access_token_expires_in": ACCESS_TOKEN_EXPIRES_IN * 60,
+        "is_admin": user.is_admin,
     }

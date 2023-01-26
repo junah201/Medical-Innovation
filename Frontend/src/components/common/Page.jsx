@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
+import Header from "../base/Header";
+import Footer from "../base/Footer";
+
 const StyledPage = styled.main`
 	display: flex;
 	justify-content: center;
@@ -40,9 +43,13 @@ const StyledWrapper = styled.div`
 
 const Page = (props) => {
 	return (
-		<StyledPage>
-			<StyledWrapper>{props.children}</StyledWrapper>
-		</StyledPage>
+		<>
+			<Header />
+			<StyledPage>
+				<StyledWrapper>{props.children}</StyledWrapper>
+			</StyledPage>
+			<Footer />
+		</>
 	);
 };
 

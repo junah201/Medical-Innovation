@@ -4,7 +4,8 @@ import { getCookie, setCookie, removeCookie } from "../utils/cookie";
 const AuthContext = createContext({
 	accessToken: "",
 	isLoggedIn: false,
-	login: (accessToken) => {},
+	isAdmin: false,
+	login: (accessToken, expirationTime, isAdmin) => {},
 	logout: () => {},
 });
 
@@ -27,17 +28,30 @@ const retrieveStoredToken = () => {
 	return storedToken;
 };
 
+const retrieveStoredIsAdmin = () => {
+	const storedIsAdmin = getCookie("is_admin");
+
+	return storedIsAdmin === "true";
+};
+
 export const AuthContextProvider = (props) => {
 	const [accessToken, setAccessToken] = useState(retrieveStoredToken());
+	const [isAdmin, setIsAdmin] = useState(retrieveStoredIsAdmin());
 
 	const userIsLoggedIn = !!accessToken;
 
-	const loginHandler = (accessToken, expirationTime) => {
+	const loginHandler = (accessToken, expirationTime, is_admin) => {
 		setAccessToken(accessToken);
+		setIsAdmin(is_admin);
 
 		const remainingTime = calculateRemainingTime(expirationTime);
 
 		setCookie("access_token", accessToken, {
+			path: "/",
+			expires: new Date(Date.now() + remainingTime),
+			maxAge: remainingTime,
+		});
+		setCookie("is_admin", is_admin, {
 			path: "/",
 			expires: new Date(Date.now() + remainingTime),
 			maxAge: remainingTime,
@@ -50,12 +64,14 @@ export const AuthContextProvider = (props) => {
 		setAccessToken(null);
 		removeCookie("access_token");
 		removeCookie("refresh_token");
+		removeCookie("is_admin");
 		console.log("logout");
 	};
 
 	const contextValue = {
 		accessToken: accessToken,
 		isLoggedIn: userIsLoggedIn,
+		isAdmin: isAdmin,
 		login: loginHandler,
 		logout: logoutHandler,
 	};

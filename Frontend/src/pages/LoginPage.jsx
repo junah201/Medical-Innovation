@@ -147,7 +147,7 @@ const LoginPage = () => {
 				const expirationTime = new Date(
 					new Date().getTime() + +data.access_token_expires_in
 				);
-				authCtx.login(data.access_token, expirationTime);
+				authCtx.login(data.access_token, expirationTime, data.is_admin);
 
 				navigate("/");
 			});

@@ -1,163 +1,194 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
-import Page from "../../components/common/Page";
+import axios from "axios";
 
+import AdminPage from "../../components/admin/AdminPage";
 import { API_URL } from "../../utils/const";
+import AuthContext from "../../context/AuthContext";
+import Message from "../../components/common/Message";
 
-const StyledPostUploadPage = styled.div``;
+const StyledPostUploadPage = styled.div`
+	display: flex;
+	flex-direction: column;
+
+	& * + * {
+		margin-top: 10px;
+	}
+
+	& input,
+	select {
+		width: 800px;
+		height: 30px;
+		padding: 3px;
+		font-size: 16px;
+	}
+
+	& textarea {
+		width: 800px;
+		height: 400px;
+		padding: 3px;
+	}
+
+	& button {
+		padding: 10px 20px;
+		font-size: 20px;
+		font-weight: 600;
+		margin: auto 0;
+		background-color: #ffffff;
+	}
+`;
 
 const PostUploadPage = () => {
-	const [title, setTitle] = useState("");
-	const [boardId, setBoardId] = useState("");
-	const [content, setContent] = useState("");
-	const [authorName, setAuthorName] = useState("");
-	const [file1, setFile1] = useState("");
-	const [file2, setFile2] = useState("");
+	const navigate = useNavigate();
+	const authCtx = useContext(AuthContext);
 
-	const handleTitleChange = (e) => {
-		setTitle(e.target.value);
-	};
-
-	const handleBoardIdChange = (e) => {
-		setBoardId(e.target.value);
-	};
-
-	const handleContentChange = (e) => {
-		setContent(e.target.value);
-	};
-
-	const handleAuthorNameChange = (e) => {
-		setAuthorName(e.target.value);
-	};
-
-	const handleFile1Change = (e) => {
-		setFile1(e.target.value);
-	};
-
-	const handleFile2Change = (e) => {
-		setFile2(e.target.value);
-	};
-
-	const handleSubmit = (e) => {
-		e.preventDefault();
-
-		const files = [];
-		if (file1) {
-			files.push(file1);
+	useEffect(() => {
+		if (!authCtx.isLoggedIn) {
+			alert("로그인이 필요한 서비스입니다.");
+			navigate("/");
+			return;
 		}
-		if (file2) {
-			files.push(file2);
+		if (!authCtx.isAdmin) {
+			alert("권한이 부족합니다.");
+			navigate("/");
+			return;
 		}
+	}, [navigate, authCtx]);
 
-		const body = JSON.stringify({
-			title: title,
-			board_id: parseInt(boardId),
-			content: content,
-			author_name: authorName,
-			files: files,
-		});
+	const [boards, setBoards] = useState([]);
 
-		fetch(`${API_URL}/api/v1/post/create`, {
-			method: "POST",
+	useEffect(() => {
+		fetch(`${API_URL}/api/v1/board/all`, {
+			method: "GET",
 			headers: {
 				accept: "application/json",
 				"Content-Type": "application/json",
 			},
-			body: body,
-		}).then((res) => {
-			if (res.status === 200) {
-				res.json().then((data) => {
-					console.log(data.filenames[0]);
-				});
-			}
-		});
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				setBoards(data);
+			});
+	}, []);
 
-		alert("제출되었습니다.");
-	};
+	const [errorMessages, setErrorMessages] = useState(
+		"tip : 파일 선택은 한번에 여러개 가능합니다."
+	);
 
-	const [file, setFile] = useState(null);
+	const [title, setTitle] = useState("");
+	const [boardId, setBoardId] = useState(1);
+	const [content, setContent] = useState("");
+	const [files, setFiles] = useState([]);
 
-	function handleChange(event) {
-		setFile(event.target.files[0]);
-	}
-
-	const onhanddlefsdffile = (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
-		const formData = new FormData();
-		formData.append("files", file);
-		fetch(`${API_URL}/api/v1/file/upload`, {
-			method: "POST",
-			headers: {
-				accept: "application/json",
-			},
-			body: formData,
-		}).then((res) => {
-			if (res.status === 200) {
-				res.json().then((data) => {
-					console.log(data.filenames[0]);
+
+		let tmp = [];
+		for (let i = 0; i < files.length; i++) {
+			const formData = new FormData();
+			formData.append("file", files[i]);
+			tmp.push(
+				axios.post(`${API_URL}/api/v1/file/upload`, formData, {
+					headers: {
+						accept: "application/json",
+						"Content-Type": "multipart/form-data",
+						Authorization: `Bearer ${authCtx.accessToken}`,
+					},
+				})
+			);
+		}
+
+		setErrorMessages(`파일 업로드 중...`);
+
+		axios.all(tmp).then(
+			axios.spread((...res) => {
+				console.log(res);
+				const file_names = [];
+				if (!!res) {
+					for (let i = 0; i < res.length; i++) {
+						file_names.push(res[i].data.filenames);
+					}
+				}
+				setErrorMessages(`게시물 업로드 중...`);
+				axios({
+					url: `${API_URL}/api/v1/post/create`,
+					method: "POST",
+					headers: {
+						accept: "application/json",
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${authCtx.accessToken}`,
+					},
+					data: {
+						title: title,
+						board_id: parseInt(boardId),
+						content: content,
+						files: file_names,
+					},
+				}).then((res) => {
+					if (res.status === 204) {
+						setErrorMessages("게시물 업로드 성공");
+						alert("게시물 업로드 성공");
+						return;
+					}
+					setErrorMessages("게시물 업로드 실패");
+					alert("게시물 업로드 실패");
 				});
-			}
-		});
+			})
+		);
 	};
 
 	return (
-		<Page>
+		<AdminPage>
 			<StyledPostUploadPage>
-				<h1>Post Upload Page</h1>
+				<h1>게시물 업로드</h1>
+				<Message>{errorMessages}</Message>
 				<form onSubmit={handleSubmit}>
 					<input
 						type="text"
-						placeholder="Title"
+						placeholder="제목"
 						value={title}
-						onChange={handleTitleChange}
+						onChange={(e) => {
+							setTitle(e.target.value);
+						}}
 					></input>
-					<br />
-					<input
-						type="number"
-						placeholder="Board ID"
+					<select
+						name="boardId"
 						value={boardId}
-						onChange={handleBoardIdChange}
-					></input>
-					<br />
+						onChange={(e) => {
+							setBoardId(e.target.value);
+						}}
+					>
+						{boards.map((board) => {
+							return (
+								<option value={board.id} key={board.id}>
+									{board.name}
+								</option>
+							);
+						})}
+					</select>
 					<textarea
 						type="text"
 						placeholder="Content"
 						value={content}
-						onChange={handleContentChange}
+						onChange={(e) => {
+							setContent(e.target.value);
+						}}
 					></textarea>
-					<br />
 					<input
-						type="text"
-						placeholder="Author name"
-						value={authorName}
-						onChange={handleAuthorNameChange}
-					></input>
-					<br />
-					<input
-						type="text"
-						placeholder="file1"
-						value={file1}
-						onChange={handleFile1Change}
-					></input>
-					<input
-						type="text"
-						placeholder="file2"
-						value={file2}
-						onChange={handleFile2Change}
-					></input>
+						type="file"
+						onChange={(e) => {
+							setFiles(e.target.files);
+						}}
+						multiple
+					/>
 					<br />
 					<br />
-					<button type="submit">Upload</button>
-				</form>
-				<h1>File Upload</h1>
-				<form onSubmit={onhanddlefsdffile}>
-					<input type="file" onChange={handleChange} />
-					<br />
-					<button type="submit">Upload</button>
+					<button type="submit">업로드</button>
 				</form>
 			</StyledPostUploadPage>
-		</Page>
+		</AdminPage>
 	);
 };
 

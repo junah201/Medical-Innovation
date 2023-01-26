@@ -64,10 +64,9 @@ class PostCreate(BaseModel):
     title: str
     board_id: int
     content: str
-    author_name: str
     files: List[str]
 
-    @validator('title', 'board_id', 'content', 'author_name')
+    @validator('title', 'board_id', 'content')
     def not_empty(cls, v):
         if not v or (type(v) == type("") and not v.strip()):
             raise ValueError('Cannot be empty')
@@ -82,6 +81,7 @@ class Post(PostCreate):
     id: int
     board: Board
     author: Optional[User] = None
+    author_name: str
     files: List[str]
     created_at: datetime
     updated_at: datetime
