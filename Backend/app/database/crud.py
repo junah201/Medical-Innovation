@@ -33,6 +33,11 @@ def get_user_by_email(db: Session, email: str) -> models.User:
     return db.query(models.User).filter(models.User.email == email).first()
 
 
+def get_users(db: Session, skip: int = 0, limit: int = 20):
+    db_users = db.query(models.User).order_by(models.User.created_at.desc())
+    return db_users.offset(skip).limit(limit).all()
+
+
 def create_mou(db: Session, mou_create: schemas.MouCreate):
     utcnow = datetime.utcnow()
     db_mou = models.Mou(

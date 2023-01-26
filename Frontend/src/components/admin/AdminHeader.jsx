@@ -51,7 +51,7 @@ const AdminHeader = () => {
 						<a href="/preparing">후원 기업 수정 / 삭제</a>
 					</li>
 					<li>
-						<a href="/preparing">유저 목록</a>
+						<a href="/admin/uesrs">유저 목록</a>
 					</li>
 					<li>
 						<a href="/preparing">후원 목록</a>

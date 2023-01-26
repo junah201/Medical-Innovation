@@ -34,8 +34,13 @@ class UserLogin(BaseModel):
 class User(BaseModel):
     id: int
     name: str
-    password: str
+    phone: str
     email: EmailStr
+    birth: str
+    is_admin: bool
+    email_enable: bool
+    created_at: datetime
+    updated_at: datetime
 
     class Config:
         orm_mode = True

@@ -32,6 +32,7 @@ import PressReleasePage from "./pages/news/PressReleasePage";
 import PostPage from "./pages/PostPage";
 
 import PostUploadPage from "./pages/admin/PostUploadPage";
+import Users from "./pages/admin/Users";
 
 import MouPage from "./pages/MouPage";
 
@@ -80,6 +81,7 @@ function App() {
 			<Route path="/admin">
 				<Route path="" element={<PostUploadPage />} />
 				<Route path="post_upload" element={<PostUploadPage />} />
+				<Route path="uesrs" element={<Users />} />
 			</Route>
 			<Route path="/post/:id" element={<PostPage />} />
 			<Route path="*" element={<NotFoundPage />} />
