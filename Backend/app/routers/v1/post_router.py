@@ -60,5 +60,5 @@ def get_post(post_id: int, db: Session = Depends(get_db)):
 
 
 @router.put("/{post_id}", status_code=status.HTTP_204_NO_CONTENT)
-def update_post(post_id: int, post_update: schemas.PostUpdate, db: Session = Depends(get_db)):
-    crud.update_post(db=db, post_id=post_id, post_content=post_update.content)
+def edit_post(post_id: int, post_edit: schemas.PostEdit, db: Session = Depends(get_db)):
+    crud.edit_post(db=db, post_id=post_id, post_edit=post_edit)

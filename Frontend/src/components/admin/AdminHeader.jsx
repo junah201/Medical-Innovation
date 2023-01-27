@@ -39,6 +39,9 @@ const AdminHeader = () => {
 						<a href="/admin/post_upload">게시물 업로드</a>
 					</li>
 					<li>
+						<a href="/admin/posts">게시물 목록</a>
+					</li>
+					<li>
 						<a href="/preparing">배너 업로드</a>
 					</li>
 					<li>

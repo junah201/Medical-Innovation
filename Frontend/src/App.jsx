@@ -36,6 +36,7 @@ import PostPage from "./pages/PostPage";
 import PostUploadPage from "./pages/admin/PostUploadPage";
 import Users from "./pages/admin/Users";
 import Posts from "./pages/admin/Posts";
+import PostEditPage from "./pages/admin/PostEditPage";
 
 import MouPage from "./pages/MouPage";
 
@@ -117,7 +118,7 @@ function App() {
 			<Route path="/admin">
 				<Route path="" element={<PostUploadPage />} />
 				<Route path="posts" element={<Posts />} />
-				<Route path="post/edit/:id" element={<Users />} />
+				<Route path="post/edit/:id" element={<PostEditPage />} />
 				<Route path="post_upload" element={<PostUploadPage />} />
 				<Route path="uesrs" element={<Users />} />
 			</Route>

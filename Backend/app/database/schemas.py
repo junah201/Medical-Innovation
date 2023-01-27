@@ -78,6 +78,18 @@ class PostCreate(BaseModel):
         return v
 
 
+class PostEdit(BaseModel):
+    title: str
+    content: str
+    board_id: int
+
+    @validator('title', 'board_id', 'content')
+    def not_empty(cls, v):
+        if not v or (type(v) == type("") and not v.strip()):
+            raise ValueError('Cannot be empty')
+        return v
+
+
 class PostUpdate(BaseModel):
     content: str
 

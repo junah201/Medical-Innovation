@@ -84,9 +84,11 @@ def create_post(db: Session, post_create: schemas.PostCreate, author_name: str):
     db.commit()
 
 
-def update_post(db: Session, post_id: int, post_content: str):
+def edit_post(db: Session, post_id: int, post_edit: schemas.PostEdit):
     db_post = db.query(models.Post).filter(models.Post.id == post_id).first()
-    db_post.content = post_content
+    db_post.title = post_edit.title
+    db_post.board_id = post_edit.board_id
+    db_post.content = post_edit.content
     db.commit()
 
 

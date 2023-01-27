@@ -6,6 +6,7 @@ import axios from "axios";
 import AdminPage from "../../components/admin/AdminPage";
 import { API_URL } from "../../utils/const";
 import AuthContext from "../../context/AuthContext";
+import Message from "./../../components/common/Message";
 
 const Posts = () => {
 	const navigate = useNavigate();
@@ -32,7 +33,7 @@ const Posts = () => {
 				Authorization: `Bearer ${authCtx.accessToken}`,
 			},
 		}).then((res) => {
-			setPosts(res.data);
+			setPosts(res.data.posts);
 		});
 	}, [navigate, authCtx]);
 
@@ -41,6 +42,10 @@ const Posts = () => {
 	return (
 		<AdminPage>
 			<h1>게시물</h1>
+			<Message>
+				tip : 게시물 업로드는 <a href="/admin/post_upload">여기</a>에서
+				해주세요.
+			</Message>
 			<StyledPostContainer>
 				<>
 					<StyledPostItem>고유 id</StyledPostItem>
@@ -51,7 +56,7 @@ const Posts = () => {
 					<StyledPostItem>수정일</StyledPostItem>
 				</>
 				{posts.map((post) => {
-					return <PostItem user={post} key={post.id} />;
+					return <PostItem post={post} key={post.id} />;
 				})}
 			</StyledPostContainer>
 		</AdminPage>
@@ -79,7 +84,9 @@ const StyledPostItem = styled.div`
 const PostItem = ({ post }) => {
 	return (
 		<>
-			<StyledPostItem>{post.id}</StyledPostItem>
+			<StyledPostItem>
+				{post.id} <a href={`/admin/post/edit/${post.id}`}>수정하기</a>
+			</StyledPostItem>
 			<StyledPostItem>{post.board?.name}</StyledPostItem>
 			<StyledPostItem>{post.title}</StyledPostItem>
 			<StyledPostItem>{post.author_name}</StyledPostItem>
