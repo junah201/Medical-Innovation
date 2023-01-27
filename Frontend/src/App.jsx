@@ -28,6 +28,8 @@ import TrandPage from "./pages/programs/TrendPage";
 
 import AnnouncementPage from "./pages/news/AnnouncementPage";
 import PressReleasePage from "./pages/news/PressReleasePage";
+import ColumnPage from "./pages/news/ColumnPage";
+import PhotoPage from "./pages/news/PhotoPage";
 
 import PostPage from "./pages/PostPage";
 
@@ -77,6 +79,8 @@ function App() {
 			<Route path="/news">
 				<Route path="announcement" element={<AnnouncementPage />} />
 				<Route path="press_release" element={<PressReleasePage />} />
+				<Route path="column" element={<ColumnPage />} />
+				<Route path="photo" element={<ColumnPage />} />
 			</Route>
 			<Route path="/admin">
 				<Route path="" element={<PostUploadPage />} />
