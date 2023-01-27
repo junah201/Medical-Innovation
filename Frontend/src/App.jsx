@@ -41,53 +41,84 @@ import MouPage from "./pages/MouPage";
 function App() {
 	return (
 		<Routes>
-			<Route path="/" element={<HomePage />} />
-			<Route path="/login" element={<LoginPage />} />
+			<Route path="/" element={<HomePage />} noindex={false} />
+			<Route path="/login" element={<LoginPage />} noindex={false} />
 			<Route path="/logout" element={<LogoutPage />} />
-			<Route path="/signup" element={<SignupPage />} />
-			<Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-			<Route path="/mou" element={<MouPage />} />
+			<Route path="/signup" element={<SignupPage />} noindex={false} />
+			<Route
+				path="/privacy-policy"
+				element={<PrivacyPolicyPage />}
+				noindex={false}
+			/>
+			<Route path="/mou" element={<MouPage />} noindex={false} />
 			<Route path="/preparing" element={<PreparingPage />} />
-			<Route path="/introduction">
-				<Route path="founder" element={<FounderPage />}></Route>
-				<Route path="message" element={<ChairmanMessagePage />}></Route>
+			<Route path="/introduction" noindex={false}>
+				<Route path="founder" element={<FounderPage />} noindex={false} />
+				<Route
+					path="message"
+					element={<ChairmanMessagePage />}
+					noindex={false}
+				/>
 				<Route
 					path="mission_and_history"
 					element={<MissionAndHistoryPage />}
-				></Route>
+					noindex={false}
+				/>
 				<Route
 					path="orgchart_and_project"
 					element={<OrgchartAndProjectPage />}
-				></Route>
+					noindex={false}
+				/>
 			</Route>
-			<Route path="/support">
-				<Route path="sponsorship" element={<SponsorshipPage />} />
-				<Route path="benefits" element={<BenefitsPage />} />
-				<Route path="sponsor" element={<SponsorPage />} />
-				<Route path="history" element={<HistoryPage />} />
+			<Route path="/support" noindex={false}>
+				<Route
+					path="sponsorship"
+					element={<SponsorshipPage />}
+					noindex={false}
+				/>
+				<Route path="benefits" element={<BenefitsPage />} noindex={false} />
+				<Route path="sponsor" element={<SponsorPage />} noindex={false} />
+				<Route path="history" element={<HistoryPage />} noindex={false} />
 				<Route path="sponsorship_form" element={<SponsorshipFormPage />} />
 			</Route>
-			<Route path="/programs">
-				<Route path="openinnovation" element={<OpenInnovationPage />} />
-				<Route path="accelerating" element={<AcceleratingPage />} />
+			<Route path="/programs" noindex={false}>
+				<Route
+					path="openinnovation"
+					element={<OpenInnovationPage />}
+					noindex={false}
+				/>
+				<Route
+					path="accelerating"
+					element={<AcceleratingPage />}
+					noindex={false}
+				/>
 				<Route
 					path="research_support_project"
 					element={<ResearchSupportProjectPage />}
+					noindex={false}
 				/>
-				<Route path="trand" element={<TrandPage />} />
+				<Route path="trand" element={<TrandPage />} noindex={false} />
 			</Route>
 			<Route path="/news">
-				<Route path="announcement" element={<AnnouncementPage />} />
-				<Route path="press_release" element={<PressReleasePage />} />
-				<Route path="column" element={<ColumnPage />} />
-				<Route path="photo" element={<PhotoPage />} />
+				<Route
+					path="announcement"
+					element={<AnnouncementPage />}
+					noindex={false}
+				/>
+				<Route
+					path="press_release"
+					element={<PressReleasePage />}
+					noindex={false}
+				/>
+				<Route path="column" element={<ColumnPage />} noindex={false} />
+				<Route path="photo" element={<PhotoPage />} noindex={false} />
 			</Route>
 			<Route path="/admin">
 				<Route path="" element={<PostUploadPage />} />
 				<Route path="post_upload" element={<PostUploadPage />} />
 				<Route path="uesrs" element={<Users />} />
 			</Route>
-			<Route path="/post/:id" element={<PostPage />} />
+			<Route path="/post/:id" element={<PostPage />} noindex={false} />
 			<Route path="*" element={<NotFoundPage />} />
 		</Routes>
 	);
