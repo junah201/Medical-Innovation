@@ -33,10 +33,11 @@ import PhotoPage from "./pages/news/PhotoPage";
 
 import PostPage from "./pages/PostPage";
 
-import PostUploadPage from "./pages/admin/PostUploadPage";
-import Users from "./pages/admin/Users";
 import Posts from "./pages/admin/Posts";
+import PostUploadPage from "./pages/admin/PostUploadPage";
 import PostEditPage from "./pages/admin/PostEditPage";
+import PostDeletePage from "./pages/admin/PostDeletePage";
+import Users from "./pages/admin/Users";
 
 import MouPage from "./pages/MouPage";
 
@@ -119,6 +120,7 @@ function App() {
 				<Route path="" element={<PostUploadPage />} />
 				<Route path="posts" element={<Posts />} />
 				<Route path="post/edit/:id" element={<PostEditPage />} />
+				<Route path="post/delete/:id" element={<PostDeletePage />} />
 				<Route path="post_upload" element={<PostUploadPage />} />
 				<Route path="uesrs" element={<Users />} />
 			</Route>

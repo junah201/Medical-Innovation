@@ -69,7 +69,7 @@ const PostEditPage = () => {
 			if (res.status === 200) {
 				res.json().then((data) => {
 					setTitle(data.title);
-					setBoardId(data.boardId);
+					setBoardId(data.board_id);
 					setContent(data.content);
 					setPost(data);
 				});
@@ -87,16 +87,16 @@ const PostEditPage = () => {
 			},
 			body: JSON.stringify({
 				title: title,
-				boardId: boardId,
+				board_id: boardId,
 				content: content,
 			}),
 		}).then((res) => {
-			if (res.status === 200) {
+			if (res.status === 204) {
 				alert("수정되었습니다.");
 				window.location.href = "/admin/posts";
-			} else {
-				alert("수정에 실패했습니다.");
+				return;
 			}
+			alert("수정에 실패했습니다.");
 		});
 	};
 

@@ -107,6 +107,11 @@ def get_post_by_post_id(db: Session, post_id: int) -> models.Post:
     return db.query(models.Post).filter(models.Post.id == post_id).first()
 
 
+def delete_post(db: Session, post_id: int) -> None:
+    db.query(models.Post).filter(models.Post.id == post_id).delete()
+    db.commit()
+
+
 def get_banners(db: Session) -> List[models.Banner]:
     return db.query(models.Banner).order_by(models.Banner.banner_end_at.desc()).filter(models.Banner.banner_end_at > datetime.utcnow()).all()
 

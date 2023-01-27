@@ -54,6 +54,7 @@ const Posts = () => {
 					<StyledPostItem>작성자</StyledPostItem>
 					<StyledPostItem>생성일</StyledPostItem>
 					<StyledPostItem>수정일</StyledPostItem>
+					<StyledPostItem>삭제</StyledPostItem>
 				</>
 				{posts.map((post) => {
 					return <PostItem post={post} key={post.id} />;
@@ -65,7 +66,7 @@ const Posts = () => {
 
 const StyledPostContainer = styled.div`
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 
 	border-top: 2px solid silver;
 	border-left: 2px solid silver;
@@ -92,6 +93,9 @@ const PostItem = ({ post }) => {
 			<StyledPostItem>{post.author_name}</StyledPostItem>
 			<StyledPostItem>{post.created_at}</StyledPostItem>
 			<StyledPostItem>{post.updated_at}</StyledPostItem>
+			<StyledPostItem>
+				<a href={`/admin/post/delete/${post.id}`}>삭제하기</a>
+			</StyledPostItem>
 		</>
 	);
 };

@@ -62,3 +62,13 @@ def get_post(post_id: int, db: Session = Depends(get_db)):
 @router.put("/{post_id}", status_code=status.HTTP_204_NO_CONTENT)
 def edit_post(post_id: int, post_edit: schemas.PostEdit, db: Session = Depends(get_db)):
     crud.edit_post(db=db, post_id=post_id, post_edit=post_edit)
+
+
+@router.delete("/{post_id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_post(post_id: int, current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
+    if not current_user.is_admin:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="You do not have permission to delete a post"
+        )
+    crud.delete_post(db=db, post_id=post_id)
