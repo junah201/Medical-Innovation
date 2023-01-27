@@ -25,6 +25,16 @@ def create_post(post_create: schemas.PostCreate, current_user: models.User = Dep
     )
 
 
+@router.get("/all", response_model=schemas.PostList)
+def get_all_posts(skip: int = 0, limit: int = 40, db: Session = Depends(get_db)):
+    total, post_list = crud.get_posts(db=db, skip=skip, limit=limit)
+    new_post_list = []
+    for post in post_list:
+        post.files = json.loads(post.files)
+        new_post_list.append(post)
+    return schemas.PostList(total=total, posts=new_post_list)
+
+
 @router.get("/{board_id}/all", response_model=schemas.PostList)
 def get_posts(board_id: int, skip: int = 0, limit: int = 15, db: Session = Depends(get_db)):
     total, post_list = crud.get_posts_by_board_id(

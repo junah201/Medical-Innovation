@@ -90,6 +90,11 @@ def update_post(db: Session, post_id: int, post_content: str):
     db.commit()
 
 
+def get_posts(db: Session, skip: int = 0, limit: int = 15) -> tuple[int, list[models.Post]]:
+    db_posts = db.query(models.Post).order_by(models.Post.created_at.desc())
+    return db_posts.count(), db_posts.offset(skip).limit(limit).all()
+
+
 def get_posts_by_board_id(db: Session, board_id: int, skip: int = 0, limit: int = 15) -> tuple[int, list[models.Post]]:
     db_posts = db.query(models.Post).filter(
         models.Post.board_id == board_id).order_by(models.Post.created_at.desc())

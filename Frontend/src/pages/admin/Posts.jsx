@@ -1,0 +1,92 @@
+import React, { useState, useEffect, useContext } from "react";
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+import AdminPage from "../../components/admin/AdminPage";
+import { API_URL } from "../../utils/const";
+import AuthContext from "../../context/AuthContext";
+
+const Posts = () => {
+	const navigate = useNavigate();
+	const authCtx = useContext(AuthContext);
+
+	useEffect(() => {
+		if (!authCtx.isLoggedIn) {
+			alert("로그인이 필요한 서비스입니다.");
+			navigate("/");
+			return;
+		}
+		if (!authCtx.isAdmin) {
+			alert("권한이 부족합니다.");
+			navigate("/");
+			return;
+		}
+
+		axios({
+			url: `${API_URL}/api/v1/post/all?skip=0&limit=500`,
+			method: "GET",
+			headers: {
+				accept: "application/json",
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${authCtx.accessToken}`,
+			},
+		}).then((res) => {
+			setPosts(res.data);
+		});
+	}, [navigate, authCtx]);
+
+	const [posts, setPosts] = useState([]);
+
+	return (
+		<AdminPage>
+			<h1>게시물</h1>
+			<StyledPostContainer>
+				<>
+					<StyledPostItem>고유 id</StyledPostItem>
+					<StyledPostItem>게시판</StyledPostItem>
+					<StyledPostItem>제목</StyledPostItem>
+					<StyledPostItem>작성자</StyledPostItem>
+					<StyledPostItem>생성일</StyledPostItem>
+					<StyledPostItem>수정일</StyledPostItem>
+				</>
+				{posts.map((post) => {
+					return <PostItem user={post} key={post.id} />;
+				})}
+			</StyledPostContainer>
+		</AdminPage>
+	);
+};
+
+const StyledPostContainer = styled.div`
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+
+	border-top: 2px solid silver;
+	border-left: 2px solid silver;
+
+	& > div {
+		border-right: 2px solid silver;
+		border-bottom: 2px solid silver;
+	}
+`;
+
+const StyledPostItem = styled.div`
+	text-align: center;
+	padding: 5px;
+`;
+
+const PostItem = ({ post }) => {
+	return (
+		<>
+			<StyledPostItem>{post.id}</StyledPostItem>
+			<StyledPostItem>{post.board?.name}</StyledPostItem>
+			<StyledPostItem>{post.title}</StyledPostItem>
+			<StyledPostItem>{post.author_name}</StyledPostItem>
+			<StyledPostItem>{post.created_at}</StyledPostItem>
+			<StyledPostItem>{post.updated_at}</StyledPostItem>
+		</>
+	);
+};
+
+export default Posts;
