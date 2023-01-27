@@ -80,7 +80,7 @@ function App() {
 				<Route path="announcement" element={<AnnouncementPage />} />
 				<Route path="press_release" element={<PressReleasePage />} />
 				<Route path="column" element={<ColumnPage />} />
-				<Route path="photo" element={<ColumnPage />} />
+				<Route path="photo" element={<PhotoPage />} />
 			</Route>
 			<Route path="/admin">
 				<Route path="" element={<PostUploadPage />} />
