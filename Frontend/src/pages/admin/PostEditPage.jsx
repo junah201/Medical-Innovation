@@ -40,7 +40,6 @@ const StyledPostEditPage = styled.div`
 
 const PostEditPage = () => {
 	const params = useParams();
-	const [post, setPost] = useState(null);
 	const [boards, setBoards] = useState([]);
 
 	const [title, setTitle] = useState("");
@@ -71,7 +70,6 @@ const PostEditPage = () => {
 					setTitle(data.title);
 					setBoardId(data.board_id);
 					setContent(data.content);
-					setPost(data);
 				});
 			}
 		});
