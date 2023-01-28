@@ -43,6 +43,7 @@ import BannersPage from "./pages/admin/BannersPage";
 import BannerDeletePage from "./pages/admin/BannerDeletePage";
 import BannerEditPage from "./pages/admin/BannerEditPage";
 import SponsoringCompaniesPage from "./pages/admin/SponsoringCompaniesPage";
+import SponsoringCompanyDeletePage from "./pages/admin/SponsoringCompanyDeletePage";
 
 import MouPage from "./pages/MouPage";
 
@@ -137,6 +138,7 @@ function App() {
 				</Route>
 				<Route path="sponsoring_company">
 					<Route path="all" element={<SponsoringCompaniesPage />} />
+					<Route path="delete/:id" element={<SponsoringCompanyDeletePage />} />
 				</Route>
 
 				<Route path="uesrs" element={<UsersPage />} />

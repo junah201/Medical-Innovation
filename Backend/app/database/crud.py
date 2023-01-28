@@ -182,3 +182,9 @@ def create_sponsoring_company(db: Session, sponsoring_company_create: schemas.Sp
     )
     db.add(db_sponsoring_company)
     db.commit()
+
+
+def delete_sponsoring_company(db: Session, sponsoring_company_id: int) -> None:
+    db.query(models.SponsoringCompany).filter(
+        models.SponsoringCompany.id == sponsoring_company_id).delete()
+    db.commit()

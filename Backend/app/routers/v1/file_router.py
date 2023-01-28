@@ -147,3 +147,9 @@ async def get_sponsoring_companies(db: Session = Depends(get_db)):
             detail="not found"
         )
     return db_sponsoring_companies
+
+
+@router.delete("/sponsoring_company/{sponsoring_company_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def get_sponsoring_companies(sponsoring_company_id: int, db: Session = Depends(get_db)):
+    crud.delete_sponsoring_company(
+        db=db, sponsoring_company_id=sponsoring_company_id)
