@@ -39,6 +39,8 @@ import PostEditPage from "./pages/admin/PostEditPage";
 import PostDeletePage from "./pages/admin/PostDeletePage";
 import UsersPage from "./pages/admin/UsersPage";
 import BannerUploadPage from "./pages/admin/BannerUploadPage";
+import BannersPage from "./pages/admin/BannersPage";
+import BannerDeletePage from "./pages/admin/BannerDeletePage";
 
 import MouPage from "./pages/MouPage";
 
@@ -123,7 +125,9 @@ function App() {
 				<Route path="post/edit/:id" element={<PostEditPage />} />
 				<Route path="post/delete/:id" element={<PostDeletePage />} />
 				<Route path="post/upload" element={<PostUploadPage />} />
+				<Route path="banners" element={<BannersPage />} />
 				<Route path="banner/upload" element={<BannerUploadPage />} />
+				<Route path="banner/delete/:id" element={<BannerDeletePage />} />
 				<Route path="uesrs" element={<UsersPage />} />
 			</Route>
 			<Route path="/post/:id" element={<PostPage />} noindex={false} />

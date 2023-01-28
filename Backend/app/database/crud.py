@@ -131,6 +131,11 @@ def create_banner(db: Session, banner_create: schemas.BannerCreate):
     db.commit()
 
 
+def delete_banner(db: Session, banner_id: int) -> None:
+    db.query(models.Banner).filter(models.Banner.id == banner_id).delete()
+    db.commit()
+
+
 def create_sponsor(db: Session, sponsor_create: schemas.SponsorCreate, user_id: int):
     utcnow = datetime.utcnow()
     db_sponsor = models.Sponsor(

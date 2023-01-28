@@ -95,6 +95,12 @@ const BannerUploadPage = () => {
 					filename: res.data.filename,
 					year: 2023,
 				}),
+			}).then((res) => {
+				console.log(res);
+				if (res.status === 204) {
+					alert("배너가 업로드 되었습니다.");
+					navigate("/admin/banners");
+				}
 			});
 		});
 	};

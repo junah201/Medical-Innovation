@@ -107,6 +107,16 @@ async def get_banner(filename: str):
     return RedirectResponse(f"https://medical-innovation.s3.ap-northeast-2.amazonaws.com/banner/{filename}")
 
 
+@router.delete("/banner/{banner_id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_banner(banner_id: int, current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
+    if not current_user.is_admin:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="You do not have permission to delete a banner"
+        )
+    crud.delete_banner(db=db, banner_id=banner_id)
+
+
 @router.post("/sponsoring_company", status_code=status.HTTP_204_NO_CONTENT)
 async def create_sponsoring_company(sponsoring_company_create: schemas.SponsoringCompanyCreate, db: Session = Depends(get_db)):
     crud.create_sponsoring_company(

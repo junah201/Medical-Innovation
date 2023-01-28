@@ -45,7 +45,7 @@ const AdminHeader = () => {
 						<a href="/admin/banner/upload">배너 업로드</a>
 					</li>
 					<li>
-						<a href="/preparing">배너 목록</a>
+						<a href="/admin/banners">배너 목록</a>
 					</li>
 					<li>
 						<a href="/preparing">후원 기업 업로드</a>
