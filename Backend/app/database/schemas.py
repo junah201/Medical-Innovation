@@ -54,7 +54,6 @@ class Token(BaseModel):
 
 class BoardCreate(BaseModel):
     name: str
-    banner_end_at: datetime
 
 
 class Board(BoardCreate):
