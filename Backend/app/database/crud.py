@@ -166,6 +166,12 @@ def create_sponsor(db: Session, sponsor_create: schemas.SponsorCreate, user_id: 
     db.commit()
 
 
+def get_all_sponsors(db: Session, skip: int = 0, limit: int = 200) -> list[models.Sponsor]:
+    db_sponsors = db.query(models.Sponsor).order_by(
+        models.Sponsor.created_at.desc())
+    return db_sponsors.offset(skip).limit(limit).all()
+
+
 def get_sponsoring_companies(db: Session) -> List[models.Banner]:
     return db.query(models.SponsoringCompany).order_by(models.SponsoringCompany.year.desc()).all()
 

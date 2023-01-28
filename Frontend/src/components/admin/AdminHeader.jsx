@@ -53,13 +53,13 @@ const AdminHeader = () => {
 						<Link to="/admin/banner/all">배너 목록</Link>
 					</li>
 					<li>
-						<Link to="/preparing">후원 기업 업로드</Link>
+						<Link to="/admin/sponsoring_company/upload">후원 기업 업로드</Link>
 					</li>
 					<li>
 						<Link to="/admin/sponsoring_company/all">후원 기업 목록</Link>
 					</li>
 					<li>
-						<Link to="/preparing">후원 목록</Link>
+						<Link to="/admin/sponsoring/all">후원 목록</Link>
 					</li>
 					<li>
 						<Link to="/preparing">기타 설정</Link>
