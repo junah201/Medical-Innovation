@@ -120,6 +120,12 @@ class BannerCreate(BaseModel):
     banner_end_at: datetime
 
 
+class BannerEdit(BaseModel):
+    name: str
+    link: str
+    banner_end_at: datetime
+
+
 class Banner(BannerCreate):
     id: int
     created_at: datetime

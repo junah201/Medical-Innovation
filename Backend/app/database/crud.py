@@ -116,6 +116,10 @@ def get_banners(db: Session) -> List[models.Banner]:
     return db.query(models.Banner).order_by(models.Banner.banner_end_at.desc()).filter(models.Banner.banner_end_at > datetime.utcnow()).all()
 
 
+def get_banner_by_id(db: Session, banner_id: int) -> models.Banner:
+    return db.query(models.Banner).filter(models.Banner.id == banner_id).first()
+
+
 def create_banner(db: Session, banner_create: schemas.BannerCreate):
     utcnow = datetime.utcnow()
     db_banner = models.Banner(
@@ -128,6 +132,15 @@ def create_banner(db: Session, banner_create: schemas.BannerCreate):
         updated_at=utcnow
     )
     db.add(db_banner)
+    db.commit()
+
+
+def edit_banner(db: Session, banner_id: int, banner_edit: schemas.BannerEdit):
+    db_banner = db.query(models.Banner).filter(
+        models.Banner.id == banner_id).first()
+    db_banner.name = banner_edit.name
+    db_banner.link = banner_edit.link
+    db_banner.banner_end_at = banner_edit.banner_end_at
     db.commit()
 
 

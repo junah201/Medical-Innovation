@@ -41,6 +41,7 @@ import UsersPage from "./pages/admin/UsersPage";
 import BannerUploadPage from "./pages/admin/BannerUploadPage";
 import BannersPage from "./pages/admin/BannersPage";
 import BannerDeletePage from "./pages/admin/BannerDeletePage";
+import BannerEditPage from "./pages/admin/BannerEditPage";
 
 import MouPage from "./pages/MouPage";
 
@@ -128,6 +129,7 @@ function App() {
 				<Route path="banners" element={<BannersPage />} />
 				<Route path="banner/upload" element={<BannerUploadPage />} />
 				<Route path="banner/delete/:id" element={<BannerDeletePage />} />
+				<Route path="banner/edit/:id" element={<BannerEditPage />} />
 				<Route path="uesrs" element={<UsersPage />} />
 			</Route>
 			<Route path="/post/:id" element={<PostPage />} noindex={false} />

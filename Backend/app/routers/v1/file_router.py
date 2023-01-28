@@ -102,9 +102,9 @@ async def get_banners(db: Session = Depends(get_db)):
     return db_banners
 
 
-@router.get("/banner/{filename}", response_class=RedirectResponse)
-async def get_banner(filename: str):
-    return RedirectResponse(f"https://medical-innovation.s3.ap-northeast-2.amazonaws.com/banner/{filename}")
+@router.get("/banner/{banner_id}", response_model=schemas.Banner)
+async def get_banner(banner_id: int, db: Session = Depends(get_db)):
+    return crud.get_banner_by_id(db=db, banner_id=banner_id)
 
 
 @router.delete("/banner/{banner_id}", status_code=status.HTTP_204_NO_CONTENT)
@@ -115,6 +115,16 @@ def delete_banner(banner_id: int, current_user: models.User = Depends(get_curren
             detail="You do not have permission to delete a banner"
         )
     crud.delete_banner(db=db, banner_id=banner_id)
+
+
+@router.put("/banner/{banner_id}", status_code=status.HTTP_204_NO_CONTENT)
+def edit_banner(banner_id: int, banner_edit: schemas.BannerEdit, current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
+    if not current_user.is_admin:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="You do not have permission to edit a banner"
+        )
+    crud.edit_banner(db=db, banner_id=banner_id, banner_edit=banner_edit)
 
 
 @router.post("/sponsoring_company", status_code=status.HTTP_204_NO_CONTENT)
