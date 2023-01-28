@@ -7,7 +7,8 @@ import AuthContext from "../../context/AuthContext";
 const StyledPage = styled.div`
 	background: #fff;
 	color: #000;
-	height: 100vh;
+	min-height: 100vh;
+	height: 100%;
 	display: flex;
 `;
 

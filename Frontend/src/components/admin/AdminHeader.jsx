@@ -7,7 +7,8 @@ const StyledHeader = styled.header`
 	display: flex;
 	flex-direction: column;
 	min-width: 250px;
-	height: 100vh;
+	min-height: 100vh;
+	height: 100%;
 	padding: 10px;
 
 	& * + * {
@@ -37,25 +38,25 @@ const AdminHeader = () => {
 			<nav>
 				<ul>
 					<li>
+						<Link to="/admin/uesrs">유저 목록</Link>
+					</li>
+					<li>
 						<Link to="/admin/post/upload">게시물 업로드</Link>
 					</li>
 					<li>
-						<Link to="/admin/posts">게시물 목록</Link>
+						<Link to="/admin/post/all">게시물 목록</Link>
 					</li>
 					<li>
 						<Link to="/admin/banner/upload">배너 업로드</Link>
 					</li>
 					<li>
-						<Link to="/admin/banners">배너 목록</Link>
+						<Link to="/admin/banner/all">배너 목록</Link>
 					</li>
 					<li>
 						<Link to="/preparing">후원 기업 업로드</Link>
 					</li>
 					<li>
-						<Link to="/preparing">후원 기업 수정 / 삭제</Link>
-					</li>
-					<li>
-						<Link to="/admin/uesrs">유저 목록</Link>
+						<Link to="/admin/sponsoring_company/all">후원 기업 목록</Link>
 					</li>
 					<li>
 						<Link to="/preparing">후원 목록</Link>

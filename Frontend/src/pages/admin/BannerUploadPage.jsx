@@ -86,7 +86,7 @@ const BannerUploadPage = () => {
 				console.log(res);
 				if (res.status === 204) {
 					alert("배너가 업로드 되었습니다.");
-					navigate("/admin/banners");
+					navigate("/admin/banner/all");
 				}
 			});
 		});

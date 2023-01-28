@@ -41,7 +41,12 @@ async def download_file(filename: str):
 
 
 @router.post("/mou", status_code=status.HTTP_204_NO_CONTENT)
-async def create_mou(mou_create: schemas.MouCreate, db: Session = Depends(get_db)):
+async def create_mou(mou_create: schemas.MouCreate, current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
+    if not current_user.is_admin:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="You do not have permission to delete a post"
+        )
     crud.create_mou(db=db, mou_create=mou_create)
 
 

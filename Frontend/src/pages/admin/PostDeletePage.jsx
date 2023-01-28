@@ -24,7 +24,7 @@ const PostDeletePage = () => {
 		}).then((res) => {
 			if (res.status === 204) {
 				alert("삭제되었습니다.");
-				window.location.href = "/admin/posts";
+				window.location.href = "/admin/post/all";
 				return;
 			}
 			alert("삭제에 실패했습니다.");

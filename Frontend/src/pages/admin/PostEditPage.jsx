@@ -91,7 +91,7 @@ const PostEditPage = () => {
 		}).then((res) => {
 			if (res.status === 204) {
 				alert("수정되었습니다.");
-				window.location.href = "/admin/posts";
+				window.location.href = "/admin/post/all";
 				return;
 			}
 			alert("수정에 실패했습니다.");

@@ -42,6 +42,7 @@ import BannerUploadPage from "./pages/admin/BannerUploadPage";
 import BannersPage from "./pages/admin/BannersPage";
 import BannerDeletePage from "./pages/admin/BannerDeletePage";
 import BannerEditPage from "./pages/admin/BannerEditPage";
+import SponsoringCompaniesPage from "./pages/admin/SponsoringCompaniesPage";
 
 import MouPage from "./pages/MouPage";
 
@@ -121,15 +122,23 @@ function App() {
 				<Route path="photo" element={<PhotoPage />} noindex={false} />
 			</Route>
 			<Route path="/admin">
-				<Route path="" element={<PostUploadPage />} />
-				<Route path="posts" element={<PostsPage />} />
-				<Route path="post/edit/:id" element={<PostEditPage />} />
-				<Route path="post/delete/:id" element={<PostDeletePage />} />
-				<Route path="post/upload" element={<PostUploadPage />} />
-				<Route path="banners" element={<BannersPage />} />
-				<Route path="banner/upload" element={<BannerUploadPage />} />
-				<Route path="banner/delete/:id" element={<BannerDeletePage />} />
-				<Route path="banner/edit/:id" element={<BannerEditPage />} />
+				<Route path="" element={<UsersPage />} />
+				<Route path="post">
+					<Route path="all" element={<PostsPage />} />
+					<Route path="upload" element={<PostUploadPage />} />
+					<Route path="edit/:id" element={<PostEditPage />} />
+					<Route path="delete/:id" element={<PostDeletePage />} />
+				</Route>
+				<Route path="banner">
+					<Route path="all" element={<BannersPage />} />
+					<Route path="upload" element={<BannerUploadPage />} />
+					<Route path="edit/:id" element={<BannerEditPage />} />
+					<Route path="delete/:id" element={<BannerDeletePage />} />
+				</Route>
+				<Route path="sponsoring_company">
+					<Route path="all" element={<SponsoringCompaniesPage />} />
+				</Route>
+
 				<Route path="uesrs" element={<UsersPage />} />
 			</Route>
 			<Route path="/post/:id" element={<PostPage />} noindex={false} />

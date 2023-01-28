@@ -24,7 +24,7 @@ const BannerDeletePage = () => {
 		}).then((res) => {
 			if (res.status === 204) {
 				alert("삭제되었습니다.");
-				window.location.href = "/admin/banners";
+				window.location.href = "/admin/banner/all";
 				return;
 			}
 			alert("삭제에 실패했습니다.");

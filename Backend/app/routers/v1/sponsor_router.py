@@ -12,7 +12,7 @@ router = APIRouter(
 
 
 @router.post("/create", status_code=status.HTTP_204_NO_CONTENT)
-def create_post(sponsor_create: schemas.SponsorCreate,  current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
+def create_sponsor(sponsor_create: schemas.SponsorCreate,  current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
     if not current_user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
