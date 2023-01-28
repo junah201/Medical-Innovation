@@ -54,6 +54,7 @@ class Token(BaseModel):
 
 class BoardCreate(BaseModel):
     name: str
+    banner_end_at: datetime
 
 
 class Board(BoardCreate):
@@ -116,8 +117,8 @@ class BannerCreate(BaseModel):
     name: str
     filename: str
     link: str
-    year: int
-    banner_end_at: Optional[datetime]
+    year: int = 2023
+    banner_end_at: datetime
 
 
 class Banner(BannerCreate):

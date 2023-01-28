@@ -6,9 +6,9 @@ import axios from "axios";
 import AdminPage from "../../components/admin/AdminPage";
 import { API_URL } from "../../utils/const";
 import AuthContext from "../../context/AuthContext";
-import Message from "./../../components/common/Message";
+import Message from "../../components/common/Message";
 
-const Posts = () => {
+const PostsPage = () => {
 	const navigate = useNavigate();
 	const authCtx = useContext(AuthContext);
 
@@ -43,8 +43,7 @@ const Posts = () => {
 		<AdminPage>
 			<h1>게시물</h1>
 			<Message>
-				tip : 게시물 업로드는 <a href="/admin/post_upload">여기</a>에서
-				해주세요.
+				tip : 게시물 삭제 후 복구가 불가능하니 신중하게 결정해주세요.
 			</Message>
 			<StyledPostContainer>
 				<>
@@ -54,6 +53,7 @@ const Posts = () => {
 					<StyledPostItem>작성자</StyledPostItem>
 					<StyledPostItem>생성일</StyledPostItem>
 					<StyledPostItem>수정일</StyledPostItem>
+					<StyledPostItem>수정</StyledPostItem>
 					<StyledPostItem>삭제</StyledPostItem>
 				</>
 				{posts.map((post) => {
@@ -66,7 +66,7 @@ const Posts = () => {
 
 const StyledPostContainer = styled.div`
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 
 	border-top: 2px solid silver;
 	border-left: 2px solid silver;
@@ -74,6 +74,10 @@ const StyledPostContainer = styled.div`
 	& > div {
 		border-right: 2px solid silver;
 		border-bottom: 2px solid silver;
+	}
+
+	& a:hover {
+		text-decoration: underline;
 	}
 `;
 
@@ -85,14 +89,15 @@ const StyledPostItem = styled.div`
 const PostItem = ({ post }) => {
 	return (
 		<>
-			<StyledPostItem>
-				{post.id} <a href={`/admin/post/edit/${post.id}`}>수정하기</a>
-			</StyledPostItem>
+			<StyledPostItem>{post.id}</StyledPostItem>
 			<StyledPostItem>{post.board?.name}</StyledPostItem>
 			<StyledPostItem>{post.title}</StyledPostItem>
 			<StyledPostItem>{post.author_name}</StyledPostItem>
 			<StyledPostItem>{post.created_at}</StyledPostItem>
 			<StyledPostItem>{post.updated_at}</StyledPostItem>
+			<StyledPostItem>
+				<a href={`/admin/post/edit/${post.id}`}>수정하기</a>
+			</StyledPostItem>
 			<StyledPostItem>
 				<a href={`/admin/post/delete/${post.id}`}>삭제하기</a>
 			</StyledPostItem>
@@ -100,4 +105,4 @@ const PostItem = ({ post }) => {
 	);
 };
 
-export default Posts;
+export default PostsPage;

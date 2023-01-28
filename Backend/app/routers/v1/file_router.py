@@ -4,9 +4,10 @@ from fastapi import APIRouter, HTTPException, Depends, File, UploadFile
 from fastapi.responses import FileResponse, RedirectResponse
 from sqlalchemy.orm import Session
 from starlette import status
-from app.database import crud, schemas
+from app.database import crud, schemas, models
 from app.database.database import get_db
 from app.common.config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME
+from app.utils.oauth2 import get_current_user
 from typing import Union, List
 import os
 import boto3
@@ -21,8 +22,7 @@ UPLOAD_DIRECTORY = "./files"
 
 @router.post("/upload")
 async def upload_file(file: UploadFile):
-    utcnow = datetime.utcnow()
-    filename = f"{utcnow.timestamp()}-{file.filename}"
+    filename = f"{int(datetime.utcnow().timestamp())}-{file.filename}"
     s3 = boto3.resource(
         "s3",
         aws_access_key_id=AWS_ACCESS_KEY_ID,
@@ -61,8 +61,33 @@ async def get_mous(db: Session = Depends(get_db)):
     return db_mous
 
 
+@router.post("/banner/file")
+async def create_banner_file(file: UploadFile, current_user: models.User = Depends(get_current_user)):
+    if not current_user.is_admin:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="You do not have permission to delete a post"
+        )
+    filename = f"{int(datetime.utcnow().timestamp())}-{file.filename}"
+    s3 = boto3.resource(
+        "s3",
+        aws_access_key_id=AWS_ACCESS_KEY_ID,
+        aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+        config=boto3.session.Config(signature_version='s3v4')
+    )
+    s3.Bucket(AWS_S3_BUCKET_NAME).put_object(
+        Key=f"banner/{filename}", Body=file.file)
+
+    return {"filename": filename}
+
+
 @router.post("/banner", status_code=status.HTTP_204_NO_CONTENT)
-async def create_banner(banner_create: schemas.BannerCreate, db: Session = Depends(get_db)):
+async def create_banner(banner_create: schemas.BannerCreate, current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
+    if not current_user.is_admin:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="You do not have permission to delete a post"
+        )
     crud.create_banner(db=db, banner_create=banner_create)
 
 

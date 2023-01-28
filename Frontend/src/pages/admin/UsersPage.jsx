@@ -7,7 +7,7 @@ import AdminPage from "../../components/admin/AdminPage";
 import { API_URL } from "../../utils/const";
 import AuthContext from "../../context/AuthContext";
 
-const Users = () => {
+const UsersPage = () => {
 	const navigate = useNavigate();
 	const authCtx = useContext(AuthContext);
 
@@ -95,4 +95,4 @@ const UserItem = ({ user }) => {
 	);
 };
 
-export default Users;
+export default UsersPage;

@@ -36,16 +36,16 @@ const AdminHeader = () => {
 			<nav>
 				<ul>
 					<li>
-						<a href="/admin/post_upload">게시물 업로드</a>
+						<a href="/admin/post/upload">게시물 업로드</a>
 					</li>
 					<li>
 						<a href="/admin/posts">게시물 목록</a>
 					</li>
 					<li>
-						<a href="/preparing">배너 업로드</a>
+						<a href="/admin/banner/upload">배너 업로드</a>
 					</li>
 					<li>
-						<a href="/preparing">배너 수정 / 삭제</a>
+						<a href="/preparing">배너 목록</a>
 					</li>
 					<li>
 						<a href="/preparing">후원 기업 업로드</a>

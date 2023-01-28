@@ -33,11 +33,12 @@ import PhotoPage from "./pages/news/PhotoPage";
 
 import PostPage from "./pages/PostPage";
 
-import Posts from "./pages/admin/Posts";
+import PostsPage from "./pages/admin/PostsPage";
 import PostUploadPage from "./pages/admin/PostUploadPage";
 import PostEditPage from "./pages/admin/PostEditPage";
 import PostDeletePage from "./pages/admin/PostDeletePage";
-import Users from "./pages/admin/Users";
+import UsersPage from "./pages/admin/UsersPage";
+import BannerUploadPage from "./pages/admin/BannerUploadPage";
 
 import MouPage from "./pages/MouPage";
 
@@ -118,11 +119,12 @@ function App() {
 			</Route>
 			<Route path="/admin">
 				<Route path="" element={<PostUploadPage />} />
-				<Route path="posts" element={<Posts />} />
+				<Route path="posts" element={<PostsPage />} />
 				<Route path="post/edit/:id" element={<PostEditPage />} />
 				<Route path="post/delete/:id" element={<PostDeletePage />} />
-				<Route path="post_upload" element={<PostUploadPage />} />
-				<Route path="uesrs" element={<Users />} />
+				<Route path="post/upload" element={<PostUploadPage />} />
+				<Route path="banner/upload" element={<BannerUploadPage />} />
+				<Route path="uesrs" element={<UsersPage />} />
 			</Route>
 			<Route path="/post/:id" element={<PostPage />} noindex={false} />
 			<Route path="*" element={<NotFoundPage />} />

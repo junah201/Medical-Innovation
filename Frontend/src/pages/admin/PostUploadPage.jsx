@@ -152,7 +152,7 @@ const PostUploadPage = () => {
 						onChange={(e) => {
 							setTitle(e.target.value);
 						}}
-					></input>
+					/>
 					<select
 						name="boardId"
 						value={boardId}
@@ -175,7 +175,7 @@ const PostUploadPage = () => {
 						onChange={(e) => {
 							setContent(e.target.value);
 						}}
-					></textarea>
+					/>
 					<input
 						type="file"
 						onChange={(e) => {
