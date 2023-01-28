@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import axios from "axios";
 
@@ -9,16 +8,15 @@ import { API_URL } from "../../utils/const";
 
 const SponsorsPage = () => {
 	const authCtx = useContext(AuthContext);
-	const navigate = useNavigate();
 	const [companies, setCompanies] = useState([]);
 
 	useEffect(() => {
 		axios({
-			url: `${API_URL}/api/v1/file/sponsor/all`,
+			url: `${API_URL}/api/v1/sponsor/all`,
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
-				Authorization: `Bearer ${authCtx.token}`,
+				Authorization: `Bearer ${authCtx.accessToken}`,
 			},
 		}).then((res) => {
 			setCompanies(res.data);
@@ -28,51 +26,39 @@ const SponsorsPage = () => {
 	return (
 		<AdminPage>
 			<h1>후원 목록</h1>
-			<StyledCompanyContainer>
-				<StyledCompanyItem>고유 ID</StyledCompanyItem>
-				<StyledCompanyItem>유저 고유 ID</StyledCompanyItem>
-				<StyledCompanyItem>성명 (단체명)</StyledCompanyItem>
-				<StyledCompanyItem>전화번호</StyledCompanyItem>
-				<StyledCompanyItem>주민등록번호 (사업자등록번호)</StyledCompanyItem>
-				<StyledCompanyItem>주소</StyledCompanyItem>
-				<StyledCompanyItem>희망 사용처</StyledCompanyItem>
-				<StyledCompanyItem>기부 내용</StyledCompanyItem>
-				<StyledCompanyItem>수정</StyledCompanyItem>
-				<StyledCompanyItem>삭제</StyledCompanyItem>
+			<StyledSponsorContainer>
+				<StyledSponsorItem>고유 ID</StyledSponsorItem>
+				<StyledSponsorItem>유저 고유 ID</StyledSponsorItem>
+				<StyledSponsorItem>성명 (단체명)</StyledSponsorItem>
+				<StyledSponsorItem>전화번호</StyledSponsorItem>
+				<StyledSponsorItem>주민등록번호 (사업자등록번호)</StyledSponsorItem>
+				<StyledSponsorItem>주소</StyledSponsorItem>
+				<StyledSponsorItem>희망 사용처</StyledSponsorItem>
+				<StyledSponsorItem>기부 내용</StyledSponsorItem>
 				{companies.map((company) => {
 					return (
 						<>
-							<StyledCompanyItem>{company.id}</StyledCompanyItem>
-							<StyledCompanyItem>{company.user.id}</StyledCompanyItem>
-							<StyledCompanyItem>{company.name}</StyledCompanyItem>
-							<StyledCompanyItem>{company.phone}</StyledCompanyItem>
-							<StyledCompanyItem>
+							<StyledSponsorItem>{company.id}</StyledSponsorItem>
+							<StyledSponsorItem>{company.user.id}</StyledSponsorItem>
+							<StyledSponsorItem>{company.name}</StyledSponsorItem>
+							<StyledSponsorItem>{company.phone}</StyledSponsorItem>
+							<StyledSponsorItem>
 								{company.identification_number}
-							</StyledCompanyItem>
-							<StyledCompanyItem>{company.address}</StyledCompanyItem>
-							<StyledCompanyItem>{company.usage}</StyledCompanyItem>
-							<StyledCompanyItem>{company.detail}</StyledCompanyItem>
-							<StyledCompanyItem>
-								<Link to={`/admin/sponsoring_company/edit/${company.id}`}>
-									수정하기
-								</Link>
-							</StyledCompanyItem>
-							<StyledCompanyItem>
-								<Link to={`/admin/sponsoring_company/delete/${company.id}`}>
-									삭제하기
-								</Link>
-							</StyledCompanyItem>
+							</StyledSponsorItem>
+							<StyledSponsorItem>{company.address}</StyledSponsorItem>
+							<StyledSponsorItem>{company.usage}</StyledSponsorItem>
+							<StyledSponsorItem>{company.detail}</StyledSponsorItem>
 						</>
 					);
 				})}
-			</StyledCompanyContainer>
+			</StyledSponsorContainer>
 		</AdminPage>
 	);
 };
 
-const StyledCompanyContainer = styled.div`
+const StyledSponsorContainer = styled.div`
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 
 	border-top: 2px solid silver;
 	border-left: 2px solid silver;
@@ -87,7 +73,7 @@ const StyledCompanyContainer = styled.div`
 	}
 `;
 
-const StyledCompanyItem = styled.div`
+const StyledSponsorItem = styled.div`
 	text-align: center;
 	padding: 5px;
 `;

@@ -1,6 +1,6 @@
 from datetime import datetime
 from pydantic import BaseModel, validator, EmailStr, constr
-from typing import Optional, List
+from typing import Optional, List, Union
 import json
 
 
@@ -167,7 +167,7 @@ class SponsorCreate(BaseModel):
 
 class Sponsor(SponsorCreate):
     id: int
-    user: dict
+    user: Union[User, dict,  None]
     created_at: datetime
     updated_at: datetime
 
