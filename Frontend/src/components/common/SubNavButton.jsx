@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-const StyledSubNavButton = styled.a`
+const StyledSubNavButton = styled(Link)`
 	width: calc(100% / 4);
 	min-height: 40px;
 	text-align: center;
@@ -33,7 +34,7 @@ const StyledSubNavButton = styled.a`
 
 const SubNavButton = ({ text, href, isSelect }) => {
 	return (
-		<StyledSubNavButton href={href} isSelect={isSelect}>
+		<StyledSubNavButton to={href} isSelect={isSelect}>
 			{text}
 		</StyledSubNavButton>
 	);

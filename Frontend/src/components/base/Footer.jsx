@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import longLogo from "../../static/images/long_logo.png";
 import msitLogo from "../../static/images/과학기술정보통신부.png";
@@ -141,7 +142,7 @@ const Footer = () => {
 				</div>
 			</StyledTopFooter>
 			<StyledBottomFooter>
-				<a href="/privacy-policy">개인정보처리방침</a>
+				<Link to="/privacy-policy">개인정보처리방침</Link>
 				<p>(04736) 서울특별시 성동구 독서당로 166 1018호</p>
 				<p>Copyright(c) 2016 재단법인 미래의학연구재단. All rights reserved.</p>
 			</StyledBottomFooter>

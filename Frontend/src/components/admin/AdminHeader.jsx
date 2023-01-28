@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const StyledHeader = styled.header`
 	background-color: #2763ba;
@@ -36,31 +37,31 @@ const AdminHeader = () => {
 			<nav>
 				<ul>
 					<li>
-						<a href="/admin/post/upload">게시물 업로드</a>
+						<Link to="/admin/post/upload">게시물 업로드</Link>
 					</li>
 					<li>
-						<a href="/admin/posts">게시물 목록</a>
+						<Link to="/admin/posts">게시물 목록</Link>
 					</li>
 					<li>
-						<a href="/admin/banner/upload">배너 업로드</a>
+						<Link to="/admin/banner/upload">배너 업로드</Link>
 					</li>
 					<li>
-						<a href="/admin/banners">배너 목록</a>
+						<Link to="/admin/banners">배너 목록</Link>
 					</li>
 					<li>
-						<a href="/preparing">후원 기업 업로드</a>
+						<Link to="/preparing">후원 기업 업로드</Link>
 					</li>
 					<li>
-						<a href="/preparing">후원 기업 수정 / 삭제</a>
+						<Link to="/preparing">후원 기업 수정 / 삭제</Link>
 					</li>
 					<li>
-						<a href="/admin/uesrs">유저 목록</a>
+						<Link to="/admin/uesrs">유저 목록</Link>
 					</li>
 					<li>
-						<a href="/preparing">후원 목록</a>
+						<Link to="/preparing">후원 목록</Link>
 					</li>
 					<li>
-						<a href="/preparing">기타 설정</a>
+						<Link to="/preparing">기타 설정</Link>
 					</li>
 				</ul>
 			</nav>

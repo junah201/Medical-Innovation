@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import axios from "axios";
 
@@ -74,10 +75,10 @@ const BannerItem = ({ banner }) => {
 			<StyledBannerItem>{banner.created_at}</StyledBannerItem>
 			<StyledBannerItem>{banner.updated_at}</StyledBannerItem>
 			<StyledBannerItem>
-				<a href={`/admin/banner/edit/${banner.id}`}>수정하기</a>
+				<Link to={`/admin/banner/edit/${banner.id}`}>수정하기</Link>
 			</StyledBannerItem>
 			<StyledBannerItem>
-				<a href={`/admin/banner/delete/${banner.id}`}>삭제하기</a>
+				<Link to={`/admin/banner/delete/${banner.id}`}>삭제하기</Link>
 			</StyledBannerItem>
 		</>
 	);

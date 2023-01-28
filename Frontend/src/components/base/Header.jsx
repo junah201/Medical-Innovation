@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import { Desktop } from "../responsive/responsive";
 import AuthContext from "../../context/AuthContext";
@@ -134,20 +135,20 @@ const Header = () => {
 		<>
 			<StyledHeader>
 				<StyledIconWrapper>
-					<a href="/">
+					<Link to="/">
 						<img src={longLogo} alt="미래의학연구재단" />
-					</a>
+					</Link>
 					<StyledLoginHeader>
 						{isLoggedIn && (
 							<>
-								<a href="/logout">로그아웃</a>
+								<Link to="/logout">로그아웃</Link>
 							</>
 						)}
 						{!isLoggedIn && (
 							<>
-								<a href="/login">로그인</a>
+								<Link to="/login">로그인</Link>
 								<Desktop>
-									<a href="/signup">회원가입</a>
+									<Link to="/signup">회원가입</Link>
 								</Desktop>
 							</>
 						)}
@@ -169,7 +170,7 @@ const Header = () => {
 const HeaderNavLi = ({ link, text }) => {
 	return (
 		<StyledLi>
-			<a href={link}>{text}</a>
+			<Link to={link}>{text}</Link>
 		</StyledLi>
 	);
 };

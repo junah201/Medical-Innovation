@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -43,19 +43,6 @@ const StyledBannerUploadForm = styled.form`
 const BannerUploadPage = () => {
 	const navigate = useNavigate();
 	const authCtx = useContext(AuthContext);
-
-	useEffect(() => {
-		if (!authCtx.isLoggedIn) {
-			alert("로그인이 필요한 서비스입니다.");
-			navigate("/");
-			return;
-		}
-		if (!authCtx.isAdmin) {
-			alert("권한이 부족합니다.");
-			navigate("/");
-			return;
-		}
-	}, [navigate, authCtx]);
 
 	const [name, setName] = useState("");
 	const [link, setLink] = useState("");

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 import AdminPage from "../../components/admin/AdminPage";
@@ -9,21 +9,9 @@ import AuthContext from "../../context/AuthContext";
 import Message from "../../components/common/Message";
 
 const PostsPage = () => {
-	const navigate = useNavigate();
 	const authCtx = useContext(AuthContext);
 
 	useEffect(() => {
-		if (!authCtx.isLoggedIn) {
-			alert("로그인이 필요한 서비스입니다.");
-			navigate("/");
-			return;
-		}
-		if (!authCtx.isAdmin) {
-			alert("권한이 부족합니다.");
-			navigate("/");
-			return;
-		}
-
 		axios({
 			url: `${API_URL}/api/v1/post/all?skip=0&limit=500`,
 			method: "GET",
@@ -35,7 +23,7 @@ const PostsPage = () => {
 		}).then((res) => {
 			setPosts(res.data.posts);
 		});
-	}, [navigate, authCtx]);
+	}, [authCtx]);
 
 	const [posts, setPosts] = useState([]);
 
@@ -96,10 +84,10 @@ const PostItem = ({ post }) => {
 			<StyledPostItem>{post.created_at}</StyledPostItem>
 			<StyledPostItem>{post.updated_at}</StyledPostItem>
 			<StyledPostItem>
-				<a href={`/admin/post/edit/${post.id}`}>수정하기</a>
+				<Link to={`/admin/post/edit/${post.id}`}>수정하기</Link>
 			</StyledPostItem>
 			<StyledPostItem>
-				<a href={`/admin/post/delete/${post.id}`}>삭제하기</a>
+				<Link to={`/admin/post/delete/${post.id}`}>삭제하기</Link>
 			</StyledPostItem>
 		</>
 	);

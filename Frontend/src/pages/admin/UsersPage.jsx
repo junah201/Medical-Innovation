@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import AdminPage from "../../components/admin/AdminPage";
@@ -8,21 +7,9 @@ import { API_URL } from "../../utils/const";
 import AuthContext from "../../context/AuthContext";
 
 const UsersPage = () => {
-	const navigate = useNavigate();
 	const authCtx = useContext(AuthContext);
 
 	useEffect(() => {
-		if (!authCtx.isLoggedIn) {
-			alert("로그인이 필요한 서비스입니다.");
-			navigate("/");
-			return;
-		}
-		if (!authCtx.isAdmin) {
-			alert("권한이 부족합니다.");
-			navigate("/");
-			return;
-		}
-
 		axios({
 			url: `${API_URL}/api/v1/user/all?skip=0&limit=1000`,
 			method: "GET",
@@ -34,7 +21,7 @@ const UsersPage = () => {
 		}).then((res) => {
 			setUsers(res.data);
 		});
-	}, [navigate, authCtx]);
+	}, [authCtx]);
 
 	const [users, setUsers] = useState([]);
 

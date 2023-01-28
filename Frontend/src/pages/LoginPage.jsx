@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { API_URL } from "../utils/const";
 
@@ -180,7 +180,7 @@ const LoginPage = () => {
 					</div>
 					<button type="submit">로그인</button>
 					<div>
-						<a href="/signup">회원가입</a>
+						<Link to="/signup">회원가입</Link>
 					</div>
 				</form>
 			</StyledLoginWrapper>

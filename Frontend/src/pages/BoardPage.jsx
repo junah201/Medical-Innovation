@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import Page from "../components/common/Page";
 
@@ -172,9 +173,9 @@ const PostItem = ({ idx, item, page, boardType }) => {
 			<span>{page + idx + 1}</span>
 			<StyledPostItemContent>
 				{boardType === "바로가기" ? (
-					<a href={`${item.content}`}>{item.title}</a>
+					<Link to={`${item.content}`}>{item.title}</Link>
 				) : (
-					<a href={`/post/${item.id}`}>{item.title}</a>
+					<Link to={`/post/${item.id}`}>{item.title}</Link>
 				)}
 				<span>게시일 {date}</span>
 			</StyledPostItemContent>

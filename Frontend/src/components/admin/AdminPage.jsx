@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import styled from "styled-components";
-
+import { useNavigate } from "react-router-dom";
 import AdminHeader from "./AdminHeader";
+import AuthContext from "../../context/AuthContext";
 
 const StyledPage = styled.div`
 	background: #fff;
@@ -26,6 +27,22 @@ const StyledPageWrapper = styled.div`
 `;
 
 const AdminPage = ({ children }) => {
+	const navigate = useNavigate();
+	const authCtx = useContext(AuthContext);
+
+	useEffect(() => {
+		if (!authCtx.isLoggedIn) {
+			alert("로그인이 필요한 서비스입니다.");
+			navigate("/");
+			return;
+		}
+		if (!authCtx.isAdmin) {
+			alert("권한이 부족합니다.");
+			navigate("/");
+			return;
+		}
+	}, [navigate, authCtx]);
+
 	return (
 		<StyledPage>
 			<AdminHeader />

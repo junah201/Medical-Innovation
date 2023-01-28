@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import { Desktop } from "../responsive/responsive";
 
@@ -107,9 +108,9 @@ const MainLeftGrid = () => {
 							color: "#F8F6F7",
 						}}
 					>
-						<a href="/introduction/founder">
+						<Link to="/introduction/founder">
 							<img src={kimhyosoo} width="250px" alt="김효수" />
-						</a>
+						</Link>
 					</div>
 				</StyledGridImgItem>
 				<StyledGridItem color="#2763BA">
@@ -118,12 +119,12 @@ const MainLeftGrid = () => {
 						과기부 소관 비영리법인 중소벤처기업부 창업기획자 기획재정부
 						지정기부금단체
 					</p>
-					<a href="/mou">협력기관</a>
+					<Link to="/mou">협력기관</Link>
 				</StyledGridItem>
 				<StyledGridItem color="#2CA48F">
 					<h3>FMI 벤처투자조합</h3>
 					<p>바이오헬스 혁신기업의 지속 가능한 성장과 미래</p>
-					<a href="/preparing">바로가기</a>
+					<Link to="/preparing">바로가기</Link>
 				</StyledGridItem>
 				<StyledGridItem color="#008ACE">
 					<h3>후원 안내</h3>
@@ -131,8 +132,8 @@ const MainLeftGrid = () => {
 						대한민국 보건의료의 발전을 추구하시는 여러분 모두가 후원자가 되어
 						주십시오.
 					</p>
-					<a href="/support/sponsorship">후원하기</a>
-					<a href="/support/sponsor">후원인 명단</a>
+					<Link to="/support/sponsorship">후원하기</Link>
+					<Link to="/support/sponsor">후원인 명단</Link>
 				</StyledGridItem>
 				<StyledGridBottomItem>
 					<div>

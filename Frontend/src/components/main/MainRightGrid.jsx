@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
 import { API_URL } from "../../utils/const";
 
@@ -411,7 +411,7 @@ const MainLeftGrid = () => {
 	);
 };
 
-const StyledPostItem = styled.a`
+const StyledPostItem = styled(Link)`
 	padding: 10px;
 	display: flex;
 	align-items: center;
@@ -485,7 +485,7 @@ const PostItem = ({ title, link, index, date }) => {
 	}
 
 	return (
-		<StyledPostItem href={link} target="_blank" rel="noopener noreferrer">
+		<StyledPostItem to={link}>
 			<StyledPostItemIndex>{index}.</StyledPostItemIndex>
 			<StyledPostItemTitle>{title}</StyledPostItemTitle>
 			<StyledPostItemDate>{date}</StyledPostItemDate>
