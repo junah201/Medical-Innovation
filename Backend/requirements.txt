@@ -7,7 +7,6 @@ SQLAlchemy == 1.4.45
 pydantic[email]
 python-jose[cryptography]
 python-multipart
-mangum
 werkzeug
 requests
 beautifulsoup4

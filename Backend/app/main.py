@@ -1,17 +1,14 @@
-from fastapi import Depends, FastAPI, HTTPException, Request
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
-from fastapi.exceptions import RequestValidationError, HTTPException
+from fastapi.exceptions import RequestValidationError
 
-from sqlalchemy.orm import Session
 from starlette import status
-from mangum import Mangum
-from typing import List, Dict
 import datetime
 
-from app.database import models, schemas, crud
-from app.database.database import engine, get_db
+from app.database import models
+from app.database.database import engine
 from app.routers.v1 import user_router, post_router, board_router, file_router, sponsor_router
 
 models.Base.metadata.create_all(bind=engine, checkfirst=True)
@@ -20,19 +17,18 @@ app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="./app/static"), name="static")
 
-"""
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
         "https://medical-innovation.vercel.app",
-        "www.medicalinnovation.co.kr"
+        "https://www.medicalinnovation.co.kr",
+        "https://medicalinnovation.or.kr"
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-"""
 
 app.include_router(user_router.router)
 app.include_router(post_router.router)
@@ -56,6 +52,3 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 @app.get("/")
 async def index():
     return f"Notification API (UTC: {datetime.datetime.utcnow().strftime('%Y.%m.%d %H:%M:%S')})"
-
-
-lambda_handler = Mangum(app, lifespan="off")
