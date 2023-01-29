@@ -7,6 +7,7 @@ import AdminPage from "../../components/admin/AdminPage";
 import { API_URL } from "../../utils/const";
 import AuthContext from "../../context/AuthContext";
 import Message from "../../components/common/Message";
+import { useNavigate } from "react-router-dom";
 
 const StyledPostUploadPage = styled.div`
 	display: flex;
@@ -46,6 +47,7 @@ const StyledPostUploadPage = styled.div`
 
 const PostUploadPage = () => {
 	const authCtx = useContext(AuthContext);
+	const navigate = useNavigate();
 
 	const [boards, setBoards] = useState([]);
 
@@ -55,13 +57,14 @@ const PostUploadPage = () => {
 			headers: {
 				accept: "application/json",
 				"Content-Type": "application/json",
+				Authorization: `Bearer ${authCtx.accessToken}`,
 			},
 		})
 			.then((res) => res.json())
 			.then((data) => {
 				setBoards(data);
 			});
-	}, []);
+	}, [authCtx]);
 
 	const [errorMessages, setErrorMessages] = useState(
 		"tip : 파일 선택은 한번에 여러개 가능합니다. 이미지 첨부시에는 이미지를 선택한 후 업로드될 때 까지 잠깐 기다려주세요."
@@ -142,6 +145,7 @@ const PostUploadPage = () => {
 					if (res.status === 204) {
 						setErrorMessages("게시물 업로드 성공");
 						alert("게시물 업로드 성공");
+						navigate(`/admin/post/all`);
 						return;
 					}
 					setErrorMessages("게시물 업로드 실패");

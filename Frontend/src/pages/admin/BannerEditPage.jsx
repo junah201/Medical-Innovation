@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import AuthContext from "../../context/AuthContext";
@@ -42,6 +42,7 @@ const StyledPostEditPage = styled.div`
 const PostEditPage = () => {
 	const params = useParams();
 	const authCtx = useContext(AuthContext);
+	const navigate = useNavigate();
 
 	const [name, setName] = useState("");
 	const [link, setLink] = useState("");
@@ -81,7 +82,7 @@ const PostEditPage = () => {
 		}).then((res) => {
 			if (res.status === 204) {
 				alert("수정되었습니다.");
-				window.location.href = "/admin/banner/all";
+				navigate(-1);
 				return;
 			}
 			alert("수정에 실패했습니다.");

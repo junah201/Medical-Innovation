@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import AdminPage from "../../components/admin/AdminPage";
 import Message from "../../components/common/Message";
@@ -9,6 +9,7 @@ import AuthContext from "../../context/AuthContext";
 const PostDeletePage = () => {
 	const params = useParams();
 	const authCtx = useContext(AuthContext);
+	const navigate = useNavigate();
 
 	const handleDelete = (e) => {
 		e.preventDefault();
@@ -24,7 +25,7 @@ const PostDeletePage = () => {
 		}).then((res) => {
 			if (res.status === 204) {
 				alert("삭제되었습니다.");
-				window.location.href = "/admin/post/all";
+				navigate(-1, { replace: true });
 				return;
 			}
 			alert("삭제에 실패했습니다.");

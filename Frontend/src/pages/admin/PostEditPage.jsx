@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import AuthContext from "../../context/AuthContext";
 import AdminPage from "../../components/admin/AdminPage";
 import Message from "../../components/common/Message";
 
@@ -30,15 +31,23 @@ const StyledPostEditPage = styled.div`
 	}
 
 	& button {
+		width: 800px;
 		padding: 10px 20px;
 		font-size: 20px;
 		font-weight: 600;
 		margin: auto 0;
 		background-color: #ffffff;
 	}
+
+	& form {
+		display: flex;
+		flex-direction: column;
+	}
 `;
 
 const PostEditPage = () => {
+	const authCtx = useContext(AuthContext);
+	const navigate = useNavigate();
 	const params = useParams();
 	const [boards, setBoards] = useState([]);
 
@@ -52,6 +61,7 @@ const PostEditPage = () => {
 			headers: {
 				accept: "application/json",
 				"Content-Type": "application/json",
+				Authorization: `Bearer ${authCtx.accessToken}`,
 			},
 		})
 			.then((res) => res.json())
@@ -63,6 +73,7 @@ const PostEditPage = () => {
 			method: "GET",
 			headers: {
 				accept: "application/json",
+				Authorization: `Bearer ${authCtx.accessToken}`,
 			},
 		}).then((res) => {
 			if (res.status === 200) {
@@ -73,7 +84,7 @@ const PostEditPage = () => {
 				});
 			}
 		});
-	}, [params.id]);
+	}, [params.id, authCtx]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -82,6 +93,7 @@ const PostEditPage = () => {
 			headers: {
 				accept: "application/json",
 				"Content-Type": "application/json",
+				Authorization: `Bearer ${authCtx.accessToken}`,
 			},
 			body: JSON.stringify({
 				title: title,
@@ -91,7 +103,7 @@ const PostEditPage = () => {
 		}).then((res) => {
 			if (res.status === 204) {
 				alert("수정되었습니다.");
-				window.location.href = "/admin/post/all";
+				navigate("/admin/post/all", { replace: true });
 				return;
 			}
 			alert("수정에 실패했습니다.");
