@@ -16,6 +16,11 @@ const StyledPostUploadPage = styled.div`
 		margin-top: 10px;
 	}
 
+	& form {
+		display: flex;
+		flex-direction: column;
+	}
+
 	& input,
 	select {
 		width: 800px;
@@ -59,13 +64,35 @@ const PostUploadPage = () => {
 	}, []);
 
 	const [errorMessages, setErrorMessages] = useState(
-		"tip : 파일 선택은 한번에 여러개 가능합니다."
+		"tip : 파일 선택은 한번에 여러개 가능합니다. 이미지 첨부시에는 이미지를 선택한 후 업로드될 때 까지 잠깐 기다려주세요."
 	);
 
 	const [title, setTitle] = useState("");
 	const [boardId, setBoardId] = useState(1);
 	const [content, setContent] = useState("");
 	const [files, setFiles] = useState([]);
+
+	const handleImgaeUpload = (e) => {
+		e.preventDefault();
+
+		const formData = new FormData();
+		formData.append("file", e.target.files[0]);
+
+		axios({
+			url: `${API_URL}/api/v1/file/upload`,
+			method: "POST",
+			headers: {
+				accept: "application/json",
+				"Content-Type": "multipart/form-data",
+				Authorization: `Bearer ${authCtx.accessToken}`,
+			},
+			data: formData,
+		}).then((res) => {
+			setContent((prev) => {
+				return `${prev}\n\n<img src="https://medical-innovation.s3.ap-northeast-2.amazonaws.com/upload/${res.data.filenames}" />\n\n`;
+			});
+		});
+	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -161,20 +188,48 @@ const PostUploadPage = () => {
 							setContent(e.target.value);
 						}}
 					/>
-					<input
-						type="file"
-						onChange={(e) => {
-							setFiles(e.target.files);
-						}}
-						multiple
-					/>
+					<div>
+						<label>이미지 첨부</label>
+						<input
+							type="file"
+							onChange={handleImgaeUpload}
+							accept="image/png, image/gif, image/jpeg, image/jpg"
+						/>
+					</div>
+					<div>
+						<label>하단 첨부파일 (한번에 여러개 선택)</label>
+						<input
+							type="file"
+							onChange={(e) => {
+								setFiles(e.target.files);
+							}}
+							multiple
+						/>
+					</div>
+
 					<br />
 					<br />
 					<button type="submit">업로드</button>
 				</form>
 			</StyledPostUploadPage>
+			<br />
+			<br />
+			<br />
+			<StyledPostUploadPage>
+				<h1>게시물 미리보기</h1>
+				<StyledPostContent
+					dangerouslySetInnerHTML={{ __html: content }}
+				></StyledPostContent>
+			</StyledPostUploadPage>
 		</AdminPage>
 	);
 };
+
+const StyledPostContent = styled.div`
+	min-height: calc(100vh - 700px);
+	padding: 20px 0;
+	white-space: pre-wrap;
+	border: 1px solid black;
+`;
 
 export default PostUploadPage;

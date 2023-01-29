@@ -51,7 +51,9 @@ const PostPage = () => {
 							<small>게시판</small> {post.board.name}
 						</span>
 					</StyledPostDetail>
-					<StyledPostContent>{post.content}</StyledPostContent>
+					<StyledPostContent
+						dangerouslySetInnerHTML={{ __html: post.content }}
+					></StyledPostContent>
 					{post.files.length ? (
 						<StyledPostFiles>
 							<span>첨부파일</span>
