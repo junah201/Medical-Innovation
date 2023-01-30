@@ -8,6 +8,8 @@ import { API_URL } from "../../utils/const";
 import AuthContext from "../../context/AuthContext";
 import Message from "../../components/common/Message";
 import { useNavigate } from "react-router-dom";
+import BlankDiv from "./../../components/common/BlankDiv";
+import "./../PostPage.css";
 
 const StyledPostUploadPage = styled.div`
 	display: flex;
@@ -28,6 +30,12 @@ const StyledPostUploadPage = styled.div`
 		height: 30px;
 		padding: 3px;
 		font-size: 16px;
+	}
+
+	& input[type="radio"] {
+		width: 15px;
+		height: 15px;
+		padding: 0;
 	}
 
 	& textarea {
@@ -74,6 +82,8 @@ const PostUploadPage = () => {
 	const [boardId, setBoardId] = useState(1);
 	const [content, setContent] = useState("");
 	const [files, setFiles] = useState([]);
+	const [imgSize, setImgSize] = useState("30%");
+	const [imgSort, setImgSort] = useState("center");
 
 	const handleImgaeUpload = (e) => {
 		e.preventDefault();
@@ -92,7 +102,7 @@ const PostUploadPage = () => {
 			data: formData,
 		}).then((res) => {
 			setContent((prev) => {
-				return `${prev}\n\n<img src="https://medical-innovation.s3.ap-northeast-2.amazonaws.com/upload/${res.data.filenames}" />\n\n`;
+				return `${prev}\n\n<div class="img-container ${imgSort}"><img width = ${imgSize} src="https://medical-innovation.s3.ap-northeast-2.amazonaws.com/upload/${res.data.filenames}" /></div>\n\n`;
 			});
 		});
 	};
@@ -194,14 +204,69 @@ const PostUploadPage = () => {
 					/>
 					<div>
 						<label>이미지 첨부</label>
+						<br />
+						<label>이미지 크기</label>{" "}
+						<input
+							type="radio"
+							name="imgSize"
+							value="30%"
+							checked={imgSize === "30%"}
+							onChange={() => setImgSize("30%")}
+						/>
+						작음
+						<input
+							type="radio"
+							name="imgSize"
+							value="50%"
+							checked={imgSize === "50%"}
+							onChange={() => setImgSize("50%")}
+						/>
+						중간
+						<input
+							type="radio"
+							name="imgSize"
+							value="100%"
+							checked={imgSize === "100%"}
+							onChange={() => setImgSize("100%")}
+						/>
+						큼
+						<br />
+						<label>이미지 정렬</label>{" "}
+						<input
+							type="radio"
+							name="imgSort"
+							value="right"
+							checked={imgSort === "right"}
+							onChange={() => setImgSort("right")}
+						/>
+						오른쪽
+						<input
+							type="radio"
+							name="imgSort"
+							value="center"
+							checked={imgSort === "center"}
+							onChange={() => setImgSort("center")}
+						/>
+						중앙
+						<input
+							type="radio"
+							name="imgSort"
+							value="left"
+							checked={imgSort === "left"}
+							onChange={() => setImgSort("left")}
+						/>
+						왼쪽
+						<br />
 						<input
 							type="file"
 							onChange={handleImgaeUpload}
 							accept="image/png, image/gif, image/jpeg, image/jpg"
 						/>
 					</div>
+					<br />
 					<div>
 						<label>하단 첨부파일 (한번에 여러개 선택)</label>
+						<br />
 						<input
 							type="file"
 							onChange={(e) => {

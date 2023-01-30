@@ -6,6 +6,7 @@ import MetaTag from "../components/common/MetaTag";
 import Page from "../components/common/Page";
 
 import { API_URL } from "../utils/const";
+import "./PostPage.css";
 
 const PostPage = () => {
 	const params = useParams();
@@ -94,6 +95,10 @@ const StyledPostContent = styled.p`
 	min-height: calc(100vh - 700px);
 	padding: 20px 0;
 	white-space: pre-wrap;
+
+	& div {
+		width: 100%;
+	}
 `;
 
 const StyledPostFiles = styled.div`

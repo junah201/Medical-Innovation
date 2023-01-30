@@ -1,18 +1,7 @@
-from fastapi_utils.session import FastAPISessionMaker
-
-from app.database import models
-from app.database.database import engine
-from app.common.config import DATABASE_URL
-
-from sqlalchemy.orm import Session
 import requests
 from bs4 import BeautifulSoup
 import datetime
 import json
-
-models.Base.metadata.create_all(bind=engine)
-
-sessionmaker = FastAPISessionMaker(DATABASE_URL)
 
 ARTICLE_BOARD_ID = 3
 
@@ -38,7 +27,7 @@ def get_url(start: int = 1):
     return f"https://m.search.naver.com/search.naver?where=m_news&sm=tab_pge&query=%22%EB%AF%B8%EB%9E%98%EC%9D%98%ED%95%99%EC%97%B0%EA%B5%AC%EC%9E%AC%EB%8B%A8%22&sort=1&photo=0&field=0&pd=0&ds=&de=&mynews=0&office_type=0&office_section_code=0&news_office_checked=&nso=so:dd,p:all,a:all&start={start}"
 
 
-def new_post_checker(db: Session):
+def new_post_checker():
     db_article = db.query(models.Post).filter(
         models.Post.board_id == ARTICLE_BOARD_ID).order_by(models.Post.created_at.desc()).limit(1).first()
 
