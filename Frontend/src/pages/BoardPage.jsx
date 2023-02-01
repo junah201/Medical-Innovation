@@ -173,7 +173,9 @@ const PostItem = ({ idx, item, page, boardType }) => {
 			<span>{page + idx + 1}</span>
 			<StyledPostItemContent>
 				{boardType === "바로가기" ? (
-					<Link to={`${item.content}`}>{item.title}</Link>
+					<a href={`${item.content}`} target="_blank" rel="noreferrer">
+						{item.title}
+					</a>
 				) : (
 					<Link to={`/post/${item.id}`}>{item.title}</Link>
 				)}

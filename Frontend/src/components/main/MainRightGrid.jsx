@@ -259,6 +259,7 @@ const MainLeftGrid = () => {
 									title={post.title}
 									date={post.created_at}
 									index={index + 1}
+									type="바로가기"
 									key={index}
 								/>
 							);
@@ -411,7 +412,28 @@ const MainLeftGrid = () => {
 	);
 };
 
-const StyledPostItem = styled(Link)`
+const StyledPostItemA = styled.a`
+	padding: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	color: #000000;
+
+	&:visited {
+		color: #000000;
+	}
+
+	&:hover {
+		background-color: #f5f5f5;
+	}
+
+	& + & {
+		border-top: 1px solid #e9ecef;
+	}
+`;
+
+const StyledPostItemLink = styled(Link)`
 	padding: 10px;
 	display: flex;
 	align-items: center;
@@ -477,19 +499,29 @@ const StyledPostItemDate = styled.span`
 	}
 `;
 
-const PostItem = ({ title, link, index, date }) => {
+const PostItem = ({ title, link, index, date, type }) => {
 	try {
 		date = new Intl.DateTimeFormat("kr", {}).format(new Date(date));
 	} catch {
 		date = "";
 	}
 
+	if (type === "바로가기") {
+		return (
+			<StyledPostItemA href={link} target="_blank" rel="noopener noreferrer">
+				<StyledPostItemIndex>{index}.</StyledPostItemIndex>
+				<StyledPostItemTitle>{title}</StyledPostItemTitle>
+				<StyledPostItemDate>{date}</StyledPostItemDate>
+			</StyledPostItemA>
+		);
+	}
+
 	return (
-		<StyledPostItem to={link}>
+		<StyledPostItemLink to={link}>
 			<StyledPostItemIndex>{index}.</StyledPostItemIndex>
 			<StyledPostItemTitle>{title}</StyledPostItemTitle>
 			<StyledPostItemDate>{date}</StyledPostItemDate>
-		</StyledPostItem>
+		</StyledPostItemLink>
 	);
 };
 
