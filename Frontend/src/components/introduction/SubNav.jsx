@@ -15,22 +15,22 @@ const SubNav = (props) => {
 			<SubNavButton
 				href="/introduction/founder"
 				text="설립자 소개"
-				isSelect={props.select === "설립자 소개"}
+				select={props.select === "설립자 소개"}
 			></SubNavButton>
 			<SubNavButton
 				href="/introduction/message"
 				text="이사장 인사말"
-				isSelect={props.select === "이사장 인사말"}
+				select={props.select === "이사장 인사말"}
 			></SubNavButton>
 			<SubNavButton
 				href="/introduction/mission_and_history"
 				text="설립 취지 및 연혁"
-				isSelect={props.select === "설립 취지 및 연혁"}
+				select={props.select === "설립 취지 및 연혁"}
 			></SubNavButton>
 			<SubNavButton
 				href="/introduction/orgchart_and_project"
 				text="조직도 및 주요사업"
-				isSelect={props.select === "조직도 및 주요사업"}
+				select={props.select === "조직도 및 주요사업"}
 			></SubNavButton>
 		</StyledSubNav>
 	);

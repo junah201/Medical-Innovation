@@ -39,6 +39,7 @@ const BoardPage = ({ boardId, children, boardType }) => {
 							item={item}
 							page={page}
 							boardType={boardType}
+							key={item.id}
 						/>
 					);
 				})}
@@ -177,7 +178,7 @@ const PostItem = ({ idx, item, page, boardType }) => {
 						{item.title}
 					</a>
 				) : (
-					<Link to={`/post/${item.id}`}>{item.title}</Link>
+					<Link to={`/post/${item.id}?type=${boardType}`}>{item.title}</Link>
 				)}
 				<span>게시일 {date}</span>
 			</StyledPostItemContent>

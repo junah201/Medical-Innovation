@@ -15,22 +15,22 @@ const SubNav = (props) => {
 			<SubNavButton
 				href="/programs/openinnovation"
 				text="오픈 이노베이션"
-				isSelect={props.select === "오픈 이노베이션"}
+				select={props.select === "오픈 이노베이션"}
 			></SubNavButton>
 			<SubNavButton
 				href="/programs/accelerating"
 				text="연구자 중심 창업지원"
-				isSelect={props.select === "연구자 중심 창업지원"}
+				select={props.select === "연구자 중심 창업지원"}
 			></SubNavButton>
 			<SubNavButton
 				href="/programs/research_support_project"
 				text="연구발굴지원사업"
-				isSelect={props.select === "연구발굴지원사업"}
+				select={props.select === "연구발굴지원사업"}
 			></SubNavButton>
 			<SubNavButton
 				href="/programs/trand"
 				text="최신 동향 보편적 공유"
-				isSelect={props.select === "최신 동향 보편적 공유"}
+				select={props.select === "최신 동향 보편적 공유"}
 			></SubNavButton>
 		</StyledSubNav>
 	);

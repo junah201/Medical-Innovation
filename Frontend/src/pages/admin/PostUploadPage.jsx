@@ -8,7 +8,6 @@ import { API_URL } from "../../utils/const";
 import AuthContext from "../../context/AuthContext";
 import Message from "../../components/common/Message";
 import { useNavigate } from "react-router-dom";
-import BlankDiv from "./../../components/common/BlankDiv";
 import "./../PostPage.css";
 
 const StyledPostUploadPage = styled.div`

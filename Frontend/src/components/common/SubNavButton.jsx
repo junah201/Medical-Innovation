@@ -10,9 +10,9 @@ const StyledSubNavButton = styled(Link)`
 	font-size: 22.5px;
 	font-weight: 600;
 
-	color: ${(props) => (props.isSelect ? "#204397" : "#494949")};
+	color: ${(props) => (props.select ? "#204397" : "#494949")};
 	border-bottom: ${(props) =>
-		props.isSelect ? "4px solid #204397" : "1.5px solid #494949"};
+		props.select ? "4px solid #204397" : "1.5px solid #494949"};
 
 	& + & {
 		margin-left: 10px;
@@ -32,9 +32,9 @@ const StyledSubNavButton = styled(Link)`
 	}
 `;
 
-const SubNavButton = ({ text, href, isSelect }) => {
+const SubNavButton = ({ text, href, select }) => {
 	return (
-		<StyledSubNavButton to={href} isSelect={isSelect}>
+		<StyledSubNavButton to={href} select={select}>
 			{text}
 		</StyledSubNavButton>
 	);

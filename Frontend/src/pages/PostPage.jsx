@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 
 import MetaTag from "../components/common/MetaTag";
@@ -10,6 +10,7 @@ import "./PostPage.css";
 
 const PostPage = () => {
 	const params = useParams();
+	const [searchParams, setSearchParams] = useSearchParams();
 	const [post, setPost] = useState(null);
 
 	useEffect(() => {
@@ -25,10 +26,13 @@ const PostPage = () => {
 						dateStyle: "long",
 					}).format(new Date(data.created_at));
 					setPost(data);
+					if (searchParams.get("type") === "pdf") {
+						window.location.href = `https://medical-innovation.s3.ap-northeast-2.amazonaws.com/upload/${data.files[0]}`;
+					}
 				});
 			}
 		});
-	}, [params.id]);
+	}, [params.id, searchParams]);
 
 	return (
 		<Page>
