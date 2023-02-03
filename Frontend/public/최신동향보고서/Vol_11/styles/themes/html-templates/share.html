@@ -1,0 +1,49 @@
+<div class="modal-wrapper modal-wrapper-white share-modal-wrapper">
+  <div class="modal-inner-wrapper">
+    <div class="modal popup-modal popup-share-modal modal-dialog-center fade in">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="title">{{Strings.SHARE}}</div>
+            <button type="button" class="btn close icon_close" data-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container-fluid">
+                <div class="btn-group btn-share-group">
+                  <button type="button" class="btn" command="sendKakaotalk">
+                    <i class="share-icon kakaotalk-icon"></i>
+                    <span>{{Strings.KAKAOTALK}}</span>
+                  </button>
+                  <button type="button" class="btn" command="sendKakaostory">
+                    <i class="share-icon kakaostory-icon"></i>
+                    <span>{{Strings.KAKAOSTORY}}</span>
+                  </button>
+                  <button type="button" class="btn" command="sendFacebook">
+                    <i class="share-icon facebook-icon"></i>
+                    <span>{{Strings.FACEBOOK}}</span>
+                  </button>
+                  <button type="button" class="btn" command="sendTwitter">
+                    <i class="share-icon twitter-icon"></i>
+                    <span>{{Strings.TWITTER}}</span>
+                  </button>
+                </div>
+
+                <div class="form-group group-copy-url">
+                  <div class="input-group" style="width: 100%">
+                    <input type="text" class="form-control input-url" placeholder="{{Strings.URL}}" readonly>
+                    <span class="input-group-addon copy-url-addon">{{Strings.COPY_URL}}</span>
+                  </div>
+                </div>
+
+                <div class="btn-group group-copy-url-ios">
+                  <a class="btn btn-copy-url" />
+                  <small>{{Strings.LONG_TAP_COPY_URL}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

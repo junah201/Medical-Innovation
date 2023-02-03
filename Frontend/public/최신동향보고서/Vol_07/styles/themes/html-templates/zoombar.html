@@ -1,0 +1,60 @@
+
+<div class="zoom-bar">
+  <div class="translucent" />
+  <div class="btn-group location-btn-group">
+    <button type="button" title="{{Strings.MOVE_UP}}" class="btn btn-move-up">
+      <span class="glyphicon glyphicon-triangle-top"></span>
+    </button>
+    <button type="button" title="{{Strings.MOVE_DOWN}}" class="btn btn-move-down">
+      <span class="glyphicon glyphicon-triangle-bottom"></span>
+    </button>
+    <button type="button" title="{{Strings.MOVE_LEFT}}" class="btn btn-move-left">
+      <span class="glyphicon glyphicon-triangle-left"></span>
+    </button>
+    <button type="button" title="{{Strings.MOVE_RIGHT}}" class="btn btn-move-right">
+      <span class="glyphicon glyphicon-triangle-right"></span>
+    </button>
+  </div>
+
+  <div class="main-btn-group">
+    <button type="button" data-drag-mode="true" title="{{Strings.DRAG_MODE}}" class="btn btn-zoombar-drag-mode active fa fa-hand-paper-o">
+      <div class="divider" />
+    </button>
+    
+    <button type="button" data-scale-mode="1" title="{{Strings.FIT_TO_SCREEN_WIDTH}}" class="btn btn-zoombar-fit-screen-width">
+      <img class="icon svg-icon" src="{{theme.baseURL}}icons/fit-width.svg">
+      <div class="divider" />
+    </button>
+    
+    <button type="button" data-scale-mode="2" title="{{Strings.FIT_TO_SCREEN_HEIGHT}}" class="btn btn-zoombar-fit-screen-height">
+      <img class="icon svg-icon" src="{{theme.baseURL}}icons/fit-height.svg">
+      <div class="divider" />
+    </button>
+    
+    <button type="button" title="+10%" class="btn btn-zoombar-plus fa fa-plus">
+      <div class="divider" />
+    </button>
+    
+    <div id="zoom-slider">
+      <div class="vertical-bar">
+          <div class="vertical-line"></div>
+      </div>
+      <div class="handle-drag">
+          <div class="handle-drag-inner"></div>
+          <span class="value"></span>
+      </div>
+    </div>
+    <button type="button" title="-10%" class="btn btn-bottom btn-zoombar-minus fa fa-minus">
+      <div class="divider top" />
+    </button>
+    <button type="button" title="{{Strings.EXIT_ZOOM_MODE}}" class="btn btn-bottom btn-zoombar-exit fa fa-times ">
+      <div class="divider top" />
+    </button>
+  </div>
+
+  <div class="mobile-btn-group">
+    <button type="button" title="{{Strings.EXIT_ZOOM_MODE}}" class="btn btn-bottom btn-zoombar-exit fa fa-times mobile">
+    </button>
+  </div>
+  
+</div>

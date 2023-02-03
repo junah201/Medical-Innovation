@@ -1,0 +1,40 @@
+<div class="modal-wrapper modal-wrapper-white settings-modal-wrapper">
+  <div class="modal-inner-wrapper">
+    <div class="modal popup-modal popup-settings-modal modal-dialog-center fade in">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="title"></div>
+            <button type="button" class="btn close icon_close" data-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div class="container-fluid">
+              <form class="form-horizontal">
+                <div class="form-group pagefit-mode-form-group">
+                  <div class="row">
+                    <label >{{Strings.PAGE_SCREEN_FIT_SETTING}}</label>
+                    <hr>
+                  </div>
+                  <div class="row">
+                    <div class="col col-sm-6">
+                      <div class="input-group">
+                        <img src="{{theme.baseURL}}icons/fit-screen-height.png">
+                        <input type="radio" data-pagefit-mode="view-all"><label>{{Strings.FIT_SCREEN_HEIGHT}}</label>
+                      </div>
+                    </div>
+                    <div class="col col-sm-6">  
+                      <div class="input-group">
+                        <img src="{{theme.baseURL}}icons/fit-screen-width.png">
+                        <input type="radio" data-pagefit-mode="screen-width"><label>{{Strings.FIT_SCREEN_WIDTH}}</label>
+                      </div>
+                    </div>
+                  </div>
+                </div><!--// form-group -->
+              </form><!--// form-horizontal -->
+            </div><!--// container-fluid -->
+          </div><!--// modal-body -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

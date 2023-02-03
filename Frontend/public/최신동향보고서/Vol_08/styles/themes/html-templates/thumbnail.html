@@ -1,0 +1,29 @@
+<div class="toast-thumbnail">
+  <button type="button" class="btn close"><span class="icon_close"></span></button>
+  <img class="icon svg-icon thumb-nav-prev" src="{{theme.baseURL}}icons/side_previous.svg">
+  <img class="icon svg-icon thumb-nav-next" src="{{theme.baseURL}}icons/side_next.svg">
+  <div class="container">
+    <div class="row">
+    <ul class="carousel">
+      {{#thumbs}}
+      <li class="item" style='width: {{width}}px; height: 100%'>
+        {{#items}}
+        <div class="item-wrap" style='width: {{itemWidth}}; height: {{height}}px'>
+          {{#url}}
+          <img src="{{url}}" width="100%" height="100%">
+          {{/url}}
+          {{^url}}
+          <div style="width: 100%; height: 100%; background-color:{{backgroundColor}}"></div>
+          {{/url}}
+          <div class="page-no">
+            <span class="badge label-primary">{{displayPageNumber}}</span>
+          </div>
+        </div>
+        {{/items}}
+      </li>
+      {{/thumbs}}
+    </ul>
+    </div>
+  </div>
+</div>
+
