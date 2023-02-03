@@ -259,7 +259,7 @@ const MainLeftGrid = () => {
 									title={post.title}
 									date={post.created_at}
 									index={index + 1}
-									type="바로가기"
+									type="link"
 									key={index}
 								/>
 							);
@@ -506,7 +506,7 @@ const PostItem = ({ title, link, index, date, type }) => {
 		date = "";
 	}
 
-	if (type === "바로가기") {
+	if (type === "link") {
 		return (
 			<StyledPostItemA href={link} target="_blank" rel="noopener noreferrer">
 				<StyledPostItemIndex>{index}.</StyledPostItemIndex>

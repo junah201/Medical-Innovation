@@ -6,7 +6,7 @@ import BoardPage from "../BoardPage";
 
 const TrandPage = () => {
 	return (
-		<BoardPage boardId="4" boardType="pdf">
+		<BoardPage boardId="4" boardType="link">
 			<SubNav select="최신 동향 보편적 공유" />
 			<h1>최신 동향 보편적 공유</h1>
 			<Message>
