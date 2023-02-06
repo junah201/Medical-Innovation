@@ -2,10 +2,11 @@ import requests
 from bs4 import BeautifulSoup
 import datetime
 import json
+from app.common.config import ADMIN_ACCOUNT_ID, ADMIN_ACCOUNT_PASSWORD
 
-ARTICLE_BOARD_ID = 3
+ARTICLE_BOARD_ID: int = 3
 
-HEADER = {
+HEADER: dict = {
     'authority': 'm.search.naver.com',
     'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
     'accept-language': 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
@@ -21,6 +22,7 @@ HEADER = {
     'upgrade-insecure-requests': '1',
     'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Mobile Safari/537.36',
 }
+API_URL: str = "https://port-0-medical-innovation-sop272gldbzxiqq.gksl2.cloudtype.app"
 
 
 def get_url(start: int = 1):
@@ -28,10 +30,30 @@ def get_url(start: int = 1):
 
 
 def new_post_checker():
-    db_article = db.query(models.Post).filter(
-        models.Post.board_id == ARTICLE_BOARD_ID).order_by(models.Post.created_at.desc()).limit(1).first()
+    response = requests.get(
+        url=f"{API_URL}/api/v1/post/{ARTICLE_BOARD_ID}/all?skip=0&limit=1",
+        headers={
+            "accept": "application/json",
+            "Content-Type": "application/json"
+        }
+    )
 
-    last_uploaded_at = db_article.created_at.strftime("%Y.%m.%d.")
+    last_uploaded_at = datetime.datetime.strptime(json.loads(
+        response.text)["posts"][0]['created_at'].split('T')[0], "%Y-%m-%d")
+    last_uploaded_at = last_uploaded_at.strftime("%Y.%m.%d.")
+
+    response = requests.post(
+        url=f"{API_URL}/api/v1/user/login",
+        headers={
+            "accept": "application/json",
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        data={
+            "username": ADMIN_ACCOUNT_ID,
+            "password": ADMIN_ACCOUNT_PASSWORD
+        },
+    )
+    access_token = json.loads(response.text)["access_token"]
 
     for page in range(1, 100, 10):
         response = requests.get(
@@ -54,22 +76,20 @@ def new_post_checker():
 
             print(f"{tmp['newspaper']} {tmp['title']}")
 
-            db_post = models.Post(
-                title=tmp['title'],
-                board_id=ARTICLE_BOARD_ID,
-                content=tmp['url'],
-                author_name=tmp["newspaper"],
-                files=json.dumps([], ensure_ascii=False),
-                created_at=datetime.datetime.strptime(
-                    tmp['date'], "%Y.%m.%d."),
-                updated_at=datetime.datetime.strptime(
-                    tmp['date'], "%Y.%m.%d."),
+            requests.post(
+                f"{API_URL}/api/v1/post/create", json={
+                    "title": tmp['title'],
+                    "board_id": ARTICLE_BOARD_ID,
+                    "content": tmp['url'],
+                    "files": []
+                },
+                headers={
+                    "accept": "application/json",
+                    "Content-Type": "application/json",
+                    "Authorization": f"Bearer {access_token}"
+                }
             )
-
-            db.add(db_post)
-            db.commit()
 
 
 def lambda_handler(event, context):
-    with sessionmaker.context_session() as db:
-        new_post_checker(db=db)
+    new_post_checker()
