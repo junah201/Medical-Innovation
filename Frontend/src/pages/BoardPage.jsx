@@ -49,7 +49,7 @@ const BoardPage = ({ boardId, children, boardType }) => {
 					onClick={() => setPage(Math.max(0, page - SIZE))}
 					disabled={page <= 0}
 				>
-					이전
+					{"<"}
 				</StyledBoardPageButton>
 				{Array.from({ length: Math.ceil(total / SIZE) }).map((_, index) => {
 					return (
@@ -57,7 +57,7 @@ const BoardPage = ({ boardId, children, boardType }) => {
 							onClick={() => setPage(index * SIZE)}
 							disabled={index * SIZE === page}
 						>
-							{index * SIZE}
+							{index + 1}
 						</StyledBoardPageButton>
 					);
 				})}
@@ -66,7 +66,7 @@ const BoardPage = ({ boardId, children, boardType }) => {
 					onClick={() => setPage(Math.min(total, page + SIZE))}
 					disabled={page >= total / SIZE - 1}
 				>
-					다음
+					{">"}
 				</StyledBoardPageButton>
 			</StyledBoardPageButtonWrapper>
 		</Page>
@@ -205,12 +205,18 @@ const StyledBoardPageButtonWrapper = styled.div`
 
 const StyledBoardPageButton = styled.button`
 	background-color: #ffffff;
-	padding: 6px;
-	width: 50px;
-	height: 30px;
+	padding: 8px;
+	width: 35px;
+	height: 35px;
+	border: none;
+	font-size: 18px;
 
 	& + & {
 		margin-left: 5px;
+	}
+
+	&:hover {
+		background-color: #f9f9f9;
 	}
 `;
 
