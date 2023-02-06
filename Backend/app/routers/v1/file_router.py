@@ -88,7 +88,7 @@ async def get_mous(db: Session = Depends(get_db)):
 
 @router.delete("/mou/{mou_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_mou(mou_id: int, db: Session = Depends(get_db)):
-    await crud.delete_mou(db=db, mou_id=mou_id)
+    crud.delete_mou(db=db, mou_id=mou_id)
 
 
 @router.post("/banner/file")
