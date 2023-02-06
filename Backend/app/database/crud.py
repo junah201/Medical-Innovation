@@ -51,6 +51,11 @@ def create_mou(db: Session, mou_create: schemas.MouCreate):
     db.commit()
 
 
+def delete_mou(db: Session, mou_id: int):
+    db.query(models.Mou).filter(models.Mou.id == mou_id).delete()
+    db.commit()
+
+
 def get_mous(db: Session):
     db_mous = db.query(models.Mou).order_by(models.Mou.name.desc())
     return db_mous.all()

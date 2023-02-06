@@ -46,6 +46,8 @@ import SponsoringCompaniesPage from "./pages/admin/SponsoringCompaniesPage";
 import SponsoringCompanyUploadPage from "./pages/admin/SponsoringCompanyUploadPage";
 import SponsoringCompanyDeletePage from "./pages/admin/SponsoringCompanyDeletePage";
 import SponsorsPage from "./pages/admin/SponsorsPage";
+import MousPage from "./pages/admin/MousPage";
+import MouDeletePage from "./pages/admin/MouDeletePage";
 
 import MouPage from "./pages/MouPage";
 
@@ -146,7 +148,10 @@ function App() {
 				<Route path="sponsoring">
 					<Route path="all" element={<SponsorsPage />} />
 				</Route>
-
+				<Route path="mou">
+					<Route path="all" element={<MousPage />} />
+					<Route path="delete/:id" element={<MouDeletePage />} />
+				</Route>
 				<Route path="uesrs" element={<UsersPage />} />
 			</Route>
 			<Route path="/post/:id" element={<PostPage />} noindex={false} />

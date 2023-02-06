@@ -66,6 +66,11 @@ async def get_mous(db: Session = Depends(get_db)):
     return db_mous
 
 
+@router.delete("/mou/{mou_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_mou(mou_id: int, db: Session = Depends(get_db)):
+    await crud.delete_mou(db=db, mou_id=mou_id)
+
+
 @router.post("/banner/file")
 async def create_banner_file(file: UploadFile, current_user: models.User = Depends(get_current_user)):
     if not current_user.is_admin:

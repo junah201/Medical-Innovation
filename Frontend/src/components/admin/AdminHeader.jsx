@@ -62,6 +62,9 @@ const AdminHeader = () => {
 						<Link to="/admin/sponsoring/all">후원 목록</Link>
 					</li>
 					<li>
+						<Link to="/admin/mou/all">Mou 목록</Link>
+					</li>
+					<li>
 						<Link to="/preparing">기타 설정</Link>
 					</li>
 				</ul>
