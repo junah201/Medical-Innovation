@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import MetaTag from "../components/common/MetaTag";
@@ -12,6 +12,7 @@ const PostPage = () => {
 	const params = useParams();
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [post, setPost] = useState(null);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		fetch(`${API_URL}/api/v1/post/${params.id}`, {
@@ -30,9 +31,11 @@ const PostPage = () => {
 						window.location.href = `https://medical-innovation.s3.ap-northeast-2.amazonaws.com/upload/${data.files[0]}`;
 					}
 				});
+			} else {
+				navigate("/404", { replace: true });
 			}
 		});
-	}, [params.id, searchParams]);
+	}, [params.id, searchParams, navigate]);
 
 	return (
 		<Page>
