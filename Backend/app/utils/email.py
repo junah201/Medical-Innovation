@@ -10,7 +10,7 @@ def send_email(receiver_address: str, subject: str, content: MIMEText) -> None:
     message['From'] = MAIL_SENDER
     message['To'] = receiver_address
     message['Subject'] = subject
-    message.attach(content)
+    message.attach(MIMEText(content))
     session = smtplib.SMTP('smtp.gmail.com', 587)
     session.starttls()
     session.login(MAIL_SENDER, MAIL_PASSWARD)
