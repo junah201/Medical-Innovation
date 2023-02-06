@@ -6,7 +6,7 @@ import SubNav from "../../components/news/SubNav";
 const ColumnPage = () => {
 	return (
 		<BoardPage boardId={5} boardType="">
-			<SubNav />
+			<SubNav select={"기고문"} />
 			<h1>기고문</h1>
 		</BoardPage>
 	);
