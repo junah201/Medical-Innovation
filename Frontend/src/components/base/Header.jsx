@@ -63,6 +63,11 @@ const StyledLoginHeader = styled.div`
 		margin-left: 20px;
 	}
 
+	& a:link,
+	a:visited {
+		color: #000000;
+	}
+
 	@media screen and (max-width: 991px) {
 		& a {
 			font-size: 1vw;

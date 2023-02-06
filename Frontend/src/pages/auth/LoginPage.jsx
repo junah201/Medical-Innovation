@@ -1,8 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate, Link } from "react-router-dom";
-import AuthContext from "../context/AuthContext";
-import { API_URL } from "../utils/const";
+import AuthContext from "../../context/AuthContext";
+import { API_URL } from "../../utils/const";
+import Footer from "../../components/base/Footer";
+import Header from "../../components/base/Header";
 
 const StyledLoginPage = styled.main`
 	display: flex;
@@ -154,37 +156,41 @@ const LoginPage = () => {
 	};
 
 	return (
-		<StyledLoginPage>
-			<StyledLoginWrapper>
-				<form onSubmit={onSubmitHandler}>
-					<h1>로그인</h1>
-					<div>
-						<label>Email</label>
-						<input
-							type="text"
-							placeholder="이메일"
-							value={email}
-							onChange={onEmailChangeHandler}
-							required="required"
-						/>
-					</div>
-					<div>
-						<label>Password</label>
-						<input
-							type="password"
-							placeholder="패스워드"
-							value={password}
-							onChange={onPasswordChangeHandler}
-							required="required"
-						/>
-					</div>
-					<button type="submit">로그인</button>
-					<div>
-						<Link to="/signup">회원가입</Link>
-					</div>
-				</form>
-			</StyledLoginWrapper>
-		</StyledLoginPage>
+		<>
+			<Header />
+			<StyledLoginPage>
+				<StyledLoginWrapper>
+					<form onSubmit={onSubmitHandler}>
+						<h1>로그인</h1>
+						<div>
+							<label>Email</label>
+							<input
+								type="text"
+								placeholder="이메일"
+								value={email}
+								onChange={onEmailChangeHandler}
+								required="required"
+							/>
+						</div>
+						<div>
+							<label>Password</label>
+							<input
+								type="password"
+								placeholder="패스워드"
+								value={password}
+								onChange={onPasswordChangeHandler}
+								required="required"
+							/>
+						</div>
+						<button type="submit">로그인</button>
+						<div>
+							<Link to="/signup">회원가입</Link>
+						</div>
+					</form>
+				</StyledLoginWrapper>
+			</StyledLoginPage>
+			<Footer />
+		</>
 	);
 };
 

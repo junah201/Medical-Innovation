@@ -2,10 +2,11 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
-import LoginPage from "./pages/LoginPage";
-import LogoutPage from "./pages/LogoutPage";
-import SignupPage from "./pages/SignupPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+
+import LoginPage from "./pages/auth/LoginPage";
+import LogoutPage from "./pages/auth/LogoutPage";
+import SignupPage from "./pages/auth/SignupPage";
 
 import NotFoundPage from "./pages/error/NotFoundPage";
 import PreparingPage from "./pages/error/PreparingPage";
@@ -157,6 +158,7 @@ function App() {
 				<Route path="uesrs" element={<UsersPage />} />
 			</Route>
 			<Route path="/post/:id" element={<PostPage />} noindex={false} />
+			<Route path="/404" element={<NotFoundPage />} />
 			<Route path="*" element={<NotFoundPage />} />
 		</Routes>
 	);

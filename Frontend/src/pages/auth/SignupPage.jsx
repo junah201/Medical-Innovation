@@ -1,9 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../context/AuthContext";
+import AuthContext from "../../context/AuthContext";
 
-import { API_URL } from "../utils/const";
+import { API_URL } from "../../utils/const";
+import Footer from "../../components/base/Footer";
+import Header from "../../components/base/Header";
 
 const StyledSignupPage = styled.main`
 	display: flex;
@@ -200,84 +202,88 @@ const SignupPage = () => {
 	};
 
 	return (
-		<StyledSignupPage>
-			<StyledSignupWrapper>
-				<form onSubmit={onSubmitHandler}>
-					<h1>회원가입</h1>
-					<div>
-						<label>이름</label>
-						<input
-							type="text"
-							value={name}
-							onChange={onNameChangeHandler}
-							placeholder="홍길동"
-							required="required"
-						/>
-					</div>
-					<div>
-						<label>휴대폰 번호</label>
-						<input
-							type="tel"
-							value={phone}
-							onChange={onPhoneChangeHandler}
-							placeholder="01012345678"
-							required="required"
-						/>
-					</div>
-					<div>
-						<label>이메일</label>
-						<input
-							type="email"
-							value={email}
-							onChange={onEmailChangeHandler}
-							placeholder="이메일 (아이디)"
-							required="required"
-						/>
-					</div>
-					<div>
-						<label>비밀번호</label>
-						<input
-							type="password"
-							value={password}
-							onChange={onPasswordChangeHandler}
-							placeholder="비밀번호"
-							required="required"
-						/>
-					</div>
-					<div>
-						<label>비밀번호 확인</label>
-						<input
-							type="password"
-							value={confirmPassword}
-							onChange={onConfirmPasswordChangeHandler}
-							placeholder="비밀번호 확인"
-							required="required"
-						/>
-					</div>
-					<div>
-						<label>생년월일</label>
-						<input
-							type="date"
-							value={birth}
-							onChange={onBirthChangeHandler}
-							placeholder="생년월일"
-							required="required"
-						/>
-					</div>
-					<div>
-						<label>이메일 수신여부</label>
-						<input
-							type="checkbox"
-							value={emailenable}
-							onChange={onEmailenableChangeHandler}
-							placeholder="이메일 수신여부"
-							required="required"
-						/>
-					</div>
-					<button type="submit">회원가입</button>
-				</form>
-			</StyledSignupWrapper>
-		</StyledSignupPage>
+		<>
+			<Header />
+			<StyledSignupPage>
+				<StyledSignupWrapper>
+					<form onSubmit={onSubmitHandler}>
+						<h1>회원가입</h1>
+						<div>
+							<label>이름</label>
+							<input
+								type="text"
+								value={name}
+								onChange={onNameChangeHandler}
+								placeholder="홍길동"
+								required="required"
+							/>
+						</div>
+						<div>
+							<label>휴대폰 번호</label>
+							<input
+								type="tel"
+								value={phone}
+								onChange={onPhoneChangeHandler}
+								placeholder="01012345678"
+								required="required"
+							/>
+						</div>
+						<div>
+							<label>이메일</label>
+							<input
+								type="email"
+								value={email}
+								onChange={onEmailChangeHandler}
+								placeholder="이메일 (아이디)"
+								required="required"
+							/>
+						</div>
+						<div>
+							<label>비밀번호</label>
+							<input
+								type="password"
+								value={password}
+								onChange={onPasswordChangeHandler}
+								placeholder="비밀번호"
+								required="required"
+							/>
+						</div>
+						<div>
+							<label>비밀번호 확인</label>
+							<input
+								type="password"
+								value={confirmPassword}
+								onChange={onConfirmPasswordChangeHandler}
+								placeholder="비밀번호 확인"
+								required="required"
+							/>
+						</div>
+						<div>
+							<label>생년월일</label>
+							<input
+								type="date"
+								value={birth}
+								onChange={onBirthChangeHandler}
+								placeholder="생년월일"
+								required="required"
+							/>
+						</div>
+						<div>
+							<label>이메일 수신여부</label>
+							<input
+								type="checkbox"
+								value={emailenable}
+								onChange={onEmailenableChangeHandler}
+								placeholder="이메일 수신여부"
+								required="required"
+							/>
+						</div>
+						<button type="submit">회원가입</button>
+					</form>
+				</StyledSignupWrapper>
+			</StyledSignupPage>
+			<Footer />
+		</>
 	);
 };
 

@@ -73,7 +73,8 @@ const StyledGridBottomItem = styled.div`
 	grid-row: 3 / 4;
 	background-color: ${(props) => props.color || "#ffffff"};
 
-	& a:visited {
+	& a:link,
+	a:visited {
 		color: #000000;
 	}
 
