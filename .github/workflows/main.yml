@@ -27,15 +27,32 @@ jobs:
             name: medical-innovation
             app: python@3.9
             options:
+              env:
+                - name: AWS__ACCESS_KEY_ID
+                  value: ${{ secrets.AWS__ACCESS_KEY_ID }}
+                - name: AWS__S3_BUCKET_NAME
+                  value: ${{ secrets.AWS__S3_BUCKET_NAME }}
+                - name: AWS__SECRET_ACCESS_KEY
+                  value: ${{ secrets.AWS__SECRET_ACCESS_KEY }}
+                - name: DATABASE_URL
+                  value: ${{ secrets.DATABASE_URL }}
+                - name: JWT_ALGORITHM
+                  value: ${{ secrets.JWT_ALGORITHM }}
+                - name: JWT_PRIVATE_KEY
+                  value: ${{ secrets.JWT_PRIVATE_KEY }}
+                - name: JWT_PUBLIC_KEY
+                  value: ${{ secrets.JWT_PUBLIC_KEY }}
+                - name: JWT_SECRET_KEY
+                  value: ${{ secrets.JWT_SECRET_KEY }}
               git:
                 ref: ${{ github.ref }}
                 url: git@github.com:${{ github.repository }}.git
-              port: 8000
+              ports: 8000
               nodeversion: 18
               
               intstall: pip install -r requirements.txt
               build: pip install -r requiremants.txt
-              start: uvicorn app.main:app --host=0.0.0.0 
+              start: uvicorn app.main:app --host=0.0.0.0 --port=8000
             context:
               git:
                 url: git@github.com:${{ github.repository }}.git

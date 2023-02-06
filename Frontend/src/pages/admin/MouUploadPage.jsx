@@ -80,7 +80,7 @@ const BannerUploadPage = () => {
 				console.log(res);
 				if (res.status === 204) {
 					alert("MOU가 업로드 되었습니다.");
-					navigate("/admin/banner/all");
+					navigate("/admin/mou/all");
 					return;
 				}
 			});

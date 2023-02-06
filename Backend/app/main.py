@@ -23,7 +23,7 @@ app.add_middleware(
         "http://localhost:3000",
         "https://medical-innovation.vercel.app",
         "https://www.medicalinnovation.co.kr",
-        "https://medicalinnovation.or.kr"
+        "https://medicalinnovation.or.kr",
     ],
     allow_credentials=True,
     allow_methods=["*"],
