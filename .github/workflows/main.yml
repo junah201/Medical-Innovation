@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    path:
+      - Backend
 
 jobs:
   deploy:
@@ -23,9 +25,19 @@ jobs:
           project: medical-innovation
           yaml: |-
             name: medical-innovation
-            app: web
+            app: python@3.9
             options:
               git:
                 ref: ${{ github.ref }}
                 url: git@github.com:${{ github.repository }}.git
-              docbase: /docs
+              port: 8000
+              nodeversion: 18
+              
+              intstall: pip install -r requirements.txt
+              build: pip install -r requiremants.txt
+              start: uvicorn app.main:app --host=0.0.0.0 
+            context:
+              git:
+                url: git@github.com:${{ github.repository }}.git
+                ref: ${{ github.ref }}
+                path: /Backend

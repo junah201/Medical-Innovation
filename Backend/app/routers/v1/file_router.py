@@ -50,6 +50,26 @@ async def create_mou(mou_create: schemas.MouCreate, current_user: models.User = 
     crud.create_mou(db=db, mou_create=mou_create)
 
 
+@router.post("/mou/file")
+async def create_mou_file(file: UploadFile, current_user: models.User = Depends(get_current_user)):
+    if not current_user.is_admin:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="You do not have permission to delete a post"
+        )
+    filename = f"{int(datetime.utcnow().timestamp())}-{file.filename}"
+    s3 = boto3.resource(
+        "s3",
+        aws_access_key_id=AWS_ACCESS_KEY_ID,
+        aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+        config=boto3.session.Config(signature_version='s3v4')
+    )
+    s3.Bucket(AWS_S3_BUCKET_NAME).put_object(
+        Key=f"mou/{filename}", Body=file.file)
+
+    return {"filename": filename}
+
+
 @router.get("/mou/{filename}", response_class=RedirectResponse)
 async def get_banner(filename: str):
     return RedirectResponse(f"https://medical-innovation.s3.ap-northeast-2.amazonaws.com/mou/{filename}")
