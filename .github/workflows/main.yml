@@ -23,6 +23,7 @@ jobs:
         with:
           token: ${{ secrets.CLOUDTYPE_TOKEN }}
           project: medical-innovation
+          stage: master
           yaml: |-
             name: medical-innovation
             app: python@3.9

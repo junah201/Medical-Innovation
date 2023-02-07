@@ -1,2 +1,2 @@
 export const API_URL =
-	"https://port-0-medical-innovation-sop272gldbzxiqq.gksl2.cloudtype.app";
+	"https://port-0-medical-innovation-3a9t2bldt5vor1.sel3.cloudtype.app";
