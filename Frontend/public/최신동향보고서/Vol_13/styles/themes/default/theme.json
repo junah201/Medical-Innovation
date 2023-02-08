@@ -1,0 +1,11 @@
+{
+  "label": "기본",
+  "version": 1.0,
+  "locales": { 
+    "label": {
+      "root": "Default"	
+    }
+  },
+  "config": {},
+  "templates": {}
+}
