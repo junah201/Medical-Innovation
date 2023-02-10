@@ -16,7 +16,7 @@ const StyledBannerContainerWrapper = styled.div`
 
 const StyledBannersContainer = styled.div`
 	width: 1300px;
-	width: calc(120px * 3);
+	width: ${(props) => (props?.count ? props.count * 120 : 5 * 120)}px;
 	overflow: hidden;
 	background-color: #ffffff;
 `;
@@ -61,31 +61,13 @@ const StyledBannerItem = styled.div`
 	}
 `;
 
-const MobileBanners = () => {
-	const [banners, setBanners] = useState([]);
+const MobileBanners = ({ banners, count }) => {
 	const [bannerIndex, setBannerIndex] = useState(0);
-
-	useEffect(() => {
-		fetch(`${API_URL}/api/v1/file/banners`, {
-			method: "GET",
-			headers: {
-				accept: "application/json",
-				"Content-Type": "application/json",
-			},
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				setBanners(data);
-			})
-			.catch((e) => {
-				console.log(e);
-			});
-	}, []);
 
 	useEffect(() => {
 		const mover = setInterval(() => {
 			setBannerIndex((bannerIndex) => {
-				if (bannerIndex < banners.length / 2 - 4) {
+				if (bannerIndex < banners.length / 2 - count * 2) {
 					return bannerIndex + 1;
 				} else {
 					return 0;
@@ -94,11 +76,11 @@ const MobileBanners = () => {
 		}, 5000);
 
 		return () => clearInterval(mover);
-	}, [banners]);
+	}, [banners, count]);
 
 	return (
 		<StyledBannerContainerWrapper>
-			<StyledBannersContainer>
+			<StyledBannersContainer count={count}>
 				<StyledBanners x={bannerIndex * 120}>
 					{banners.map((item) => {
 						return (

@@ -61,26 +61,8 @@ const StyledBannerItem = styled.div`
 	}
 `;
 
-const DesktopBanners = () => {
-	const [banners, setBanners] = useState([]);
+const BigBanners = ({ banners }) => {
 	const [bannerIndex, setBannerIndex] = useState(0);
-
-	useEffect(() => {
-		fetch(`${API_URL}/api/v1/file/banners`, {
-			method: "GET",
-			headers: {
-				accept: "application/json",
-				"Content-Type": "application/json",
-			},
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				setBanners(data);
-			})
-			.catch((e) => {
-				console.log(e);
-			});
-	}, []);
 
 	useEffect(() => {
 		const mover = setInterval(() => {
@@ -118,4 +100,4 @@ const DesktopBanners = () => {
 	);
 };
 
-export default DesktopBanners;
+export default BigBanners;
