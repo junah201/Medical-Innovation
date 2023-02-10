@@ -60,7 +60,7 @@ const StyledLoginWrapper = styled.div`
 	& input:focus {
 		border-color: #3498db;
 		outline: none;
-		border-bottom-width: 2px;
+		border-width: 2px;
 	}
 
 	& button {
@@ -86,6 +86,12 @@ const StyledLoginWrapper = styled.div`
 	& a:hover {
 		text-decoration: underline;
 	}
+
+	& p {
+		color: red;
+		font-size: 16px;
+		height: 21px;
+	}
 `;
 
 const LoginPage = () => {
@@ -101,24 +107,18 @@ const LoginPage = () => {
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-
-	const onEmailChangeHandler = (e) => {
-		setEmail(e.target.value);
-	};
-
-	const onPasswordChangeHandler = (e) => {
-		setPassword(e.target.value);
-	};
+	const [errorMessage, setErrorMessage] = useState("");
 
 	const onSubmitHandler = (e) => {
 		e.preventDefault();
+		setErrorMessage("");
 
 		if (email === "") {
-			return alert("이메일을 입력해주세요.");
+			return setErrorMessage("이메일을 입력해주세요.");
 		}
 
 		if (password === "") {
-			return alert("패스워드를 입력해주세요.");
+			return setErrorMessage("비밀번호를 입력해주세요.");
 		}
 
 		let body = {
@@ -137,6 +137,7 @@ const LoginPage = () => {
 		fetch(`${API_URL}/api/v1/user/login`, {
 			method: "POST",
 			headers: {
+				accept: "application/json",
 				"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
 			},
 			body: formBody,
@@ -144,7 +145,12 @@ const LoginPage = () => {
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.status !== "success") {
-					return alert(data.detail);
+					if (data.detail === "Incorrect Email or Password") {
+						return setErrorMessage("이메일 또는 비밀번호가 일치하지 않습니다.");
+					}
+					if (data.detail === "Incorrect Email or password") {
+						return setErrorMessage("이메일 또는 비밀번호가 일치하지 않습니다.");
+					}
 				}
 				const expirationTime = new Date(
 					new Date().getTime() + +data.access_token_expires_in
@@ -168,7 +174,9 @@ const LoginPage = () => {
 								type="text"
 								placeholder="이메일"
 								value={email}
-								onChange={onEmailChangeHandler}
+								onChange={(e) => {
+									setEmail(e.target.value);
+								}}
 								required="required"
 							/>
 						</div>
@@ -176,12 +184,15 @@ const LoginPage = () => {
 							<label>Password</label>
 							<input
 								type="password"
-								placeholder="패스워드"
+								placeholder="비밀번호"
 								value={password}
-								onChange={onPasswordChangeHandler}
+								onChange={(e) => {
+									setPassword(e.target.value);
+								}}
 								required="required"
 							/>
 						</div>
+						<p>{errorMessage}</p>
 						<button type="submit">로그인</button>
 						<div>
 							<Link to="/signup">회원가입</Link>

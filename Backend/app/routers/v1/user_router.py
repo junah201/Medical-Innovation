@@ -34,7 +34,7 @@ def login(
     if not user:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Incorrect Email or password",
+            detail="Incorrect Email or Password",
         )
 
     if not verify_password(form_data.password, user.password):

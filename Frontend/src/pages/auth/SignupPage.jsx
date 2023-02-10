@@ -39,9 +39,9 @@ const StyledSignupWrapper = styled.div`
 	}
 
 	& div {
-		height: 45px;
+		height: 60px;
 		width: 100%;
-		margin: 40px 0;
+		margin: 25px 0;
 	}
 
 	& label {
@@ -51,7 +51,7 @@ const StyledSignupWrapper = styled.div`
 	}
 
 	& input {
-		height: 100%;
+		height: 45px;
 		width: 100%;
 		padding-left: 10px;
 		font-size: 17px;
@@ -61,7 +61,7 @@ const StyledSignupWrapper = styled.div`
 	& input:focus {
 		border-color: #3498db;
 		outline: none;
-		border-bottom-width: 2px;
+		border-width: 2px;
 	}
 
 	& input[type="checkbox"] {
@@ -92,6 +92,12 @@ const StyledSignupWrapper = styled.div`
 	& a:hover {
 		text-decoration: underline;
 	}
+
+	& p {
+		color: red;
+		font-size: 16px;
+		height: 21px;
+	}
 `;
 
 const SignupPage = () => {
@@ -112,64 +118,38 @@ const SignupPage = () => {
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [birth, setBirth] = useState("");
 	const [emailenable, setEmailenable] = useState(true);
-
-	const onNameChangeHandler = (e) => {
-		setName(e.target.value);
-	};
-
-	const onPhoneChangeHandler = (e) => {
-		setPhone(e.target.value);
-	};
-
-	const onEmailChangeHandler = (e) => {
-		setEmail(e.target.value);
-	};
-
-	const onPasswordChangeHandler = (e) => {
-		setPassword(e.target.value);
-	};
-
-	const onConfirmPasswordChangeHandler = (e) => {
-		setConfirmPassword(e.target.value);
-	};
-
-	const onBirthChangeHandler = (e) => {
-		setBirth(e.target.value);
-	};
-
-	const onEmailenableChangeHandler = (e) => {
-		setEmailenable(e.target.value);
-	};
+	const [errorMessage, setErrorMessage] = useState("123");
 
 	const onSubmitHandler = (e) => {
+		setErrorMessage("");
 		e.preventDefault();
 
 		if (name === "") {
-			return alert("이름을 입력해주세요.");
+			return setErrorMessage("이름을 입력해주세요.");
 		}
 
 		if (phone === "") {
-			return alert("휴대폰 번호를 입력해주세요.");
+			return setErrorMessage("휴대폰 번호를 입력해주세요.");
 		}
 
 		if (email === "") {
-			return alert("이메일을 입력해주세요.");
+			return setErrorMessage("이메일을 입력해주세요.");
 		}
 
 		if (password === "") {
-			return alert("비밀번호를 입력해주세요.");
+			return setErrorMessage("비밀번호를 입력해주세요.");
 		}
 
 		if (confirmPassword === "") {
-			return alert("비밀번호를 입력해주세요.");
+			return setErrorMessage("비밀번호를 입력해주세요.");
 		}
 
 		if (birth === "") {
-			return alert("비밀번호를 입력해주세요.");
+			return setErrorMessage("비밀번호를 입력해주세요.");
 		}
 
 		if (password !== confirmPassword) {
-			return alert("비밀번호와 비밀번호 확인은 같아야 합니다.");
+			return setErrorMessage("비밀번호와 비밀번호 확인은 같아야 합니다.");
 		}
 
 		let body = {
@@ -194,10 +174,9 @@ const SignupPage = () => {
 				return;
 			}
 			if (res.status === 409) {
-				alert("이미 존재하는 이메일입니다.");
-				return;
+				return setErrorMessage("이미 존재하는 이메일입니다.");
 			}
-			alert("회원가입에 실패했습니다.");
+			return setErrorMessage("회원가입에 실패했습니다.");
 		});
 	};
 
@@ -213,7 +192,9 @@ const SignupPage = () => {
 							<input
 								type="text"
 								value={name}
-								onChange={onNameChangeHandler}
+								onChange={(e) => {
+									setName(e.target.value);
+								}}
 								placeholder="홍길동"
 								required="required"
 							/>
@@ -223,7 +204,9 @@ const SignupPage = () => {
 							<input
 								type="tel"
 								value={phone}
-								onChange={onPhoneChangeHandler}
+								onChange={(e) => {
+									setPhone(e.target.value);
+								}}
 								placeholder="01012345678"
 								required="required"
 							/>
@@ -233,7 +216,9 @@ const SignupPage = () => {
 							<input
 								type="email"
 								value={email}
-								onChange={onEmailChangeHandler}
+								onChange={(e) => {
+									setEmail(e.target.value);
+								}}
 								placeholder="이메일 (아이디)"
 								required="required"
 							/>
@@ -243,7 +228,9 @@ const SignupPage = () => {
 							<input
 								type="password"
 								value={password}
-								onChange={onPasswordChangeHandler}
+								onChange={(e) => {
+									setPassword(e.target.value);
+								}}
 								placeholder="비밀번호"
 								required="required"
 							/>
@@ -253,7 +240,9 @@ const SignupPage = () => {
 							<input
 								type="password"
 								value={confirmPassword}
-								onChange={onConfirmPasswordChangeHandler}
+								onChange={(e) => {
+									setConfirmPassword(e.target.value);
+								}}
 								placeholder="비밀번호 확인"
 								required="required"
 							/>
@@ -263,7 +252,9 @@ const SignupPage = () => {
 							<input
 								type="date"
 								value={birth}
-								onChange={onBirthChangeHandler}
+								onChange={(e) => {
+									setBirth(e.target.value);
+								}}
 								placeholder="생년월일"
 								required="required"
 							/>
@@ -273,11 +264,14 @@ const SignupPage = () => {
 							<input
 								type="checkbox"
 								value={emailenable}
-								onChange={onEmailenableChangeHandler}
+								onChange={(e) => {
+									setEmailenable(e.target.checked);
+								}}
 								placeholder="이메일 수신여부"
 								required="required"
 							/>
 						</div>
+						<p>{errorMessage}</p>
 						<button type="submit">회원가입</button>
 					</form>
 				</StyledSignupWrapper>

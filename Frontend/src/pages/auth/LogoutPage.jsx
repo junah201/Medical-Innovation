@@ -10,7 +10,7 @@ const LogoutPage = () => {
 	logout();
 	navigate("/");
 
-	return <div>Log out</div>;
+	return <div>Logout...</div>;
 };
 
 export default LogoutPage;
