@@ -30,3 +30,13 @@ def get_advisors(skip: int = 0, limit: int = 15, db: Session = Depends(get_db)):
             detail="No advisors found"
         )
     return db_advisors
+
+
+@router.delete("/delete/{advisor_id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_advisor(advisor_id: int, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
+    if not current_user.is_admin:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="You do not have permission to delete a advisor"
+        )
+    crud.delete_advisor(db=db, advisor_id=advisor_id)

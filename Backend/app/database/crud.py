@@ -219,3 +219,9 @@ def get_advisors(db: Session, skip: int = 0, limit: int = 15):
     db_advisors = db.query(models.Advisor).order_by(
         models.Advisor.created_at.desc())
     return db_advisors.offset(skip).limit(limit).all()
+
+
+def delete_advisor(db: Session, advisor_id: int) -> None:
+    db.query(models.Advisor).filter(
+        models.Advisor.id == advisor_id).delete()
+    db.commit()
