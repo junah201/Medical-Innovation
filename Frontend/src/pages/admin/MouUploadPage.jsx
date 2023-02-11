@@ -4,41 +4,11 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import AdminPage from "../../components/admin/AdminPage";
+import AdminUploadForm from "../../components/admin/AdminUploadForm";
 import Message from "../../components/common/Message";
 import AuthContext from "../../context/AuthContext";
 
 import { API_URL } from "../../utils/const";
-
-const StyledBannerUploadForm = styled.form`
-	display: flex;
-	flex-direction: column;
-
-	& * + * {
-		margin-top: 10px;
-	}
-
-	& input,
-	select {
-		width: 800px;
-		height: 30px;
-		padding: 3px;
-		font-size: 16px;
-	}
-
-	& textarea {
-		width: 800px;
-		height: 400px;
-		padding: 3px;
-	}
-
-	& button {
-		padding: 10px 20px;
-		font-size: 20px;
-		font-weight: 600;
-		margin: auto 0;
-		background-color: #ffffff;
-	}
-`;
 
 const BannerUploadPage = () => {
 	const navigate = useNavigate();
@@ -94,7 +64,7 @@ const BannerUploadPage = () => {
 				tip : 이미지 사이즈는 최대한 가로 200px, 세로 110px로 맞춰주세요. 크기
 				상 불가능하다면 최대한 가로 세로 비율을 20 : 11로 맞춰주세요.
 			</Message>
-			<StyledBannerUploadForm onSubmit={handleSubmit}>
+			<AdminUploadForm onSubmit={handleSubmit}>
 				<input
 					type="text"
 					placeholder="회사명"
@@ -122,7 +92,7 @@ const BannerUploadPage = () => {
 				<br />
 				<br />
 				<button type="submit">업로드</button>
-			</StyledBannerUploadForm>
+			</AdminUploadForm>
 		</AdminPage>
 	);
 };

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Page from "../../components/common/Page";
 import SubNav from "../../components/introduction/SubNav";
 import Portrait from "../../components/common/Portrait";
+import PortraitWrapper from "../../components/common/PortraitWrapper";
 import BlankDiv from "../../components/common/BlankDiv";
 
 import orgchart from "../../static/images/조직도.png";
@@ -41,7 +42,7 @@ const OrgchartAndProjectPage = () => {
 			</StyledOrgchartWrapper>
 			<BlankDiv height="50px" />
 			<h1>이사진</h1>
-			<StyledDirectorWrapper>
+			<PortraitWrapper>
 				<Portrait
 					src="/images/Directors/김효수.png"
 					alt="김효수"
@@ -98,7 +99,7 @@ const OrgchartAndProjectPage = () => {
 						"서울대학교병원 의생명연구원 첨단세포유전자치료센터 부소장",
 					]}
 				/>
-			</StyledDirectorWrapper>
+			</PortraitWrapper>
 			<BlankDiv height="50px" />
 			<StyledOrgchartWrapper>
 				<h1>주요사업</h1>

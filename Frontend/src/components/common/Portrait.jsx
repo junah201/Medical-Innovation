@@ -4,6 +4,7 @@ import styled from "styled-components";
 const StyledPortrait = styled.div`
 	border: 1px solid #e1e1e1;
 	max-width: 330px;
+	min-width: 160px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;

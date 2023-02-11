@@ -50,8 +50,12 @@ import SponsorsPage from "./pages/admin/SponsorsPage";
 import MousPage from "./pages/admin/MousPage";
 import MouDeletePage from "./pages/admin/MouDeletePage";
 import MouUploadPage from "./pages/admin/MouUploadPage";
+import AdvisorsPage from "./pages/admin/AdvisorsPage";
+import AdvisorDeletePage from "./pages/admin/AdvisorDeletePage";
+import AdvisorUploadPage from "./pages/admin/AdvisorUploadPage";
 
 import MouPage from "./pages/MouPage";
+import AdvisoryGroupPage from "./pages/AdvisoryGroupPage";
 
 function App() {
 	return (
@@ -66,6 +70,11 @@ function App() {
 				noindex={false}
 			/>
 			<Route path="/mou" element={<MouPage />} noindex={false} />
+			<Route
+				path="/advisory_group"
+				element={<AdvisoryGroupPage />}
+				noindex={false}
+			/>
 			<Route path="/preparing" element={<PreparingPage />} />
 			<Route path="/introduction" noindex={false}>
 				<Route path="founder" element={<FounderPage />} noindex={false} />
@@ -154,6 +163,11 @@ function App() {
 					<Route path="all" element={<MousPage />} />
 					<Route path="upload" element={<MouUploadPage />} />
 					<Route path="delete/:id" element={<MouDeletePage />} />
+				</Route>
+				<Route path="advisor">
+					<Route path="all" element={<AdvisorsPage />} />
+					<Route path="upload" element={<AdvisorUploadPage />} />
+					<Route path="delete/:id" element={<AdvisorDeletePage />} />
 				</Route>
 				<Route path="uesrs" element={<UsersPage />} />
 			</Route>
