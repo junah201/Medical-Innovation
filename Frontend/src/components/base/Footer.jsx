@@ -19,37 +19,35 @@ const StyledFooter = styled.footer`
 `;
 
 const StyledBottomFooter = styled.div`
-	overflow: hidden;
-	height: 100px;
-	background-color: #474747;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	overflow: hidden;
+	height: 100px;
+	background-color: #474747;
 
-	& * {
-		text-align: center;
+	& > div {
+		display: flex;
+		flex-direction: column;
 	}
 
-	&,
 	& * {
 		color: #ffffff;
-		font-size: 20px;
 	}
 	& > * + * {
 		margin-left: 30px;
 	}
 
 	@media screen and (max-width: 991px) {
-		flex-direction: column;
 		& * {
-			font-size: 12px;
+			font-size: 10px;
 		}
 		& br {
 		}
 	}
 	@media screen and (min-width: 992px) {
 		& * {
-			font-size: 20px;
+			font-size: 16px;
 		}
 
 		& br {
@@ -61,10 +59,9 @@ const StyledTopFooter = styled.div`
 	height: 100px;
 	background-color: #ffffff;
 	display: flex;
+	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-
-	padding: 0 5%;
 
 	& img {
 		height: 60px;
@@ -142,9 +139,20 @@ const Footer = () => {
 				</div>
 			</StyledTopFooter>
 			<StyledBottomFooter>
-				<Link to="/privacy-policy">개인정보처리방침</Link>
-				<p>(04736) 서울특별시 성동구 독서당로 166 1018호</p>
-				<p>Copyright(c) 2016 재단법인 미래의학연구재단. All rights reserved.</p>
+				<div>
+					<strong>재단법인 미래의학연구재단</strong>
+					<p>이사장 : 전승호</p>
+					<p>주소 : (04736) 서울특별시 성동구 독서당로 166</p>
+					<p>
+						Copyright(c) 2016 재단법인 미래의학연구재단. All rights reserved.
+					</p>
+				</div>
+				<div>
+					<strong>관련 링크</strong>
+					<Link to="/privacy-policy">개인정보처리방침</Link>
+					<Link to="/mou">협력기관</Link>
+					<Link to="/advisory_group">자문단</Link>
+				</div>
 			</StyledBottomFooter>
 		</StyledFooter>
 	);
