@@ -217,7 +217,7 @@ def create_advisor(db: Session, advisor_create: schemas.AdvisorCreate) -> None:
 
 def get_advisors(db: Session, skip: int = 0, limit: int = 15):
     db_advisors = db.query(models.Advisor).order_by(
-        models.Advisor.created_at.desc())
+        models.Advisor.name.desc())
     return db_advisors.offset(skip).limit(limit).all()
 
 
