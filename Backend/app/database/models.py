@@ -335,3 +335,51 @@ class SponsoringCompany(Base):
 
     class Config:
         orm_mode = True
+
+
+class Advisor(Base):
+    __tablename__ = "advisor"
+    __table_args__ = {'mysql_collate': 'utf8_general_ci'}
+
+    id = Column(
+        Integer,
+        primary_key=True,
+        unique=True,
+        comment="자문단 고유 번호"
+    )
+    name = Column(
+        VARCHAR(30),
+        nullable=False,
+        comment="자문단 위원 이름"
+    )
+    description = Column(
+        VARCHAR(500),
+        nullable=False,
+        comment="자문단 위원 설명"
+    )
+    type = Column(
+        VARCHAR(20),
+        nullable=False,
+        comment="자문단 위원 유형"
+    )
+    filename = Column(
+        VARCHAR(40),
+        nullable=False,
+        comment="이미지 파일명"
+    )
+    created_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        comment="생성 시점"
+    )
+    updated_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        onupdate=func.now(),
+        comment="마지막 수정 시점"
+    )
+
+    class Config:
+        orm_mode = True

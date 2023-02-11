@@ -199,3 +199,23 @@ def delete_sponsoring_company(db: Session, sponsoring_company_id: int) -> None:
     db.query(models.SponsoringCompany).filter(
         models.SponsoringCompany.id == sponsoring_company_id).delete()
     db.commit()
+
+
+def create_advisor(db: Session, advisor_create: schemas.AdvisorCreate) -> None:
+    utcnow = datetime.utcnow()
+    db_advisor = models.Advisor(
+        name=advisor_create.name,
+        type=advisor_create.type,
+        filename=advisor_create.filename,
+        description=advisor_create.description,
+        created_at=utcnow,
+        updated_at=utcnow
+    )
+    db.add(db_advisor)
+    db.commit()
+
+
+def get_advisors(db: Session, skip: int = 0, limit: int = 15):
+    db_advisors = db.query(models.Advisor).order_by(
+        models.Advisor.created_at.desc())
+    return db_advisors.offset(skip).limit(limit).all()

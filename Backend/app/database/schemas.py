@@ -189,3 +189,23 @@ class SponsoringCompany(SponsoringCompanyCreate):
 
     class Config:
         orm_mode = True
+
+
+class AdvisorCreate(BaseModel):
+    name: str
+    type: str
+    description: str
+    filename: str
+
+
+class Advisor(BaseModel):
+    id: int
+    name: str
+    type: str
+    description: str
+    filename: str
+    created_at: datetime
+    updated_at: datetime
+
+    class Config:
+        orm_mode = True
