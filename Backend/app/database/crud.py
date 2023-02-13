@@ -215,10 +215,14 @@ def create_advisor(db: Session, advisor_create: schemas.AdvisorCreate) -> None:
     db.commit()
 
 
-def get_advisors(db: Session, skip: int = 0, limit: int = 15):
+def get_advisors(db: Session, skip: int = 0, limit: int = 300):
     db_advisors = db.query(models.Advisor).order_by(
         models.Advisor.name)
     return db_advisors.offset(skip).limit(limit).all()
+
+
+def get_advisor(db: Session, advisor_id: int):
+    return db.query(models.Advisor).filter(models.Advisor.id == advisor_id).first()
 
 
 def delete_advisor(db: Session, advisor_id: int) -> None:
