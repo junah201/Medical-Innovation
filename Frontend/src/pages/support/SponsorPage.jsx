@@ -32,7 +32,7 @@ const SponsorPage = () => {
 	const [sponsorshipStatus, setSponsorshipStatus] = useState([]);
 
 	useEffect(() => {
-		fetch(`${API_URL}/api/v1/file/sponsoring_companies`, {
+		fetch(`${API_URL}/api/v1/sponsoring_company/all`, {
 			method: "GET",
 			headers: {
 				accept: "application/json",

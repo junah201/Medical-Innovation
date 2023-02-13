@@ -26,26 +26,3 @@ async def upload_file(file: UploadFile):
 @router.get("/download/{filename}", response_class=RedirectResponse)
 async def download_file(filename: str):
     return RedirectResponse(f"https://medical-innovation.s3.ap-northeast-2.amazonaws.com/upload/{filename}")
-
-
-@router.post("/sponsoring_company", status_code=status.HTTP_204_NO_CONTENT)
-async def create_sponsoring_company(sponsoring_company_create: schemas.SponsoringCompanyCreate, db: Session = Depends(get_db)):
-    crud.create_sponsoring_company(
-        db=db, sponsoring_company_create=sponsoring_company_create)
-
-
-@router.get("/sponsoring_companies", response_model=List[schemas.SponsoringCompany])
-async def get_sponsoring_companies(db: Session = Depends(get_db)):
-    db_sponsoring_companies = crud.get_sponsoring_companies(db=db)
-    if not db_sponsoring_companies:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="not found"
-        )
-    return db_sponsoring_companies
-
-
-@router.delete("/sponsoring_company/{sponsoring_company_id}", status_code=status.HTTP_204_NO_CONTENT)
-async def get_sponsoring_companies(sponsoring_company_id: int, db: Session = Depends(get_db)):
-    crud.delete_sponsoring_company(
-        db=db, sponsoring_company_id=sponsoring_company_id)

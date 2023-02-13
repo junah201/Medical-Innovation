@@ -24,7 +24,7 @@ const BannerUploadPage = () => {
 		const formData = new FormData();
 		formData.append("file", file);
 		formData.append("name", name);
-		formData.append("link", link | "#");
+		formData.append("link", link || "#");
 		formData.append("year", 2023);
 		formData.append("banner_end_at", `${bannerEndAt}T00:00:00.000Z`);
 

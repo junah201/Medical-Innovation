@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
 import axios from "axios";
 
 import AdminPage from "../../components/admin/AdminPage";
@@ -12,10 +11,11 @@ const SponsoringCompaniesPage = () => {
 
 	useEffect(() => {
 		axios({
-			url: `${API_URL}/api/v1/file/sponsoring_companies`,
+			url: `${API_URL}/api/v1/sponsoring_company/all`,
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
+				accept: "application/json",
 			},
 		}).then((res) => {
 			setCompanies(res.data);

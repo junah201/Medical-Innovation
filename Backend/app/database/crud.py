@@ -185,11 +185,11 @@ def get_sponsoring_companies(db: Session) -> List[models.Banner]:
     return db.query(models.SponsoringCompany).order_by(models.SponsoringCompany.year.desc()).all()
 
 
-def create_sponsoring_company(db: Session, sponsoring_company_create: schemas.SponsoringCompanyCreate):
+def create_sponsoring_company(db: Session, sponsoring_company_create: schemas.SponsoringCompanyCreate, filename: str = ""):
     utcnow = datetime.utcnow()
     db_sponsoring_company = models.SponsoringCompany(
         name=sponsoring_company_create.name,
-        filename=sponsoring_company_create.filename,
+        filename=filename,
         link=sponsoring_company_create.link,
         year=sponsoring_company_create.year,
         created_at=utcnow,
@@ -197,6 +197,10 @@ def create_sponsoring_company(db: Session, sponsoring_company_create: schemas.Sp
     )
     db.add(db_sponsoring_company)
     db.commit()
+
+
+def get_sponsoring_company_by_id(db: Session, sponsoring_company_id: int) -> Optional[models.SponsoringCompany]:
+    return db.query(models.SponsoringCompany).filter(models.SponsoringCompany.id == sponsoring_company_id).first()
 
 
 def delete_sponsoring_company(db: Session, sponsoring_company_id: int) -> None:

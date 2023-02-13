@@ -193,15 +193,19 @@ class Sponsor(SponsorCreate):
         orm_mode = True
 
 
+@form_body
 class SponsoringCompanyCreate(BaseModel):
     name: str
-    filename: str
     link: str
     year: int
 
 
-class SponsoringCompany(SponsoringCompanyCreate):
+class SponsoringCompany(BaseModel):
     id: int
+    name: str
+    filename: str
+    link: str
+    year: int
     created_at: datetime
     updated_at: datetime
 

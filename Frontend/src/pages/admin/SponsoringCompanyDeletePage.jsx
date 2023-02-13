@@ -14,7 +14,7 @@ const SponsoringCompanyDeletePage = () => {
 
 	const handleDelete = () => {
 		axios({
-			url: `${API_URL}/api/v1/file/sponsoring_company/${params.id}`,
+			url: `${API_URL}/api/v1/sponsoring_company/${params.id}`,
 			method: "DELETE",
 			headers: {
 				Accept: "application/json",

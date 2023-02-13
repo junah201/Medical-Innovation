@@ -61,9 +61,12 @@ const SponsoringCompanyUploadPage = () => {
 		const formData = new FormData();
 		console.log(file);
 		formData.append("file", file);
+		formData.append("name", name);
+		formData.append("link", link || "#");
+		formData.append("year", year);
 
 		axios({
-			url: `${API_URL}/api/v1/file/banner/file`,
+			url: `${API_URL}/api/v1/sponsoring_company/create`,
 			method: "POST",
 			headers: {
 				accept: "application/json",
@@ -72,26 +75,13 @@ const SponsoringCompanyUploadPage = () => {
 			},
 			data: formData,
 		}).then((res) => {
-			fetch(`${API_URL}/api/v1/file/sponsoring_company`, {
-				method: "POST",
-				headers: {
-					accept: "application/json",
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${authCtx.accessToken}`,
-				},
-				body: JSON.stringify({
-					name: name,
-					link: link,
-					filename: res.data.filename,
-					year: year,
-				}),
-			}).then((res) => {
-				console.log(res);
-				if (res.status === 204) {
-					alert("후원기업이 업로드 되었습니다.");
-					navigate("/admin/sponsoring_company/all");
-				}
-			});
+			console.log(res);
+			if (res.status === 204) {
+				alert("후원기업이 업로드 되었습니다.");
+				navigate("/admin/sponsoring_company/all");
+				return;
+			}
+			alert("후원기업 업로드에 실패했습니다.");
 		});
 	};
 
@@ -112,12 +102,11 @@ const SponsoringCompanyUploadPage = () => {
 					/>
 					<input
 						type="text"
-						placeholder="바로가기 링크"
+						placeholder="바로가기 링크 (만약 없을 경우 비워주세요)"
 						value={link}
 						onChange={(e) => {
 							setLink(e.target.value);
 						}}
-						required={true}
 					/>
 					<input
 						type="text"
