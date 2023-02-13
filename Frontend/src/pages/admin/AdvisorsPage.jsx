@@ -11,7 +11,7 @@ const AdvisorsPage = () => {
 
 	useEffect(() => {
 		axios({
-			url: `${API_URL}/api/v1/advisor/all`,
+			url: `${API_URL}/api/v1/advisor/all?skip=0&limit=300`,
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
