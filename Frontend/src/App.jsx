@@ -53,6 +53,7 @@ import MouUploadPage from "./pages/admin/MouUploadPage";
 import AdvisorsPage from "./pages/admin/AdvisorsPage";
 import AdvisorDeletePage from "./pages/admin/AdvisorDeletePage";
 import AdvisorUploadPage from "./pages/admin/AdvisorUploadPage";
+import AdvisorEditPage from "./pages/admin/AdvisorEditPage";
 
 import MouPage from "./pages/MouPage";
 import AdvisoryGroupPage from "./pages/AdvisoryGroupPage";
@@ -167,6 +168,7 @@ function App() {
 				<Route path="advisor">
 					<Route path="all" element={<AdvisorsPage />} />
 					<Route path="upload" element={<AdvisorUploadPage />} />
+					<Route path="edit/:id" element={<AdvisorEditPage />} />
 					<Route path="delete/:id" element={<AdvisorDeletePage />} />
 				</Route>
 				<Route path="uesrs" element={<UsersPage />} />

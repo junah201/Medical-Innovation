@@ -71,7 +71,7 @@ const AdvisoryGroup = ({ advisorList, advisorType }) => {
 									src={`${S3_URL}/upload/${advisor.filename}`}
 									alt={advisor.name}
 									name={advisor.name}
-									description={advisor.description.split(",")}
+									description={advisor.description.split("\n")}
 									key={advisor.id}
 								/>
 							);

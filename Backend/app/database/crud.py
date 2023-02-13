@@ -225,6 +225,22 @@ def get_advisor(db: Session, advisor_id: int):
     return db.query(models.Advisor).filter(models.Advisor.id == advisor_id).first()
 
 
+def update_advisor_content(db: Session, advisor_id: int, advisor_update: schemas.AdvisorUpdate):
+    db_advisor = db.query(models.Advisor).filter(
+        models.Advisor.id == advisor_id).first()
+    db_advisor.name = advisor_update.name
+    db_advisor.type = advisor_update.type
+    db_advisor.description = advisor_update.description
+    db.commit()
+
+
+def update_advisor_image(db: Session, advisor_id: int, filename: str):
+    db_advisor = db.query(models.Advisor).filter(
+        models.Advisor.id == advisor_id).first()
+    db_advisor.filename = filename
+    db.commit()
+
+
 def delete_advisor(db: Session, advisor_id: int) -> None:
     db.query(models.Advisor).filter(
         models.Advisor.id == advisor_id).delete()

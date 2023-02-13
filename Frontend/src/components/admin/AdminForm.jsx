@@ -6,7 +6,7 @@ const StyledAdminForm = styled.form`
 	flex-direction: column;
 
 	& * + * {
-		margin-top: 10px;
+		margin-bottom: 10px;
 	}
 
 	& input,
@@ -15,12 +15,14 @@ const StyledAdminForm = styled.form`
 		height: 30px;
 		padding: 3px;
 		font-size: 16px;
+		border: 1px solid #000000;
 	}
 
 	& textarea {
 		width: 800px;
 		height: 400px;
 		padding: 3px;
+		border: 1px solid #000000;
 	}
 
 	& button {

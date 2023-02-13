@@ -198,6 +198,12 @@ class AdvisorCreate(BaseModel):
     filename: str
 
 
+class AdvisorUpdate(BaseModel):
+    name: str
+    type:  str
+    description: str
+
+
 class Advisor(BaseModel):
     id: int
     name: str

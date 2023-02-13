@@ -18,13 +18,8 @@ const StyledPortraitWrapper = styled.div`
 const PortraitWrapper = ({ children }) => {
 	const [count, setCount] = useState(5);
 
-	const isFiveBanner = useMediaQuery({
-		minWidth: 180 * 5 + 20 + 1 + 300,
-		maxWidth: 180 * 6 + 20 + 300,
-	});
 	const isFourBanner = useMediaQuery({
 		minWidth: 180 * 4 + 20 + 1 + 300,
-		maxWidth: 180 * 5 + 20 + 300,
 	});
 	const isThreeBanner = useMediaQuery({
 		minWidth: 180 * 3 + 20 + 1 + 300,
@@ -39,9 +34,7 @@ const PortraitWrapper = ({ children }) => {
 	});
 
 	useEffect(() => {
-		if (isFiveBanner) {
-			setCount(5);
-		} else if (isFourBanner) {
+		if (isFourBanner) {
 			setCount(4);
 		} else if (isThreeBanner) {
 			setCount(3);
@@ -50,9 +43,9 @@ const PortraitWrapper = ({ children }) => {
 		} else if (isOneBanner) {
 			setCount(2);
 		} else {
-			setCount(5);
+			setCount(4);
 		}
-	}, [isFiveBanner, isFourBanner, isThreeBanner, isTwoBanner, isOneBanner]);
+	}, [isFourBanner, isThreeBanner, isTwoBanner, isOneBanner]);
 
 	return (
 		<StyledPortraitWrapper count={count}>{children}</StyledPortraitWrapper>
