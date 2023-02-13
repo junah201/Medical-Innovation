@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import AdminPage from "./../../components/admin/AdminPage";
-import AdminUploadForm from "../../components/admin/AdminUploadForm";
+import AdminForm from "../../components/admin/AdminForm";
 import Message from "../../components/common/Message";
 
 import AuthContext from "../../context/AuthContext";
@@ -90,7 +90,7 @@ const AdvisorUploadPage = () => {
 				각 이미지의 크기가 다르게 나올 수 있습니다. (사진 앱 혹은 이미지 크기
 				조정 사이트에서 이미지 사이즈를 조정해주세요.)
 			</Message>
-			<AdminUploadForm onSubmit={handleSubmit}>
+			<AdminForm onSubmit={handleSubmit}>
 				<input
 					type="text"
 					placeholder="이름 (성함)"
@@ -132,7 +132,7 @@ const AdvisorUploadPage = () => {
 					}}
 				/>
 				<button type="submit">업로드</button>
-			</AdminUploadForm>
+			</AdminForm>
 		</AdminPage>
 	);
 };

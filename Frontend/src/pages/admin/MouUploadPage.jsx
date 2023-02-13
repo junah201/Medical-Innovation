@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import AdminPage from "../../components/admin/AdminPage";
-import AdminUploadForm from "../../components/admin/AdminUploadForm";
+import AdminForm from "../../components/admin/AdminForm";
 import Message from "../../components/common/Message";
 import AuthContext from "../../context/AuthContext";
 
@@ -64,7 +64,7 @@ const BannerUploadPage = () => {
 				tip : 이미지 사이즈는 최대한 가로 200px, 세로 110px로 맞춰주세요. 크기
 				상 불가능하다면 최대한 가로 세로 비율을 20 : 11로 맞춰주세요.
 			</Message>
-			<AdminUploadForm onSubmit={handleSubmit}>
+			<AdminForm onSubmit={handleSubmit}>
 				<input
 					type="text"
 					placeholder="회사명"
@@ -92,7 +92,7 @@ const BannerUploadPage = () => {
 				<br />
 				<br />
 				<button type="submit">업로드</button>
-			</AdminUploadForm>
+			</AdminForm>
 		</AdminPage>
 	);
 };

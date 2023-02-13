@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const StyledAdminUploadForm = styled.form`
+const StyledAdminForm = styled.form`
 	display: flex;
 	flex-direction: column;
 
@@ -33,12 +33,8 @@ const StyledAdminUploadForm = styled.form`
 	}
 `;
 
-const AdminUploadForm = ({ onSubmit, children }) => {
-	return (
-		<StyledAdminUploadForm onSubmit={onSubmit}>
-			{children}
-		</StyledAdminUploadForm>
-	);
+const AdminForm = ({ onSubmit, children }) => {
+	return <StyledAdminForm onSubmit={onSubmit}>{children}</StyledAdminForm>;
 };
 
-export default AdminUploadForm;
+export default AdminForm;
