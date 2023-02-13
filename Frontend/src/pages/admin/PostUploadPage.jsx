@@ -7,6 +7,7 @@ import AdminPage from "../../components/admin/AdminPage";
 import { API_URL } from "../../utils/const";
 import AuthContext from "../../context/AuthContext";
 import Message from "../../components/common/Message";
+import PostContent from "../../components/post/PostContent";
 import { useNavigate } from "react-router-dom";
 import "./../PostPage.css";
 
@@ -84,6 +85,9 @@ const PostUploadPage = () => {
 	const [imgSize, setImgSize] = useState("30%");
 	const [imgSort, setImgSort] = useState("center");
 
+	const [link, setLink] = useState("");
+	const [linkPreview, setLinkPreview] = useState("");
+
 	const handleImgaeUpload = (e) => {
 		e.preventDefault();
 
@@ -103,6 +107,14 @@ const PostUploadPage = () => {
 			setContent((prev) => {
 				return `${prev}\n\n<div class="img-container ${imgSort}"><img width = ${imgSize} src="https://medical-innovation.s3.ap-northeast-2.amazonaws.com/upload/${res.data.filenames}" /></div>\n\n`;
 			});
+		});
+	};
+
+	const handleLinkUpload = (e) => {
+		e.preventDefault();
+
+		setContent((prev) => {
+			return `${prev} <a href="${link}">${linkPreview}</a> `;
 		});
 	};
 
@@ -201,6 +213,8 @@ const PostUploadPage = () => {
 							setContent(e.target.value);
 						}}
 					/>
+					<br />
+					<br />
 					<div>
 						<label>이미지 첨부</label>
 						<br />
@@ -264,6 +278,30 @@ const PostUploadPage = () => {
 					</div>
 					<br />
 					<div>
+						<label>링크 첨부</label>
+						<br />
+						<input
+							type="text"
+							placeholder="링크"
+							value={link}
+							onChange={(e) => {
+								setLink(e.target.value);
+							}}
+						/>
+						<br />
+						<input
+							type="text"
+							placeholder="미리보기 텍스트"
+							value={linkPreview}
+							onChange={(e) => {
+								setLinkPreview(e.target.value);
+							}}
+						/>
+						<br />
+						<button onClick={handleLinkUpload}>링크 추가</button>
+					</div>
+					<br />
+					<div>
 						<label>하단 첨부파일 (한번에 여러개 선택)</label>
 						<br />
 						<input
@@ -285,19 +323,10 @@ const PostUploadPage = () => {
 			<br />
 			<StyledPostUploadPage>
 				<h1>게시물 미리보기</h1>
-				<StyledPostContent
-					dangerouslySetInnerHTML={{ __html: content }}
-				></StyledPostContent>
+				<PostContent content={content} />
 			</StyledPostUploadPage>
 		</AdminPage>
 	);
 };
-
-const StyledPostContent = styled.div`
-	min-height: calc(100vh - 700px);
-	padding: 20px 0;
-	white-space: pre-wrap;
-	border: 1px solid black;
-`;
 
 export default PostUploadPage;

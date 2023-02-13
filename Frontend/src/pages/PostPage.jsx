@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import MetaTag from "../components/common/MetaTag";
 import Page from "../components/common/Page";
+import PostContent from "../components/post/PostContent";
 
 import { API_URL } from "../utils/const";
 import "./PostPage.css";
@@ -59,9 +60,7 @@ const PostPage = () => {
 							<small>게시판</small> {post.board.name}
 						</span>
 					</StyledPostDetail>
-					<StyledPostContent
-						dangerouslySetInnerHTML={{ __html: post.content }}
-					></StyledPostContent>
+					<PostContent content={post.content} />
 					{post.files.length ? (
 						<StyledPostFiles>
 							<span>첨부파일</span>
@@ -95,16 +94,6 @@ const StyledPostDetail = styled.div`
 
 	& span {
 		font-size: 14px;
-	}
-`;
-
-const StyledPostContent = styled.p`
-	min-height: calc(100vh - 700px);
-	padding: 20px 0;
-	white-space: pre-wrap;
-
-	& div {
-		width: 100%;
 	}
 `;
 
