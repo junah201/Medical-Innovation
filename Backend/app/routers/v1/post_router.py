@@ -5,6 +5,7 @@ import json
 from app.database import crud, schemas, models
 from app.database.database import get_db
 from app.utils.oauth2 import get_current_user
+from app.utils.aws_s3 import upload_file, delete_file
 
 router = APIRouter(
     prefix="/api/v1/post",
@@ -76,4 +77,14 @@ def delete_post(post_id: int, current_user: models.User = Depends(get_current_us
             status_code=status.HTTP_403_FORBIDDEN,
             detail="You do not have permission to delete a post"
         )
+    db_post = crud.get_post_by_post_id(db=db, post_id=post_id)
+    if not db_post:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Post with id {post_id} does not exist"
+        )
+
+    for file in json.loads(db_post.files):
+        delete_file(filename=file, folder="upload")
+
     crud.delete_post(db=db, post_id=post_id)
