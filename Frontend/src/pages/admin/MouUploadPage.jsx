@@ -22,9 +22,30 @@ const BannerUploadPage = () => {
 
 		const formData = new FormData();
 		formData.append("file", file);
+		formData.append("name", name);
+		formData.append("link", link);
+		formData.append("filename", "");
+
+		/*
+		formData.append(
+			"mou_create",
+			new Blob(
+				[
+					JSON.stringify({
+						name: name,
+						link: link,
+						filename: "",
+					}),
+				],
+				{
+					type: "application/json",
+				}
+			)
+		);
+		*/
 
 		axios({
-			url: `${API_URL}/api/v1/file/mou/file`,
+			url: `${API_URL}/api/v1/mou/create`,
 			method: "POST",
 			headers: {
 				accept: "application/json",
@@ -33,26 +54,13 @@ const BannerUploadPage = () => {
 			},
 			data: formData,
 		}).then((res) => {
-			fetch(`${API_URL}/api/v1/file/mou`, {
-				method: "POST",
-				headers: {
-					accept: "application/json",
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${authCtx.accessToken}`,
-				},
-				body: JSON.stringify({
-					name: name,
-					link: link,
-					filename: res.data.filename,
-				}),
-			}).then((res) => {
-				console.log(res);
-				if (res.status === 204) {
-					alert("MOU가 업로드 되었습니다.");
-					navigate("/admin/mou/all");
-					return;
-				}
-			});
+			if (res.status === 204) {
+				alert("MOU가 업로드 되었습니다.");
+				navigate("/admin/mou/all");
+				return;
+			}
+			alert("MOU 업로드에 실패했습니다.");
+			return;
 		});
 	};
 

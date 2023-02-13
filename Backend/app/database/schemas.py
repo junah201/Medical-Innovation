@@ -1,7 +1,17 @@
+from fastapi import Form
 from datetime import datetime
 from pydantic import BaseModel, validator, EmailStr, constr
 from typing import Optional, List, Union
-import json
+
+
+def form_body(cls):
+    cls.__signature__ = cls.__signature__.replace(
+        parameters=[
+            arg.replace(default=Form(...))
+            for arg in cls.__signature__.parameters.values()
+        ]
+    )
+    return cls
 
 
 class UserCreate(BaseModel):
@@ -135,14 +145,17 @@ class Banner(BannerCreate):
         orm_mode = True
 
 
+@form_body
 class MouCreate(BaseModel):
     name: str
-    filename: str
     link: str
 
 
-class Mou(MouCreate):
+class Mou(BaseModel):
     id: int
+    name: str
+    link: str
+    filename: str
     created_at: datetime
     updated_at: datetime
 

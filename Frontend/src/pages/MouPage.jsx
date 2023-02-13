@@ -31,7 +31,7 @@ const MouPage = () => {
 	const [MoushipStatus, setMoushipStatus] = useState([]);
 
 	useEffect(() => {
-		fetch(`${API_URL}/api/v1/file/mous`, {
+		fetch(`${API_URL}/api/v1/mou/all`, {
 			method: "GET",
 			headers: {
 				accept: "application/json",

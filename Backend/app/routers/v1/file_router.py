@@ -1,13 +1,12 @@
 from datetime import datetime
 
-from fastapi import APIRouter, HTTPException, Depends, File, UploadFile
-from fastapi.responses import FileResponse, RedirectResponse
+from fastapi import APIRouter, HTTPException, Depends, File, UploadFile, status
+from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
-from starlette import status
 from app.database import crud, schemas, models
 from app.database.database import get_db
-from app.common.config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME
 from app.utils.oauth2 import get_current_user
+from app.utils.aws_s3 import upload_file
 from typing import Union, List
 import os
 import boto3
@@ -17,78 +16,16 @@ router = APIRouter(
     prefix="/api/v1/file",
 )
 
-UPLOAD_DIRECTORY = "./files"
-
 
 @router.post("/upload")
 async def upload_file(file: UploadFile):
-    filename = f"{int(datetime.utcnow().timestamp())}-{file.filename}"
-    s3 = boto3.resource(
-        "s3",
-        aws_access_key_id=AWS_ACCESS_KEY_ID,
-        aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
-        config=boto3.session.Config(signature_version='s3v4')
-    )
-    s3.Bucket(AWS_S3_BUCKET_NAME).put_object(
-        Key=f"upload/{filename}", Body=file.file)
-
-    return {"filenames": filename}
+    filename: str = upload_file(file, "upload")
+    return {"filename": filename}
 
 
 @router.get("/download/{filename}", response_class=RedirectResponse)
 async def download_file(filename: str):
     return RedirectResponse(f"https://medical-innovation.s3.ap-northeast-2.amazonaws.com/upload/{filename}")
-
-
-@router.post("/mou", status_code=status.HTTP_204_NO_CONTENT)
-async def create_mou(mou_create: schemas.MouCreate, current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
-    if not current_user.is_admin:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="You do not have permission to delete a post"
-        )
-    crud.create_mou(db=db, mou_create=mou_create)
-
-
-@router.post("/mou/file")
-async def create_mou_file(file: UploadFile, current_user: models.User = Depends(get_current_user)):
-    if not current_user.is_admin:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="You do not have permission to delete a post"
-        )
-    filename = f"{int(datetime.utcnow().timestamp())}-{file.filename}"
-    s3 = boto3.resource(
-        "s3",
-        aws_access_key_id=AWS_ACCESS_KEY_ID,
-        aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
-        config=boto3.session.Config(signature_version='s3v4')
-    )
-    s3.Bucket(AWS_S3_BUCKET_NAME).put_object(
-        Key=f"mou/{filename}", Body=file.file)
-
-    return {"filename": filename}
-
-
-@router.get("/mou/{filename}", response_class=RedirectResponse)
-async def get_banner(filename: str):
-    return RedirectResponse(f"https://medical-innovation.s3.ap-northeast-2.amazonaws.com/mou/{filename}")
-
-
-@router.get("/mous", response_model=List[schemas.Mou])
-async def get_mous(db: Session = Depends(get_db)):
-    db_mous = crud.get_mous(db=db)
-    if not db_mous:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="not found"
-        )
-    return db_mous
-
-
-@router.delete("/mou/{mou_id}", status_code=status.HTTP_204_NO_CONTENT)
-async def delete_mou(mou_id: int, db: Session = Depends(get_db)):
-    crud.delete_mou(db=db, mou_id=mou_id)
 
 
 @router.post("/banner/file")
@@ -98,16 +35,8 @@ async def create_banner_file(file: UploadFile, current_user: models.User = Depen
             status_code=status.HTTP_403_FORBIDDEN,
             detail="You do not have permission to delete a post"
         )
-    filename = f"{int(datetime.utcnow().timestamp())}-{file.filename}"
-    s3 = boto3.resource(
-        "s3",
-        aws_access_key_id=AWS_ACCESS_KEY_ID,
-        aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
-        config=boto3.session.Config(signature_version='s3v4')
-    )
-    s3.Bucket(AWS_S3_BUCKET_NAME).put_object(
-        Key=f"banner/{filename}", Body=file.file)
 
+    filename = upload_file(file, "banner")
     return {"filename": filename}
 
 

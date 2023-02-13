@@ -3,7 +3,7 @@ from app.database import models, schemas
 from app.utils.verify import hash_password
 from datetime import datetime
 import json
-from typing import List
+from typing import List, Optional
 
 
 def create_user(db: Session, user_create: schemas.UserCreate):
@@ -38,11 +38,11 @@ def get_users(db: Session, skip: int = 0, limit: int = 20):
     return db_users.offset(skip).limit(limit).all()
 
 
-def create_mou(db: Session, mou_create: schemas.MouCreate):
+def create_mou(db: Session, mou_create: schemas.MouCreate, filename: Optional[str] = ""):
     utcnow = datetime.utcnow()
     db_mou = models.Mou(
         name=mou_create.name,
-        filename=mou_create.filename,
+        filename=filename,
         link=mou_create.link,
         created_at=utcnow,
         updated_at=utcnow
@@ -59,6 +59,10 @@ def delete_mou(db: Session, mou_id: int):
 def get_mous(db: Session):
     db_mous = db.query(models.Mou).order_by(models.Mou.name.desc())
     return db_mous.all()
+
+
+def get_mou(db: Session, mou_id: int) -> Optional[models.Mou]:
+    return db.query(models.Mou).filter(models.Mou.id == mou_id).first()
 
 
 def create_board(db: Session, board_create: schemas.BoardCreate):

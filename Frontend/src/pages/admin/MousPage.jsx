@@ -11,7 +11,7 @@ const MousPage = () => {
 
 	useEffect(() => {
 		axios({
-			url: `${API_URL}/api/v1/file/mous`,
+			url: `${API_URL}/api/v1/mou/all`,
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
