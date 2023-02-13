@@ -23,9 +23,13 @@ const BannerUploadPage = () => {
 
 		const formData = new FormData();
 		formData.append("file", file);
+		formData.append("name", name);
+		formData.append("link", link | "#");
+		formData.append("year", 2023);
+		formData.append("banner_end_at", `${bannerEndAt}T00:00:00.000Z`);
 
 		axios({
-			url: `${API_URL}/api/v1/file/banner/file`,
+			url: `${API_URL}/api/v1/banner/create`,
 			method: "POST",
 			headers: {
 				accept: "application/json",
@@ -34,27 +38,12 @@ const BannerUploadPage = () => {
 			},
 			data: formData,
 		}).then((res) => {
-			fetch(`${API_URL}/api/v1/file/banner`, {
-				method: "POST",
-				headers: {
-					accept: "application/json",
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${authCtx.accessToken}`,
-				},
-				body: JSON.stringify({
-					name: name,
-					link: link,
-					banner_end_at: `${bannerEndAt}T00:00:00.000Z`,
-					filename: res.data.filename,
-					year: 2023,
-				}),
-			}).then((res) => {
-				console.log(res);
-				if (res.status === 204) {
-					alert("배너가 업로드 되었습니다.");
-					navigate("/admin/banner/all");
-				}
-			});
+			if (res.status === 204) {
+				alert("배너가 업로드 되었습니다.");
+				navigate("/admin/banner/all");
+				return;
+			}
+			alert("배너 업로드에 실패했습니다. 다시 시도해주세요.");
 		});
 	};
 

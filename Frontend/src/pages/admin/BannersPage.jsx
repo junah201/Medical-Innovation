@@ -13,8 +13,12 @@ const BannersPage = () => {
 
 	useEffect(() => {
 		axios({
-			url: `${API_URL}/api/v1/file/banners`,
+			url: `${API_URL}/api/v1/banner/all`,
 			method: "GET",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
 		}).then((res) => {
 			setBanners(res.data);
 		});

@@ -11,7 +11,7 @@ const Banners = () => {
 	const [banners, setBanners] = useState([]);
 
 	useEffect(() => {
-		fetch(`${API_URL}/api/v1/file/banners`, {
+		fetch(`${API_URL}/api/v1/banner/all`, {
 			method: "GET",
 			headers: {
 				accept: "application/json",

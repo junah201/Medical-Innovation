@@ -122,9 +122,9 @@ class PostList(BaseModel):
     posts: list[Post]
 
 
+@form_body
 class BannerCreate(BaseModel):
     name: str
-    filename: str
     link: str
     year: int = 2023
     banner_end_at: datetime
@@ -136,8 +136,13 @@ class BannerEdit(BaseModel):
     banner_end_at: datetime
 
 
-class Banner(BannerCreate):
+class Banner(BaseModel):
     id: int
+    name: str
+    filename: str
+    link: str
+    year: int = 2023
+    banner_end_at: datetime
     created_at: datetime
     updated_at: datetime
 

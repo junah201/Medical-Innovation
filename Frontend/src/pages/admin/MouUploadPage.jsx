@@ -26,24 +26,6 @@ const BannerUploadPage = () => {
 		formData.append("link", link);
 		formData.append("filename", "");
 
-		/*
-		formData.append(
-			"mou_create",
-			new Blob(
-				[
-					JSON.stringify({
-						name: name,
-						link: link,
-						filename: "",
-					}),
-				],
-				{
-					type: "application/json",
-				}
-			)
-		);
-		*/
-
 		axios({
 			url: `${API_URL}/api/v1/mou/create`,
 			method: "POST",

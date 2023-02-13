@@ -16,7 +16,7 @@ const BannerDeletePage = () => {
 		e.preventDefault();
 
 		axios({
-			url: `${API_URL}/api/v1/file/banner/${params.id}`,
+			url: `${API_URL}/api/v1/banner/${params.id}`,
 			method: "DELETE",
 			headers: {
 				accept: "application/json",

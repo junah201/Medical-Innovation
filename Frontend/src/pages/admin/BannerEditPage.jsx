@@ -7,6 +7,7 @@ import AdminPage from "../../components/admin/AdminPage";
 import Message from "../../components/common/Message";
 
 import { API_URL } from "../../utils/const";
+import axios from "axios";
 
 const StyledPostEditPage = styled.div`
 	display: flex;
@@ -49,36 +50,38 @@ const PostEditPage = () => {
 	const [bannerEndAt, setBannerEndAt] = useState("");
 
 	useEffect(() => {
-		fetch(`${API_URL}/api/v1/file/banner/${params.id}`, {
+		axios({
+			url: `${API_URL}/api/v1/banner/${params.id}`,
 			method: "GET",
 			headers: {
 				accept: "application/json",
+				"Content-Type": "application/json",
 			},
 		}).then((res) => {
 			if (res.status === 200) {
-				res.json().then((data) => {
-					setName(data.name);
-					setLink(data.link);
-					setBannerEndAt(data.bannerEndAt);
-				});
+				setName(res.data.name);
+				setLink(res.data.link);
+				setBannerEndAt(res.data.banner_end_at.slice(0, 10));
 			}
 		});
 	}, [params.id]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		fetch(`${API_URL}/api/v1/file/banner/${params.id}`, {
+
+		axios({
+			url: `${API_URL}/api/v1/banner/${params.id}`,
 			method: "PUT",
 			headers: {
 				accept: "application/json",
 				"Content-Type": "application/json",
 				Authorization: `Bearer ${authCtx.accessToken}`,
 			},
-			body: JSON.stringify({
+			data: {
 				name: name,
 				link: link,
 				banner_end_at: `${bannerEndAt}T00:00:00.000Z`,
-			}),
+			},
 		}).then((res) => {
 			if (res.status === 204) {
 				alert("수정되었습니다.");

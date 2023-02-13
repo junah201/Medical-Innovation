@@ -16,7 +16,8 @@ from app.routers.v1 import (
     file_router,
     sponsor_router,
     advisor_router,
-    mou_router
+    mou_router,
+    banner_router
 )
 
 models.Base.metadata.create_all(bind=engine, checkfirst=True)
@@ -45,6 +46,7 @@ app.include_router(file_router.router)
 app.include_router(sponsor_router.router)
 app.include_router(advisor_router.router)
 app.include_router(mou_router.router)
+app.include_router(banner_router.router)
 
 
 @app.exception_handler(RequestValidationError)

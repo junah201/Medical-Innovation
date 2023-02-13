@@ -129,11 +129,11 @@ def get_banner_by_id(db: Session, banner_id: int) -> models.Banner:
     return db.query(models.Banner).filter(models.Banner.id == banner_id).first()
 
 
-def create_banner(db: Session, banner_create: schemas.BannerCreate):
+def create_banner(db: Session, banner_create: schemas.BannerCreate, filename: str = ""):
     utcnow = datetime.utcnow()
     db_banner = models.Banner(
         name=banner_create.name,
-        filename=banner_create.filename,
+        filename=filename,
         link=banner_create.link,
         year=banner_create.year,
         banner_end_at=banner_create.banner_end_at,
