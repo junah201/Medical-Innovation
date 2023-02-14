@@ -50,6 +50,7 @@ import SponsorsPage from "./pages/admin/SponsorsPage";
 import MousPage from "./pages/admin/MousPage";
 import MouDeletePage from "./pages/admin/MouDeletePage";
 import MouUploadPage from "./pages/admin/MouUploadPage";
+import MouEditPage from "./pages/admin/MouEditPage";
 import AdvisorsPage from "./pages/admin/AdvisorsPage";
 import AdvisorDeletePage from "./pages/admin/AdvisorDeletePage";
 import AdvisorUploadPage from "./pages/admin/AdvisorUploadPage";
@@ -163,6 +164,7 @@ function App() {
 				<Route path="mou">
 					<Route path="all" element={<MousPage />} />
 					<Route path="upload" element={<MouUploadPage />} />
+					<Route path="edit/:id" element={<MouEditPage />} />
 					<Route path="delete/:id" element={<MouDeletePage />} />
 				</Route>
 				<Route path="advisor">

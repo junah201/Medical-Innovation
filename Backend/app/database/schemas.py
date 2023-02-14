@@ -159,6 +159,11 @@ class MouCreate(BaseModel):
     link: str
 
 
+class MouUpdate(BaseModel):
+    name: str
+    link: str
+
+
 class Mou(BaseModel):
     id: int
     name: str

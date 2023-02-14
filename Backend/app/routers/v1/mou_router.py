@@ -37,7 +37,37 @@ async def get_mous(db: Session = Depends(get_db)):
     return db_mous
 
 
-@ router.delete("/{mou_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.get("/get/{mou_id}", response_model=schemas.Mou)
+async def get_mou(mou_id: int, db: Session = Depends(get_db)):
+    db_mou = crud.get_mou(db=db, mou_id=mou_id)
+    print(db_mou)
+    if not db_mou:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="not found"
+        )
+    return db_mou
+
+
+@router.put("/update/{mou_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def update_mou(mou_id: int, mou_update: schemas.MouUpdate, current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
+    if not current_user.is_admin:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="You do not have permission to delete a post"
+        )
+
+    db_mou = crud.get_mou(db=db, mou_id=mou_id)
+    if not db_mou:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="not found"
+        )
+
+    crud.update_mou(db=db, mou_id=mou_id, mou_update=mou_update)
+
+
+@router.delete("/{mou_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_mou(mou_id: int, db: Session = Depends(get_db)):
     db_mou = crud.get_mou(db=db, mou_id=mou_id)
     if not db_mou:

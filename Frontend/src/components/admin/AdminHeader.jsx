@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 const StyledHeader = styled.header`
 	background-color: #2763ba;
+	position: fixed;
 	display: flex;
 	flex-direction: column;
 	min-width: 250px;

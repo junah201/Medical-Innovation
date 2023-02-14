@@ -65,6 +65,13 @@ def get_mou(db: Session, mou_id: int) -> Optional[models.Mou]:
     return db.query(models.Mou).filter(models.Mou.id == mou_id).first()
 
 
+def update_mou(db: Session, mou_id: int, mou_update: schemas.MouUpdate):
+    db_mou = db.query(models.Mou).filter(models.Mou.id == mou_id).first()
+    db_mou.name = mou_update.name
+    db_mou.link = mou_update.link
+    db.commit()
+
+
 def create_board(db: Session, board_create: schemas.BoardCreate):
     utcnow = datetime.utcnow()
     db_board = models.Board(

@@ -12,12 +12,13 @@ const StyledPage = styled.div`
 	display: flex;
 `;
 
-const StyledPageWrapper = styled.div`
+const StyledPageWrapper = styled.main`
 	width: 100%;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
 	padding: 32px;
+	margin-left: 250px;
 
 	& h1 {
 		font-size: 30px;
