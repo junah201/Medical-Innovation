@@ -105,7 +105,7 @@ const PostUploadPage = () => {
 			data: formData,
 		}).then((res) => {
 			setContent((prev) => {
-				return `${prev}\n\n<div class="img-container ${imgSort}"><img width = ${imgSize} src="https://medical-innovation.s3.ap-northeast-2.amazonaws.com/upload/${res.data.filenames}" /></div>\n\n`;
+				return `${prev}\n\n<div class="img-container ${imgSort}"><img width = ${imgSize} src="https://medical-innovation.s3.ap-northeast-2.amazonaws.com/upload/${res.data.filename}" /></div>\n\n`;
 			});
 		});
 	};
@@ -121,59 +121,40 @@ const PostUploadPage = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		let tmp = [];
+		const formData = new FormData();
+
 		for (let i = 0; i < files.length; i++) {
-			const formData = new FormData();
-			formData.append("file", files[i]);
-			tmp.push(
-				axios.post(`${API_URL}/api/v1/file/upload`, formData, {
-					headers: {
-						accept: "application/json",
-						"Content-Type": "multipart/form-data",
-						Authorization: `Bearer ${authCtx.accessToken}`,
-					},
-				})
-			);
+			formData.append("files", files[i]);
 		}
 
-		setErrorMessages(`파일 업로드 중...`);
+		formData.append("title", title);
+		formData.append("board_id", boardId);
+		formData.append("content", content);
 
-		axios.all(tmp).then(
-			axios.spread((...res) => {
-				console.log(res);
-				const file_names = [];
-				if (!!res) {
-					for (let i = 0; i < res.length; i++) {
-						file_names.push(res[i].data.filenames);
-					}
-				}
-				setErrorMessages(`게시물 업로드 중...`);
-				axios({
-					url: `${API_URL}/api/v1/post/create`,
-					method: "POST",
-					headers: {
-						accept: "application/json",
-						"Content-Type": "application/json",
-						Authorization: `Bearer ${authCtx.accessToken}`,
-					},
-					data: {
-						title: title,
-						board_id: parseInt(boardId),
-						content: content,
-						files: file_names,
-					},
-				}).then((res) => {
-					if (res.status === 204) {
-						setErrorMessages("게시물 업로드 성공");
-						alert("게시물 업로드 성공");
-						navigate(`/admin/post/all`);
-						return;
-					}
-					setErrorMessages("게시물 업로드 실패");
-					alert("게시물 업로드 실패");
-				});
-			})
-		);
+		axios({
+			url: `${API_URL}/api/v1/post/create`,
+			method: "POST",
+			headers: {
+				accept: "application/json",
+				"Content-Type": "multipart/form-data",
+				Authorization: `Bearer ${authCtx.accessToken}`,
+			},
+			data: formData,
+		}).then((res) => {
+			if (res.status === 204) {
+				setErrorMessages("게시물 업로드 성공");
+				alert("게시물 업로드 성공");
+				navigate(`/admin/post/all`);
+				return;
+			}
+			if (res.status === 401) {
+				alert("로그인 후 이용해주세요.");
+				navigate("/login");
+				return;
+			}
+			setErrorMessages("게시물 업로드 실패");
+			alert("게시물 업로드 실패");
+		});
 	};
 
 	return (

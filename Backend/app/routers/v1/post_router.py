@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends, UploadFile, File
 from sqlalchemy.orm import Session
 from starlette import status
 import json
@@ -6,6 +6,7 @@ from app.database import crud, schemas, models
 from app.database.database import get_db
 from app.utils.oauth2 import get_current_user
 from app.utils.aws_s3 import upload_file, delete_file
+from typing import List, Optional
 
 router = APIRouter(
     prefix="/api/v1/post",
@@ -13,16 +14,23 @@ router = APIRouter(
 
 
 @router.post("/create", status_code=status.HTTP_204_NO_CONTENT)
-def create_post(post_create: schemas.PostCreate, current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
+def create_post(post_create: schemas.PostCreate = Depends(schemas.PostCreate), files: Optional[List[UploadFile]] = None, current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
     if not current_user.is_admin:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="You do not have permission to create a post"
         )
+
+    filenames = []
+    if files:
+        for file in files:
+            filenames.append(upload_file(file, "upload"))
+
     crud.create_post(
         db=db,
         post_create=post_create,
-        author_name=current_user.name
+        author_name=current_user.name,
+        filenames=filenames
     )
 
 
