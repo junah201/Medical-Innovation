@@ -25,7 +25,7 @@ HEADER: dict = {
     'upgrade-insecure-requests': '1',
     'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Mobile Safari/537.36',
 }
-API_URL: str = "https://port-0-medical-innovation-sop272gldbzxiqq.gksl2.cloudtype.app"
+API_URL: str = "https://port-0-medical-innovation-3a9t2bldt5vor1.sel3.cloudtype.app"
 
 
 def get_url(start: int = 1):
@@ -44,19 +44,17 @@ def new_post_checker() -> list[str]:
     last_uploaded_at = datetime.datetime.strptime(json.loads(
         response.text)["posts"][0]['created_at'].split('T')[0], "%Y-%m-%d")
     last_uploaded_at = last_uploaded_at.strftime("%Y.%m.%d.")
+    last_uploaded_title = json.loads(response.text)["posts"][0]['title']
 
-    articles: list = []
+    articles = list()
 
     response = requests.post(
         url=f"{API_URL}/api/v1/user/login",
         headers={
             "accept": "application/json",
-            "Content-Type": "application/x-www-form-urlencoded"
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
         },
-        data={
-            "username": ADMIN_ACCOUNT_ID,
-            "password": ADMIN_ACCOUNT_PASSWORD
-        },
+        data=f"username={ADMIN_ACCOUNT_ID}&password={ADMIN_ACCOUNT_PASSWORD}"
     )
     access_token = json.loads(response.text)["access_token"]
 
@@ -76,7 +74,7 @@ def new_post_checker() -> list[str]:
             tmp['url'] = article.select_one("a.news_tit").get('href')
             tmp['date'] = article.select_one("div.info_group > span.info").text
 
-            if tmp['date'] <= last_uploaded_at:
+            if tmp['title'] == last_uploaded_title:
                 return
 
             print(f"{tmp['newspaper']} {tmp['title']}")
@@ -95,6 +93,8 @@ def new_post_checker() -> list[str]:
                 }
             )
             articles.append(f"{tmp['newspaper']} - {tmp['title']}")
+
+    return articles
 
 
 def lambda_handler(event, context):
