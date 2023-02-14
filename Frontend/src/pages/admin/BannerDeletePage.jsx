@@ -29,6 +29,11 @@ const BannerDeletePage = () => {
 				navigate(-1);
 				return;
 			}
+			if (res.status === 401) {
+				alert("로그인 후 이용해주세요.");
+				navigate("/login");
+				return;
+			}
 			alert("삭제에 실패했습니다.");
 		});
 	};

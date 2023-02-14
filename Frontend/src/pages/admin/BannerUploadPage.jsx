@@ -43,6 +43,11 @@ const BannerUploadPage = () => {
 				navigate("/admin/banner/all");
 				return;
 			}
+			if (res.status === 401) {
+				alert("로그인 후 이용해주세요.");
+				navigate("/login");
+				return;
+			}
 			alert("배너 업로드에 실패했습니다. 다시 시도해주세요.");
 		});
 	};
