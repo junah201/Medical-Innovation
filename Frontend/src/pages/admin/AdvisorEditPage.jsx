@@ -79,7 +79,7 @@ const AdvisorEditPage = () => {
 				description: advisor.description,
 			}),
 		}).then((res) => {
-			if (res.status === 200) {
+			if (res.status === 204) {
 				alert("자문단 내용이 수정되었습니다.");
 				navigate("/admin/advisor/all");
 				return;
