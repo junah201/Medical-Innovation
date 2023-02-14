@@ -81,13 +81,13 @@ def get_boards(db: Session, skip: int = 0, limit: int = 15):
     return db_boards.offset(skip).limit(limit).all()
 
 
-def create_post(db: Session, post_create: schemas.PostCreate, author_name: str):
+def create_post(db: Session, post_create: schemas.PostCreate, author_name: str, filenames: List[str] = []):
     db_post = models.Post(
         title=post_create.title,
         board_id=post_create.board_id,
         content=post_create.content,
         author_name=author_name,
-        files=json.dumps(post_create.files, ensure_ascii=False),
+        files=json.dumps(filenames, ensure_ascii=False),
     )
     db.add(db_post)
     db.commit()
@@ -209,12 +209,12 @@ def delete_sponsoring_company(db: Session, sponsoring_company_id: int) -> None:
     db.commit()
 
 
-def create_advisor(db: Session, advisor_create: schemas.AdvisorCreate) -> None:
+def create_advisor(db: Session, advisor_create: schemas.AdvisorCreate, filename: str) -> None:
     utcnow = datetime.utcnow()
     db_advisor = models.Advisor(
         name=advisor_create.name,
         type=advisor_create.type,
-        filename=advisor_create.filename,
+        filename=filename,
         description=advisor_create.description,
         created_at=utcnow,
         updated_at=utcnow

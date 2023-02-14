@@ -75,11 +75,11 @@ class Board(BoardCreate):
         orm_mode = True
 
 
+@form_body
 class PostCreate(BaseModel):
     title: str
     board_id: int
     content: str
-    files: List[str]
 
     @validator('title', 'board_id', 'content')
     def not_empty(cls, v):
@@ -104,8 +104,11 @@ class PostUpdate(BaseModel):
     content: str
 
 
-class Post(PostCreate):
+class Post(BaseModel):
     id: int
+    title: str
+    board_id: int
+    content: str
     board: Board
     author: Optional[User] = None
     author_name: str
@@ -213,11 +216,11 @@ class SponsoringCompany(BaseModel):
         orm_mode = True
 
 
+@form_body
 class AdvisorCreate(BaseModel):
     name: str
     type: str
     description: str
-    filename: str
 
 
 class AdvisorUpdate(BaseModel):

@@ -1,10 +1,10 @@
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends, UploadFile, File, status
 from sqlalchemy.orm import Session
-from starlette import status
 
 from app.database import crud, schemas, models
 from app.database.database import get_db
 from app.utils.oauth2 import get_current_user
+from app.utils.aws_s3 import upload_file, delete_file
 
 router = APIRouter(
     prefix="/api/v1/advisor",
@@ -12,13 +12,18 @@ router = APIRouter(
 
 
 @router.post("/create", status_code=status.HTTP_204_NO_CONTENT)
-def create_advisor(advisor_create: schemas.AdvisorCreate, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
+def create_advisor(advisor_create: schemas.AdvisorCreate = Depends(schemas.AdvisorCreate), file: UploadFile = File(...), db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
     if not current_user.is_admin:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="You do not have permission to create a advisor"
         )
-    crud.create_advisor(db=db, advisor_create=advisor_create)
+    filename = ""
+    if file:
+        filename = upload_file(file, "upload")
+
+    crud.create_advisor(
+        db=db, advisor_create=advisor_create, filename=filename)
 
 
 @router.get("/all", response_model=list[schemas.Advisor])
@@ -50,6 +55,17 @@ def delete_advisor(advisor_id: int, db: Session = Depends(get_db), current_user:
             status_code=status.HTTP_403_FORBIDDEN,
             detail="You do not have permission to delete a advisor"
         )
+
+    db_advisor = crud.get_advisor(db=db, advisor_id=advisor_id)
+    if not db_advisor:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Advisor not found"
+        )
+
+    if db_advisor.filename:
+        delete_file(db_advisor.filename, "upload")
+
     crud.delete_advisor(db=db, advisor_id=advisor_id)
 
 

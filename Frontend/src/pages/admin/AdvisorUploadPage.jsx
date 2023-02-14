@@ -21,65 +21,29 @@ const AdvisorUploadPage = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		if (!!file) {
-			const formData = new FormData();
-			formData.append("file", file);
+		const formData = new FormData();
+		formData.append("file", file);
+		formData.append("name", name);
+		formData.append("type", type);
+		formData.append("description", description);
 
-			axios({
-				url: `${API_URL}/api/v1/file/upload`,
-				method: "POST",
-				headers: {
-					accept: "application/json",
-					"Content-Type": "multipart/form-data",
-					Authorization: `Bearer ${authCtx.accessToken}`,
-				},
-				data: formData,
-			}).then((res) => {
-				axios({
-					url: `${API_URL}/api/v1/advisor/create`,
-					method: "POST",
-					headers: {
-						accept: "application/json",
-						"Content-Type": "application/json",
-						Authorization: `Bearer ${authCtx.accessToken}`,
-					},
-					data: JSON.stringify({
-						name: name,
-						type: type,
-						description: description,
-						filename: res.data.filenames,
-					}),
-				}).then((res) => {
-					if (res.status === 204) {
-						alert("자문단이 업로드 되었습니다.");
-						navigate("/admin/advisor/all");
-						return;
-					}
-				});
-			});
-		} else {
-			axios({
-				url: `${API_URL}/api/v1/advisor/create`,
-				method: "POST",
-				headers: {
-					accept: "application/json",
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${authCtx.accessToken}`,
-				},
-				data: JSON.stringify({
-					name: name,
-					type: type,
-					description: description,
-					filename: "defualt_user.png",
-				}),
-			}).then((res) => {
-				if (res.status === 204) {
-					alert("자문단이 업로드 되었습니다.");
-					navigate("/admin/advisor/all");
-					return;
-				}
-			});
-		}
+		axios({
+			url: `${API_URL}/api/v1/advisor/create`,
+			method: "POST",
+			headers: {
+				accept: "application/json",
+				"Content-Type": "multipart/form-data",
+				Authorization: `Bearer ${authCtx.accessToken}`,
+			},
+			data: formData,
+		}).then((res) => {
+			if (res.status === 204) {
+				alert("자문단이 업로드 되었습니다.");
+				navigate("/admin/advisor/all");
+				return;
+			}
+			alert("업로드 실패");
+		});
 	};
 
 	return (
