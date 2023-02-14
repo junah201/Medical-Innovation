@@ -15,7 +15,7 @@ const AdvisorUploadPage = () => {
 
 	const [name, setName] = useState("");
 	const [type, setType] = useState("전문심의위원회");
-	const [file, setFile] = useState(null);
+	const [file, setFile] = useState("");
 	const [description, setDescription] = useState("");
 
 	const handleSubmit = (e) => {
