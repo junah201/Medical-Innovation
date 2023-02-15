@@ -1,4 +1,4 @@
-name: AWS Lambda CI/CD
+name: AWS Lambda
 
 on:
   push:
