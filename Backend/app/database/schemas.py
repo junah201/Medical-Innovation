@@ -191,6 +191,12 @@ class SponsorCreate(BaseModel):
         return v
 
 
+class SponsoringCompanyUpdate(BaseModel):
+    name: str
+    link: str
+    year: int
+
+
 class Sponsor(SponsorCreate):
     id: int
     user: Union[User, dict,  None]

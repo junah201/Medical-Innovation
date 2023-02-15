@@ -38,6 +38,44 @@ async def get_sponsoring_companies(db: Session = Depends(get_db)):
     return db_sponsoring_companies
 
 
+@router.get("/get/{sponsoring_company_id}", response_model=schemas.SponsoringCompany)
+async def get_sponsoring_company_by_id(sponsoring_company_id: int, db: Session = Depends(get_db)):
+    db_sponsoring_company = crud.get_sponsoring_company_by_id(
+        db=db, sponsoring_company_id=sponsoring_company_id)
+
+    if not db_sponsoring_company:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="not found"
+        )
+
+    return db_sponsoring_company
+
+
+@router.put("/update/{sponsoring_company_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def update_sponsoring_company(sponsoring_company_id: int, sponsoring_company_update: schemas.SponsoringCompanyUpdate, current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
+    if not current_user.is_admin:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="You do not have permission to update a sponsoring_company"
+        )
+
+    db_sponsoring_company = crud.get_sponsoring_company_by_id(
+        db=db, sponsoring_company_id=sponsoring_company_id)
+
+    if not db_sponsoring_company:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="not found"
+        )
+
+    crud.update_sponsoring_company(
+        db=db,
+        sponsoring_company_id=sponsoring_company_id,
+        sponsoring_company_update=sponsoring_company_update
+    )
+
+
 @router.delete("/{sponsoring_company_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def get_sponsoring_companies(sponsoring_company_id: int, current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
     if not current_user.is_admin:

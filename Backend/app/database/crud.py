@@ -210,6 +210,15 @@ def get_sponsoring_company_by_id(db: Session, sponsoring_company_id: int) -> Opt
     return db.query(models.SponsoringCompany).filter(models.SponsoringCompany.id == sponsoring_company_id).first()
 
 
+def update_sponsoring_company(db: Session, sponsoring_company_id: int, sponsoring_company_update: schemas.SponsoringCompanyUpdate):
+    db_sponsoring_company = db.query(models.SponsoringCompany).filter(
+        models.SponsoringCompany.id == sponsoring_company_id).first()
+    db_sponsoring_company.name = sponsoring_company_update.name
+    db_sponsoring_company.link = sponsoring_company_update.link
+    db_sponsoring_company.year = sponsoring_company_update.year
+    db.commit()
+
+
 def delete_sponsoring_company(db: Session, sponsoring_company_id: int) -> None:
     db.query(models.SponsoringCompany).filter(
         models.SponsoringCompany.id == sponsoring_company_id).delete()
