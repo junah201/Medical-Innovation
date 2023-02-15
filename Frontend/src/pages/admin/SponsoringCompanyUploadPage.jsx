@@ -105,6 +105,7 @@ const SponsoringCompanyUploadPage = () => {
 						}}
 						required={true}
 					/>
+					<br />
 					<input
 						type="text"
 						placeholder="바로가기 링크 (만약 없을 경우 비워주세요)"
@@ -113,6 +114,7 @@ const SponsoringCompanyUploadPage = () => {
 							setLink(e.target.value);
 						}}
 					/>
+					<br />
 					<input
 						type="text"
 						placeholder="후원 연도"
@@ -122,6 +124,7 @@ const SponsoringCompanyUploadPage = () => {
 						}}
 						required={true}
 					/>
+					<br />
 					<input
 						type="file"
 						onChange={(e) => {

@@ -68,6 +68,7 @@ const AdvisorUploadPage = () => {
 						setName(e.target.value);
 					}}
 				/>
+				<br />
 				<select
 					name="advisorType"
 					value={type}
@@ -84,7 +85,7 @@ const AdvisorUploadPage = () => {
 						창업기획자 전문가그룹 자문단
 					</option>
 				</select>
-
+				<br />
 				<textarea
 					type="text"
 					placeholder="해당 인물에 대한 설명을 ,을 기준으로 나누어 입력해주세요. 예시) A기업 대표,B기업 고문,A대 졸업"
@@ -93,6 +94,7 @@ const AdvisorUploadPage = () => {
 						setDescription(e.target.value);
 					}}
 				/>
+				<br />
 				<label>사진을 업로드 하지 않으시면 기본 이미지로 업로드 됩니다.</label>
 				<input
 					type="file"

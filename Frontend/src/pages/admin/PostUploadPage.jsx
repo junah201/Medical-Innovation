@@ -171,6 +171,7 @@ const PostUploadPage = () => {
 							setTitle(e.target.value);
 						}}
 					/>
+					<br />
 					<select
 						name="boardId"
 						value={boardId}
@@ -186,6 +187,7 @@ const PostUploadPage = () => {
 							);
 						})}
 					</select>
+					<br />
 					<textarea
 						type="text"
 						placeholder="Content"

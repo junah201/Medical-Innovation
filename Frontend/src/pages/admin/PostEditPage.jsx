@@ -128,7 +128,8 @@ const PostEditPage = () => {
 						onChange={(e) => {
 							setTitle(e.target.value);
 						}}
-					></input>
+					/>
+					<br />
 					<select
 						name="boardId"
 						value={boardId}
@@ -144,6 +145,7 @@ const PostEditPage = () => {
 							);
 						})}
 					</select>
+					<br />
 					<textarea
 						type="text"
 						placeholder="Content"

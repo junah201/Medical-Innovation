@@ -117,6 +117,7 @@ const SponsoringCompanyEditPage = () => {
 						}}
 						required={true}
 					/>
+					<br />
 					<input
 						type="text"
 						placeholder="바로가기 링크"
@@ -126,6 +127,7 @@ const SponsoringCompanyEditPage = () => {
 						}}
 						required={true}
 					/>
+					<br />
 					<input
 						type="text"
 						placeholder="후원 연도"

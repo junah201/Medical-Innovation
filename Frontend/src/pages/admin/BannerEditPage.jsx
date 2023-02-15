@@ -112,6 +112,7 @@ const PostEditPage = () => {
 						}}
 						required={true}
 					/>
+					<br />
 					<input
 						type="text"
 						placeholder="바로가기 링크"
@@ -121,6 +122,7 @@ const PostEditPage = () => {
 						}}
 						required={true}
 					/>
+					<br />
 					<input
 						type="date"
 						value={bannerEndAt}

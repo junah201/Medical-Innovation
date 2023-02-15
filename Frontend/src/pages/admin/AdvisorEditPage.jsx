@@ -159,6 +159,7 @@ const AdvisorEditPage = () => {
 						dispatch({ type: "name", payload: e.target.value });
 					}}
 				/>
+				<br />
 				<select
 					name="advisorType"
 					value={advisor.type}
@@ -175,6 +176,7 @@ const AdvisorEditPage = () => {
 						창업기획자 전문가그룹 자문단
 					</option>
 				</select>
+				<br />
 				<textarea
 					type="text"
 					placeholder="해당 인물에 대한 설명을 ,을 기준으로 나누어 입력해주세요. 예시) A기업 대표,B기업 고문,A대 졸업"
@@ -183,6 +185,7 @@ const AdvisorEditPage = () => {
 						dispatch({ type: "description", payload: e.target.value });
 					}}
 				/>
+				<br />
 				<button type="submit">수정하기</button>
 			</AdminForm>
 			<br />
