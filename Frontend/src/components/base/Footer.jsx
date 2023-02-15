@@ -26,6 +26,10 @@ const StyledBottomFooter = styled.div`
 	height: 100px;
 	background-color: #474747;
 
+	& a:hover {
+		text-decoration: underline;
+	}
+
 	& > div {
 		display: flex;
 		flex-direction: column;

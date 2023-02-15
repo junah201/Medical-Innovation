@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 
-import { API_URL } from "../../utils/const";
-
 const move = (x) => keyframes`
 	100%{
 		transform: translateX(-${x + 190}px);
@@ -25,7 +23,7 @@ const StyledBanners = styled.div`
 	position: relative;
 	background-color: #ffffff;
 	display: grid;
-	grid-template-rows: repeat(2, 88px);
+	grid-template-rows: repeat(1, 88px);
 	grid-template-columns: repeat(10, 160px);
 	grid-auto-flow: column;
 	padding: 30px 0;
@@ -67,7 +65,7 @@ const BigBanners = ({ banners }) => {
 	useEffect(() => {
 		const mover = setInterval(() => {
 			setBannerIndex((bannerIndex) => {
-				if (bannerIndex < banners.length / 2 - 8) {
+				if (bannerIndex < banners.length - 8) {
 					return bannerIndex + 1;
 				} else {
 					return 0;

@@ -14,7 +14,7 @@ const StyledPage = styled.main`
 		min-height: calc(100vh - 200px);
 	}
 	@media screen and (min-width: 992px) {
-		min-height: calc(100vh - 400px);
+		min-height: calc(100vh - 300px);
 	}
 `;
 

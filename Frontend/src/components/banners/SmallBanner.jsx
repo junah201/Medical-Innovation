@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
-import { API_URL } from "../../utils/const";
 
 const move = (x) => keyframes`
 	100%{
