@@ -146,6 +146,7 @@ const Header = () => {
 					<StyledLoginHeader>
 						{isLoggedIn && (
 							<>
+								<Link to="/me">마이페이지</Link>
 								<Link to="/logout">로그아웃</Link>
 							</>
 						)}

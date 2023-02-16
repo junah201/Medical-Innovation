@@ -8,7 +8,6 @@ import Footer from "../../components/base/Footer";
 import Header from "../../components/base/Header";
 import EmailInput from "../../components/form/EmailInput";
 import PasswordInput from "../../components/form/PasswordInput";
-import Message from "./../../components/common/Message";
 
 const StyledLoginPage = styled.main`
 	display: flex;

@@ -7,6 +7,7 @@ import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import LoginPage from "./pages/auth/LoginPage";
 import LogoutPage from "./pages/auth/LogoutPage";
 import SignupPage from "./pages/auth/SignupPage";
+import MyPage from "./pages/auth/MyPage";
 
 import NotFoundPage from "./pages/error/NotFoundPage";
 import PreparingPage from "./pages/error/PreparingPage";
@@ -67,6 +68,7 @@ function App() {
 			<Route path="/login" element={<LoginPage />} noindex={false} />
 			<Route path="/logout" element={<LogoutPage />} />
 			<Route path="/signup" element={<SignupPage />} noindex={false} />
+			<Route path="/me" element={<MyPage />} noindex={true} />
 			<Route
 				path="/privacy-policy"
 				element={<PrivacyPolicyPage />}
