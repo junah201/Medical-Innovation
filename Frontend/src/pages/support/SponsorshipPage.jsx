@@ -32,6 +32,7 @@ const SponsorshipPage = () => {
 	const handleSponsorship = (e) => {
 		if (!isLoggedIn) {
 			alert("로그인이 필요한 서비스입니다.");
+			navigate("/login");
 			return;
 		}
 		navigate("/support/sponsorship_form");

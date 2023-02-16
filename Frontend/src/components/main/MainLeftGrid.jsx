@@ -6,7 +6,6 @@ import { Desktop } from "../responsive/responsive";
 
 import BlankDiv from "../common/BlankDiv";
 
-import kimhyosoo from "../../static/images/KimHyoSoo.png";
 import cellTherapy from "../../static/images/세포치료실용화센터.png";
 import cardiovascularLab from "../../static/images/서울대병원심혈관연구실.png";
 import snuh from "../../static/images/서울대병원.png";
@@ -103,14 +102,22 @@ const MainLeftGrid = () => {
 	return (
 		<Desktop>
 			<StyledGrid>
-				<StyledGridImgItem color="#F8F6F7">
+				<StyledGridImgItem
+					style={{
+						backgroundColor: "#FFFFFF",
+					}}
+				>
 					<div
 						style={{
-							color: "#F8F6F7",
+							backgroundColor: "#FFFFFF",
 						}}
 					>
 						<Link to="/introduction/founder">
-							<img src={kimhyosoo} width="250px" alt="김효수" />
+							<img
+								src="/images/Chairmans/김효수.png"
+								width="250px"
+								alt="김효수"
+							/>
 						</Link>
 					</div>
 				</StyledGridImgItem>
