@@ -9,7 +9,6 @@ import AuthContext from "../../context/AuthContext";
 import Message from "../../components/common/Message";
 import PostContent from "../../components/post/PostContent";
 import { useNavigate } from "react-router-dom";
-import "./../PostPage.css";
 
 const StyledPostUploadPage = styled.div`
 	display: flex;

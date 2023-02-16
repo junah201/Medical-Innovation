@@ -6,6 +6,11 @@ import AuthContext from "../../context/AuthContext";
 import { API_URL } from "../../utils/const";
 import Footer from "../../components/base/Footer";
 import Header from "../../components/base/Header";
+import TextInput from "../../components/form/TextInput";
+import EmailInput from "../../components/form/EmailInput";
+import PasswordInput from "../../components/form/PasswordInput";
+import DateInput from "../../components/form/DateInput";
+import CheckboxInput from "../../components/form/CheckboxInput";
 
 const StyledSignupPage = styled.main`
 	display: flex;
@@ -38,37 +43,6 @@ const StyledSignupWrapper = styled.div`
 		border-left: none;
 	}
 
-	& div {
-		height: 60px;
-		width: 100%;
-		margin: 25px 0;
-	}
-
-	& label {
-		font-size: 18px;
-		display: block;
-		width: 100%;
-	}
-
-	& input {
-		height: 45px;
-		width: 100%;
-		padding-left: 10px;
-		font-size: 17px;
-		border: 1px solid silver;
-	}
-
-	& input:focus {
-		border-color: #3498db;
-		outline: none;
-		border-width: 2px;
-	}
-
-	& input[type="checkbox"] {
-		height: 20px;
-		width: 20px;
-	}
-
 	& button {
 		height: 45px;
 		margin-top: 10px;
@@ -97,6 +71,7 @@ const StyledSignupWrapper = styled.div`
 		color: red;
 		font-size: 16px;
 		height: 21px;
+		font-weight: 600;
 	}
 `;
 
@@ -118,7 +93,7 @@ const SignupPage = () => {
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [birth, setBirth] = useState("");
 	const [emailenable, setEmailenable] = useState(true);
-	const [errorMessage, setErrorMessage] = useState("123");
+	const [errorMessage, setErrorMessage] = useState("");
 
 	const onSubmitHandler = (e) => {
 		setErrorMessage("");
@@ -187,90 +162,69 @@ const SignupPage = () => {
 				<StyledSignupWrapper>
 					<form onSubmit={onSubmitHandler}>
 						<h1>회원가입</h1>
-						<div>
-							<label>이름</label>
-							<input
-								type="text"
-								value={name}
-								onChange={(e) => {
-									setName(e.target.value);
-								}}
-								placeholder="홍길동"
-								required="required"
-							/>
-						</div>
-						<div>
-							<label>휴대폰 번호</label>
-							<input
-								type="tel"
-								value={phone}
-								onChange={(e) => {
-									setPhone(e.target.value);
-								}}
-								placeholder="01012345678"
-								required="required"
-							/>
-						</div>
-						<div>
-							<label>이메일</label>
-							<input
-								type="email"
-								value={email}
-								onChange={(e) => {
-									setEmail(e.target.value);
-								}}
-								placeholder="이메일 (아이디)"
-								required="required"
-							/>
-						</div>
-						<div>
-							<label>비밀번호</label>
-							<input
-								type="password"
-								value={password}
-								onChange={(e) => {
-									setPassword(e.target.value);
-								}}
-								placeholder="비밀번호"
-								required="required"
-							/>
-						</div>
-						<div>
-							<label>비밀번호 확인</label>
-							<input
-								type="password"
-								value={confirmPassword}
-								onChange={(e) => {
-									setConfirmPassword(e.target.value);
-								}}
-								placeholder="비밀번호 확인"
-								required="required"
-							/>
-						</div>
-						<div>
-							<label>생년월일</label>
-							<input
-								type="date"
-								value={birth}
-								onChange={(e) => {
-									setBirth(e.target.value);
-								}}
-								placeholder="생년월일"
-								required="required"
-							/>
-						</div>
-						<div>
-							<label>이메일 수신여부</label>
-							<input
-								type="checkbox"
-								value={emailenable}
-								onChange={(e) => {
-									setEmailenable(e.target.checked);
-								}}
-								placeholder="이메일 수신여부"
-								required="required"
-							/>
-						</div>
+						<TextInput
+							label="이름"
+							value={name}
+							onChange={(e) => {
+								setName(e.target.value);
+							}}
+							placeholder="홍길동"
+							required="required"
+						/>
+						<TextInput
+							label="휴대폰 번호"
+							value={phone}
+							onChange={(e) => {
+								setPhone(e.target.value);
+							}}
+							placeholder="01012345678"
+							required="required"
+						/>
+						<EmailInput
+							label="이메일"
+							value={email}
+							onChange={(e) => {
+								setEmail(e.target.value);
+							}}
+							placeholder="이메일 (아이디)"
+							required="required"
+						/>
+						<PasswordInput
+							label="비밀번호"
+							value={password}
+							onChange={(e) => {
+								setPassword(e.target.value);
+							}}
+							placeholder="비밀번호"
+							required="required"
+						/>
+						<PasswordInput
+							label="비밀번호 확인"
+							value={confirmPassword}
+							onChange={(e) => {
+								setConfirmPassword(e.target.value);
+							}}
+							placeholder="비밀번호 확인"
+							required="required"
+						/>
+						<DateInput
+							label="생년월일"
+							value={birth}
+							onChange={(e) => {
+								setBirth(e.target.value);
+							}}
+							placeholder="생년월일"
+							required="required"
+						/>
+						<CheckboxInput
+							label="이메일 수신여부"
+							value={emailenable}
+							onChange={(e) => {
+								setEmailenable(e.target.checked);
+							}}
+							placeholder="이메일 수신여부"
+							required="required"
+						/>
 						<p>{errorMessage}</p>
 						<button type="submit">회원가입</button>
 					</form>

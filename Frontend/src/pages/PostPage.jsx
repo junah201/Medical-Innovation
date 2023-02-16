@@ -7,7 +7,6 @@ import Page from "../components/common/Page";
 import PostContent from "../components/post/PostContent";
 
 import { API_URL } from "../utils/const";
-import "./PostPage.css";
 
 const PostPage = () => {
 	const params = useParams();

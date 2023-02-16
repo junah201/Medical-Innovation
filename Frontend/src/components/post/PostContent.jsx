@@ -13,6 +13,26 @@ const StyledPostContent = styled.p`
 	a {
 		text-decoration: underline;
 	}
+
+	& .img-container {
+		width: 100%;
+		display: flex;
+	}
+
+	& .right {
+		align-items: flex-end;
+		justify-content: right;
+	}
+
+	& .left {
+		align-items: flex-start;
+		justify-content: left;
+	}
+
+	& .center {
+		align-items: center;
+		justify-content: center;
+	}
 `;
 
 const PostContent = ({ content }) => {

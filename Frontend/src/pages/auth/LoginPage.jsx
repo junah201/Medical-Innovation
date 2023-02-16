@@ -1,10 +1,14 @@
 import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
+import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import { API_URL } from "../../utils/const";
 import Footer from "../../components/base/Footer";
 import Header from "../../components/base/Header";
+import EmailInput from "../../components/form/EmailInput";
+import PasswordInput from "../../components/form/PasswordInput";
+import Message from "./../../components/common/Message";
 
 const StyledLoginPage = styled.main`
 	display: flex;
@@ -30,37 +34,16 @@ const StyledLoginWrapper = styled.div`
 	padding: 30px;
 	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 
+	& form {
+		display: flex;
+		flex-direction: column;
+	}
+
 	& h1 {
 		font-size: 35px;
 		font-weight: 600;
 		text-align: center;
 		border-left: none;
-	}
-
-	& div {
-		height: 45px;
-		width: 100%;
-		margin: 40px 0;
-	}
-
-	& label {
-		font-size: 18px;
-		display: block;
-		width: 100%;
-	}
-
-	& input {
-		height: 100%;
-		width: 100%;
-		padding-left: 10px;
-		font-size: 17px;
-		border: 1px solid silver;
-	}
-
-	& input:focus {
-		border-color: #3498db;
-		outline: none;
-		border-width: 2px;
 	}
 
 	& button {
@@ -81,6 +64,7 @@ const StyledLoginWrapper = styled.div`
 	& a {
 		text-align: center;
 		width: 100%;
+		padding: 5px;
 	}
 
 	& a:hover {
@@ -88,6 +72,7 @@ const StyledLoginWrapper = styled.div`
 	}
 
 	& p {
+		font-weight: 600;
 		color: red;
 		font-size: 16px;
 		height: 21px;
@@ -111,7 +96,7 @@ const LoginPage = () => {
 
 	const onSubmitHandler = (e) => {
 		e.preventDefault();
-		setErrorMessage("");
+		setErrorMessage("로그인 중...");
 
 		if (email === "") {
 			return setErrorMessage("이메일을 입력해주세요.");
@@ -134,30 +119,38 @@ const LoginPage = () => {
 		}
 		formBody = formBody.join("&");
 
-		fetch(`${API_URL}/api/v1/user/login`, {
+		axios({
+			url: `${API_URL}/api/v1/user/login`,
 			method: "POST",
 			headers: {
 				accept: "application/json",
 				"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
 			},
-			body: formBody,
+			data: formBody,
 		})
-			.then((res) => res.json())
-			.then((data) => {
-				if (data.status !== "success") {
-					if (data.detail === "Incorrect Email or Password") {
-						return setErrorMessage("이메일 또는 비밀번호가 일치하지 않습니다.");
-					}
-					if (data.detail === "Incorrect Email or password") {
-						return setErrorMessage("이메일 또는 비밀번호가 일치하지 않습니다.");
-					}
-				}
-				const expirationTime = new Date(
-					new Date().getTime() + +data.access_token_expires_in
-				);
-				authCtx.login(data.access_token, expirationTime, data.is_admin);
+			.then((res) => {
+				if (res.status === 200) {
+					setErrorMessage("로그인 성공 !");
+					const expirationTime = new Date(
+						new Date().getTime() + +res.data.access_token_expires_in
+					);
+					authCtx.login(
+						res.data.access_token,
+						expirationTime,
+						res.data.is_admin
+					);
 
-				navigate("/");
+					navigate("/");
+					return;
+				}
+				return setErrorMessage(
+					"알 수 없는 오류, 다시 시도하거나 관리자에게 문의하세요."
+				);
+			})
+			.catch((err) => {
+				if (err.response.status === 400) {
+					return setErrorMessage("이메일 또는 비밀번호가 일치하지 않습니다.");
+				}
 			});
 	};
 
@@ -169,35 +162,31 @@ const LoginPage = () => {
 					<form onSubmit={onSubmitHandler}>
 						<h1>로그인</h1>
 						<div>
-							<label>Email</label>
-							<input
-								type="text"
-								placeholder="이메일"
+							<EmailInput
+								label="이메일"
 								value={email}
 								onChange={(e) => {
 									setEmail(e.target.value);
 								}}
+								placeholder="이메일"
 								required="required"
 							/>
-						</div>
-						<div>
-							<label>Password</label>
-							<input
-								type="password"
-								placeholder="비밀번호"
+							<PasswordInput
+								label="비밀번호"
 								value={password}
 								onChange={(e) => {
 									setPassword(e.target.value);
 								}}
+								placeholder="비밀번호"
 								required="required"
 							/>
 						</div>
 						<p>{errorMessage}</p>
 						<button type="submit">로그인</button>
-						<div>
-							<Link to="/signup">회원가입</Link>
-						</div>
 					</form>
+					<div>
+						<Link to="/signup">회원가입</Link>
+					</div>
 				</StyledLoginWrapper>
 			</StyledLoginPage>
 			<Footer />
