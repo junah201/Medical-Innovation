@@ -1,13 +1,13 @@
-import requests
+from app.common.config import ADMIN_ACCOUNT_ID, ADMIN_ACCOUNT_PASSWORD, API_URL
 from bs4 import BeautifulSoup
+import requests
 import datetime
 import json
-from app.common.config import ADMIN_ACCOUNT_ID, ADMIN_ACCOUNT_PASSWORD
+from app.common.config import ADMIN_ACCOUNT_ID, ADMIN_ACCOUNT_PASSWORD, API_URL
 from app.utils.email import send_email
 
-ARTICLE_BOARD_ID: int = 3
 
-RECEIVER_ADDRESS = ["turtree@gmail.com", "junah.dev@gmail.com"]
+ARTICLE_BOARD_ID: int = 3
 
 HEADER: dict = {
     'authority': 'm.search.naver.com',
@@ -25,7 +25,12 @@ HEADER: dict = {
     'upgrade-insecure-requests': '1',
     'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Mobile Safari/537.36',
 }
-API_URL: str = "https://port-0-medical-innovation-3a9t2bldt5vor1.sel3.cloudtype.app"
+
+RECEIVER_ADDRESS = [
+    "turtree@gmail.com",
+    "junah.dev@gmail.com",
+    "support@medicalinnovation.or.kr"
+]
 
 
 def get_url(start: int = 1):
