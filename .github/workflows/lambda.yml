@@ -28,7 +28,7 @@ jobs:
       - name: Python files to Zip file
         run: |
           (cd ./venv/lib/python3.9/site-packages; zip -r9 ../../../../Build.zip . )
-          (cd Backend; zip ../Build.zip -u -r app/; zip ../Build.zip -u -r new_article_checker.py)
+          (cd Backend; zip ../Build.zip -u -r app/; zip ../Build.zip -u -r new_article_checker.py; zip ../Build.zip -u -r banner_end_alerter.py)
       - name: Upload zip file artifact
         uses: actions/upload-artifact@v2
         with:
