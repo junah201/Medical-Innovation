@@ -6,9 +6,10 @@ from app.common.config import ADMIN_ACCOUNT_ID, ADMIN_ACCOUNT_PASSWORD, API_URL
 from app.utils.email import send_email
 
 RECEIVER_ADDRESS = [
+    "medicalinnovation.or@gmail.com"
     "turtree@gmail.com",
     "junah.dev@gmail.com",
-    "support@medicalinnovation.or.kr"
+    "support@medicalinnovation.or.kr",
 ]
 
 
