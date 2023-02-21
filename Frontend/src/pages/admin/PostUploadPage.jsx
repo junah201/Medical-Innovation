@@ -230,11 +230,11 @@ const PostUploadPage = () => {
 						<input
 							type="radio"
 							name="imgSort"
-							value="right"
-							checked={imgSort === "right"}
-							onChange={() => setImgSort("right")}
+							value="left"
+							checked={imgSort === "left"}
+							onChange={() => setImgSort("left")}
 						/>
-						오른쪽
+						왼쪽
 						<input
 							type="radio"
 							name="imgSort"
@@ -246,11 +246,11 @@ const PostUploadPage = () => {
 						<input
 							type="radio"
 							name="imgSort"
-							value="left"
-							checked={imgSort === "left"}
-							onChange={() => setImgSort("left")}
+							value="right"
+							checked={imgSort === "right"}
+							onChange={() => setImgSort("right")}
 						/>
-						왼쪽
+						오른쪽
 						<br />
 						<input
 							type="file"
