@@ -34,7 +34,7 @@ const StyledPostUploadPage = styled.div`
 	& input[type="radio"] {
 		width: 15px;
 		height: 15px;
-		padding: 0;
+		padding: 0px;
 	}
 
 	& textarea {
@@ -81,6 +81,7 @@ const PostUploadPage = () => {
 	const [boardId, setBoardId] = useState(1);
 	const [content, setContent] = useState("");
 	const [files, setFiles] = useState([]);
+
 	const [imgSize, setImgSize] = useState("30%");
 	const [imgSort, setImgSort] = useState("center");
 
@@ -234,7 +235,7 @@ const PostUploadPage = () => {
 							checked={imgSort === "left"}
 							onChange={() => setImgSort("left")}
 						/>
-						왼쪽
+						<label>왼쪽</label>
 						<input
 							type="radio"
 							name="imgSort"
@@ -242,7 +243,7 @@ const PostUploadPage = () => {
 							checked={imgSort === "center"}
 							onChange={() => setImgSort("center")}
 						/>
-						중앙
+						<label>중앙</label>
 						<input
 							type="radio"
 							name="imgSort"
@@ -250,7 +251,7 @@ const PostUploadPage = () => {
 							checked={imgSort === "right"}
 							onChange={() => setImgSort("right")}
 						/>
-						오른쪽
+						<label>오른쪽</label>
 						<br />
 						<input
 							type="file"
