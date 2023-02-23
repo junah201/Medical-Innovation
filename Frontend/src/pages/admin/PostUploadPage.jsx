@@ -13,6 +13,8 @@ import { useNavigate } from "react-router-dom";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
+import "../../static/css/content-styles.css";
+
 const StyledPostUploadPage = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -201,6 +203,43 @@ const PostUploadPage = () => {
 						data=""
 						config={{
 							extraPlugins: [uploadPlugin],
+							toolbar: [
+								"heading",
+								"|",
+								"bold",
+								"italic",
+								"underline",
+								"strikethrough",
+								"|",
+							],
+							heading: {
+								options: [
+									{
+										model: "paragraph",
+										view: "p",
+										title: "본문",
+										class: "ck-heading_paragraph",
+									},
+									{
+										model: "heading1",
+										view: "h1",
+										title: "헤더1",
+										class: "ck-heading_heading1",
+									},
+									{
+										model: "heading2",
+										view: "h2",
+										title: "헤더2",
+										class: "ck-heading_heading2",
+									},
+									{
+										model: "heading3",
+										view: "h3",
+										title: "헤더3",
+										class: "ck-heading_heading3",
+									},
+								],
+							},
 						}}
 						onReady={(editor) => {
 							// You can store the "editor" and use when it is needed.

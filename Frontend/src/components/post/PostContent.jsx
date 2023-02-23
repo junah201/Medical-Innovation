@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import "../../static/css/content-styles.css";
 
 const StyledPostContent = styled.p`
 	min-height: calc(100vh - 700px);
@@ -38,6 +39,7 @@ const StyledPostContent = styled.p`
 const PostContent = ({ content }) => {
 	return (
 		<StyledPostContent
+			className="ck-content"
 			dangerouslySetInnerHTML={{ __html: content }}
 		></StyledPostContent>
 	);
