@@ -203,15 +203,6 @@ const PostUploadPage = () => {
 						data=""
 						config={{
 							extraPlugins: [uploadPlugin],
-							toolbar: [
-								"heading",
-								"|",
-								"bold",
-								"italic",
-								"underline",
-								"strikethrough",
-								"|",
-							],
 							heading: {
 								options: [
 									{
