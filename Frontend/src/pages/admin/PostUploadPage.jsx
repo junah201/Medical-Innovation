@@ -203,6 +203,9 @@ const PostUploadPage = () => {
 						data=""
 						config={{
 							extraPlugins: [uploadPlugin],
+							mediaEmbed: {
+								previewsInData: true,
+							},
 							heading: {
 								options: [
 									{
@@ -238,7 +241,7 @@ const PostUploadPage = () => {
 						}}
 						onChange={(event, editor) => {
 							const data = editor.getData();
-							console.log({ event, editor, data });
+							console.log(data);
 							setContent(data);
 						}}
 						onBlur={(event, editor) => {
