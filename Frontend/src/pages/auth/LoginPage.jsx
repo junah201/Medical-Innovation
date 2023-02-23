@@ -8,10 +8,12 @@ import Footer from "../../components/base/Footer";
 import Header from "../../components/base/Header";
 import EmailInput from "../../components/form/EmailInput";
 import PasswordInput from "../../components/form/PasswordInput";
+import BlankDiv from "./../../components/common/BlankDiv";
 
 const StyledLoginPage = styled.main`
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	padding: 20px;
 
 	@media screen and (max-width: 991px) {
@@ -160,6 +162,7 @@ const LoginPage = () => {
 				<StyledLoginWrapper>
 					<form onSubmit={onSubmitHandler}>
 						<h1>로그인</h1>
+						<BlankDiv height="60px" />
 						<div>
 							<EmailInput
 								label="이메일"

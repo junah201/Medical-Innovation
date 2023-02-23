@@ -11,10 +11,12 @@ import EmailInput from "../../components/form/EmailInput";
 import PasswordInput from "../../components/form/PasswordInput";
 import DateInput from "../../components/form/DateInput";
 import CheckboxInput from "../../components/form/CheckboxInput";
+import BlankDiv from "../../components/common/BlankDiv";
 
 const StyledSignupPage = styled.main`
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	padding: 20px;
 `;
 
@@ -162,6 +164,7 @@ const SignupPage = () => {
 				<StyledSignupWrapper>
 					<form onSubmit={onSubmitHandler}>
 						<h1>회원가입</h1>
+						<BlankDiv height="60px" />
 						<TextInput
 							label="이름"
 							value={name}
