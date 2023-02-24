@@ -123,10 +123,10 @@ const StyledSponsorItem = styled.div`
 	justify-content: center;
 	justify-items: center;
 	align-items: center;
-	padding: 25px;
+	padding: 20px;
 
 	& span {
-		font-size: 26px;
+		font-size: 18px;
 		color: #222;
 		margin: 10px 0 20px;
 		height: 22px;
@@ -166,7 +166,7 @@ const StyledSponsorItem = styled.div`
 		}
 
 		& span {
-			font-size: 18px;
+			font-size: 16px;
 			text-align: center;
 			color: #222;
 			margin: 10px 0 10px;

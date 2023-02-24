@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
-import styled from "styled-components";
 import axios from "axios";
 
 import AuthContext from "../../context/AuthContext";
 import AdminPage from "../../components/admin/AdminPage";
 import { API_URL } from "../../utils/const";
+import AdminTable from "./../../components/admin/AdminTable";
 
 const SponsorsPage = () => {
 	const authCtx = useContext(AuthContext);
@@ -26,56 +26,38 @@ const SponsorsPage = () => {
 	return (
 		<AdminPage>
 			<h1>후원 목록</h1>
-			<StyledSponsorContainer>
-				<StyledSponsorItem>고유 ID</StyledSponsorItem>
-				<StyledSponsorItem>유저 고유 ID</StyledSponsorItem>
-				<StyledSponsorItem>성명 (단체명)</StyledSponsorItem>
-				<StyledSponsorItem>전화번호</StyledSponsorItem>
-				<StyledSponsorItem>주민등록번호 (사업자등록번호)</StyledSponsorItem>
-				<StyledSponsorItem>주소</StyledSponsorItem>
-				<StyledSponsorItem>희망 사용처</StyledSponsorItem>
-				<StyledSponsorItem>기부 내용</StyledSponsorItem>
-				{companies.map((company) => {
-					return (
-						<>
-							<StyledSponsorItem>{company.id}</StyledSponsorItem>
-							<StyledSponsorItem>{company.user.id}</StyledSponsorItem>
-							<StyledSponsorItem>{company.name}</StyledSponsorItem>
-							<StyledSponsorItem>{company.phone}</StyledSponsorItem>
-							<StyledSponsorItem>
-								{company.identification_number}
-							</StyledSponsorItem>
-							<StyledSponsorItem>{company.address}</StyledSponsorItem>
-							<StyledSponsorItem>{company.usage}</StyledSponsorItem>
-							<StyledSponsorItem>{company.detail}</StyledSponsorItem>
-						</>
-					);
-				})}
-			</StyledSponsorContainer>
+			<AdminTable>
+				<thead>
+					<tr>
+						<th>고유 ID</th>
+						<th>유저 고유 ID</th>
+						<th>성명 (단체명)</th>
+						<th>전화번호</th>
+						<th>주민등록번호 (사업자등록번호)</th>
+						<th>주소</th>
+						<th>희망 사용처</th>
+						<th>기부 내용</th>
+					</tr>
+				</thead>
+				<tbody>
+					{companies.map((company) => {
+						return (
+							<tr key={company.id}>
+								<td>{company.id}</td>
+								<td>{company.user.id}</td>
+								<td>{company.name}</td>
+								<td>{company.phone}</td>
+								<td>{company.identification_number}</td>
+								<td>{company.address}</td>
+								<td>{company.usage}</td>
+								<td>{company.detail}</td>
+							</tr>
+						);
+					})}
+				</tbody>
+			</AdminTable>
 		</AdminPage>
 	);
 };
-
-const StyledSponsorContainer = styled.div`
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-
-	border-top: 2px solid silver;
-	border-left: 2px solid silver;
-
-	& > div {
-		border-right: 2px solid silver;
-		border-bottom: 2px solid silver;
-	}
-
-	& a:hover {
-		text-decoration: underline;
-	}
-`;
-
-const StyledSponsorItem = styled.div`
-	text-align: center;
-	padding: 5px;
-`;
 
 export default SponsorsPage;

@@ -7,6 +7,7 @@ import AdminTable from "../../components/admin/AdminTable";
 import { API_URL } from "../../utils/const";
 import AuthContext from "../../context/AuthContext";
 import Message from "../../components/common/Message";
+import LinkButton from "./../../components/common/LinkButton";
 
 const PostsPage = () => {
 	const authCtx = useContext(AuthContext);
@@ -33,35 +34,41 @@ const PostsPage = () => {
 			<Message>
 				tip : 게시물 삭제 후 복구가 불가능하니 신중하게 결정해주세요.
 			</Message>
-			<AdminTable column={8}>
-				<>
-					<div>고유 id</div>
-					<div>게시판</div>
-					<div>제목</div>
-					<div>작성자</div>
-					<div>생성일</div>
-					<div>수정일</div>
-					<div>수정</div>
-					<div>삭제</div>
-				</>
-				{posts.map((post) => {
-					return (
-						<>
-							<div>{post.id}</div>
-							<div>{post.board?.name}</div>
-							<div>{post.title}</div>
-							<div>{post.author_name}</div>
-							<div>{post.created_at}</div>
-							<div>{post.updated_at}</div>
-							<div>
-								<Link to={`/admin/post/edit/${post.id}`}>수정하기</Link>
-							</div>
-							<div>
-								<Link to={`/admin/post/delete/${post.id}`}>삭제하기</Link>
-							</div>
-						</>
-					);
-				})}
+			<LinkButton to="/admin/post/upload">게시물 업로드</LinkButton>
+			<br />
+			<AdminTable>
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>게시판</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>생성일</th>
+						<th>수정일</th>
+						<th>수정</th>
+						<th>삭제</th>
+					</tr>
+				</thead>
+				<tbody>
+					{posts.map((post) => {
+						return (
+							<tr>
+								<td>{post.id}</td>
+								<td>{post.board?.name}</td>
+								<td>{post.title}</td>
+								<td>{post.author_name}</td>
+								<td>{post.created_at.replace("T", " ")}</td>
+								<td>{post.updated_at.replace("T", " ")}</td>
+								<td>
+									<Link to={`/admin/post/edit/${post.id}`}>수정</Link>
+								</td>
+								<td>
+									<Link to={`/admin/post/delete/${post.id}`}>삭제</Link>
+								</td>
+							</tr>
+						);
+					})}
+				</tbody>
 			</AdminTable>
 		</AdminPage>
 	);

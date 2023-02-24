@@ -10,15 +10,24 @@ const StyledHeader = styled.header`
 	min-width: 250px;
 	min-height: 100vh;
 	height: 100%;
-	padding: 10px;
+	text-align: center;
 
-	& * + * {
-		margin-top: 10px;
+	& li {
+		border-bottom: 1px solid #ffffff;
+	}
+
+	& div {
+		background-color: #ffffff;
+		padding: 5px;
+	}
+
+	& li {
+		padding: 8px 0;
 	}
 
 	& a {
 		color: #ffffff;
-		font-size: 24px;
+		font-size: 16px;
 	}
 
 	& a:hover {
@@ -36,43 +45,39 @@ const StyledHeader = styled.header`
 const AdminHeader = () => {
 	return (
 		<StyledHeader>
+			<div>
+				<Link to="/">
+					<img src="/tight_logo.png" alt="logo" />
+				</Link>
+			</div>
 			<nav>
 				<ul>
 					<li>
-						<Link to="/admin/uesrs">유저 목록</Link>
+						<Link to="/admin/uesrs">회원 목록</Link>
 					</li>
 					<li>
-						<Link to="/admin/post/upload">게시물 업로드</Link>
+						<Link to="/admin/post/all">게시물</Link>
 					</li>
 					<li>
-						<Link to="/admin/post/all">게시물 목록</Link>
+						<Link to="/admin/banner/all">배너</Link>
 					</li>
 					<li>
-						<Link to="/admin/banner/upload">배너 업로드</Link>
-					</li>
-					<li>
-						<Link to="/admin/banner/all">배너 목록</Link>
-					</li>
-					<li>
-						<Link to="/admin/sponsoring_company/upload">후원 기업 업로드</Link>
-					</li>
-					<li>
-						<Link to="/admin/sponsoring_company/all">후원 기업 목록</Link>
+						<Link to="/admin/sponsoring_company/all">후원 기업</Link>
 					</li>
 					<li>
 						<Link to="/admin/sponsoring/all">후원 목록</Link>
 					</li>
 					<li>
-						<Link to="/admin/mou/upload">Mou 업로드</Link>
-					</li>
-					<li>
 						<Link to="/admin/mou/all">Mou 목록</Link>
 					</li>
 					<li>
-						<Link to="/admin/advisor/upload">자문단 업로드</Link>
+						<Link to="/admin/advisor/all">자문단</Link>
 					</li>
 					<li>
-						<Link to="/admin/advisor/all">자문단 목록</Link>
+						<Link to="/admin/public_event/all">행사 목록</Link>
+					</li>
+					<li>
+						<Link to="/admin/participant/all">행사 참여자</Link>
 					</li>
 					<li>
 						<Link to="/preparing">기타 설정</Link>

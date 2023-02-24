@@ -1,20 +1,36 @@
 import styled from "styled-components";
 
-const StyledAdminTable = styled.div`
-	display: grid;
-	grid-template-columns: ${(props) =>
-		props.column
-			? "repeat(" + props.column + ", 1fr)"
-			: "1fr 1fr 1fr 1fr 1fr 1fr 1fr"};
+const StyledAdminTable = styled.table`
+	border: 1px solid silver;
+	padding: 0;
+	margin: 0;
+	font-size: 12px;
+	border-collapse: collapse;
 
-	border-top: 2px solid silver;
-	border-left: 2px solid silver;
-
-	& > div {
-		border-right: 2px solid silver;
-		border-bottom: 2px solid silver;
+	& th {
+		padding: 10px;
+		background-color: #204397;
+		white-space: nowrap;
+		color: #ffffff;
 		text-align: center;
-		padding: 5px;
+		justify-content: center;
+		border: none;
+	}
+
+	& tr + tr {
+		border-top: 1px solid silver;
+	}
+
+	& tr {
+		border-bottom: 1pt solid #799fcb;
+		text-align: center;
+		justify-content: center;
+		padding: 2px;
+		height: 30px;
+	}
+
+	& a {
+		color: #0000ff;
 	}
 
 	& a:hover {
@@ -22,8 +38,8 @@ const StyledAdminTable = styled.div`
 	}
 `;
 
-const AdminTable = ({ children, column }) => {
-	return <StyledAdminTable column={column}>{children}</StyledAdminTable>;
+const AdminTable = ({ children }) => {
+	return <StyledAdminTable>{children}</StyledAdminTable>;
 };
 
 export default AdminTable;
