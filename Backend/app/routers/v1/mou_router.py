@@ -40,7 +40,6 @@ async def get_mous(db: Session = Depends(get_db)):
 @router.get("/get/{mou_id}", response_model=schemas.Mou)
 async def get_mou(mou_id: int, db: Session = Depends(get_db)):
     db_mou = crud.get_mou(db=db, mou_id=mou_id)
-    print(db_mou)
     if not db_mou:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,

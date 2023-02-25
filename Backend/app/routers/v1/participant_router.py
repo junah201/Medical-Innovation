@@ -24,8 +24,6 @@ def create_participant(public_event_id: int, participant_create: schemas.Partici
 
 @router.get("/{public_event_id}/all", response_model=schemas.ParticipantList)
 def get_all_participant_by_event_id(public_event_id: int, skip: int = 0, limit: int = 40, db: Session = Depends(get_db)):
-    print(crud.get_all_participant_by_event_id(
-        db=db, public_event_id=public_event_id, skip=skip, limit=limit))
     return crud.get_all_participant_by_event_id(db=db, public_event_id=public_event_id, skip=skip, limit=limit)
 
 
