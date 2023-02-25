@@ -12,9 +12,13 @@ import LinkButton from "./../../components/common/LinkButton";
 const PostsPage = () => {
 	const authCtx = useContext(AuthContext);
 
+	const SIZE = 40;
+	const [total, setTotal] = useState(0);
+	const [page, setPage] = useState(0);
+
 	useEffect(() => {
 		axios({
-			url: `${API_URL}/api/v1/post/all?skip=0&limit=500`,
+			url: `${API_URL}/api/v1/post/all?limit=${SIZE}&skip=${page}`,
 			method: "GET",
 			headers: {
 				accept: "application/json",
@@ -23,8 +27,9 @@ const PostsPage = () => {
 			},
 		}).then((res) => {
 			setPosts(res.data.posts);
+			setTotal(res.data.total);
 		});
-	}, [authCtx]);
+	}, [authCtx, page]);
 
 	const [posts, setPosts] = useState([]);
 
@@ -36,7 +41,7 @@ const PostsPage = () => {
 			</Message>
 			<LinkButton to="/admin/post/upload">게시물 업로드</LinkButton>
 			<br />
-			<AdminTable>
+			<AdminTable page={page} setPage={setPage} SIZE={SIZE} total={total}>
 				<thead>
 					<tr>
 						<th>번호</th>

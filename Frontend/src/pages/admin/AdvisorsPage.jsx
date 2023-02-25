@@ -11,25 +11,30 @@ import LinkButton from "../../components/common/LinkButton";
 const AdvisorsPage = () => {
 	const [advisors, setAdvisors] = useState([]);
 
+	const SIZE = 40;
+	const [total, setTotal] = useState(0);
+	const [page, setPage] = useState(0);
+
 	useEffect(() => {
 		axios({
-			url: `${API_URL}/api/v1/advisor/all?skip=0&limit=300`,
+			url: `${API_URL}/api/v1/advisor/all?limit=${SIZE}&skip=${page}`,
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
 				Accept: "application/json",
 			},
 		}).then((res) => {
-			setAdvisors(res.data);
+			setAdvisors(res.data.advisors);
+			setTotal(res.data.total);
 		});
-	}, []);
+	}, [page]);
 
 	return (
 		<AdminPage>
 			<h1>자문단 목록</h1>
 			<LinkButton to="/admin/advisor/upload">자문단 업로드</LinkButton>
 			<br />
-			<AdminTable>
+			<AdminTable page={page} setPage={setPage} SIZE={SIZE} total={total}>
 				<thead>
 					<tr>
 						<th>번호</th>

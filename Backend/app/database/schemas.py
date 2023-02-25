@@ -1,6 +1,7 @@
 from fastapi import Form
-from datetime import datetime
+from datetime import datetime, date
 from pydantic import BaseModel, validator, EmailStr, constr
+from pydantic.types import PositiveInt
 from typing import Optional, List, Union
 
 
@@ -54,6 +55,11 @@ class User(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class UserList(BaseModel):
+    total: int
+    users: list[User]
 
 
 class Token(BaseModel):
@@ -151,6 +157,11 @@ class Banner(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class BannerList(BaseModel):
+    total: int
+    banners: list[Banner]
 
 
 @form_body
@@ -251,3 +262,8 @@ class Advisor(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class AdvisorList(BaseModel):
+    total: int
+    advisors: list[Advisor]

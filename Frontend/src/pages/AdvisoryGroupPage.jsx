@@ -21,7 +21,7 @@ const AdvisoryGroupPage = () => {
 			},
 		}).then((res) => {
 			if (res.status === 200) {
-				setAdvisorList(res.data);
+				setAdvisorList(res.data.advisors);
 			}
 		});
 	}, []);

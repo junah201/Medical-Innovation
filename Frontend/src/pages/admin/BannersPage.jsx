@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import axios from "axios";
-
+import AuthContext from "../../context/AuthContext";
 import AdminPage from "../../components/admin/AdminPage";
 import AdminTable from "../../components/admin/AdminTable";
 import { API_URL } from "../../utils/const";
@@ -10,20 +10,28 @@ import Message from "../../components/common/Message";
 import LinkButton from "../../components/common/LinkButton";
 
 const BannersPage = () => {
+	const authCtx = useContext(AuthContext);
+
 	const [banners, setBanners] = useState([]);
+
+	const SIZE = 40;
+	const [total, setTotal] = useState(0);
+	const [page, setPage] = useState(0);
 
 	useEffect(() => {
 		axios({
-			url: `${API_URL}/api/v1/banner/all`,
+			url: `${API_URL}/api/v1/banner/all?limit=${SIZE}&skip=${page}`,
 			method: "GET",
 			headers: {
 				Accept: "application/json",
 				"Content-Type": "application/json",
+				Authorization: `Bearer ${authCtx.accessToken}`,
 			},
 		}).then((res) => {
-			setBanners(res.data);
+			setBanners(res.data.banners);
+			setTotal(res.data.total);
 		});
-	}, []);
+	}, [page, authCtx]);
 
 	return (
 		<AdminPage>
@@ -31,7 +39,7 @@ const BannersPage = () => {
 			<Message>tip : 배너 목록은 배너 종료 시점을 기준으로 정렬됩니다.</Message>
 			<LinkButton to="/admin/banner/upload">배너 업로드</LinkButton>
 			<br />
-			<AdminTable>
+			<AdminTable page={page} setPage={setPage} SIZE={SIZE} total={total}>
 				<thead>
 					<tr>
 						<th>번호</th>

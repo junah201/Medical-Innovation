@@ -33,9 +33,9 @@ def get_user_by_email(db: Session, email: str) -> models.User:
     return db.query(models.User).filter(models.User.email == email).first()
 
 
-def get_users(db: Session, skip: int = 0, limit: int = 20):
+def get_users(db: Session, skip: int = 0, limit: int = 20) -> schemas.UserList:
     db_users = db.query(models.User).order_by(models.User.created_at.desc())
-    return db_users.offset(skip).limit(limit).all()
+    return schemas.UserList(total=db_users.count(), users=db_users.offset(skip).limit(limit).all())
 
 
 def create_mou(db: Session, mou_create: schemas.MouCreate, filename: Optional[str] = ""):
@@ -128,8 +128,14 @@ def delete_post(db: Session, post_id: int) -> None:
     db.commit()
 
 
-def get_banners(db: Session) -> List[models.Banner]:
+def get_active_banners(db: Session) -> List[models.Banner]:
     return db.query(models.Banner).order_by(models.Banner.banner_end_at.desc()).filter(models.Banner.banner_end_at > datetime.utcnow()).all()
+
+
+def get_banners(db: Session, skip: int, limit: int) -> schemas.BannerList:
+    db_banners = db.query(models.Banner).order_by(
+        models.Banner.banner_end_at.desc())
+    return schemas.BannerList(total=db_banners.count(), banners=db_banners.offset(skip).limit(limit).all())
 
 
 def get_banner_by_id(db: Session, banner_id: int) -> models.Banner:
@@ -239,10 +245,10 @@ def create_advisor(db: Session, advisor_create: schemas.AdvisorCreate, filename:
     db.commit()
 
 
-def get_advisors(db: Session, skip: int = 0, limit: int = 300):
+def get_advisors(db: Session, skip: int = 0, limit: int = 300) -> schemas.AdvisorList:
     db_advisors = db.query(models.Advisor).order_by(
         models.Advisor.name)
-    return db_advisors.offset(skip).limit(limit).all()
+    return schemas.AdvisorList(total=db_advisors.count(), advisors=db_advisors.offset(skip).limit(limit).all())
 
 
 def get_advisor(db: Session, advisor_id: int):

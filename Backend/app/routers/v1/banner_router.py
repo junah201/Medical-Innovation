@@ -4,7 +4,7 @@ from app.database import crud, schemas, models
 from app.database.database import get_db
 from app.utils.oauth2 import get_current_user
 from app.utils.aws_s3 import upload_file, delete_file
-from typing import List
+from typing import List, Optional
 
 router = APIRouter(
     prefix="/api/v1/banner",
@@ -24,9 +24,20 @@ async def create_banner(banner_create: schemas.BannerCreate = Depends(schemas.Ba
     crud.create_banner(db=db, banner_create=banner_create, filename=filename)
 
 
-@router.get("/all", response_model=List[schemas.Banner])
-async def get_banners(db: Session = Depends(get_db)):
-    db_banners = crud.get_banners(db=db)
+@router.get("/all", response_model=schemas.BannerList)
+async def get_banners(skip: int, limit: int, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
+    if not current_user.is_admin:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="You do not have permission to access"
+        )
+
+    return crud.get_banners(db=db, skip=skip, limit=limit)
+
+
+@router.get("/all/active", response_model=List[schemas.Banner])
+async def get_active_banners(db: Session = Depends(get_db)):
+    db_banners = crud.get_active_banners(db=db)
     if not db_banners:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,

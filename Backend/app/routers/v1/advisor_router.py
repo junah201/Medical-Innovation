@@ -27,15 +27,9 @@ def create_advisor(file: Optional[UploadFile] = None, advisor_create: schemas.Ad
         db=db, advisor_create=advisor_create, filename=filename)
 
 
-@router.get("/all", response_model=list[schemas.Advisor])
+@router.get("/all", response_model=schemas.AdvisorList)
 def get_advisors(skip: int = 0, limit: int = 15, db: Session = Depends(get_db)):
-    db_advisors = crud.get_advisors(db=db, skip=skip, limit=limit)
-    if not db_advisors:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="No advisors found"
-        )
-    return db_advisors
+    return crud.get_advisors(db=db, skip=skip, limit=limit)
 
 
 @router.get("/get/{advisor_id}", response_model=schemas.Advisor)

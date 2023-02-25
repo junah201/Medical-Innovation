@@ -9,9 +9,13 @@ import AdminTable from "../../components/admin/AdminTable";
 const UsersPage = () => {
 	const authCtx = useContext(AuthContext);
 
+	const SIZE = 40;
+	const [total, setTotal] = useState(0);
+	const [page, setPage] = useState(0);
+
 	useEffect(() => {
 		axios({
-			url: `${API_URL}/api/v1/user/all?skip=0&limit=1000`,
+			url: `${API_URL}/api/v1/user/all?limit=${SIZE}&skip=${page}`,
 			method: "GET",
 			headers: {
 				accept: "application/json",
@@ -19,18 +23,17 @@ const UsersPage = () => {
 				Authorization: `Bearer ${authCtx.accessToken}`,
 			},
 		}).then((res) => {
-			setUsers(res.data);
+			setUsers(res.data.users);
+			setTotal(res.data.total);
 		});
-	}, [authCtx]);
+	}, [authCtx, page]);
 
 	const [users, setUsers] = useState([]);
-
-	console.log(users);
 
 	return (
 		<AdminPage>
 			<h1>회원목록</h1>
-			<AdminTable>
+			<AdminTable page={page} setPage={setPage} SIZE={SIZE} total={total}>
 				<thead>
 					<tr>
 						<th>고유 id</th>

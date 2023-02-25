@@ -38,8 +38,63 @@ const StyledAdminTable = styled.table`
 	}
 `;
 
-const AdminTable = ({ children }) => {
-	return <StyledAdminTable>{children}</StyledAdminTable>;
+const StyledBoardPageButtonWrapper = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`;
+
+const StyledBoardPageButton = styled.button`
+	background-color: #ffffff;
+	padding: 8px;
+	width: 35px;
+	height: 35px;
+	border: none;
+	font-size: 18px;
+
+	& + & {
+		margin-left: 5px;
+	}
+
+	&:hover {
+		background-color: #f9f9f9;
+	}
+`;
+
+const AdminTable = ({ children, page, setPage, SIZE, total }) => {
+	console.log("AdminTable", page, total);
+
+	return (
+		<>
+			<StyledAdminTable>{children}</StyledAdminTable>
+			<StyledBoardPageButtonWrapper>
+				<StyledBoardPageButton
+					onClick={() => setPage(Math.max(0, page - SIZE))}
+					disabled={page <= 0}
+				>
+					{"<"}
+				</StyledBoardPageButton>
+				{Array.from({ length: Math.ceil(total / SIZE) }).map((_, index) => {
+					return (
+						<StyledBoardPageButton
+							onClick={() => setPage(index * SIZE)}
+							disabled={index * SIZE === page}
+							key={index}
+						>
+							{index + 1}
+						</StyledBoardPageButton>
+					);
+				})}
+
+				<StyledBoardPageButton
+					onClick={() => setPage(Math.min(total, page + SIZE))}
+					disabled={page >= total / SIZE - 1}
+				>
+					{">"}
+				</StyledBoardPageButton>
+			</StyledBoardPageButtonWrapper>
+		</>
+	);
 };
 
 export default AdminTable;
