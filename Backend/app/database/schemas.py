@@ -302,23 +302,23 @@ class PublicEventList(BaseModel):
 
 class ParticipantCreate(BaseModel):
     name: str
-    english_name: Optional[str]
-    gender: str
-    birth: date
+    english_name: Optional[str] = None
+    gender: Optional[str] = None
+    birth: Optional[date] = None
     phone: str
     email: EmailStr
-    organization_type: str
+    organization_type: Optional[str] = None
     organization_name: str
     organization_english_name: Optional[str]
     job_position: str
-    address: str
-    final_degree: str
-    engagement_type: str
-    participant_motivation: str
-    participant_type: str
-    interest_disease: str
-    interest_field: str
-    interest_field_detail: str
+    address: Optional[str] = None
+    final_degree: Optional[str] = None
+    engagement_type: Optional[str] = None
+    participant_motivation: Optional[str] = None
+    participant_type: Optional[str] = None
+    interest_disease: Optional[str] = None
+    interest_field: Optional[str] = None
+    interest_field_detail: Optional[str] = None
 
 
 class Participant(BaseModel):
@@ -326,23 +326,23 @@ class Participant(BaseModel):
     public_event_id: PositiveInt
     public_event: Optional[PublicEvent] = None
     name: str
-    english_name: Optional[str]
-    gender: str
-    birth: date
+    english_name: Optional[str] = None
+    gender: Optional[str] = None
+    birth: Optional[date] = None
     phone: str
     email: EmailStr
-    organization_type: str
+    organization_type: Optional[str] = None
     organization_name: str
     organization_english_name: Optional[str]
     job_position: str
-    address: str
-    final_degree: str
-    engagement_type: str
-    participant_motivation: str
-    participant_type: str
-    interest_disease: str
-    interest_field: str
-    interest_field_detail: str
+    address: Optional[str] = None
+    final_degree: Optional[str] = None
+    engagement_type: Optional[str] = None
+    participant_motivation: Optional[str] = None
+    participant_type: Optional[str] = None
+    interest_disease: Optional[str] = None
+    interest_field: Optional[str] = None
+    interest_field_detail: Optional[str] = None
     created_at: datetime
     updated_at: datetime
 

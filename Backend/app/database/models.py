@@ -480,12 +480,12 @@ class Participant(Base):
     )
     gender = Column(
         VARCHAR(10),
-        nullable=False,
+        nullable=True,
         comment="참가자 성별"
     )
     birth = Column(
         DATE,
-        nullable=False,
+        nullable=True,
         comment="참가자 생년월일"
     )
     phone = Column(
@@ -500,7 +500,7 @@ class Participant(Base):
     )
     organization_type = Column(
         VARCHAR(100),
-        nullable=False,
+        nullable=True,
         comment="참가자 소속 분류"
     )
     organization_name = Column(
@@ -520,42 +520,42 @@ class Participant(Base):
     )
     address = Column(
         VARCHAR(100),
-        nullable=False,
+        nullable=True,
         comment="참가자 소재지"
     )
     final_degree = Column(
         VARCHAR(100),
-        nullable=False,
+        nullable=True,
         comment="참가자 최종 학력"
     )
     engagement_type = Column(
         VARCHAR(100),
-        nullable=False,
+        nullable=True,
         comment="참가자 참여유형"
     )
     participant_motivation = Column(
         VARCHAR(100),
-        nullable=False,
+        nullable=True,
         comment="참가자 참여동기"
     )
     participant_type = Column(
         VARCHAR(100),
-        nullable=False,
+        nullable=True,
         comment="참가자 유형"
     )
     interest_disease = Column(
         VARCHAR(100),
-        nullable=False,
+        nullable=True,
         comment="참가자 관심 질환"
     )
     interest_field = Column(
         VARCHAR(20),
-        nullable=False,
+        nullable=True,
         comment="참가자 관심 분야"
     )
     interest_field_detail = Column(
         VARCHAR(100),
-        nullable=False,
+        nullable=True,
         comment="참가자 관심 분야 상세"
     )
     created_at = Column(
