@@ -6,7 +6,7 @@ from app.common.config import ADMIN_ACCOUNT_ID, ADMIN_ACCOUNT_PASSWORD, API_URL
 from app.utils.email import send_email
 
 RECEIVER_ADDRESS = [
-    "medicalinnovation.or@gmail.com"
+    "medicalinnovation.or@gmail.com",
     "turtree@gmail.com",
     "junah.dev@gmail.com",
     "support@medicalinnovation.or.kr",
@@ -15,7 +15,7 @@ RECEIVER_ADDRESS = [
 
 def banner_end_checker() -> list[tuple[str, int]]:
     response = requests.get(
-        url=f"{API_URL}/api/v1/banner/all",
+        url=f"{API_URL}/api/v1/banner/all/active",
         headers={
             "accept": "application/json",
             "Content-Type": "application/json"
