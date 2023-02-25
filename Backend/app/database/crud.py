@@ -275,3 +275,80 @@ def delete_advisor(db: Session, advisor_id: int) -> None:
     db.query(models.Advisor).filter(
         models.Advisor.id == advisor_id).delete()
     db.commit()
+
+
+def create_public_event(db: Session, public_event_create: schemas.PublicEventCreate):
+    db_public_event = models.PublicEvent(
+        name=public_event_create.name,
+        english_name=public_event_create.english_name,
+        description=public_event_create.description,
+        start_date=public_event_create.start_date,
+        end_date=public_event_create.end_date,
+        join_start_date=public_event_create.join_start_date,
+        join_end_date=public_event_create.join_end_date,
+    )
+    db.add(db_public_event)
+    db.commit()
+
+
+def get_public_events(db: Session, skip: int = 0, limit: int = 40) -> schemas.PublicEventList:
+    db_public_events = db.query(models.PublicEvent).order_by(
+        models.PublicEvent.start_date.desc())
+    return schemas.PublicEventList(total=db_public_events.count(), events=db_public_events.offset(skip).limit(limit).all())
+
+
+def get_public_event(db: Session, public_event_id: int) -> Optional[models.PublicEvent]:
+    return db.query(models.PublicEvent).filter(models.PublicEvent.id == public_event_id).first()
+
+
+def update_public_event(db: Session, public_event_id: int, public_event_update: schemas.PublicEventCreate) -> None:
+    db_public_event: models.PublicEvent = db.query(models.PublicEvent).filter(
+        models.PublicEvent.id == public_event_id).first()
+
+    if not db_public_event:
+        return None
+
+    db_public_event.name = public_event_update.name
+    db_public_event.english_name = public_event_update.english_name
+    db_public_event.description = public_event_update.description
+    db_public_event.start_date = public_event_update.start_date
+    db_public_event.end_date = public_event_update.end_date
+    db_public_event.join_start_date = public_event_update.join_start_date
+    db_public_event.join_end_date = public_event_update.join_end_date
+    db.commit()
+
+
+def get_all_participant_by_event_id(db: Session, public_event_id: int, skip: int = 0, limit: int = 40) -> schemas.ParticipantList:
+    db_participants = db.query(models.Participant).filter(
+        models.Participant.public_event_id == public_event_id)
+    return schemas.ParticipantList(total=db_participants.count(), participants=db_participants.offset(skip).limit(limit).all())
+
+
+def get_participant(db: Session, participant_id: int) -> Optional[models.Participant]:
+    return db.query(models.Participant).filter(models.Participant.id == participant_id).first()
+
+
+def create_participant(db: Session, public_event_id: int, participant_create: schemas.ParticipantCreate) -> None:
+    db_participant = models.Participant(
+        public_event_id=public_event_id,
+        name=participant_create.name,
+        english_name=participant_create.english_name,
+        gender=participant_create.gender,
+        birth=participant_create.birth,
+        phone=participant_create.phone,
+        email=participant_create.email,
+        organization_type=participant_create.organization_type,
+        organization_name=participant_create.organization_name,
+        organization_english_name=participant_create.organization_english_name,
+        job_position=participant_create.job_position,
+        address=participant_create.address,
+        final_degree=participant_create.final_degree,
+        engagement_type=participant_create.engagement_type,
+        participant_motivation=participant_create.participant_motivation,
+        participant_type=participant_create.participant_type,
+        interest_disease=participant_create.interest_disease,
+        interest_field=participant_create.interest_field,
+        interest_field_detail=participant_create.interest_field_detail,
+    )
+    db.add(db_participant)
+    db.commit()

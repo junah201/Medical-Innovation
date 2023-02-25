@@ -1,5 +1,6 @@
-from sqlalchemy import Column, String, Integer, DateTime, JSON, ForeignKey, BOOLEAN, func, VARCHAR, VARCHAR
+from sqlalchemy import Column, String, Integer, DateTime, JSON, ForeignKey, BOOLEAN, func, VARCHAR, VARCHAR, DATE
 from sqlalchemy.orm import relationship
+from sqlalchemy.dialects.mysql import INTEGER
 from app.database.database import Base
 
 
@@ -366,6 +367,196 @@ class Advisor(Base):
         VARCHAR(40),
         nullable=False,
         comment="이미지 파일명"
+    )
+    created_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        comment="생성 시점"
+    )
+    updated_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        onupdate=func.now(),
+        comment="마지막 수정 시점"
+    )
+
+    class Config:
+        orm_mode = True
+
+
+class PublicEvent(Base):
+    __tablename__ = "public_event"
+    __table_args__ = {'mysql_collate': 'utf8_general_ci'}
+
+    id = Column(
+        INTEGER(unsigned=True),
+        primary_key=True,
+        unique=True,
+        comment="참가자 고유 번호"
+    )
+    participants = relationship(
+        "Participant",
+        back_populates="public_event"
+    )
+    name = Column(
+        VARCHAR(100),
+        nullable=False,
+        comment="행사 이름 (한글)"
+    )
+    english_name = Column(
+        VARCHAR(100),
+        nullable=True,
+        comment="행사 이름 (영문)"
+    )
+    description = Column(
+        VARCHAR(2000),
+        nullable=False,
+        comment="행사 설명"
+    )
+    start_date = Column(
+        DATE,
+        nullable=False,
+        comment="행사 시작 날짜"
+    )
+    end_date = Column(
+        DATE,
+        nullable=False,
+        comment="행사 종료 날짜"
+    )
+    join_start_date = Column(
+        DATE,
+        nullable=False,
+        comment="참가 신청 시작 날짜"
+    )
+    join_end_date = Column(
+        DATE,
+        nullable=False,
+        comment="참가 신청 종료 날짜"
+    )
+    created_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        comment="생성 시점"
+    )
+    updated_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        onupdate=func.now(),
+        comment="마지막 수정 시점"
+    )
+
+
+class Participant(Base):
+    __tablename__ = "participant"
+    __table_args__ = {'mysql_collate': 'utf8_general_ci'}
+
+    id = Column(
+        INTEGER(unsigned=True),
+        primary_key=True,
+        unique=True,
+        comment="참가자 고유 번호"
+    )
+    public_event_id = Column(
+        INTEGER(unsigned=True),
+        ForeignKey("public_event.id")
+    )
+    public_event = relationship(
+        "PublicEvent",
+        back_populates="participants"
+    )
+    name = Column(
+        VARCHAR(50),
+        nullable=False,
+        comment="참가자 이름 (한글)"
+    )
+    english_name = Column(
+        VARCHAR(100),
+        nullable=True,
+        comment="참가자 이름 (영문)"
+    )
+    gender = Column(
+        VARCHAR(10),
+        nullable=False,
+        comment="참가자 성별"
+    )
+    birth = Column(
+        DATE,
+        nullable=False,
+        comment="참가자 생년월일"
+    )
+    phone = Column(
+        VARCHAR(20),
+        nullable=False,
+        comment="참가자 연락처"
+    )
+    email = Column(
+        VARCHAR(100),
+        nullable=False,
+        comment="참가자 이메일"
+    )
+    organization_type = Column(
+        VARCHAR(100),
+        nullable=False,
+        comment="참가자 소속 분류"
+    )
+    organization_name = Column(
+        VARCHAR(100),
+        nullable=False,
+        comment="참가자 소속기관명"
+    )
+    organization_english_name = Column(
+        VARCHAR(100),
+        nullable=True,
+        comment="참가자 소속기관명 (영문)"
+    )
+    job_position = Column(
+        VARCHAR(100),
+        nullable=False,
+        comment="참가자 직위"
+    )
+    address = Column(
+        VARCHAR(100),
+        nullable=False,
+        comment="참가자 소재지"
+    )
+    final_degree = Column(
+        VARCHAR(100),
+        nullable=False,
+        comment="참가자 최종 학력"
+    )
+    engagement_type = Column(
+        VARCHAR(100),
+        nullable=False,
+        comment="참가자 참여유형"
+    )
+    participant_motivation = Column(
+        VARCHAR(100),
+        nullable=False,
+        comment="참가자 참여동기"
+    )
+    participant_type = Column(
+        VARCHAR(100),
+        nullable=False,
+        comment="참가자 유형"
+    )
+    interest_disease = Column(
+        VARCHAR(100),
+        nullable=False,
+        comment="참가자 관심 질환"
+    )
+    interest_field = Column(
+        VARCHAR(20),
+        nullable=False,
+        comment="참가자 관심 분야"
+    )
+    interest_field_detail = Column(
+        VARCHAR(100),
+        nullable=False,
+        comment="참가자 관심 분야 상세"
     )
     created_at = Column(
         DateTime,

@@ -35,6 +35,8 @@ import PhotoPage from "./pages/news/PhotoPage";
 
 import PostPage from "./pages/PostPage";
 
+import RegistrationPage from "./pages/event/RegistrationPage";
+
 import PostsPage from "./pages/admin/PostsPage";
 import PostUploadPage from "./pages/admin/PostUploadPage";
 import PostEditPage from "./pages/admin/PostEditPage";
@@ -57,6 +59,10 @@ import AdvisorsPage from "./pages/admin/AdvisorsPage";
 import AdvisorDeletePage from "./pages/admin/AdvisorDeletePage";
 import AdvisorUploadPage from "./pages/admin/AdvisorUploadPage";
 import AdvisorEditPage from "./pages/admin/AdvisorEditPage";
+import PublicEventsPage from "./pages/admin/PublicEventsPage";
+import PublicEventDetailPage from "./pages/admin/PublicEventDetailPage";
+import PublicEventCreatePage from "./pages/admin/PublicEventCreatePage";
+import ParticipantsPage from "./pages/admin/ParticipantsPage";
 
 import MouPage from "./pages/MouPage";
 import AdvisoryGroupPage from "./pages/AdvisoryGroupPage";
@@ -142,6 +148,27 @@ function App() {
 				<Route path="column" element={<ColumnPage />} noindex={false} />
 				<Route path="photo" element={<PhotoPage />} noindex={false} />
 			</Route>
+			<Route path="/event/:id">
+				<Route
+					path="registration"
+					element={<RegistrationPage />}
+					noindex={false}
+				/>
+			</Route>
+			<Route path="/news">
+				<Route
+					path="announcement"
+					element={<AnnouncementPage />}
+					noindex={false}
+				/>
+				<Route
+					path="press_release"
+					element={<PressReleasePage />}
+					noindex={false}
+				/>
+				<Route path="column" element={<ColumnPage />} noindex={false} />
+				<Route path="photo" element={<PhotoPage />} noindex={false} />
+			</Route>
 			<Route path="/admin">
 				<Route path="" element={<UsersPage />} />
 				<Route path="post">
@@ -176,6 +203,16 @@ function App() {
 					<Route path="upload" element={<AdvisorUploadPage />} />
 					<Route path="edit/:id" element={<AdvisorEditPage />} />
 					<Route path="delete/:id" element={<AdvisorDeletePage />} />
+				</Route>
+				<Route path="public_event">
+					<Route path="all" element={<PublicEventsPage />} />
+					<Route path="create" element={<PublicEventCreatePage />} />
+					<Route path="detail/:id" element={<PublicEventDetailPage />} />
+					<Route path="edit/:id" element={<AdvisorEditPage />} />
+					<Route path="delete/:id" element={<AdvisorDeletePage />} />
+				</Route>
+				<Route path="participant">
+					<Route path="all" element={<ParticipantsPage />} />
 				</Route>
 				<Route path="uesrs" element={<UsersPage />} />
 			</Route>

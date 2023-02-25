@@ -267,3 +267,89 @@ class Advisor(BaseModel):
 class AdvisorList(BaseModel):
     total: int
     advisors: list[Advisor]
+
+
+class PublicEventCreate(BaseModel):
+    name: str
+    english_name: str
+    description: str
+    start_date: date
+    end_date: date
+    join_start_date: date
+    join_end_date: date
+
+
+class PublicEvent(BaseModel):
+    id: PositiveInt
+    name: str
+    english_name: str
+    description: str
+    start_date: date
+    end_date: date
+    join_start_date: date
+    join_end_date: date
+    created_at: datetime
+    updated_at: datetime
+
+    class Config:
+        orm_mode = True
+
+
+class PublicEventList(BaseModel):
+    total: int
+    events: list[PublicEvent]
+
+
+class ParticipantCreate(BaseModel):
+    name: str
+    english_name: Optional[str]
+    gender: str
+    birth: date
+    phone: str
+    email: EmailStr
+    organization_type: str
+    organization_name: str
+    organization_english_name: Optional[str]
+    job_position: str
+    address: str
+    final_degree: str
+    engagement_type: str
+    participant_motivation: str
+    participant_type: str
+    interest_disease: str
+    interest_field: str
+    interest_field_detail: str
+
+
+class Participant(BaseModel):
+    id: PositiveInt
+    public_event_id: PositiveInt
+    public_event: Optional[PublicEvent] = None
+    name: str
+    english_name: Optional[str]
+    gender: str
+    birth: date
+    phone: str
+    email: EmailStr
+    organization_type: str
+    organization_name: str
+    organization_english_name: Optional[str]
+    job_position: str
+    address: str
+    final_degree: str
+    engagement_type: str
+    participant_motivation: str
+    participant_type: str
+    interest_disease: str
+    interest_field: str
+    interest_field_detail: str
+    created_at: datetime
+    updated_at: datetime
+
+    class Config:
+        orm_mode = True
+
+
+class ParticipantList(BaseModel):
+    total: int
+    participants: list[Participant]
