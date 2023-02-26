@@ -5,6 +5,7 @@ import BlankDiv from "../../components/common/BlankDiv";
 import Page from "../../components/common/Page";
 import SubNav from "../../components/support/SubNav";
 
+import axios from "axios";
 import { API_URL } from "../../utils/const";
 
 const StyledSponsorContainer = styled.div`
@@ -32,17 +33,15 @@ const SponsorPage = () => {
 	const [sponsorshipStatus, setSponsorshipStatus] = useState([]);
 
 	useEffect(() => {
-		fetch(`${API_URL}/api/v1/sponsoring_company/all`, {
+		axios({
+			url: `${API_URL}/api/v1/sponsoring_company/all?skip=0&limit=1000`,
 			method: "GET",
 			headers: {
+				"Content-Type": "application/json",
 				accept: "application/json",
 			},
 		}).then((res) => {
-			if (res.status === 200) {
-				res.json().then((data) => {
-					setSponsorshipStatus(data);
-				});
-			}
+			setSponsorshipStatus(res.data.sponsoring_companies);
 		});
 	}, []);
 

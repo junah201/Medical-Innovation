@@ -11,18 +11,23 @@ import LinkButton from "../../components/common/LinkButton";
 const SponsoringCompaniesPage = () => {
 	const [companies, setCompanies] = useState([]);
 
+	const SIZE = 40;
+	const [total, setTotal] = useState(0);
+	const [page, setPage] = useState(0);
+
 	useEffect(() => {
 		axios({
-			url: `${API_URL}/api/v1/sponsoring_company/all`,
+			url: `${API_URL}/api/v1/sponsoring_company/all?skip=${page}&limit=${SIZE}`,
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
 				accept: "application/json",
 			},
 		}).then((res) => {
-			setCompanies(res.data);
+			setCompanies(res.data.sponsoring_companies);
+			setTotal(res.data.total);
 		});
-	}, []);
+	}, [page]);
 
 	return (
 		<AdminPage>
@@ -35,7 +40,7 @@ const SponsoringCompaniesPage = () => {
 				후원기업 업로드
 			</LinkButton>
 			<br />
-			<AdminTable>
+			<AdminTable page={page} setPage={setPage} SIZE={SIZE} total={total}>
 				<thead>
 					<tr>
 						<th>번호</th>

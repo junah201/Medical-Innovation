@@ -27,15 +27,9 @@ async def create_sponsoring_company(sponsoring_company_create: schemas.Sponsorin
         db=db, sponsoring_company_create=sponsoring_company_create, filename=filename)
 
 
-@router.get("/all", response_model=List[schemas.SponsoringCompany])
-async def get_sponsoring_companies(db: Session = Depends(get_db)):
-    db_sponsoring_companies = crud.get_sponsoring_companies(db=db)
-    if not db_sponsoring_companies:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="not found"
-        )
-    return db_sponsoring_companies
+@router.get("/all", response_model=schemas.SponsoringCompanyList)
+async def get_sponsoring_companies(skip: int = 0, limit: int = 40, db: Session = Depends(get_db)):
+    return crud.get_sponsoring_companies(db=db, skip=skip, limit=limit)
 
 
 @router.get("/get/{sponsoring_company_id}", response_model=schemas.SponsoringCompany)

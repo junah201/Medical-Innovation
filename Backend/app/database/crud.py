@@ -194,8 +194,10 @@ def get_all_sponsors(db: Session, skip: int = 0, limit: int = 200) -> list[model
     return db_sponsors.offset(skip).limit(limit).all()
 
 
-def get_sponsoring_companies(db: Session) -> List[models.Banner]:
-    return db.query(models.SponsoringCompany).order_by(models.SponsoringCompany.year.desc()).all()
+def get_sponsoring_companies(db: Session, skip: int = 0, limit: int = 200) -> schemas.SponsoringCompanyList:
+    db_sponsoring_companies = db.query(models.SponsoringCompany).order_by(
+        models.SponsoringCompany.year.desc())
+    return schemas.SponsoringCompanyList(total=db_sponsoring_companies.count(), sponsoring_companies=db_sponsoring_companies.offset(skip).limit(limit).all())
 
 
 def create_sponsoring_company(db: Session, sponsoring_company_create: schemas.SponsoringCompanyCreate, filename: str = ""):

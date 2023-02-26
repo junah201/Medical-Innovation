@@ -238,6 +238,11 @@ class SponsoringCompany(BaseModel):
         orm_mode = True
 
 
+class SponsoringCompanyList(BaseModel):
+    total: int
+    sponsoring_companies: list[SponsoringCompany]
+
+
 @form_body
 class AdvisorCreate(BaseModel):
     name: str
