@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
 import { API_URL } from "../../utils/const";
-
 import BlankDiv from "../common/BlankDiv";
 
 import preregistrationStatus from "../../static/images/사전등록현황.png";
+import axios from "axios";
 
 const StyledMainLeftGrid = styled.div`
 	display: grid;
@@ -150,33 +150,46 @@ const StyledDocumentWrapper = styled.div`
 const MainLeftGrid = () => {
 	const navigate = useNavigate();
 
-	const [selcted, setSelected] = React.useState("공지사항");
-	const [noticePosts, setNoticePosts] = React.useState([]);
-	const [pressReleases, setPressReleases] = React.useState([]);
+	const [selcted, setSelected] = useState("공지사항");
+	const [noticePosts, setNoticePosts] = useState([]);
+	const [pressReleases, setPressReleases] = useState([]);
+	const [columns, setColumns] = useState([]);
 
 	useEffect(() => {
-		fetch(`${API_URL}/api/v1/post/2/all?limit=6`, {
+		axios({
 			method: "GET",
+			url: `${API_URL}/api/v1/post/2/all?limit=6`,
 			headers: {
 				accept: "application/json",
+				"Content-Type": "application/json",
 			},
 		}).then((res) => {
 			if (res.status === 200) {
-				res.json().then((data) => {
-					setNoticePosts(data.posts);
-				});
+				setNoticePosts(res.data.posts);
 			}
 		});
-		fetch(`${API_URL}/api/v1/post/3/all?limit=6`, {
+		axios({
 			method: "GET",
+			url: `${API_URL}/api/v1/post/3/all?limit=6`,
 			headers: {
 				accept: "application/json",
+				"Content-Type": "application/json",
 			},
 		}).then((res) => {
 			if (res.status === 200) {
-				res.json().then((data) => {
-					setPressReleases(data.posts);
-				});
+				setPressReleases(res.data.posts);
+			}
+		});
+		axios({
+			method: "GET",
+			url: `${API_URL}/api/v1/post/5/all?limit=6`,
+			headers: {
+				accept: "application/json",
+				"Content-Type": "application/json",
+			},
+		}).then((res) => {
+			if (res.status === 200) {
+				setColumns(res.data.posts);
 			}
 		});
 	}, []);
@@ -212,9 +225,9 @@ const MainLeftGrid = () => {
 					<ol>
 						<StyledTopGridButton
 							onClick={onClickHandler}
-							color={selcted === "지원분야" ? "#000000" : "#838383"}
+							color={selcted === "기고문" ? "#000000" : "#838383"}
 						>
-							지원분야
+							기고문
 						</StyledTopGridButton>
 					</ol>
 					<ol>
@@ -266,33 +279,19 @@ const MainLeftGrid = () => {
 						})}
 					</>
 				) : null}
-				{selcted === "지원분야" ? (
+				{selcted === "기고문" ? (
 					<>
-						<PostItem
-							link=""
-							title="줄기 세포생물학 기반의 기초연구 분야"
-							index="1"
-							key="1"
-						/>
-						<PostItem
-							link=""
-							title="나노바이오테크놀로지 기반의 첨단 기기/약물 융합임상연구 분야"
-							index="2"
-							key="2"
-						/>
-						<PostItem
-							link=""
-							title="미래의학을 선도하는 첨단 바이오 의약품 및 의료기기 분야"
-							index="3"
-							key="3"
-						/>
-						<PostItem
-							link=""
-							title="빅데이터 또는 AI를 활용한 미래의학 융합기술 분야"
-							index="4"
-							key="4"
-						/>
-						<PostItem link="" title="미래의학 관련 전 분야" index="5" key="5" />
+						{columns.map((post, index) => {
+							return (
+								<PostItem
+									link={`/post/${post.id}`}
+									title={post.title}
+									date={post.created_at}
+									index={index + 1}
+									key={index}
+								/>
+							);
+						})}
 					</>
 				) : null}
 				{selcted === "재단성격" ? (
