@@ -36,6 +36,13 @@ const StyledAdminTable = styled.table`
 	& a:hover {
 		text-decoration: underline;
 	}
+
+	& span {
+		width: 100%;
+		color: #000000;
+		display: block;
+		text-align: right;
+	}
 `;
 
 const StyledBoardPageButtonWrapper = styled.div`
@@ -66,6 +73,7 @@ const AdminTable = ({ children, page, setPage, SIZE, total }) => {
 
 	return (
 		<>
+			<span>total : {total}</span>
 			<StyledAdminTable>{children}</StyledAdminTable>
 			<StyledBoardPageButtonWrapper>
 				<StyledBoardPageButton
