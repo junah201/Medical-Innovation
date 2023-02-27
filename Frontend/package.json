@@ -6,6 +6,8 @@
 		"@ckeditor/ckeditor5-build-classic": "^36.0.1",
 		"@ckeditor/ckeditor5-dev-utils": "^34.0.2",
 		"@ckeditor/ckeditor5-react": "^5.0.6",
+		"@nivo/bar": "^0.80.0",
+		"@nivo/core": "^0.80.0",
 		"axios": "^1.2.4",
 		"react": "^18.2.0",
 		"react-cookie": "^4.1.1",

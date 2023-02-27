@@ -3,9 +3,8 @@ import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
 import { API_URL } from "../../utils/const";
 import BlankDiv from "../common/BlankDiv";
-
-import preregistrationStatus from "../../static/images/사전등록현황.png";
 import axios from "axios";
+import ParticipationChart from "./ParticipationChart";
 
 const StyledMainLeftGrid = styled.div`
 	display: grid;
@@ -397,14 +396,13 @@ const MainLeftGrid = () => {
 				</StyledStartupWrapper>
 			</StyledBottomItem>
 			<StyledBottomItem>
-				<h3>산업분야별 참여 현황</h3>
+				<h3>재단사업 참가 현황</h3>
 				<div>
-					<img
-						src={preregistrationStatus}
-						alt="산업분야별 참여 현황"
-						width="390px"
-						height="265px"
-					></img>
+					<ParticipationChart
+						style={{
+							padding: "6px",
+						}}
+					/>
 				</div>
 			</StyledBottomItem>
 		</StyledMainLeftGrid>
