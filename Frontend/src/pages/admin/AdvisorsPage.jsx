@@ -32,7 +32,9 @@ const AdvisorsPage = () => {
 	return (
 		<AdminPage>
 			<h1>자문단 목록</h1>
-			<LinkButton to="/admin/advisor/upload">자문단 업로드</LinkButton>
+			<LinkButton to="/admin/advisor/upload" type="Link">
+				자문단 업로드
+			</LinkButton>
 			<br />
 			<AdminTable page={page} setPage={setPage} SIZE={SIZE} total={total}>
 				<thead>

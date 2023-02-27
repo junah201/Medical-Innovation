@@ -39,7 +39,9 @@ const PublicEventsPage = () => {
 			<Message>
 				tip : 공개 행사 삭제 후 복구가 불가능하니 신중하게 결정해주세요.
 			</Message>
-			<LinkButton to="/admin/public_event/create">공개 행사 생성</LinkButton>
+			<LinkButton to="/admin/public_event/create" type="Link">
+				공개 행사 생성
+			</LinkButton>
 			<br />
 			<AdminTable page={page} setPage={setPage} SIZE={SIZE} total={total}>
 				<thead>

@@ -37,7 +37,9 @@ const BannersPage = () => {
 		<AdminPage>
 			<h1>배너 목록</h1>
 			<Message>tip : 배너 목록은 배너 종료 시점을 기준으로 정렬됩니다.</Message>
-			<LinkButton to="/admin/banner/upload">배너 업로드</LinkButton>
+			<LinkButton to="/admin/banner/upload" type="Link">
+				배너 업로드
+			</LinkButton>
 			<br />
 			<AdminTable page={page} setPage={setPage} SIZE={SIZE} total={total}>
 				<thead>

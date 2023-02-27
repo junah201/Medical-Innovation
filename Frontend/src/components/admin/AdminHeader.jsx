@@ -80,6 +80,9 @@ const AdminHeader = () => {
 						<Link to="/admin/participant/all">행사 참여자</Link>
 					</li>
 					<li>
+						<Link to="/admin/ad_email/all">광고 수신 이메일</Link>
+					</li>
+					<li>
 						<Link to="/preparing">기타 설정</Link>
 					</li>
 				</ul>

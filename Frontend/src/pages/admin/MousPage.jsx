@@ -29,7 +29,9 @@ const MousPage = () => {
 			<Message>
 				<Link to="/mou">Mou 페이지</Link> 에 표시되는 MOU 목록입니다.
 			</Message>
-			<LinkButton to="/admin/mou/upload">MOU 업로드</LinkButton>
+			<LinkButton to="/admin/mou/upload" type="Link">
+				MOU 업로드
+			</LinkButton>
 			<br />
 			<AdminTable>
 				<thead>

@@ -354,3 +354,44 @@ def create_participant(db: Session, public_event_id: int, participant_create: sc
     )
     db.add(db_participant)
     db.commit()
+
+
+def create_ad_email(db: Session, ad_email_create: schemas.AdEmailCreate) -> None:
+    db_ad_email = models.AdEmail(
+        user_id=ad_email_create.user_id,
+        email=ad_email_create.email,
+        subscribe=ad_email_create.subscribe,
+        etc_info=ad_email_create.etc_info,
+    )
+    db.add(db_ad_email)
+    db.commit()
+
+
+def get_ad_emails(db: Session, skip: int = 0, limit: int = 40) -> schemas.AdEmailList:
+    db_ad_emails = db.query(models.AdEmail).order_by(
+        models.AdEmail.created_at.desc())
+    return schemas.AdEmailList(total=db_ad_emails.count(), ad_emails=db_ad_emails.offset(skip).limit(limit).all())
+
+
+def get_ad_email(db: Session, ad_email_id: int) -> Optional[models.AdEmail]:
+    return db.query(models.AdEmail).filter(models.AdEmail.id == ad_email_id).first()
+
+
+def delete_ad_email(db: Session, ad_email_id: int) -> None:
+    db.query(models.AdEmail).filter(
+        models.AdEmail.id == ad_email_id).delete()
+    db.commit()
+
+
+def update_ad_email(db: Session, ad_email_id: int, ad_email_update: schemas.AdEmailCreate) -> None:
+    db_ad_email: models.AdEmail = db.query(models.AdEmail).filter(
+        models.AdEmail.id == ad_email_id).first()
+
+    if not db_ad_email:
+        return None
+
+    db_ad_email.user_id = ad_email_update.user_id
+    db_ad_email.email = ad_email_update.email
+    db_ad_email.subscribe = ad_email_update.subscribe
+    db_ad_email.etc_info = ad_email_update.etc_info
+    db.commit()

@@ -63,6 +63,7 @@ import PublicEventsPage from "./pages/admin/PublicEventsPage";
 import PublicEventDetailPage from "./pages/admin/PublicEventDetailPage";
 import PublicEventCreatePage from "./pages/admin/PublicEventCreatePage";
 import ParticipantsPage from "./pages/admin/ParticipantsPage";
+import AdEmailAllPage from "./pages/admin/AdEmailAllPage";
 
 import MouPage from "./pages/MouPage";
 import AdvisoryGroupPage from "./pages/AdvisoryGroupPage";
@@ -213,6 +214,9 @@ function App() {
 				</Route>
 				<Route path="participant">
 					<Route path="all" element={<ParticipantsPage />} />
+				</Route>
+				<Route path="ad_email">
+					<Route path="all" element={<AdEmailAllPage />} />
 				</Route>
 				<Route path="uesrs" element={<UsersPage />} />
 			</Route>

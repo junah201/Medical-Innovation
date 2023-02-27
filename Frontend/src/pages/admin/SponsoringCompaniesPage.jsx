@@ -36,7 +36,7 @@ const SponsoringCompaniesPage = () => {
 				<Link to="/support/sponsor">후원자 소개 페이지</Link> 에 표시되는
 				후원기업 목록입니다.
 			</Message>
-			<LinkButton to="/admin/sponsoring_company/upload">
+			<LinkButton to="/admin/sponsoring_company/upload" type="Link">
 				후원기업 업로드
 			</LinkButton>
 			<br />

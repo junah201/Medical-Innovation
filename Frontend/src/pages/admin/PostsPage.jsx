@@ -39,7 +39,9 @@ const PostsPage = () => {
 			<Message>
 				tip : 게시물 삭제 후 복구가 불가능하니 신중하게 결정해주세요.
 			</Message>
-			<LinkButton to="/admin/post/upload">게시물 업로드</LinkButton>
+			<LinkButton to="/admin/post/upload" type="Link">
+				게시물 업로드
+			</LinkButton>
 			<br />
 			<AdminTable page={page} setPage={setPage} SIZE={SIZE} total={total}>
 				<thead>

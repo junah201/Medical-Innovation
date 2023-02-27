@@ -358,3 +358,33 @@ class Participant(BaseModel):
 class ParticipantList(BaseModel):
     total: int
     participants: list[Participant]
+
+
+class AdEmailCreate(BaseModel):
+    user_id: Optional[PositiveInt] = None
+    email: EmailStr
+    subscribe: bool
+    etc_info: Optional[str] = None
+
+
+class AdEmail(BaseModel):
+    id: PositiveInt
+    user_id: Optional[PositiveInt] = None
+    email: EmailStr
+    subscribe: bool
+    etc_info: Optional[str] = None
+    created_at: datetime
+    updated_at: datetime
+
+    class Config:
+        orm_mode = True
+
+
+class AdEmailList(BaseModel):
+    total: int
+    ad_emails: list[AdEmail]
+
+
+class AdEmailContent(BaseModel):
+    title: str
+    content: str

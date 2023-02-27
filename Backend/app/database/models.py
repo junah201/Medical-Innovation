@@ -574,3 +574,52 @@ class Participant(Base):
 
     class Config:
         orm_mode = True
+
+
+class AdEmail(Base):
+    __tablename__ = "ad_eamil"
+    __table_args__ = {'mysql_collate': 'utf8_general_ci'}
+
+    id = Column(
+        INTEGER(unsigned=True),
+        primary_key=True,
+        unique=True,
+        comment="이메일 고유 번호"
+    )
+    user_id = Column(
+        INTEGER(unsigned=True),
+        nullable=True,
+        comment="사용자 고유 번호"
+    )
+    email = Column(
+        VARCHAR(200),
+        nullable=False,
+        comment="이메일"
+    )
+    subscribe = Column(
+        BOOLEAN,
+        nullable=False,
+        default=True,
+        comment="구독 여부"
+    )
+    etc_info = Column(
+        VARCHAR(100),
+        nullable=True,
+        comment="기타 정보"
+    )
+    created_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        comment="생성 시점"
+    )
+    updated_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        onupdate=func.now(),
+        comment="마지막 수정 시점"
+    )
+
+    class Config:
+        orm_mode = True

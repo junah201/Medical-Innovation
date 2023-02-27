@@ -69,8 +69,6 @@ const StyledBoardPageButton = styled.button`
 `;
 
 const AdminTable = ({ children, page, setPage, SIZE, total }) => {
-	console.log("AdminTable", page, total);
-
 	return (
 		<>
 			<span>total : {total}</span>
