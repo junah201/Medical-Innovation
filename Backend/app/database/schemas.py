@@ -385,6 +385,8 @@ class AdEmailList(BaseModel):
     ad_emails: list[AdEmail]
 
 
+@form_body
 class AdEmailContent(BaseModel):
+    email: Optional[EmailStr] = None
     title: str
     content: str

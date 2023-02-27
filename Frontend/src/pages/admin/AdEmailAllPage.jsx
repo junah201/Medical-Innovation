@@ -50,7 +50,10 @@ const AdEmailAllPage = () => {
 					이메일 추가
 				</LinkButton>
 				<LinkButton to={send_to} type="a">
-					전체 이메일 보내기
+					전체 이메일 보내기 (숨은참조)
+				</LinkButton>
+				<LinkButton to="/admin/ad_email/send/all" type="Link">
+					전체 이메일 보내기 (한명 씩)
 				</LinkButton>
 			</div>
 			<br />

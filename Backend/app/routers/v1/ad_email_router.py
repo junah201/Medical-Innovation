@@ -1,9 +1,15 @@
-from fastapi import APIRouter, HTTPException, Depends, status
+from fastapi import APIRouter, HTTPException, Depends, status, UploadFile
 from sqlalchemy.orm import Session
 
 from app.database import crud, schemas, models
 from app.database.database import get_db
 from app.utils.oauth2 import get_current_user
+from app.utils.email import send_email
+
+import base64
+from email.mime.image import MIMEImage
+
+from typing import List, Optional
 
 router = APIRouter(
     prefix="/api/v1/ad_email",
@@ -65,11 +71,59 @@ def update_ad_email(ad_email_id: int, ad_email_update: schemas.AdEmailCreate, db
         db=db, ad_email_id=ad_email_id, ad_email_update=ad_email_update)
 
 
-@router.post("/send/all", status_code=status.HTTP_204_NO_CONTENT)
-def send_ad_email_all(ad_email_create: schemas.AdEmailCreate,  db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
+@router.post("/send/all", status_code=status.HTTP_200_OK)
+def send_ad_email_all(email_content: schemas.AdEmailContent = Depends(schemas.AdEmailContent), files: Optional[List[UploadFile]] = None,  db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
     if not current_user.is_admin:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="You do not have permission to create a ad_email"
         )
-    crud.send_ad_email_all(db=db, ad_email_create=ad_email_create)
+    db_ad_emails = crud.get_ad_emails(db=db, skip=0, limit=10000000)
+
+    tmp_images = []
+    for idx, file in enumerate(files):
+        img = MIMEImage(file.file.read(),
+                        _subtype=file.filename.split(".")[-1])
+        img.add_header(
+            'Content-Disposition',
+            f"attachment; filename= {file.filename}"
+        )
+        img.add_header('Content-ID', f'<image{idx}>')
+        tmp_images.append(img)
+
+    for db_ad_email in db_ad_emails.ad_emails:
+        send_email(
+            receiver_address=db_ad_email.email,
+            subject=email_content.title,
+            content=email_content.content,
+            images=tmp_images
+        )
+
+
+@router.post("/send/one", status_code=status.HTTP_200_OK)
+async def send_ad_email_one(email_content: schemas.AdEmailContent = Depends(schemas.AdEmailContent), files: List[UploadFile] = [], current_user: models.User = Depends(get_current_user)):
+    if not current_user.is_admin:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="You do not have permission to send a test ad_email"
+        )
+
+    print(files)
+
+    tmp_images = []
+    for idx, file in enumerate(files):
+        img = MIMEImage(file.file.read(),
+                        _subtype=file.filename.split(".")[-1])
+        img.add_header(
+            'Content-Disposition',
+            f"attachment; filename= {file.filename}"
+        )
+        img.add_header('Content-ID', f'<image{idx}>')
+        tmp_images.append(img)
+
+    send_email(
+        receiver_address=email_content.email,
+        subject=email_content.title,
+        content=email_content.content,
+        images=tmp_images
+    )
