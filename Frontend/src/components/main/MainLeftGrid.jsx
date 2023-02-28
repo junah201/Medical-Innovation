@@ -142,7 +142,7 @@ const MainLeftGrid = () => {
 						주십시오.
 					</p>
 					<Link to="/support/sponsorship">후원하기</Link>
-					<Link to="/support/sponsor">후원인 명단</Link>
+					<Link to="/support/sponsor">후원기업</Link>
 				</StyledGridItem>
 				<StyledGridBottomItem>
 					<div>

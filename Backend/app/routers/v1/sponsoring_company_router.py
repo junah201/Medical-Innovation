@@ -21,7 +21,7 @@ async def create_sponsoring_company(sponsoring_company_create: schemas.Sponsorin
 
     filename = ""
     if file:
-        filename = upload_file(file, "upload")
+        filename = upload_file(file, "banner")
 
     crud.create_sponsoring_company(
         db=db, sponsoring_company_create=sponsoring_company_create, filename=filename)
