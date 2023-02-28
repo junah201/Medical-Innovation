@@ -84,6 +84,7 @@ const AdvisorUploadPage = () => {
 					<option value="창업기획자 전문가그룹 자문단">
 						창업기획자 전문가그룹 자문단
 					</option>
+					<option value="칼럼니스트">칼럼니스트</option>
 				</select>
 				<br />
 				<textarea

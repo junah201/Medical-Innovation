@@ -103,6 +103,7 @@ const AdvisoryGroupPage = () => {
 				advisorList={advisorList}
 				advisorType="창업기획자 전문가그룹 자문단"
 			/>
+			<AdvisoryGroup advisorList={advisorList} advisorType="칼럼니스트" />
 		</Page>
 	);
 };
