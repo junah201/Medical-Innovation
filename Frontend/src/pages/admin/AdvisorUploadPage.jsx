@@ -76,6 +76,8 @@ const AdvisorUploadPage = () => {
 						setType(e.target.value);
 					}}
 				>
+					<option value="이사">이사</option>
+					<option value="고문">고문</option>
 					<option value="전문심의위원회">전문심의위원회</option>
 					<option value="자문위원회">자문위원회</option>
 					<option value="창업기획자 전문가그룹장">

@@ -93,6 +93,7 @@ const AdvisoryGroupPage = () => {
 					]}
 				/>
 			</PortraitWrapper>
+			<AdvisoryGroup advisorList={advisorList} advisorType="고문" />
 			<AdvisoryGroup advisorList={advisorList} advisorType="전문심의위원회" />
 			<AdvisoryGroup advisorList={advisorList} advisorType="자문위원회" />
 			<AdvisoryGroup
