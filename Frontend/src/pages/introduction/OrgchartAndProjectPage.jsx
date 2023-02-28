@@ -3,12 +3,11 @@ import styled from "styled-components";
 
 import Page from "../../components/common/Page";
 import SubNav from "../../components/introduction/SubNav";
-import Portrait from "../../components/common/Portrait";
-import PortraitWrapper from "../../components/common/PortraitWrapper";
 import BlankDiv from "../../components/common/BlankDiv";
 
 import orgchart from "../../static/images/조직도.png";
 import mainProject from "../../static/images/주요사업.png";
+import mainProject2 from "../../static/images/창업기획자사업모델.png";
 
 const StyledOrgchartWrapper = styled.div`
 	& img {
@@ -32,6 +31,8 @@ const OrgchartAndProjectPage = () => {
 				<h1>주요사업</h1>
 				<BlankDiv height="30px" />
 				<img src={mainProject} alt="조직도" />
+				<BlankDiv height="30px" />
+				<img src={mainProject2} alt="창업기획자사업모델" />
 			</StyledOrgchartWrapper>
 		</Page>
 	);
