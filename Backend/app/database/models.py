@@ -150,7 +150,7 @@ class Banner(Base):
         comment="회사명"
     )
     filename = Column(
-        VARCHAR(40),
+        VARCHAR(200),
         nullable=False,
         comment="파일명"
     )
@@ -203,7 +203,7 @@ class Mou(Base):
         comment="회사명"
     )
     filename = Column(
-        VARCHAR(40),
+        VARCHAR(200),
         nullable=False,
         comment="파일명"
     )
@@ -306,7 +306,7 @@ class SponsoringCompany(Base):
         comment="회사명"
     )
     filename = Column(
-        VARCHAR(40),
+        VARCHAR(200),
         nullable=False,
         comment="파일명"
     )
@@ -364,7 +364,7 @@ class Advisor(Base):
         comment="자문단 위원 유형"
     )
     filename = Column(
-        VARCHAR(40),
+        VARCHAR(200),
         nullable=False,
         comment="이미지 파일명"
     )
