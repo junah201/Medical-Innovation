@@ -128,7 +128,7 @@ const MainLeftGrid = () => {
 						지정기부금단체
 					</p>
 					<Link to="/mou">협력기관</Link>
-					<Link to="/advisory_group">자문단</Link>
+					<Link to="/advisory_group">임원현황</Link>
 				</StyledGridItem>
 				<StyledGridItem color="#2CA48F">
 					<h3>FMI 벤처투자조합</h3>
