@@ -33,6 +33,14 @@ const StyledAdminForm = styled.form`
 		margin: auto 0;
 		background-color: #ffffff;
 	}
+
+	& .ck-editor {
+		width: 800px;
+	}
+
+	& .ck-editor__editable_inline {
+		min-height: 600px;
+	}
 `;
 
 const AdminForm = ({ onSubmit, children }) => {

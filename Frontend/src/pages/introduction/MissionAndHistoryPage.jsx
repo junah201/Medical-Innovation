@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-
 import Page from "../../components/common/Page";
 import SubNav from "../../components/introduction/SubNav";
 import BlankDiv from "../../components/common/BlankDiv";
 import Message from "../../components/common/Message";
 import Portrait from "../../components/common/Portrait";
+import axios from "axios";
+import { API_URL } from "./../../utils/const";
 
 const StyledMissionWrapper = styled.div`
 	& div {
@@ -23,6 +24,24 @@ const StyledChairmanWrapper = styled.div`
 const StyledHistoryWrapper = styled.div``;
 
 const MissionAndHistoryPage = () => {
+	const [histories, setHistories] = useState([]);
+
+	useEffect(() => {
+		axios({
+			url: `${API_URL}/api/v1/history/all?limit=3000&skip=0`,
+			method: "GET",
+			headers: {
+				accept: "application/json",
+			},
+		}).then((res) => {
+			if (res.status === 200) {
+				setHistories(res.data.histories);
+
+				console.log(res.data.histories);
+			}
+		});
+	}, []);
+
 	return (
 		<Page>
 			<SubNav select="설립 취지 및 연혁" />
@@ -93,175 +112,11 @@ const MissionAndHistoryPage = () => {
 			<br />
 			<StyledHistoryWrapper>
 				<h1>연혁</h1>
-				<HistoryItem
-					year="2022"
-					items={[
-						"6th International Forum on Medical Innovation of Cell & Bio Therapy 개최",
-						"2022 3rd Bio-Venture Competition & Congress 개최",
-						"재단법인 미래의학연구재단 최신동향보고서 vol.12 발간",
-						"중소벤처기업부 창업기획자 등록(등록일:2022년 5월 23일)",
-						"제6회 미래의학춘계포럼 : 차세대 바이오 혁신 기술의 최신 동향과 비전 개최",
-						"기획재정부 지정기부금단체 재지정(기간 : 2022.1.1.~2027.12.31)",
-					]}
-				/>
-				<HistoryItem
-					year="2021"
-					items={[
-						"재단법인 미래의학연구재단 최신동향보고서 vol.11 발간",
-						"재단법인 미래의학연구재단 연구발굴지원사업 지원자 선정",
-						"5th International Forum on Medical Innovation of Cell & Bio Therapy 개최",
-						"재단법인 미래의학연구재단 상표 등록(등록일 : 2021년 10월 28일)",
-						"2021 2nd Bio-Venture Competition & Congress 개최",
-						"재단법인 미래의학연구재단 최신동향보고서 vol.10 발간",
-						"FMI Business School 개강",
-						"미래의학 생명과학 분야의 연구 발굴 및 창업 생태계 구축 시스템 특허 등록(등록일 : 2021년 3월 11일)",
-						"제5회 미래의학춘계포럼 : 차세대 바이오 혁신 기술의 최신 동향과 비전 개최",
-					]}
-				/>
-				<HistoryItem
-					year="2020"
-					items={[
-						"재단법인 미래의학연구재단 최신동향보고서 vol.09 발간",
-						"4th International Forum on Medical Innovation Cell & Bio Therapy 개최",
-						"Bio-Venture Competition&Congress 2020 개최",
-						"재단법인 미래의학연구재단 최신동향보고서 vol.08 발간",
-						"재단법인 미래의학연구재단 연구발굴지원사업 지원자 선정",
-						"제4회 미래의학춘계포럼 : 차세대 바이오 혁신 기술의 최신 동향과 비전 개최",
-					]}
-				/>
-				<HistoryItem
-					year="2019"
-					items={[
-						"제2회 후원인의 밤 개최",
-						"재단법인 미래의학연구재단 최신동향보고서 vol.07 발간",
-						"3rd International Forum on Medical Innovation of Cell & Bio Therapy 개최",
-						"재단법인 미래의학연구재단 최신동향보고서 vol.06 발간",
-						"제3회 미래의학춘계포럼 : 혁신적 첨단바이오의약품 개발의 현주소 개최",
-					]}
-				/>
-				<HistoryItem
-					year="2018"
-					items={[
-						"제1회 후원인의 밤 개최",
-						"재단법인 미래의학연구재단 최신동향보고서 vol.05 발간",
-						"재단법인 미래의학연구재단 제 1회 장학금 전달식",
-						"2nd International Forum on Medical Innovation of Cell & Bio Therapy 개최",
-						"재단법인 미래의학연구재단 최신동향보고서 vol.04 발간",
-						"제2회 미래의학춘계포럼 : 바이오치료법 개발의 현주소 개최",
-					]}
-				/>
-				<HistoryItem
-					year="2017"
-					items={[
-						"재단법인 미래의학연구재단 최신동향보고서 vol.03 발간",
-						"1st International Forum on Medical Innovation of Cell & Bio Therapy 개최",
-						"재단법인 미래의학연구재단 연구발굴지원사업 지원자 선정",
-						"재단법인 미래의학연구재단 최신동향보고서 vol.02 발간",
-						"제1회 미래의학생명과학 춘계포럼 개최",
-					]}
-				/>
-				<HistoryItem
-					year="2016"
-					items={[
-						"재단법인 미래의학연구재단 설립",
-						"녹조근 정훈장 수상(김효수 교수)",
-						"골수의 최상위조혈줄기세포의 유지기전 Kai1 최초 규명 (Cell Stem Cell지에 보고), 골수이식 향상법 개발 개시",
-						"주식회사 대웅제약에 간질환 치료용 줄기세포 조성물 기술 이전",
-						"재단법인 미래연구의학재단 최신동향보고서 vol.01 발간",
-					]}
-				/>
-				<HistoryItem
-					year="2015"
-					items={[
-						"국가 연구개발 우수성과 선정",
-						"미래창조과학부 줄기세포 선도 연구팀으로 최종 등극",
-					]}
-				/>
-				<HistoryItem
-					year="2014"
-					items={[
-						"제24회 분쉬의학상 본상 수상(김효수교수)",
-						"두산연강학술상 의학논문부분 단독수상(이사민 교수)",
-						"리지스틴 수용체 cap1 세계최초로 발견 (Cell Metabolism지에 보고), 대사증후군 기전 규명, 치료제 개발 개시심근경색증 세포치료법 매직셀 프로토콜, 보건복지부인정 상용화개시",
-					]}
-				/>
-				<HistoryItem
-					year="2013"
-					items={[
-						"제23회 분쉬의학상 젊은 의학자상(박경우 교수)",
-						"미래창조과학부 줄기세포 우수 연구팀으로 격상",
-						"대웅제약에 배아줄기세포유래-중간엽줄기세포 기술 이전",
-					]}
-				/>
-				<HistoryItem
-					year="2010"
-					items={[
-						"미래창조과학부 줄기세포 유망 연구팀 선정",
-						"CJ 제일제당 주식회사에 심혈관 질환 치료용 줄기세포치료제 기술이전",
-					]}
-				/>
-				<HistoryItem
-					year="2009"
-					items={[
-						"과학기술부지정 World-Class University 프로그램 선정, MMBS 학과 창설",
-					]}
-				/>
-				<HistoryItem
-					year="2008"
-					items={[
-						"LG 생명과학과 세포치료제 공동 연구 및 상용화 과제 발굴 (MOU) 체결",
-						"제1회 아산의학상 대상 수상(김효수교수)",
-					]}
-				/>
-				<HistoryItem
-					year="2007"
-					items={[
-						"관동맥스텐트 재발방지법 최초개발 Lancet지에 발표",
-						"보건복지부지정 혁신형 세포치료사업단 선정, IRICT 출범",
-					]}
-				/>
-				<HistoryItem
-					year="2006"
-					items={[
-						"제 1회 연강학술상(윤창환 교수), 분쉬의학상 젊은 연구자상 임상부문(강현재 교수)",
-						"국가 연구개발 우수성과 선정",
-					]}
-				/>
-				<HistoryItem
-					year="2004"
-					items={[
-						"과학기술부지정 국가지정연구실 선정",
-						"매직셀 연구 최초 결과 Lancet지에 발표",
-					]}
-				/>
-				<HistoryItem
-					year="2003"
-					items={["심근경색증 세포치료법 매직셀 연구 시작"]}
-				/>
-				<HistoryItem
-					year="2002"
-					items={[
-						"보건복지부 지원 우수핵심과제 선정과 동시에 줄기세포연구에 돌입함",
-					]}
-				/>
-				<HistoryItem
-					year="2000~2002"
-					items={[
-						"김효수교수 미국보스턴 성엘리자베스병원 연구소; 유전자-세포치료 기초연구",
-					]}
-				/>
-				<HistoryItem
-					year="1994~2000"
-					items={["죽상동맥경화증 병태생리 규명 연구 수행"]}
-				/>
-				<HistoryItem
-					year="1994"
-					items={["김효수교수 일본연수 귀국 후 심혈관 연구실 설립"]}
-				/>
-				<HistoryItem
-					year="1992~1994"
-					items={["김효수교수 일본동경대학3내과 분자생물학 연수"]}
-				/>
+				{histories.map((histories) => {
+					return (
+						<HistoryItem year={histories.title} content={histories.content} />
+					);
+				})}
 			</StyledHistoryWrapper>
 		</Page>
 	);
@@ -286,15 +141,11 @@ const StyledHistoryItem = styled.div`
 	}
 `;
 
-const HistoryItem = ({ year, items }) => {
+const HistoryItem = ({ year, content }) => {
 	return (
 		<StyledHistoryItem>
-			<h3>{year}년</h3>
-			<div>
-				{items.map((item, index) => {
-					return <p key={index}>{item}</p>;
-				})}
-			</div>
+			<h3>{year}</h3>
+			<div dangerouslySetInnerHTML={{ __html: content }} />
 		</StyledHistoryItem>
 	);
 };

@@ -390,3 +390,29 @@ class AdEmailContent(BaseModel):
     email: Optional[EmailStr] = None
     title: str
     content: str
+
+
+class HistoryCreate(BaseModel):
+    title: str = ""
+    content: str = ""
+
+
+class HistoryUpdate(BaseModel):
+    title: str = ""
+    content: str = ""
+
+
+class History(BaseModel):
+    id: PositiveInt
+    title: str
+    content: str
+    created_at: datetime
+    updated_at: datetime
+
+    class Config:
+        orm_mode = True
+
+
+class HistoryList(BaseModel):
+    total: int
+    histories: List[History]

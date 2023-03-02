@@ -395,3 +395,42 @@ def update_ad_email(db: Session, ad_email_id: int, ad_email_update: schemas.AdEm
     db_ad_email.subscribe = ad_email_update.subscribe
     db_ad_email.etc_info = ad_email_update.etc_info
     db.commit()
+
+
+def create_history(db: Session, history_create: schemas.HistoryCreate) -> None:
+    db_history = models.History(
+        title=history_create.title,
+        content=history_create.content
+    )
+    db.add(db_history)
+    db.commit()
+
+
+def get_all_history(db: Session, skip: int = 0, limit: int = 40) -> schemas.HistoryList:
+    db_all_history = db.query(models.History).order_by(
+        models.History.title.desc())
+    return schemas.HistoryList(
+        total=db_all_history.count(),
+        histories=db_all_history.offset(skip).limit(limit).all()
+    )
+
+
+def get_history(db: Session, history_id: int) -> Optional[models.History]:
+    return db.query(models.History).filter(models.History.id == history_id).first()
+
+
+def get_history_by_id(db: Session, history_id: int) -> Optional[models.History]:
+    return db.query(models.History).filter(models.History.id == history_id).first()
+
+
+def delete_history(db: Session, history_id: int):
+    db.query(models.History).filter(models.History.id == history_id).delete()
+    db.commit()
+
+
+def update_history(db: Session, history_id: int, history_update: schemas.HistoryUpdate) -> None:
+    db_history = db.query(models.History).filter(
+        models.History.id == history_id).first()
+    db_history.title = history_update.title
+    db_history.content = history_update.content
+    db.commit()

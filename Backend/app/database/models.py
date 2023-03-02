@@ -623,3 +623,44 @@ class AdEmail(Base):
 
     class Config:
         orm_mode = True
+
+
+class History(Base):
+    # 재단 연혁
+    __tablename__ = "history"
+    __table_args__ = {'mysql_collate': 'utf8_general_ci'}
+
+    id = Column(
+        INTEGER(unsigned=True),
+        primary_key=True,
+        unique=True,
+        comment="연혁 고유 번호"
+    )
+    title = Column(
+        String(100),
+        nullable=False,
+        default="",
+        comment="연혁 제목"
+    )
+    content = Column(
+        String(3000),
+        nullable=False,
+        default="",
+        comment="연혁 내용"
+    )
+    created_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        comment="생성 시점"
+    )
+    updated_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        onupdate=func.now(),
+        comment="마지막 수정 시점"
+    )
+
+    class Config:
+        orm_mode = True

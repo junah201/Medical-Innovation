@@ -65,6 +65,10 @@ import PublicEventCreatePage from "./pages/admin/PublicEventCreatePage";
 import ParticipantsPage from "./pages/admin/ParticipantsPage";
 import AdEmailAllPage from "./pages/admin/AdEmailAllPage";
 import AdEmailSendAll from "./pages/admin/AdEmailSendAll";
+import HistoryAllPage from "./pages/admin/HistoryAllPage";
+import HistoryCreatePage from "./pages/admin/HistoryCreatePage";
+import HistoryDeletePage from "./pages/admin/HistoryDeletePage";
+import HistoryEditPage from "./pages/admin/HistoryEditPage";
 
 import MouPage from "./pages/MouPage";
 import AdvisoryGroupPage from "./pages/AdvisoryGroupPage";
@@ -219,6 +223,12 @@ function App() {
 				<Route path="ad_email">
 					<Route path="all" element={<AdEmailAllPage />} />
 					<Route path="send/all" element={<AdEmailSendAll />} />
+				</Route>
+				<Route path="history">
+					<Route path="all" element={<HistoryAllPage />} />
+					<Route path="create" element={<HistoryCreatePage />} />
+					<Route path="edit/:id" element={<HistoryEditPage />} />
+					<Route path="delete/:id" element={<HistoryDeletePage />} />
 				</Route>
 				<Route path="uesrs" element={<UsersPage />} />
 			</Route>
