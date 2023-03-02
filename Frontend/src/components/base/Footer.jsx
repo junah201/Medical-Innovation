@@ -155,7 +155,7 @@ const Footer = () => {
 					<strong>관련 링크</strong>
 					<Link to="/privacy-policy">개인정보처리방침</Link>
 					<Link to="/mou">협력기관</Link>
-					<Link to="/advisory_group">자문단</Link>
+					<Link to="/advisory_group">임원현황</Link>
 				</div>
 			</StyledBottomFooter>
 		</StyledFooter>
