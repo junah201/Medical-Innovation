@@ -1,66 +1,17 @@
-import React, { useState, useEffect, useContext } from "react";
-import styled from "styled-components";
-
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import AdminPage from "../../components/admin/AdminPage";
 import AdminForm from "../../components/admin/AdminForm";
-import { API_URL, S3_URL } from "../../utils/const";
+import { API_URL } from "../../utils/const";
 import AuthContext from "../../context/AuthContext";
 import Message from "../../components/common/Message";
-import PostContent from "../../components/post/PostContent";
-import { useNavigate } from "react-router-dom";
 
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 import "../../static/css/content-styles.css";
-
-const StyledPostUploadPage = styled.div`
-	display: flex;
-	flex-direction: column;
-
-	& * + * {
-		margin-top: 10px;
-	}
-
-	& form {
-		display: flex;
-		flex-direction: column;
-	}
-
-	& .ck-editor__editable_inline {
-		min-height: 600px;
-	}
-
-	& input,
-	select {
-		width: 800px;
-		height: 30px;
-		padding: 3px;
-		font-size: 16px;
-	}
-
-	& input[type="radio"] {
-		width: 15px;
-		height: 15px;
-		padding: 0px;
-	}
-
-	& textarea {
-		width: 800px;
-		height: 400px;
-		padding: 3px;
-	}
-
-	& button {
-		padding: 10px 20px;
-		font-size: 20px;
-		font-weight: 600;
-		margin: auto 0;
-		background-color: #ffffff;
-	}
-`;
 
 const HistoryCreatePage = () => {
 	const authCtx = useContext(AuthContext);
