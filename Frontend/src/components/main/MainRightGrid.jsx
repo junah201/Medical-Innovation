@@ -381,8 +381,8 @@ const MainLeftGrid = () => {
 							<span>(주)핏미</span>
 							<BlankDiv height="5px" />
 							<p>
-								AI 기반 성형수술용 의료영상 분석 및 맞춤 보형물 디자인 서비스를
-								제공하는 가상성형 플랫폼
+								AI기반 성형수술용 의료영상 분석, 맞춤실리콘보형물 제작 및
+								가상성형 서비스 제공 플랫폼
 							</p>
 						</a>
 					</StyledStartupContainer>
