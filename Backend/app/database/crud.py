@@ -434,3 +434,42 @@ def update_history(db: Session, history_id: int, history_update: schemas.History
     db_history.title = history_update.title
     db_history.content = history_update.content
     db.commit()
+
+
+def create_supporting_startup(db: Session, supporting_startup_create: schemas.SupportingStartupCreate) -> None:
+    db_supporting_startup = models.SupportingStartup(
+        name=supporting_startup_create.name,
+        content=supporting_startup_create.content,
+        link=supporting_startup_create.link,
+    )
+    db.add(db_supporting_startup)
+    db.commit()
+
+
+def get_supporting_startups(db: Session, skip: int = 0, limit: int = 40) -> schemas.SupportingStartupList:
+    db_all_supporting_startup = db.query(models.SupportingStartup).order_by(
+        models.SupportingStartup.id.desc())
+    return schemas.SupportingStartupList(
+        total=db_all_supporting_startup.count(),
+        supporting_startups=db_all_supporting_startup.offset(
+            skip).limit(limit).all()
+    )
+
+
+def get_supporting_startup(db: Session, supporting_startup_id: int) -> Optional[models.SupportingStartup]:
+    return db.query(models.SupportingStartup).filter(models.SupportingStartup.id == supporting_startup_id).first()
+
+
+def update_supporting_startup(db: Session, supporting_startup_id: int, supporting_startup_update: schemas.SupportingStartupUpdate) -> None:
+    db_supporting_startup = db.query(models.SupportingStartup).filter(
+        models.SupportingStartup.id == supporting_startup_id).first()
+    db_supporting_startup.name = supporting_startup_update.name
+    db_supporting_startup.content = supporting_startup_update.content
+    db_supporting_startup.link = supporting_startup_update.link
+    db.commit()
+
+
+def delete_supporting_startup(db: Session, supporting_startup_id: int):
+    db.query(models.SupportingStartup).filter(
+        models.SupportingStartup.id == supporting_startup_id).delete()
+    db.commit()

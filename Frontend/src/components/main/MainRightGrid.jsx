@@ -153,8 +153,19 @@ const MainLeftGrid = () => {
 	const [noticePosts, setNoticePosts] = useState([]);
 	const [pressReleases, setPressReleases] = useState([]);
 	const [columns, setColumns] = useState([]);
+	const [supportingStartups, setSupportingStartups] = useState([]);
 
 	useEffect(() => {
+		axios({
+			url: `${API_URL}/api/v1/supporting_startup/all?limit=100000&skip=0`,
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+			},
+		}).then((res) => {
+			setSupportingStartups(res.data.supporting_startups);
+		});
 		axios({
 			method: "GET",
 			url: `${API_URL}/api/v1/post/2/all?limit=6`,
@@ -325,74 +336,21 @@ const MainLeftGrid = () => {
 			<StyledBottomItem>
 				<h3>스타트업 지원</h3>
 				<StyledStartupWrapper>
-					<StyledStartupContainer>
-						<a
-							href="http://www.cellco.co.kr"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<span>(주)셀코</span>
-							<BlankDiv height="5px" />
-							<p>해양 플랑크톤을 이용한 뼈이식재 제조기술 사업화</p>
-						</a>
-					</StyledStartupContainer>
-					<StyledStartupContainer>
-						<a
-							href="http://thedonee.com"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<span>(주)더도니</span>
-							<BlankDiv height="5px" />
-							<p>만성신장질환자들을 위한 자가칼륨측정기 개발</p>
-						</a>
-					</StyledStartupContainer>
-					<StyledStartupContainer>
-						<a
-							href="http://fintkorea.com"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<span>(주)파인트코리아</span>
-							<BlankDiv height="5px" />
-							<p>의료용 소재 맞춤제작을 위한 생분해성 복합소재 제조</p>
-						</a>
-					</StyledStartupContainer>
-					<StyledStartupContainer>
-						<a
-							href="https://fortugabio.com/"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<span>포투가바이오</span>
-							<BlankDiv height="5px" />
-							<p>
-								나노입자-세포화 기술과 단백질 결합 기술을 융합한 면역항암 플랫폼
-								개발
-							</p>
-						</a>
-					</StyledStartupContainer>
-					<StyledStartupContainer>
-						<a
-							href="https://fitme3d.kr"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							<span>(주)핏미</span>
-							<BlankDiv height="5px" />
-							<p>
-								AI기반 성형수술용 의료영상 분석, 맞춤실리콘보형물 제작 및
-								가상성형 서비스 제공 플랫폼
-							</p>
-						</a>
-					</StyledStartupContainer>
-					<StyledStartupContainer>
-						<a href="/" target="_blank" rel="noopener noreferrer">
-							<span>엘리펀트</span>
-							<BlankDiv height="5px" />
-							<p>소작기용 탈부착식 액체 기체 흡입기</p>
-						</a>
-					</StyledStartupContainer>
+					{supportingStartups.map((supporting_startup) => {
+						return (
+							<StyledStartupContainer>
+								<a
+									href={supporting_startup.link}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<span>{supporting_startup.name}</span>
+									<BlankDiv height="5px" />
+									<p>{supporting_startup.content}</p>
+								</a>
+							</StyledStartupContainer>
+						);
+					})}
 				</StyledStartupWrapper>
 			</StyledBottomItem>
 			<StyledBottomItem>

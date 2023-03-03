@@ -86,6 +86,9 @@ const AdminHeader = () => {
 						<Link to="/admin/history/all">연혁</Link>
 					</li>
 					<li>
+						<Link to="/admin/supporting_startup/all">스타트업 지원</Link>
+					</li>
+					<li>
 						<Link to="/preparing">기타 설정</Link>
 					</li>
 				</ul>

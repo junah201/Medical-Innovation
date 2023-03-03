@@ -664,3 +664,49 @@ class History(Base):
 
     class Config:
         orm_mode = True
+
+
+class SupportingStartup(Base):
+    # 지원 중인 스타트업
+    __tablename__ = "supporting_startup"
+    __table_args__ = {'mysql_collate': 'utf8_general_ci'}
+
+    id = Column(
+        INTEGER(unsigned=True),
+        primary_key=True,
+        unique=True,
+        comment="지원 중인 스타트업 고유 번호"
+    )
+    name = Column(
+        String(100),
+        nullable=False,
+        default="",
+        comment="스타트업 이름"
+    )
+    content = Column(
+        String(3000),
+        nullable=False,
+        default="",
+        comment="스타트업 내용"
+    )
+    link = Column(
+        VARCHAR(100),
+        nullable=False,
+        comment="홈페이지 링크"
+    )
+    created_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        comment="생성 시점"
+    )
+    updated_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        onupdate=func.now(),
+        comment="마지막 수정 시점"
+    )
+
+    class Config:
+        orm_mode = True

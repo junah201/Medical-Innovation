@@ -69,6 +69,10 @@ import HistoryAllPage from "./pages/admin/HistoryAllPage";
 import HistoryCreatePage from "./pages/admin/HistoryCreatePage";
 import HistoryDeletePage from "./pages/admin/HistoryDeletePage";
 import HistoryEditPage from "./pages/admin/HistoryEditPage";
+import SupportingStartupAllPage from "./pages/admin/SupportingStartupAllPage";
+import SupportingStartupCreatePage from "./pages/admin/SupportingStartupCreatePage";
+import SupportingStartupEditPage from "./pages/admin/SupportingStartupEditPage";
+import SupportingStartupDeletePage from "./pages/admin/SupportingStartupDeletePage";
 
 import MouPage from "./pages/MouPage";
 import AdvisoryGroupPage from "./pages/AdvisoryGroupPage";
@@ -229,6 +233,12 @@ function App() {
 					<Route path="create" element={<HistoryCreatePage />} />
 					<Route path="edit/:id" element={<HistoryEditPage />} />
 					<Route path="delete/:id" element={<HistoryDeletePage />} />
+				</Route>
+				<Route path="supporting_startup">
+					<Route path="all" element={<SupportingStartupAllPage />} />
+					<Route path="create" element={<SupportingStartupCreatePage />} />
+					<Route path="edit/:id" element={<SupportingStartupEditPage />} />
+					<Route path="delete/:id" element={<SupportingStartupDeletePage />} />
 				</Route>
 				<Route path="uesrs" element={<UsersPage />} />
 			</Route>

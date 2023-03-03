@@ -416,3 +416,32 @@ class History(BaseModel):
 class HistoryList(BaseModel):
     total: int
     histories: List[History]
+
+
+class SupportingStartupCreate(BaseModel):
+    name: str
+    content: str
+    link: Optional[str] = None
+
+
+class SupportingStartupUpdate(BaseModel):
+    name: str
+    content: str
+    link: Optional[str] = None
+
+
+class SupportingStartup(BaseModel):
+    id: PositiveInt
+    name: str
+    content: str
+    link: Optional[str] = None
+    created_at: datetime
+    updated_at: datetime
+
+    class Config:
+        orm_mode = True
+
+
+class SupportingStartupList(BaseModel):
+    total: int
+    supporting_startups: List[SupportingStartup]
