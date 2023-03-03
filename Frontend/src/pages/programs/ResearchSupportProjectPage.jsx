@@ -130,7 +130,7 @@ const ResearchSupportProjectPage = () => {
 				</Message>
 			</StyledTimelineWrapper>
 			<BlankDiv height="50px" />
-			<StyledJoinProgram>
+			<div>
 				<h1>신청 안내</h1>
 				<Message>
 					<div>
@@ -151,15 +151,28 @@ const ResearchSupportProjectPage = () => {
 						<p>상시모집</p>
 					</div>
 					<div>
+						<h4>제출 방법</h4>
+						<p>
+							아래 제출파일을 다운받아 support@medicalinnovation.or.kr 으로
+							보내주세요.
+						</p>
+					</div>
+					<div>
 						<h4>제출 서류</h4>
 						<p>신청서 표지 (양식1)</p>
 						<p>연구계획서 (양식2)</p>
 						<p>관련분야 전문가 추천서 (양식3)</p>
 						<p>기타 증빙서류</p>
 						<p>평가 및 선발방법</p>
+						<br />
+						<p>
+							<a href="https://medical-innovation.s3.ap-northeast-2.amazonaws.com/upload/%EC%97%B0%EA%B5%AC%EB%B0%9C%EA%B5%B4%EC%A7%80%EC%9B%90%EC%82%AC%EC%97%85+%EC%8B%A0%EC%B2%AD%EC%84%9C.zip">
+								신청서 양식 다운로드
+							</a>
+						</p>
 					</div>
 				</Message>
-			</StyledJoinProgram>
+			</div>
 		</Page>
 	);
 };

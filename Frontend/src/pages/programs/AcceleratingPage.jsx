@@ -6,8 +6,6 @@ import Page from "../../components/common/Page";
 import SubNav from "../../components/programs/SubNav";
 import Message from "../../components/common/Message";
 
-const StyledStartupSupportWrapper = styled.div``;
-const SyledBioVentureCompetitionWrapper = styled.div``;
 const SyledBioVentureCompetitionContainer = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
@@ -15,37 +13,11 @@ const SyledBioVentureCompetitionContainer = styled.div`
 	grid-gap: 30px;
 `;
 
-const StyledJoinProgram = styled.div`
-	display: flex;
-	flex-direction: column;
-
-	& > div {
-		padding-left: 32px;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-	}
-
-	& > div + div {
-		margin-top: 20px;
-	}
-
-	& h4 {
-		font-size: 20px;
-		margin-bottom: 10px;
-	}
-
-	& p {
-		font-size: 16px;
-		padding-left: 10px;
-	}
-`;
-
 const AcceleratingPage = () => {
 	return (
 		<Page>
 			<SubNav select="연구자 중심 창업지원" />
-			<StyledStartupSupportWrapper>
+			<div>
 				<h1>연구자 중심 창업지원</h1>
 				<Message>
 					재단은 미래의학 차세대 인재들의 혁신적이고 우수한 기술을 조기에
@@ -64,9 +36,45 @@ const AcceleratingPage = () => {
 					협력기관과 연대하여 유망 스타트업 발굴, 조기 기술사업화를 위한 선제적
 					오픈이노베이션 촉진에 박차를 가하고 있습니다.
 				</Message>
-			</StyledStartupSupportWrapper>
+			</div>
 			<BlankDiv height="50px" />
-			<SyledBioVentureCompetitionWrapper>
+			<div>
+				<h1>신청 안내</h1>
+				<Message>
+					<div>
+						<h4>지원내용</h4>
+						<p>우수기술 선발, 보육, 투자</p>
+						<p>공동연구/컨설팅/멘토링 등 협렵기관과 네트워크 기반 구축</p>
+						<p>온·오프라인 정기모임 등을 통한 기술정보교류 활동</p>
+					</div>
+					<div>
+						<h4>신청요건</h4>
+						<p>국내 유망 연구자/연구팀</p>
+						<p>유관 분야 전공 대학원생</p>
+						<p>국내 유관기관 소속의 연구자</p>
+					</div>
+					<div>
+						<h4>신청안내</h4>
+						<p>신청 기간 : 연중상시</p>
+						<p>신청서 제출 방법 : 재단 사이트를 통한 온라인 접수</p>
+						<p>
+							제출 서류 : 신청개요, 팀 구성, 사업화 기대효과, 프로젝트 계획 등
+						</p>
+						<p>
+							아래 양식을 다운받아 support@medicalinnovation.or.kr 으로
+							보내주세요.
+						</p>
+						<br />
+						<p>
+							<a href="https://medical-innovation.s3.ap-northeast-2.amazonaws.com/upload/%EC%97%B0%EA%B5%AC%EC%9E%90+%EC%B0%BD%EC%97%85+%EC%A7%80%EC%9B%90%EC%82%AC%EC%97%85+%EC%8B%A0%EC%B2%AD%EC%84%9C.docx">
+								신청서 양식 다운로드
+							</a>
+						</p>
+					</div>
+				</Message>
+			</div>
+			<BlankDiv height="50px" />
+			<div>
 				<h1>Bio-Venture Competition</h1>
 				<SyledBioVentureCompetitionContainer>
 					<WinnerItem
@@ -124,37 +132,7 @@ const AcceleratingPage = () => {
 						winnerDetail="서울대학교 약학대학"
 					/>
 				</SyledBioVentureCompetitionContainer>
-			</SyledBioVentureCompetitionWrapper>
-			<BlankDiv height="50px" />
-			<StyledJoinProgram>
-				<h1>신청 안내</h1>
-				<div>
-					<h4>지원내용</h4>
-					<p>우수기술 선발, 보육, 투자</p>
-					<p>공동연구/컨설팅/멘토링 등 협렵기관과 네트워크 기반 구축</p>
-					<p>온·오프라인 정기모임 등을 통한 기술정보교류 활동</p>
-				</div>
-				<div>
-					<h4>신청요건</h4>
-					<p>국내 유망 연구자/연구팀</p>
-					<p>유관 분야 전공 대학원생</p>
-					<p>국내 유관기관 소속의 연구자</p>
-				</div>
-				<div>
-					<h4>신청안내</h4>
-					<p>신청 기간 : 연중상시</p>
-					<p>신청서 제출 방법 : 재단 사이트를 통한 온라인 접수</p>
-					<p>
-						제출 서류 : 신청개요, 팀 구성, 사업화 기대효과, 프로젝트 계획 등
-					</p>
-					<p>
-						접수처 :
-						<a href="http://medicalinnovation.kr">
-							http://medicalinnovation.kr
-						</a>
-					</p>
-				</div>
-			</StyledJoinProgram>
+			</div>
 		</Page>
 	);
 };

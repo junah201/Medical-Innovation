@@ -13,6 +13,10 @@ const StyledMessage = styled.div`
 		margin-top: 10px;
 	}
 
+	& p {
+		padding-left: 5px;
+	}
+
 	& p > strong {
 		margin: 0 5px;
 	}
