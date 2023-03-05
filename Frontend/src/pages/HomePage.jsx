@@ -10,8 +10,6 @@ import Header from "../components/base/Header";
 import Banners from "../components/base/Banners";
 import Footer from "../components/base/Footer";
 
-import { Desktop } from "../components/responsive/responsive";
-
 const StyledHomePage = styled.main`
 	width: 100%;
 	height: 100%;
@@ -102,18 +100,16 @@ const HomePage = () => {
 	return (
 		<>
 			<Header />
-			<Desktop>
-				{popups.map((popup) => {
-					return (
-						<PopupView
-							key={popup.id}
-							title={popup.title}
-							filename={popup.image_filename}
-							link={popup.link}
-						/>
-					);
-				})}
-			</Desktop>
+			{popups.map((popup) => {
+				return (
+					<PopupView
+						key={popup.id}
+						title={popup.title}
+						filename={popup.image_filename}
+						link={popup.link}
+					/>
+				);
+			})}
 			<StyledHomePage>
 				<StyledHomeTitle>Foundation for Medical Innovation</StyledHomeTitle>
 				<StyledHomeDescription>
