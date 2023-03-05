@@ -85,6 +85,21 @@ const AcceleratingPage = () => {
 							</a>
 						</p>
 					</div>
+					<br />
+					<br />
+					<a
+						style={{
+							margin: "0 0.5rem",
+							padding: "0.5rem 1rem",
+							border: "1px solid #000",
+							borderRadius: "0.5rem",
+							backgroundColor: "#fff",
+							fontSize: "26px",
+						}}
+						href="https://medicalinnovation.or.kr/startup_investing_forum/2/registration"
+					>
+						참가신청
+					</a>
 				</Message>
 			</div>
 			<BlankDiv height="50px" />
