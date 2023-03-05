@@ -39,7 +39,9 @@ const AcceleratingPage = () => {
 			</div>
 			<BlankDiv height="50px" />
 			<div>
-				<h1>신청 안내</h1>
+				<h1>
+					2023 1<small>th</small> StarUp Investing Forum
+				</h1>
 				<Message>
 					<div>
 						<h4>지원내용</h4>
@@ -48,26 +50,38 @@ const AcceleratingPage = () => {
 						<p>온·오프라인 정기모임 등을 통한 기술정보교류 활동</p>
 					</div>
 					<div>
-						<h4>신청요건</h4>
-						<p>국내 유망 연구자/연구팀</p>
-						<p>유관 분야 전공 대학원생</p>
-						<p>국내 유관기관 소속의 연구자</p>
+						<h4>신청기간</h4>
+						<p>2023. 03. 06.(월) ~ 03. 22.(수) 18:00까지</p>
 					</div>
 					<div>
-						<h4>신청안내</h4>
-						<p>신청 기간 : 연중상시</p>
-						<p>신청서 제출 방법 : 재단 사이트를 통한 온라인 접수</p>
+						<h4>신청방법</h4>
+						<p>미래의학연구재단 온라인 신청</p>
 						<p>
-							제출 서류 : 신청개요, 팀 구성, 사업화 기대효과, 프로젝트 계획 등
+							온라인 접수 및 신청서류 제출처 : - 접수방법 : 온라인 회원가입 →
+							온라인 등록 → 파일업로드(사업신청서, 계획서 등 제출서류)
 						</p>
+					</div>
+					<div>
+						<h4>신청서류</h4>
 						<p>
-							아래 양식을 다운받아 support@medicalinnovation.or.kr 으로
-							보내주세요.
+							신청서 교부 : 사업신청서 양식, 제출서류 등은 홈페이지에서 다운로드
 						</p>
-						<br />
+						<p>신청 서류 : 사업신청서 1부, 첨부 서류 스캔 사본 각 1부</p>
+					</div>
+					<div>
 						<p>
 							<a href="https://medical-innovation.s3.ap-northeast-2.amazonaws.com/upload/%EC%97%B0%EA%B5%AC%EC%9E%90+%EC%B0%BD%EC%97%85+%EC%A7%80%EC%9B%90%EC%82%AC%EC%97%85+%EC%8B%A0%EC%B2%AD%EC%84%9C.docx">
-								신청서 양식 다운로드
+								- 제출서류 목록
+							</a>
+						</p>
+						<p>
+							<a href="https://medical-innovation.s3.ap-northeast-2.amazonaws.com/upload/%EC%97%B0%EA%B5%AC%EC%9E%90+%EC%B0%BD%EC%97%85+%EC%A7%80%EC%9B%90%EC%82%AC%EC%97%85+%EC%8B%A0%EC%B2%AD%EC%84%9C.docx">
+								- (디지털헬스 분야)사업신청서 양식
+							</a>
+						</p>
+						<p>
+							<a href="https://medical-innovation.s3.ap-northeast-2.amazonaws.com/upload/%EC%97%B0%EA%B5%AC%EC%9E%90+%EC%B0%BD%EC%97%85+%EC%A7%80%EC%9B%90%EC%82%AC%EC%97%85+%EC%8B%A0%EC%B2%AD%EC%84%9C.docx">
+								- (바이오산업 분야)사업신청서 양식
 							</a>
 						</p>
 					</div>
