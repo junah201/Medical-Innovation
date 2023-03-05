@@ -34,7 +34,16 @@ def get_all_public_events(skip: int = 0, limit: int = 40, db: Session = Depends(
 
 @router.get("/get/{public_event_id}", response_model=schemas.PublicEvent)
 def get_public_event(public_event_id: int, db: Session = Depends(get_db)):
-    return crud.get_public_event(db=db, public_event_id=public_event_id)
+    db_public_event = crud.get_public_event(
+        db=db,
+        public_event_id=public_event_id
+    )
+    if not db_public_event:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Public Event not found"
+        )
+    return db_public_event
 
 
 @router.put("/update/{public_event_id}", status_code=status.HTTP_204_NO_CONTENT)
