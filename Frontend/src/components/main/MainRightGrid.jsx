@@ -338,7 +338,7 @@ const MainLeftGrid = () => {
 				<StyledStartupWrapper>
 					{supportingStartups.map((supporting_startup) => {
 						return (
-							<StyledStartupContainer>
+							<StyledStartupContainer key={supporting_startup.id}>
 								<a
 									href={supporting_startup.link}
 									target="_blank"

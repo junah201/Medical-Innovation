@@ -884,3 +884,56 @@ class StartUpInvestingForumParticipant(Base):
 
     class Config:
         orm_mode = True
+
+
+class Popup(Base):
+    __tablename__ = "popup"
+    __table_args__ = {'mysql_collate': 'utf8_general_ci'}
+
+    id = Column(
+        INTEGER(unsigned=True),
+        primary_key=True,
+        unique=True,
+        comment="팝업 고유 번호"
+    )
+    title = Column(
+        VARCHAR(200),
+        nullable=False,
+        comment="팝업 제목"
+    )
+    image_filename = Column(
+        VARCHAR(300),
+        nullable=False,
+        comment="팝업 이미지 파일명"
+    )
+    link = Column(
+        VARCHAR(300),
+        nullable=False,
+        comment="팝업 링크"
+    )
+    popup_start_date = Column(
+        DATE,
+        nullable=False,
+        comment="팝업 표시 시작 날짜"
+    )
+    popup_end_date = Column(
+        DATE,
+        nullable=False,
+        comment="팝업 표시 종료 날짜"
+    )
+    created_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        comment="생성 시점"
+    )
+    updated_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        onupdate=func.now(),
+        comment="마지막 수정 시점"
+    )
+
+    class Config:
+        orm_mode = True

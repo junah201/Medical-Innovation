@@ -558,3 +558,64 @@ def get_startup_investing_forum_participants(db: Session, skip: int = 0, limit: 
 
 def get_startup_investing_forum_participant(db: Session, startup_investing_forum_participant_id: int) -> Optional[models.StartUpInvestingForumParticipant]:
     return db.query(models.StartUpInvestingForumParticipant).filter(models.StartUpInvestingForumParticipant.id == startup_investing_forum_participant_id).first()
+
+
+def create_popup(db: Session, popup_create: schemas.PopupCreate, image_filename: str) -> None:
+    db_popup = models.Popup(
+        title=popup_create.title,
+        link=popup_create.link,
+        popup_start_date=popup_create.popup_start_date,
+        popup_end_date=popup_create.popup_end_date,
+        image_filename=image_filename
+    )
+    db.add(db_popup)
+    db.commit()
+
+
+def get_popup(db: Session, popup_id: int) -> Optional[models.Popup]:
+    return db.query(models.Popup).filter(models.Popup.id == popup_id).first()
+
+
+def get_popups(db: Session, skip: int = 0, limit: int = 40) -> schemas.PopupList:
+    db_popups = db.query(models.Popup).order_by(
+        models.Popup.popup_start_date.desc())
+    return schemas.PopupList(
+        total=db_popups.count(),
+        popups=db_popups.offset(skip).limit(limit).all()
+    )
+
+
+def get_active_popups(db: Session) -> schemas.PopupList:
+    now = datetime.now().date()
+    db_popups = db.query(models.Popup).order_by(
+        models.Popup.popup_start_date.desc()
+    ).filter(
+        models.Popup.popup_start_date <= now
+    ).filter(
+        models.Popup.popup_end_date >= now
+    )
+    return schemas.PopupList(
+        total=db_popups.count(),
+        popups=db_popups.all()
+    )
+
+
+def update_popup_content(db: Session, popup_id: int, popup_update: schemas.PopupUpdate) -> None:
+    db_popup = get_popup(db, popup_id)
+    db_popup.title = popup_update.title
+    db_popup.link = popup_update.link
+    db_popup.popup_start_date = popup_update.popup_start_date
+    db_popup.popup_end_date = popup_update.popup_end_date
+    db.commit()
+
+
+def update_popup_image(db: Session, popup_id: int, image_filename: str) -> None:
+    db_popup = get_popup(db, popup_id)
+    db_popup.image_filename = image_filename
+    db.commit()
+
+
+def delete_popup(db: Session, popup_id: int) -> None:
+    db.query(models.Popup).filter(
+        models.Popup.id == popup_id).delete()
+    db.commit()

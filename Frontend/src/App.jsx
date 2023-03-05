@@ -80,6 +80,10 @@ import StartUpInvestingForumEditPage from "./pages/admin/StartUpInvestingForumEd
 import StartUpInvestingForumDeletePage from "./pages/admin/StartUpInvestingForumDeletePage";
 import StartUpInvestingForumParticipantAllPage from "./pages/admin/StartUpInvestingForumParticipantAllPage";
 import StartUpInvestingForumParticipantDetailPage from "./pages/admin/StartUpInvestingForumParticipantDetailPage";
+import PopupAllPage from "./pages/admin/PopupAllPage";
+import PopupCreatePage from "./pages/admin/PopupCreatePage";
+import PopupEditPage from "./pages/admin/PopupEditPage";
+import PopupDeletePage from "./pages/admin/PopupDeletePage";
 
 import MouPage from "./pages/MouPage";
 import AdvisoryGroupPage from "./pages/AdvisoryGroupPage";
@@ -272,6 +276,12 @@ function App() {
 						path="detail/:id"
 						element={<StartUpInvestingForumParticipantDetailPage />}
 					/>
+				</Route>
+				<Route path="popup">
+					<Route path="all" element={<PopupAllPage />} />
+					<Route path="create" element={<PopupCreatePage />} />
+					<Route path="edit/:id" element={<PopupEditPage />} />
+					<Route path="delete/:id" element={<PopupDeletePage />} />
 				</Route>
 				<Route path="uesrs" element={<UsersPage />} />
 			</Route>

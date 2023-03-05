@@ -524,3 +524,37 @@ class StartUpInvestingForumParticipant(BaseModel):
 class StartUpInvestingForumParticipantList(BaseModel):
     total: int
     participants: List[StartUpInvestingForumParticipant]
+
+
+@form_body
+class PopupCreate(BaseModel):
+    title: str
+    link: str
+    popup_start_date: date
+    popup_end_date: date
+
+
+class PopupUpdate(BaseModel):
+    title: str
+    link: str
+    popup_start_date: date
+    popup_end_date: date
+
+
+class Popup(BaseModel):
+    id: PositiveInt
+    title: str
+    image_filename: str
+    link: str
+    popup_start_date: date
+    popup_end_date: date
+    created_at: datetime
+    updated_at: datetime
+
+    class Config:
+        orm_mode = True
+
+
+class PopupList(BaseModel):
+    total: int
+    popups: List[Popup]

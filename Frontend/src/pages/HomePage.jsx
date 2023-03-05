@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-
+import axios from "axios";
 import MainLeftGrid from "../components/main/MainLeftGrid";
 import MainRightGrid from "../components/main/MainRightGrid";
+import { API_URL, S3_URL } from "../utils/const";
+import PopupView from "../components/popup/PopupView";
 
 import Header from "../components/base/Header";
 import Banners from "../components/base/Banners";
 import Footer from "../components/base/Footer";
+
+import { Desktop } from "../components/responsive/responsive";
 
 const StyledHomePage = styled.main`
 	width: 100%;
@@ -77,9 +81,38 @@ const StyledHomeDescription = styled.span`
 `;
 
 const HomePage = () => {
+	const [popups, setPopups] = useState([]);
+
+	useEffect(() => {
+		axios({
+			url: `${API_URL}/api/v1/popup/all/active`,
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+			},
+		}).then((res) => {
+			if (res.status === 200) {
+				console.log(res.data.popups);
+				setPopups(res.data.popups);
+			}
+		});
+	}, []);
+
 	return (
 		<>
 			<Header />
+			<Desktop>
+				{popups.map((popup) => {
+					return (
+						<PopupView
+							key={popup.id}
+							title={popup.title}
+							filename={popup.image_filename}
+						/>
+					);
+				})}
+			</Desktop>
 			<StyledHomePage>
 				<StyledHomeTitle>Foundation for Medical Innovation</StyledHomeTitle>
 				<StyledHomeDescription>

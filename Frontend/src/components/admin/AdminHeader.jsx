@@ -99,6 +99,9 @@ const AdminHeader = () => {
 						</Link>
 					</li>
 					<li>
+						<Link to="/admin/popup/all">페이지 팝업</Link>
+					</li>
+					<li>
 						<Link to="/preparing">기타 설정</Link>
 					</li>
 				</ul>
