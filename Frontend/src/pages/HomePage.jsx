@@ -109,6 +109,7 @@ const HomePage = () => {
 							key={popup.id}
 							title={popup.title}
 							filename={popup.image_filename}
+							link={popup.link}
 						/>
 					);
 				})}

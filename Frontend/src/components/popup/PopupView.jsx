@@ -44,7 +44,7 @@ const StyledCloseButton = styled.button`
 	font-weight: bold;
 `;
 
-const PopupView = ({ title, filename }) => {
+const PopupView = ({ title, filename, link }) => {
 	const [show, setShow] = useState(false);
 
 	useEffect(() => {
@@ -58,7 +58,9 @@ const PopupView = ({ title, filename }) => {
 				<StyledPopupView>
 					<StyledPopupTitle>{title}</StyledPopupTitle>
 					<StyledPopupContent>
-						<img src={`${S3_URL}/upload/${filename}`} alt={filename}></img>
+						<a href={link} target="_blank" rel="noopener noreferrer">
+							<img src={`${S3_URL}/upload/${filename}`} alt={filename}></img>
+						</a>
 					</StyledPopupContent>
 					<StyledCloseButton
 						onClick={() => {
