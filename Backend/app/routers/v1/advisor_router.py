@@ -58,7 +58,7 @@ def delete_advisor(advisor_id: int, db: Session = Depends(get_db), current_user:
             detail="Advisor not found"
         )
 
-    if db_advisor.filename:
+    if db_advisor.filename and db_advisor.filename != "defualt_user.png":
         delete_file(db_advisor.filename, "upload")
 
     crud.delete_advisor(db=db, advisor_id=advisor_id)
