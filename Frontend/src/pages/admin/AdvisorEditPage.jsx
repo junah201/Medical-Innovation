@@ -98,7 +98,7 @@ const AdvisorEditPage = () => {
 
 		if (file === null) {
 			axios({
-				url: `${API_URL}/api/v1/advisor/update/file/${params.id}`,
+				url: `${API_URL}/api/v1/advisor/update/image/${params.id}`,
 				method: "PUT",
 				headers: {
 					accept: "application/json",
@@ -126,7 +126,7 @@ const AdvisorEditPage = () => {
 			data: formData,
 		}).then((res) => {
 			axios({
-				url: `${API_URL}/api/v1/advisor/update/file/${params.id}`,
+				url: `${API_URL}/api/v1/advisor/update/image/${params.id}`,
 				method: "PUT",
 				headers: {
 					accept: "application/json",
