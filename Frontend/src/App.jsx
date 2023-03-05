@@ -35,7 +35,8 @@ import PhotoPage from "./pages/news/PhotoPage";
 
 import PostPage from "./pages/PostPage";
 
-import RegistrationPage from "./pages/event/RegistrationPage";
+import EventRegistrationPage from "./pages/event/EventRegistrationPage";
+import RegistrationPage from "./pages/startup_investing_forum/RegistrationPage";
 
 import PostsPage from "./pages/admin/PostsPage";
 import PostUploadPage from "./pages/admin/PostUploadPage";
@@ -73,6 +74,12 @@ import SupportingStartupAllPage from "./pages/admin/SupportingStartupAllPage";
 import SupportingStartupCreatePage from "./pages/admin/SupportingStartupCreatePage";
 import SupportingStartupEditPage from "./pages/admin/SupportingStartupEditPage";
 import SupportingStartupDeletePage from "./pages/admin/SupportingStartupDeletePage";
+import StartUpInvestingForumEventsPage from "./pages/admin/StartUpInvestingForumEventsPage";
+import StartUpInvestingForumCreatePage from "./pages/admin/StartUpInvestingForumCreatePage";
+import StartUpInvestingForumEditPage from "./pages/admin/StartUpInvestingForumEditPage";
+import StartUpInvestingForumDeletePage from "./pages/admin/StartUpInvestingForumDeletePage";
+import StartUpInvestingForumParticipantAllPage from "./pages/admin/StartUpInvestingForumParticipantAllPage";
+import StartUpInvestingForumParticipantDetailPage from "./pages/admin/StartUpInvestingForumParticipantDetailPage";
 
 import MouPage from "./pages/MouPage";
 import AdvisoryGroupPage from "./pages/AdvisoryGroupPage";
@@ -161,6 +168,13 @@ function App() {
 			<Route path="/event/:id">
 				<Route
 					path="registration"
+					element={<EventRegistrationPage />}
+					noindex={false}
+				/>
+			</Route>
+			<Route path="startup_investing_forum/:id">
+				<Route
+					path="registration"
 					element={<RegistrationPage />}
 					noindex={false}
 				/>
@@ -239,6 +253,25 @@ function App() {
 					<Route path="create" element={<SupportingStartupCreatePage />} />
 					<Route path="edit/:id" element={<SupportingStartupEditPage />} />
 					<Route path="delete/:id" element={<SupportingStartupDeletePage />} />
+				</Route>
+				<Route path="startup_investing_forum_event">
+					<Route path="all" element={<StartUpInvestingForumEventsPage />} />
+					<Route path="create" element={<StartUpInvestingForumCreatePage />} />
+					<Route path="edit/:id" element={<StartUpInvestingForumEditPage />} />
+					<Route
+						path="delete/:id"
+						element={<StartUpInvestingForumDeletePage />}
+					/>
+				</Route>
+				<Route path="startup_investing_forum_participant">
+					<Route
+						path="all"
+						element={<StartUpInvestingForumParticipantAllPage />}
+					/>
+					<Route
+						path="detail/:id"
+						element={<StartUpInvestingForumParticipantDetailPage />}
+					/>
 				</Route>
 				<Route path="uesrs" element={<UsersPage />} />
 			</Route>

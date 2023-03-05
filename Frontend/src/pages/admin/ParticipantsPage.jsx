@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import AdminPage from "../../components/admin/AdminPage";

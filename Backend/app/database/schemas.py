@@ -445,3 +445,82 @@ class SupportingStartup(BaseModel):
 class SupportingStartupList(BaseModel):
     total: int
     supporting_startups: List[SupportingStartup]
+
+
+class StartUpInvestingForumEventCreate(BaseModel):
+    name: str
+    year: int
+    description: str
+
+
+class StartUpInvestingForumEventUpdate(BaseModel):
+    name: str
+    year: int
+    description: str
+
+
+class StartUpInvestingForumEvent(BaseModel):
+    id: PositiveInt
+    name: str
+    year: int
+    description: str
+    created_at: datetime
+    updated_at: datetime
+
+    class Config:
+        orm_mode = True
+
+
+class StartUpInvestingForumEventList(BaseModel):
+    total: int
+    events: list[StartUpInvestingForumEvent]
+
+
+class StartUpInvestingForumParticipantCreate(BaseModel):
+    event_id: PositiveInt
+    name: str
+    english_name: str
+    gender: str
+    birth: date
+    phone: str
+    email: EmailStr
+    organization_type: str
+    organization_name: str
+    organization_english_name: str
+    job_position: str
+    address: str
+    final_degree: str
+    participant_motivation: str
+    profile_filename: str
+    zip_filename: str
+
+
+class StartUpInvestingForumParticipant(BaseModel):
+    id: PositiveInt
+    user_id: Optional[PositiveInt] = None
+    event_id: PositiveInt
+    name: str
+    english_name: str
+    gender: str
+    birth: date
+    phone: str
+    email: EmailStr
+    organization_type: str
+    organization_name: str
+    organization_english_name: str
+    job_position: str
+    address: str
+    final_degree: str
+    participant_motivation: str
+    profile_filename: str
+    zip_filename: str
+    created_at: datetime
+    updated_at: datetime
+
+    class Config:
+        orm_mode = True
+
+
+class StartUpInvestingForumParticipantList(BaseModel):
+    total: int
+    participants: List[StartUpInvestingForumParticipant]

@@ -24,6 +24,8 @@ from app.routers.v1 import (
     ad_email_router,
     history_router,
     supporting_startup_router,
+    startup_investing_forum_event_router,
+    startup_investing_forum_participant_router
 )
 
 models.Base.metadata.create_all(bind=engine, checkfirst=True)
@@ -59,6 +61,8 @@ app.include_router(participant_router.router)
 app.include_router(ad_email_router.router)
 app.include_router(history_router.router)
 app.include_router(supporting_startup_router.router)
+app.include_router(startup_investing_forum_event_router.router)
+app.include_router(startup_investing_forum_participant_router.router)
 
 
 @app.exception_handler(RequestValidationError)

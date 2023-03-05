@@ -89,6 +89,16 @@ const AdminHeader = () => {
 						<Link to="/admin/supporting_startup/all">스타트업 지원</Link>
 					</li>
 					<li>
+						<Link to="/admin/startup_investing_forum_event/all">
+							StartUp Investing Forum 행사
+						</Link>
+					</li>
+					<li>
+						<Link to="/admin/startup_investing_forum_participant/all">
+							StartUp Investing Forum 참여자
+						</Link>
+					</li>
+					<li>
 						<Link to="/preparing">기타 설정</Link>
 					</li>
 				</ul>

@@ -40,7 +40,7 @@ const AcceleratingPage = () => {
 			<BlankDiv height="50px" />
 			<div>
 				<h1>
-					2023 1<small>th</small> StarUp Investing Forum
+					2023 1<small>th</small> StartUp Investing Forum
 				</h1>
 				<Message>
 					<div>

@@ -473,3 +473,88 @@ def delete_supporting_startup(db: Session, supporting_startup_id: int):
     db.query(models.SupportingStartup).filter(
         models.SupportingStartup.id == supporting_startup_id).delete()
     db.commit()
+
+
+def create_startup_investing_forum_event(db: Session, startup_investing_forum_event_create: schemas.StartUpInvestingForumEventCreate) -> None:
+    db_startup_investing_forum_event = models.StartUpInvestingForumEvent(
+        name=startup_investing_forum_event_create.name,
+        year=startup_investing_forum_event_create.year,
+        description=startup_investing_forum_event_create.description,
+    )
+    db.add(db_startup_investing_forum_event)
+    db.commit()
+
+
+def get_startup_investing_forum_events(db: Session, skip: int = 0, limit: int = 40) -> schemas.StartUpInvestingForumEventList:
+    db_all_startup_investing_forum_event = db.query(
+        models.StartUpInvestingForumEvent).order_by(models.StartUpInvestingForumEvent.id.desc())
+    return schemas.StartUpInvestingForumEventList(
+        total=db_all_startup_investing_forum_event.count(),
+        events=db_all_startup_investing_forum_event.offset(
+            skip).limit(limit).all()
+    )
+
+
+def get_startup_investing_forum_event(db: Session, startup_investing_forum_event_id: int) -> Optional[models.StartUpInvestingForumEvent]:
+    return db.query(models.StartUpInvestingForumEvent).filter(models.StartUpInvestingForumEvent.id == startup_investing_forum_event_id).first()
+
+
+def update_startup_investing_forum_event(
+    db: Session,
+    startup_investing_forum_event_id: int,
+    startup_investing_forum_event_update: schemas.StartUpInvestingForumEventUpdate,
+):
+    db_startup_investing_forum_event = db.query(models.StartUpInvestingForumEvent).filter(
+        models.StartUpInvestingForumEvent.id == startup_investing_forum_event_id).first()
+    db_startup_investing_forum_event.name = startup_investing_forum_event_update.name
+    db_startup_investing_forum_event.year = startup_investing_forum_event_update.year
+    db_startup_investing_forum_event.description = startup_investing_forum_event_update.description
+    db.commit()
+
+
+def delete_startup_investing_forum_event(db: Session, startup_investing_forum_event_id: int):
+    db.query(models.StartUpInvestingForumEvent).filter(
+        models.StartUpInvestingForumEvent.id == startup_investing_forum_event_id).delete()
+    db.commit()
+
+
+def create_startup_investing_forum_participant(
+        db: Session,
+        startup_investing_forum_participant_create: schemas.StartUpInvestingForumParticipantCreate,
+        user_id: int
+) -> None:
+    db_startup_investing_forum_participant = models.StartUpInvestingForumParticipant(
+        user_id=user_id,
+        event_id=startup_investing_forum_participant_create.event_id,
+        name=startup_investing_forum_participant_create.name,
+        english_name=startup_investing_forum_participant_create.english_name,
+        gender=startup_investing_forum_participant_create.gender,
+        birth=startup_investing_forum_participant_create.birth,
+        phone=startup_investing_forum_participant_create.phone,
+        email=startup_investing_forum_participant_create.email,
+        organization_type=startup_investing_forum_participant_create.organization_type,
+        organization_name=startup_investing_forum_participant_create.organization_name,
+        organization_english_name=startup_investing_forum_participant_create.organization_english_name,
+        job_position=startup_investing_forum_participant_create.job_position,
+        address=startup_investing_forum_participant_create.address,
+        final_degree=startup_investing_forum_participant_create.final_degree,
+        participant_motivation=startup_investing_forum_participant_create.participant_motivation,
+        profile_filename=startup_investing_forum_participant_create.profile_filename,
+        zip_filename=startup_investing_forum_participant_create.zip_filename,
+    )
+    db.add(db_startup_investing_forum_participant)
+    db.commit()
+
+
+def get_startup_investing_forum_participants(db: Session, skip: int = 0, limit: int = 40) -> schemas.StartUpInvestingForumParticipantList:
+    db_all_startup_investing_forum_participant = db.query(models.StartUpInvestingForumParticipant).order_by(
+        models.StartUpInvestingForumParticipant.id.desc())
+    return schemas.StartUpInvestingForumParticipantList(
+        total=db_all_startup_investing_forum_participant.count(),
+        participants=db_all_startup_investing_forum_participant.offset(
+            skip).limit(limit).all()
+    )
+
+
+def get_startup_investing_forum_participant(db: Session, startup_investing_forum_participant_id: int) -> Optional[models.StartUpInvestingForumParticipant]:
+    return db.query(models.StartUpInvestingForumParticipant).filter(models.StartUpInvestingForumParticipant.id == startup_investing_forum_participant_id).first()

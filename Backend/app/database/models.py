@@ -710,3 +710,177 @@ class SupportingStartup(Base):
 
     class Config:
         orm_mode = True
+
+
+class StartUpInvestingForumEvent(Base):
+    __tablename__ = "startup_investing_forum_event"
+    __table_args__ = {'mysql_collate': 'utf8_general_ci'}
+
+    id = Column(
+        INTEGER(unsigned=True),
+        primary_key=True,
+        unique=True,
+        comment="스타트업 투자 포럼 고유 번호"
+    )
+    name = Column(
+        String(200),
+        nullable=False,
+        default="",
+        comment="스타트업 투자 포럼 이름"
+    )
+    year = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        comment="스타트업 투자 포럼 연도"
+    )
+    description = Column(
+        String(3000),
+        nullable=False,
+        default="",
+        comment="스타트업 투자 포럼 설명"
+    )
+    participants = relationship(
+        "StartUpInvestingForumParticipant",
+        back_populates="event"
+    )
+    created_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        comment="생성 시점"
+    )
+    updated_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        onupdate=func.now(),
+        comment="마지막 수정 시점"
+    )
+
+    class Config:
+        orm_mode = True
+
+
+class StartUpInvestingForumParticipant(Base):
+    __tablename__ = "startup_investing_forum_participant"
+    __table_args__ = {'mysql_collate': 'utf8_general_ci'}
+
+    id = Column(
+        INTEGER(unsigned=True),
+        primary_key=True,
+        unique=True,
+        comment="스타트업 투자 포럼 참가자 고유 번호"
+    )
+    user_id = Column(
+        INTEGER(unsigned=True),
+        ForeignKey("user.id"),
+        nullable=True,
+        comment="스타트업 투자 포럼 참가자 고유 번호"
+    )
+    user = relationship(
+        "User",
+    )
+    event_id = Column(
+        INTEGER(unsigned=True),
+        ForeignKey("startup_investing_forum_event.id"),
+    )
+    event = relationship(
+        "StartUpInvestingForumEvent",
+        back_populates="participants"
+    )
+    name = Column(
+        VARCHAR(50),
+        nullable=False,
+        comment="참가자 이름 (한글)"
+    )
+    english_name = Column(
+        VARCHAR(100),
+        nullable=True,
+        comment="참가자 이름 (영문)"
+    )
+    gender = Column(
+        VARCHAR(10),
+        nullable=True,
+        comment="참가자 성별"
+    )
+    birth = Column(
+        DATE,
+        nullable=True,
+        comment="참가자 생년월일"
+    )
+    phone = Column(
+        VARCHAR(20),
+        nullable=False,
+        comment="참가자 연락처"
+    )
+    email = Column(
+        VARCHAR(100),
+        nullable=False,
+        comment="참가자 이메일"
+    )
+    resident_registration_number = Column(
+        VARCHAR(13),
+        nullable=True,
+        comment="참가자 주민등록번호"
+    )
+    organization_type = Column(
+        VARCHAR(100),
+        nullable=True,
+        comment="참가자 소속 분류"
+    )
+    organization_name = Column(
+        VARCHAR(100),
+        nullable=False,
+        comment="참가자 소속기관명"
+    )
+    organization_english_name = Column(
+        VARCHAR(100),
+        nullable=True,
+        comment="참가자 소속기관명 (영문)"
+    )
+    job_position = Column(
+        VARCHAR(100),
+        nullable=False,
+        comment="참가자 직위"
+    )
+    address = Column(
+        VARCHAR(100),
+        nullable=True,
+        comment="참가자 소재지"
+    )
+    final_degree = Column(
+        VARCHAR(100),
+        nullable=True,
+        comment="참가자 최종 학력"
+    )
+    participant_motivation = Column(
+        VARCHAR(100),
+        nullable=True,
+        comment="참가자 참여동기"
+    )
+    profile_filename = Column(
+        VARCHAR(200),
+        nullable=False,
+        comment="프로필 파일명"
+    )
+    zip_filename = Column(
+        VARCHAR(200),
+        nullable=False,
+        comment="압축 파일명"
+    )
+    created_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        comment="생성 시점"
+    )
+    updated_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        onupdate=func.now(),
+        comment="마지막 수정 시점"
+    )
+
+    class Config:
+        orm_mode = True

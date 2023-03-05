@@ -2,15 +2,15 @@ import React, { useReducer, useState, useEffect } from "react";
 import axios from "axios";
 import Page from "../../components/common/Page";
 import Message from "../../components/common/Message";
-import TextInput from "./../../components/regist/TextInput";
-import MutiCheckboxInput from "./../../components/regist/MutiCheckboxInput";
+import TextInput from "../../components/regist/TextInput";
+import MutiCheckboxInput from "../../components/regist/MutiCheckboxInput";
 import { useNavigate, useParams } from "react-router-dom";
 import { API_URL } from "../../utils/const";
 import DateInput from "../../components/regist/DateInput";
 import EmailInput from "../../components/regist/EmailInput";
-import SubmitButton from "./../../components/regist/SubmitButton";
+import SubmitButton from "../../components/regist/SubmitButton";
 
-const RegistrationPage = () => {
+const EventRegistrationPage = () => {
 	const navigate = useNavigate();
 	const params = useParams();
 
@@ -294,4 +294,4 @@ const RegistrationPage = () => {
 	);
 };
 
-export default RegistrationPage;
+export default EventRegistrationPage;
