@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Depends, status, UploadFile
+from fastapi import APIRouter, HTTPException, Depends, status, UploadFile, BackgroundTasks
 from sqlalchemy.orm import Session
 
 from app.database import crud, schemas, models
@@ -6,7 +6,6 @@ from app.database.database import get_db
 from app.utils.oauth2 import get_current_user
 from app.utils.email import send_email
 
-import base64
 from email.mime.image import MIMEImage
 
 from typing import List, Optional
@@ -72,7 +71,13 @@ def update_ad_email(ad_email_id: int, ad_email_update: schemas.AdEmailCreate, db
 
 
 @router.post("/send/all", status_code=status.HTTP_200_OK)
-def send_ad_email_all(email_content: schemas.AdEmailContent = Depends(schemas.AdEmailContent), files: Optional[List[UploadFile]] = None,  db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
+def send_ad_email_all(
+    background_tasks: BackgroundTasks,
+    email_content: schemas.AdEmailContent = Depends(schemas.AdEmailContent),
+    files: Optional[List[UploadFile]] = None,
+    db: Session = Depends(get_db),
+    current_user: models.User = Depends(get_current_user)
+):
     if not current_user.is_admin:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
@@ -92,7 +97,8 @@ def send_ad_email_all(email_content: schemas.AdEmailContent = Depends(schemas.Ad
         tmp_images.append(img)
 
     for db_ad_email in db_ad_emails.ad_emails:
-        send_email(
+        background_tasks.add_task(
+            send_email,
             receiver_address=db_ad_email.email,
             subject=email_content.title,
             content=email_content.content,
@@ -107,8 +113,6 @@ async def send_ad_email_one(email_content: schemas.AdEmailContent = Depends(sche
             status_code=status.HTTP_403_FORBIDDEN,
             detail="You do not have permission to send a test ad_email"
         )
-
-    print(files)
 
     tmp_images = []
     for idx, file in enumerate(files):
