@@ -14,16 +14,27 @@ router = APIRouter(
 
 
 @router.post("/create", status_code=status.HTTP_204_NO_CONTENT)
-def create_public_event(public_event_create: schemas.PublicEventCreate, current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
+def create_public_event(public_event_create: schemas.PublicEventCreate = Depends(schemas.PublicEventCreate), file: UploadFile = File(...), current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
     if not current_user.is_admin:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="You do not have permission to create a public_event"
         )
 
+    if file.content_type not in ["image/png", "image/jpeg"]:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="File must be png or jpeg"
+        )
+
+    filename = None
+    if file:
+        filename = upload_file(file)
+
     crud.create_public_event(
         db=db,
         public_event_create=public_event_create,
+        filename=filename
     )
 
 

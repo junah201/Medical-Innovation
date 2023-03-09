@@ -415,6 +415,11 @@ class PublicEvent(Base):
         nullable=False,
         comment="행사 설명"
     )
+    thumbnail_filename = Column(
+        VARCHAR(200),
+        nullable=True,
+        comment="썸네일 파일명"
+    )
     start_date = Column(
         DATE,
         nullable=False,

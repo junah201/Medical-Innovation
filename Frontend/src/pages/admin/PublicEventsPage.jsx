@@ -6,7 +6,6 @@ import AdminPage from "../../components/admin/AdminPage";
 import AdminTable from "../../components/admin/AdminTable";
 import { API_URL } from "../../utils/const";
 import AuthContext from "../../context/AuthContext";
-import Message from "../../components/common/Message";
 import LinkButton from "./../../components/common/LinkButton";
 
 const PublicEventsPage = () => {
@@ -36,9 +35,6 @@ const PublicEventsPage = () => {
 	return (
 		<AdminPage>
 			<h1>공개 행사</h1>
-			<Message>
-				tip : 공개 행사 삭제 후 복구가 불가능하니 신중하게 결정해주세요.
-			</Message>
 			<LinkButton to="/admin/public_event/create" type="Link">
 				공개 행사 생성
 			</LinkButton>

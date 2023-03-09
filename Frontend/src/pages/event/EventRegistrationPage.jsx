@@ -26,6 +26,15 @@ const EventRegistrationPage = () => {
 			},
 		}).then((res) => {
 			setEventDetail(res.data);
+			const now = new Date();
+			const start = new Date(res.data.join_start_date);
+			const end = new Date(res.data.join_end_date);
+			if (now < start || now > end) {
+				alert(
+					`참가 신청 기간이 아닙니다.\n${res.data.join_start_date} ~ ${res.data.join_end_date}`
+				);
+				navigate("/event/all");
+			}
 		});
 	}, [params.id]);
 

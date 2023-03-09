@@ -87,6 +87,8 @@ import PopupDeletePage from "./pages/admin/PopupDeletePage";
 
 import MouPage from "./pages/MouPage";
 import AdvisoryGroupPage from "./pages/AdvisoryGroupPage";
+import EventsPage from "./pages/event/EventsPage";
+import EventDetailPage from "./pages/event/EventDetailPage";
 
 function App() {
 	return (
@@ -169,9 +171,15 @@ function App() {
 				<Route path="column" element={<ColumnPage />} noindex={false} />
 				<Route path="photo" element={<PhotoPage />} noindex={false} />
 			</Route>
-			<Route path="/event/:id">
+			<Route path="/event">
+				<Route path="all" element={<EventsPage />} noindex={false} />
 				<Route
-					path="registration"
+					path=":id/detail"
+					element={<EventDetailPage />}
+					noindex={false}
+				/>
+				<Route
+					path=":id/registration"
 					element={<EventRegistrationPage />}
 					noindex={false}
 				/>

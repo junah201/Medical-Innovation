@@ -279,11 +279,12 @@ def delete_advisor(db: Session, advisor_id: int) -> None:
     db.commit()
 
 
-def create_public_event(db: Session, public_event_create: schemas.PublicEventCreate):
+def create_public_event(db: Session, public_event_create: schemas.PublicEventCreate, filename: Optional[str] = None):
     db_public_event = models.PublicEvent(
         name=public_event_create.name,
         english_name=public_event_create.english_name,
         description=public_event_create.description,
+        thumbnail_filename=filename,
         start_date=public_event_create.start_date,
         end_date=public_event_create.end_date,
         join_start_date=public_event_create.join_start_date,

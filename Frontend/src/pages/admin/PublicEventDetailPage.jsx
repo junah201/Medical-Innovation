@@ -26,6 +26,7 @@ const PublicEventDetailPage = () => {
 			},
 		}).then((res) => {
 			setPublicEvent(res.data);
+			console.log(res.data);
 		});
 	}, [authCtx, params.id]);
 

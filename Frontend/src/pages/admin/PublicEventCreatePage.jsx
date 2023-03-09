@@ -1,4 +1,4 @@
-import React, { useState, useContext, useReducer } from "react";
+import React, { useContext, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -12,6 +12,7 @@ import { API_URL } from "../../utils/const";
 import TextInput from "../../components/form/TextInput";
 import DescriptionInput from "../../components/form/DescriptionInput";
 import DateInput from "../../components/form/DateInput";
+import SingleFileInput from "../../components/form/SingleFileInput";
 
 const PublicEventCreatePage = () => {
 	const navigate = useNavigate();
@@ -30,6 +31,8 @@ const PublicEventCreatePage = () => {
 					return { ...state, description: action.payload };
 				case "start_date":
 					return { ...state, start_date: action.payload };
+				case "file":
+					return { ...state, thumbnail_filename: action.payload };
 				case "end_date":
 					return { ...state, end_date: action.payload };
 				case "join_start_date":
@@ -44,6 +47,7 @@ const PublicEventCreatePage = () => {
 			name: "",
 			english_name: "",
 			description: "",
+			file: null,
 			start_date: "2000-01-01",
 			end_date: "2023-01-01",
 			join_start_date: "2000-01-01",
@@ -64,7 +68,7 @@ const PublicEventCreatePage = () => {
 			method: "POST",
 			headers: {
 				accept: "application/json",
-				"Content-Type": "application/json",
+				"Content-Type": "multipart/form-data",
 				Authorization: `Bearer ${authCtx.accessToken}`,
 			},
 			data: formData,
@@ -135,6 +139,12 @@ const PublicEventCreatePage = () => {
 					value={publicEventCreateInfo.join_end_date}
 					onChange={(e) =>
 						dispatch({ type: "join_end_date", payload: e.target.value })
+					}
+				/>
+				<SingleFileInput
+					label="썸네일 이미지"
+					onChange={(e) =>
+						dispatch({ type: "file", payload: e.target.files[0] })
 					}
 				/>
 				<button type="submit">생성하기</button>

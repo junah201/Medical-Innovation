@@ -274,6 +274,7 @@ class AdvisorList(BaseModel):
     advisors: list[Advisor]
 
 
+@form_body
 class PublicEventCreate(BaseModel):
     name: str
     english_name: str
@@ -289,6 +290,7 @@ class PublicEvent(BaseModel):
     name: str
     english_name: str
     description: str
+    thumbnail_filename: Optional[str] = None
     start_date: date
     end_date: date
     join_start_date: date

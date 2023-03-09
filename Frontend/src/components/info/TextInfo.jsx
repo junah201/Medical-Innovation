@@ -16,8 +16,12 @@ const StyledTextInfo = styled.div`
 		border: 1px solid #e1e1e1;
 	}
 
+	& > span + p {
+		margin-top: 8px;
+	}
+
 	& + & {
-		margin-top: 16px;
+		margin-top: 24px;
 	}
 `;
 
@@ -25,7 +29,6 @@ const TextInfo = ({ title, content }) => {
 	return (
 		<StyledTextInfo>
 			<span>{title}</span>
-			<br />
 			<p>{content}</p>
 		</StyledTextInfo>
 	);
