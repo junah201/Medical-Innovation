@@ -48,13 +48,12 @@ const StyledCloseButton = styled.button`
 `;
 
 const PopupView = ({ title, filename, link }) => {
-	const [show, setShow] = useState(false);
+	const [show, setShow] = useState(0);
 
 	const isDesktop = useMediaQuery({ minWidth: 992 });
 
 	useEffect(() => {
 		setShow(!getCookie("closePopup"));
-		console.log(!getCookie("closePopup"));
 	}, []);
 
 	if (!show) {
@@ -65,6 +64,7 @@ const PopupView = ({ title, filename, link }) => {
 		<>
 			<StyledPopupView isDesktop={isDesktop}>
 				<StyledPopupTitle isDesktop={isDesktop}>{title}</StyledPopupTitle>
+				<br />
 				<StyledPopupContent>
 					<a href={link} target="_blank" rel="noopener noreferrer">
 						<img src={`${CDN_URL}/upload/${filename}`} alt={filename}></img>
@@ -72,7 +72,12 @@ const PopupView = ({ title, filename, link }) => {
 				</StyledPopupContent>
 				<StyledCloseButton
 					onClick={() => {
-						setShow(false);
+						setShow(0);
+						setCookie("closePopup", 1, {
+							path: "/",
+							expires: new Date(Date.now() + 60 * 60 * 24),
+							maxAge: 60 * 24,
+						});
 					}}
 				>
 					닫기
