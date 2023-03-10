@@ -6,7 +6,7 @@ import axios from "axios";
 import AuthContext from "../../context/AuthContext";
 import AdminPage from "../../components/admin/AdminPage";
 import AdminForm from "../../components/admin/AdminForm";
-import { API_URL, S3_URL } from "../../utils/const";
+import { API_URL, CDN_URL } from "../../utils/const";
 
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
@@ -116,7 +116,7 @@ const PostEditPage = () => {
 						})
 							.then((res) => {
 								resolve({
-									default: `${S3_URL}/upload/${res.data.filename}`,
+									default: `${CDN_URL}/upload/${res.data.filename}`,
 								});
 							})
 							.catch((err) => reject(err));

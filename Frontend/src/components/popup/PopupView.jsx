@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { setCookie, getCookie } from "../../utils/cookie";
-import { S3_URL } from "../../utils/const";
+import { CDN_URL } from "../../utils/const";
 import { useMediaQuery } from "react-responsive";
 
 const StyledPopupView = styled.div`
@@ -67,7 +67,7 @@ const PopupView = ({ title, filename, link }) => {
 				<StyledPopupTitle isDesktop={isDesktop}>{title}</StyledPopupTitle>
 				<StyledPopupContent>
 					<a href={link} target="_blank" rel="noopener noreferrer">
-						<img src={`${S3_URL}/upload/${filename}`} alt={filename}></img>
+						<img src={`${CDN_URL}/upload/${filename}`} alt={filename}></img>
 					</a>
 				</StyledPopupContent>
 				<StyledCloseButton

@@ -5,7 +5,7 @@ import AdminPage from "./../../components/admin/AdminPage";
 import AdminTable from "../../components/admin/AdminTable";
 import { Link } from "react-router-dom";
 
-import { API_URL, S3_URL } from "../../utils/const";
+import { API_URL, CDN_URL } from "../../utils/const";
 import LinkButton from "../../components/common/LinkButton";
 
 const AdvisorsPage = () => {
@@ -57,7 +57,7 @@ const AdvisorsPage = () => {
 								<td>{advisor.name}</td>
 								<td>{advisor.type}</td>
 								<td>
-									<a href={`${S3_URL}/upload/${advisor.filename}`}>
+									<a href={`${CDN_URL}/upload/${advisor.filename}`}>
 										{advisor.filename}
 									</a>
 								</td>

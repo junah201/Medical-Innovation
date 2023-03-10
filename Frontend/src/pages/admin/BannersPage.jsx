@@ -5,7 +5,7 @@ import axios from "axios";
 import AuthContext from "../../context/AuthContext";
 import AdminPage from "../../components/admin/AdminPage";
 import AdminTable from "../../components/admin/AdminTable";
-import { API_URL, S3_URL } from "../../utils/const";
+import { API_URL, CDN_URL } from "../../utils/const";
 import Message from "../../components/common/Message";
 import LinkButton from "../../components/common/LinkButton";
 
@@ -63,7 +63,7 @@ const BannersPage = () => {
 								<td>{banner.name}</td>
 								<td>
 									<a
-										href={`${S3_URL}/banner/${banner.filename}`}
+										href={`${CDN_URL}/banner/${banner.filename}`}
 										alt={banner.filename}
 									>
 										{banner.filename}

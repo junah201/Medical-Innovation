@@ -4,7 +4,7 @@ import axios from "axios";
 
 import AdminPage from "../../components/admin/AdminPage";
 import AdminTable from "../../components/admin/AdminTable";
-import { API_URL, S3_URL } from "./../../utils/const";
+import { API_URL, CDN_URL } from "./../../utils/const";
 import Message from "../../components/common/Message";
 import LinkButton from "../../components/common/LinkButton";
 
@@ -61,7 +61,7 @@ const SponsoringCompaniesPage = () => {
 								<td>{company.link}</td>
 								<td>
 									<a
-										href={`${S3_URL}/banner/${company.filename}`}
+										href={`${CDN_URL}/banner/${company.filename}`}
 										alt={company.filename}
 									>
 										{company.filename}

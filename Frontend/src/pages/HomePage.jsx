@@ -3,7 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import MainLeftGrid from "../components/main/MainLeftGrid";
 import MainRightGrid from "../components/main/MainRightGrid";
-import { API_URL, S3_URL } from "../utils/const";
+import { API_URL } from "../utils/const";
 import PopupView from "../components/popup/PopupView";
 
 import Header from "../components/base/Header";

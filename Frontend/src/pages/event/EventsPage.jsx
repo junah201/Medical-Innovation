@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Page from "../../components/common/Page";
 import Message from "../../components/common/Message";
 
-import { API_URL, S3_URL } from "../../utils/const";
+import { API_URL, CDN_URL } from "../../utils/const";
 import { Link } from "react-router-dom";
 
 const StyledMouContainer = styled.div`
@@ -124,7 +124,7 @@ const EventItem = ({ item }) => {
 		<StyledEventItem>
 			<div>
 				<img
-					src={`${S3_URL}/upload/${
+					src={`${CDN_URL}/upload/${
 						item.thumbnail_filename ? item.thumbnail_filename : "null.png"
 					}`}
 					alt={item.name}

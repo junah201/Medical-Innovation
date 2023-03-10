@@ -5,7 +5,7 @@ import AdminPage from "./../../components/admin/AdminPage";
 import AdminTable from "../../components/admin/AdminTable";
 import { Link } from "react-router-dom";
 
-import { API_URL, S3_URL } from "../../utils/const";
+import { API_URL, CDN_URL } from "../../utils/const";
 import LinkButton from "../../components/common/LinkButton";
 
 const PopupAllPage = () => {
@@ -56,7 +56,7 @@ const PopupAllPage = () => {
 								<td>{popup.title}</td>
 								<td>
 									<a
-										href={`${S3_URL}/upload/${popup.image_filename}`}
+										href={`${CDN_URL}/upload/${popup.image_filename}`}
 										target="_blank"
 										rel="noopener noreferrer"
 									>

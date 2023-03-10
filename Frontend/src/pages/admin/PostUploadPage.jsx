@@ -4,7 +4,7 @@ import styled from "styled-components";
 import axios from "axios";
 
 import AdminPage from "../../components/admin/AdminPage";
-import { API_URL, S3_URL } from "../../utils/const";
+import { API_URL, CDN_URL } from "../../utils/const";
 import AuthContext from "../../context/AuthContext";
 import Message from "../../components/common/Message";
 import PostContent from "../../components/post/PostContent";
@@ -150,7 +150,7 @@ const PostUploadPage = () => {
 						})
 							.then((res) => {
 								resolve({
-									default: `${S3_URL}/upload/${res.data.filename}`,
+									default: `${CDN_URL}/upload/${res.data.filename}`,
 								});
 							})
 							.catch((err) => reject(err));

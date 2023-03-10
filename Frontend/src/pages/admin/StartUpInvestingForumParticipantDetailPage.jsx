@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
 import AdminPage from "../../components/admin/AdminPage";
-import { API_URL, S3_URL } from "../../utils/const";
+import { API_URL, CDN_URL } from "../../utils/const";
 import AuthContext from "../../context/AuthContext";
 import Message from "../../components/common/Message";
 import TextInput from "./../../components/regist/TextInput";
@@ -238,13 +238,13 @@ const StartUpInvestingForumParticipantDetailPage = () => {
 			/>
 			<div>
 				<label>증명사진</label>
-				<a href={`${S3_URL}/upload/${registrationInfo.profile_filename}`}>
+				<a href={`${CDN_URL}/upload/${registrationInfo.profile_filename}`}>
 					{registrationInfo.profile_filename}
 				</a>
 			</div>
 			<div>
 				<label>제출용 압축파일</label>
-				<a href={`${S3_URL}/upload/${registrationInfo.zip_filename}`}>
+				<a href={`${CDN_URL}/upload/${registrationInfo.zip_filename}`}>
 					{registrationInfo.zip_filename}
 				</a>
 			</div>

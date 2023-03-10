@@ -7,6 +7,7 @@ import AdminTable from "../../components/admin/AdminTable";
 import { API_URL } from "../../utils/const";
 import AuthContext from "../../context/AuthContext";
 import LinkButton from "./../../components/common/LinkButton";
+import { CDN_URL } from "./../../utils/const";
 
 const PublicEventsPage = () => {
 	const authCtx = useContext(AuthContext);
@@ -44,6 +45,7 @@ const PublicEventsPage = () => {
 					<tr>
 						<th>번호</th>
 						<th>이름</th>
+						<th>이미지</th>
 						<th>참가 신청 시작일</th>
 						<th>참가 신청 마감일</th>
 						<th>행사 시작일</th>
@@ -57,6 +59,15 @@ const PublicEventsPage = () => {
 							<tr key={publicEvent.id}>
 								<td>{publicEvent.id}</td>
 								<td>{publicEvent.name}</td>
+								<td>
+									<a
+										href={`${CDN_URL}/upload/${
+											publicEvent.thumbnail_filename || "null.png"
+										}`}
+									>
+										{publicEvent.thumbnail_filename || "null.png"}
+									</a>
+								</td>
 								<td>{publicEvent.join_start_date}</td>
 								<td>{publicEvent.join_end_date}</td>
 								<td>{publicEvent.start_date}</td>
