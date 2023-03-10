@@ -17,7 +17,7 @@ const SyledBioVentureCompetitionContainer = styled.div`
 const AcceleratingPage = () => {
 	return (
 		<Page>
-			<SubNav select="연구자 중심 창업지원" />
+			<SubNav select="스타트업지원" />
 			<div>
 				<h1>연구자 중심 창업지원</h1>
 				<Message>

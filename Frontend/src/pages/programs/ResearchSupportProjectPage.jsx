@@ -86,7 +86,7 @@ const StyledJoinProgram = styled.div`
 const ResearchSupportProjectPage = () => {
 	return (
 		<Page>
-			<SubNav select="연구발굴지원사업"></SubNav>
+			<SubNav select="연구발굴 지원사업"></SubNav>
 			<Message>
 				재단은 질병을 극복할 수 있는 미래의학을 창조적으로 변모시킬 수 있는
 				혁신적인 기초·중개·의학 융복합 연구를 발굴하고 지원하는 사업을

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-import Page from "../../components/common/Page";
-import Message from "../../components/common/Message";
+import Page from "../../../components/common/Page";
+import Message from "../../../components/common/Message";
+import SubNav from "../../../components/programs/SubNav";
 
-import { API_URL, CDN_URL } from "../../utils/const";
+import { API_URL, CDN_URL } from "../../../utils/const";
 import { Link } from "react-router-dom";
 
 const StyledMouContainer = styled.div`
@@ -50,6 +51,7 @@ const EventsPage = () => {
 
 	return (
 		<Page>
+			<SubNav select="행사목록" />
 			<h1>행사 목록</h1>
 			<Message>재단법인 미래의학연구재단의 행사 목록입니다.</Message>
 			<StyledMouContainer>
@@ -72,11 +74,16 @@ const StyledEventItem = styled.div`
 	overflow: hidden;
 
 	& div {
-		width: 100%;
 		height: 200px;
 		overflow: hidden;
 		border: 1px solid #eaeaea;
 		border-radius: 10px;
+	}
+
+	& img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
 	}
 
 	& h2 {
@@ -97,7 +104,6 @@ const StyledEventItem = styled.div`
 		height: 300px;
 
 		& div {
-			width: 100%;
 			height: 150px;
 			overflow: hidden;
 			border: 1px solid #eaeaea;
@@ -106,6 +112,8 @@ const StyledEventItem = styled.div`
 
 		& img {
 			object-fit: cover;
+			width: 100%;
+			height: 100%;
 		}
 
 		& h2 {
@@ -133,7 +141,7 @@ const EventItem = ({ item }) => {
 			<br />
 			<span>{item.start_date}</span>
 			<h2>{item.name}</h2>
-			<Link to={`/event/${item.id}/detail`}>자세히 보기</Link>
+			<Link to={`/programs/event/${item.id}/detail`}>자세히 보기</Link>
 		</StyledEventItem>
 	);
 };

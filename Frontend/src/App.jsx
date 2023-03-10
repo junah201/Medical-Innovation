@@ -35,7 +35,6 @@ import PhotoPage from "./pages/news/PhotoPage";
 
 import PostPage from "./pages/PostPage";
 
-import EventRegistrationPage from "./pages/event/EventRegistrationPage";
 import RegistrationPage from "./pages/startup_investing_forum/RegistrationPage";
 
 import PostsPage from "./pages/admin/PostsPage";
@@ -87,8 +86,9 @@ import PopupDeletePage from "./pages/admin/PopupDeletePage";
 
 import MouPage from "./pages/MouPage";
 import AdvisoryGroupPage from "./pages/AdvisoryGroupPage";
-import EventsPage from "./pages/event/EventsPage";
-import EventDetailPage from "./pages/event/EventDetailPage";
+import EventsPage from "./pages/programs/event/EventsPage";
+import EventDetailPage from "./pages/programs/event/EventDetailPage";
+import EventRegistrationPage from "./pages/programs/event/EventRegistrationPage";
 
 function App() {
 	return (
@@ -140,6 +140,20 @@ function App() {
 				<Route path="sponsorship_form" element={<SponsorshipFormPage />} />
 			</Route>
 			<Route path="/programs" noindex={false}>
+				<Route path="event">
+					<Route path="" element={<EventsPage />} noindex={false} />
+					<Route path="all" element={<EventsPage />} noindex={false} />
+					<Route
+						path=":id/detail"
+						element={<EventDetailPage />}
+						noindex={false}
+					/>
+					<Route
+						path=":id/registration"
+						element={<EventRegistrationPage />}
+						noindex={false}
+					/>
+				</Route>
 				<Route
 					path="openinnovation"
 					element={<OpenInnovationPage />}
@@ -171,19 +185,7 @@ function App() {
 				<Route path="column" element={<ColumnPage />} noindex={false} />
 				<Route path="photo" element={<PhotoPage />} noindex={false} />
 			</Route>
-			<Route path="/event">
-				<Route path="all" element={<EventsPage />} noindex={false} />
-				<Route
-					path=":id/detail"
-					element={<EventDetailPage />}
-					noindex={false}
-				/>
-				<Route
-					path=":id/registration"
-					element={<EventRegistrationPage />}
-					noindex={false}
-				/>
-			</Route>
+
 			<Route path="startup_investing_forum/:id">
 				<Route
 					path="registration"

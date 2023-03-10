@@ -1,10 +1,10 @@
 import React, { useReducer, useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import Page from "../../components/common/Page";
+import Page from "../../../components/common/Page";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { API_URL } from "../../utils/const";
-import TextInfo from "./../../components/info/TextInfo";
+import { API_URL } from "../../../utils/const";
+import TextInfo from "./../../../components/info/TextInfo";
 
 const EventDetailPage = () => {
 	const navigate = useNavigate();
@@ -41,7 +41,7 @@ const EventDetailPage = () => {
 				title="참가 신청 종료 날짜"
 				content={eventDetail.join_end_date}
 			/>
-			<StyledEventRegistButton to={`/event/${params.id}/registration`}>
+			<StyledEventRegistButton to={`/programs/event/${params.id}/registration`}>
 				참가 신청하기
 			</StyledEventRegistButton>
 		</Page>
