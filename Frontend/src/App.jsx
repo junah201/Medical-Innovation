@@ -23,7 +23,6 @@ import SponsorPage from "./pages/support/SponsorPage";
 import HistoryPage from "./pages/support/HistoryPage";
 import SponsorshipFormPage from "./pages/support/SponsorshipFormPage";
 
-import OpenInnovationPage from "./pages/programs/OpenInnovationPage";
 import AcceleratingPage from "./pages/programs/AcceleratingPage";
 import ResearchSupportProjectPage from "./pages/programs/ResearchSupportProjectPage";
 import TrandPage from "./pages/programs/TrendPage";
@@ -154,11 +153,6 @@ function App() {
 						noindex={false}
 					/>
 				</Route>
-				<Route
-					path="openinnovation"
-					element={<OpenInnovationPage />}
-					noindex={false}
-				/>
 				<Route
 					path="accelerating"
 					element={<AcceleratingPage />}
