@@ -5,6 +5,7 @@ import BlankDiv from "../../components/common/BlankDiv";
 import Page from "../../components/common/Page";
 import SubNav from "../../components/programs/SubNav";
 import Message from "../../components/common/Message";
+import { CDN_URL } from "./../../utils/const";
 
 const SyledBioVentureCompetitionContainer = styled.div`
 	display: grid;
@@ -71,18 +72,31 @@ const AcceleratingPage = () => {
 					</div>
 					<div>
 						<p>
-							<a href="https://medical-innovation.s3.ap-northeast-2.amazonaws.com/upload/%EC%A0%9C%EC%B6%9C%EC%84%9C%EB%A5%98%EB%AA%A9%EB%A1%9D.hwp">
+							<a
+								href={`${CDN_URL}/upload/%EC%A0%9C%EC%B6%9C%EC%84%9C%EB%A5%98%EB%AA%A9%EB%A1%9D.hwp`}
+							>
 								- 제출서류 목록
 							</a>
 						</p>
 						<p>
-							<a href="https://medical-innovation.s3.ap-northeast-2.amazonaws.com/upload/%EC%8B%AC%EC%82%AC%EB%B3%B4%EA%B3%A0%EC%84%9C(DTx)_%EA%B8%B0%EC%97%85%EB%B0%B0%ED%8F%AC%EC%9A%A9_%EB%AF%B8%EB%9E%98%EC%9D%98%ED%95%99%EC%97%B0%EA%B5%AC%EC%9E%AC%EB%8B%A8_V1.0.hwp">
+							<a
+								href={`${CDN_URL}/upload/1678419837-(디지털헬스분야)창업지원 사업신청서(사업계획서 포함).docx`}
+							>
 								- (디지털헬스 분야)사업신청서 양식
 							</a>
 						</p>
 						<p>
-							<a href="https://medical-innovation.s3.ap-northeast-2.amazonaws.com/upload/%EC%8B%AC%EC%82%AC%EB%B3%B4%EA%B3%A0%EC%84%9C(%EB%B0%94%EC%9D%B4%EC%98%A4)_%EA%B8%B0%EC%97%85%EB%B0%B0%ED%8F%AC%EC%9A%A9_%EB%AF%B8%EB%9E%98%EC%9D%98%ED%95%99%EC%97%B0%EA%B5%AC%EC%9E%AC%EB%8B%A8_V1.0.hwp">
+							<a
+								href={`${CDN_URL}/upload/1678419837-(바이오분야)창업지원 사업신청서(사업계획서 포함).docx`}
+							>
 								- (바이오산업 분야)사업신청서 양식
+							</a>
+						</p>
+						<p>
+							<a
+								href={`${CDN_URL}/upload/1678419502-개인정보 수집 및 이용 동의서.hwp`}
+							>
+								- 개인정보 및 고유식별 정보 수집 및 이용 동의서
 							</a>
 						</p>
 					</div>
