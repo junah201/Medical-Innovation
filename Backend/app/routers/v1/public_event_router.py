@@ -29,7 +29,7 @@ def create_public_event(public_event_create: schemas.PublicEventCreate = Depends
 
     filename = None
     if file:
-        filename = upload_file(file)
+        filename = upload_file(file, "upload")
 
     crud.create_public_event(
         db=db,

@@ -32,7 +32,7 @@ const PublicEventCreatePage = () => {
 				case "start_date":
 					return { ...state, start_date: action.payload };
 				case "file":
-					return { ...state, thumbnail_filename: action.payload };
+					return { ...state, file: action.payload };
 				case "end_date":
 					return { ...state, end_date: action.payload };
 				case "join_start_date":
