@@ -115,7 +115,7 @@ const HomePage = () => {
 				<StyledHomeDescription>
 					재단법인 미래의학연구재단은 과학기술정보통신부 소관
 					<br />
-					비영리법인 · 지정기부금단체 · 중소밴처기업부 등록 창업기획자입니다.
+					비영리법인 · 지정기부금단체 · 중소벤처기업부 등록 창업기획자입니다.
 				</StyledHomeDescription>
 				<StyledHomeWrapper>
 					<MainLeftGrid />

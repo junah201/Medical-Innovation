@@ -161,7 +161,7 @@ const AcceleratingPage = () => {
 						year="2020"
 						awardType="최우수상"
 						winnerName="김범수 연구교수"
-						winnerDetail="전북대학교 특별사업단"
+						winnerDetail="(주)셀코"
 					/>
 					<WinnerItem
 						year="2020"
