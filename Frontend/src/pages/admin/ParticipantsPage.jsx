@@ -30,6 +30,7 @@ const ParticipantsPage = () => {
 			},
 		}).then((res) => {
 			setPublicEvents(res.data.events);
+			setSelectedEventId(res.data.events[0].id);
 		});
 	}, [authCtx.accessToken]);
 
