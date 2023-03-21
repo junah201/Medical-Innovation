@@ -57,12 +57,23 @@ def get_public_event(public_event_id: int, db: Session = Depends(get_db)):
     return db_public_event
 
 
-@router.put("/update/{public_event_id}", status_code=status.HTTP_204_NO_CONTENT)
-def update_public_event(public_event_id: int, public_event_update: schemas.PublicEventCreate, current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
+@router.put("/update/content/{public_event_id}", status_code=status.HTTP_204_NO_CONTENT)
+def update_public_event(public_event_id: int, public_event_update: schemas.PublicEventContentUpdate, current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
     if not current_user.is_admin:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="You do not have permission to update a public_event"
+        )
+
+    public_event = crud.get_public_event(
+        db=db,
+        public_event_id=public_event_id
+    )
+
+    if not public_event:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Public Event not found"
         )
 
     crud.update_public_event(

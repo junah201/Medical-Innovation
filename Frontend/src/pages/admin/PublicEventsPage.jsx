@@ -51,6 +51,7 @@ const PublicEventsPage = () => {
 						<th>행사 시작일</th>
 						<th>행사 종료일</th>
 						<th>상세 정보</th>
+						<th>수정</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -75,6 +76,11 @@ const PublicEventsPage = () => {
 								<td>
 									<Link to={`/admin/public_event/detail/${publicEvent.id}`}>
 										상세 정보
+									</Link>
+								</td>
+								<td>
+									<Link to={`/admin/public_event/edit/${publicEvent.id}`}>
+										수정
 									</Link>
 								</td>
 							</tr>

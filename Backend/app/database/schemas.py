@@ -285,6 +285,16 @@ class PublicEventCreate(BaseModel):
     join_end_date: date
 
 
+class PublicEventContentUpdate(BaseModel):
+    name: str
+    english_name: str
+    description: str
+    start_date: date
+    end_date: date
+    join_start_date: date
+    join_end_date: date
+
+
 class PublicEvent(BaseModel):
     id: PositiveInt
     name: str

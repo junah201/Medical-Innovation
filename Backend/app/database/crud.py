@@ -304,7 +304,7 @@ def get_public_event(db: Session, public_event_id: int) -> Optional[models.Publi
     return db.query(models.PublicEvent).filter(models.PublicEvent.id == public_event_id).first()
 
 
-def update_public_event(db: Session, public_event_id: int, public_event_update: schemas.PublicEventCreate) -> None:
+def update_public_event(db: Session, public_event_id: int, public_event_update: schemas.PublicEventContentUpdate) -> None:
     db_public_event: models.PublicEvent = db.query(models.PublicEvent).filter(
         models.PublicEvent.id == public_event_id).first()
 

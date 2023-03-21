@@ -61,6 +61,7 @@ import AdvisorEditPage from "./pages/admin/AdvisorEditPage";
 import PublicEventsPage from "./pages/admin/PublicEventsPage";
 import PublicEventDetailPage from "./pages/admin/PublicEventDetailPage";
 import PublicEventCreatePage from "./pages/admin/PublicEventCreatePage";
+import PublicEventEditPage from "./pages/admin/PublicEventEditPage";
 import ParticipantsPage from "./pages/admin/ParticipantsPage";
 import AdEmailAllPage from "./pages/admin/AdEmailAllPage";
 import AdEmailSendAll from "./pages/admin/AdEmailSendAll";
@@ -240,7 +241,7 @@ function App() {
 					<Route path="all" element={<PublicEventsPage />} />
 					<Route path="create" element={<PublicEventCreatePage />} />
 					<Route path="detail/:id" element={<PublicEventDetailPage />} />
-					<Route path="edit/:id" element={<AdvisorEditPage />} />
+					<Route path="edit/:id" element={<PublicEventEditPage />} />
 					<Route path="delete/:id" element={<AdvisorDeletePage />} />
 				</Route>
 				<Route path="participant">
