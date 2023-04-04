@@ -89,6 +89,7 @@ const ParticipantsPage = () => {
 						<th>전화번호</th>
 						<th>이메일</th>
 						<th>소속기관</th>
+						<th>직책</th>
 						<th>상세정보</th>
 					</tr>
 				</thead>
@@ -103,6 +104,7 @@ const ParticipantsPage = () => {
 								<td>{participant.phone}</td>
 								<td>{participant.email}</td>
 								<td>{participant.organization_name}</td>
+								<td>{participant.job_position}</td>
 								<td>상세정보</td>
 							</tr>
 						);
