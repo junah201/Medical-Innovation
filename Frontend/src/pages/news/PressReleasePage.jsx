@@ -1,7 +1,7 @@
 import React from "react";
 
-import BoardPage from "../BoardPage";
-import SubNav from "../../components/news/SubNav";
+import BoardPage from "pages/BoardPage";
+import SubNav from "components/news/SubNav";
 
 const PressReleasePage = () => {
 	return (

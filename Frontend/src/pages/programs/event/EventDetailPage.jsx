@@ -1,13 +1,12 @@
-import React, { useReducer, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import Page from "../../../components/common/Page";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { API_URL } from "../../../utils/const";
-import TextInfo from "./../../../components/info/TextInfo";
+import Page from "components/common/Page";
+import { Link, useParams } from "react-router-dom";
+import { API_URL } from "utils/const";
+import TextInfo from "components/info/TextInfo";
 
 const EventDetailPage = () => {
-	const navigate = useNavigate();
 	const params = useParams();
 
 	const [eventDetail, setEventDetail] = useState({});

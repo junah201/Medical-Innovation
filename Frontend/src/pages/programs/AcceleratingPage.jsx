@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import BlankDiv from "../../components/common/BlankDiv";
+import BlankDiv from "components/common/BlankDiv";
 
-import Page from "../../components/common/Page";
-import SubNav from "../../components/programs/SubNav";
-import Message from "../../components/common/Message";
-import { CDN_URL } from "./../../utils/const";
+import Page from "components/common/Page";
+import SubNav from "components/programs/SubNav";
+import Message from "components/common/Message";
+import { CDN_URL } from "utils//const";
 
 const SyledBioVentureCompetitionContainer = styled.div`
 	display: grid;

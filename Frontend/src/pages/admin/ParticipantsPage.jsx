@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import AdminPage from "../../components/admin/AdminPage";
-import AdminTable from "../../components/admin/AdminTable";
-import { API_URL } from "../../utils/const";
-import AuthContext from "../../context/AuthContext";
-import Message from "../../components/common/Message";
-import SelectInput from "../../components/form/SelectInput";
+import AdminPage from "components/admin/AdminPage";
+import AdminTable from "components/admin/AdminTable";
+import { API_URL } from "utils/const";
+import AuthContext from "context/AuthContext";
+import Message from "components/common/Message";
+import SelectInput from "components/form/SelectInput";
 
 const ParticipantsPage = () => {
 	const [publicEvents, setPublicEvents] = useState([]);

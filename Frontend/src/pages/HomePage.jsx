@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import MainLeftGrid from "../components/main/MainLeftGrid";
-import MainRightGrid from "../components/main/MainRightGrid";
-import { API_URL } from "../utils/const";
-import PopupView from "../components/popup/PopupView";
+import MainLeftGrid from "components/main/MainLeftGrid";
+import MainRightGrid from "components/main/MainRightGrid";
+import { API_URL } from "utils/const";
+import PopupView from "components/popup/PopupView";
 
-import Header from "../components/base/Header";
-import Banners from "../components/base/Banners";
-import Footer from "../components/base/Footer";
+import Header from "components/base/Header";
+import Banners from "components/base/Banners";
+import Footer from "components/base/Footer";
 
 const StyledHomePage = styled.main`
 	width: 100%;

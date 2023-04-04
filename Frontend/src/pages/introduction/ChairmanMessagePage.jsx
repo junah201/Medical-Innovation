@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-import Page from "../../components/common/Page";
-import SubNav from "../../components/introduction/SubNav";
-import Message from "../../components/common/Message";
+import Page from "components/common/Page";
+import SubNav from "components/introduction/SubNav";
+import Message from "components/common/Message";
 
-import jeonSeungho from "../../static/images/전승호.png";
+import jeonSeungho from "static/images/전승호.png";
 
 const StyledChairmanProfile = styled.div`
 	display: flex;

@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import AdminHeader from "./AdminHeader";
-import AuthContext from "../../context/AuthContext";
+import AuthContext from "context/AuthContext";
 
 const StyledPage = styled.div`
 	background: #fff;

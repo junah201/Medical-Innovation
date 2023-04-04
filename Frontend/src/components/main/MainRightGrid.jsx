@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
-import { API_URL } from "../../utils/const";
-import BlankDiv from "../common/BlankDiv";
+import { API_URL } from "utils/const";
+import BlankDiv from "components/common/BlankDiv";
 import axios from "axios";
 import ParticipationChart from "./ParticipationChart";
 

@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 
-import AdminPage from "../../components/admin/AdminPage";
-import { API_URL } from "../../utils/const";
-import AuthContext from "../../context/AuthContext";
-import AdminTable from "../../components/admin/AdminTable";
+import AdminPage from "components/admin/AdminPage";
+import { API_URL } from "utils/const";
+import AuthContext from "context/AuthContext";
+import AdminTable from "components/admin/AdminTable";
 
 const UsersPage = () => {
 	const authCtx = useContext(AuthContext);

@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import Header from "../base/Header";
-import Footer from "../base/Footer";
+import Header from "components/base/Header";
+import Footer from "components/base/Footer";
 
 const StyledPage = styled.main`
 	display: flex;

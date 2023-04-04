@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import "../../static/css/content-styles.css";
+import "static/css/content-styles.css";
 
 const StyledPostContent = styled.p`
 	min-height: calc(100vh - 700px);

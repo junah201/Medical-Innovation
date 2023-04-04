@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import longLogo from "../../static/images/long_logo.png";
-import msitLogo from "../../static/images/과학기술정보통신부.png";
-import cbtci from "../../static/images/세포치료실용화센터CI.png";
-import khidi from "../../static/images/연구중심병원.png";
-import snubio from "../../static/images/협동과정줄기세포생물학.png";
+import longLogo from "static/images/long_logo.png";
+import msitLogo from "static/images/과학기술정보통신부.png";
+import cbtci from "static/images/세포치료실용화센터CI.png";
+import khidi from "static/images/연구중심병원.png";
+import snubio from "static/images/협동과정줄기세포생물학.png";
 
 const StyledFooter = styled.footer`
 	border-top: 1px solid #000000;

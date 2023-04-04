@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-import Page from "../../components/common/Page";
-import SubNav from "../../components/introduction/SubNav";
-import BlankDiv from "../../components/common/BlankDiv";
+import Page from "components/common/Page";
+import SubNav from "components/introduction/SubNav";
+import BlankDiv from "components/common/BlankDiv";
 
-import orgchart from "../../static/images/조직도.png";
-import mainProject from "../../static/images/주요사업.png";
-import mainProject2 from "../../static/images/창업기획자사업모델.png";
+import orgchart from "static/images/조직도.png";
+import mainProject from "static/images/주요사업.png";
+import mainProject2 from "static/images/창업기획자사업모델.png";
 
 const StyledOrgchartWrapper = styled.div`
 	& img {

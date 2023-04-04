@@ -1,7 +1,7 @@
 import React from "react";
 
-import Page from "../components/common/Page";
-import Message from "../components/common/Message";
+import Page from "components/common/Page";
+import Message from "components/common/Message";
 
 const PrivacyPolicyPage = () => {
 	return (

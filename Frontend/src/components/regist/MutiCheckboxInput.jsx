@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import BlankDiv from "../common/BlankDiv";
+import BlankDiv from "components/common/BlankDiv";
 
 const StyledMutiCheckboxInput = styled.div`
 	display: flex;

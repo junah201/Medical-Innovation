@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import Page from "../../components/common/Page";
-import SubNav from "../../components/introduction/SubNav";
-import BlankDiv from "../../components/common/BlankDiv";
-import Message from "../../components/common/Message";
-import Portrait from "../../components/common/Portrait";
+import Page from "components/common/Page";
+import SubNav from "components/introduction/SubNav";
+import BlankDiv from "components/common/BlankDiv";
+import Message from "components/common/Message";
+import Portrait from "components/common/Portrait";
 import axios from "axios";
-import { API_URL } from "./../../utils/const";
+import { API_URL } from "utils//const";
 
 const StyledMissionWrapper = styled.div`
 	& div {

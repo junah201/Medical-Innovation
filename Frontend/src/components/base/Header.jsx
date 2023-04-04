@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import { Desktop } from "../responsive/responsive";
-import AuthContext from "../../context/AuthContext";
+import { Desktop } from "components/responsive/responsive";
+import AuthContext from "context/AuthContext";
 
-import longLogo from "../../static/images/long_logo.png";
+import longLogo from "static/images/long_logo.png";
 
 const StyledHeader = styled.header`
 	background-color: #ffffff;

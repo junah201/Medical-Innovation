@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 
-import AuthContext from "../../context/AuthContext";
-import AdminPage from "../../components/admin/AdminPage";
-import { API_URL } from "../../utils/const";
-import AdminTable from "./../../components/admin/AdminTable";
+import AuthContext from "context/AuthContext";
+import AdminPage from "components/admin/AdminPage";
+import { API_URL } from "utils/const";
+import AdminTable from "components/admin/AdminTable";
 
 const SponsorsPage = () => {
 	const authCtx = useContext(AuthContext);

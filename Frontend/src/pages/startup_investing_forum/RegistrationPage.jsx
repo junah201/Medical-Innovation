@@ -1,16 +1,16 @@
 import React, { useReducer, useState, useEffect, useContext } from "react";
 import axios from "axios";
-import Page from "../../components/common/Page";
-import Message from "../../components/common/Message";
+import Page from "components/common/Page";
+import Message from "components/common/Message";
 import { useNavigate, useParams } from "react-router-dom";
-import { API_URL } from "../../utils/const";
-import TextInput from "./../../components/regist/TextInput";
-import DateInput from "../../components/regist/DateInput";
-import EmailInput from "../../components/regist/EmailInput";
-import MutiCheckboxInput from "./../../components/regist/MutiCheckboxInput";
-import SubmitButton from "./../../components/regist/SubmitButton";
-import SingleFileInput from "../../components/regist/SingleFileInput";
-import AuthContext from "../../context/AuthContext";
+import { API_URL } from "utils/const";
+import TextInput from "components/regist/TextInput";
+import DateInput from "components/regist/DateInput";
+import EmailInput from "components/regist/EmailInput";
+import MutiCheckboxInput from "components/regist/MutiCheckboxInput";
+import SubmitButton from "components/regist/SubmitButton";
+import SingleFileInput from "components/regist/SingleFileInput";
+import AuthContext from "context/AuthContext";
 
 const RegistrationPage = () => {
 	const navigate = useNavigate();

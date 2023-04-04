@@ -2,13 +2,13 @@ import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import AuthContext from "../../context/AuthContext";
-import { API_URL } from "../../utils/const";
-import Footer from "../../components/base/Footer";
-import Header from "../../components/base/Header";
-import EmailInput from "../../components/form/EmailInput";
-import PasswordInput from "../../components/form/PasswordInput";
-import BlankDiv from "./../../components/common/BlankDiv";
+import AuthContext from "context/AuthContext";
+import { API_URL } from "utils/const";
+import Footer from "components/base/Footer";
+import Header from "components/base/Header";
+import EmailInput from "components/form/EmailInput";
+import PasswordInput from "components/form/PasswordInput";
+import BlankDiv from "components/common/BlankDiv";
 
 const StyledLoginPage = styled.main`
 	display: flex;

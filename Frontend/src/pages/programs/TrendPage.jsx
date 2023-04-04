@@ -1,8 +1,8 @@
 import React from "react";
 
-import SubNav from "../../components/programs/SubNav";
-import Message from "../../components/common/Message";
-import BoardPage from "../BoardPage";
+import SubNav from "components/programs/SubNav";
+import Message from "components/common/Message";
+import BoardPage from "pages/BoardPage";
 
 const TrandPage = () => {
 	return (

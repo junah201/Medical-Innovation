@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Page from "../../components/common/Page";
-import AuthContext from "../../context/AuthContext";
-import { API_URL } from "../../utils/const";
+import Page from "components/common/Page";
+import AuthContext from "context/AuthContext";
+import { API_URL } from "utils/const";
 
-import TextInput from "../../components/form/TextInput";
-import EmailInput from "../../components/form/EmailInput";
-import CheckboxInput from "../../components/form/CheckboxInput";
-import DateInput from "../../components/form/DateInput";
+import TextInput from "components/form/TextInput";
+import EmailInput from "components/form/EmailInput";
+import CheckboxInput from "components/form/CheckboxInput";
+import DateInput from "components/form/DateInput";
 
 const MyPage = () => {
 	const navigate = useNavigate();

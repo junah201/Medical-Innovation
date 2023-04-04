@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import BlankDiv from "../../components/common/BlankDiv";
+import BlankDiv from "components/common/BlankDiv";
 
-import Page from "../../components/common/Page";
-import SubNav from "../../components/support/SubNav";
+import Page from "components/common/Page";
+import SubNav from "components/support/SubNav";
 
 import axios from "axios";
-import { API_URL } from "../../utils/const";
+import { API_URL } from "utils/const";
 
 const StyledSponsorContainer = styled.div`
 	display: grid;

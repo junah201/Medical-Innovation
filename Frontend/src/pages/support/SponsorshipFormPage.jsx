@@ -2,12 +2,12 @@ import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-import AuthContext from "../../context/AuthContext";
+import AuthContext from "context/AuthContext";
 
-import Message from "../../components/common/Message";
+import Message from "components/common/Message";
 
-import Page from "../../components/common/Page";
-import CenterAlignedFlexDiv from "../../containers/CenterAlignedFlexDiv";
+import Page from "components/common/Page";
+import CenterAlignedFlexDiv from "containers/CenterAlignedFlexDiv";
 
 const StyledSponsorshipForm = styled.form`
 	width: 60%;

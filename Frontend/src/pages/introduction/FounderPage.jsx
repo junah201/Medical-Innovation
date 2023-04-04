@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-import Page from "../../components/common/Page";
-import SubNav from "../../components/introduction/SubNav";
-import Message from "../../components/common/Message";
+import Page from "components/common/Page";
+import SubNav from "components/introduction/SubNav";
+import Message from "components/common/Message";
 
-import kimhyosoo from "../../static/images/KimHyoSoo.png";
+import kimhyosoo from "static/images/KimHyoSoo.png";
 
 const StyledFounderProfile = styled.div`
 	display: flex;

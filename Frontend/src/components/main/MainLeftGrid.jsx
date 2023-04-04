@@ -2,15 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import { Desktop } from "../responsive/responsive";
+import { Desktop } from "components/responsive/responsive";
 
-import BlankDiv from "../common/BlankDiv";
+import BlankDiv from "components/common/BlankDiv";
 
-import cellTherapy from "../../static/images/세포치료실용화센터.png";
-import cardiovascularLab from "../../static/images/서울대병원심혈관연구실.png";
-import snuh from "../../static/images/서울대병원.png";
-import youtube from "../../static/images/youtube.png";
-import facebook from "../../static/images/facebook.png";
+import cellTherapy from "static/images/세포치료실용화센터.png";
+import cardiovascularLab from "static/images/서울대병원심혈관연구실.png";
+import snuh from "static/images/서울대병원.png";
+import youtube from "static/images/youtube.png";
+import facebook from "static/images/facebook.png";
 
 const StyledGrid = styled.div`
 	display: grid;

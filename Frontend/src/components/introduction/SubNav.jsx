@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import SubNavButton from "../common/SubNavButton";
+import SubNavButton from "components/common/SubNavButton";
 
 const StyledSubNav = styled.nav`
 	display: flex;

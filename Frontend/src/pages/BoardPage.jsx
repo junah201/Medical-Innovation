@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import Page from "../components/common/Page";
+import Page from "components/common/Page";
 
-import { API_URL } from "../utils/const";
+import { API_URL } from "utils/const";
 
 const BoardPage = ({ boardId, children, boardType }) => {
 	const SIZE = 20;

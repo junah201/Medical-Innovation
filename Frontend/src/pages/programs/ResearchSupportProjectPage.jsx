@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-import Page from "../../components/common/Page";
-import SubNav from "../../components/programs/SubNav";
-import Message from "../../components/common/Message";
-import BlankDiv from "../../components/common/BlankDiv";
+import Page from "components/common/Page";
+import SubNav from "components/programs/SubNav";
+import Message from "components/common/Message";
+import BlankDiv from "components/common/BlankDiv";
 
 const StyledTimelineWrapper = styled.div``;
 

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-import BigBanners from "../banners/BigBanners";
-import SmallBanners from "../banners/SmallBanner";
+import BigBanners from "components/banners/BigBanners";
+import SmallBanners from "components/banners/SmallBanner";
 
 import { useMediaQuery } from "react-responsive";
 
-import { API_URL } from "../../utils/const";
+import { API_URL } from "utils/const";
 
 const Banners = () => {
 	const [banners, setBanners] = useState([]);

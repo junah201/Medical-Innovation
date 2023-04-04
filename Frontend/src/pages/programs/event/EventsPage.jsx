@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-import Page from "../../../components/common/Page";
-import Message from "../../../components/common/Message";
-import SubNav from "../../../components/programs/SubNav";
+import Page from "components/common/Page";
+import Message from "components/common/Message";
+import SubNav from "components/programs/SubNav";
 
-import { API_URL, CDN_URL } from "../../../utils/const";
+import { API_URL, CDN_URL } from "utils/const";
 import { Link } from "react-router-dom";
 
 const StyledMouContainer = styled.div`

@@ -1,17 +1,17 @@
 import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../../context/AuthContext";
+import AuthContext from "context/AuthContext";
 
-import { API_URL } from "../../utils/const";
-import Footer from "../../components/base/Footer";
-import Header from "../../components/base/Header";
-import TextInput from "../../components/form/TextInput";
-import EmailInput from "../../components/form/EmailInput";
-import PasswordInput from "../../components/form/PasswordInput";
-import DateInput from "../../components/form/DateInput";
-import CheckboxInput from "../../components/form/CheckboxInput";
-import BlankDiv from "../../components/common/BlankDiv";
+import { API_URL } from "utils/const";
+import Footer from "components/base/Footer";
+import Header from "components/base/Header";
+import TextInput from "components/form/TextInput";
+import EmailInput from "components/form/EmailInput";
+import PasswordInput from "components/form/PasswordInput";
+import DateInput from "components/form/DateInput";
+import CheckboxInput from "components/form/CheckboxInput";
+import BlankDiv from "components/common/BlankDiv";
 
 const StyledSignupPage = styled.main`
 	display: flex;

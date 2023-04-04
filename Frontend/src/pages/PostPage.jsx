@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useParams, useSearchParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import MetaTag from "../components/common/MetaTag";
-import Page from "../components/common/Page";
-import PostContent from "../components/post/PostContent";
+import MetaTag from "components/common/MetaTag";
+import Page from "components/common/Page";
+import PostContent from "components/post/PostContent";
 
-import { API_URL } from "../utils/const";
+import { API_URL } from "utils/const";
 
 const PostPage = () => {
 	const params = useParams();

@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import Page from "../../components/common/Page";
-import SubNav from "../../components/support/SubNav";
-import Message from "../../components/common/Message";
+import Page from "components/common/Page";
+import SubNav from "components/support/SubNav";
+import Message from "components/common/Message";
 
-import AuthContext from "../../context/AuthContext";
+import AuthContext from "context/AuthContext";
 
 const StyledSponsorshipContainer = styled.div`
 	display: flex;

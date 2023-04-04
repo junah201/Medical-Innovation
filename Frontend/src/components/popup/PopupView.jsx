@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { setCookie, getCookie } from "../../utils/cookie";
-import { CDN_URL } from "../../utils/const";
+import { setCookie, getCookie } from "utils/cookie";
+import { CDN_URL } from "utils/const";
 import { useMediaQuery } from "react-responsive";
 
 const StyledPopupView = styled.div`

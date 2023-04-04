@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import Page from "../components/common/Page";
-import Message from "../components/common/Message";
-import Portrait from "../components/common/Portrait";
-import PortraitWrapper from "../components/common/PortraitWrapper";
+import Page from "components/common/Page";
+import Message from "components/common/Message";
+import Portrait from "components/common/Portrait";
+import PortraitWrapper from "components/common/PortraitWrapper";
 
-import { API_URL, CDN_URL } from "../utils/const";
+import { API_URL, CDN_URL } from "utils/const";
 
 const AdvisoryGroupPage = () => {
 	const [advisorList, setAdvisorList] = useState([]);
