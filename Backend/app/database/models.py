@@ -87,7 +87,7 @@ class Post(Base):
     title = Column(VARCHAR(100), nullable=False)
     board_id = Column(Integer, ForeignKey("board.id"))
     board = relationship("Board", back_populates="posts")
-    content = Column(VARCHAR(3000), nullable=False)
+    content = Column(VARCHAR(10000), nullable=False)
     author_name = Column(VARCHAR(20), ForeignKey("user.name"))
     author = relationship("User", back_populates="posts")
     files = Column(VARCHAR(1000))
