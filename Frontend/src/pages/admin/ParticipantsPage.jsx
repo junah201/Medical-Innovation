@@ -7,6 +7,7 @@ import { API_URL } from "utils/const";
 import AuthContext from "context/AuthContext";
 import Message from "components/common/Message";
 import SelectInput from "components/form/SelectInput";
+import LinkButton from "components/common/LinkButton";
 
 const ParticipantsPage = () => {
 	const [publicEvents, setPublicEvents] = useState([]);
@@ -79,6 +80,13 @@ const ParticipantsPage = () => {
 					);
 				})}
 			</SelectInput>
+			<LinkButton
+				type="a"
+				to={`${API_URL}/api/v1/participant/${selectedEventId}/all/excel`}
+			>
+				참가자 목록 다운로드
+			</LinkButton>
+			<br />
 			<AdminTable setPage={setPage} page={page} SIZE={SIZE} total={total}>
 				<thead>
 					<tr>

@@ -11,3 +11,4 @@ werkzeug
 requests
 beautifulsoup4
 boto3
+openpyxl
