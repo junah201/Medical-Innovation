@@ -29,6 +29,10 @@ const ParticipationChart = () => {
 					year: "2022",
 					참가자: 1026,
 				},
+				{
+					year: "2023",
+					참가자: 70,
+				},
 			]}
 			keys={["참가자"]}
 			indexBy="year"
