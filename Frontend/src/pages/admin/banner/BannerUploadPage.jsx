@@ -6,6 +6,7 @@ import AdminPage from "components/admin/AdminPage";
 import AdminForm from "components/admin/AdminForm";
 import Message from "components/common/Message";
 import AuthContext from "context/AuthContext";
+import ImageCropInput from "components/form/ImageCropInput";
 
 import { API_URL } from "utils/const";
 
@@ -16,7 +17,7 @@ const BannerUploadPage = () => {
 	const [name, setName] = useState("");
 	const [link, setLink] = useState("");
 	const [bannerEndAt, setBannerEndAt] = useState("");
-	const [file, setFile] = useState("");
+	const [file, setFile] = useState(null);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -86,13 +87,7 @@ const BannerUploadPage = () => {
 					placeholder="배너 종료 시점"
 					required="required"
 				/>
-				<input
-					type="file"
-					onChange={(e) => {
-						setFile(e.target.files[0]);
-					}}
-					required="required"
-				/>
+				<ImageCropInput onChange={setFile} aspectRatio={20 / 11} />
 				<br />
 				<br />
 				<button type="submit">업로드</button>

@@ -8,6 +8,7 @@ import Message from "components/common/Message";
 import AuthContext from "context/AuthContext";
 
 import { API_URL } from "utils/const";
+import ImageCropInput from "components/form/ImageCropInput";
 
 const BannerUploadPage = () => {
 	const navigate = useNavigate();
@@ -76,13 +77,7 @@ const BannerUploadPage = () => {
 						setLink(e.target.value);
 					}}
 				/>
-				<input
-					type="file"
-					onChange={(e) => {
-						setFile(e.target.files[0]);
-					}}
-					required="required"
-				/>
+				<ImageCropInput onChange={setFile} aspectRatio={20 / 11} />
 				<br />
 				<br />
 				<button type="submit">업로드</button>

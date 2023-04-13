@@ -5,7 +5,10 @@ const StyledAdminForm = styled.form`
 	display: flex;
 	flex-direction: column;
 
-	& * + * {
+	& input,
+	select,
+	textarea,
+	button {
 		margin-bottom: 10px;
 	}
 

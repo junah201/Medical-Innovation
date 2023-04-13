@@ -8,6 +8,7 @@ import Message from "components/common/Message";
 
 import AuthContext from "context/AuthContext";
 import { API_URL } from "utils/const";
+import ImageCropInput from "components/form/ImageCropInput";
 
 const AdvisorUploadPage = () => {
 	const authCtx = useContext(AuthContext);
@@ -97,14 +98,13 @@ const AdvisorUploadPage = () => {
 						setDescription(e.target.value);
 					}}
 				/>
-				<br />
 				<label>사진을 업로드 하지 않으시면 기본 이미지로 업로드 됩니다.</label>
-				<input
-					type="file"
-					onChange={(e) => {
-						setFile(e.target.files[0]);
-					}}
+				<ImageCropInput
+					onChange={setFile}
+					aspectRatio={3 / 4}
+					required={null}
 				/>
+				<br />
 				<button type="submit">업로드</button>
 			</AdminForm>
 		</AdminPage>
