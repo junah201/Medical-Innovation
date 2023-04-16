@@ -733,10 +733,17 @@ class PrivateEvent(Base):
         default="",
         comment="이름"
     )
-    year = Column(
-        INTEGER(unsigned=True),
+    join_start_date = Column(
+        DATE,
         nullable=False,
-        comment="연도"
+        default="2023-01-01",
+        comment="참가 신청 시작 날짜"
+    )
+    join_end_date = Column(
+        DATE,
+        nullable=False,
+        default="2023-01-01",
+        comment="참가 신청 종료 날짜"
     )
     description = Column(
         String(3000),

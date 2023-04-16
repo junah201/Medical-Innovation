@@ -461,20 +461,23 @@ class SupportingStartupList(BaseModel):
 
 class PrivateEventCreate(BaseModel):
     name: str
-    year: int
+    join_start_date: date
+    join_end_date: date
     description: str
 
 
 class PrivateEventUpdate(BaseModel):
     name: str
-    year: int
+    join_start_date: date
+    join_end_date: date
     description: str
 
 
 class PrivateEvent(BaseModel):
     id: PositiveInt
     name: str
-    year: int
+    join_start_date: date
+    join_end_date: date
     description: str
     created_at: datetime
     updated_at: datetime

@@ -479,7 +479,8 @@ def delete_supporting_startup(db: Session, supporting_startup_id: int):
 def create_private_event(db: Session, private_event_create: schemas.PrivateEventCreate) -> None:
     db_private_event = models.PrivateEvent(
         name=private_event_create.name,
-        year=private_event_create.year,
+        join_start_date=private_event_create.join_start_date,
+        join_end_date=private_event_create.join_end_date,
         description=private_event_create.description,
     )
     db.add(db_private_event)
@@ -508,7 +509,8 @@ def update_private_event(
     db_private_event: models.PrivateEvent = db.query(models.PrivateEvent).filter(
         models.PrivateEvent.id == private_event_id).first()
     db_private_event.name = private_event_update.name
-    db_private_event.year = private_event_update.year
+    db_private_event.join_start_date = private_event_update.join_start_date
+    db_private_event.join_end_date = private_event_update.join_end_date
     db_private_event.description = private_event_update.description
     db.commit()
 
