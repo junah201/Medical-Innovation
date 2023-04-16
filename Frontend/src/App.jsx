@@ -34,7 +34,7 @@ import PhotoPage from "pages/news/PhotoPage";
 
 import PostPage from "pages/PostPage";
 
-import RegistrationPage from "pages/startup_investing_forum/RegistrationPage";
+import RegistrationPage from "pages/private_event/RegistrationPage";
 
 import PostsPage from "pages/admin/post/PostsPage";
 import PostUploadPage from "pages/admin/post/PostUploadPage";
@@ -73,12 +73,12 @@ import SupportingStartupAllPage from "pages/admin/supporting_startup/SupportingS
 import SupportingStartupCreatePage from "pages/admin/supporting_startup/SupportingStartupCreatePage";
 import SupportingStartupEditPage from "pages/admin/supporting_startup/SupportingStartupEditPage";
 import SupportingStartupDeletePage from "pages/admin/supporting_startup/SupportingStartupDeletePage";
-import StartUpInvestingForumEventsPage from "pages/admin/startup_investing_forum/StartUpInvestingForumEventsPage";
-import StartUpInvestingForumCreatePage from "pages/admin/startup_investing_forum/StartUpInvestingForumCreatePage";
-import StartUpInvestingForumEditPage from "pages/admin/startup_investing_forum/StartUpInvestingForumEditPage";
-import StartUpInvestingForumDeletePage from "pages/admin/startup_investing_forum/StartUpInvestingForumDeletePage";
-import StartUpInvestingForumParticipantAllPage from "pages/admin/startup_investing_forum/StartUpInvestingForumParticipantAllPage";
-import StartUpInvestingForumParticipantDetailPage from "pages/admin/startup_investing_forum/StartUpInvestingForumParticipantDetailPage";
+import PrivateEventsPage from "pages/admin/private_event/PrivateEventsPage";
+import PrivateEventCreatePage from "pages/admin/private_event/PrivateEventCreatePage";
+import PrivateEventEditPage from "pages/admin/private_event/PrivateEventEditPage";
+import PrivateEventPage from "pages/admin/private_event/PrivateEventPage";
+import PrivateParticipantAllPage from "pages/admin/private_event/PrivateParticipantAllPage";
+import PrivateParticipantDetailPage from "pages/admin/private_event/PrivateParticipantDetailPage";
 import PopupAllPage from "pages/admin/popup/PopupAllPage";
 import PopupCreatePage from "pages/admin/popup/PopupCreatePage";
 import PopupEditPage from "pages/admin/popup/PopupEditPage";
@@ -181,7 +181,7 @@ function App() {
 				<Route path="photo" element={<PhotoPage />} noindex={false} />
 			</Route>
 
-			<Route path="startup_investing_forum/:id">
+			<Route path="private_event/:id">
 				<Route
 					path="registration"
 					element={<RegistrationPage />}
@@ -263,24 +263,15 @@ function App() {
 					<Route path="edit/:id" element={<SupportingStartupEditPage />} />
 					<Route path="delete/:id" element={<SupportingStartupDeletePage />} />
 				</Route>
-				<Route path="startup_investing_forum_event">
-					<Route path="all" element={<StartUpInvestingForumEventsPage />} />
-					<Route path="create" element={<StartUpInvestingForumCreatePage />} />
-					<Route path="edit/:id" element={<StartUpInvestingForumEditPage />} />
-					<Route
-						path="delete/:id"
-						element={<StartUpInvestingForumDeletePage />}
-					/>
+				<Route path="private_event">
+					<Route path="all" element={<PrivateEventsPage />} />
+					<Route path="create" element={<PrivateEventCreatePage />} />
+					<Route path="edit/:id" element={<PrivateEventEditPage />} />
+					<Route path="delete/:id" element={<PrivateEventPage />} />
 				</Route>
-				<Route path="startup_investing_forum_participant">
-					<Route
-						path="all"
-						element={<StartUpInvestingForumParticipantAllPage />}
-					/>
-					<Route
-						path="detail/:id"
-						element={<StartUpInvestingForumParticipantDetailPage />}
-					/>
+				<Route path="private_participant">
+					<Route path="all" element={<PrivateParticipantAllPage />} />
+					<Route path="detail/:id" element={<PrivateParticipantDetailPage />} />
 				</Route>
 				<Route path="popup">
 					<Route path="all" element={<PopupAllPage />} />

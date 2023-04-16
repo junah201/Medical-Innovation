@@ -6,7 +6,7 @@ import { API_URL } from "utils/const";
 import AuthContext from "context/AuthContext";
 import Message from "components/common/Message";
 
-const StartUpInvestingForumDeletePage = () => {
+const PrivateEventPage = () => {
 	const params = useParams();
 	const navigate = useNavigate();
 	const authCtx = useContext(AuthContext);
@@ -15,7 +15,7 @@ const StartUpInvestingForumDeletePage = () => {
 		e.preventDefault();
 
 		axios({
-			url: `${API_URL}/api/v1/startup_investing_forum_event/delete/${params.id}`,
+			url: `${API_URL}/api/v1/private_event/delete/${params.id}`,
 			method: "DELETE",
 			headers: {
 				accept: "application/json",
@@ -39,7 +39,7 @@ const StartUpInvestingForumDeletePage = () => {
 
 	return (
 		<AdminPage>
-			<h1>StartUp Investing Forum 행사 삭제</h1>
+			<h1>로그인 필수 행사 삭제</h1>
 			<Message>삭제 후 복구가 불가능합니다.</Message>
 			<button
 				style={{
@@ -58,4 +58,4 @@ const StartUpInvestingForumDeletePage = () => {
 	);
 };
 
-export default StartUpInvestingForumDeletePage;
+export default PrivateEventPage;

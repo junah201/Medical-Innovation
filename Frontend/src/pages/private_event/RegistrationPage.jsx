@@ -1,19 +1,53 @@
-import React, { useEffect, useContext, useReducer } from "react";
-import { useParams } from "react-router-dom";
+import React, { useReducer, useState, useEffect, useContext } from "react";
 import axios from "axios";
-
-import AdminPage from "components/admin/AdminPage";
-import { API_URL, CDN_URL } from "utils/const";
-import AuthContext from "context/AuthContext";
+import Page from "components/common/Page";
 import Message from "components/common/Message";
+import { useNavigate, useParams } from "react-router-dom";
+import { API_URL } from "utils/const";
 import TextInput from "components/regist/TextInput";
 import DateInput from "components/regist/DateInput";
 import EmailInput from "components/regist/EmailInput";
 import MutiCheckboxInput from "components/regist/MutiCheckboxInput";
+import SubmitButton from "components/regist/SubmitButton";
+import SingleFileInput from "components/regist/SingleFileInput";
+import AuthContext from "context/AuthContext";
 
-const StartUpInvestingForumParticipantDetailPage = () => {
+const RegistrationPage = () => {
+	const navigate = useNavigate();
 	const authCtx = useContext(AuthContext);
 	const params = useParams();
+
+	const [eventDetail, setEventDetail] = useState({});
+
+	useEffect(() => {
+		if (!authCtx.isLoggedIn) {
+			alert("로그인이 필요한 서비스입니다.");
+			navigate("/login");
+			return;
+		}
+	}, [navigate, authCtx]);
+
+	useEffect(() => {
+		axios({
+			url: `${API_URL}/api/v1/private_event/get/${params.id}`,
+			method: "GET",
+			headers: {
+				accept: "application/json",
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${authCtx.accessToken}`,
+			},
+		})
+			.then((res) => {
+				setEventDetail(res.data);
+			})
+			.catch((err) => {
+				if (err.response.status === 404) {
+					alert("해당 행사를 찾을 수 없습니다.");
+					navigate("/");
+					return;
+				}
+			});
+	}, [params.id, authCtx.accessToken]);
 
 	const [registrationInfo, dispatch] = useReducer(
 		(state, action) => {
@@ -73,33 +107,72 @@ const StartUpInvestingForumParticipantDetailPage = () => {
 			address: "",
 			final_degree: "기타",
 			participant_motivation: "",
-			profile_filename: "",
-			zip_filename: "",
+			profile_filename: null,
+			zip_filename: null,
 		}
 	);
 
-	useEffect(() => {
+	const SubmitHandler = () => {
+		const formData = new FormData();
+		formData.append("files", registrationInfo.profile_filename);
+		formData.append("files", registrationInfo.zip_filename);
+
 		axios({
-			url: `${API_URL}/api/v1/startup_investing_forum_participant/get/${params.id}`,
-			method: "GET",
+			url: `${API_URL}/api/v1/file/uploads`,
+			method: "POST",
 			headers: {
 				accept: "application/json",
-				"Content-Type": "application/json",
+				"Content-Type": "multipart/form-data",
 				Authorization: `Bearer ${authCtx.accessToken}`,
 			},
+			data: formData,
 		}).then((res) => {
-			dispatch({
-				type: "init",
-				payload: res.data,
+			if (res.status === 401) {
+				alert("로그인이 필요한 서비스입니다.");
+				navigate("/login");
+				return;
+			}
+			if (res.status !== 200) {
+				alert("알 수 없는 오류");
+				return;
+			}
+			const profile_filename = res.data.filenames[0];
+			const zip_filename = res.data.filenames[1];
+
+			const formData = new FormData();
+			formData.append("event_id", params.id);
+			for (let key in registrationInfo) {
+				formData.append(key, registrationInfo[key]);
+			}
+			formData.delete("profile_filename");
+			formData.append("profile_filename", profile_filename);
+			formData.delete("zip_filename");
+			formData.append("zip_filename", zip_filename);
+
+			axios({
+				url: `${API_URL}/api/v1/private_participant/create`,
+				method: "POST",
+				headers: {
+					accept: "application/json",
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${authCtx.accessToken}`,
+				},
+				data: formData,
+			}).then((res) => {
+				if (res.status === 204) {
+					alert("참가신청이 완료되었습니다.");
+					navigate("/");
+					return;
+				}
+				alert("알 수 없는 오류");
 			});
 		});
-	}, [authCtx.accessToken, params.id]);
+	};
 
 	return (
-		<AdminPage>
-			<h1>StartUp Investing Forum 참여자 상세정보</h1>
-			<Message>tip : ...</Message>
-			<br />
+		<Page>
+			<h1>{eventDetail.name} 참가 신청</h1>
+			<Message>{eventDetail.description}</Message>
 			<TextInput
 				label="이름"
 				value={registrationInfo.name}
@@ -236,20 +309,30 @@ const StartUpInvestingForumParticipantDetailPage = () => {
 				}}
 				placeholder="지인 추천"
 			/>
-			<div>
-				<label>증명사진</label>
-				<a href={`${CDN_URL}/upload/${registrationInfo.profile_filename}`}>
-					{registrationInfo.profile_filename}
-				</a>
-			</div>
-			<div>
-				<label>제출용 압축파일</label>
-				<a href={`${CDN_URL}/upload/${registrationInfo.zip_filename}`}>
-					{registrationInfo.zip_filename}
-				</a>
-			</div>
-		</AdminPage>
+			<SingleFileInput
+				label="증명사진"
+				onChange={(e) => {
+					console.log(e);
+					console.log(e.target.files[0]);
+					dispatch({ type: "profile_filename", payload: e.target.files[0] });
+				}}
+				accept="image/*"
+			/>
+			<SingleFileInput
+				label="제출용 압축파일"
+				onChange={(e) => {
+					console.log(e);
+					console.log(e.target.files[0]);
+					dispatch({ type: "zip_filename", payload: e.target.files[0] });
+				}}
+				onClick={(e) => {
+					e.target.value = null;
+				}}
+				accept=".zip"
+			/>
+			<SubmitButton onClick={SubmitHandler} />
+		</Page>
 	);
 };
 
-export default StartUpInvestingForumParticipantDetailPage;
+export default RegistrationPage;

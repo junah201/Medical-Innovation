@@ -11,8 +11,9 @@ import { API_URL } from "utils/const";
 
 import TextInput from "components/form/TextInput";
 import DescriptionInput from "components/form/DescriptionInput";
+import DateInput from "components/form/DateInput";
 
-const StartUpInvestingForumEditPage = () => {
+const PrivateEventEditPage = () => {
 	const navigate = useNavigate();
 	const authCtx = useContext(AuthContext);
 	const params = useParams();
@@ -24,8 +25,10 @@ const StartUpInvestingForumEditPage = () => {
 					return action.payload;
 				case "name":
 					return { ...state, name: action.payload };
-				case "year":
-					return { ...state, year: action.payload };
+				case "join_start_date":
+					return { ...state, join_start_date: action.payload };
+				case "join_end_date":
+					return { ...state, join_end_date: action.payload };
 				case "description":
 					return { ...state, description: action.payload };
 				default:
@@ -34,14 +37,15 @@ const StartUpInvestingForumEditPage = () => {
 		},
 		{
 			name: "",
-			year: "",
+			join_start_date: "",
+			join_end_date: "",
 			description: "",
 		}
 	);
 
 	useEffect(() => {
 		axios({
-			url: `${API_URL}/api/v1/startup_investing_forum_event/get/${params.id}`,
+			url: `${API_URL}/api/v1/private_event/get/${params.id}`,
 			method: "GET",
 			headers: {
 				accept: "application/json",
@@ -77,7 +81,7 @@ const StartUpInvestingForumEditPage = () => {
 		}
 
 		axios({
-			url: `${API_URL}/api/v1/startup_investing_forum_event/update/${params.id}`,
+			url: `${API_URL}/api/v1/private_event/update/${params.id}`,
 			method: "PUT",
 			headers: {
 				accept: "application/json",
@@ -88,7 +92,7 @@ const StartUpInvestingForumEditPage = () => {
 		}).then((res) => {
 			if (res.status === 204) {
 				alert("행사가 수정되었습니다.");
-				navigate("/admin/startup_investing_forum_event/all");
+				navigate("/admin/private_event/all");
 				return;
 			}
 			if (res.status === 401) {
@@ -108,7 +112,7 @@ const StartUpInvestingForumEditPage = () => {
 
 	return (
 		<AdminPage>
-			<h1>StartUp Investing Forum 행사 수정</h1>
+			<h1>로그인 필수 행사 수정</h1>
 			<Message></Message>
 			<AdminForm onSubmit={handleSubmit}>
 				<TextInput
@@ -116,10 +120,19 @@ const StartUpInvestingForumEditPage = () => {
 					value={publicEventCreateInfo.name}
 					onChange={(e) => dispatch({ type: "name", payload: e.target.value })}
 				/>
-				<TextInput
-					label="행사 년도"
-					value={publicEventCreateInfo.year}
-					onChange={(e) => dispatch({ type: "year", payload: e.target.value })}
+				<DateInput
+					label="행사 참여 신청 시작일"
+					value={publicEventCreateInfo.join_start_date}
+					onChange={(e) =>
+						dispatch({ type: "join_start_date", payload: e.target.value })
+					}
+				/>
+				<DateInput
+					label="행사 참여 신청 종료일"
+					value={publicEventCreateInfo.join_end_date}
+					onChange={(e) =>
+						dispatch({ type: "join_end_date", payload: e.target.value })
+					}
 				/>
 				<DescriptionInput
 					label="행사 설명"
@@ -135,4 +148,4 @@ const StartUpInvestingForumEditPage = () => {
 	);
 };
 
-export default StartUpInvestingForumEditPage;
+export default PrivateEventEditPage;

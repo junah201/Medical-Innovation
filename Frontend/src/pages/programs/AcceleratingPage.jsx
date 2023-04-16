@@ -108,7 +108,7 @@ const AcceleratingPage = () => {
 							backgroundColor: "#fff",
 							fontSize: "26px",
 						}}
-						href="https://medicalinnovation.or.kr/startup_investing_forum/2/registration"
+						href="https://medicalinnovation.or.kr/private_event/3/registration"
 					>
 						참가신청
 					</a>

@@ -124,26 +124,3 @@ const ParticipantsPage = () => {
 };
 
 export default ParticipantsPage;
-
-const StyledBoardPageButtonWrapper = styled.div`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-`;
-
-const StyledBoardPageButton = styled.button`
-	background-color: #ffffff;
-	padding: 8px;
-	width: 35px;
-	height: 35px;
-	border: none;
-	font-size: 18px;
-
-	& + & {
-		margin-left: 5px;
-	}
-
-	&:hover {
-		background-color: #f9f9f9;
-	}
-`;

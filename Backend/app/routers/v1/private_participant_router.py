@@ -5,6 +5,7 @@ from app.database import crud, schemas, models
 from app.database.database import get_db
 from app.utils.oauth2 import get_current_user
 from typing import List, Optional
+from app.utils.email import send_email
 
 router = APIRouter(
     prefix="/api/v1/private_participant",
@@ -12,9 +13,9 @@ router = APIRouter(
 
 
 @router.post("/create", status_code=status.HTTP_204_NO_CONTENT)
-def create_private_participant_participant(private_participant_participant_create: schemas.PrivateParticipantCreate, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
+def create_private_participant_participant(private_participant_create: schemas.PrivateParticipantCreate, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
     db_private_participant_event = crud.get_private_event(
-        db=db, private_event_id=private_participant_participant_create.event_id)
+        db=db, private_event_id=private_participant_create.event_id)
 
     if not db_private_participant_event:
         raise HTTPException(
@@ -25,7 +26,13 @@ def create_private_participant_participant(private_participant_participant_creat
     crud.create_private_participant(
         db=db,
         user_id=current_user.id,
-        private_participant_create=private_participant_participant_create,
+        private_participant_create=private_participant_create,
+    )
+    send_email(
+        receiver_address=private_participant_create.email,
+        subject=f"{db_private_participant_event.name} 참여 신청 완료",
+        content=f"{private_participant_create.name}님 {db_private_participant_event.name}에 참여 신청이 완료되었습니다.",
+        images=[],
     )
 
 
