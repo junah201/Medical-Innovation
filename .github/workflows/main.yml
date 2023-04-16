@@ -45,6 +45,10 @@ jobs:
                   value: ${{ secrets.JWT_PUBLIC_KEY }}
                 - name: JWT_SECRET_KEY
                   value: ${{ secrets.JWT_SECRET_KEY }}
+                - name: MAIL_SENDER
+                  value: ${{ secrets.MAIL_SENDER }}
+                - name: MAIL_PASSWARD
+                  value: ${{ secrets.MAIL_PASSWARD }}
               git:
                 ref: ${{ github.ref }}
                 url: git@github.com:${{ github.repository }}.git
