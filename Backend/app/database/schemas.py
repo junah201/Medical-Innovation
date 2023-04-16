@@ -459,19 +459,19 @@ class SupportingStartupList(BaseModel):
     supporting_startups: List[SupportingStartup]
 
 
-class StartUpInvestingForumEventCreate(BaseModel):
+class PrivateEventCreate(BaseModel):
     name: str
     year: int
     description: str
 
 
-class StartUpInvestingForumEventUpdate(BaseModel):
+class PrivateEventUpdate(BaseModel):
     name: str
     year: int
     description: str
 
 
-class StartUpInvestingForumEvent(BaseModel):
+class PrivateEvent(BaseModel):
     id: PositiveInt
     name: str
     year: int
@@ -483,12 +483,12 @@ class StartUpInvestingForumEvent(BaseModel):
         orm_mode = True
 
 
-class StartUpInvestingForumEventList(BaseModel):
+class PrivateEventList(BaseModel):
     total: int
-    events: list[StartUpInvestingForumEvent]
+    events: list[PrivateEvent]
 
 
-class StartUpInvestingForumParticipantCreate(BaseModel):
+class PrivateParticipantCreate(BaseModel):
     event_id: PositiveInt
     name: str
     english_name: str
@@ -507,7 +507,7 @@ class StartUpInvestingForumParticipantCreate(BaseModel):
     zip_filename: str
 
 
-class StartUpInvestingForumParticipant(BaseModel):
+class PrivateParticipant(BaseModel):
     id: PositiveInt
     user_id: Optional[PositiveInt] = None
     event_id: PositiveInt
@@ -533,9 +533,9 @@ class StartUpInvestingForumParticipant(BaseModel):
         orm_mode = True
 
 
-class StartUpInvestingForumParticipantList(BaseModel):
+class PrivateParticipantList(BaseModel):
     total: int
-    participants: List[StartUpInvestingForumParticipant]
+    participants: List[PrivateParticipant]
 
 
 @form_body

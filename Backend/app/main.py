@@ -24,8 +24,8 @@ from app.routers.v1 import (
     ad_email_router,
     history_router,
     supporting_startup_router,
-    startup_investing_forum_event_router,
-    startup_investing_forum_participant_router,
+    private_event_router,
+    private_participant_router,
     popup_router,
 )
 
@@ -62,8 +62,8 @@ app.include_router(participant_router.router)
 app.include_router(ad_email_router.router)
 app.include_router(history_router.router)
 app.include_router(supporting_startup_router.router)
-app.include_router(startup_investing_forum_event_router.router)
-app.include_router(startup_investing_forum_participant_router.router)
+app.include_router(private_event_router.router)
+app.include_router(private_participant_router.router)
 app.include_router(popup_router.router)
 
 

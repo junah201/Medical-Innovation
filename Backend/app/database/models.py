@@ -717,35 +717,35 @@ class SupportingStartup(Base):
         orm_mode = True
 
 
-class StartUpInvestingForumEvent(Base):
-    __tablename__ = "startup_investing_forum_event"
+class PrivateEvent(Base):
+    __tablename__ = "private_event"
     __table_args__ = {'mysql_collate': 'utf8_general_ci'}
 
     id = Column(
         INTEGER(unsigned=True),
         primary_key=True,
         unique=True,
-        comment="스타트업 투자 포럼 고유 번호"
+        comment="고유 번호"
     )
     name = Column(
         String(200),
         nullable=False,
         default="",
-        comment="스타트업 투자 포럼 이름"
+        comment="이름"
     )
     year = Column(
         INTEGER(unsigned=True),
         nullable=False,
-        comment="스타트업 투자 포럼 연도"
+        comment="연도"
     )
     description = Column(
         String(3000),
         nullable=False,
         default="",
-        comment="스타트업 투자 포럼 설명"
+        comment="설명"
     )
     participants = relationship(
-        "StartUpInvestingForumParticipant",
+        "PrivateParticipant",
         back_populates="event"
     )
     created_at = Column(
@@ -766,31 +766,31 @@ class StartUpInvestingForumEvent(Base):
         orm_mode = True
 
 
-class StartUpInvestingForumParticipant(Base):
-    __tablename__ = "startup_investing_forum_participant"
+class PrivateParticipant(Base):
+    __tablename__ = "private_participant"
     __table_args__ = {'mysql_collate': 'utf8_general_ci'}
 
     id = Column(
         INTEGER(unsigned=True),
         primary_key=True,
         unique=True,
-        comment="스타트업 투자 포럼 참가자 고유 번호"
+        comment="참가자 고유 번호"
     )
     user_id = Column(
         INTEGER(unsigned=True),
         ForeignKey("user.id"),
         nullable=True,
-        comment="스타트업 투자 포럼 참가자 고유 번호"
+        comment="참가자 고유 번호"
     )
     user = relationship(
         "User",
     )
     event_id = Column(
         INTEGER(unsigned=True),
-        ForeignKey("startup_investing_forum_event.id"),
+        ForeignKey("private_event.id"),
     )
     event = relationship(
-        "StartUpInvestingForumEvent",
+        "PrivateEvent",
         back_populates="participants"
     )
     name = Column(
