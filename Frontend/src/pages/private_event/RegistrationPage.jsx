@@ -158,14 +158,26 @@ const RegistrationPage = () => {
 					Authorization: `Bearer ${authCtx.accessToken}`,
 				},
 				data: formData,
-			}).then((res) => {
-				if (res.status === 204) {
-					alert("참가신청이 완료되었습니다.");
-					navigate("/");
-					return;
-				}
-				alert("알 수 없는 오류");
-			});
+			})
+				.then((res) => {
+					if (res.status === 204) {
+						alert("참가신청이 완료되었습니다.");
+						navigate("/");
+						return;
+					}
+					alert("알 수 없는 오류");
+				})
+				.catch((err) => {
+					if (err.response.status === 401) {
+						alert("로그인이 필요한 서비스입니다.");
+						navigate("/login");
+						return;
+					}
+					if (err.response.status === 422) {
+						alert("모든 항목을 입력해주십시오.");
+						return;
+					}
+				});
 		});
 	};
 
