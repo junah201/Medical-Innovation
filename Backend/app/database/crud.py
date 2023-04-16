@@ -547,8 +547,8 @@ def create_private_participant(
     db.commit()
 
 
-def get_private_participant(db: Session, skip: int = 0, limit: int = 40) -> schemas.PrivateParticipantList:
-    db_all_private_participant = db.query(models.PrivateParticipant).order_by(
+def get_private_participants(db: Session, private_event_id: int, skip: int = 0, limit: int = 40) -> schemas.PrivateParticipantList:
+    db_all_private_participant = db.query(models.PrivateParticipant).filter(models.PrivateParticipant.event_id == private_event_id).order_by(
         models.PrivateParticipant.id.desc())
     return schemas.PrivateParticipantList(
         total=db_all_private_participant.count(),

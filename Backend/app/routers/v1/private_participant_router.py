@@ -29,9 +29,9 @@ def create_private_participant_participant(private_participant_participant_creat
     )
 
 
-@router.get("/all", response_model=schemas.PrivateParticipantList)
-def get_private_participant_participants(skip: int = 0, limit: int = 40, db: Session = Depends(get_db)):
-    return crud.get_private_participant(db=db, skip=skip, limit=limit)
+@router.get("/{private_event_id}/all", response_model=schemas.PrivateParticipantList)
+def get_private_participant_participants(private_event_id: int, skip: int = 0, limit: int = 40, db: Session = Depends(get_db)):
+    return crud.get_private_participants(db=db, private_event_id=private_event_id, skip=skip, limit=limit)
 
 
 @router.get("/get/{private_participant_participant_id}", response_model=Optional[schemas.PrivateParticipant])
