@@ -1,6 +1,7 @@
 from app.common.config import ADMIN_ACCOUNT_ID, ADMIN_ACCOUNT_PASSWORD, API_URL
 from bs4 import BeautifulSoup
 import requests
+from requests_toolbelt.multipart.encoder import MultipartEncoder
 import datetime
 import json
 from app.common.config import ADMIN_ACCOUNT_ID, ADMIN_ACCOUNT_PASSWORD, API_URL
@@ -52,7 +53,7 @@ def new_post_checker() -> list[str]:
     last_uploaded_at = last_uploaded_at.strftime("%Y.%m.%d.")
     last_uploaded_title = json.loads(response.text)["posts"][0]['title']
 
-    articles = list()
+    results = list()
 
     response = requests.post(
         url=f"{API_URL}/api/v1/user/login",
@@ -81,26 +82,32 @@ def new_post_checker() -> list[str]:
             tmp['date'] = article.select_one("div.info_group > span.info").text
 
             if tmp['title'] == last_uploaded_title:
-                return
+                return results
 
             print(f"{tmp['newspaper']} {tmp['title']}")
 
-            requests.post(
-                f"{API_URL}/api/v1/post/create", json={
-                    "title": tmp['title'],
-                    "board_id": ARTICLE_BOARD_ID,
+            m = MultipartEncoder(
+                fields={
+                    "title": tmp["title"],
+                    "board_id": f"{ARTICLE_BOARD_ID}",
                     "content": tmp['url'],
-                    "files": []
                 },
+            )
+
+            res = requests.post(
+                f"{API_URL}/api/v1/post/create",
+                data=m,
                 headers={
                     "accept": "application/json",
-                    "Content-Type": "application/json",
+                    "Content-Type": m.content_type,
                     "Authorization": f"Bearer {access_token}"
                 }
             )
-            articles.append(f"{tmp['newspaper']} - {tmp['title']}")
+            print(res.status_code)
+            print(res.text)
+            results.append(f"{tmp['newspaper']} - {tmp['title']}")
 
-    return articles
+    return results
 
 
 def lambda_handler(event, context):

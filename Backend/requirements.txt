@@ -12,3 +12,4 @@ requests
 beautifulsoup4
 boto3
 openpyxl
+requests_toolbelt
