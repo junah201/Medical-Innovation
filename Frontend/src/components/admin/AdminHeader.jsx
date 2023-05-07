@@ -80,6 +80,20 @@ const AdminHeader = () => {
 						<Link to="/admin/participant/all">행사 참여자</Link>
 					</li>
 					<li>
+						<Link to="/admin/private_event/all">로그인 필수 행사</Link>
+					</li>
+					<li>
+						<Link to="/admin/private_participant/all">
+							로그인 필수 행사 참여자
+						</Link>
+					</li>
+					<li>
+						<Link to="/admin/judging_event/all">심사 행사</Link>
+					</li>
+					<li>
+						<Link to="/admin/judging_participant/all">심사 행사 참여자</Link>
+					</li>
+					<li>
 						<Link to="/admin/ad_email/all">광고 수신 이메일</Link>
 					</li>
 					<li>
@@ -87,14 +101,6 @@ const AdminHeader = () => {
 					</li>
 					<li>
 						<Link to="/admin/supporting_startup/all">스타트업 지원</Link>
-					</li>
-					<li>
-						<Link to="/admin/private_event/all">로그인 필수 행사</Link>
-					</li>
-					<li>
-						<Link to="/admin/private_participant/all">
-							로그인 필수 행사 참여자
-						</Link>
 					</li>
 					<li>
 						<Link to="/admin/popup/all">페이지 팝업</Link>

@@ -622,3 +622,6 @@ def delete_popup(db: Session, popup_id: int) -> None:
     db.query(models.Popup).filter(
         models.Popup.id == popup_id).delete()
     db.commit()
+
+def get_judging_event(db: Session, judging_event_id : int ) -> Optional[models.JudgingEvent]:
+    return db.query(models.JudgingEvent).filter(models.JudgingEvent.id == judging_event_id).first()

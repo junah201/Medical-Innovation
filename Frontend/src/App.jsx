@@ -83,12 +83,16 @@ import PopupAllPage from "pages/admin/popup/PopupAllPage";
 import PopupCreatePage from "pages/admin/popup/PopupCreatePage";
 import PopupEditPage from "pages/admin/popup/PopupEditPage";
 import PopupDeletePage from "pages/admin/popup/PopupDeletePage";
+import JudgingEventAllPage from "pages/admin/judging_event/JudgingEventAllPage";
 
 import MouPage from "pages/MouPage";
 import AdvisoryGroupPage from "pages/AdvisoryGroupPage";
 import EventsPage from "pages/programs/event/EventsPage";
 import EventDetailPage from "pages/programs/event/EventDetailPage";
 import EventRegistrationPage from "pages/programs/event/EventRegistrationPage";
+import JudgingEventCreatePage from "pages/admin/judging_event/JudgingEventCreatePage";
+import JudgingEventEditPage from "pages/admin/judging_event/JudgingEventEditPage";
+import JudgingEventDetailPage from "pages/admin/judging_event/JudgingEventDetailPage";
 
 function App() {
 	return (
@@ -180,7 +184,6 @@ function App() {
 				<Route path="column" element={<ColumnPage />} noindex={false} />
 				<Route path="photo" element={<PhotoPage />} noindex={false} />
 			</Route>
-
 			<Route path="private_event/:id">
 				<Route
 					path="registration"
@@ -278,6 +281,13 @@ function App() {
 					<Route path="create" element={<PopupCreatePage />} />
 					<Route path="edit/:id" element={<PopupEditPage />} />
 					<Route path="delete/:id" element={<PopupDeletePage />} />
+				</Route>
+				<Route path="judging_event">
+					<Route path="all" element={<JudgingEventAllPage />} />
+					<Route path="create" element={<JudgingEventCreatePage />} />
+					<Route path="edit/:id" element={<JudgingEventEditPage />} />
+					<Route path="delete/:id" element={<PopupDeletePage />} />
+					<Route path="detail/:id" element={<JudgingEventDetailPage />} />
 				</Route>
 				<Route path="uesrs" element={<UsersPage />} />
 			</Route>

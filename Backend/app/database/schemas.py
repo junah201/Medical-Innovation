@@ -542,6 +542,38 @@ class PrivateParticipantList(BaseModel):
 
 
 @form_body
+class JudgingEventCreate(BaseModel):
+    name: str
+    join_start_date: date
+    join_end_date: date
+    judging_1st_start_date: date
+    judging_1st_end_date: date
+    judging_2nd_start_date: date
+    judging_2nd_end_date: date
+    description: str
+
+class JudgingEvent(BaseModel):
+    id: PositiveInt
+    name: str
+    join_start_date: date
+    join_end_date: date
+    judging_1st_start_date: date
+    judging_1st_end_date: date
+    judging_2nd_start_date: date
+    judging_2nd_end_date: date
+    description: str
+    thumbnail_filename: str
+    created_at: datetime
+    updated_at: datetime
+
+    class Config:
+        orm_mode = True
+
+class JudgingEventList(BaseModel):
+    total: int
+    events: list[JudgingEvent]
+
+@form_body
 class PopupCreate(BaseModel):
     title: str
     link: str
