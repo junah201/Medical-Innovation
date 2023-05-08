@@ -625,3 +625,6 @@ def delete_popup(db: Session, popup_id: int) -> None:
 
 def get_judging_event(db: Session, judging_event_id : int ) -> Optional[models.JudgingEvent]:
     return db.query(models.JudgingEvent).filter(models.JudgingEvent.id == judging_event_id).first()
+
+def get_judging_participant(db: Session, judging_participant_id : int) -> Optional[models.JudgingParticipant]:
+    return db.query(models.JudgingParticipant).filter(models.JudgingParticipant.id == judging_participant_id).first()

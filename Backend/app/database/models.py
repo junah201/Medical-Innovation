@@ -61,6 +61,18 @@ class User(Base):
     )
     posts = relationship("Post", back_populates="author")
     sponsors = relationship("Sponsor", back_populates="user")
+    first_judging_permission = Column(
+        BOOLEAN,
+        nullable=False,
+        default=False,
+        comment="1차 심사 권한",
+    )
+    second_judging_permission = Column(
+        BOOLEAN,
+        nullable=False,
+        default=False,
+        comment="2차 심사 권한",
+    )
     created_at = Column(
         DateTime,
         nullable=False,

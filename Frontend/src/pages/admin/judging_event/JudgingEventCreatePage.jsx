@@ -48,7 +48,6 @@ const JudgingEventCreatePage = () => {
 		{
 			name: "",
 			description: "",
-			file: null,
 			join_start_date: "2000-01-01",
 			join_end_date: "2023-01-01",
 			judging_1st_start_date: "2000-01-01",
@@ -75,20 +74,26 @@ const JudgingEventCreatePage = () => {
 				Authorization: `Bearer ${authCtx.accessToken}`,
 			},
 			data: formData,
-		}).then((res) => {
-			if (res.status === 204) {
-				alert("행사가 생성되었습니다.");
-				navigate("/admin/judging_event/all");
+		})
+			.then((res) => {
+				if (res.status === 204) {
+					alert("행사가 생성되었습니다.");
+					navigate("/admin/judging_event/all");
+					return;
+				}
+				if (res.status === 401) {
+					alert("로그인 후 이용해주세요.");
+					navigate("/login");
+					return;
+				}
+				alert("행사가 생성에 실패했습니다.");
 				return;
-			}
-			if (res.status === 401) {
-				alert("로그인 후 이용해주세요.");
-				navigate("/login");
+			})
+			.catch((err) => {
+				console.log(err);
+				alert("행사가 생성에 실패했습니다.\n\n" + err.response.data.message);
 				return;
-			}
-			alert("행사가 생성에 실패했습니다.");
-			return;
-		});
+			});
 	};
 
 	return (

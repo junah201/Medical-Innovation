@@ -26,6 +26,10 @@ const StyledMessage = styled.div`
 		font-size: 24px;
 	}
 
+	& a:hover {
+		text-decoration: underline;
+	}
+
 	@media screen and (max-width: 991px) {
 		font-size: 16px;
 

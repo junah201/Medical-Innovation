@@ -8,6 +8,7 @@ import { API_URL } from "utils/const";
 import AuthContext from "context/AuthContext";
 import LinkButton from "components/common/LinkButton";
 import { CDN_URL } from "utils//const";
+import Message from "components/common/Message";
 
 const PublicEventsPage = () => {
 	const authCtx = useContext(AuthContext);
@@ -36,6 +37,10 @@ const PublicEventsPage = () => {
 	return (
 		<AdminPage>
 			<h1>공개 행사</h1>
+			<Message>
+				<Link to="/programs/event">행사 목록 페이지</Link> 에 보여지는 행사들을
+				관리합니다.
+			</Message>
 			<LinkButton to="/admin/public_event/create" type="Link">
 				공개 행사 생성
 			</LinkButton>

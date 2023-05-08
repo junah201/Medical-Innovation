@@ -51,7 +51,7 @@ const EventsPage = () => {
 
 	return (
 		<Page>
-			<SubNav select="행사목록" />
+			<SubNav select="프로그램안내" />
 			<h1>행사 목록</h1>
 			<Message>재단법인 미래의학연구재단의 행사 목록입니다.</Message>
 			<StyledMouContainer>

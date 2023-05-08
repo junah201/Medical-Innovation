@@ -93,6 +93,7 @@ import EventRegistrationPage from "pages/programs/event/EventRegistrationPage";
 import JudgingEventCreatePage from "pages/admin/judging_event/JudgingEventCreatePage";
 import JudgingEventEditPage from "pages/admin/judging_event/JudgingEventEditPage";
 import JudgingEventDetailPage from "pages/admin/judging_event/JudgingEventDetailPage";
+import JudgingParticipantAllPage from "pages/admin/judging_participant/JudgingParticipantAllPage";
 
 function App() {
 	return (
@@ -288,6 +289,10 @@ function App() {
 					<Route path="edit/:id" element={<JudgingEventEditPage />} />
 					<Route path="delete/:id" element={<PopupDeletePage />} />
 					<Route path="detail/:id" element={<JudgingEventDetailPage />} />
+				</Route>
+				<Route path="judging_participant">
+					<Route path="all" element={<JudgingParticipantAllPage />} />
+					<Route path="detail/:id" element={<JudgingParticipantAllPage />} />
 				</Route>
 				<Route path="uesrs" element={<UsersPage />} />
 			</Route>

@@ -50,6 +50,8 @@ class User(BaseModel):
     birth: str
     is_admin: bool
     email_enable: bool
+    first_judging_permission: bool
+    second_judging_permission: bool
     created_at: datetime
     updated_at: datetime
 
@@ -562,7 +564,7 @@ class JudgingEvent(BaseModel):
     judging_2nd_start_date: date
     judging_2nd_end_date: date
     description: str
-    thumbnail_filename: str
+    thumbnail_filename: Optional[str]
     created_at: datetime
     updated_at: datetime
 
@@ -572,6 +574,55 @@ class JudgingEvent(BaseModel):
 class JudgingEventList(BaseModel):
     total: int
     events: list[JudgingEvent]
+
+class JudgingParticipantCreate(BaseModel):
+    event_id: PositiveInt
+    name: str
+    english_name: str
+    gender: str
+    birth: date
+    phone: str
+    email: EmailStr
+    organization_type: str
+    organization_name: str
+    organization_english_name: str
+    job_position: str
+    address: str
+    final_degree: str
+    participant_motivation: str
+    profile_filename: str
+    zip_filename: str
+
+
+class JudgingParticipant(BaseModel):
+    id: PositiveInt
+    user_id: Optional[PositiveInt] = None
+    event_id: PositiveInt
+    name: str
+    english_name: str
+    gender: str
+    birth: date
+    phone: str
+    email: EmailStr
+    organization_type: str
+    organization_name: str
+    organization_english_name: str
+    job_position: str
+    address: str
+    final_degree: str
+    participant_motivation: str
+    profile_filename: str
+    zip_filename: str
+    created_at: datetime
+    updated_at: datetime
+
+    class Config:
+        orm_mode = True
+
+
+class JudgingParticipantList(BaseModel):
+    total: int
+    participants: List[JudgingParticipant]
 
 @form_body
 class PopupCreate(BaseModel):
