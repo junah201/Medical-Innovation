@@ -83,17 +83,20 @@ import PopupAllPage from "pages/admin/popup/PopupAllPage";
 import PopupCreatePage from "pages/admin/popup/PopupCreatePage";
 import PopupEditPage from "pages/admin/popup/PopupEditPage";
 import PopupDeletePage from "pages/admin/popup/PopupDeletePage";
-import JudgingEventAllPage from "pages/admin/judging_event/JudgingEventAllPage";
 
 import MouPage from "pages/MouPage";
 import AdvisoryGroupPage from "pages/AdvisoryGroupPage";
 import EventsPage from "pages/programs/event/EventsPage";
 import EventDetailPage from "pages/programs/event/EventDetailPage";
 import EventRegistrationPage from "pages/programs/event/EventRegistrationPage";
-import JudgingEventCreatePage from "pages/admin/judging_event/JudgingEventCreatePage";
+import AdminJudgingEventAllPage from "pages/admin/judging_event/JudgingEventAllPage";
+import AdminJudgingEventCreatePage from "pages/admin/judging_event/JudgingEventCreatePage";
 import JudgingEventEditPage from "pages/admin/judging_event/JudgingEventEditPage";
 import JudgingEventDetailPage from "pages/admin/judging_event/JudgingEventDetailPage";
-import JudgingParticipantAllPage from "pages/admin/judging_participant/JudgingParticipantAllPage";
+import AdminJudgingParticipantAllPage from "pages/admin/judging_participant/JudgingParticipantAllPage";
+import JudgingEventAllPage from "pages/judging/JudgingEventAllPage";
+import JudgingParticipantAllPage from "./pages/judging/JudgingParticipantAllPage";
+import JudgingResultCreatePage from "pages/judging/judgingResultCreatePage";
 
 function App() {
 	return (
@@ -284,20 +287,40 @@ function App() {
 					<Route path="delete/:id" element={<PopupDeletePage />} />
 				</Route>
 				<Route path="judging_event">
-					<Route path="all" element={<JudgingEventAllPage />} />
-					<Route path="create" element={<JudgingEventCreatePage />} />
+					<Route path="all" element={<AdminJudgingEventAllPage />} />
+					<Route path="create" element={<AdminJudgingEventCreatePage />} />
 					<Route path="edit/:id" element={<JudgingEventEditPage />} />
 					<Route path="delete/:id" element={<PopupDeletePage />} />
 					<Route path="detail/:id" element={<JudgingEventDetailPage />} />
 				</Route>
 				<Route path="judging_participant">
-					<Route path="all" element={<JudgingParticipantAllPage />} />
-					<Route path="detail/:id" element={<JudgingParticipantAllPage />} />
+					<Route path="all" element={<AdminJudgingParticipantAllPage />} />
+					<Route
+						path="detail/:id"
+						element={<AdminJudgingParticipantAllPage />}
+					/>
 				</Route>
 				<Route path="uesrs" element={<UsersPage />} />
 			</Route>
 			<Route path="/post/:id" element={<PostPage />} noindex={false} />
 			<Route path="/404" element={<NotFoundPage />} />
+			<Route path="judging">
+				<Route
+					path="event/all"
+					element={<JudgingEventAllPage />}
+					noindex={false}
+				/>
+				<Route
+					path="result/:event_id/all"
+					element={<JudgingParticipantAllPage />}
+					noindex={false}
+				/>
+				<Route
+					path="result/:event_id/:participant_id/:nth/create"
+					element={<JudgingResultCreatePage />}
+					noindex={false}
+				/>
+			</Route>
 			<Route path="*" element={<NotFoundPage />} />
 		</Routes>
 	);

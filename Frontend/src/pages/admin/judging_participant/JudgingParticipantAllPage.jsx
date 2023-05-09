@@ -79,12 +79,6 @@ const JudgingParticipantAllPage = () => {
 					);
 				})}
 			</SelectInput>
-			<LinkButton
-				type="a"
-				to={`${API_URL}/api/v1/participant/${selectedEventId}/all/excel`}
-			>
-				참가자 목록 다운로드
-			</LinkButton>
 			<br />
 			<AdminTable setPage={setPage} page={page} SIZE={SIZE} total={total}>
 				<thead>

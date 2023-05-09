@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import styled from "styled-components";
+import AuthContext from "context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 import Header from "components/base/Header";
 import Footer from "components/base/Footer";
@@ -41,12 +43,23 @@ const StyledWrapper = styled.div`
 	}
 `;
 
-const Page = (props) => {
+const Page = ({ isLoginRequire = false, children }) => {
+	const navigate = useNavigate();
+	const authCtx = useContext(AuthContext);
+
+	useEffect(() => {
+		if (isLoginRequire && !authCtx.isLoggedIn) {
+			alert("로그인이 필요한 서비스입니다.");
+			navigate("/login");
+			return;
+		}
+	}, [navigate, authCtx]);
+
 	return (
 		<>
 			<Header />
 			<StyledPage>
-				<StyledWrapper>{props.children}</StyledWrapper>
+				<StyledWrapper>{children}</StyledWrapper>
 			</StyledPage>
 			<Footer />
 		</>

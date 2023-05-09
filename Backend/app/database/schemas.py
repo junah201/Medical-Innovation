@@ -554,6 +554,7 @@ class JudgingEventCreate(BaseModel):
     judging_2nd_end_date: date
     description: str
 
+
 class JudgingEvent(BaseModel):
     id: PositiveInt
     name: str
@@ -571,9 +572,11 @@ class JudgingEvent(BaseModel):
     class Config:
         orm_mode = True
 
+
 class JudgingEventList(BaseModel):
     total: int
     events: list[JudgingEvent]
+
 
 class JudgingParticipantCreate(BaseModel):
     event_id: PositiveInt
@@ -598,6 +601,8 @@ class JudgingParticipant(BaseModel):
     id: PositiveInt
     user_id: Optional[PositiveInt] = None
     event_id: PositiveInt
+    first_judging_result: object
+    second_judging_result: object
     name: str
     english_name: str
     gender: str
@@ -623,6 +628,52 @@ class JudgingParticipant(BaseModel):
 class JudgingParticipantList(BaseModel):
     total: int
     participants: List[JudgingParticipant]
+
+
+class JudgingResultCreate(BaseModel):
+    judging_event_id: PositiveInt
+    participant_id: PositiveInt
+    nth: int
+    score1: int
+    score2: int
+    score3: int
+    score4: int
+    score5: int
+    score6: int
+    score7: int
+    score8: int
+    score9: int
+    score10: int
+    other_comment: str = ""
+
+
+class JudgingResultUpdate(BaseModel):
+    judging_event_id: PositiveInt
+    participant_id: PositiveInt
+    score1: int
+    score2: int
+    score3: int
+    score4: int
+    score5: int
+    score6: int
+    score7: int
+    score8: int
+    score9: int
+    score10: int
+    other_comment: str = ""
+
+
+class JudgingResult(JudgingResultCreate):
+    id: PositiveInt
+
+    class Config:
+        orm_mode = True
+
+
+class JudgingResultList(BaseModel):
+    total: int
+    results: List[JudgingResult]
+
 
 @form_body
 class PopupCreate(BaseModel):
