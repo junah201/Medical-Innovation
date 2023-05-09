@@ -73,18 +73,7 @@ const TableInputWrapper = styled.div`
 `;
 
 const SponsorshipFormPage = () => {
-	const navigate = useNavigate();
 	const authCtx = useContext(AuthContext);
-
-	const isLoggedIn = authCtx.isLoggedIn;
-
-	useEffect(() => {
-		if (!isLoggedIn) {
-			alert("로그인이 필요한 서비스입니다.");
-			navigate("/support/sponsorship");
-			return;
-		}
-	}, [navigate, isLoggedIn]);
 
 	const [name, setName] = useState("");
 	const [phone, setPhone] = useState("");
@@ -127,7 +116,7 @@ const SponsorshipFormPage = () => {
 	};
 
 	return (
-		<Page>
+		<Page isLoginRequire={true}>
 			<h1>후원하기</h1>
 			<Message>
 				재단법인 미래의학연구재단의 공익적 목적 사업에 동참할 것을 약속드립니다.

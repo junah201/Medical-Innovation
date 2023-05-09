@@ -1014,8 +1014,8 @@ class JudgingParticipant(Base):
     user = relationship(
         "User",
     )
-    first_judging_result = relationship("JudgingResult", lazy="joined")
-    second_judging_result = relationship("JudgingResult", lazy="joined")
+    first_judging_result = relationship("JudgingResult")
+    second_judging_result = relationship("JudgingResult")
     event_id = Column(
         INTEGER(unsigned=True),
         ForeignKey("judging_event.id"),
@@ -1164,71 +1164,144 @@ class JudgingResult(Base):
         default=1,
         comment="n차 심사"
     )
-    score1 = Column(
+    technical_score1 = Column(
         INTEGER(unsigned=True),
         nullable=False,
         default=0,
-        comment="심사 1점수"
+        comment="기술성 심사 1점수"
     )
-    score2 = Column(
+    technical_score2 = Column(
         INTEGER(unsigned=True),
         nullable=False,
         default=0,
-        comment="심사 2점수"
+        comment="기술성 심사 2점수"
     )
-    score3 = Column(
+    technical_score3 = Column(
         INTEGER(unsigned=True),
         nullable=False,
         default=0,
-        comment="심사 3점수"
+        comment="기술성 심사 3점수"
     )
-    score4 = Column(
+    technical_score4 = Column(
         INTEGER(unsigned=True),
         nullable=False,
         default=0,
-        comment="심사 4점수"
+        comment="기술성 심사 4점수"
     )
-    score5 = Column(
+    technical_score5 = Column(
         INTEGER(unsigned=True),
         nullable=False,
         default=0,
-        comment="심사 5점수"
+        comment="기술성 심사 5점수"
     )
-    score6 = Column(
+    technical_score6 = Column(
         INTEGER(unsigned=True),
         nullable=False,
         default=0,
-        comment="심사 6점수"
+        comment="기술성 심사 6점수"
     )
-    score7 = Column(
+    marketability_score1 = Column(
         INTEGER(unsigned=True),
         nullable=False,
         default=0,
-        comment="심사 7점수"
+        comment="시장성 심사 1점수"
     )
-    score8 = Column(
+    marketability_score2 = Column(
         INTEGER(unsigned=True),
         nullable=False,
         default=0,
-        comment="심사 8점수"
+        comment="시장성 심사 2점수"
     )
-    score9 = Column(
+    marketability_score3 = Column(
         INTEGER(unsigned=True),
         nullable=False,
         default=0,
-        comment="심사 9점수"
+        comment="시장성 심사 3점수"
     )
-    score10 = Column(
+    marketability_score4 = Column(
         INTEGER(unsigned=True),
         nullable=False,
         default=0,
-        comment="심사 10점수"
+        comment="시장성 심사 4점수"
+    )
+    business_score1 = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="사업성 심사 1점수"
+    )
+    business_score2 = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="사업성 심사 2점수"
+    )
+    business_score3 = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="사업성 심사 3점수"
+    )
+    business_score4 = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="사업성 심사 4점수"
+    )
+    business_score5 = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="사업성 심사 5점수"
+    )
+    business_score6 = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="사업성 심사 6점수"
+    )
+    business_score7 = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="사업성 심사 7점수"
+    )
+    business_score8 = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="사업성 심사 8점수"
+    )
+    other_score1 = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="기타 심사 점수"
+    )
+    total_score = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="총점"
     )
     other_comment = Column(
         VARCHAR(1000),
         nullable=False,
         default="",
         comment="기타 의견"
+    )
+    created_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        comment="생성 시점"
+    )
+    updated_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        onupdate=func.now(),
+        comment="마지막 수정 시점"
     )
 
 

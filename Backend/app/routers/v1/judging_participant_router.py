@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy import and_
-from sqlalchemy.orm import Session, joinedload, aliased
+from sqlalchemy.orm import Session, joinedload, aliased, contains_eager
 from starlette import status
 from app.database import crud, schemas, models
 from app.database.database import get_db
@@ -85,29 +85,40 @@ def create_judging_participant(judging_participant_create: schemas.JudgingPartic
 
 @router.get("/{judging_event_id}/all", response_model=schemas.JudgingParticipantList)
 def get_judging_participants(judging_event_id: int, skip: int = 0, limit: int = 40, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
-    db_all_judging_participant = db.query(models.JudgingParticipant)\
-        .filter(models.JudgingParticipant.event_id == judging_event_id)\
-        .order_by(models.JudgingParticipant.id.desc())\
-        .outerjoin(models.JudgingResult, and_(
-            models.JudgingResult.nth == 1,
-            models.JudgingParticipant.id == models.JudgingResult.participant_id,
-            models.JudgingResult.user_id == current_user.id
-        ))\
-        .options(joinedload(models.JudgingParticipant.first_judging_result))\
-        # .outerjoin(models.JudgingResult, and_(
-    #     models.JudgingResult.nth == 1,
-    #     models.JudgingParticipant.id == models.JudgingResult.participant_id,
-    #     models.JudgingResult.user_id == current_user.id
-    # ))\
-    # .options(joinedload(models.JudgingParticipant.second_judging_result))
+    db_all_judging_participant = db.query(models.JudgingParticipant)
 
-    return schemas.JudgingParticipantList(
+    results = schemas.JudgingParticipantList(
         total=db_all_judging_participant.count(),
-        participants=db_all_judging_participant
-        .offset(skip).limit(limit).all()
+        participants=[]
     )
+
+    for participant in db_all_judging_participant.offset(skip).limit(limit).all():
+        tmp = schemas.JudgingParticipant(**participant.__dict__)
+        tmp.first_judging_result = db.query(models.JudgingResult).filter(
+            models.JudgingResult.nth == 1,
+            models.JudgingResult.participant_id == participant.id,
+            models.JudgingResult.user_id == current_user.id,
+            models.JudgingResult.judging_event_id == judging_event_id
+        ).first()
+        tmp.second_judging_result = db.query(models.JudgingResult).filter(
+            models.JudgingResult.nth == 2,
+            models.JudgingResult.participant_id == participant.id,
+            models.JudgingResult.user_id == current_user.id,
+            models.JudgingResult.judging_event_id == judging_event_id
+        ).first()
+        results.participants.append(tmp)
+
+    return results
 
 
 @router.get("/get/{judging_participant_id}")
 def get_judging_participant(judging_participant_id: int, db: Session = Depends(get_db)):
-    return crud.get_judging_participant(db=db, judging_participant_id=judging_participant_id)
+    db_judging_participant =  crud.get_judging_participant(db=db, judging_participant_id=judging_participant_id)
+
+    if not db_judging_participant:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="participant not found"
+        )
+
+    return db_judging_participant

@@ -634,37 +634,33 @@ class JudgingResultCreate(BaseModel):
     judging_event_id: PositiveInt
     participant_id: PositiveInt
     nth: int
-    score1: int
-    score2: int
-    score3: int
-    score4: int
-    score5: int
-    score6: int
-    score7: int
-    score8: int
-    score9: int
-    score10: int
-    other_comment: str = ""
-
-
-class JudgingResultUpdate(BaseModel):
-    judging_event_id: PositiveInt
-    participant_id: PositiveInt
-    score1: int
-    score2: int
-    score3: int
-    score4: int
-    score5: int
-    score6: int
-    score7: int
-    score8: int
-    score9: int
-    score10: int
+    technical_score1 : int
+    technical_score2 : int
+    technical_score3 : int
+    technical_score4 : int
+    technical_score5 : int
+    technical_score6 : int
+    marketability_score1 : int
+    marketability_score2 : int
+    marketability_score3 : int
+    marketability_score4 : int
+    business_score1 : int
+    business_score2 : int
+    business_score3 : int
+    business_score4 : int
+    business_score5 : int
+    business_score6 : int
+    business_score7 : int
+    business_score8 : int
+    other_score1 : int
     other_comment: str = ""
 
 
 class JudgingResult(JudgingResultCreate):
     id: PositiveInt
+    total_score: int
+    created_at: datetime
+    updated_at: datetime
 
     class Config:
         orm_mode = True

@@ -20,14 +20,6 @@ const RegistrationPage = () => {
 	const [eventDetail, setEventDetail] = useState({});
 
 	useEffect(() => {
-		if (!authCtx.isLoggedIn) {
-			alert("로그인이 필요한 서비스입니다.");
-			navigate("/login");
-			return;
-		}
-	}, [navigate, authCtx]);
-
-	useEffect(() => {
 		axios({
 			url: `${API_URL}/api/v1/private_event/get/${params.id}`,
 			method: "GET",
@@ -182,7 +174,7 @@ const RegistrationPage = () => {
 	};
 
 	return (
-		<Page>
+		<Page isLoginRequire={true}>
 			<h1>{eventDetail.name} 참가 신청</h1>
 			<Message>{eventDetail.description}</Message>
 			<TextInput

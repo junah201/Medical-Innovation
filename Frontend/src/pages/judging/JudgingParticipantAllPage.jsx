@@ -89,10 +89,12 @@ const JudgingParticipantAllPage = () => {
 								<td>{participant.email}</td>
 								<td>{participant.organization_name}</td>
 								<td>{participant.job_position}</td>
-								{!!participant.first_judging_result?.length &&
-								!!participant.first_judging_result ? (
+								{!!participant.first_judging_result ? (
 									<td>
-										<GreenStatusButton>심사 완료</GreenStatusButton>
+										<GreenStatusButton>
+											심사 완료 ({participant.first_judging_result.total_score}
+											점)
+										</GreenStatusButton>
 									</td>
 								) : (
 									<td>
@@ -107,9 +109,11 @@ const JudgingParticipantAllPage = () => {
 									</Link>
 								</td>
 								<td>
-									{!!participant.second_judging_result?.length &&
-									!!participant.second_judging_result ? (
-										<GreenStatusButton>심사 완료</GreenStatusButton>
+									{!!participant.second_judging_result ? (
+										<GreenStatusButton>
+											심사 완료 ({participant.second_judging_result.total_score}
+											점)
+										</GreenStatusButton>
 									) : (
 										<GrayStatusButton>미심사</GrayStatusButton>
 									)}
