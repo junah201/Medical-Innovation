@@ -29,6 +29,7 @@ const EventRegistrationPage = () => {
 			const now = new Date();
 			const start = new Date(res.data.join_start_date);
 			const end = new Date(res.data.join_end_date);
+			return;
 			if (now < start || now > end) {
 				alert(
 					`참가 신청 기간이 아닙니다.\n${res.data.join_start_date} ~ ${res.data.join_end_date}`
@@ -132,7 +133,9 @@ const EventRegistrationPage = () => {
 	return (
 		<Page>
 			<h1>참가 신청</h1>
-			<Message>{eventDetail.description}</Message>
+			<Message>
+				<div dangerouslySetInnerHTML={{ __html: eventDetail?.description }} />
+			</Message>
 			<TextInput
 				label="이름"
 				value={registrationInfo.name}

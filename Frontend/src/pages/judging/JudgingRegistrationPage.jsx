@@ -176,7 +176,9 @@ const JudgingRegistrationPage = () => {
 	return (
 		<Page isLoginRequire={true}>
 			<h1>{eventDetail.name} 참가 신청</h1>
-			<Message>{eventDetail.description}</Message>
+			<Message>
+				<div dangerouslySetInnerHTML={{ __html: eventDetail?.description }} />
+			</Message>
 			<TextInput
 				label="이름"
 				value={registrationInfo.name}

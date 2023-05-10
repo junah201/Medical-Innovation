@@ -5,6 +5,7 @@ import Page from "components/common/Page";
 import { Link, useParams } from "react-router-dom";
 import { API_URL, CDN_URL } from "utils/const";
 import TextInfo from "components/info/TextInfo";
+import PostContent from "components/post/PostContent";
 
 const EventDetailPage = () => {
 	const params = useParams();
@@ -47,7 +48,9 @@ const EventDetailPage = () => {
 			</div>
 			<TextInfo title="이름" content={eventDetail.name} />
 			<TextInfo title="이름 (영문)" content={eventDetail.english_name} />
-			<TextInfo title="행사 설명" content={eventDetail.description} />
+			<TextInfo title="행사 설명" content="">
+				<PostContent content={eventDetail.description} />
+			</TextInfo>
 			<TextInfo title="행사 시작 날짜" content={eventDetail.start_date} />
 			<TextInfo title="행사 종료 날짜" content={eventDetail.end_date} />
 			<TextInfo

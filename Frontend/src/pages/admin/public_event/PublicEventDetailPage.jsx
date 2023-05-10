@@ -8,6 +8,7 @@ import AuthContext from "context/AuthContext";
 import Message from "components/common/Message";
 
 import TextInfo from "components/info/TextInfo";
+import PostContent from "components/post/PostContent";
 
 const PublicEventDetailPage = () => {
 	const authCtx = useContext(AuthContext);
@@ -40,7 +41,9 @@ const PublicEventDetailPage = () => {
 				<>
 					<TextInfo title="이름" content={publicEvent.name} />
 					<TextInfo title="이름 (영문)" content={publicEvent.english_name} />
-					<TextInfo title="행사 설명" content={publicEvent.description} />
+					<TextInfo title="행사 설명" content="">
+						<PostContent content={publicEvent.description} />
+					</TextInfo>
 					<TextInfo title="행사 시작 날짜" content={publicEvent.start_date} />
 					<TextInfo title="행사 종료 날짜" content={publicEvent.end_date} />
 					<TextInfo

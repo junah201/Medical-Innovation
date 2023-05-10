@@ -10,8 +10,12 @@ import AuthContext from "context/AuthContext";
 import { API_URL } from "utils/const";
 
 import TextInput from "components/form/TextInput";
-import DescriptionInput from "components/form/DescriptionInput";
 import DateInput from "components/form/DateInput";
+
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
+import "static/css/content-styles.css";
 
 const PrivateEventEditPage = () => {
 	const navigate = useNavigate();
@@ -134,13 +138,46 @@ const PrivateEventEditPage = () => {
 						dispatch({ type: "join_end_date", payload: e.target.value })
 					}
 				/>
-				<DescriptionInput
-					label="행사 설명"
-					value={publicEventCreateInfo.description}
-					onChange={(e) =>
-						dispatch({ type: "description", payload: e.target.value })
-					}
-					placeholder="행사 설명을 입력해주세요."
+				<CKEditor
+					editor={ClassicEditor}
+					data={publicEventCreateInfo.description}
+					config={{
+						mediaEmbed: {
+							previewsInData: true,
+						},
+						heading: {
+							options: [
+								{
+									model: "paragraph",
+									view: "p",
+									title: "본문",
+									class: "ck-heading_paragraph",
+								},
+								{
+									model: "heading1",
+									view: "h1",
+									title: "헤더1",
+									class: "ck-heading_heading1",
+								},
+								{
+									model: "heading2",
+									view: "h2",
+									title: "헤더2",
+									class: "ck-heading_heading2",
+								},
+								{
+									model: "heading3",
+									view: "h3",
+									title: "헤더3",
+									class: "ck-heading_heading3",
+								},
+							],
+						},
+					}}
+					onChange={(event, editor) => {
+						const data = editor.getData();
+						dispatch({ type: "description", payload: data });
+					}}
 				/>
 				<button type="submit">수정하기</button>
 			</AdminForm>

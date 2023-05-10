@@ -7,7 +7,11 @@ import AdminForm from "components/admin/AdminForm";
 import AuthContext from "context/AuthContext";
 import TextInput from "components/form/TextInput";
 import DateInput from "components/form/DateInput";
-import DescriptionInput from "components/form/DescriptionInput";
+
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
+import "static/css/content-styles.css";
 
 const PublicEventEditPage = () => {
 	const authCtx = useContext(AuthContext);
@@ -117,13 +121,46 @@ const PublicEventEditPage = () => {
 						dispatch({ type: "english_name", payload: e.target.value })
 					}
 				/>
-				<DescriptionInput
-					label="행사 설명"
-					value={publicEvent.description}
-					onChange={(e) =>
-						dispatch({ type: "description", payload: e.target.value })
-					}
-					placeholder="행사 설명을 입력해주세요."
+				<CKEditor
+					editor={ClassicEditor}
+					data={publicEvent.description}
+					config={{
+						mediaEmbed: {
+							previewsInData: true,
+						},
+						heading: {
+							options: [
+								{
+									model: "paragraph",
+									view: "p",
+									title: "본문",
+									class: "ck-heading_paragraph",
+								},
+								{
+									model: "heading1",
+									view: "h1",
+									title: "헤더1",
+									class: "ck-heading_heading1",
+								},
+								{
+									model: "heading2",
+									view: "h2",
+									title: "헤더2",
+									class: "ck-heading_heading2",
+								},
+								{
+									model: "heading3",
+									view: "h3",
+									title: "헤더3",
+									class: "ck-heading_heading3",
+								},
+							],
+						},
+					}}
+					onChange={(event, editor) => {
+						const data = editor.getData();
+						dispatch({ type: "description", payload: data });
+					}}
 				/>
 				<DateInput
 					label="행사 시작일"
