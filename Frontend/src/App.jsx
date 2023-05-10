@@ -97,6 +97,7 @@ import AdminJudgingParticipantAllPage from "pages/admin/judging_participant/Judg
 import JudgingEventAllPage from "pages/judging/JudgingEventAllPage";
 import JudgingParticipantAllPage from "./pages/judging/JudgingParticipantAllPage";
 import JudgingResultCreatePage from "pages/judging/judgingResultCreatePage";
+import JudgingRegistrationPage from "pages/judging/JudgingRegistrationPage";
 
 function App() {
 	return (
@@ -290,7 +291,7 @@ function App() {
 					<Route path="all" element={<AdminJudgingEventAllPage />} />
 					<Route path="create" element={<AdminJudgingEventCreatePage />} />
 					<Route path="edit/:id" element={<JudgingEventEditPage />} />
-					<Route path="delete/:id" element={<PopupDeletePage />} />
+					<Route path="delete/:id" element={<NotFoundPage />} />
 					<Route path="detail/:id" element={<JudgingEventDetailPage />} />
 				</Route>
 				<Route path="judging_participant">
@@ -308,6 +309,11 @@ function App() {
 				<Route
 					path="event/all"
 					element={<JudgingEventAllPage />}
+					noindex={false}
+				/>
+				<Route
+					path="event/:event_id/register"
+					element={<JudgingRegistrationPage />}
 					noindex={false}
 				/>
 				<Route
