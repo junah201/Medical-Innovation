@@ -132,7 +132,7 @@ const JudgingRegistrationPage = () => {
 			const zip_filename = res.data.filenames[1];
 
 			const formData = new FormData();
-			formData.append("event_id", params.id);
+			formData.append("event_id", params.event_id);
 			for (let key in registrationInfo) {
 				formData.append(key, registrationInfo[key]);
 			}
@@ -142,7 +142,7 @@ const JudgingRegistrationPage = () => {
 			formData.append("zip_filename", zip_filename);
 
 			axios({
-				url: `${API_URL}/api/v1/private_participant/create`,
+				url: `${API_URL}/api/v1/judging_participant/create`,
 				method: "POST",
 				headers: {
 					accept: "application/json",
@@ -166,7 +166,7 @@ const JudgingRegistrationPage = () => {
 						return;
 					}
 					if (err.response.status === 422) {
-						alert("모든 항목을 입력해주십시오.");
+						alert("모든 항목을 입력해주십시오.\n\n" + err.response.data);
 						return;
 					}
 				});

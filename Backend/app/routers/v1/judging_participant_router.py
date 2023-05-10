@@ -69,18 +69,18 @@ def create_judging_participant(judging_participant_create: schemas.JudgingPartic
         db.add(db_judging_participant)
         db.commit()
 
-    # send_email(
-    #     receiver_address=judging_participant_create.email,
-    #     subject=f"{db_judging_participant_event.name} 참여 신청 완료",
-    #     content=f"{judging_participant_create.name}님 {db_judging_participant_event.name}에 참여 신청이 완료되었습니다.",
-    #     images=[],
-    # )
-    # send_email(
-    #     receiver_address="support@medicalinnovation.or.kr",
-    #     subject=f"{db_judging_participant_event.name} 참여 신청 완료",
-    #     content=f"{judging_participant_create.name}님 {db_judging_participant_event.name}에 참여 신청이 완료되었습니다.",
-    #     images=[],
-    # )
+    send_email(
+        receiver_address=judging_participant_create.email,
+        subject=f"{db_judging_participant_event.name} 참여 신청 완료",
+        content=f"{judging_participant_create.name}님 {db_judging_participant_event.name}에 참여 신청이 완료되었습니다.",
+        images=[],
+    )
+    send_email(
+        receiver_address="support@medicalinnovation.or.kr",
+        subject=f"{db_judging_participant_event.name} 참여 신청 완료",
+        content=f"{judging_participant_create.name}님 {db_judging_participant_event.name}에 참여 신청이 완료되었습니다.",
+        images=[],
+    )
 
 
 @router.get("/{judging_event_id}/all", response_model=schemas.JudgingParticipantList)
