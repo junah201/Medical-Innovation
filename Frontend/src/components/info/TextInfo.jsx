@@ -8,7 +8,7 @@ const StyledTextInfo = styled.div`
 		margin-bottom: 2px;
 	}
 
-	& p {
+	& > p {
 		margin: 0;
 		background-color: #f5f5f5;
 		padding: 10px;
@@ -25,11 +25,14 @@ const StyledTextInfo = styled.div`
 	}
 `;
 
-const TextInfo = ({ title, content }) => {
+const TextInfo = ({ title, content, children }) => {
 	return (
 		<StyledTextInfo>
 			<span>{title}</span>
-			<p>{content}</p>
+			<p>
+				{content}
+				{children}
+			</p>
 		</StyledTextInfo>
 	);
 };

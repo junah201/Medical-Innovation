@@ -27,6 +27,8 @@ const StyledPopupTitle = styled.h1`
 
 const StyledPopupContent = styled.div`
 	border: 1px solid black;
+	margin: 0;
+	padding: 0%;
 
 	overflow: hidden;
 

@@ -14,6 +14,11 @@ import DescriptionInput from "components/form/DescriptionInput";
 import DateInput from "components/form/DateInput";
 import SingleFileInput from "components/form/SingleFileInput";
 
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
+import "static/css/content-styles.css";
+
 const JudgingEventCreatePage = () => {
 	const navigate = useNavigate();
 	const authCtx = useContext(AuthContext);
@@ -47,7 +52,7 @@ const JudgingEventCreatePage = () => {
 		},
 		{
 			name: "",
-			description: "",
+			description: "행사 설명을 입력해주세요.",
 			join_start_date: "2000-01-01",
 			join_end_date: "2023-01-01",
 			judging_1st_start_date: "2000-01-01",
@@ -106,13 +111,56 @@ const JudgingEventCreatePage = () => {
 					value={judgingEventCreateInfo.name}
 					onChange={(e) => dispatch({ type: "name", payload: e.target.value })}
 				/>
-				<DescriptionInput
-					label="행사 설명"
-					value={judgingEventCreateInfo.description}
-					onChange={(e) =>
-						dispatch({ type: "description", payload: e.target.value })
-					}
-					placeholder="행사 설명을 입력해주세요."
+				<CKEditor
+					editor={ClassicEditor}
+					data=""
+					config={{
+						mediaEmbed: {
+							previewsInData: true,
+						},
+						heading: {
+							options: [
+								{
+									model: "paragraph",
+									view: "p",
+									title: "본문",
+									class: "ck-heading_paragraph",
+								},
+								{
+									model: "heading1",
+									view: "h1",
+									title: "헤더1",
+									class: "ck-heading_heading1",
+								},
+								{
+									model: "heading2",
+									view: "h2",
+									title: "헤더2",
+									class: "ck-heading_heading2",
+								},
+								{
+									model: "heading3",
+									view: "h3",
+									title: "헤더3",
+									class: "ck-heading_heading3",
+								},
+							],
+						},
+					}}
+					onReady={(editor) => {
+						// You can store the "editor" and use when it is needed.
+						console.log("Editor is ready to use!", editor);
+					}}
+					onChange={(event, editor) => {
+						const data = editor.getData();
+						dispatch({ type: "description", payload: data });
+					}}
+					onBlur={(event, editor) => {
+						console.log("Blur.", editor);
+					}}
+					onFocus={(event, editor) => {
+						console.log("Focus.", editor);
+					}}
 				/>
 				<DateInput
 					label="행사 참여 신청 시작일"

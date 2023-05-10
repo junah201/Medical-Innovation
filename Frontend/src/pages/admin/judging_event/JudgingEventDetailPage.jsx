@@ -8,6 +8,7 @@ import AuthContext from "context/AuthContext";
 import Message from "components/common/Message";
 
 import TextInfo from "components/info/TextInfo";
+import PostContent from "components/post/PostContent";
 
 const JudgingEventDetailPage = () => {
 	const authCtx = useContext(AuthContext);
@@ -39,7 +40,9 @@ const JudgingEventDetailPage = () => {
 			{judgingEvent && (
 				<>
 					<TextInfo title="이름" content={judgingEvent.name} />
-					<TextInfo title="행사 설명" content={judgingEvent.description} />
+					<TextInfo title="행사 설명" content="">
+						<PostContent content={judgingEvent.description} />
+					</TextInfo>
 					<TextInfo
 						title="참가 신청 시작 날짜"
 						content={judgingEvent.join_start_date}
