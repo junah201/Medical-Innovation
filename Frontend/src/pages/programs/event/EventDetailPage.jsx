@@ -3,7 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import Page from "components/common/Page";
 import { Link, useParams } from "react-router-dom";
-import { API_URL } from "utils/const";
+import { API_URL, CDN_URL } from "utils/const";
 import TextInfo from "components/info/TextInfo";
 
 const EventDetailPage = () => {
@@ -27,6 +27,24 @@ const EventDetailPage = () => {
 	return (
 		<Page>
 			<h1>{eventDetail.name}</h1>
+			<div
+				style={{
+					width: "80%",
+				}}
+			>
+				<img
+					style={{
+						width: "100%",
+						overflow: "hidden",
+					}}
+					src={`${CDN_URL}/upload/${
+						eventDetail.thumbnail_filename
+							? eventDetail.thumbnail_filename
+							: "null.png"
+					}`}
+					alt={eventDetail.name}
+				/>
+			</div>
 			<TextInfo title="이름" content={eventDetail.name} />
 			<TextInfo title="이름 (영문)" content={eventDetail.english_name} />
 			<TextInfo title="행사 설명" content={eventDetail.description} />
