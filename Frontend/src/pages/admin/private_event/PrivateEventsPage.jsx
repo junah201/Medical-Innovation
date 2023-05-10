@@ -4,7 +4,7 @@ import axios from "axios";
 
 import AdminPage from "components/admin/AdminPage";
 import AdminTable from "components/admin/AdminTable";
-import { API_URL } from "utils/const";
+import { API_URL, CDN_URL } from "utils/const";
 import AuthContext from "context/AuthContext";
 import Message from "components/common/Message";
 import LinkButton from "components/common/LinkButton";
@@ -48,6 +48,7 @@ const PrivateEventsPage = () => {
 					<tr>
 						<th>번호</th>
 						<th>이름</th>
+						<th>이미지</th>
 						<th>신청 시작일</th>
 						<th>신청 종료일</th>
 						<th>수정</th>
@@ -60,6 +61,15 @@ const PrivateEventsPage = () => {
 							<tr key={event.id}>
 								<td>{event.id}</td>
 								<td>{event.name}</td>
+								<td>
+									<a
+										href={`${CDN_URL}/upload/${
+											event.thumbnail_filename || "null.png"
+										}`}
+									>
+										{event.thumbnail_filename || "null.png"}
+									</a>
+								</td>
 								<td>{event.join_start_date}</td>
 								<td>{event.join_end_date}</td>
 								<td>
