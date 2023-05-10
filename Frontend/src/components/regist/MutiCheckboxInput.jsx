@@ -48,7 +48,7 @@ const MutiCheckboxInput = ({ label, options, value, onChange }) => {
 					);
 				})}
 			</div>
-			<BlankDiv height="80px" />
+			<BlankDiv height="60px" />
 		</StyledMutiCheckboxInput>
 	);
 };

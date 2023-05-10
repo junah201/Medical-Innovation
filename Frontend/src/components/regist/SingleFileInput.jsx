@@ -42,7 +42,7 @@ const SingleFileInput = ({ label, onChange, accept, onClick }) => {
 				accept={accept}
 				onClick={onClick}
 			/>
-			<BlankDiv height="80px" />
+			<BlankDiv height="60px" />
 		</StyledTextInput>
 	);
 };

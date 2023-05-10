@@ -49,7 +49,7 @@ const TextInput = ({ label, value, onChange, placeholder, required }) => {
 				placeholder={placeholder}
 				required={required}
 			/>
-			<BlankDiv height="80px" />
+			<BlankDiv height="60px" />
 		</StyledTextInput>
 	);
 };
