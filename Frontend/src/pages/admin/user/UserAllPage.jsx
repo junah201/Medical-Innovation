@@ -59,7 +59,7 @@ const UserAllPage = () => {
 								<td>{`${user.email_enable}`}</td>
 								<td>{user.created_at.replace("T", " ")}</td>
 								<td>
-									<Link to={`/admin/uesr/${user.id}/permission/edit`}>
+									<Link to={`/admin/user/permission/edit/${user.id}`}>
 										심사 권한 수정
 									</Link>
 								</td>

@@ -7,6 +7,7 @@ import AuthContext from "context/AuthContext";
 import Message from "components/common/Message";
 import SelectInput from "components/form/SelectInput";
 import LinkButton from "components/common/LinkButton";
+import { Link } from "react-router-dom";
 
 const JudgingParticipantAllPage = () => {
 	const [judgingEvents, setJudgingEvents] = useState([]);
@@ -106,7 +107,13 @@ const JudgingParticipantAllPage = () => {
 								<td>{participant.email}</td>
 								<td>{participant.organization_name}</td>
 								<td>{participant.job_position}</td>
-								<td>상세정보</td>
+								<td>
+									<Link
+										to={`/admin/judging_participant/detail/${participant.id}`}
+									>
+										상세 정보
+									</Link>
+								</td>
 							</tr>
 						);
 					})}

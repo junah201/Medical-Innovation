@@ -99,6 +99,7 @@ import JudgingParticipantAllPage from "./pages/judging/JudgingParticipantAllPage
 import JudgingResultCreatePage from "pages/judging/judgingResultCreatePage";
 import JudgingRegistrationPage from "pages/judging/JudgingRegistrationPage";
 import UserPermissionEditPage from "./pages/admin/user/UserPermissionEditPage";
+import AdminJudgingParticipantDetailPage from "./pages/admin/judging_participant/JudgingParticipantDetailPage";
 
 function App() {
 	return (
@@ -299,13 +300,13 @@ function App() {
 					<Route path="all" element={<AdminJudgingParticipantAllPage />} />
 					<Route
 						path="detail/:id"
-						element={<AdminJudgingParticipantAllPage />}
+						element={<AdminJudgingParticipantDetailPage />}
 					/>
 				</Route>
 				<Route path="user">
 					<Route path="all" element={<UserAllPage />} />
 					<Route
-						path=":id/permission/edit"
+						path="permission/edit/:id"
 						element={<UserPermissionEditPage />}
 					/>
 				</Route>
