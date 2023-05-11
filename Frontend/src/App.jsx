@@ -40,7 +40,7 @@ import PostsPage from "pages/admin/post/PostsPage";
 import PostUploadPage from "pages/admin/post/PostUploadPage";
 import PostEditPage from "pages/admin/post/PostEditPage";
 import PostDeletePage from "pages/admin/post/PostDeletePage";
-import UsersPage from "pages/admin/UsersPage";
+import UserAllPage from "pages/admin/user/UserAllPage";
 import BannerUploadPage from "pages/admin/banner/BannerUploadPage";
 import BannersPage from "pages/admin/banner/BannersPage";
 import BannerDeletePage from "pages/admin/banner/BannerDeletePage";
@@ -98,6 +98,7 @@ import JudgingEventAllPage from "pages/judging/JudgingEventAllPage";
 import JudgingParticipantAllPage from "./pages/judging/JudgingParticipantAllPage";
 import JudgingResultCreatePage from "pages/judging/judgingResultCreatePage";
 import JudgingRegistrationPage from "pages/judging/JudgingRegistrationPage";
+import UserPermissionEditPage from "./pages/admin/user/UserPermissionEditPage";
 
 function App() {
 	return (
@@ -211,7 +212,7 @@ function App() {
 				<Route path="photo" element={<PhotoPage />} noindex={false} />
 			</Route>
 			<Route path="/admin">
-				<Route path="" element={<UsersPage />} />
+				<Route path="" element={<UserAllPage />} />
 				<Route path="post">
 					<Route path="all" element={<PostsPage />} />
 					<Route path="upload" element={<PostUploadPage />} />
@@ -301,7 +302,13 @@ function App() {
 						element={<AdminJudgingParticipantAllPage />}
 					/>
 				</Route>
-				<Route path="uesrs" element={<UsersPage />} />
+				<Route path="user">
+					<Route path="all" element={<UserAllPage />} />
+					<Route
+						path=":id/permission/edit"
+						element={<UserPermissionEditPage />}
+					/>
+				</Route>
 			</Route>
 			<Route path="/post/:id" element={<PostPage />} noindex={false} />
 			<Route path="/404" element={<NotFoundPage />} />

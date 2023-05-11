@@ -53,7 +53,7 @@ const AdminHeader = () => {
 			<nav>
 				<ul>
 					<li>
-						<Link to="/admin/uesrs">회원 목록</Link>
+						<Link to="/admin/uesr/all">회원 목록</Link>
 					</li>
 					<li>
 						<Link to="/admin/post/all">게시물</Link>

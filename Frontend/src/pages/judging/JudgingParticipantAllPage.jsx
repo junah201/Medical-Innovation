@@ -66,7 +66,13 @@ const JudgingParticipantAllPage = () => {
 	return (
 		<Page isLoginRequire={true}>
 			<h1>{eventDetail.name || "로딩 중"}</h1>
-			<Message>{eventDetail.description || "로딩 중"}</Message>
+			<Message>
+				<div
+					dangerouslySetInnerHTML={{
+						__html: eventDetail.description || "로딩중",
+					}}
+				></div>
+			</Message>
 			<h1>심사 목록</h1>
 			<AdminTable page={page} setPage={setPage} total={total} size={SIZE}>
 				<thead>

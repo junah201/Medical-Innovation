@@ -42,6 +42,21 @@ class UserLogin(BaseModel):
     password: constr(min_length=8)
 
 
+class UserUpdate(BaseModel):
+    name: Optional[str] = None
+    phone: Optional[str] = None
+    birth: Optional[str] = None
+    email_enable: Optional[bool] = None
+    first_judging_permission: Optional[bool] = None
+    second_judging_permission: Optional[bool] = None
+
+    @validator('name', 'phone', 'birth')
+    def not_empty(cls, v):
+        if not v or not v.strip():
+            raise ValueError('Cannot be empty')
+        return v
+
+
 class User(BaseModel):
     id: int
     name: str
@@ -634,25 +649,25 @@ class JudgingResultCreate(BaseModel):
     judging_event_id: PositiveInt
     participant_id: PositiveInt
     nth: int
-    technical_score1 : int
-    technical_score2 : int
-    technical_score3 : int
-    technical_score4 : int
-    technical_score5 : int
-    technical_score6 : int
-    marketability_score1 : int
-    marketability_score2 : int
-    marketability_score3 : int
-    marketability_score4 : int
-    business_score1 : int
-    business_score2 : int
-    business_score3 : int
-    business_score4 : int
-    business_score5 : int
-    business_score6 : int
-    business_score7 : int
-    business_score8 : int
-    other_score1 : int
+    technical_score1: int
+    technical_score2: int
+    technical_score3: int
+    technical_score4: int
+    technical_score5: int
+    technical_score6: int
+    marketability_score1: int
+    marketability_score2: int
+    marketability_score3: int
+    marketability_score4: int
+    business_score1: int
+    business_score2: int
+    business_score3: int
+    business_score4: int
+    business_score5: int
+    business_score6: int
+    business_score7: int
+    business_score8: int
+    other_score1: int
     other_comment: str = ""
 
 

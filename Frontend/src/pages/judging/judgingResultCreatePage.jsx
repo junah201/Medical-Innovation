@@ -97,7 +97,26 @@ const JudgingResultCreatePage = () => {
 		}
 	);
 
-	console.log(judgingParticipant);
+	useEffect(() => {
+		axios({
+			method: "GET",
+			url: `${API_URL}/api/v1/user/me`,
+			headers: {
+				accept: "application/json",
+				Authorization: `Bearer ${authCtx.accessToken}`,
+			},
+		}).then((res) => {
+			if (res.status === 200) {
+				if (params.nth === "1" && res.data.first_judging_permission === true)
+					return;
+				if (params.nth === "2" && res.data.second_judging_permission === true)
+					return;
+
+				alert("심사 권한이 없습니다.");
+				navigate(`/judging/result/${params.event_id}/all`);
+			}
+		});
+	}, [authCtx.accessToken, params.event_id, params.nth, navigate]);
 
 	useEffect(() => {
 		axios({

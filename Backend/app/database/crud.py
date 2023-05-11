@@ -33,6 +33,10 @@ def get_user_by_email(db: Session, email: str) -> models.User:
     return db.query(models.User).filter(models.User.email == email).first()
 
 
+def get_user_by_id(db: Session, id: int) -> models.User:
+    return db.query(models.User).filter(models.User.id == id).first()
+
+
 def get_users(db: Session, skip: int = 0, limit: int = 20) -> schemas.UserList:
     db_users = db.query(models.User).order_by(models.User.created_at.desc())
     return schemas.UserList(total=db_users.count(), users=db_users.offset(skip).limit(limit).all())
@@ -623,8 +627,10 @@ def delete_popup(db: Session, popup_id: int) -> None:
         models.Popup.id == popup_id).delete()
     db.commit()
 
-def get_judging_event(db: Session, judging_event_id : int ) -> Optional[models.JudgingEvent]:
+
+def get_judging_event(db: Session, judging_event_id: int) -> Optional[models.JudgingEvent]:
     return db.query(models.JudgingEvent).filter(models.JudgingEvent.id == judging_event_id).first()
 
-def get_judging_participant(db: Session, judging_participant_id : int) -> Optional[models.JudgingParticipant]:
+
+def get_judging_participant(db: Session, judging_participant_id: int) -> Optional[models.JudgingParticipant]:
     return db.query(models.JudgingParticipant).filter(models.JudgingParticipant.id == judging_participant_id).first()

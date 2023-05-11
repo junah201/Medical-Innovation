@@ -5,8 +5,9 @@ import AdminPage from "components/admin/AdminPage";
 import { API_URL } from "utils/const";
 import AuthContext from "context/AuthContext";
 import AdminTable from "components/admin/AdminTable";
+import { Link } from "react-router-dom";
 
-const UsersPage = () => {
+const UserAllPage = () => {
 	const authCtx = useContext(AuthContext);
 
 	const SIZE = 40;
@@ -43,7 +44,7 @@ const UsersPage = () => {
 						<th>생일</th>
 						<th>이메일 허용</th>
 						<th>계정 생성일</th>
-						<th>계정 업데이트</th>
+						<th>심사 권한 수정</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -57,7 +58,11 @@ const UsersPage = () => {
 								<td>{user.birth}</td>
 								<td>{`${user.email_enable}`}</td>
 								<td>{user.created_at.replace("T", " ")}</td>
-								<td>{user.updated_at.replace("T", " ")}</td>
+								<td>
+									<Link to={`/admin/uesr/${user.id}/permission/edit`}>
+										심사 권한 수정
+									</Link>
+								</td>
 							</tr>
 						);
 					})}
@@ -67,4 +72,4 @@ const UsersPage = () => {
 	);
 };
 
-export default UsersPage;
+export default UserAllPage;
