@@ -665,7 +665,7 @@ const JudgingResultCreatePage = () => {
 					<input
 						style={{
 							gridColumn: "3 / 4",
-							gridRow: "2 / 7",
+							gridRow: "2 / 8",
 						}}
 						type="number"
 						value={judgingResult.other_score1}
@@ -678,6 +678,14 @@ const JudgingResultCreatePage = () => {
 						min="0"
 						max="10"
 					></input>
+					<div
+						style={{
+							gridColumn: "1 / 3",
+							gridRow: "2 / 3",
+						}}
+					>
+						아래과 같은 항목을 근거로 정성적으로 1~10점을 기재해 주십시오.
+					</div>
 					<div>특허/지식재산권 보유</div>
 					<div>장관 및 대통령 표창 수상</div>
 					<div>기술가치평가 이력 보유</div>
@@ -700,7 +708,7 @@ const JudgingResultCreatePage = () => {
 							payload: e.target.value,
 						});
 					}}
-					placeholder="위 평가항목에 대한 지적사항이나 보완할 사항, 기타 심의의견 등을 기제해 주십시오."
+					placeholder="위 평가항목에 대한 지적사항이나 보완할 사항, 기타 심의의견 등을 기재해 주십시오."
 				></textarea>
 				<div
 					style={{
@@ -710,7 +718,22 @@ const JudgingResultCreatePage = () => {
 						alignItems: "center",
 					}}
 				>
-					<button type="submit">제출하기</button>
+					<button
+						type="submit"
+						style={{
+							width: "100px",
+							height: "50px",
+							backgroundColor: "#204397",
+							color: "#ffffff",
+							border: "none",
+							borderRadius: "5px",
+							fontSize: "16px",
+							fontWeight: "bold",
+							cursor: "pointer",
+						}}
+					>
+						제출하기
+					</button>
 				</div>
 			</form>
 		</Page>
@@ -720,7 +743,6 @@ const JudgingResultCreatePage = () => {
 const StyledDiv = styled.div`
 	display: grid;
 	grid-template-columns: 4fr 4fr 1fr;
-	grid-template-rows: 2fr 1fr 1fr 1fr 1fr;
 	grid-gap: 0px;
 	padding: 0;
 

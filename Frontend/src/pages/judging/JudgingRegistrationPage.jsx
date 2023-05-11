@@ -169,6 +169,7 @@ const JudgingRegistrationPage = () => {
 						alert("모든 항목을 입력해주십시오.\n\n" + err.response.data);
 						return;
 					}
+					alert("알 수 없는 오류\n\n" + err.response.data);
 				});
 		});
 	};
