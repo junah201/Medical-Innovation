@@ -795,6 +795,7 @@ const StyledJudgingItem = styled.div`
 		justify-content: center;
 		align-items: center;
 		border-right: 1px solid silver;
+		letter-spacing: 4px;
 	}
 
 	& h3 {
