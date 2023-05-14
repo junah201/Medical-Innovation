@@ -5,7 +5,7 @@ import AdminPage from "components/admin/AdminPage";
 import Message from "components/common/Message";
 import DangerButton from "components/common/DangerButton";
 import AuthContext from "context/AuthContext";
-import { API_URL } from "utils/const";
+import { API_URL, CDN_URL } from "utils/const";
 import AdminForm from "components/admin/AdminForm";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
@@ -92,6 +92,42 @@ const AdEmailSendAll = () => {
 		});
 	};
 
+	const customUploadAdapter = (loader) => {
+		return {
+			upload() {
+				return new Promise((resolve, reject) => {
+					const data = new FormData();
+					loader.file.then((file) => {
+						data.append("file", file);
+
+						axios({
+							url: `${API_URL}/api/v1/file/upload`,
+							method: "POST",
+							headers: {
+								accept: "application/json",
+								"Content-Type": "multipart/form-data",
+								Authorization: `Bearer ${authCtx.accessToken}`,
+							},
+							data: data,
+						})
+							.then((res) => {
+								resolve({
+									default: `${CDN_URL}/upload/${res.data.filename}`,
+								});
+							})
+							.catch((err) => reject(err));
+					});
+				});
+			},
+		};
+	};
+
+	function uploadPlugin(editor) {
+		editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
+			return customUploadAdapter(loader);
+		};
+	}
+
 	return (
 		<AdminPage>
 			<h1>광고 수신 이메일</h1>
@@ -114,10 +150,21 @@ const AdEmailSendAll = () => {
 						editor={ClassicEditor}
 						data=""
 						config={{
+							extraPlugins: [uploadPlugin],
 							mediaEmbed: {
 								previewsInData: true,
 							},
-							toolbar: [],
+							toolbar: [
+								"heading",
+								"|",
+								"bold",
+								"italic",
+								"link",
+								"imageUpload",
+								"mediaEmbed",
+								"undo",
+								"redo",
+							],
 							heading: {
 								options: [
 									{
@@ -159,12 +206,12 @@ const AdEmailSendAll = () => {
 					/>
 				</StyledCKEditor>
 				<br />
+				<label>첨부파일</label>
 				<input
 					type="file"
 					onChange={(e) => {
 						setFiles(e.target.files);
 					}}
-					accept="image/*"
 					multiple
 				/>
 				<br />

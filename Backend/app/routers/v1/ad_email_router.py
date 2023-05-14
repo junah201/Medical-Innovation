@@ -85,24 +85,13 @@ def send_ad_email_all(
         )
     db_ad_emails = crud.get_ad_emails(db=db, skip=0, limit=10000000)
 
-    tmp_images = []
-    for idx, file in enumerate(files):
-        img = MIMEImage(file.file.read(),
-                        _subtype=file.filename.split(".")[-1])
-        img.add_header(
-            'Content-Disposition',
-            f"attachment; filename= {file.filename}"
-        )
-        img.add_header('Content-ID', f'<image{idx}>')
-        tmp_images.append(img)
-
     for db_ad_email in db_ad_emails.ad_emails:
         background_tasks.add_task(
             send_email,
             receiver_address=db_ad_email.email,
             subject=email_content.title,
             content=email_content.content,
-            images=tmp_images
+            files=files
         )
 
 
@@ -114,20 +103,9 @@ async def send_ad_email_one(email_content: schemas.AdEmailContent = Depends(sche
             detail="You do not have permission to send a test ad_email"
         )
 
-    tmp_images = []
-    for idx, file in enumerate(files):
-        img = MIMEImage(file.file.read(),
-                        _subtype=file.filename.split(".")[-1])
-        img.add_header(
-            'Content-Disposition',
-            f"attachment; filename= {file.filename}"
-        )
-        img.add_header('Content-ID', f'<image{idx}>')
-        tmp_images.append(img)
-
     send_email(
         receiver_address=email_content.email,
         subject=email_content.title,
         content=email_content.content,
-        images=tmp_images
+        files=files
     )
