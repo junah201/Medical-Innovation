@@ -92,6 +92,42 @@ const PublicEventCreatePage = () => {
 		});
 	};
 
+	const customUploadAdapter = (loader) => {
+		return {
+			upload() {
+				return new Promise((resolve, reject) => {
+					const data = new FormData();
+					loader.file.then((file) => {
+						data.append("file", file);
+
+						axios({
+							url: `${API_URL}/api/v1/file/upload`,
+							method: "POST",
+							headers: {
+								accept: "application/json",
+								"Content-Type": "multipart/form-data",
+								Authorization: `Bearer ${authCtx.accessToken}`,
+							},
+							data: data,
+						})
+							.then((res) => {
+								resolve({
+									default: `${CDN_URL}/upload/${res.data.filename}`,
+								});
+							})
+							.catch((err) => reject(err));
+					});
+				});
+			},
+		};
+	};
+
+	function uploadPlugin(editor) {
+		editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
+			return customUploadAdapter(loader);
+		};
+	}
+
 	return (
 		<AdminPage>
 			<h1>공개 행사 업로드</h1>
@@ -113,6 +149,7 @@ const PublicEventCreatePage = () => {
 					editor={ClassicEditor}
 					data={publicEventCreateInfo.description}
 					config={{
+						extraPlugins: [uploadPlugin],
 						mediaEmbed: {
 							previewsInData: true,
 						},
