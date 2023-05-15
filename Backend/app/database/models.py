@@ -423,7 +423,7 @@ class PublicEvent(Base):
         comment="행사 이름 (영문)"
     )
     description = Column(
-        VARCHAR(2000),
+        VARCHAR(4000),
         nullable=False,
         comment="행사 설명"
     )
