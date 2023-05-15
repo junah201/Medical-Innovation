@@ -14,8 +14,8 @@ const ImageCropInput = ({ onChange, aspectRatio, required = "required" }) => {
 		}
 		cropperRef.current?.cropper
 			.getCroppedCanvas({
-				width: 160,
-				height: 88,
+				width: 800,
+				height: 440,
 			})
 			.toBlob((blob) => {
 				onChange(
