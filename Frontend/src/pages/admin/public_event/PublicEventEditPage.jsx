@@ -1,6 +1,6 @@
 import React, { useReducer, useContext, useEffect } from "react";
 import axios from "axios";
-import { API_URL } from "utils/const";
+import { API_URL, CDN_URL } from "utils/const";
 import { useParams, useNavigate } from "react-router-dom";
 import AdminPage from "components/admin/AdminPage";
 import AdminForm from "components/admin/AdminForm";

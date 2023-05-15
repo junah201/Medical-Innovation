@@ -35,7 +35,10 @@ const EventsPage = () => {
 		<Page>
 			<SubNav select="프로그램안내" />
 			<h1>행사 목록</h1>
-			<Message>재단법인 미래의학연구재단의 행사 목록입니다.</Message>
+			<Message>
+				미래의학연구재단에서 수행하는 행사 목록입니다. 참가를 원하시는 행사의
+				'자세히 보기'를 클릭하여 안내에 따라 참가 신청 을 부탁드립니다
+			</Message>
 			<Events
 				events={events}
 				itemToLink={(item) => {

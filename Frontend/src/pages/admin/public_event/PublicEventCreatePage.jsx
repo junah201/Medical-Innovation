@@ -7,7 +7,7 @@ import AdminForm from "components/admin/AdminForm";
 import Message from "components/common/Message";
 import AuthContext from "context/AuthContext";
 
-import { API_URL } from "utils/const";
+import { API_URL, CDN_URL } from "utils/const";
 
 import TextInput from "components/form/TextInput";
 import DateInput from "components/form/DateInput";
