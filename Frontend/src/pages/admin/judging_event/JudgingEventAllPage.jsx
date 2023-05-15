@@ -8,6 +8,7 @@ import { API_URL } from "utils/const";
 import AuthContext from "context/AuthContext";
 import LinkButton from "components/common/LinkButton";
 import { CDN_URL } from "utils//const";
+import Message from "components/common/Message";
 
 const JudgingEventAllPage = () => {
 	const authCtx = useContext(AuthContext);
@@ -36,6 +37,9 @@ const JudgingEventAllPage = () => {
 	return (
 		<AdminPage>
 			<h1>심사 행사</h1>
+			<Message>
+				<Link to="/judging/event/all">심사 행사 목록 페이지</Link>
+			</Message>
 			<LinkButton to="/admin/judging_event/create" type="Link">
 				심사 행사 생성
 			</LinkButton>

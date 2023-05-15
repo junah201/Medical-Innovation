@@ -673,6 +673,7 @@ class JudgingResultCreate(BaseModel):
 
 class JudgingResult(JudgingResultCreate):
     id: PositiveInt
+    user: Optional[User] = None
     total_score: int
     created_at: datetime
     updated_at: datetime
