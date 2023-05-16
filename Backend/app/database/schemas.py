@@ -396,6 +396,7 @@ class AdEmailCreate(BaseModel):
     etc_info: Optional[str] = None
 
 
+
 class AdEmail(BaseModel):
     id: PositiveInt
     user_id: Optional[PositiveInt] = None

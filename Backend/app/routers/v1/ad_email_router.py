@@ -6,8 +6,6 @@ from app.database.database import get_db
 from app.utils.oauth2 import get_current_user
 from app.utils.email import send_email
 
-from email.mime.image import MIMEImage
-
 from typing import List, Optional
 
 router = APIRouter(

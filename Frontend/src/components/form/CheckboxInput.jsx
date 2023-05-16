@@ -34,8 +34,8 @@ const CheckboxInput = ({ label, value, onChange, placeholder, required }) => {
 			<label>{label}</label>
 			<input
 				type="checkbox"
-				value={value}
-				onChange={onChange}
+				checked={value}
+				onClick={onChange}
 				placeholder={placeholder}
 				required={required}
 			/>

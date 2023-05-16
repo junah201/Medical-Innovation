@@ -101,6 +101,8 @@ import JudgingRegistrationPage from "pages/judging/JudgingRegistrationPage";
 import UserPermissionEditPage from "./pages/admin/user/UserPermissionEditPage";
 import AdminJudgingParticipantDetailPage from "./pages/admin/judging_participant/JudgingParticipantDetailPage";
 import JudgingResultAllPage from "pages/admin/judging_result/JudgingResultAllPage";
+import AdEmailCreate from "pages/admin/ad_email/AdEmailCreate";
+import AdEmailDeletePage from "pages/admin/ad_email/AdEmailDeletePage";
 
 function App() {
 	return (
@@ -261,6 +263,8 @@ function App() {
 				<Route path="ad_email">
 					<Route path="all" element={<AdEmailAllPage />} />
 					<Route path="send/all" element={<AdEmailSendAll />} />
+					<Route path="create" element={<AdEmailCreate />} />
+					<Route path="delete/:id" element={<AdEmailDeletePage />} />
 				</Route>
 				<Route path="history">
 					<Route path="all" element={<HistoryAllPage />} />

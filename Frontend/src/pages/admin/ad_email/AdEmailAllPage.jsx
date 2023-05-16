@@ -65,9 +65,6 @@ const AdEmailAllPage = () => {
 						<th>이메일</th>
 						<th>수신 여부</th>
 						<th>기타 정보</th>
-						<th>생성일</th>
-						<th>수정일</th>
-						<th>수정</th>
 						<th>삭제</th>
 					</tr>
 				</thead>
@@ -80,11 +77,6 @@ const AdEmailAllPage = () => {
 								<td>{ad_email.email}</td>
 								<td>{`${ad_email.subscribe}`}</td>
 								<td>{ad_email.etc_info}</td>
-								<td>{ad_email.created_at.replace("T", " ")}</td>
-								<td>{ad_email.updated_at.replace("T", " ")}</td>
-								<td>
-									<Link to={`/admin/ad_email/edit/${ad_email.id}`}>수정</Link>
-								</td>
 								<td>
 									<Link to={`/admin/ad_email/delete/${ad_email.id}`}>삭제</Link>
 								</td>
