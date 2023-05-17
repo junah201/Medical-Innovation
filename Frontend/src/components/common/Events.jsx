@@ -41,7 +41,7 @@ const Events = ({ events, itemToLink }) => {
 };
 
 const StyledEventItem = styled.div`
-  border: 1px solid #eaeaea;
+  border: ${({ theme }) => theme.borderOption};
   border-radius: 10px;
   padding: 15px;
   width: 100%;
@@ -51,7 +51,7 @@ const StyledEventItem = styled.div`
   & div {
     height: 200px;
     overflow: hidden;
-    border: 1px solid #eaeaea;
+    border: ${({ theme }) => theme.borderOption};
     border-radius: 10px;
   }
 
@@ -78,7 +78,7 @@ const StyledEventItem = styled.div`
 
   & span {
     font-size: 16px;
-    color: rgb(80, 80, 80);
+    color: ${({ theme }) => theme.transparentColor};
   }
 
   @media screen and (max-width: 991px) {
@@ -87,7 +87,7 @@ const StyledEventItem = styled.div`
     & div {
       height: 150px;
       overflow: hidden;
-      border: 1px solid #eaeaea;
+      border: ${({ theme }) => theme.borderOption};
       border-radius: 10px;
     }
 
@@ -134,9 +134,9 @@ const EventLink = styled(Link)`
   border-radius: 10px;
   transition: ease-in-out 0.15s;
   color: inherit;
-  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.015);
+  box-shadow: ${({ theme }) => theme.boxShadowOption};
 
   :hover {
-    background: #eaeaea;
+    background: ${({ theme }) => theme.borderColor};
   }
 `;

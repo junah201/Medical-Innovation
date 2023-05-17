@@ -1,5 +1,6 @@
 export const theme = {
   color: '#000000',
+  transparentColor: 'rgb(80, 80, 80)',
   background: '#f9f9f9',
   borderColor: '#ececec',
   anchorColor: '#0000ff',
