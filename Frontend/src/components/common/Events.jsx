@@ -24,6 +24,10 @@ const StyledEvents = styled.div`
   }
   @media screen and (min-width: 1250px) {
   }
+
+  @media screen and (max-width: 688px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 
 const Events = ({ events, itemToLink }) => {
@@ -40,9 +44,8 @@ const StyledEventItem = styled.div`
   border: 1px solid #eaeaea;
   border-radius: 10px;
   padding: 15px;
-  min-width: 350px;
   width: 100%;
-  height: 400px;
+  min-width: 300px;
   overflow: hidden;
 
   & div {
@@ -60,7 +63,17 @@ const StyledEventItem = styled.div`
 
   & h2 {
     font-size: 20px;
-    word-break: keep-all;
+    height: 56px;
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+    word-wrap: brek-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    /* Text 한 줄로 바꾸고 싶으면 아래의 설정으로 변경 */
+    //height: 28px;
+    //-webkit-line-clamp: 1;
   }
 
   & span {
@@ -89,10 +102,10 @@ const StyledEventItem = styled.div`
       word-break: keep-all;
     }
   }
-
+  /* 
   @media screen and (max-width: 450px) {
     width: 150px;
-  }
+  } */
 `;
 
 const EventItem = ({ item, itemToLink }) => {
@@ -121,6 +134,7 @@ const EventLink = styled(Link)`
   border-radius: 10px;
   transition: ease-in-out 0.15s;
   color: inherit;
+  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.015);
 
   :hover {
     background: #eaeaea;
