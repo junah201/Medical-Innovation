@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 const JudgingResultAllPage = () => {
 	const [judgingEvents, setJudgingEvents] = useState([]);
 	const [selectedEventId, setSelectedEventId] = useState(4);
-	const [participants, setParticipants] = useState([]);
+	const [judgingResults, setJudgingResults] = useState([]);
 
 	const SIZE = 40;
 	const [total, setTotal] = useState(0);
@@ -45,7 +45,7 @@ const JudgingResultAllPage = () => {
 				Authorization: `Bearer ${authCtx.accessToken}`,
 			},
 		}).then((res) => {
-			setParticipants(res.data.results);
+			setJudgingResults(res.data.results);
 			setTotal(res.data.total);
 		});
 	}, [authCtx.accessToken, selectedEventId, page, total]);
@@ -63,16 +63,20 @@ const JudgingResultAllPage = () => {
 				Authorization: `Bearer ${authCtx.accessToken}`,
 			},
 		}).then((res) => {
-			setParticipants(res.data.results);
+			setJudgingResults(res.data.results);
 		});
 	};
-
-	console.log(participants[0]);
 
 	return (
 		<AdminPage>
 			<h1>심사 결과</h1>
 			<Message>tip :</Message>
+			<LinkButton
+				type="a"
+				to={`${API_URL}/api/v1/judging_result/${selectedEventId}/all/excel`}
+			>
+				심사 결과 목록 다운로드
+			</LinkButton>
 			<SelectInput onChange={onSelectHandler} value={selectedEventId}>
 				{judgingEvents.map((publicEvent) => {
 					return (
@@ -96,16 +100,20 @@ const JudgingResultAllPage = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{participants.map((participant) => {
+					{judgingResults.map((judgingResult) => {
 						return (
-							<tr key={participant.id}>
-								<td>{participant.id}</td>
-								<td>{participant?.user?.name}</td>
-								<td>{participant.nth}차</td>
-								<td>{participant.total_score}</td>
-								<td>{participant.created_at.replace("T", " ")}</td>
-								<td>{participant.updated_at.replace("T", " ")}</td>
-								<td>상세 정보</td>
+							<tr key={judgingResult.id}>
+								<td>{judgingResult.id}</td>
+								<td>{judgingResult?.user?.name}</td>
+								<td>{judgingResult.nth}차</td>
+								<td>{judgingResult.total_score}</td>
+								<td>{judgingResult.created_at.replace("T", " ")}</td>
+								<td>{judgingResult.updated_at.replace("T", " ")}</td>
+								<td>
+									<Link to={`/admin/judging_result/detail/${judgingResult.id}`}>
+										상세정보
+									</Link>
+								</td>
 							</tr>
 						);
 					})}

@@ -1,11 +1,16 @@
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
+from fastapi.responses import StreamingResponse, FileResponse
 from starlette import status
 from app.database import crud, schemas, models
 from app.database.database import get_db
 from app.utils.oauth2 import get_current_user
 from typing import List, Optional
 from app.utils.email import send_email
+
+import io
+import openpyxl
+import csv
 
 router = APIRouter(
     prefix="/api/v1/judging_result",
@@ -165,3 +170,51 @@ def get_judging_participant(judging_event_id: int, participant_id: int, nth: int
         )
 
     return db_judging_result
+
+@router.get("/{judging_event_id}/all/excel")
+def get_all_participant_excel_by_event_id(judging_event_id: int, db: Session = Depends(get_db)):
+    db_judging_results: List[models.JudgingResult] = db.query(models.JudgingResult).filter(
+        models.JudgingResult.judging_event_id == judging_event_id).all()
+    
+    file_content = ",".join(
+        [
+            "N차 심사", "",
+            "평가자 ID", "평가자 이름", "평가자 이메일","",
+            "심사 대상자 ID", "심사 대상자 이름", "심사 대상자 이메일", "",
+            "총점", "",
+            "우월성", "혁신성", "차별성", "기술 경쟁강도", "파급성", "혁신성", "",
+            "시장진입 가능성", "시장 경쟁강도", "시장 경쟁의 변화", "시장의 성장전망", "", 
+            "예상 시장 점유율", "사업화 준비기간", "사업화 소요자금", "생산 용이성", "매출 성장추세", "수익성", "파생적 매출", "신제품 출현 가능성","",
+            "기타 고려 사항" , "종합의견"
+        ]
+    )
+    
+    file_content += "\n"
+
+    for db_judgint_result in db_judging_results:
+        file_content += ",".join(
+            [
+                str(item) for item in [
+                    db_judgint_result.nth, "",
+                    db_judgint_result.participant_id, db_judgint_result.participant.name, db_judgint_result.participant.email, "",
+                    db_judgint_result.judging_event_id, db_judgint_result.participant.name, db_judgint_result.participant.email, "",
+                    db_judgint_result.total_score, "",
+                    db_judgint_result.technical_score1, db_judgint_result.technical_score2, db_judgint_result.technical_score3, db_judgint_result.technical_score4, db_judgint_result.technical_score5, db_judgint_result.technical_score6,  "",
+                    db_judgint_result.marketability_score1, db_judgint_result.marketability_score2, db_judgint_result.marketability_score3, db_judgint_result.marketability_score4, "",
+                    db_judgint_result.business_score1, db_judgint_result.business_score2, db_judgint_result.business_score3, db_judgint_result.business_score4, db_judgint_result.business_score5, db_judgint_result.business_score6, db_judgint_result.business_score7, db_judgint_result.business_score8, "",
+                    db_judgint_result.other_score1, db_judgint_result.other_comment
+                ]
+            ]
+        )
+
+        file_content += "\n"
+
+    workbook = openpyxl.Workbook()
+    worksheet = workbook.active
+    reader = csv.reader(io.StringIO(file_content))
+    for row in reader:
+        worksheet.append(row)
+
+    workbook.save("results.xlsx")
+
+    return FileResponse("results.xlsx")
