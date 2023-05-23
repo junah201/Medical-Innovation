@@ -91,7 +91,7 @@ import EventRegistrationPage from "pages/programs/event/EventRegistrationPage";
 import AdminJudgingEventAllPage from "pages/admin/judging_event/JudgingEventAllPage";
 import AdminJudgingEventCreatePage from "pages/admin/judging_event/JudgingEventCreatePage";
 import JudgingEventEditPage from "pages/admin/judging_event/JudgingEventEditPage";
-import JudgingEventDetailPage from "pages/admin/judging_event/JudgingEventDetailPage";
+import AdminJudgingEventDetailPage from "pages/admin/judging_event/JudgingEventDetailPage";
 import AdminJudgingParticipantAllPage from "pages/admin/judging_participant/JudgingParticipantAllPage";
 import JudgingEventAllPage from "pages/judging/JudgingEventAllPage";
 import JudgingParticipantAllPage from "./pages/judging/JudgingParticipantAllPage";
@@ -103,6 +103,7 @@ import JudgingResultAllPage from "pages/admin/judging_result/JudgingResultAllPag
 import AdEmailCreate from "pages/admin/ad_email/AdEmailCreate";
 import AdEmailDeletePage from "pages/admin/ad_email/AdEmailDeletePage";
 import JudgingResultDetailPage from "pages/admin/judging_result/JudgingResultDetailPage";
+import JudgingEventDetailPage from "pages/judging/JudgingEventDetailPage";
 
 export const Router = () => {
 	return (
@@ -298,8 +299,8 @@ export const Router = () => {
 					<Route path="all" element={<AdminJudgingEventAllPage />} />
 					<Route path="create" element={<AdminJudgingEventCreatePage />} />
 					<Route path="edit/:id" element={<JudgingEventEditPage />} />
+					<Route path="detail/:id" element={<AdminJudgingEventDetailPage />} />
 					<Route path="delete/:id" element={<NotFoundPage />} />
-					<Route path="detail/:id" element={<JudgingEventDetailPage />} />
 				</Route>
 				<Route path="judging_participant">
 					<Route path="all" element={<AdminJudgingParticipantAllPage />} />
@@ -326,6 +327,11 @@ export const Router = () => {
 				<Route
 					path="event/all"
 					element={<JudgingEventAllPage />}
+					noindex={false}
+				/>
+				<Route
+					path="event/:event_id/detail"
+					element={<JudgingEventDetailPage />}
 					noindex={false}
 				/>
 				<Route

@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import BlankDiv from "components/common/BlankDiv";
-
+import axios from "axios";
 import Page from "components/common/Page";
 import SubNav from "components/programs/SubNav";
 import Message from "components/common/Message";
-import { CDN_URL } from "utils//const";
+import { API_URL } from "utils//const";
+import Events from "components/common/Events";
 
 const SyledBioVentureCompetitionContainer = styled.div`
 	display: grid;
@@ -15,6 +16,23 @@ const SyledBioVentureCompetitionContainer = styled.div`
 `;
 
 const AcceleratingPage = () => {
+	const [events, setEvents] = useState([]);
+
+	useEffect(() => {
+		axios({
+			method: "GET",
+			url: `${API_URL}/api/v1/judging_event/all?skip=0&limit=100000`,
+			headers: {
+				accept: "application/json",
+			},
+		}).then((res) => {
+			if (res.status === 200) {
+				setEvents(res.data.events);
+				return;
+			}
+		});
+	}, []);
+
 	return (
 		<Page>
 			<SubNav select="스타트업지원" />
@@ -37,91 +55,20 @@ const AcceleratingPage = () => {
 					협력기관과 연대하여 유망 스타트업 발굴, 조기 기술사업화를 위한 선순환
 					오픈이노베이션 촉진에 박차를 가하고 있습니다.
 				</Message>
-				<Message>
-					<div>
-						<h4>Bio-Health Startup Acceleration Program</h4>
-					</div>
-					<div>
-						<h4>지원대상</h4>
-						<p>
-							(예비)창업자, 초기창업자, 사업자 등록 7년 미만 스타트업 누구나
-							신청 가능
-						</p>
-					</div>
-					<div>
-						<h4>지원내용</h4>
-						<p>맞춤형 액셀러레이팅 프로그램</p>
-						<p>시드투자/투자유치 IR</p>
-						<p>멘토링/네트워킹/오픈이노베이션 연계</p>
-						<p>온·오프라인 정기모임 등 최신 정보교류</p>
-					</div>
-					<div>
-						<h4>신청 및 접수방법</h4>
-						<p>재단 홈페이지 통한 온라인 상시 신청</p>
-						<p>
-							온라인 접수 및 신청서류 제출처 : <br />- 접수방법 : 온라인
-							회원가입 → 온라인 등록 → 파일업로드(사업신청 및 계획서, 증빙서류
-							등 제출서류)
-						</p>
-					</div>
-					<div>
-						<h4>신청서류</h4>
-						<p>
-							신청서 교부 : 사업신청서 양식, 제출서류 등은 홈페이지에서 다운로드
-						</p>
-						<p>신청 서류 : 사업신청서 1부, 첨부 서류 스캔 사본 각 1부</p>
-					</div>
-					<div>
-						<p>
-							<a
-								href={`${CDN_URL}/upload/%EC%A0%9C%EC%B6%9C%EC%84%9C%EB%A5%98%EB%AA%A9%EB%A1%9D.hwp`}
-							>
-								- 제출서류 목록
-							</a>
-						</p>
-						<p>
-							<a
-								href={`${CDN_URL}/upload/1678419837-(디지털헬스분야)창업지원 사업신청서(사업계획서 포함).docx`}
-							>
-								- (디지털헬스 분야)사업신청서 양식
-							</a>
-						</p>
-						<p>
-							<a
-								href={`${CDN_URL}/upload/1678419837-(바이오분야)창업지원 사업신청서(사업계획서 포함).docx`}
-							>
-								- (바이오산업 분야)사업신청서 양식
-							</a>
-						</p>
-						<p>
-							<a
-								href={`${CDN_URL}/upload/1678419502-개인정보 수집 및 이용 동의서.hwp`}
-							>
-								- 개인정보 및 고유식별 정보 수집 및 이용 동의서
-							</a>
-						</p>
-					</div>
-					<br />
-					<br />
-					<a
-						style={{
-							margin: "0 0.5rem",
-							padding: "0.5rem 1rem",
-							border: "1px solid #000",
-							borderRadius: "0.5rem",
-							backgroundColor: "#fff",
-							fontSize: "26px",
-						}}
-						href="https://medicalinnovation.or.kr/judging/event/4/register"
-					>
-						참가신청
-					</a>
-				</Message>
 			</div>
 			<BlankDiv height="50px" />
+			<div>
+				<h1>창업지원 사업목록</h1>
+				<Events
+					events={events}
+					itemToLink={(item) => {
+						return `/judging/event/${item.id}/detail`;
+					}}
+				/>
+			</div>
 			<BlankDiv height="50px" />
 			<div>
-				<h1>Bio-Venture Competition</h1>
+				<h1>FMI's Biohealth Innovation Competition</h1>
 				<SyledBioVentureCompetitionContainer>
 					<WinnerItem
 						year="2022"
