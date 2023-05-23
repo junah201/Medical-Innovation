@@ -20,6 +20,16 @@ def create_ad_email(ad_email_create: schemas.AdEmailCreate,  db: Session = Depen
             status_code=status.HTTP_403_FORBIDDEN,
             detail="You do not have permission to create a ad_email"
         )
+
+    db_ad_email : Optional[models.AdEmail] = db.query(models.AdEmail).filter(
+        models.AdEmail.email == ad_email_create.email).first()
+
+    if db_ad_email:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT,
+            detail="Email already exists"
+        )
+
     crud.create_ad_email(db=db, ad_email_create=ad_email_create)
 
 
