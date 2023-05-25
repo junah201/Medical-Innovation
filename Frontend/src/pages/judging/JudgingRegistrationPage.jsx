@@ -31,6 +31,16 @@ const JudgingRegistrationPage = () => {
 		})
 			.then((res) => {
 				setEventDetail(res.data);
+				const now = new Date();
+				const start = new Date(res.data.join_start_date);
+				const end = new Date(res.data.join_end_date);
+				if (now < start || now > end) {
+					alert(
+						`참가 신청 기간이 아닙니다.\n${res.data.join_start_date} ~ ${res.data.join_end_date}`
+					);
+					navigate("/programs/event/all");
+					return;
+				}
 			})
 			.catch((err) => {
 				if (err.response.status === 404) {
@@ -39,7 +49,7 @@ const JudgingRegistrationPage = () => {
 					return;
 				}
 			});
-	}, [params.id, authCtx.accessToken]);
+	}, [params.id, authCtx.accessToken, params.event_id, navigate]);
 
 	const [registrationInfo, dispatch] = useReducer(
 		(state, action) => {
