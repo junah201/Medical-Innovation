@@ -122,6 +122,44 @@ const JudgingResultCreatePage = () => {
 	useEffect(() => {
 		axios({
 			method: "GET",
+			url: `${API_URL}/api/v1/judging_event/get/${params.event_id}`,
+			headers: {
+				accept: "application/json",
+				Authorization: `Bearer ${authCtx.accessToken}`,
+			},
+		}).then((res) => {
+			console.log(res.data);
+			if (res.status === 200) {
+				const now = new Date();
+				if (params.nth === "1") {
+					const start = new Date(res.data.judging_1st_start_date);
+					const end = new Date(res.data.judging_1st_end_date);
+					if (now < start || now > end) {
+						alert(
+							`1차 심사 기간이 아닙니다.\n${res.data.judging_1st_start_date} ~ ${res.data.judging_1st_end_date}`
+						);
+						navigate(`/judging/result/${params.event_id}/all`);
+						return;
+					}
+				}
+				if (params.nth === "2") {
+					const start = new Date(res.data.judging_2nd_start_date);
+					const end = new Date(res.data.judging_2nd_end_date);
+					if (now < start || now > end) {
+						alert(
+							`1차 심사 기간이 아닙니다.\n${res.data.judging_2nd_start_date} ~ ${res.data.judging_2nd_end_date}`
+						);
+						navigate(`/judging/result/${params.event_id}/all`);
+						return;
+					}
+				}
+			}
+		});
+	}, [params.event_id, params.nth, authCtx.accessToken, navigate]);
+
+	useEffect(() => {
+		axios({
+			method: "GET",
 			url: `${API_URL}/api/v1/judging_participant/get/${params.participant_id}`,
 			headers: {
 				accept: "application/json",
