@@ -6,7 +6,6 @@ import { API_URL } from "utils/const";
 import AuthContext from "context/AuthContext";
 import Message from "components/common/Message";
 import SelectInput from "components/form/SelectInput";
-import LinkButton from "components/common/LinkButton";
 import { Link } from "react-router-dom";
 
 const JudgingParticipantAllPage = () => {
@@ -56,7 +55,7 @@ const JudgingParticipantAllPage = () => {
 		setSelectedEventId(e.target.value);
 		axios({
 			method: "GET",
-			url: `${API_URL}/api/v1/participant/${e.target.value}/all`,
+			url: `${API_URL}/api/v1/judging_participant/${e.target.value}/all`,
 			headers: {
 				accept: "application/json",
 				"Content-Type": "application/json",
