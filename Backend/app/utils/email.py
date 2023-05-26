@@ -14,7 +14,12 @@ def send_email(receiver_address: str, subject: str, content: str, files: List[Up
     message['To'] = receiver_address
     message['Subject'] = subject
 
-    message.attach(MIMEText(content, 'html'))
+    with open("app/static/content-styles.css", 'r') as css_file:
+        css_content = css_file.read()
+
+    html_content = f'<html><head><style>{css_content}</style></head><body>{content}</body></html>'
+
+    message.attach(MIMEText(html_content, 'html'))
 
     for file in files:
         attachment = MIMEBase('application', 'octet-stream')

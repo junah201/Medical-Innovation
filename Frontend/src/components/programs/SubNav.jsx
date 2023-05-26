@@ -30,12 +30,10 @@ const SubNav = (props) => {
 				></SubNavButton>
 				<SubNavButton
 					href="/programs/trand"
-					text="최신동향보고"
-					select={props.select === "최신 동향 보편적 공유"}
+					text="최신동향보고서"
+					select={props.select === "최신동향보고서"}
 				></SubNavButton>
 			</StyledSubNav>
-			<br />
-			<StyledSubNav></StyledSubNav>
 		</>
 	);
 };

@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-const StyledTextInfo = styled.div`
+const StyledDescriptionInfo = styled.div`
+	margin: 12px 0;
+
 	& span {
 		font-weight: bold;
-		font-size: 16px;
+		font-size: 20px;
 		margin-bottom: 2px;
 	}
 
@@ -15,20 +17,16 @@ const StyledTextInfo = styled.div`
 		border-radius: 5px;
 		border: 1px solid #e1e1e1;
 	}
-
-	& + & {
-		margin-top: 16px;
-	}
 `;
 
-const TextInfo = ({ title, content }) => {
+const DescriptionInfo = ({ title, content }) => {
 	return (
-		<StyledTextInfo>
+		<StyledDescriptionInfo>
 			<span>{title}</span>
 			<br />
 			<p>{content}</p>
-		</StyledTextInfo>
+		</StyledDescriptionInfo>
 	);
 };
 
-export default TextInfo;
+export default DescriptionInfo;

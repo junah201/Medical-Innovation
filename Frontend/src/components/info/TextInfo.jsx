@@ -2,9 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledTextInfo = styled.div`
+	margin: 12px 0;
+
 	& span {
 		font-weight: bold;
-		font-size: 16px;
+		font-size: 20px;
 		margin-bottom: 2px;
 	}
 
@@ -18,10 +20,6 @@ const StyledTextInfo = styled.div`
 
 	& > span + p {
 		margin-top: 8px;
-	}
-
-	& + & {
-		margin-top: 24px;
 	}
 `;
 

@@ -28,6 +28,10 @@ const StyledWrapper = styled.div`
 	width: 100%;
 	max-width: 1230px;
 
+	& > div {
+		margin-bottom: 40px;
+	}
+
 	& h1 {
 		font-size: 30px;
 		border-left: 5px solid #204397;

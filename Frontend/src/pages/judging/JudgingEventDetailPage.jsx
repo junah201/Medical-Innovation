@@ -27,42 +27,41 @@ const JudgingEventDetailPage = () => {
 
 	return (
 		<Page>
-			<h1>{eventDetail.name}</h1>
-			<div
-				style={{
-					width: "80%",
-				}}
-			>
-				<img
+			<div>
+				<h1>{eventDetail.name}</h1>
+				<div
 					style={{
 						width: "100%",
-						overflow: "hidden",
 					}}
-					src={`${CDN_URL}/upload/${
-						eventDetail.thumbnail_filename
-							? eventDetail.thumbnail_filename
-							: "null.png"
-					}`}
-					alt={eventDetail.name}
-				/>
+				>
+					<img
+						style={{
+							width: "100%",
+							overflow: "hidden",
+						}}
+						src={`${CDN_URL}/upload/${
+							eventDetail.thumbnail_filename
+								? eventDetail.thumbnail_filename
+								: "null.png"
+						}`}
+						alt={eventDetail.name}
+					/>
+				</div>
 			</div>
-			<TextInfo title="이름" content={eventDetail.name} />
-			<TextInfo title="행사 설명" content="">
-				<PostContent content={eventDetail.description} />
-			</TextInfo>
-			<TextInfo
-				title="참가 신청 시작 날짜"
-				content={eventDetail.join_start_date}
-			/>
-			<TextInfo
-				title="참가 신청 종료 날짜"
-				content={eventDetail.join_end_date}
-			/>
-			<StyledEventRegistButton
-				to={`/judging/event/${params.event_id}/register`}
-			>
-				참가 신청하기
-			</StyledEventRegistButton>
+			<div>
+				<TextInfo title="행사 설명" content="">
+					<PostContent content={eventDetail.description} />
+				</TextInfo>
+				<TextInfo
+					title="참가 신청 기간 (접수 기간)"
+					content={`${eventDetail.join_start_date} ~ ${eventDetail.join_end_date}`}
+				/>
+				<StyledEventRegistButton
+					to={`/judging/event/${params.event_id}/register`}
+				>
+					참가 신청하기
+				</StyledEventRegistButton>
+			</div>
 		</Page>
 	);
 };
@@ -75,7 +74,7 @@ const StyledEventRegistButton = styled(Link)`
 	text-align: center;
 	background-color: #fff;
 	border: 1px solid #000;
-	margin: 50px 0;
+	margin: 20px 0;
 	border-radius: 10px;
 	font-size: 1.2rem;
 	font-weight: 700;

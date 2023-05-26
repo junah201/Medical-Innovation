@@ -7,8 +7,7 @@ import BoardPage from "pages/BoardPage";
 const TrandPage = () => {
 	return (
 		<BoardPage boardId="4" boardType="link">
-			<SubNav select="최신 동향 보편적 공유" />
-			<h1>최신 동향 보편적 공유</h1>
+			<SubNav select="최신동향보고서" />
 			<Message>
 				재단은 공익적 목적의 일환으로 수행한 사업으로 수집 된 사업결과물을
 				체계적으로 정리하여 인쇄본과 전자책으로 최신동향보고서를 발행하여

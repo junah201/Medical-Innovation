@@ -57,32 +57,6 @@ const StyledTimelineItem = styled.div`
 	}
 `;
 
-const StyledJoinProgram = styled.div`
-	display: flex;
-	flex-direction: column;
-
-	& > div {
-		padding-left: 32px;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-	}
-
-	& > div + div {
-		margin-top: 20px;
-	}
-
-	& h4 {
-		font-size: 20px;
-		margin-bottom: 10px;
-	}
-
-	& p {
-		font-size: 16px;
-		padding-left: 10px;
-	}
-`;
-
 const ResearchSupportProjectPage = () => {
 	return (
 		<Page>
@@ -129,7 +103,6 @@ const ResearchSupportProjectPage = () => {
 					</StyledTimelineItem>
 				</Message>
 			</StyledTimelineWrapper>
-			<BlankDiv height="50px" />
 			<div>
 				<h1>신청 안내</h1>
 				<Message>

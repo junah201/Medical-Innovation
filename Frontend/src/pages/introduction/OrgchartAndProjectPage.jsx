@@ -18,20 +18,14 @@ const StyledOrgchartWrapper = styled.div`
 const OrgchartAndProjectPage = () => {
 	return (
 		<Page>
-			<SubNav select="조직도 및 주요사업" />
+			<SubNav select="조직도 및 사업" />
 			<StyledOrgchartWrapper>
 				<h1>조직도</h1>
-				<BlankDiv height="30px" />
 				<img src={orgchart} alt="조직도" />
 			</StyledOrgchartWrapper>
-			<BlankDiv height="50px" />
-
-			<BlankDiv height="50px" />
 			<StyledOrgchartWrapper>
 				<h1>주요사업</h1>
-				<BlankDiv height="30px" />
 				<img src={mainProject} alt="조직도" />
-				<BlankDiv height="30px" />
 				<img src={mainProject2} alt="창업기획자사업모델" />
 			</StyledOrgchartWrapper>
 		</Page>

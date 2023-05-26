@@ -162,7 +162,7 @@ const LoginPage = () => {
 				<StyledLoginWrapper>
 					<form onSubmit={onSubmitHandler}>
 						<h1>로그인</h1>
-						<BlankDiv height="60px" />
+						<BlankDiv height="50px" />
 						<div>
 							<EmailInput
 								label="이메일"

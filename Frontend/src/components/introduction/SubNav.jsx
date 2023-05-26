@@ -29,8 +29,8 @@ const SubNav = (props) => {
 			></SubNavButton>
 			<SubNavButton
 				href="/introduction/orgchart_and_project"
-				text="조직도 및 주요사업"
-				select={props.select === "조직도 및 주요사업"}
+				text="조직도 및 사업"
+				select={props.select === "조직도 및 사업"}
 			></SubNavButton>
 		</StyledSubNav>
 	);
