@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { API_URL, CDN_URL } from "utils/const";
+import { CDN_URL } from "utils/const";
 import { Link } from "react-router-dom";
 
 const StyledEvents = styled.div`
@@ -123,7 +123,7 @@ const EventItem = ({ item, itemToLink }) => {
 				<br />
 				<span>{item.start_date || item.join_start_date}</span>
 				<h2>{item.name}</h2>
-				<Link to={itemToLink(item)}>참가신청 바로가기</Link>
+				<Link to={itemToLink(item)}>자세히보기</Link>
 			</StyledEventItem>
 		</EventLink>
 	);

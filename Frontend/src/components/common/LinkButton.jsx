@@ -16,7 +16,7 @@ const StyledLinkButton = styled.div`
 	}
 `;
 
-const LinkButton = ({ to, type, children }) => {
+const LinkButton = ({ to, type = "Link", children }) => {
 	return (
 		<StyledLinkButton>
 			{type === "Link" ? <Link to={to}>{children}</Link> : null}
