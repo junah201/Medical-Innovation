@@ -11,6 +11,7 @@ import MutiCheckboxInput from "components/regist/MutiCheckboxInput";
 import SubmitButton from "components/regist/SubmitButton";
 import SingleFileInput from "components/regist/SingleFileInput";
 import AuthContext from "context/AuthContext";
+import PostContent from "components/post/PostContent";
 
 const RegistrationPage = () => {
 	const navigate = useNavigate();
@@ -177,7 +178,7 @@ const RegistrationPage = () => {
 		<Page isLoginRequire={true}>
 			<h1>{eventDetail.name} 참가 신청</h1>
 			<Message>
-				<div dangerouslySetInnerHTML={{ __html: eventDetail?.description }} />
+				<PostContent content={eventDetail?.description} />
 			</Message>
 			<TextInput
 				label="이름"

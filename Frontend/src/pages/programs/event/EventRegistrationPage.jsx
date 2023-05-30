@@ -9,6 +9,7 @@ import { API_URL } from "utils/const";
 import DateInput from "components/regist/DateInput";
 import EmailInput from "components/regist/EmailInput";
 import SubmitButton from "components/regist/SubmitButton";
+import PostContent from "components/post/PostContent";
 
 const EventRegistrationPage = () => {
 	const navigate = useNavigate();
@@ -134,7 +135,7 @@ const EventRegistrationPage = () => {
 		<Page>
 			<h1>참가 신청</h1>
 			<Message>
-				<div dangerouslySetInnerHTML={{ __html: eventDetail?.description }} />
+				<PostContent content={eventDetail?.description} />
 			</Message>
 			<TextInput
 				label="이름"
