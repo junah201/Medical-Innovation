@@ -113,21 +113,25 @@ const PostUploadPage = () => {
 				Authorization: `Bearer ${authCtx.accessToken}`,
 			},
 			data: formData,
-		}).then((res) => {
-			if (res.status === 204) {
-				setErrorMessages("게시물 업로드 성공");
-				alert("게시물 업로드 성공");
-				navigate(`/admin/post/all`);
-				return;
-			}
-			if (res.status === 401) {
-				alert("로그인 후 이용해주세요.");
-				navigate("/login");
-				return;
-			}
-			setErrorMessages("게시물 업로드 실패");
-			alert("게시물 업로드 실패");
-		});
+		})
+			.then((res) => {
+				if (res.status === 204) {
+					setErrorMessages("게시물 업로드 성공");
+					alert("게시물 업로드 성공");
+					navigate(`/admin/post/all`);
+					return;
+				}
+				if (res.status === 401) {
+					alert("로그인 후 이용해주세요.");
+					navigate("/login");
+					return;
+				}
+			})
+			.catch((err) => {
+				console.log(err);
+				setErrorMessages("게시물 업로드 실패");
+				alert("게시물 업로드 실패\n" + err + "\n" + err.response.data.message);
+			});
 	};
 
 	const customUploadAdapter = (loader) => {
