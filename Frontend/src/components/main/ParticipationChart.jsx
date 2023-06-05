@@ -31,7 +31,7 @@ const ParticipationChart = () => {
 				},
 				{
 					year: "2023",
-					참가자: 330,
+					참가자: 350,
 				},
 			]}
 			keys={["참가자"]}
