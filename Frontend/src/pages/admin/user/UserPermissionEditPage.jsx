@@ -104,6 +104,7 @@ const UserPermissionEditPage = () => {
 			<h1>유저 심사권한 수정</h1>
 			<AdminForm onSubmit={onSubmit}>
 				<select
+					value={selectedEvent}
 					onChange={(e) => {
 						setSelectedEvent(parseInt(e.target.value));
 					}}
