@@ -202,8 +202,8 @@ def get_all_participant_excel_by_event_id(judging_event_id: int, db: Session = D
             [
                 str(item) for item in [
                     db_judgint_result.nth, "",
-                    db_judgint_result.participant_id, db_judgint_result.participant.name, db_judgint_result.participant.email, "",
-                    db_judgint_result.judging_event_id, db_judgint_result.participant.name, db_judgint_result.participant.email, "",
+                    db_judgint_result.user.id, db_judgint_result.user.name, db_judgint_result.user.email, "",
+                    db_judgint_result.participant.id, db_judgint_result.participant.name, db_judgint_result.participant.email, "",
                     db_judgint_result.total_score, "",
                     db_judgint_result.technical_score1, db_judgint_result.technical_score2, db_judgint_result.technical_score3, db_judgint_result.technical_score4, db_judgint_result.technical_score5, db_judgint_result.technical_score6,  "",
                     db_judgint_result.marketability_score1, db_judgint_result.marketability_score2, db_judgint_result.marketability_score3, db_judgint_result.marketability_score4, "",
