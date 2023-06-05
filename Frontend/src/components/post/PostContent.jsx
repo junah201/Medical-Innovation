@@ -16,6 +16,10 @@ const StyledPostContent = styled.p`
 		text-decoration: underline;
 	}
 
+	& img {
+		width: 100%;
+	}
+
 	& .img-container {
 		width: 100%;
 		display: flex;
