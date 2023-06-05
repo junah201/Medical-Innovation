@@ -91,7 +91,8 @@ const JudgingResultAllPage = () => {
 				<thead>
 					<tr>
 						<th>번호</th>
-						<th>이름</th>
+						<th>심사자 이름</th>
+						<th>심사자 대상자 이름</th>
 						<th>N차</th>
 						<th>점수</th>
 						<th>생성일</th>
@@ -105,6 +106,7 @@ const JudgingResultAllPage = () => {
 							<tr key={judgingResult.id}>
 								<td>{judgingResult.id}</td>
 								<td>{judgingResult?.user?.name}</td>
+								<td>{judgingResult?.participant_name}</td>
 								<td>{judgingResult.nth}차</td>
 								<td>{judgingResult.total_score}</td>
 								<td>{judgingResult.created_at.replace("T", " ")}</td>

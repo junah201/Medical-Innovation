@@ -140,10 +140,16 @@ def get_judging_results(judging_event_id: int, skip: int = 0, limit: int = 40, d
     db_all_judging_result = db.query(models.JudgingResult).filter(models.JudgingResult.judging_event_id == judging_event_id).order_by(
         models.JudgingResult.id.desc())
 
+    results = []
+    for db_judging_result in db_all_judging_result.offset(skip).limit(limit).all():
+        tmp = db_judging_result
+        tmp.participant_name = tmp.participant.name
+
+        results.append(tmp)
+
     return schemas.JudgingResultList(
         total=db_all_judging_result.count(),
-        results=db_all_judging_result.offset(
-            skip).limit(limit).all()
+        results=results
     )
 
 
