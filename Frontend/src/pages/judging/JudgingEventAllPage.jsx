@@ -12,6 +12,22 @@ const JudgingEventAllPage = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
+		const checkJudgingPermission = (JudgingPermissions) => {
+			if (JudgingPermissions === undefined) return false;
+			if (JudgingPermissions.length === 0) return false;
+
+			for (let i = 0; i < JudgingPermissions.length; i++) {
+				if (
+					JudgingPermissions[i].first_judging_permission ||
+					JudgingPermissions[i].second_judging_permission
+				) {
+					return true;
+				}
+			}
+
+			return false;
+		};
+
 		axios({
 			method: "GET",
 			url: `${API_URL}/api/v1/user/me`,
@@ -21,8 +37,9 @@ const JudgingEventAllPage = () => {
 			},
 		}).then((res) => {
 			if (res.status === 200) {
-				if (res.data.first_judging_permission === true) return;
-				if (res.data.second_judging_permission === true) return;
+				console.log(res.data.judging_permissions);
+				console.log(checkJudgingPermission(res.data.judging_permissions));
+				if (checkJudgingPermission(res.data.judging_permissions)) return;
 
 				alert("심사 권한이 없습니다.");
 				navigate(`/me`);

@@ -99,6 +99,31 @@ const JudgingResultCreatePage = () => {
 	);
 
 	useEffect(() => {
+		const checkJudgingPermission = (JudgingPermissions) => {
+			if (JudgingPermissions === undefined) return false;
+			if (JudgingPermissions.length === 0) return false;
+
+			const JudgingPermission = JudgingPermissions.find((permission) => {
+				return permission.judging_event_id === parseInt(params.event_id);
+			});
+
+			if (!JudgingPermission) return false;
+
+			if (
+				params.nth === "1" &&
+				JudgingPermission.first_judging_permission === true
+			)
+				return true;
+
+			if (
+				params.nth === "2" &&
+				JudgingPermission.second_judging_permission === true
+			)
+				return true;
+
+			return false;
+		};
+
 		axios({
 			method: "GET",
 			url: `${API_URL}/api/v1/user/me`,
@@ -108,10 +133,7 @@ const JudgingResultCreatePage = () => {
 			},
 		}).then((res) => {
 			if (res.status === 200) {
-				if (params.nth === "1" && res.data.first_judging_permission === true)
-					return;
-				if (params.nth === "2" && res.data.second_judging_permission === true)
-					return;
+				if (checkJudgingPermission(res.data.judging_permissions)) return;
 
 				alert("심사 권한이 없습니다.");
 				navigate(`/judging/result/${params.event_id}/all`);
@@ -147,7 +169,7 @@ const JudgingResultCreatePage = () => {
 					const end = new Date(res.data.judging_2nd_end_date);
 					if (now < start || now > end) {
 						alert(
-							`1차 심사 기간이 아닙니다.\n${res.data.judging_2nd_start_date} ~ ${res.data.judging_2nd_end_date}`
+							`2차 심사 기간이 아닙니다.\n${res.data.judging_2nd_start_date} ~ ${res.data.judging_2nd_end_date}`
 						);
 						navigate(`/judging/result/${params.event_id}/all`);
 						return;

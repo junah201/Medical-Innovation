@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "utils/const";
 import AuthContext from "context/AuthContext";
@@ -14,12 +14,51 @@ import {
 const JudgingParticipantAllPage = () => {
 	const authCtx = useContext(AuthContext);
 	const params = useParams();
+	const navigate = useNavigate();
 	const [eventDetail, setEventDetail] = useState({});
 	const [participants, setParticipants] = useState([]);
 
 	const SIZE = 40;
 	const [total, setTotal] = useState(0);
 	const [page, setPage] = useState(0);
+
+	useEffect(() => {
+		const checkJudgingPermission = (JudgingPermissions) => {
+			if (JudgingPermissions === undefined) return false;
+			if (JudgingPermissions.length === 0) return false;
+
+			const JudgingPermission = JudgingPermissions.find((permission) => {
+				return permission.judging_event_id === parseInt(params.event_id);
+			});
+
+			if (!JudgingPermission) return false;
+
+			if (
+				JudgingPermission.first_judging_permission ||
+				JudgingPermission.second_judging_result
+			)
+				return true;
+
+			return false;
+		};
+
+		axios({
+			method: "GET",
+			url: `${API_URL}/api/v1/user/me`,
+			headers: {
+				accept: "application/json",
+				Authorization: `Bearer ${authCtx.accessToken}`,
+			},
+		}).then((res) => {
+			if (res.status === 200) {
+				console.log(res.data.judging_permissions);
+				if (checkJudgingPermission(res.data.judging_permissions)) return;
+
+				alert("심사 권한이 없습니다.");
+				navigate(`/judging/event/all`);
+			}
+		});
+	}, [authCtx.accessToken, navigate, params.event_id, params.nth]);
 
 	useEffect(() => {
 		axios({

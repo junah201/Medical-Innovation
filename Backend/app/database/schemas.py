@@ -47,8 +47,6 @@ class UserUpdate(BaseModel):
     phone: Optional[str] = None
     birth: Optional[str] = None
     email_enable: Optional[bool] = None
-    first_judging_permission: Optional[bool] = None
-    second_judging_permission: Optional[bool] = None
 
     @validator('name', 'phone', 'birth')
     def not_empty(cls, v):
@@ -65,8 +63,7 @@ class User(BaseModel):
     birth: str
     is_admin: bool
     email_enable: bool
-    first_judging_permission: bool
-    second_judging_permission: bool
+    judging_permissions: list
     created_at: datetime
     updated_at: datetime
 
@@ -78,6 +75,18 @@ class UserList(BaseModel):
     total: int
     users: list[User]
 
+class JudgingPermissionCreate(BaseModel):
+    first_judging_permission: bool
+    second_judging_permission: bool
+
+class JudgingPermission(BaseModel):
+    id: int
+    user_id: int
+    judging_event_id: int
+    first_judging_permission: bool
+    second_judging_permission: bool
+    created_at: datetime
+    updated_at: datetime
 
 class Token(BaseModel):
     access_token: str

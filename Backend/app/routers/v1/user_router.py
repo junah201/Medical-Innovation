@@ -73,7 +73,7 @@ def get_all_users(skip: int, limit: int, db: Session = Depends(get_db), current_
 
 
 @router.get("/{user_id}/get", response_model=schemas.User)
-def get_user_me(user_id: int, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
+def get_user_by_id(user_id: int, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
     if not current_user.is_admin:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
@@ -112,6 +112,48 @@ def update_user(user_id: int, user_update: schemas.UserUpdate, db: Session = Dep
     db_user.phone = user_update.phone or db_user.phone
     db_user.birth = user_update.birth or db_user.birth
     db_user.email_enable = user_update.email_enable or db_user.email_enable
-    db_user.first_judging_permission = user_update.first_judging_permission or db_user.first_judging_permission
-    db_user.second_judging_permission = user_update.second_judging_permission or db_user.second_judging_permission
     db.commit()
+
+@router.put("/{user_id}/judging_permission/{judging_event_id}", status_code=status.HTTP_204_NO_CONTENT)
+def update_user_judging_permission(user_id : int, judging_event_id: int, judging_permission_create: schemas.JudgingPermissionCreate, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
+    if not current_user.is_admin:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="You do not have permission to access this resource."
+        )
+    
+    db_user: models.User = db.query(models.User).filter(
+        models.User.id == user_id).first()
+
+    if not db_user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User not found."
+        )
+
+    db_judging_event: models.JudgingEvent = db.query(models.JudgingEvent).filter(
+        models.JudgingEvent.id == judging_event_id).first()
+
+    if not db_judging_event:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Judging event not found."
+        )
+
+    db_judging_permission: models.JudgingPermission = db.query(models.JudgingPermission).filter(
+        models.JudgingPermission.user_id == user_id,models.JudgingPermission.judging_event_id == judging_event_id).first()
+
+    if not db_judging_permission:
+        db_judging_permission = models.JudgingPermission(
+            user_id=user_id,
+            judging_event_id=judging_event_id,
+            first_judging_permission=judging_permission_create.first_judging_permission,
+            second_judging_permission=judging_permission_create.second_judging_permission,
+        )
+        db.add(db_judging_permission)
+        db.commit()
+    else:
+        db_judging_permission.first_judging_permission = judging_permission_create.first_judging_permission
+        db_judging_permission.second_judging_permission = judging_permission_create.second_judging_permission
+        db.commit()
+

@@ -11,8 +11,33 @@ const UserPermissionEditPage = () => {
 	const params = useParams();
 	const navigate = useNavigate();
 
+	const [events, setEvents] = useState([]);
+	const [selectedEvent, setSelectedEvent] = useState(4);
 	const [firstJudgingPermission, setFirstJudgingPermission] = useState(false);
 	const [secondJudgingPermission, setSecondJudgingPermission] = useState(false);
+
+	const [userPermissions, setUserPermissions] = useState([]);
+
+	useEffect(() => {
+		axios({
+			url: `${API_URL}/api/v1/judging_event/all`,
+			method: "GET",
+			headers: {
+				accept: "application/json",
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${authCtx.accessToken}`,
+			},
+			params: {
+				skip: 0,
+				limit: 10000,
+			},
+		}).then((res) => {
+			if (res.status === 200) {
+				setEvents(res.data.events);
+				return;
+			}
+		});
+	}, []);
 
 	useEffect(() => {
 		axios({
@@ -25,18 +50,30 @@ const UserPermissionEditPage = () => {
 			},
 		}).then((res) => {
 			if (res.status === 200) {
-				setFirstJudgingPermission(!!res.data.first_judging_permission);
-				setSecondJudgingPermission(!!res.data.second_judging_permission);
+				setUserPermissions(res.data.judging_permissions);
 				return;
 			}
 		});
 	}, [params.id, authCtx.accessToken]);
 
+	useEffect(() => {
+		const userPermission = userPermissions.find((permission) => {
+			return permission.judging_event_id === selectedEvent;
+		});
+		if (userPermission) {
+			setFirstJudgingPermission(userPermission.first_judging_permission);
+			setSecondJudgingPermission(userPermission.second_judging_permission);
+		} else {
+			setFirstJudgingPermission(false);
+			setSecondJudgingPermission(false);
+		}
+	}, [userPermissions, selectedEvent]);
+
 	const onSubmit = (e) => {
 		e.preventDefault();
 
 		axios({
-			url: `${API_URL}/api/v1/user/${params.id}/update`,
+			url: `${API_URL}/api/v1/user/${params.id}/judging_permission/${selectedEvent}`,
 			method: "PUT",
 			headers: {
 				accept: "application/json",
@@ -66,6 +103,19 @@ const UserPermissionEditPage = () => {
 		<AdminPage>
 			<h1>유저 심사권한 수정</h1>
 			<AdminForm onSubmit={onSubmit}>
+				<select
+					onChange={(e) => {
+						setSelectedEvent(parseInt(e.target.value));
+					}}
+				>
+					{events.map((event) => {
+						return (
+							<option key={event.id} value={event.id}>
+								{event.name}
+							</option>
+						);
+					})}
+				</select>
 				<label>1차 심사 권한</label>
 				<input
 					type="checkbox"

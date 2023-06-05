@@ -61,6 +61,7 @@ class User(Base):
     )
     posts = relationship("Post", back_populates="author")
     sponsors = relationship("Sponsor", back_populates="user")
+    judging_permissions = relationship("JudgingPermission", back_populates="user")
     first_judging_permission = Column(
         BOOLEAN,
         nullable=False,
@@ -90,6 +91,60 @@ class User(Base):
     class Config:
         orm_mode = True
 
+class JudgingPermission(Base):
+    __tablename__ = "judging_permission"
+    __table_args__ = {'mysql_collate': 'utf8_general_ci'}
+
+    id = Column(    
+        INTEGER(unsigned=True),
+        primary_key=True,
+        unique=True,
+        comment="고유 번호"
+    )
+    user_id = Column(
+        INTEGER(unsigned=True),
+        ForeignKey("user.id"),
+        nullable=True,
+        comment="유저 고유 번호"
+    )
+    user = relationship(
+        "User",
+        back_populates="judging_permissions"
+    )
+    judging_event_id = Column(
+        INTEGER(unsigned=True),
+        ForeignKey("judging_event.id"),
+        nullable=True,
+        comment="행사 고유 번호"
+    )
+    judging_event = relationship(
+        "JudgingEvent",
+    )
+    first_judging_permission = Column(
+        BOOLEAN,
+        nullable=False,
+        default=False,
+        comment="1차 심사 권한",
+    )
+    second_judging_permission = Column(
+        BOOLEAN,
+        nullable=False,
+        default=False,
+        comment="2차 심사 권한",
+    )
+    created_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        comment="생성 시점",
+    )
+    updated_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        onupdate=func.now(),
+        comment="마지막 수정 시점"
+    )
 
 class Post(Base):
     __tablename__ = "post"
