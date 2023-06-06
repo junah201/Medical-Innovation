@@ -1023,7 +1023,7 @@ class JudgingEvent(Base):
         comment="2차 심사 종료 날짜"
     )
     description = Column(
-        String(3000),
+        String(6000),
         nullable=False,
         default="",
         comment="설명"
