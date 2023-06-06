@@ -626,8 +626,8 @@ class JudgingParticipant(BaseModel):
     id: PositiveInt
     user_id: Optional[PositiveInt] = None
     event_id: PositiveInt
-    first_judging_result: object
-    second_judging_result: object
+    first_judging_result: Optional[object] = None
+    second_judging_result: Optional[object] = None
     name: str
     english_name: str
     gender: str
@@ -684,6 +684,7 @@ class JudgingResultCreate(BaseModel):
 class JudgingResult(JudgingResultCreate):
     id: PositiveInt
     user: Optional[User] = None
+    participant_name : str = ""
     total_score: int
     created_at: datetime
     updated_at: datetime
