@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 import { HEADER, DEVICES, ROUTE } from '@/constants';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { getCookie } from '@/libs/Cookie';
+import { COOKIE } from '@/constants';
 
 export const HomeHeader = () => {
-  const isLoggedIn = false;
-
-  useEffect(() => {}, []);
+  const isLoggedIn = !!getCookie(COOKIE.KEY.ACCESS_TOKEN);
 
   return (
     <>
@@ -16,16 +16,12 @@ export const HomeHeader = () => {
         </Link>
         {isLoggedIn ? (
           <NavContainer>
-            <>
-              <Link to="/me">마이페이지</Link>
-              <Link to="/logout">로그아웃</Link>
-            </>
+            <Link to="/me">마이페이지</Link>
+            <Link to="/logout">로그아웃</Link>
           </NavContainer>
         ) : (
           <NavContainer>
-            <>
-              <Link to="/login">로그인</Link>
-            </>
+            <Link to="/login">로그인</Link>
           </NavContainer>
         )}
       </TopWrapper>
@@ -97,6 +93,10 @@ const NavContainer = styled.nav`
   width: 100%;
   max-width: 900px;
   height: 100%;
+
+  & a + a {
+    margin-left: 20px;
+  }
 `;
 
 const StyledUl = styled.ul`
