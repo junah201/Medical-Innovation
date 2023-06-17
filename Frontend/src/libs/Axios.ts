@@ -133,6 +133,18 @@ export class Axios {
     });
   }
 
+  postFormUnlencoded(endPoint: EndPoint, data: DataForm) {
+    return this.#instance({
+      method: METHOD.POST,
+      url: `${endPoint}`,
+      headers: {
+        accept: 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      data,
+    });
+  }
+
   put(endPoint: EndPoint, data: object, id: ID | undefined = undefined) {
     return this.#instance({
       method: METHOD.PUT,
