@@ -42,37 +42,35 @@ export const Login = () => {
   const onValid = async (userInput: RegisterField) => mutate(userInput);
 
   return (
-    <>
     <Wrapper>
       <Container>
         <Title>로그인</Title>
-          <Form onSubmit={handleSubmit(onValid)}>
-            <ReactHookInput
-              title="이메일"
-              type={INPUT_TYPE.EMAIL}
-              register={register}
-              errorMessage={errors.email?.message}
-              placeholder="이메일"
-            />
-            <ReactHookInput
-              title="비밀번호"
-              type={INPUT_TYPE.PASSWORD}
-              register={register}
-              errorMessage={errors.password?.message}
-              placeholder="비밀번호"
-            />
-            <LoginWrapper>
-              <Submit isvalid={!Object.keys(errors)[0]} disabled={isSubmitting}>
-                로그인
-              </Submit>
-            </LoginWrapper>
-            <Hr />
-            <Text>계정이 없으신가요?</Text>
-            <Link to={ROUTE.SIGN_UP}>회원가입</Link>
-          </Form>
+        <Form onSubmit={handleSubmit(onValid)}>
+          <ReactHookInput
+            title="이메일"
+            type={INPUT_TYPE.EMAIL}
+            register={register}
+            errorMessage={errors.email?.message}
+            placeholder="이메일"
+          />
+          <ReactHookInput
+            title="비밀번호"
+            type={INPUT_TYPE.PASSWORD}
+            register={register}
+            errorMessage={errors.password?.message}
+            placeholder="비밀번호"
+          />
+          <LoginWrapper>
+            <Submit isvalid={!Object.keys(errors)[0]} disabled={isSubmitting}>
+              로그인
+            </Submit>
+          </LoginWrapper>
+          <Hr />
+          <Text>계정이 없으신가요?</Text>
+          <Link to={ROUTE.SIGN_UP}>회원가입</Link>
+        </Form>
       </Container>
     </Wrapper>
-    </>
   );
 };
 
@@ -81,14 +79,7 @@ const Wrapper = styled.main`
   justify-content: center;
   align-items: center;
   padding: 20px;
-
-  @media screen and (max-width: 991px) {
-    padding: 15;
-    min-height: calc(100vh - 200px);
-  }
-  @media screen and (min-width: 992px) {
-    min-height: calc(100vh - 400px);
-  }
+  height: 100%;
 `;
 
 const Container = styled.div`
