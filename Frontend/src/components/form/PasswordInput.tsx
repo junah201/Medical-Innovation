@@ -13,7 +13,7 @@ export const PasswordInput = ({
 }) => {
   return (
     <Input
-      isError={!!errorMessage}
+      iserror={!!errorMessage}
       {...register(REGISTER_TYPE.PASSWORD, {
         required: ERROR_MESSAGE.PASSWORD.REQUIRED,
         minLength: {
@@ -24,10 +24,6 @@ export const PasswordInput = ({
           value: CONFIG.PASSWORD.MAX_LENGTH,
           message: ERROR_MESSAGE.PASSWORD.MAX_LENGTH,
         },
-        pattern: {
-          value: CONFIG.PASSWORD.REGEX,
-          message: ERROR_MESSAGE.PASSWORD.INVALIDATE,
-        },
       })}
       type="password"
       placeholder={placeholder}
@@ -35,15 +31,14 @@ export const PasswordInput = ({
   );
 };
 
-const Input = styled.input<{ isError: boolean }>`
+const Input = styled.input<{ iserror: boolean }>`
   padding: 15px;
   font-size: 18px;
   margin-bottom: 10px;
   font-weight: 600;
-  border: solid 2px ${(props) => (props.isError ? props.theme.errorColor : props.theme.validColor)};
-  border-radius: 5px;
+  border: solid 2px ${(props) => (props.iserror ? props.theme.errorColor : props.theme.validColor)};
   transition: ${({ theme }) => theme.transitionOption};
-  background: ${({ theme }) => theme.loginBackground};
+  background: ${({ theme }) => theme.loginBackgroundColor};
   :focus {
     outline: none;
   }

@@ -1,12 +1,14 @@
 import { ReactNode } from 'react';
+import { ThemeProvider } from 'styled-components';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { theme } from '@/styles';
 
 const queryClient = new QueryClient();
 
 export const Providers = ({ children }: { children: ReactNode }) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <>{children}</>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </QueryClientProvider>
   );
 };

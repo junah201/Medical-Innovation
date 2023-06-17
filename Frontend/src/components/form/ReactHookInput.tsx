@@ -4,11 +4,13 @@ import { RegisterForm, InputTypes } from '@/types';
 import { EmailInput, PasswordInput, InputLabel } from '@/components/form';
 
 export const ReactHookInput = ({
+  title,
   type,
   register,
   errorMessage,
   placeholder,
 }: {
+  title: string;
   type: InputTypes;
   register: RegisterForm;
   errorMessage: string | undefined | any;
@@ -34,7 +36,7 @@ export const ReactHookInput = ({
   return (
     <Wrapper>
       <>
-        <InputLabel value={type} errorMessage={errorMessage} />
+        <InputLabel value={title} errorMessage={errorMessage} />
         {content(type)}
       </>
     </Wrapper>

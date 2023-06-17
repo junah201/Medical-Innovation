@@ -6,8 +6,8 @@ const unAuthAxios = new Axios();
 
 export const login = async ({ email, password }: AuthInfo) => {
   const res = await unAuthAxios.postFormUnlencoded(API_ROUTE.AUTH.LOG_IN, {
-    email,
-    password,
+    username: email,
+    password: password,
   });
 
   return res;
