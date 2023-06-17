@@ -1,7 +1,15 @@
-import "./App.css";
+import './App.css';
+import { Providers } from '@/shared/Providers';
+import { Router } from '@/shared/Router';
 
 function App() {
-	return <></>;
+  return (
+    <>
+      <Providers>
+        <Router />
+      </Providers>
+    </>
+  );
 }
 
 export default App;
