@@ -1,4 +1,3 @@
-import './App.css';
 import { Providers } from '@/shared/Providers';
 import { Router } from '@/shared/Router';
 
