@@ -16,6 +16,7 @@ import {
   ChairmanMessage,
   MissionAndHistory,
   OrgchartAndProject,
+  EventDetail,
 } from '@/pages';
 import { Events } from '@/pages/programs/event/Events';
 
@@ -138,8 +139,24 @@ export const ROUTE_MAP: RouteMap = [
     AUTH: false,
   },
   {
-    PATH: '/program',
+    PATH: '/programs',
     COMPONENT: Events,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: false,
+  },
+  {
+    PATH: '/programs/event',
+    COMPONENT: Events,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: false,
+  },
+  {
+    PATH: '/programs/event/:id/detail',
+    COMPONENT: EventDetail,
     HEADER: HomeHeader,
     FOOTER: DefaultFooter,
     WRAPPER: PageWrapper,

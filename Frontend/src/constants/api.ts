@@ -38,6 +38,7 @@ const HISTORY = Object.freeze({
 
 const PUBLIC_EVENT = Object.freeze({
   GET_PUBLIC_EVENTS: '/api/v1/public_event/all',
+  GET_PUBLIC_EVENT_BY_ID: (id: number | string) => `/api/v1/public_event/get/${id}`,
 });
 
 export const API_ROUTE = Object.freeze({

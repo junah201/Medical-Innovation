@@ -12,3 +12,9 @@ export const getPublicEvents = async (skip: number, limit: number) => {
 
   return res;
 };
+
+export const getPublicEventById = async (id: number | string) => {
+  const res = await unAuthAxios.get(API_ROUTE.PUBLIC_EVENT.GET_PUBLIC_EVENT_BY_ID(id));
+
+  return res;
+};

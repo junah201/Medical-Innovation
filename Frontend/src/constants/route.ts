@@ -7,8 +7,8 @@ export const ROUTE = Object.freeze({
     FOUNDER: '/introduction/founder',
   }),
   PROGRAM: Object.freeze({
-    ROOT: '/program',
-    EVENT: '/program/event',
+    ROOT: '/programs',
+    EVENT: '/programs/event',
   }),
   NEWS: Object.freeze({
     ROOT: '/news',
