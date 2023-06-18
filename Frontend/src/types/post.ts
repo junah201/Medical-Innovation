@@ -1,0 +1,23 @@
+export interface Post {
+  id: number;
+  title: string;
+  board_id: number;
+  content: string;
+  board: Board;
+  files: string[];
+  author: PostAuthor;
+  created_at: string;
+  updated_at: string;
+}
+
+interface Board {
+  id: number;
+  name: string;
+  created_at: string;
+  updated_at: string;
+}
+
+interface PostAuthor {
+  id: number;
+  name: string;
+}

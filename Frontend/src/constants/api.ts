@@ -17,9 +17,15 @@ const ADVISOR = Object.freeze({
   GET_ADVISORS: '/api/v1/advisor/all',
 });
 
+const POST = Object.freeze({
+  GET_POSTS: '/api/v1/post/all',
+  GET_POSTS_BY_BOARD: (id: number) => `/api/v1/post/${id}/all`,
+});
+
 export const API_ROUTE = Object.freeze({
   AUTH,
   BANNER,
   MOU,
   ADVISOR,
+  POST,
 });
