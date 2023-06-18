@@ -1,7 +1,7 @@
 import { Banner } from '@/components/banner';
 import { DefaultFooter } from '@/components/footers';
 import { HomeHeader } from '@/components/headers';
-import { DefaultWrapper, PageWrapper } from '@/components/wrappers';
+import { DefaultWrapper, HomeWrapper, PageWrapper } from '@/components/wrappers';
 import { Login, Logout, Home, Signup, NotFound, PrivacyPolicy, Mou, Advisors, Post } from '@/pages';
 
 interface RouteConfig {
@@ -23,7 +23,7 @@ export const ROUTE_MAP: RouteMap = [
     HEADER: HomeHeader,
     BANNER: Banner,
     FOOTER: DefaultFooter,
-    WRAPPER: DefaultWrapper,
+    WRAPPER: HomeWrapper,
     AUTH: false,
   },
   {

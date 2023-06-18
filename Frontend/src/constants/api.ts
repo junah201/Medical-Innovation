@@ -28,6 +28,10 @@ const POPUP = Object.freeze({
   GET_ACTIVE_POPUPS: '/api/v1/popup/all/active',
 });
 
+const SUPPORTING_STARTUP = Object.freeze({
+  GET_SUPPORTING_STARTUPS: '/api/v1/supporting_startup/all',
+});
+
 export const API_ROUTE = Object.freeze({
   AUTH,
   BANNER,
@@ -35,4 +39,5 @@ export const API_ROUTE = Object.freeze({
   ADVISOR,
   POST,
   POPUP,
+  SUPPORTING_STARTUP,
 });

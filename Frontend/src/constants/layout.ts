@@ -9,3 +9,8 @@ export const FOOTER = Object.freeze({
   DESKTOP_HEIGHT: '200px',
   MOBILE_HEIGHT: '200px',
 });
+
+export const BANNER = Object.freeze({
+  DESKTOP_HEIGHT: '148px',
+  MOBILE_HEIGHT: '170px',
+});

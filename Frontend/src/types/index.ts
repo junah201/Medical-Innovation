@@ -7,3 +7,4 @@ export * from './mou';
 export * from './advisor';
 export * from './post';
 export * from './popup';
+export * from './supportingStartup';
