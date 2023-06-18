@@ -26,21 +26,14 @@ const Container = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   & h1 {
     font-size: 30px;
     border-left: 5px solid #204397;
     padding-left: 10px;
     margin-bottom: 20px;
-  }
-
-  @media screen and (${DEVICES.MOBILE}) {
-    min-width: none;
-    padding: 15px 15px;
-  }
-  @media screen and (${DEVICES.DESKTOP}) {
-    max-width: 1230px;
-    padding: 30px 80px;
   }
 `;
 

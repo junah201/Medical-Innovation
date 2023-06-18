@@ -2,21 +2,19 @@ import { Routes, Route } from 'react-router-dom';
 
 import { AuthRoute } from '@/components/AuthRoute';
 import { ROUTE_MAP } from '@/constants/routes';
-import { Login } from '@/pages/auth/Login';
 
 export const Router = () => {
   return (
     <Routes>
-      {Object.entries(ROUTE_MAP).map(([ROUTE, DATA]) => {
-        console.log(ROUTE, DATA);
+      {ROUTE_MAP.map((DATA) => {
         if (DATA.AUTH)
           return (
             <Route
-              key={ROUTE}
-              path={ROUTE}
+              key={DATA.PATH}
+              path={DATA.PATH}
               element={
                 <AuthRoute
-                  path={ROUTE}
+                  path={DATA.PATH}
                   element={
                     <>
                       <DATA.HEADER />
@@ -33,8 +31,8 @@ export const Router = () => {
           );
         return (
           <Route
-            key={ROUTE}
-            path={ROUTE}
+            key={DATA.PATH}
+            path={DATA.PATH}
             element={
               <>
                 <DATA.HEADER />
@@ -48,7 +46,6 @@ export const Router = () => {
           />
         );
       })}
-      <Route path="/login" element={<Login />} />
     </Routes>
   );
 };

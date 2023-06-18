@@ -1,10 +1,11 @@
 import { Banner } from '@/components/banner';
 import { DefaultFooter } from '@/components/footers';
 import { HomeHeader } from '@/components/headers';
-import { DefaultWrapper } from '@/components/wrappers';
-import { Login, Logout, Home, Signup } from '@/pages';
+import { DefaultWrapper, PageWrapper } from '@/components/wrappers';
+import { Login, Logout, Home, Signup, NotFound, PrivacyPolicy } from '@/pages';
 
 interface RouteConfig {
+  PATH: string;
   COMPONENT: () => JSX.Element;
   HEADER: () => JSX.Element;
   FOOTER: () => JSX.Element;
@@ -13,10 +14,11 @@ interface RouteConfig {
   AUTH: boolean;
 }
 
-type RouteMap = Record<string, Readonly<RouteConfig>>;
+type RouteMap = RouteConfig[];
 
-export const ROUTE_MAP: RouteMap = Object.freeze({
-  '/': {
+export const ROUTE_MAP: RouteMap = [
+  {
+    PATH: '/',
     COMPONENT: Home,
     HEADER: HomeHeader,
     BANNER: Banner,
@@ -24,25 +26,44 @@ export const ROUTE_MAP: RouteMap = Object.freeze({
     WRAPPER: DefaultWrapper,
     AUTH: false,
   },
-  '/login': {
+  {
+    PATH: '/login',
     COMPONENT: Login,
     HEADER: HomeHeader,
     FOOTER: DefaultFooter,
     WRAPPER: DefaultWrapper,
     AUTH: false,
   },
-  '/logout': {
+  {
+    PATH: '/logout',
     COMPONENT: Logout,
     HEADER: HomeHeader,
     FOOTER: DefaultFooter,
     WRAPPER: DefaultWrapper,
     AUTH: false,
   },
-  '/signup': {
+  {
+    PATH: '/signup',
     COMPONENT: Signup,
     HEADER: HomeHeader,
     FOOTER: DefaultFooter,
     WRAPPER: DefaultWrapper,
     AUTH: false,
   },
-});
+  {
+    PATH: '/privacy-policy',
+    COMPONENT: PrivacyPolicy,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: false,
+  },
+  {
+    PATH: '*',
+    COMPONENT: NotFound,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: false,
+  },
+];

@@ -3,10 +3,9 @@ import styled from 'styled-components';
 
 import { DEVICES, FOOTER } from '@/constants';
 
-export const DefaultFooter = ({ children }: { children: React.ReactNode }) => {
+export const DefaultFooter = () => {
   return (
     <Wrapper>
-      {children}
       <TopContainer>
         <div>
           <a href="/">
