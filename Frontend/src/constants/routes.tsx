@@ -2,7 +2,18 @@ import { Banner } from '@/components/banner';
 import { DefaultFooter } from '@/components/footers';
 import { HomeHeader } from '@/components/headers';
 import { DefaultWrapper, HomeWrapper, PageWrapper } from '@/components/wrappers';
-import { Login, Logout, Home, Signup, NotFound, PrivacyPolicy, Mou, Advisors, Post } from '@/pages';
+import {
+  Login,
+  Logout,
+  Home,
+  Signup,
+  NotFound,
+  PrivacyPolicy,
+  Mou,
+  Advisors,
+  Post,
+  Founder,
+} from '@/pages';
 
 interface RouteConfig {
   PATH: string;
@@ -77,6 +88,22 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/post/:id',
     COMPONENT: Post,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: false,
+  },
+  {
+    PATH: '/introduction',
+    COMPONENT: Founder,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: false,
+  },
+  {
+    PATH: '/introduction/founder',
+    COMPONENT: Founder,
     HEADER: HomeHeader,
     FOOTER: DefaultFooter,
     WRAPPER: PageWrapper,

@@ -5,3 +5,4 @@ export * from './PrivacyPolicy';
 export * from './Mou';
 export * from './Advisors';
 export * from './Post';
+export * from './introduction';
