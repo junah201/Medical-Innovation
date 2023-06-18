@@ -20,6 +20,7 @@ const ADVISOR = Object.freeze({
 const POST = Object.freeze({
   GET_POSTS: '/api/v1/post/all',
   GET_POSTS_BY_BOARD: (id: number) => `/api/v1/post/${id}/all`,
+  GET_POST_BY_ID: (id: number) => `/api/v1/post/${id}`,
 });
 
 export const API_ROUTE = Object.freeze({

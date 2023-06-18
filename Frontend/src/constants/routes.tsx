@@ -2,7 +2,7 @@ import { Banner } from '@/components/banner';
 import { DefaultFooter } from '@/components/footers';
 import { HomeHeader } from '@/components/headers';
 import { DefaultWrapper, PageWrapper } from '@/components/wrappers';
-import { Login, Logout, Home, Signup, NotFound, PrivacyPolicy, Mou, Advisors } from '@/pages';
+import { Login, Logout, Home, Signup, NotFound, PrivacyPolicy, Mou, Advisors, Post } from '@/pages';
 
 interface RouteConfig {
   PATH: string;
@@ -69,6 +69,14 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/advisors',
     COMPONENT: Advisors,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: false,
+  },
+  {
+    PATH: '/post/:id',
+    COMPONENT: Post,
     HEADER: HomeHeader,
     FOOTER: DefaultFooter,
     WRAPPER: PageWrapper,

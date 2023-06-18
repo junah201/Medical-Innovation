@@ -6,6 +6,7 @@ export interface Post {
   board: Board;
   files: string[];
   author: PostAuthor;
+  author_name: string;
   created_at: string;
   updated_at: string;
 }

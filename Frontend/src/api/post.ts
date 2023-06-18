@@ -13,3 +13,9 @@ export const getPostsByBoardId = async (boardId: number, skip: number, limit: nu
 
   return res;
 };
+
+export const getPostById = async (id: number) => {
+  const res = await unAuthAxios.get(API_ROUTE.POST.GET_POST_BY_ID(id));
+
+  return res;
+};
