@@ -13,8 +13,13 @@ const MOU = Object.freeze({
   GET_MOUS: '/api/v1/mou/all',
 });
 
+const ADVISOR = Object.freeze({
+  GET_ADVISORS: '/api/v1/advisor/all',
+});
+
 export const API_ROUTE = Object.freeze({
   AUTH,
   BANNER,
   MOU,
+  ADVISOR,
 });
