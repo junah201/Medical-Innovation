@@ -5,6 +5,11 @@ const AUTH = Object.freeze({
   ME: '/api/v1/user/me',
 });
 
+const BANNER = Object.freeze({
+  GET_ACTIVE_BANNERS: '/api/v1/banner/all/active',
+});
+
 export const API_ROUTE = Object.freeze({
   AUTH,
+  BANNER,
 });

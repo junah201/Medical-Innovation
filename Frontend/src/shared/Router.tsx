@@ -1,12 +1,14 @@
 import { Routes, Route } from 'react-router-dom';
-import { Login } from '@/pages/auth/Login';
-import { ROUTE_MAP } from '@/constants/routes';
+
 import { AuthRoute } from '@/components/AuthRoute';
+import { ROUTE_MAP } from '@/constants/routes';
+import { Login } from '@/pages/auth/Login';
 
 export const Router = () => {
   return (
     <Routes>
       {Object.entries(ROUTE_MAP).map(([ROUTE, DATA]) => {
+        console.log(ROUTE, DATA);
         if (DATA.AUTH)
           return (
             <Route
@@ -21,6 +23,7 @@ export const Router = () => {
                       <DATA.WRAPPER>
                         <DATA.COMPONENT />
                       </DATA.WRAPPER>
+                      {DATA.BANNER && <DATA.BANNER />}
                       <DATA.FOOTER />
                     </>
                   }
@@ -38,6 +41,7 @@ export const Router = () => {
                 <DATA.WRAPPER>
                   <DATA.COMPONENT />
                 </DATA.WRAPPER>
+                {DATA.BANNER && <DATA.BANNER />}
                 <DATA.FOOTER />
               </>
             }
