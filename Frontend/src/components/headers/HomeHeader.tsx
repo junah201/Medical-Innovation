@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { HEADER, DEVICES, ROUTE } from '@/constants';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';

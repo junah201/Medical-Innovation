@@ -1,10 +1,12 @@
-import styled from 'styled-components';
-import { DEVICES, FOOTER } from '@/constants';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
-export const DefaultFooter = () => {
+import { DEVICES, FOOTER } from '@/constants';
+
+export const DefaultFooter = ({ children }: { children: React.ReactNode }) => {
   return (
     <Wrapper>
+      {children}
       <TopContainer>
         <div>
           <a href="/">

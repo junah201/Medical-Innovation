@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
-import { ThemeProvider } from 'styled-components';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ThemeProvider } from 'styled-components';
+
 import { theme } from '@/styles';
 
 const queryClient = new QueryClient();

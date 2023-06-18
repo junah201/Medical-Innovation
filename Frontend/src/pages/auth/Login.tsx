@@ -1,13 +1,15 @@
+import { AxiosError } from 'axios';
 import { useEffect } from 'react';
-import styled from 'styled-components';
-import { useNavigate, Link } from 'react-router-dom';
-import { useMutation } from 'react-query';
-import { INPUT_TYPE, ROUTE, COOKIE } from '@/constants';
 import { useForm } from 'react-hook-form';
+import { useMutation } from 'react-query';
+import { useNavigate, Link } from 'react-router-dom';
+import styled from 'styled-components';
+
 import { login } from '@/api/auth';
 import { ReactHookInput } from '@/components/form';
-import { RegisterField } from '@/types';
+import { INPUT_TYPE, ROUTE, COOKIE } from '@/constants';
 import { getCookie, setCookie } from '@/libs/Cookie';
+import { RegisterField } from '@/types';
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -34,12 +36,19 @@ export const Login = () => {
       });
       navigate(ROUTE.HOME);
     },
-    onError: (err) => {
-      console.error(err);
+    onError: (err: AxiosError) => {
+      if (err.response?.status === 400) {
+        alert('해당 이메일이 존재하지 않거나 비밀번호가 일치하지 않습니다.');
+        return;
+      }
+      if (err.response?.status === 401) {
+        alert('비밀번호가 일치하지 않습니다.');
+        return;
+      }
     },
   });
 
-  const onValid = async (userInput: RegisterField) => mutate(userInput);
+  const onValid = (userInput: RegisterField) => mutate(userInput);
 
   return (
     <Wrapper>

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Cookies } from 'react-cookie';
+
 import { METHOD, COOKIE } from '@/constants';
 import {
   AxiosInterceptorReqConfig,
@@ -21,7 +22,7 @@ export class Axios {
   #auth;
   #cookie;
 
-  constructor(isAuthReq: boolean = false) {
+  constructor(isAuthReq = false) {
     this.#instance = axios.create({
       baseURL: `${VITE_API_URL}`,
     });
@@ -110,7 +111,8 @@ export class Axios {
   getByParams(endPoint: EndPoint, params: Params) {
     return this.#instance({
       method: METHOD.GET,
-      url: `${endPoint}/${params}`,
+      url: `${endPoint}`,
+      params: params,
     });
   }
 

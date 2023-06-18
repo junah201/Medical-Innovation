@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { DEVICES, HEADER, FOOTER } from '@/constants';
 
 const Wrapper = styled.div`
@@ -7,7 +8,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #e5ecf4;
-  background-image: url(./public/images/default_background.jpg);
+  background-image: url(/images/default_background.jpg);
 
   @media screen and (${DEVICES.MOBILE}) {
     padding: 15px;

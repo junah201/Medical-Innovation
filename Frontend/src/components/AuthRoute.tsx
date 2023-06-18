@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Navigate, NavigateProps, RouteProps, useNavigate, Link } from 'react-router-dom';
-import { getCookie } from '@/libs/Cookie';
-import { INPUT_TYPE, ROUTE, COOKIE } from '@/constants';
+import { Navigate, NavigateProps, RouteProps } from 'react-router-dom';
+import { ROUTE } from '@/constants';
 import { checkAuth } from '@/util/validateToken';
 
 export type AuthRouteProps = {

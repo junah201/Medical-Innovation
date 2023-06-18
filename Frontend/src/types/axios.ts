@@ -9,7 +9,9 @@ export type AxiosRes = AxiosResponse<any, any> | Promise<AxiosResponse<any, any>
 
 export type EndPoint = string;
 export type Query = object | undefined;
-export type Params = string;
+export type Params = {
+  [key: string]: string | number;
+};
 export interface DataForm {
   [key: string]: any;
 }
