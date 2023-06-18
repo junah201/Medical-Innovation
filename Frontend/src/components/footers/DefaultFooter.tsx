@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { DEVICES, FOOTER } from '@/constants';
+import { DEVICES, FOOTER, ROUTE } from '@/constants';
 
 export const DefaultFooter = () => {
   return (
@@ -37,9 +37,9 @@ export const DefaultFooter = () => {
         </div>
         <div>
           <strong>관련 링크</strong>
-          <Link to="/privacy-policy">개인정보처리방침</Link>
-          <Link to="/mou">협력기관</Link>
-          <Link to="/advisors">임원현황</Link>
+          <Link to={ROUTE.PRIVACY_POLICY}>개인정보처리방침</Link>
+          <Link to={ROUTE.MOU}>협력기관</Link>
+          <Link to={ROUTE.ADVISORS}>임원현황</Link>
         </div>
       </StyledBottomFooter>
     </Wrapper>

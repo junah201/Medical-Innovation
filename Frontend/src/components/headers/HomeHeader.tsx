@@ -1,8 +1,8 @@
-import { HEADER, DEVICES, ROUTE } from '@/constants';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
+import { HEADER, DEVICES, ROUTE, COOKIE } from '@/constants';
 import { getCookie } from '@/libs/Cookie';
-import { COOKIE } from '@/constants';
 
 export const HomeHeader = () => {
   const isLoggedIn = !!getCookie(COOKIE.KEY.ACCESS_TOKEN);
@@ -15,12 +15,12 @@ export const HomeHeader = () => {
         </Link>
         {isLoggedIn ? (
           <NavContainer>
-            <Link to="/me">마이페이지</Link>
-            <Link to="/logout">로그아웃</Link>
+            <Link to={ROUTE.ME}>마이페이지</Link>
+            <Link to={ROUTE.LOGOUT}>로그아웃</Link>
           </NavContainer>
         ) : (
           <NavContainer>
-            <Link to="/login">로그인</Link>
+            <Link to={ROUTE.LOGIN}>로그인</Link>
           </NavContainer>
         )}
       </TopWrapper>

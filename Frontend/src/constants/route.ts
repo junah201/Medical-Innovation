@@ -1,6 +1,8 @@
 export const ROUTE = Object.freeze({
   HOME: '/',
   LOGIN: '/login',
+  LOGOUT: '/logout',
+  ME: '/me',
   SIGN_UP: '/signup',
   INTRODUCTION: Object.freeze({
     ROOT: '/introduction',
@@ -17,5 +19,10 @@ export const ROUTE = Object.freeze({
   SUPPORT: Object.freeze({
     ROOT: '/support',
     SPONSORSHIP: '/support/sponsorship',
+    SPONSOR: '/support/sponsor',
   }),
+  MOU: '/mou',
+  ADVISORS: '/advisors',
+  PREPARING: '/preparing',
+  PRIVACY_POLICY: '/privacy-policy',
 });

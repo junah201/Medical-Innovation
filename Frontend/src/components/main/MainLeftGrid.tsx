@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { DEVICES } from '@/constants';
+import { DEVICES, ROUTE } from '@/constants';
 
 export const MainLeftGrid = () => {
   return (
@@ -16,7 +16,7 @@ export const MainLeftGrid = () => {
             backgroundColor: '#FFFFFF',
           }}
         >
-          <Link to="/introduction/founder">
+          <Link to={ROUTE.INTRODUCTION.FOUNDER}>
             <img src="/images/KimHyoSoo.png" width="250px" alt="김효수" />
           </Link>
         </div>
@@ -24,19 +24,19 @@ export const MainLeftGrid = () => {
       <StyledGridItem color="#2763BA">
         <h3>재단 소개</h3>
         <p>과기부 소관 비영리법인 중소벤처기업부 창업기획자 기획재정부 지정기부금단체</p>
-        <Link to="/mou">협력기관</Link>
-        <Link to="/advisory_group">임원현황</Link>
+        <Link to={ROUTE.MOU}>협력기관</Link>
+        <Link to={ROUTE.ADVISORS}>임원현황</Link>
       </StyledGridItem>
       <StyledGridItem color="#2CA48F">
         <h3>FMI 벤처투자조합</h3>
         <p>바이오헬스 혁신기업의 지속 가능한 성장과 미래</p>
-        <Link to="/preparing">바로가기</Link>
+        <Link to={ROUTE.PREPARING}>바로가기</Link>
       </StyledGridItem>
       <StyledGridItem color="#008ACE">
         <h3>후원 안내</h3>
         <p>대한민국 보건의료의 발전을 추구하시는 여러분 모두가 후원자가 되어 주십시오.</p>
-        <Link to="/support/sponsorship">후원하기</Link>
-        <Link to="/support/sponsor">후원기업</Link>
+        <Link to={ROUTE.SUPPORT.SPONSORSHIP}>후원하기</Link>
+        <Link to={ROUTE.SUPPORT.SPONSOR}>후원기업</Link>
       </StyledGridItem>
       <StyledGridBottomItem>
         <div>
