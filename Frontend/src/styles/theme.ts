@@ -9,6 +9,7 @@ interface ITheme {
   loginDisabledColor: string;
   transitionOption: string;
   headerColor: string;
+  borderColor: string;
 }
 
 export const theme: DefaultTheme | ITheme = {
@@ -20,4 +21,7 @@ export const theme: DefaultTheme | ITheme = {
   loginDisabledColor: '#BDBDBD',
   transitionOption: 'ease-in-out 0.15s',
   headerColor: '#FFFFFF',
+  borderColor: '#E0E0E0',
+  borderOption: '1px solid #eaeaea',
+  boxShadowOption: '0px 4px 5px rgba(0, 0, 0, 0.015)',
 };

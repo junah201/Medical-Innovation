@@ -17,6 +17,7 @@ import {
   MissionAndHistory,
   OrgchartAndProject,
 } from '@/pages';
+import { Events } from '@/pages/programs/event/Events';
 
 interface RouteConfig {
   PATH: string;
@@ -131,6 +132,14 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/introduction/orgchart_and_project',
     COMPONENT: OrgchartAndProject,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: false,
+  },
+  {
+    PATH: '/program',
+    COMPONENT: Events,
     HEADER: HomeHeader,
     FOOTER: DefaultFooter,
     WRAPPER: PageWrapper,

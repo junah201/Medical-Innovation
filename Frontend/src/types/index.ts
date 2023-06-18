@@ -9,3 +9,4 @@ export * from './post';
 export * from './popup';
 export * from './supportingStartup';
 export * from './history';
+export * from './publicEvent';

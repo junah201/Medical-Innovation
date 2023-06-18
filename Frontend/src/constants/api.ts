@@ -36,6 +36,10 @@ const HISTORY = Object.freeze({
   GET_HISTORIES: '/api/v1/history/all',
 });
 
+const PUBLIC_EVENT = Object.freeze({
+  GET_PUBLIC_EVENTS: '/api/v1/public_event/all',
+});
+
 export const API_ROUTE = Object.freeze({
   AUTH,
   BANNER,
@@ -45,4 +49,5 @@ export const API_ROUTE = Object.freeze({
   POPUP,
   SUPPORTING_STARTUP,
   HISTORY,
+  PUBLIC_EVENT,
 });
