@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-import { REGISTER_TYPE, ERROR_MESSAGE, CONFIG } from '@/constants';
-import { RegisterForm } from '@/types';
+import { REGISTER_TYPE, ERROR_MESSAGE } from '@/constants';
+import { RegisterForm, RegisterField } from '@/types';
 
-export const EmailInput = ({
+export const PasswordConfirmInput = ({
   register,
   errorMessage,
   placeholder,
@@ -12,17 +12,22 @@ export const EmailInput = ({
   errorMessage: string | undefined | any;
   placeholder: string;
 }) => {
+  const validatePasswordConfirm = (input: string, values: RegisterField) => {
+    const password = values[REGISTER_TYPE.PASSWORD];
+
+    return input === password || ERROR_MESSAGE.CONFIRM_PASSWORD.NOT_MATCH;
+  };
+
   return (
     <Input
       iserror={!!errorMessage}
-      {...register(REGISTER_TYPE.EMAIL, {
-        required: ERROR_MESSAGE.EMAIL.REQUIRED,
-        pattern: {
-          value: CONFIG.EMAIL.REGEX,
-          message: ERROR_MESSAGE.EMAIL.IS_EMAIL,
+      {...register(REGISTER_TYPE.CONFIRM_PASSWORD, {
+        required: ERROR_MESSAGE.CONFIRM_PASSWORD.REQUIRED,
+        validate: {
+          match: validatePasswordConfirm,
         },
       })}
-      type="text"
+      type="password"
       placeholder={placeholder}
     />
   );

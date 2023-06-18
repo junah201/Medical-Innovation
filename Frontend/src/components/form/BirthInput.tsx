@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { REGISTER_TYPE, ERROR_MESSAGE, CONFIG } from '@/constants';
 import { RegisterForm } from '@/types';
 
-export const EmailInput = ({
+export const BirthInput = ({
   register,
   errorMessage,
   placeholder,
@@ -15,14 +15,10 @@ export const EmailInput = ({
   return (
     <Input
       iserror={!!errorMessage}
-      {...register(REGISTER_TYPE.EMAIL, {
-        required: ERROR_MESSAGE.EMAIL.REQUIRED,
-        pattern: {
-          value: CONFIG.EMAIL.REGEX,
-          message: ERROR_MESSAGE.EMAIL.IS_EMAIL,
-        },
+      {...register(REGISTER_TYPE.BIRTH, {
+        required: ERROR_MESSAGE.BIRTH.REQUIRED,
       })}
-      type="text"
+      type="date"
       placeholder={placeholder}
     />
   );

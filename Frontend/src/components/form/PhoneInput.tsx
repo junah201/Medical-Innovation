@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { REGISTER_TYPE, ERROR_MESSAGE, CONFIG } from '@/constants';
 import { RegisterForm } from '@/types';
 
-export const EmailInput = ({
+export const PhoneInput = ({
   register,
   errorMessage,
   placeholder,
@@ -15,11 +15,15 @@ export const EmailInput = ({
   return (
     <Input
       iserror={!!errorMessage}
-      {...register(REGISTER_TYPE.EMAIL, {
-        required: ERROR_MESSAGE.EMAIL.REQUIRED,
+      {...register(REGISTER_TYPE.PHONE, {
+        required: ERROR_MESSAGE.PHONE.REQUIRED,
         pattern: {
-          value: CONFIG.EMAIL.REGEX,
-          message: ERROR_MESSAGE.EMAIL.IS_EMAIL,
+          value: CONFIG.PHONE.REGEX,
+          message: ERROR_MESSAGE.PHONE.IS_PHONE,
+        },
+        minLength: {
+          value: CONFIG.PHONE.MIN_LENGTH,
+          message: ERROR_MESSAGE.PHONE.MIN_LENGTH,
         },
       })}
       type="text"

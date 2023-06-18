@@ -1,7 +1,17 @@
 import styled from 'styled-components';
+
+import {
+  EmailInput,
+  PasswordInput,
+  PasswordConfirmInput,
+  NameInput,
+  PhoneInput,
+  InputLabel,
+} from '@/components/form';
 import { INPUT_TYPE } from '@/constants';
 import { RegisterForm, InputTypes } from '@/types';
-import { EmailInput, PasswordInput, InputLabel } from '@/components/form';
+
+import { BirthInput } from './BirthInput';
 
 export const ReactHookInput = ({
   title,
@@ -29,6 +39,26 @@ export const ReactHookInput = ({
             errorMessage={errorMessage}
             placeholder={placeholder}
           />
+        );
+      case INPUT_TYPE.NAME:
+        return (
+          <NameInput register={register} errorMessage={errorMessage} placeholder={placeholder} />
+        );
+      case INPUT_TYPE.PHONE:
+        return (
+          <PhoneInput register={register} errorMessage={errorMessage} placeholder={placeholder} />
+        );
+      case INPUT_TYPE.CONFIRM_PASSWORD:
+        return (
+          <PasswordConfirmInput
+            register={register}
+            errorMessage={errorMessage}
+            placeholder={placeholder}
+          />
+        );
+      case INPUT_TYPE.BIRTH:
+        return (
+          <BirthInput register={register} errorMessage={errorMessage} placeholder={placeholder} />
         );
     }
   };

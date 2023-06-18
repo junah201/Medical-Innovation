@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { REGISTER_TYPE, ERROR_MESSAGE, CONFIG } from '@/constants';
 import { RegisterForm } from '@/types';
 
