@@ -9,7 +9,12 @@ const BANNER = Object.freeze({
   GET_ACTIVE_BANNERS: '/api/v1/banner/all/active',
 });
 
+const MOU = Object.freeze({
+  GET_MOUS: '/api/v1/mou/all',
+});
+
 export const API_ROUTE = Object.freeze({
   AUTH,
   BANNER,
+  MOU,
 });

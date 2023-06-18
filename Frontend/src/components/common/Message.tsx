@@ -3,11 +3,12 @@ import styled from 'styled-components';
 import { DEVICES } from '@/constants';
 
 export const Message = ({ children }: { children: React.ReactNode }) => {
-  return <StyledMessage>{children}</StyledMessage>;
+  return <Wrapper>{children}</Wrapper>;
 };
 
-const StyledMessage = styled.div`
+const Wrapper = styled.div`
   padding: 20px;
+  margin: 10px 0;
   border-radius: 10px;
   background-color: #f7f7f7;
 

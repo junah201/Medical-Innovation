@@ -2,7 +2,7 @@ import { Banner } from '@/components/banner';
 import { DefaultFooter } from '@/components/footers';
 import { HomeHeader } from '@/components/headers';
 import { DefaultWrapper, PageWrapper } from '@/components/wrappers';
-import { Login, Logout, Home, Signup, NotFound, PrivacyPolicy } from '@/pages';
+import { Login, Logout, Home, Signup, NotFound, PrivacyPolicy, Mou } from '@/pages';
 
 interface RouteConfig {
   PATH: string;
@@ -53,6 +53,14 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/privacy-policy',
     COMPONENT: PrivacyPolicy,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: false,
+  },
+  {
+    PATH: '/mou',
+    COMPONENT: Mou,
     HEADER: HomeHeader,
     FOOTER: DefaultFooter,
     WRAPPER: PageWrapper,
