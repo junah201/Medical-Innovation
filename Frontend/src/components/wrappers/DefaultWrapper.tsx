@@ -33,6 +33,7 @@ const Container = styled.div`
     font-size: 30px;
     border-left: 5px solid #204397;
     padding-left: 10px;
+    margin-top: 20px;
     margin-bottom: 20px;
   }
 `;

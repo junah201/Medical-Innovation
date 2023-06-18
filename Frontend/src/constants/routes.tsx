@@ -15,6 +15,7 @@ import {
   Founder,
   ChairmanMessage,
   MissionAndHistory,
+  OrgchartAndProject,
 } from '@/pages';
 
 interface RouteConfig {
@@ -122,6 +123,14 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/introduction/mission_and_history',
     COMPONENT: MissionAndHistory,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: false,
+  },
+  {
+    PATH: '/introduction/orgchart_and_project',
+    COMPONENT: OrgchartAndProject,
     HEADER: HomeHeader,
     FOOTER: DefaultFooter,
     WRAPPER: PageWrapper,
