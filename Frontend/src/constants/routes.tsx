@@ -13,6 +13,7 @@ import {
   Advisors,
   Post,
   Founder,
+  ChairmanMessage,
 } from '@/pages';
 
 interface RouteConfig {
@@ -104,6 +105,14 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/introduction/founder',
     COMPONENT: Founder,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: false,
+  },
+  {
+    PATH: '/introduction/message',
+    COMPONENT: ChairmanMessage,
     HEADER: HomeHeader,
     FOOTER: DefaultFooter,
     WRAPPER: PageWrapper,
