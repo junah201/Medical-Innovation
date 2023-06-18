@@ -32,6 +32,10 @@ const SUPPORTING_STARTUP = Object.freeze({
   GET_SUPPORTING_STARTUPS: '/api/v1/supporting_startup/all',
 });
 
+const HISTORY = Object.freeze({
+  GET_HISTORIES: '/api/v1/history/all',
+});
+
 export const API_ROUTE = Object.freeze({
   AUTH,
   BANNER,
@@ -40,4 +44,5 @@ export const API_ROUTE = Object.freeze({
   POST,
   POPUP,
   SUPPORTING_STARTUP,
+  HISTORY,
 });
