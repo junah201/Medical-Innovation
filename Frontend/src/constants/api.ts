@@ -23,10 +23,16 @@ const POST = Object.freeze({
   GET_POST_BY_ID: (id: number) => `/api/v1/post/${id}`,
 });
 
+const POPUP = Object.freeze({
+  GET_POPUPS: '/api/v1/popup/all',
+  GET_ACTIVE_POPUPS: '/api/v1/popup/all/active',
+});
+
 export const API_ROUTE = Object.freeze({
   AUTH,
   BANNER,
   MOU,
   ADVISOR,
   POST,
+  POPUP,
 });

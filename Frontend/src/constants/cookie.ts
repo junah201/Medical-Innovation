@@ -3,6 +3,7 @@ const KEY = Object.freeze({
   REFRESH_TOKEN: 'refresh-token',
   IS_ADMIN: 'is-admin',
   IS_LOGGED_IN: 'is-logged-in',
+  CLOSE_POPUP: 'close-popup',
 });
 
 const EXPIRE = Object.freeze({
