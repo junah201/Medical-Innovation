@@ -26,6 +26,7 @@ import {
   Accelerating,
   ResearchSupportProject,
   Announcement,
+  PressRelease,
 } from '@/pages';
 import { Trand } from '@/pages/programs/Trand';
 
@@ -218,6 +219,14 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/news/announcement',
     COMPONENT: Announcement,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: false,
+  },
+  {
+    PATH: '/news/press_release',
+    COMPONENT: PressRelease,
     HEADER: HomeHeader,
     FOOTER: DefaultFooter,
     WRAPPER: PageWrapper,
