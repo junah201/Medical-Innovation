@@ -27,8 +27,9 @@ import {
   ResearchSupportProject,
   Announcement,
   PressRelease,
+  Trand,
+  Column,
 } from '@/pages';
-import { Trand } from '@/pages/programs/Trand';
 
 interface RouteConfig {
   PATH: string;
@@ -227,6 +228,14 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/news/press_release',
     COMPONENT: PressRelease,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: false,
+  },
+  {
+    PATH: '/news/column',
+    COMPONENT: Column,
     HEADER: HomeHeader,
     FOOTER: DefaultFooter,
     WRAPPER: PageWrapper,

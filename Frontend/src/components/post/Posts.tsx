@@ -10,10 +10,14 @@ import { Post as IPost } from '@/types';
 interface PostProps {
   boardId: number;
   children: React.ReactNode;
-  boardType: string;
+  boardType?: string;
 }
 
-export const Posts = ({ boardId, children, boardType }: PostProps) => {
+export const Posts = ({
+  boardId,
+  children,
+  boardType = '',
+}: PostProps) => {
   const SIZE = 20;
   const [posts, setPosts] = useState<IPost[]>([]);
   const [total, setTotal] = useState(0);
@@ -52,17 +56,19 @@ export const Posts = ({ boardId, children, boardType }: PostProps) => {
         >
           {'<'}
         </StyledBoardPageButton>
-        {Array.from({ length: Math.ceil(total / SIZE) }).map((_, index) => {
-          return (
-            <StyledBoardPageButton
-              onClick={() => setPage(index * SIZE)}
-              disabled={index * SIZE === page}
-              key={index}
-            >
-              {index + 1}
-            </StyledBoardPageButton>
-          );
-        })}
+        {Array.from({ length: Math.ceil(total / SIZE) }).map(
+          (_, index) => {
+            return (
+              <StyledBoardPageButton
+                onClick={() => setPage(index * SIZE)}
+                disabled={index * SIZE === page}
+                key={index}
+              >
+                {index + 1}
+              </StyledBoardPageButton>
+            );
+          }
+        )}
 
         <StyledBoardPageButton
           onClick={() => setPage(Math.min(total, page + SIZE))}
@@ -186,11 +192,17 @@ const Post = ({
       <span>{page + idx + 1}</span>
       <StyledPostContent>
         {boardType === 'link' ? (
-          <a href={`${item.content}`} target="_blank" rel="noreferrer">
+          <a
+            href={`${item.content}`}
+            target="_blank"
+            rel="noreferrer"
+          >
             {item.title}
           </a>
         ) : (
-          <Link to={`/post/${item.id}?type=${boardType}`}>{item.title}</Link>
+          <Link to={`/post/${item.id}?type=${boardType}`}>
+            {item.title}
+          </Link>
         )}
         <span>게시일 {date}</span>
       </StyledPostContent>
