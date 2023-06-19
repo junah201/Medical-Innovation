@@ -28,7 +28,10 @@ export const ROUTE = Object.freeze({
   SUPPORT: Object.freeze({
     ROOT: '/support',
     SPONSORSHIP: '/support/sponsorship',
-    SPONSOR: '/support/sponsor',
+    SPONSORS: '/support/sponsors',
+    BENEFITS: '/support/benefits',
+    HISTORY: '/support/history',
+    APPLY: '/support/sponsorship/apply',
   }),
   MOU: '/mou',
   ADVISORS: '/advisors',

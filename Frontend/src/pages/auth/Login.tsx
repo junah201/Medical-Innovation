@@ -31,14 +31,16 @@ export const Login = () => {
 
   const { mutate } = useMutation(login, {
     onSuccess: (res) => {
-      setCookie(COOKIE.KEY.ACCESS_TOKEN, res.data.accessToken, {
+      setCookie(COOKIE.KEY.ACCESS_TOKEN, res.data.access_token, {
         expires: new Date(Date.now() + COOKIE.EXPIRE.ACCESS_TOKEN),
       });
       navigate(ROUTE.HOME);
     },
     onError: (err: AxiosError) => {
       if (err.response?.status === 400) {
-        alert('해당 이메일이 존재하지 않거나 비밀번호가 일치하지 않습니다.');
+        alert(
+          '해당 이메일이 존재하지 않거나 비밀번호가 일치하지 않습니다.'
+        );
         return;
       }
       if (err.response?.status === 401) {
@@ -72,7 +74,10 @@ export const Login = () => {
             placeholder="비밀번호"
           />
           <LoginWrapper>
-            <Submit isvalid={!Object.keys(errors)[0]} disabled={isSubmitting}>
+            <Submit
+              isvalid={!Object.keys(errors)[0]}
+              disabled={isSubmitting}
+            >
               로그인
             </Submit>
           </LoginWrapper>
@@ -131,7 +136,9 @@ const Submit = styled.button<{ isvalid: boolean }>`
   margin-top: 10px;
   border-radius: 5px;
   background: ${(props) =>
-    props.isvalid ? props.theme.pointColor : props.theme.loginDisabledColor};
+    props.isvalid
+      ? props.theme.pointColor
+      : props.theme.loginDisabledColor};
   color: #ffffff;
   font-weight: 600;
   border: none;

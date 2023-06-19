@@ -8,6 +8,7 @@ export const INPUT_TYPE = Object.freeze({
   GENDER: 'gender',
   TEXT: 'text',
   RADIO: 'radio',
+  TEXTAREA: 'textarea',
 });
 
 export const REGISTER_TYPE = Object.freeze({
@@ -31,6 +32,9 @@ export const REGISTER_TYPE = Object.freeze({
   INTEREST_DISEASE: 'interest_disease',
   INTEREST_FIELD: 'interest_field',
   INTEREST_FIELD_DETAIL: 'interest_field_detail',
+  IDENTIFICATION_NUMBER: 'identification_number',
+  USAGE_INTENT: 'usage',
+  SPONSORSHIP_DETAIL: 'detail',
 });
 
 export const ERROR_MESSAGE = Object.freeze({
@@ -60,6 +64,12 @@ export const ERROR_MESSAGE = Object.freeze({
     REQUIRED: '필수 입력 항목입니다.',
   }),
   TEXT: Object.freeze({
+    REQUIRED: '필수 입력 항목입니다.',
+  }),
+  TEXTAREA: Object.freeze({
+    REQUIRED: '필수 입력 항목입니다.',
+  }),
+  RADIO: Object.freeze({
     REQUIRED: '필수 입력 항목입니다.',
   }),
 });

@@ -30,7 +30,12 @@ import {
   Trand,
   Column,
   Photo,
+  Sponsorship,
+  Benefits,
+  SponsorshipHistory,
+  SponsorshipApply,
 } from '@/pages';
+import { Sponsors } from '@/pages/support/Sponsors';
 
 interface RouteConfig {
   PATH: string;
@@ -245,6 +250,54 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/news/photo',
     COMPONENT: Photo,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: false,
+  },
+  {
+    PATH: '/support',
+    COMPONENT: Sponsorship,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: false,
+  },
+  {
+    PATH: '/support/sponsorship',
+    COMPONENT: Sponsorship,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: false,
+  },
+  {
+    PATH: '/support/benefits',
+    COMPONENT: Benefits,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: false,
+  },
+  {
+    PATH: '/support/sponsors',
+    COMPONENT: Sponsors,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: false,
+  },
+  {
+    PATH: '/support/history',
+    COMPONENT: SponsorshipHistory,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: false,
+  },
+  {
+    PATH: '/support/sponsorship/apply',
+    COMPONENT: SponsorshipApply,
     HEADER: HomeHeader,
     FOOTER: DefaultFooter,
     WRAPPER: PageWrapper,

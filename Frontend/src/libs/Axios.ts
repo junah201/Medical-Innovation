@@ -57,7 +57,9 @@ export class Axios {
       ...config,
       headers: {
         ...headers,
-        Authorization: `Bearer ${this.#cookie.get(COOKIE.KEY.ACCESS_TOKEN)}`,
+        Authorization: `Bearer ${this.#cookie.get(
+          COOKIE.KEY.ACCESS_TOKEN
+        )}`,
       },
     };
 
@@ -147,10 +149,17 @@ export class Axios {
     });
   }
 
-  put(endPoint: EndPoint, data: object, id: ID | undefined = undefined) {
+  put(
+    endPoint: EndPoint,
+    data: object,
+    id: ID | undefined = undefined
+  ) {
     return this.#instance({
       method: METHOD.PUT,
-      url: !!id || id === '' || id === 0 ? `${endPoint}/${id}` : endPoint,
+      url:
+        !!id || id === '' || id === 0
+          ? `${endPoint}/${id}`
+          : endPoint,
       data,
     });
   }

@@ -9,3 +9,4 @@ export * from './introduction';
 export * from './error';
 export * from './programs';
 export * from './news';
+export * from './support';

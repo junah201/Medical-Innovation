@@ -11,6 +11,7 @@ import {
   GenderInput,
   TextInput,
   RadioInput,
+  TextareaInput,
 } from '@/components/form';
 import { INPUT_TYPE } from '@/constants';
 import { RegisterForm, RegisterTypes, InputTypes } from '@/types';
@@ -114,6 +115,15 @@ export const ReactHookInput = ({
             register={register}
             errorMessage={errorMessage}
             options={options}
+          />
+        );
+      case INPUT_TYPE.TEXTAREA:
+        return (
+          <TextareaInput
+            id={id}
+            register={register}
+            errorMessage={errorMessage}
+            placeholder={placeholder}
           />
         );
     }

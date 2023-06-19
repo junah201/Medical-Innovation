@@ -1,5 +1,5 @@
 import { AxiosError, AxiosResponse } from 'axios';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useQuery, useMutation } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -72,7 +72,9 @@ export const EventRegistration = () => {
     <>
       <h1>참가 신청</h1>
       <Message>
-        {eventDetail && <PostContent content={eventDetail?.description} />}
+        {eventDetail && (
+          <PostContent content={eventDetail?.description} />
+        )}
       </Message>
       <Form onSubmit={handleSubmit(onValid)}>
         <ReactHookInput
@@ -129,21 +131,31 @@ export const EventRegistration = () => {
           type={INPUT_TYPE.RADIO}
           register={register}
           errorMessage={errors[REGISTER_TYPE.INTEREST_FIELD]?.message}
-          options={['연구분야', '의료기기산업분야', '일반', '제약분야', '기타']}
+          options={[
+            '연구분야',
+            '의료기기산업분야',
+            '일반',
+            '제약분야',
+            '기타',
+          ]}
         />
         <ReactHookInput
           id={REGISTER_TYPE.INTEREST_FIELD_DETAIL}
           title="세부분야"
           type={INPUT_TYPE.TEXT}
           register={register}
-          errorMessage={errors[REGISTER_TYPE.INTEREST_FIELD_DETAIL]?.message}
+          errorMessage={
+            errors[REGISTER_TYPE.INTEREST_FIELD_DETAIL]?.message
+          }
         />
         <ReactHookInput
           id={REGISTER_TYPE.ORGANIZATION_TYPE}
           title="소속"
           type={INPUT_TYPE.RADIO}
           register={register}
-          errorMessage={errors[REGISTER_TYPE.ORGANIZATION_TYPE]?.message}
+          errorMessage={
+            errors[REGISTER_TYPE.ORGANIZATION_TYPE]?.message
+          }
           options={[
             '공공기관',
             '대학 및 연구소',
@@ -158,7 +170,9 @@ export const EventRegistration = () => {
           title="소속기관명"
           type={INPUT_TYPE.TEXT}
           register={register}
-          errorMessage={errors[REGISTER_TYPE.ORGANIZATION_NAME]?.message}
+          errorMessage={
+            errors[REGISTER_TYPE.ORGANIZATION_NAME]?.message
+          }
           placeholder="소속기관명"
         />
         <ReactHookInput
@@ -211,7 +225,9 @@ export const EventRegistration = () => {
           title="행사 참여 방식"
           type={INPUT_TYPE.RADIO}
           register={register}
-          errorMessage={errors[REGISTER_TYPE.ENGAGEMENT_TYPE]?.message}
+          errorMessage={
+            errors[REGISTER_TYPE.ENGAGEMENT_TYPE]?.message
+          }
           options={['현장 참가', '유튜브 라이브 시청', '기타']}
         />
         <ReactHookInput
@@ -219,7 +235,9 @@ export const EventRegistration = () => {
           title="소재지"
           type={INPUT_TYPE.TEXT}
           register={register}
-          errorMessage={errors[REGISTER_TYPE.PARTICIPANT_MOTIVATION]?.message}
+          errorMessage={
+            errors[REGISTER_TYPE.PARTICIPANT_MOTIVATION]?.message
+          }
           placeholder="지인 추천"
         />
         <ReactHookInput
@@ -227,7 +245,9 @@ export const EventRegistration = () => {
           title="기술 구분"
           type={INPUT_TYPE.TEXT}
           register={register}
-          errorMessage={errors[REGISTER_TYPE.PARTICIPANT_TYPE]?.message}
+          errorMessage={
+            errors[REGISTER_TYPE.PARTICIPANT_TYPE]?.message
+          }
           placeholder="기술 구분"
         />
         <ReactHookInput
@@ -235,10 +255,15 @@ export const EventRegistration = () => {
           title="타겟 질환 / 범위"
           type={INPUT_TYPE.TEXT}
           register={register}
-          errorMessage={errors[REGISTER_TYPE.INTEREST_DISEASE]?.message}
+          errorMessage={
+            errors[REGISTER_TYPE.INTEREST_DISEASE]?.message
+          }
           placeholder="타겟 질환 / 범위"
         />
-        <Button isvalid={!Object.keys(errors)[0]} disabled={isSubmitting}>
+        <Button
+          isvalid={!Object.keys(errors)[0]}
+          disabled={isSubmitting}
+        >
           제출하기
         </Button>
       </Form>
@@ -260,7 +285,9 @@ const Button = styled.button<{ isvalid: boolean }>`
   margin-top: 10px;
   border-radius: 5px;
   background: ${(props) =>
-    props.isvalid ? props.theme.pointColor : props.theme.loginDisabledColor};
+    props.isvalid
+      ? props.theme.pointColor
+      : props.theme.loginDisabledColor};
   color: #ffffff;
   font-weight: 600;
   border: none;

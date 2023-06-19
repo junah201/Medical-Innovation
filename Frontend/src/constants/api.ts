@@ -53,6 +53,15 @@ const JUDGING_EVENT = Object.freeze({
     `/api/v1/judging_event/get/${id}`,
 });
 
+const SPONSORING_COMPANY = Object.freeze({
+  GET_SPONSORING_COMPANIES: '/api/v1/sponsoring_company/all',
+});
+
+const SPONSOR = Object.freeze({
+  GET_SPONSORS: '/api/v1/sponsor/all',
+  SUBMIT_SPONSOR: '/api/v1/sponsor/create',
+});
+
 export const API_ROUTE = Object.freeze({
   AUTH,
   BANNER,
@@ -65,4 +74,6 @@ export const API_ROUTE = Object.freeze({
   PUBLIC_EVENT,
   PUBLIC_PARTICIPANT,
   JUDGING_EVENT,
+  SPONSORING_COMPANY,
+  SPONSOR,
 });
