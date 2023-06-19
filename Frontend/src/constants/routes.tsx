@@ -29,6 +29,7 @@ import {
   PressRelease,
   Trand,
   Column,
+  Photo,
 } from '@/pages';
 
 interface RouteConfig {
@@ -236,6 +237,14 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/news/column',
     COMPONENT: Column,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: false,
+  },
+  {
+    PATH: '/news/photo',
+    COMPONENT: Photo,
     HEADER: HomeHeader,
     FOOTER: DefaultFooter,
     WRAPPER: PageWrapper,
