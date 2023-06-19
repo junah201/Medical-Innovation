@@ -1,21 +1,25 @@
 import styled from 'styled-components';
 
-import { REGISTER_TYPE, ERROR_MESSAGE, CONFIG } from '@/constants';
-import { RegisterForm } from '@/types';
+import { ERROR_MESSAGE, CONFIG } from '@/constants';
+import { RegisterForm, RegisterTypes } from '@/types';
 
-export const PasswordInput = ({
-  register,
-  errorMessage,
-  placeholder,
-}: {
+interface PasswordInputProps {
+  id: RegisterTypes;
   register: RegisterForm;
   errorMessage: string | undefined | any;
   placeholder: string;
-}) => {
+}
+
+export const PasswordInput = ({
+  id,
+  register,
+  errorMessage,
+  placeholder,
+}: PasswordInputProps) => {
   return (
     <Input
       iserror={!!errorMessage}
-      {...register(REGISTER_TYPE.PASSWORD, {
+      {...register(id, {
         required: ERROR_MESSAGE.PASSWORD.REQUIRED,
         minLength: {
           value: CONFIG.PASSWORD.MIN_LENGTH,
@@ -37,7 +41,9 @@ const Input = styled.input<{ iserror: boolean }>`
   font-size: 18px;
   margin-bottom: 10px;
   font-weight: 600;
-  border: solid 2px ${(props) => (props.iserror ? props.theme.errorColor : props.theme.validColor)};
+  border: solid 2px
+    ${(props) =>
+      props.iserror ? props.theme.errorColor : props.theme.validColor};
   transition: ${({ theme }) => theme.transitionOption};
   background: ${({ theme }) => theme.loginBackgroundColor};
   :focus {

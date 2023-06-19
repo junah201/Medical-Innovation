@@ -19,7 +19,9 @@ export const Mou = () => {
   return (
     <>
       <h1>MOU</h1>
-      <Message>재단법인 미래의학연구재단과 MOU를 체결한 기관의 목록입니다.</Message>
+      <Message>
+        재단법인 미래의학연구재단과 MOU를 체결한 기관의 목록입니다.
+      </Message>
       <Wrapper>
         {mous.map((item) => (
           <MouItem key={item.id} item={item} />

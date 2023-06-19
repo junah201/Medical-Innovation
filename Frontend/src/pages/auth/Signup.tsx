@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 import { signup } from '@/api/auth';
 import { ReactHookInput } from '@/components/form';
-import { INPUT_TYPE, ROUTE, COOKIE } from '@/constants';
+import { INPUT_TYPE, ROUTE, COOKIE, REGISTER_TYPE } from '@/constants';
 import { getCookie } from '@/libs/Cookie';
 import { RegisterField } from '@/types';
 
@@ -50,6 +50,7 @@ export const Signup = () => {
         <Title>회원가입</Title>
         <Form onSubmit={handleSubmit(onValid)}>
           <ReactHookInput
+            id={REGISTER_TYPE.NAME}
             title="이름"
             type={INPUT_TYPE.NAME}
             register={register}
@@ -57,6 +58,7 @@ export const Signup = () => {
             placeholder="홍길동"
           />
           <ReactHookInput
+            id={REGISTER_TYPE.PHONE}
             title="전화번호"
             type={INPUT_TYPE.PHONE}
             register={register}
@@ -64,6 +66,7 @@ export const Signup = () => {
             placeholder="01012345678"
           />
           <ReactHookInput
+            id={REGISTER_TYPE.BIRTH}
             title="생년월일"
             type={INPUT_TYPE.BIRTH}
             register={register}
@@ -71,6 +74,7 @@ export const Signup = () => {
             placeholder=""
           />
           <ReactHookInput
+            id={REGISTER_TYPE.EMAIL}
             title="이메일"
             type={INPUT_TYPE.EMAIL}
             register={register}
@@ -78,6 +82,7 @@ export const Signup = () => {
             placeholder="이메일"
           />
           <ReactHookInput
+            id={REGISTER_TYPE.PASSWORD}
             title="비밀번호"
             type={INPUT_TYPE.PASSWORD}
             register={register}
@@ -85,6 +90,7 @@ export const Signup = () => {
             placeholder="비밀번호"
           />
           <ReactHookInput
+            id={REGISTER_TYPE.CONFIRM_PASSWORD}
             title="비밀번호 확인"
             type={INPUT_TYPE.CONFIRM_PASSWORD}
             register={register}
@@ -161,7 +167,8 @@ const Submit = styled.button<{ isvalid: boolean }>`
   transition: ${({ theme }) => theme.transitionOption};
   :hover {
     cursor: pointer;
-    background: ${(props) => (props.isvalid ? props.theme.pointColorLight : '')};
+    background: ${(props) =>
+      props.isvalid ? props.theme.pointColorLight : ''};
     color: ${({ theme }) => theme.background};
   }
   letter-spacing: 1px;

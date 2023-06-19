@@ -4,7 +4,13 @@ import styled, { keyframes } from 'styled-components';
 import { Banner } from '@/types';
 const { VITE_CDN_URL } = import.meta.env;
 
-export const MobileBanners = ({ banners, count }: { banners: Banner[]; count: number }) => {
+export const MobileBanners = ({
+  banners,
+  count,
+}: {
+  banners: Banner[];
+  count: number;
+}) => {
   const [bannerIndex, setBannerIndex] = useState(0);
 
   useEffect(() => {
@@ -29,7 +35,10 @@ export const MobileBanners = ({ banners, count }: { banners: Banner[]; count: nu
             return (
               <StyledBannerItem key={item.id}>
                 <a href={item.link} target="_blank" rel="noopener noreferrer">
-                  <img src={`${VITE_CDN_URL}/banner/${item.filename}`} alt={item.name} />
+                  <img
+                    src={`${VITE_CDN_URL}/banner/${item.filename}`}
+                    alt={item.name}
+                  />
                 </a>
               </StyledBannerItem>
             );

@@ -24,7 +24,8 @@ const StyledSubNavButton = styled(Link)<{ select: boolean }>`
   font-weight: 600;
 
   color: ${(props) => (props.select ? '#204397' : '#494949')};
-  border-bottom: ${(props) => (props.select ? '4px solid #204397' : '1.5px solid #494949')};
+  border-bottom: ${(props) =>
+    props.select ? '4px solid #204397' : '1.5px solid #494949'};
   text-decoration: none;
 
   & + & {

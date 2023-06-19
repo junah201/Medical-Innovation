@@ -5,6 +5,9 @@ export const INPUT_TYPE = Object.freeze({
   NAME: 'name',
   PHONE: 'phone',
   BIRTH: 'birth',
+  GENDER: 'gender',
+  TEXT: 'text',
+  RADIO: 'radio',
 });
 
 export const REGISTER_TYPE = Object.freeze({
@@ -14,6 +17,20 @@ export const REGISTER_TYPE = Object.freeze({
   NAME: 'name',
   PHONE: 'phone',
   BIRTH: 'birth',
+  ENGLISH_NAME: 'english_name',
+  GENDER: 'gender',
+  ORGANIZATION_TYPE: 'organization_type',
+  ORGANIZATION_NAME: 'organization_name',
+  ORGANIZATION_ENGLISH_NAME: 'organization_english_name',
+  JOB_POSITION: 'job_position',
+  ADDRESS: 'address',
+  FINAL_DEGREE: 'final_degree',
+  ENGAGEMENT_TYPE: 'engagement_type',
+  PARTICIPANT_MOTIVATION: 'participant_motivation',
+  PARTICIPANT_TYPE: 'participant_type',
+  INTEREST_DISEASE: 'interest_disease',
+  INTEREST_FIELD: 'interest_field',
+  INTEREST_FIELD_DETAIL: 'interest_field_detail',
 });
 
 export const ERROR_MESSAGE = Object.freeze({
@@ -42,11 +59,15 @@ export const ERROR_MESSAGE = Object.freeze({
   BIRTH: Object.freeze({
     REQUIRED: '필수 입력 항목입니다.',
   }),
+  TEXT: Object.freeze({
+    REQUIRED: '필수 입력 항목입니다.',
+  }),
 });
 
 export const CONFIG = Object.freeze({
   EMAIL: Object.freeze({
-    REGEX: /^[^\s@+]+(\+[^\s@+]+)?@[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*(\.[a-zA-Z]{2,})$/,
+    REGEX:
+      /^[^\s@+]+(\+[^\s@+]+)?@[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*(\.[a-zA-Z]{2,})$/,
   }),
   PHONE: Object.freeze({
     REGEX: /^\d+$/,

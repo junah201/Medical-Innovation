@@ -6,35 +6,58 @@ import {
   PasswordConfirmInput,
   NameInput,
   PhoneInput,
+  BirthInput,
   InputLabel,
+  GenderInput,
+  TextInput,
+  RadioInput,
 } from '@/components/form';
 import { INPUT_TYPE } from '@/constants';
-import { RegisterForm, InputTypes } from '@/types';
+import { RegisterForm, RegisterTypes, InputTypes } from '@/types';
 
-import { BirthInput } from './BirthInput';
-
-export const ReactHookInput = ({
-  title,
-  type,
-  register,
-  errorMessage,
-  placeholder,
-}: {
+interface ReactHookInputProps {
+  id: RegisterTypes;
   title: string;
   type: InputTypes;
   register: RegisterForm;
   errorMessage: string | undefined | any;
-  placeholder: string;
-}) => {
+  placeholder?: string;
+  options?: string[];
+}
+
+export const ReactHookInput = ({
+  id,
+  title,
+  type,
+  register,
+  errorMessage,
+  placeholder = '',
+  options = [],
+}: ReactHookInputProps) => {
   const content = (inputType: InputTypes) => {
     switch (inputType) {
       case INPUT_TYPE.EMAIL:
         return (
-          <EmailInput register={register} errorMessage={errorMessage} placeholder={placeholder} />
+          <EmailInput
+            id={id}
+            register={register}
+            errorMessage={errorMessage}
+            placeholder={placeholder}
+          />
         );
       case INPUT_TYPE.PASSWORD:
         return (
           <PasswordInput
+            id={id}
+            register={register}
+            errorMessage={errorMessage}
+            placeholder={placeholder}
+          />
+        );
+      case INPUT_TYPE.CONFIRM_PASSWORD:
+        return (
+          <PasswordConfirmInput
+            id={id}
             register={register}
             errorMessage={errorMessage}
             placeholder={placeholder}
@@ -42,15 +65,17 @@ export const ReactHookInput = ({
         );
       case INPUT_TYPE.NAME:
         return (
-          <NameInput register={register} errorMessage={errorMessage} placeholder={placeholder} />
+          <NameInput
+            id={id}
+            register={register}
+            errorMessage={errorMessage}
+            placeholder={placeholder}
+          />
         );
       case INPUT_TYPE.PHONE:
         return (
-          <PhoneInput register={register} errorMessage={errorMessage} placeholder={placeholder} />
-        );
-      case INPUT_TYPE.CONFIRM_PASSWORD:
-        return (
-          <PasswordConfirmInput
+          <PhoneInput
+            id={id}
             register={register}
             errorMessage={errorMessage}
             placeholder={placeholder}
@@ -58,17 +83,46 @@ export const ReactHookInput = ({
         );
       case INPUT_TYPE.BIRTH:
         return (
-          <BirthInput register={register} errorMessage={errorMessage} placeholder={placeholder} />
+          <BirthInput
+            id={id}
+            register={register}
+            errorMessage={errorMessage}
+            placeholder={placeholder}
+          />
+        );
+      case INPUT_TYPE.GENDER:
+        return (
+          <GenderInput
+            id={id}
+            register={register}
+            errorMessage={errorMessage}
+          />
+        );
+      case INPUT_TYPE.TEXT:
+        return (
+          <TextInput
+            id={id}
+            register={register}
+            errorMessage={errorMessage}
+            placeholder={placeholder}
+          />
+        );
+      case INPUT_TYPE.RADIO:
+        return (
+          <RadioInput
+            id={id}
+            register={register}
+            errorMessage={errorMessage}
+            options={options}
+          />
         );
     }
   };
 
   return (
     <Wrapper>
-      <>
-        <InputLabel value={title} errorMessage={errorMessage} />
-        {content(type)}
-      </>
+      <InputLabel value={title} errorMessage={errorMessage} />
+      {content(type)}
     </Wrapper>
   );
 };

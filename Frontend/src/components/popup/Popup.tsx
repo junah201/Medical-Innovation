@@ -33,7 +33,10 @@ export const Popup = ({ title, image_filename, link }: PopupProps) => {
         <br />
         <StyledPopupContent>
           <a href={link} target="_blank" rel="noopener noreferrer">
-            <img src={`${VITE_CDN_URL}/upload/${image_filename}`} alt={image_filename}></img>
+            <img
+              src={`${VITE_CDN_URL}/upload/${image_filename}`}
+              alt={image_filename}
+            ></img>
           </a>
         </StyledPopupContent>
         <StyledCloseButton

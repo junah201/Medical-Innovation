@@ -1,7 +1,11 @@
 import { Banner } from '@/components/banner';
 import { DefaultFooter } from '@/components/footers';
 import { HomeHeader } from '@/components/headers';
-import { DefaultWrapper, HomeWrapper, PageWrapper } from '@/components/wrappers';
+import {
+  DefaultWrapper,
+  HomeWrapper,
+  PageWrapper,
+} from '@/components/wrappers';
 import {
   Login,
   Logout,
@@ -16,9 +20,10 @@ import {
   ChairmanMessage,
   MissionAndHistory,
   OrgchartAndProject,
+  Events,
   EventDetail,
+  EventRegistration,
 } from '@/pages';
-import { Events } from '@/pages/programs/event/Events';
 
 interface RouteConfig {
   PATH: string;
@@ -157,6 +162,14 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/programs/event/:id/detail',
     COMPONENT: EventDetail,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: false,
+  },
+  {
+    PATH: '/programs/event/:id/registration',
+    COMPONENT: EventRegistration,
     HEADER: HomeHeader,
     FOOTER: DefaultFooter,
     WRAPPER: PageWrapper,

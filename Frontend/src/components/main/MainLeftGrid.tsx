@@ -23,7 +23,10 @@ export const MainLeftGrid = () => {
       </StyledGridImgItem>
       <StyledGridItem color="#2763BA">
         <h3>재단 소개</h3>
-        <p>과기부 소관 비영리법인 중소벤처기업부 창업기획자 기획재정부 지정기부금단체</p>
+        <p>
+          과기부 소관 비영리법인 중소벤처기업부 창업기획자 기획재정부
+          지정기부금단체
+        </p>
         <Link to={ROUTE.MOU}>협력기관</Link>
         <Link to={ROUTE.ADVISORS}>임원현황</Link>
       </StyledGridItem>
@@ -34,7 +37,10 @@ export const MainLeftGrid = () => {
       </StyledGridItem>
       <StyledGridItem color="#008ACE">
         <h3>후원 안내</h3>
-        <p>대한민국 보건의료의 발전을 추구하시는 여러분 모두가 후원자가 되어 주십시오.</p>
+        <p>
+          대한민국 보건의료의 발전을 추구하시는 여러분 모두가 후원자가 되어
+          주십시오.
+        </p>
         <Link to={ROUTE.SUPPORT.SPONSORSHIP}>후원하기</Link>
         <Link to={ROUTE.SUPPORT.SPONSOR}>후원기업</Link>
       </StyledGridItem>
@@ -69,7 +75,12 @@ export const MainLeftGrid = () => {
         </div>
         <div>
           <a href="http://www.celltherapy.re.kr/">
-            <img src="/images/서울대병원.png" width="50px" height="50px" alt="순환기내과 TAVI" />
+            <img
+              src="/images/서울대병원.png"
+              width="50px"
+              height="50px"
+              alt="순환기내과 TAVI"
+            />
             <br />
             순환기내과
             <br />
@@ -78,7 +89,12 @@ export const MainLeftGrid = () => {
         </div>
         <div>
           <a href="https://blog.naver.com/snuh_heart2">
-            <img src="/images/서울대병원.png" width="50px" height="50px" alt="순환기내과 매직셀" />
+            <img
+              src="/images/서울대병원.png"
+              width="50px"
+              height="50px"
+              alt="순환기내과 매직셀"
+            />
             <br />
             순환기내과
             <br />

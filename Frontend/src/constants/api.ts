@@ -38,7 +38,13 @@ const HISTORY = Object.freeze({
 
 const PUBLIC_EVENT = Object.freeze({
   GET_PUBLIC_EVENTS: '/api/v1/public_event/all',
-  GET_PUBLIC_EVENT_BY_ID: (id: number | string) => `/api/v1/public_event/get/${id}`,
+  GET_PUBLIC_EVENT_BY_ID: (id: number | string) =>
+    `/api/v1/public_event/get/${id}`,
+});
+
+const PUBLIC_PARTICIPANT = Object.freeze({
+  SUBMIT_PUBLIC_EVENT: (id: number | string) =>
+    `/api/v1/participant/${id}/create`,
 });
 
 export const API_ROUTE = Object.freeze({
@@ -51,4 +57,5 @@ export const API_ROUTE = Object.freeze({
   SUPPORTING_STARTUP,
   HISTORY,
   PUBLIC_EVENT,
+  PUBLIC_PARTICIPANT,
 });

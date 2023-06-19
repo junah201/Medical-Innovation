@@ -1,26 +1,26 @@
 import styled from 'styled-components';
 
-import { REGISTER_TYPE, ERROR_MESSAGE } from '@/constants';
+import { ERROR_MESSAGE } from '@/constants';
 import { RegisterForm, RegisterTypes } from '@/types';
 
-interface NameInputProps {
+interface TextInputProps {
   id: RegisterTypes;
   register: RegisterForm;
   errorMessage: string | undefined | any;
   placeholder: string;
 }
 
-export const NameInput = ({
+export const TextInput = ({
   id,
   register,
   errorMessage,
   placeholder,
-}: NameInputProps) => {
+}: TextInputProps) => {
   return (
     <Input
       iserror={!!errorMessage}
       {...register(id, {
-        required: ERROR_MESSAGE.NAME.REQUIRED,
+        required: ERROR_MESSAGE.TEXT.REQUIRED,
       })}
       type="text"
       placeholder={placeholder}

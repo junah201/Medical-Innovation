@@ -17,7 +17,9 @@ const Wrapper = styled.div`
 
   @media screen and (${DEVICES.DESKTOP}) {
     padding: 20px;
-    min-height: calc(100vh - ${HEADER.DESKTOP_HEIGHT} - ${FOOTER.DESKTOP_HEIGHT});
+    min-height: calc(
+      100vh - ${HEADER.DESKTOP_HEIGHT} - ${FOOTER.DESKTOP_HEIGHT}
+    );
   }
 `;
 

@@ -1,21 +1,25 @@
 import styled from 'styled-components';
 
-import { REGISTER_TYPE, ERROR_MESSAGE, CONFIG } from '@/constants';
-import { RegisterForm } from '@/types';
+import { ERROR_MESSAGE } from '@/constants';
+import { RegisterForm, RegisterTypes } from '@/types';
 
-export const BirthInput = ({
-  register,
-  errorMessage,
-  placeholder,
-}: {
+interface BirthInputProps {
+  id: RegisterTypes;
   register: RegisterForm;
   errorMessage: string | undefined | any;
   placeholder: string;
-}) => {
+}
+
+export const BirthInput = ({
+  id,
+  register,
+  errorMessage,
+  placeholder,
+}: BirthInputProps) => {
   return (
     <Input
       iserror={!!errorMessage}
-      {...register(REGISTER_TYPE.BIRTH, {
+      {...register(id, {
         required: ERROR_MESSAGE.BIRTH.REQUIRED,
       })}
       type="date"
@@ -29,7 +33,9 @@ const Input = styled.input<{ iserror: boolean }>`
   font-size: 18px;
   margin-bottom: 10px;
   font-weight: 600;
-  border: solid 2px ${(props) => (props.iserror ? props.theme.errorColor : props.theme.validColor)};
+  border: solid 2px
+    ${(props) =>
+      props.iserror ? props.theme.errorColor : props.theme.validColor};
   transition: ${({ theme }) => theme.transitionOption};
   background: ${({ theme }) => theme.loginBackgroundColor};
   :focus {

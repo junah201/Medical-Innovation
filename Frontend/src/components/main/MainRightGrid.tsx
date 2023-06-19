@@ -15,7 +15,9 @@ export const MainRightGrid = () => {
   const [noticePosts, setNoticePosts] = useState<Post[]>([]);
   const [pressReleases, setPressReleases] = useState<Post[]>([]);
   const [columns, setColumns] = useState<Post[]>([]);
-  const [supportingStartups, setSupportingStartups] = useState<SuportingStartup[]>([]);
+  const [supportingStartups, setSupportingStartups] = useState<
+    SuportingStartup[]
+  >([]);
 
   useQuery({
     queryKey: 'supporting_startup',
@@ -156,13 +158,22 @@ export const MainRightGrid = () => {
               src="/images/Foundation/비영리법인설립허가증.png"
               alt="비영리법인설립허가증"
             />
-            <DocumentItem src="/images/Foundation/창업기획자 등록증.png" alt="창업기획자 등록증" />
+            <DocumentItem
+              src="/images/Foundation/창업기획자 등록증.png"
+              alt="창업기획자 등록증"
+            />
             <DocumentItem
               src="/images/Foundation/지정기부금단체 지정고시 통지서.png"
               alt="지정기부금단체 지정고시 통지서"
             />
-            <DocumentItem src="/images/Foundation/특허증 (1차).png" alt="특허증 (1차)" />
-            <DocumentItem src="/images/Foundation/특허증 (2차).png" alt="특허증 (2차)" />
+            <DocumentItem
+              src="/images/Foundation/특허증 (1차).png"
+              alt="특허증 (1차)"
+            />
+            <DocumentItem
+              src="/images/Foundation/특허증 (2차).png"
+              alt="특허증 (2차)"
+            />
             <DocumentItem
               src="/images/Foundation/출원사실증면원 (3차).png"
               alt="출원사실증면원 (3차)"
@@ -176,7 +187,11 @@ export const MainRightGrid = () => {
           {supportingStartups.map((supporting_startup) => {
             return (
               <StyledStartupContainer key={supporting_startup.id}>
-                <a href={supporting_startup.link} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={supporting_startup.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <span>{supporting_startup.name}</span>
                   <p>{supporting_startup.content}</p>
                 </a>

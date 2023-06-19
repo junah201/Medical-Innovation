@@ -20,6 +20,7 @@ module.exports = {
   ignorePatterns: ['dist/', 'node_modules/'],
   plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier', 'import'],
   rules: {
+    'react/jsx-max-props-per-line': ['error', { maximum: 2, when: 'always' }],
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/no-unsafe-return': 'off',
@@ -28,7 +29,6 @@ module.exports = {
     '@typescript-eslint/no-unsafe-assignment': 'off',
     '@typescript-eslint/no-misused-promises': 'warn',
     '@typescript-eslint/restrict-template-expressions': 'warn',
-
     'import/order': [
       'error',
       {

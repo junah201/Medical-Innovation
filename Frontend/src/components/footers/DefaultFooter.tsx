@@ -11,20 +11,45 @@ export const DefaultFooter = () => {
           <a href="/">
             <img src="/images/long_logo.png" alt="미래의학연구재단" />
           </a>
-          <a href="http://www.celltherapy.re.kr" target="_blank" rel="noopener noreferrer">
-            <img src="/images/세포치료실용화센터CI.png" alt="세포치료실용화센터CI" />
+          <a
+            href="http://www.celltherapy.re.kr"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="/images/세포치료실용화센터CI.png"
+              alt="세포치료실용화센터CI"
+            />
           </a>
-          <a href="https://www.khidi.or.kr/rndhospital" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://www.khidi.or.kr/rndhospital"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img src="/images/연구중심병원.png" alt="연구중심병원" />
           </a>
         </div>
 
         <div>
-          <a href="https://www.khidi.or.kr/rndhospital" target="_blank" rel="noopener noreferrer">
-            <img src="/images/협동과정줄기세포생물학.png" alt="협동과정줄기세포생물학" />
+          <a
+            href="https://www.khidi.or.kr/rndhospital"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="/images/협동과정줄기세포생물학.png"
+              alt="협동과정줄기세포생물학"
+            />
           </a>
-          <a href="https://www.msit.go.kr/" target="_blank" rel="noopener noreferrer">
-            <img src="/images/과학기술정보통신부.png" alt="과학기술정보통신부" />
+          <a
+            href="https://www.msit.go.kr/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="/images/과학기술정보통신부.png"
+              alt="과학기술정보통신부"
+            />
           </a>
         </div>
       </TopContainer>
@@ -33,7 +58,9 @@ export const DefaultFooter = () => {
           <strong>재단법인 미래의학연구재단</strong>
           <p>이사장 : 전승호</p>
           <p>주소 : (04736) 서울특별시 성동구 독서당로 166</p>
-          <p>Copyright(c) 2016 재단법인 미래의학연구재단. All rights reserved.</p>
+          <p>
+            Copyright(c) 2016 재단법인 미래의학연구재단. All rights reserved.
+          </p>
         </div>
         <div>
           <strong>관련 링크</strong>

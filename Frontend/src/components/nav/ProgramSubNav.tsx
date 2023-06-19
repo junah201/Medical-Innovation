@@ -9,7 +9,11 @@ interface ProgramSubNavProps {
 export const ProgramSubNav = ({ select }: ProgramSubNavProps) => {
   return (
     <Wrapper>
-      <SubNavButton href="/programs/event" text="프로그램안내" select={select === '프로그램안내'} />
+      <SubNavButton
+        href="/programs/event"
+        text="프로그램안내"
+        select={select === '프로그램안내'}
+      />
       <SubNavButton
         href="/programs/accelerating"
         text="스타트업지원"

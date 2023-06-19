@@ -13,14 +13,16 @@ const Wrapper = styled.main`
   @media screen and (${DEVICES.MOBILE}) {
     padding: 10px 0;
     min-height: calc(
-      100vh - ${HEADER.MOBILE_HEIGHT} - ${FOOTER.MOBILE_HEIGHT} - ${BANNER.MOBILE_HEIGHT}
+      100vh - ${HEADER.MOBILE_HEIGHT} - ${FOOTER.MOBILE_HEIGHT} -
+        ${BANNER.MOBILE_HEIGHT}
     );
   }
 
   @media screen and (${DEVICES.DESKTOP}) {
     padding: 30px;
     min-height: calc(
-      100vh - ${HEADER.DESKTOP_HEIGHT} - ${FOOTER.DESKTOP_HEIGHT} - ${BANNER.DESKTOP_HEIGHT}
+      100vh - ${HEADER.DESKTOP_HEIGHT} - ${FOOTER.DESKTOP_HEIGHT} -
+        ${BANNER.DESKTOP_HEIGHT}
     );
   }
 `;

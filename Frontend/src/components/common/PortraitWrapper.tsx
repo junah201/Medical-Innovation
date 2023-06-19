@@ -2,7 +2,11 @@ import { useState, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import styled from 'styled-components';
 
-export const PortraitWrapper = ({ children }: { children: React.ReactNode }) => {
+export const PortraitWrapper = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const [count, setCount] = useState(5);
 
   const isFourBanner = useMediaQuery({
@@ -34,7 +38,9 @@ export const PortraitWrapper = ({ children }: { children: React.ReactNode }) => 
     }
   }, [isFourBanner, isThreeBanner, isTwoBanner, isOneBanner]);
 
-  return <StyledPortraitWrapper count={count}>{children}</StyledPortraitWrapper>;
+  return (
+    <StyledPortraitWrapper count={count}>{children}</StyledPortraitWrapper>
+  );
 };
 
 const StyledPortraitWrapper = styled.div<{ count: number }>`

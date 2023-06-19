@@ -36,7 +36,13 @@ export const Posts = ({ boardId, children, boardType }: PostProps) => {
       {children}
       <div>
         {posts.map((post, index) => (
-          <Post key={post.id} idx={index} item={post} page={page} boardType={boardType} />
+          <Post
+            key={post.id}
+            idx={index}
+            item={post}
+            page={page}
+            boardType={boardType}
+          />
         ))}
       </div>
       <StyledBoardPageButtonWrapper>

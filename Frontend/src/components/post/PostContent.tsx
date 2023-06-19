@@ -6,7 +6,12 @@ interface PostContentProps {
 }
 
 export const PostContent = ({ content }: PostContentProps) => {
-  return <Wrapper className="ck-content" dangerouslySetInnerHTML={{ __html: content }} />;
+  return (
+    <Wrapper
+      className="ck-content"
+      dangerouslySetInnerHTML={{ __html: content }}
+    />
+  );
 };
 
 const Wrapper = styled.p`

@@ -1,21 +1,25 @@
 import styled from 'styled-components';
 
-import { REGISTER_TYPE, ERROR_MESSAGE, CONFIG } from '@/constants';
-import { RegisterForm } from '@/types';
+import { ERROR_MESSAGE, CONFIG } from '@/constants';
+import { RegisterForm, RegisterTypes } from '@/types';
 
-export const PhoneInput = ({
-  register,
-  errorMessage,
-  placeholder,
-}: {
+interface PhoneInputProps {
+  id: RegisterTypes;
   register: RegisterForm;
   errorMessage: string | undefined | any;
   placeholder: string;
-}) => {
+}
+
+export const PhoneInput = ({
+  id,
+  register,
+  errorMessage,
+  placeholder,
+}: PhoneInputProps) => {
   return (
     <Input
       iserror={!!errorMessage}
-      {...register(REGISTER_TYPE.PHONE, {
+      {...register(id, {
         required: ERROR_MESSAGE.PHONE.REQUIRED,
         pattern: {
           value: CONFIG.PHONE.REGEX,
@@ -37,7 +41,9 @@ const Input = styled.input<{ iserror: boolean }>`
   font-size: 18px;
   margin-bottom: 10px;
   font-weight: 600;
-  border: solid 2px ${(props) => (props.iserror ? props.theme.errorColor : props.theme.validColor)};
+  border: solid 2px
+    ${(props) =>
+      props.iserror ? props.theme.errorColor : props.theme.validColor};
   transition: ${({ theme }) => theme.transitionOption};
   background: ${({ theme }) => theme.loginBackgroundColor};
   :focus {

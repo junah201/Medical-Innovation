@@ -1,17 +1,21 @@
 import styled from 'styled-components';
 
 import { REGISTER_TYPE, ERROR_MESSAGE } from '@/constants';
-import { RegisterForm, RegisterField } from '@/types';
+import { RegisterForm, RegisterField, RegisterTypes } from '@/types';
 
-export const PasswordConfirmInput = ({
-  register,
-  errorMessage,
-  placeholder,
-}: {
+interface PasswordConfirmInputProps {
+  id: RegisterTypes;
   register: RegisterForm;
   errorMessage: string | undefined | any;
   placeholder: string;
-}) => {
+}
+
+export const PasswordConfirmInput = ({
+  id,
+  register,
+  errorMessage,
+  placeholder,
+}: PasswordConfirmInputProps) => {
   const validatePasswordConfirm = (input: string, values: RegisterField) => {
     const password = values[REGISTER_TYPE.PASSWORD];
 
@@ -21,7 +25,7 @@ export const PasswordConfirmInput = ({
   return (
     <Input
       iserror={!!errorMessage}
-      {...register(REGISTER_TYPE.CONFIRM_PASSWORD, {
+      {...register(id, {
         required: ERROR_MESSAGE.CONFIRM_PASSWORD.REQUIRED,
         validate: {
           match: validatePasswordConfirm,
@@ -38,7 +42,9 @@ const Input = styled.input<{ iserror: boolean }>`
   font-size: 18px;
   margin-bottom: 10px;
   font-weight: 600;
-  border: solid 2px ${(props) => (props.iserror ? props.theme.errorColor : props.theme.validColor)};
+  border: solid 2px
+    ${(props) =>
+      props.iserror ? props.theme.errorColor : props.theme.validColor};
   transition: ${({ theme }) => theme.transitionOption};
   background: ${({ theme }) => theme.loginBackgroundColor};
   :focus {

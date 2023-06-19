@@ -15,7 +15,7 @@ interface ITheme {
 export const theme: DefaultTheme | ITheme = {
   backgroundColor: '#242424',
   errorColor: '#EF476F',
-  validColor: '#06D6A0',
+  validColor: '#2763BA',
   loginBackgroundColor: '#F5F5F5',
   pointColor: '#204397',
   loginDisabledColor: '#BDBDBD',

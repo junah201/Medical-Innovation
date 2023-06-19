@@ -95,5 +95,7 @@ export const ParticipationChart = () => {
 };
 
 const Wrapper = styled.div`
+  width: 100%;
+  height: 265px;
   padding: 5px;
 `;

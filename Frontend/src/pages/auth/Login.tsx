@@ -56,6 +56,7 @@ export const Login = () => {
         <Title>로그인</Title>
         <Form onSubmit={handleSubmit(onValid)}>
           <ReactHookInput
+            id="email"
             title="이메일"
             type={INPUT_TYPE.EMAIL}
             register={register}
@@ -63,6 +64,7 @@ export const Login = () => {
             placeholder="이메일"
           />
           <ReactHookInput
+            id="password"
             title="비밀번호"
             type={INPUT_TYPE.PASSWORD}
             register={register}
@@ -139,7 +141,8 @@ const Submit = styled.button<{ isvalid: boolean }>`
   transition: ${({ theme }) => theme.transitionOption};
   :hover {
     cursor: pointer;
-    background: ${(props) => (props.isvalid ? props.theme.pointColorLight : '')};
+    background: ${(props) =>
+      props.isvalid ? props.theme.pointColorLight : ''};
     color: ${({ theme }) => theme.background};
   }
   letter-spacing: 1px;

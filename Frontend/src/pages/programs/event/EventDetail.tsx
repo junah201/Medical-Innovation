@@ -39,13 +39,17 @@ export const EventDetail = () => {
                 overflow: 'hidden',
               }}
               src={`${VITE_CDN_URL}/upload/${
-                eventDetail.thumbnail_filename ? eventDetail.thumbnail_filename : 'null.png'
+                eventDetail.thumbnail_filename
+                  ? eventDetail.thumbnail_filename
+                  : 'null.png'
               }`}
               alt={eventDetail.name}
             />
           </div>
           <PostContent content={eventDetail.description} />
-          <StyledEventRegistButton to={`/programs/event/${params.id}/registration`}>
+          <StyledEventRegistButton
+            to={`/programs/event/${params.id}/registration`}
+          >
             참가 신청하기
           </StyledEventRegistButton>
         </div>
