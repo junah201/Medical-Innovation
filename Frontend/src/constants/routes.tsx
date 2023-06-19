@@ -24,7 +24,9 @@ import {
   EventDetail,
   EventRegistration,
   Accelerating,
+  ResearchSupportProject,
 } from '@/pages';
+import { Trand } from '@/pages/programs/Trand';
 
 interface RouteConfig {
   PATH: string;
@@ -179,6 +181,22 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/programs/accelerating',
     COMPONENT: Accelerating,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: false,
+  },
+  {
+    PATH: '/programs/research_support_project',
+    COMPONENT: ResearchSupportProject,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: false,
+  },
+  {
+    PATH: '/programs/trand',
+    COMPONENT: Trand,
     HEADER: HomeHeader,
     FOOTER: DefaultFooter,
     WRAPPER: PageWrapper,
