@@ -23,6 +23,7 @@ import {
   Events,
   EventDetail,
   EventRegistration,
+  Accelerating,
 } from '@/pages';
 
 interface RouteConfig {
@@ -170,6 +171,14 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/programs/event/:id/registration',
     COMPONENT: EventRegistration,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: false,
+  },
+  {
+    PATH: '/programs/accelerating',
+    COMPONENT: Accelerating,
     HEADER: HomeHeader,
     FOOTER: DefaultFooter,
     WRAPPER: PageWrapper,

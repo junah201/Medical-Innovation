@@ -7,3 +7,4 @@ export * from './popup';
 export * from './supportingStartup';
 export * from './history';
 export * from './publicEvent';
+export * from './judgingEvent';

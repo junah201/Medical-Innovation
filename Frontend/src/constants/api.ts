@@ -47,6 +47,12 @@ const PUBLIC_PARTICIPANT = Object.freeze({
     `/api/v1/participant/${id}/create`,
 });
 
+const JUDGING_EVENT = Object.freeze({
+  GET_JUDGING_EVENTS: '/api/v1/judging_event/all',
+  GET_JUDGING_EVENT_BY_ID: (id: number | string) =>
+    `/api/v1/judging_event/get/${id}`,
+});
+
 export const API_ROUTE = Object.freeze({
   AUTH,
   BANNER,
@@ -58,4 +64,5 @@ export const API_ROUTE = Object.freeze({
   HISTORY,
   PUBLIC_EVENT,
   PUBLIC_PARTICIPANT,
+  JUDGING_EVENT,
 });
