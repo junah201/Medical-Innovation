@@ -25,6 +25,7 @@ import {
   EventRegistration,
   Accelerating,
   ResearchSupportProject,
+  Announcement,
 } from '@/pages';
 import { Trand } from '@/pages/programs/Trand';
 
@@ -34,7 +35,11 @@ interface RouteConfig {
   HEADER: () => JSX.Element;
   FOOTER: () => JSX.Element;
   BANNER?: () => JSX.Element;
-  WRAPPER: ({ children }: { children: React.ReactNode }) => JSX.Element;
+  WRAPPER: ({
+    children,
+  }: {
+    children: React.ReactNode;
+  }) => JSX.Element;
   AUTH: boolean;
 }
 
@@ -197,6 +202,22 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/programs/trand',
     COMPONENT: Trand,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: false,
+  },
+  {
+    PATH: '/news',
+    COMPONENT: Announcement,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: false,
+  },
+  {
+    PATH: '/news/announcement',
+    COMPONENT: Announcement,
     HEADER: HomeHeader,
     FOOTER: DefaultFooter,
     WRAPPER: PageWrapper,
