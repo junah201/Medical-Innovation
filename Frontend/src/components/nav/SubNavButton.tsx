@@ -7,7 +7,11 @@ interface SubNavButtonProps {
   select: boolean;
 }
 
-export const SubNavButton = ({ text, href, select }: SubNavButtonProps) => {
+export const SubNavButton = ({
+  text,
+  href,
+  select,
+}: SubNavButtonProps) => {
   return (
     <StyledSubNavButton to={href} select={select}>
       {text}
