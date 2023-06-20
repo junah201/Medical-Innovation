@@ -35,6 +35,7 @@ import {
   SponsorshipHistory,
   SponsorshipApply,
   JudgingEventAll,
+  JudgingEventDetail,
 } from '@/pages';
 import { Sponsors } from '@/pages/support/Sponsors';
 
@@ -307,6 +308,14 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/judging/event/all',
     COMPONENT: JudgingEventAll,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: true,
+  },
+  {
+    PATH: '/judging/event/:event_id/detail',
+    COMPONENT: JudgingEventDetail,
     HEADER: HomeHeader,
     FOOTER: DefaultFooter,
     WRAPPER: PageWrapper,
