@@ -52,7 +52,7 @@ export const JudgingEventDetail = () => {
       <div>
         <PostContent content={eventDetail.description} />
         <StyledEventRegistButton
-          to={`/judging/event/${params.event_id}/register`}
+          to={`/judging/event/${params.event_id}/registration`}
         >
           참가 신청하기
         </StyledEventRegistButton>

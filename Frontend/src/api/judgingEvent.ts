@@ -4,7 +4,10 @@ import { Axios } from '@/libs/Axios';
 const unAuthAxios = new Axios();
 const authAxios = new Axios(true);
 
-export const getJudgingEvents = async (skip: number, limit: number) => {
+export const getJudgingEvents = async (
+  skip: number,
+  limit: number
+) => {
   const res = await unAuthAxios.getByParams(
     API_ROUTE.JUDGING_EVENT.GET_JUDGING_EVENTS,
     {

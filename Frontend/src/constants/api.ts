@@ -53,6 +53,10 @@ const JUDGING_EVENT = Object.freeze({
     `/api/v1/judging_event/get/${id}`,
 });
 
+const JUDGING_PARTICIPANT = Object.freeze({
+  SUBMIT_JUDGING_EVENT: '/api/v1/judging_participant/create',
+});
+
 const SPONSORING_COMPANY = Object.freeze({
   GET_SPONSORING_COMPANIES: '/api/v1/sponsoring_company/all',
 });
@@ -60,6 +64,13 @@ const SPONSORING_COMPANY = Object.freeze({
 const SPONSOR = Object.freeze({
   GET_SPONSORS: '/api/v1/sponsor/all',
   SUBMIT_SPONSOR: '/api/v1/sponsor/create',
+});
+
+const FILE = Object.freeze({
+  UPLOAD_FILE: '/api/v1/file/upload',
+  UPLOAD_FILES: '/api/v1/file/uploads',
+  DOWNLOAD_FILE: (filename: string) =>
+    `/api/v1/file/download/${filename}`,
 });
 
 export const API_ROUTE = Object.freeze({
@@ -74,6 +85,8 @@ export const API_ROUTE = Object.freeze({
   PUBLIC_EVENT,
   PUBLIC_PARTICIPANT,
   JUDGING_EVENT,
+  JUDGING_PARTICIPANT,
   SPONSORING_COMPANY,
   SPONSOR,
+  FILE,
 });

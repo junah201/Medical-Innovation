@@ -10,3 +10,4 @@ export * from './GenderInput';
 export * from './TextInput';
 export * from './RadioInput';
 export * from './TextareaInput';
+export * from './FileInput';

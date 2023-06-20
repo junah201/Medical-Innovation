@@ -12,6 +12,7 @@ import {
   TextInput,
   RadioInput,
   TextareaInput,
+  FileInput,
 } from '@/components/form';
 import { INPUT_TYPE } from '@/constants';
 import { RegisterForm, RegisterTypes, InputTypes } from '@/types';
@@ -124,6 +125,14 @@ export const ReactHookInput = ({
             register={register}
             errorMessage={errorMessage}
             placeholder={placeholder}
+          />
+        );
+      case INPUT_TYPE.FILE:
+        return (
+          <FileInput
+            id={id}
+            register={register}
+            errorMessage={errorMessage}
           />
         );
     }
