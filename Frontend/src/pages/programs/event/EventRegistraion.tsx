@@ -14,13 +14,13 @@ import { PublicEvent, RegisterField } from '@/types';
 
 export const EventRegistration = () => {
   const navigate = useNavigate();
-  const params = useParams();
+  const { id } = useParams() as { id: string };
 
   const [eventDetail, setEventDetail] = useState<PublicEvent>();
 
   useQuery({
     queryKey: 'public_event',
-    queryFn: () => getPublicEventById(params.id),
+    queryFn: () => getPublicEventById(id),
     onSuccess: (res: AxiosResponse) => {
       setEventDetail(res.data);
     },
@@ -55,13 +55,13 @@ export const EventRegistration = () => {
   });
 
   const { mutate } = useMutation(
-    (userInput) => submitPublicEvnet(params.id, userInput),
+    (userInput) => submitPublicEvnet(id, userInput),
     {
       onSuccess: () => {
         navigate(-1);
       },
       onError: (err: AxiosError) => {
-        alert('제출에 실패했습니다.' + err?.response?.data?.message);
+        alert(`제출에 실패했습니다. ${err?.response?.data?.message}`);
       },
     }
   );

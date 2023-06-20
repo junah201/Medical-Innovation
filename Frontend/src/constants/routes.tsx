@@ -1,7 +1,8 @@
 import { Banner } from '@/components/banner';
 import { DefaultFooter } from '@/components/footers';
-import { HomeHeader } from '@/components/headers';
+import { AdminHeader, HomeHeader } from '@/components/headers';
 import {
+  AdminWrapper,
   DefaultWrapper,
   HomeWrapper,
   PageWrapper,
@@ -41,13 +42,15 @@ import {
   JudgingParticipantAll,
   JudgingResultCreate,
   PrivateEventRegistration,
+  AdminUserAll,
+  AdminUserPermissionEdit,
 } from '@/pages';
 
 interface RouteConfig {
   PATH: string;
   COMPONENT: () => JSX.Element;
   HEADER: () => JSX.Element;
-  FOOTER: () => JSX.Element;
+  FOOTER?: () => JSX.Element;
   BANNER?: () => JSX.Element;
   WRAPPER: ({
     children,
@@ -55,6 +58,7 @@ interface RouteConfig {
     children: React.ReactNode;
   }) => JSX.Element;
   AUTH: boolean;
+  ADMIN?: boolean;
 }
 
 type RouteMap = RouteConfig[];
@@ -364,6 +368,29 @@ export const ROUTE_MAP: RouteMap = [
     FOOTER: DefaultFooter,
     WRAPPER: PageWrapper,
     AUTH: true,
+  },
+  {
+    PATH: '/admin',
+    COMPONENT: AdminUserAll,
+    HEADER: AdminHeader,
+    WRAPPER: AdminWrapper,
+    AUTH: true,
+  },
+  {
+    PATH: '/admin/user/all',
+    COMPONENT: AdminUserAll,
+    HEADER: AdminHeader,
+    WRAPPER: AdminWrapper,
+    AUTH: true,
+    ADMIN: true,
+  },
+  {
+    PATH: '/admin/user/permission/edit/:id',
+    COMPONENT: AdminUserPermissionEdit,
+    HEADER: AdminHeader,
+    WRAPPER: AdminWrapper,
+    AUTH: true,
+    ADMIN: true,
   },
   {
     PATH: '*',

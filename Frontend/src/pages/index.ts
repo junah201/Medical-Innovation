@@ -12,3 +12,4 @@ export * from './news';
 export * from './support';
 export * from './judging';
 export * from './privateEvent';
+export * from './admin';

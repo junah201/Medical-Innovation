@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import { getJudgingParticipants } from '@/api';
+import { getJudgingParticipants, getUsers } from '@/api';
 import { StatusButton } from '@/components';
-import { JudgingParticipant } from '@/types';
+import { JudgingParticipant, User } from '@/types';
 
 const JUDGING_PARTICIPANTS = Object.freeze({
   headers: [
@@ -17,9 +17,9 @@ const JUDGING_PARTICIPANTS = Object.freeze({
   ],
   size: 40,
   getDatas: async (
-    eventId: number | string,
     page: number,
-    size: number
+    size: number,
+    eventId: number | string
   ) => {
     return getJudgingParticipants(eventId, page, size);
   },
@@ -65,4 +65,46 @@ const JUDGING_PARTICIPANTS = Object.freeze({
   },
 });
 
-export const TABLE_CONFIG = Object.freeze({ JUDGING_PARTICIPANTS });
+const USERS = Object.freeze({
+  headers: [
+    '고유ID',
+    '이름',
+    '전화번호',
+    '이메일',
+    '생일',
+    '이메일 허용',
+    '계정 생성일',
+    '심사 권한 수정',
+  ],
+  size: 40,
+  getDatas: async (
+    eventId: number | string,
+    page: number,
+    size: number
+  ) => {
+    return getUsers(page, size);
+  },
+  itemToElement: (item: User, id: number) => {
+    return (
+      <tr key={item.id}>
+        <td>{item.id}</td>
+        <td>{item.name}</td>
+        <td>{item.phone}</td>
+        <td>{item.email}</td>
+        <td>{item.birth}</td>
+        <td>{`${item.email_enable}`}</td>
+        <td>{item.created_at.replace('T', ' ')}</td>
+        <td>
+          <Link to={`/admin/user/permission/edit/${item.id}`}>
+            심사 권한 수정
+          </Link>
+        </td>
+      </tr>
+    );
+  },
+});
+
+export const TABLE_CONFIG = Object.freeze({
+  JUDGING_PARTICIPANTS,
+  USERS,
+});

@@ -88,6 +88,15 @@ const PRIVATE_PARTICIPANT = Object.freeze({
   SUBMIT_PRIVATE_EVENT: '/api/v1/private_participant/create',
 });
 
+const USER = Object.freeze({
+  GET_USERS: '/api/v1/user/all',
+  GET_USER_BY_ID: (id: number | string) => `/api/v1/user/${id}/get`,
+  UPDATE_JUDGING_PERMISSION: (
+    userId: number | string,
+    judgingEventId: number | string
+  ) => `/api/v1/user/${userId}/judging_permission/${judgingEventId}`,
+});
+
 export const API_ROUTE = Object.freeze({
   AUTH,
   BANNER,
@@ -106,4 +115,5 @@ export const API_ROUTE = Object.freeze({
   SPONSOR,
   FILE,
   PRIVATE_PARTICIPANT,
+  USER,
 });

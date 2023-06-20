@@ -1,38 +1,34 @@
 import styled from 'styled-components';
 
-import { ERROR_MESSAGE } from '@/constants';
+import { ERROR_MESSAGE, CONFIG } from '@/constants';
 import { RegisterForm, RegisterTypes } from '@/types';
 
-interface TextInputProps {
+interface CheckboxInputProps {
   id: RegisterTypes;
   register: RegisterForm;
   errorMessage: string | undefined | any;
-  placeholder: string;
 }
 
-export const TextInput = ({
+export const CheckboxInput = ({
   id,
   register,
   errorMessage,
-  placeholder,
-}: TextInputProps) => {
+}: CheckboxInputProps) => {
   return (
     <Input
       iserror={!!errorMessage}
-      {...register(id, {
-        required: ERROR_MESSAGE.TEXT.REQUIRED,
-      })}
-      type="text"
-      placeholder={placeholder}
+      {...register(id)}
+      type="checkbox"
     />
   );
 };
 
 const Input = styled.input<{ iserror: boolean }>`
-  padding: 15px;
-  font-size: 18px;
   margin-bottom: 10px;
-  font-weight: 600;
+  margin-top: 5px;
+  margin-left: 10px;
+  width: 22.5px;
+  height: 22.5px;
   border: solid 2px
     ${(props) =>
       props.iserror
@@ -42,5 +38,9 @@ const Input = styled.input<{ iserror: boolean }>`
   background: ${({ theme }) => theme.loginBackgroundColor};
   :focus {
     outline: none;
+  }
+
+  &:checked {
+    background: ${({ theme }) => theme.validColor};
   }
 `;

@@ -10,6 +10,8 @@ export const INPUT_TYPE = Object.freeze({
   RADIO: 'radio',
   TEXTAREA: 'textarea',
   FILE: 'file',
+  SELECT: 'select',
+  CHECKBOX: 'checkbox',
 });
 
 export const REGISTER_TYPE = Object.freeze({
@@ -59,6 +61,10 @@ export const REGISTER_TYPE = Object.freeze({
   BUSINESS_SCORE8: 'business_score8',
   OTHER_SCORE1: 'other_score1',
   OTHER_COMMENT: 'other_comment',
+
+  JUDGING_EVENT: 'judging_event',
+  FIRST_JUDGING_PERMISSION: 'first_judging_permission',
+  SECOND_JUDGING_PERMISSION: 'second_judging_permission',
 });
 
 export const ERROR_MESSAGE = Object.freeze({
@@ -103,6 +109,9 @@ export const ERROR_MESSAGE = Object.freeze({
     REQUIRED: '필수 입력 항목입니다.',
     MIN_VALUE: '0점 이상 입력해주세요.',
     MAX_VALUE: '10점 이하로 입력해주세요.',
+  }),
+  SELECT: Object.freeze({
+    REQUIRED: '필수 입력 항목입니다.',
   }),
 });
 

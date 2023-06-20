@@ -12,3 +12,5 @@ export * from './RadioInput';
 export * from './TextareaInput';
 export * from './FileInput';
 export * from './JudgingForm';
+export * from './SelectInput';
+export * from './CheckboxInput';

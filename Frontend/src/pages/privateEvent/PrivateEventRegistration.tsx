@@ -51,7 +51,6 @@ export const PrivateEventRegistration = () => {
         zip_filename: res.data.filenames[1],
         event_id: params.id,
       };
-      console.log(data, params.id);
       return submitPrivateEvent(data);
     },
     {

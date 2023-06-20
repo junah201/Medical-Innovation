@@ -12,3 +12,4 @@ export * from './judgingParticipant';
 export * from './sponsoringCompany';
 export * from './file';
 export * from './judgingResult';
+export * from './user';

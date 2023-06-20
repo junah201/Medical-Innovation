@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import styled from 'styled-components';
 
 interface TableProps {
-  id: number | string;
+  id?: number | string;
   headers: string[];
   size: number;
   getDatas: (
@@ -12,15 +12,15 @@ interface TableProps {
     page: number,
     size: number
   ) => Promise<any>;
-  itemToElement: (item: any, id: number | string) => React.ReactNode;
+  itemToElement: (item: any, id: number) => React.ReactNode;
 }
 
 export const Table = ({
-  id,
   headers,
   size,
   getDatas,
   itemToElement,
+  id = '',
 }: TableProps) => {
   const [page, setPage] = useState(0);
   const [total, setTotal] = useState(0);
@@ -30,7 +30,9 @@ export const Table = ({
     queryKey: ['datas', page, total],
     queryFn: () => getDatas(id, page, size),
     onSuccess: (res: AxiosResponse) => {
-      setData(res.data.participants);
+      setData(
+        res.data.participants || res.data.users || res.data.posts
+      );
       setTotal(res.data.total);
     },
   });

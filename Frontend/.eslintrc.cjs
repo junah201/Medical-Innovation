@@ -39,6 +39,7 @@ module.exports = {
     '@typescript-eslint/no-misused-promises': 'warn',
     '@typescript-eslint/restrict-template-expressions': 'warn',
     '@typescript-eslint/no-unsafe-call': 'warn',
+    '@typescript-eslint/restrict-template-expressions': 'warn',
     'import/order': [
       'error',
       {

@@ -149,17 +149,10 @@ export class Axios {
     });
   }
 
-  put(
-    endPoint: EndPoint,
-    data: object,
-    id: ID | undefined = undefined
-  ) {
+  put(endPoint: EndPoint, data: object) {
     return this.#instance({
       method: METHOD.PUT,
-      url:
-        !!id || id === '' || id === 0
-          ? `${endPoint}/${id}`
-          : endPoint,
+      url: endPoint,
       data,
     });
   }

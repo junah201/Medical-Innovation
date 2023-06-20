@@ -1,5 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Navigate, NavigateProps, RouteProps } from 'react-router-dom';
+import {
+  Navigate,
+  NavigateProps,
+  RouteProps,
+} from 'react-router-dom';
+
 import { ROUTE } from '@/constants';
 import { checkAuth } from '@/util/validateToken';
 

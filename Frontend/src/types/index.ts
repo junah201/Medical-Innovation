@@ -16,3 +16,4 @@ export * from './sponsor';
 export * from './judgingParticipant';
 export * from './judgingResult';
 export * from './privateEvent';
+export * from './user';

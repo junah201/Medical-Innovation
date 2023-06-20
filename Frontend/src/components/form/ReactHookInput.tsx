@@ -13,6 +13,8 @@ import {
   RadioInput,
   TextareaInput,
   FileInput,
+  SelectInput,
+  CheckboxInput,
 } from '@/components/form';
 import { INPUT_TYPE } from '@/constants';
 import { RegisterForm, RegisterTypes, InputTypes } from '@/types';
@@ -135,19 +137,37 @@ export const ReactHookInput = ({
             errorMessage={errorMessage}
           />
         );
+      case INPUT_TYPE.SELECT:
+        return (
+          <SelectInput
+            id={id}
+            register={register}
+            errorMessage={errorMessage}
+            options={options}
+          />
+        );
+      case INPUT_TYPE.CHECKBOX:
+        return (
+          <CheckboxInput
+            id={id}
+            register={register}
+            errorMessage={errorMessage}
+          />
+        );
     }
   };
 
   return (
-    <Wrapper>
+    <Wrapper type={type}>
       <InputLabel value={title} errorMessage={errorMessage} />
       {content(type)}
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ type: string }>`
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: ${(props) =>
+    props.type === INPUT_TYPE.CHECKBOX ? 'row' : 'column'};
 `;
