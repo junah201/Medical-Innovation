@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { PublicEvent } from '@/types';
+import { JudgingEvent, PublicEvent } from '@/types';
 
 const { VITE_CDN_URL } = import.meta.env;
 
@@ -32,15 +32,21 @@ const StyledEvents = styled.div`
 `;
 
 interface EventsProps {
-  events: PublicEvent[];
-  itemToLink: (item: PublicEvent) => string;
+  events: PublicEvent[] | JudgingEvent[];
+  itemToLink: (item: PublicEvent | JudgingEvent) => string;
 }
 
 export const Events = ({ events, itemToLink }: EventsProps) => {
   return (
     <StyledEvents>
       {events.map((item) => {
-        return <EventItem key={item.id} item={item} itemToLink={itemToLink} />;
+        return (
+          <EventItem
+            key={item.id}
+            item={item}
+            itemToLink={itemToLink}
+          />
+        );
       })}
     </StyledEvents>
   );
@@ -108,8 +114,8 @@ const StyledEventItem = styled.div`
 `;
 
 interface EventItemProps {
-  item: PublicEvent;
-  itemToLink: (item: PublicEvent) => string;
+  item: PublicEvent | JudgingEvent;
+  itemToLink: (item: PublicEvent | JudgingEvent) => string;
 }
 
 export const EventItem = ({ item, itemToLink }: EventItemProps) => {
@@ -119,7 +125,9 @@ export const EventItem = ({ item, itemToLink }: EventItemProps) => {
         <div>
           <img
             src={`${VITE_CDN_URL}/upload/${
-              item.thumbnail_filename ? item.thumbnail_filename : 'null.png'
+              item.thumbnail_filename
+                ? item.thumbnail_filename
+                : 'null.png'
             }`}
             alt={item.name}
           />

@@ -6,10 +6,13 @@ const unAuthAxios = new Axios();
 const authAxios = new Axios(true);
 
 export const login = async ({ email, password }: AuthInfo) => {
-  const res = await unAuthAxios.postFormUnlencoded(API_ROUTE.AUTH.LOG_IN, {
-    username: email,
-    password: password,
-  });
+  const res = await unAuthAxios.postFormUnlencoded(
+    API_ROUTE.AUTH.LOG_IN,
+    {
+      username: email,
+      password: password,
+    }
+  );
 
   return res;
 };
@@ -37,6 +40,12 @@ export const signup = async ({
 
 export const validateToken = async () => {
   const res = await authAxios.get(API_ROUTE.AUTH.VALIDATE_TOKEN);
+
+  return res;
+};
+
+export const getMe = async () => {
+  const res = await authAxios.get(API_ROUTE.AUTH.ME);
 
   return res;
 };

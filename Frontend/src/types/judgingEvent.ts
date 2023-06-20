@@ -20,3 +20,13 @@ export interface JudgingEventList {
   total: number;
   events: JudgingEvent[];
 }
+
+export interface JudgingPermission {
+  id: number;
+  judging_event_id: number;
+  user_id: number;
+  first_judging_permission: boolean;
+  second_judging_permission: boolean;
+  created_at: string;
+  updated_at: string;
+}

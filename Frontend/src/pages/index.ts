@@ -10,3 +10,4 @@ export * from './error';
 export * from './programs';
 export * from './news';
 export * from './support';
+export * from './judging';
