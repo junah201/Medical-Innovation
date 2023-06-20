@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import { getJudgingParticipants, getUsers } from '@/api';
+import { getJudgingParticipants, getPosts, getUsers } from '@/api';
 import { StatusButton } from '@/components';
-import { JudgingParticipant, User } from '@/types';
+import { JudgingParticipant, Post, User } from '@/types';
 
 const JUDGING_PARTICIPANTS = Object.freeze({
   headers: [
@@ -104,7 +104,47 @@ const USERS = Object.freeze({
   },
 });
 
+const POSTS = Object.freeze({
+  headers: [
+    '번호',
+    '게시판',
+    '제목',
+    '작성자',
+    '생성일',
+    '수정일',
+    '수정',
+    '삭제',
+  ],
+  size: 40,
+  getDatas: async (
+    id: number | string,
+    page: number,
+    size: number
+  ) => {
+    return getPosts(page, size);
+  },
+  itemToElement: (item: Post, id: number) => {
+    return (
+      <tr key={item.id}>
+        <td>{item.id}</td>
+        <td>{item.board?.name}</td>
+        <td>{item.title}</td>
+        <td>{item.author_name}</td>
+        <td>{item.created_at.replace('T', ' ')}</td>
+        <td>{item.updated_at.replace('T', ' ')}</td>
+        <td>
+          <Link to={`/admin/post/edit/${item.id}`}>수정</Link>
+        </td>
+        <td>
+          <Link to={`/admin/post/delete/${item.id}`}>삭제</Link>
+        </td>
+      </tr>
+    );
+  },
+});
+
 export const TABLE_CONFIG = Object.freeze({
   JUDGING_PARTICIPANTS,
   USERS,
+  POSTS,
 });

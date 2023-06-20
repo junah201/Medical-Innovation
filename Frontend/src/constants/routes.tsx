@@ -44,6 +44,7 @@ import {
   PrivateEventRegistration,
   AdminUserAll,
   AdminUserPermissionEdit,
+  AdminPostAll,
 } from '@/pages';
 
 interface RouteConfig {
@@ -387,6 +388,14 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/admin/user/permission/edit/:id',
     COMPONENT: AdminUserPermissionEdit,
+    HEADER: AdminHeader,
+    WRAPPER: AdminWrapper,
+    AUTH: true,
+    ADMIN: true,
+  },
+  {
+    PATH: '/admin/post/all',
+    COMPONENT: AdminPostAll,
     HEADER: AdminHeader,
     WRAPPER: AdminWrapper,
     AUTH: true,
