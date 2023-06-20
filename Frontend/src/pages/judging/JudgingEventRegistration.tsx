@@ -75,7 +75,6 @@ export const JudgingEventRegistration = () => {
         zip_filename: res.data.filenames[1],
         event_id: params.event_id,
       };
-      console.log(data);
       return submitJudgingEvent(data);
     },
     {

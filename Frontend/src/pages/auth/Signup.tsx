@@ -7,7 +7,12 @@ import styled from 'styled-components';
 
 import { signup } from '@/api/auth';
 import { ReactHookInput } from '@/components/form';
-import { INPUT_TYPE, ROUTE, COOKIE, REGISTER_TYPE } from '@/constants';
+import {
+  INPUT_TYPE,
+  ROUTE,
+  COOKIE,
+  REGISTER_TYPE,
+} from '@/constants';
 import { getCookie } from '@/libs/Cookie';
 import { RegisterField } from '@/types';
 
@@ -98,7 +103,10 @@ export const Signup = () => {
             placeholder="비밀번호 확인"
           />
           <LoginWrapper>
-            <Submit isvalid={!Object.keys(errors)[0]} disabled={isSubmitting}>
+            <Submit
+              isvalid={!Object.keys(errors)[0]}
+              disabled={isSubmitting}
+            >
               회원가입
             </Submit>
           </LoginWrapper>
@@ -157,7 +165,9 @@ const Submit = styled.button<{ isvalid: boolean }>`
   margin-top: 10px;
   border-radius: 5px;
   background: ${(props) =>
-    props.isvalid ? props.theme.pointColor : props.theme.loginDisabledColor};
+    props.isvalid
+      ? props.theme.pointColor
+      : props.theme.loginDisabledColor};
   color: #ffffff;
   font-weight: 600;
   border: none;

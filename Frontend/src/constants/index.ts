@@ -5,3 +5,5 @@ export * from './route';
 export * from './form';
 export * from './layout';
 export * from './mediaQuery';
+export * from './tableConfig';
+export * from './judgingConfig';

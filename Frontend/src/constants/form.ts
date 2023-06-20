@@ -38,6 +38,27 @@ export const REGISTER_TYPE = Object.freeze({
   SPONSORSHIP_DETAIL: 'detail',
   PROFILE_FILE: 'profile_filename',
   ZIP_FILE: 'zip_filename',
+
+  TECHNICAL_SCORE1: 'technical_score1',
+  TECHNICAL_SCORE2: 'technical_score2',
+  TECHNICAL_SCORE3: 'technical_score3',
+  TECHNICAL_SCORE4: 'technical_score4',
+  TECHNICAL_SCORE5: 'technical_score5',
+  TECHNICAL_SCORE6: 'technical_score6',
+  MARKETABILITY_SCORE1: 'marketability_score1',
+  MARKETABILITY_SCORE2: 'marketability_score2',
+  MARKETABILITY_SCORE3: 'marketability_score3',
+  MARKETABILITY_SCORE4: 'marketability_score4',
+  BUSINESS_SCORE1: 'business_score1',
+  BUSINESS_SCORE2: 'business_score2',
+  BUSINESS_SCORE3: 'business_score3',
+  BUSINESS_SCORE4: 'business_score4',
+  BUSINESS_SCORE5: 'business_score5',
+  BUSINESS_SCORE6: 'business_score6',
+  BUSINESS_SCORE7: 'business_score7',
+  BUSINESS_SCORE8: 'business_score8',
+  OTHER_SCORE1: 'other_score1',
+  OTHER_COMMENT: 'other_comment',
 });
 
 export const ERROR_MESSAGE = Object.freeze({
@@ -78,6 +99,11 @@ export const ERROR_MESSAGE = Object.freeze({
   FILE: Object.freeze({
     REQUIRED: '필수 입력 항목입니다.',
   }),
+  OTHER_SCORE1: Object.freeze({
+    REQUIRED: '필수 입력 항목입니다.',
+    MIN_VALUE: '0점 이상 입력해주세요.',
+    MAX_VALUE: '10점 이하로 입력해주세요.',
+  }),
 });
 
 export const CONFIG = Object.freeze({
@@ -93,5 +119,9 @@ export const CONFIG = Object.freeze({
   PASSWORD: Object.freeze({
     MIN_LENGTH: 8,
     MAX_LENGTH: 100,
+  }),
+  OTHER_SCORE1: Object.freeze({
+    MIN_VALUE: 0,
+    MAX_VALUE: 10,
   }),
 });

@@ -55,6 +55,17 @@ const JUDGING_EVENT = Object.freeze({
 
 const JUDGING_PARTICIPANT = Object.freeze({
   SUBMIT_JUDGING_EVENT: '/api/v1/judging_participant/create',
+  GET_JUDGING_PARTICIPANTS: (id: number | string) =>
+    `/api/v1/judging_participant/${id}/all`,
+  GET_JUDGING_PARTICIPANT_BY_ID: (id: number | string) =>
+    `/api/v1/judging_participant/get/${id}`,
+});
+
+const JUDGING_RESULT = Object.freeze({
+  SUBMIT_JUDGING_RESULT: '/api/v1/judging_result/create',
+  GET_JUDGING_RESULT: '/api/v1/judging_result/get',
+  GET_JUDGING_RESULT_BY_ID: (id: number | string) =>
+    `/api/v1/judging_result/get/${id}`,
 });
 
 const SPONSORING_COMPANY = Object.freeze({
@@ -86,6 +97,7 @@ export const API_ROUTE = Object.freeze({
   PUBLIC_PARTICIPANT,
   JUDGING_EVENT,
   JUDGING_PARTICIPANT,
+  JUDGING_RESULT,
   SPONSORING_COMPANY,
   SPONSOR,
   FILE,

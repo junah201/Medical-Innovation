@@ -11,3 +11,4 @@ export * from './judgingEvent';
 export * from './judgingParticipant';
 export * from './sponsoringCompany';
 export * from './file';
+export * from './judgingResult';

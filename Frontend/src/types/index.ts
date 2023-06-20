@@ -13,3 +13,5 @@ export * from './publicEvent';
 export * from './publicParticipant';
 export * from './judgingEvent';
 export * from './sponsor';
+export * from './judgingParticipant';
+export * from './judgingResult';
