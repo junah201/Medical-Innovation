@@ -5,14 +5,19 @@ import { useQuery, useMutation } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { getPublicEventById } from '@/api';
+import { getPublicEventById, uploadFiles } from '@/api';
+import { submitPrivateEvent } from '@/api/privateParticipant';
 import { submitPublicEvnet } from '@/api/PublicParticipant';
 import { Message, PostContent } from '@/components';
 import { ReactHookInput } from '@/components/form';
-import { INPUT_TYPE, REGISTER_TYPE } from '@/constants';
-import { PublicEvent, RegisterField } from '@/types';
+import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
+import {
+  PrivateEventSubmitInfo,
+  PublicEvent,
+  RegisterField,
+} from '@/types';
 
-export const EventRegistration = () => {
+export const PrivateEventRegistration = () => {
   const navigate = useNavigate();
   const params = useParams();
 
@@ -32,33 +37,26 @@ export const EventRegistration = () => {
     formState: { errors, isSubmitting },
   } = useForm<RegisterField>({
     mode: 'onChange',
-    defaultValues: {
-      name: '',
-      english_name: '',
-      gender: '남자',
-      birth: '2000-01-01',
-      phone: '',
-      email: '',
-      organization_type: '공공기관',
-      organization_name: '',
-      organization_english_name: '',
-      job_position: '',
-      address: '',
-      final_degree: '학사 과정 중',
-      engagement_type: '현장 참가',
-      participant_motivation: '',
-      participant_type: '',
-      interest_disease: '',
-      interest_field: '연구분야',
-      interest_field_detail: '',
-    },
   });
 
   const { mutate } = useMutation(
-    (userInput) => submitPublicEvnet(params.id, userInput),
+    async (userInput) => {
+      const res = await uploadFiles([
+        userInput.profile_filename[0],
+        userInput.zip_filename[0],
+      ]);
+      const data: JudgingEventSubmitInfo = {
+        ...userInput,
+        profile_filename: res.data.filenames[0],
+        zip_filename: res.data.filenames[1],
+        event_id: params.id,
+      };
+      console.log(data, params.id);
+      return submitPrivateEvent(data);
+    },
     {
       onSuccess: () => {
-        navigate(-1);
+        navigate(ROUTE.HOME);
       },
       onError: (err: AxiosError) => {
         alert('제출에 실패했습니다.' + err?.response?.data?.message);
@@ -221,16 +219,6 @@ export const EventRegistration = () => {
           ]}
         />
         <ReactHookInput
-          id={REGISTER_TYPE.ENGAGEMENT_TYPE}
-          title="행사 참여 방식"
-          type={INPUT_TYPE.RADIO}
-          register={register}
-          errorMessage={
-            errors[REGISTER_TYPE.ENGAGEMENT_TYPE]?.message
-          }
-          options={['현장 참가', '유튜브 라이브 시청', '기타']}
-        />
-        <ReactHookInput
           id={REGISTER_TYPE.PARTICIPANT_MOTIVATION}
           title="참여 동기"
           type={INPUT_TYPE.TEXT}
@@ -241,24 +229,18 @@ export const EventRegistration = () => {
           placeholder="지인 추천"
         />
         <ReactHookInput
-          id={REGISTER_TYPE.PARTICIPANT_TYPE}
-          title="기술 구분"
-          type={INPUT_TYPE.TEXT}
+          id={REGISTER_TYPE.PROFILE_FILE}
+          title="증명사진"
+          type={INPUT_TYPE.FILE}
           register={register}
-          errorMessage={
-            errors[REGISTER_TYPE.PARTICIPANT_TYPE]?.message
-          }
-          placeholder="기술 구분"
+          errorMessage={errors[REGISTER_TYPE.PROFILE_FILE]?.message}
         />
         <ReactHookInput
-          id={REGISTER_TYPE.INTEREST_DISEASE}
-          title="타겟 질환 / 범위"
-          type={INPUT_TYPE.TEXT}
+          id={REGISTER_TYPE.ZIP_FILE}
+          title="제출용 압축파일"
+          type={INPUT_TYPE.FILE}
           register={register}
-          errorMessage={
-            errors[REGISTER_TYPE.INTEREST_DISEASE]?.message
-          }
-          placeholder="타겟 질환 / 범위"
+          errorMessage={errors[REGISTER_TYPE.ZIP_FILE]?.message}
         />
         <Button
           isvalid={!Object.keys(errors)[0]}

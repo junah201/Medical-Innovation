@@ -84,6 +84,10 @@ const FILE = Object.freeze({
     `/api/v1/file/download/${filename}`,
 });
 
+const PRIVATE_PARTICIPANT = Object.freeze({
+  SUBMIT_PRIVATE_EVENT: '/api/v1/private_participant/create',
+});
+
 export const API_ROUTE = Object.freeze({
   AUTH,
   BANNER,
@@ -101,4 +105,5 @@ export const API_ROUTE = Object.freeze({
   SPONSORING_COMPANY,
   SPONSOR,
   FILE,
+  PRIVATE_PARTICIPANT,
 });

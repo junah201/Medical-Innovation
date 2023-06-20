@@ -34,13 +34,14 @@ import {
   Benefits,
   SponsorshipHistory,
   SponsorshipApply,
+  Sponsors,
   JudgingEventAll,
   JudgingEventDetail,
   JudgingEventRegistration,
   JudgingParticipantAll,
   JudgingResultCreate,
+  PrivateEventRegistration,
 } from '@/pages';
-import { Sponsors } from '@/pages/support/Sponsors';
 
 interface RouteConfig {
   PATH: string;
@@ -343,6 +344,22 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/judging/result/:event_id/:participant_id/:nth/create',
     COMPONENT: JudgingResultCreate,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: true,
+  },
+  {
+    PATH: '/judging/result/:event_id/:participant_id/:nth/create',
+    COMPONENT: JudgingResultCreate,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: true,
+  },
+  {
+    PATH: '/private_event/:id/registraion',
+    COMPONENT: PrivateEventRegistration,
     HEADER: HomeHeader,
     FOOTER: DefaultFooter,
     WRAPPER: PageWrapper,
