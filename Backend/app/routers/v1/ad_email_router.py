@@ -21,7 +21,7 @@ def create_ad_email(ad_email_create: schemas.AdEmailCreate,  db: Session = Depen
             detail="You do not have permission to create a ad_email"
         )
 
-    db_ad_email : Optional[models.AdEmail] = db.query(models.AdEmail).filter(
+    db_ad_email: Optional[models.AdEmail] = db.query(models.AdEmail).filter(
         models.AdEmail.email == ad_email_create.email).first()
 
     if db_ad_email:
@@ -91,6 +91,10 @@ def send_ad_email_all(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="You do not have permission to create a ad_email"
         )
+
+    if not files:
+        files = []
+
     db_ad_emails = crud.get_ad_emails(db=db, skip=0, limit=10000000)
 
     for db_ad_email in db_ad_emails.ad_emails:
@@ -104,12 +108,15 @@ def send_ad_email_all(
 
 
 @router.post("/send/one", status_code=status.HTTP_200_OK)
-async def send_ad_email_one(email_content: schemas.AdEmailContent = Depends(schemas.AdEmailContent), files: List[UploadFile] = [], current_user: models.User = Depends(get_current_user)):
+async def send_ad_email_one(email_content: schemas.AdEmailContent = Depends(schemas.AdEmailContent), files: List[UploadFile] = None, current_user: models.User = Depends(get_current_user)):
     if not current_user.is_admin:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="You do not have permission to send a test ad_email"
         )
+
+    if not files:
+        files = []
 
     send_email(
         receiver_address=email_content.email,
