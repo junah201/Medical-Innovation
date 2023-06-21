@@ -14,3 +14,5 @@ export * from './FileInput';
 export * from './JudgingForm';
 export * from './SelectInput';
 export * from './CheckboxInput';
+export * from './HtmlInput';
+export * from './FilesInput';

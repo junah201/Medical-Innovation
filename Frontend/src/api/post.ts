@@ -52,6 +52,29 @@ export const getPostBoards = async (skip: number, limit: number) => {
   return res;
 };
 
+export const uploadPost = async (
+  title: string,
+  boardId: number | string,
+  content: string,
+  files: File[]
+) => {
+  const formData = new FormData();
+
+  formData.append('title', title);
+  formData.append('board_id', boardId);
+  formData.append('content', content);
+  files.forEach((file) => {
+    formData.append('files', file);
+  });
+
+  const res = await authAxios.postMultipartFormData(
+    API_ROUTE.POST.UPLOAD_POST,
+    formData
+  );
+
+  return res;
+};
+
 export const updatePostById = async (
   id: number | string,
   title: string,
@@ -65,6 +88,14 @@ export const updatePostById = async (
       board_id: boardId,
       content: content,
     }
+  );
+
+  return res;
+};
+
+export const deletePostById = async (id: number | string) => {
+  const res = await authAxios.delete(
+    API_ROUTE.POST.DELETE_POST_BY_ID(id)
   );
 
   return res;

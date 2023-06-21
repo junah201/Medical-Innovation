@@ -42,7 +42,7 @@ export const Table = ({
   return (
     <>
       <span>total : {total}</span>
-      <StyledAdminTable>
+      <TableWrapper>
         <thead>
           <tr>
             {headers.map((header, index) => {
@@ -55,40 +55,40 @@ export const Table = ({
             return itemToElement(item, id);
           })}
         </tbody>
-      </StyledAdminTable>
-      <StyledBoardPageButtonWrapper>
-        <StyledBoardPageButton
+      </TableWrapper>
+      <PageNationWrapper>
+        <Button
           onClick={() => setPage(Math.max(0, page - size))}
           disabled={page <= 0}
         >
           {'<'}
-        </StyledBoardPageButton>
+        </Button>
         {Array.from({ length: Math.ceil(total / size) }).map(
           (_, index) => {
             return (
-              <StyledBoardPageButton
+              <Button
                 onClick={() => setPage(index * size)}
                 disabled={index * size === page}
                 key={index}
               >
                 {index + 1}
-              </StyledBoardPageButton>
+              </Button>
             );
           }
         )}
 
-        <StyledBoardPageButton
+        <Button
           onClick={() => setPage(Math.min(total, page + size))}
           disabled={page >= total / size - 1}
         >
           {'>'}
-        </StyledBoardPageButton>
-      </StyledBoardPageButtonWrapper>
+        </Button>
+      </PageNationWrapper>
     </>
   );
 };
 
-const StyledAdminTable = styled.table`
+const TableWrapper = styled.table`
   border: 1px solid silver;
   padding: 0;
   margin: 0;
@@ -110,11 +110,30 @@ const StyledAdminTable = styled.table`
   }
 
   & tr {
+    height: 30px;
     border-bottom: 1pt solid #799fcb;
     text-align: center;
     justify-content: center;
     padding: 2px;
-    height: 30px;
+  }
+
+  & td:nth-child(3) {
+    margin-top: 0.25rem;
+    height: 18px;
+    overflow: hidden;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    word-wrap: brek-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+
+  & button {
+    background-color: ${(props) => props.theme.loginBackgroundColor};
+    padding: 2px;
+    border-radius: 4px;
+    border: 2px solid ${(props) => props.theme.pointColor};
   }
 
   & a {
@@ -133,14 +152,14 @@ const StyledAdminTable = styled.table`
   }
 `;
 
-const StyledBoardPageButtonWrapper = styled.div`
+const PageNationWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 `;
 
-const StyledBoardPageButton = styled.button`
+const Button = styled.button`
   background-color: #ffffff;
   padding: 8px;
   width: 35px;

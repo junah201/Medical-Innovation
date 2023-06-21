@@ -176,10 +176,10 @@ export class Axios {
     });
   }
 
-  delete(endPoint: EndPoint, id: ID) {
+  delete(endPoint: EndPoint) {
     return this.#instance({
       method: METHOD.DELETE,
-      url: `${endPoint}/${id}`,
+      url: `${endPoint}`,
     });
   }
 }

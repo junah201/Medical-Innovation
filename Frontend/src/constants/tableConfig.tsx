@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { getJudgingParticipants, getPosts, getUsers } from '@/api';
 import { StatusButton } from '@/components';
+import { AlertDeletePost } from '@/libs/Alert';
 import { JudgingParticipant, Post, User } from '@/types';
 
 const JUDGING_PARTICIPANTS = Object.freeze({
@@ -136,7 +137,13 @@ const POSTS = Object.freeze({
           <Link to={`/admin/post/edit/${item.id}`}>수정</Link>
         </td>
         <td>
-          <Link to={`/admin/post/delete/${item.id}`}>삭제</Link>
+          <button
+            onClick={() => {
+              AlertDeletePost(item.id);
+            }}
+          >
+            삭제
+          </button>
         </td>
       </tr>
     );

@@ -13,4 +13,4 @@ export type RegisterTypes = RegisterSchema[RegisterKeys];
 export type RegisterForm = UseFormRegister<RegisterField>;
 
 /* auth */
-export type RegisterField = Record<RegisterTypes, string>;
+export type RegisterField = Record<RegisterTypes, any>;

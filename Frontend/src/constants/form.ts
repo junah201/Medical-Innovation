@@ -12,6 +12,7 @@ export const INPUT_TYPE = Object.freeze({
   FILE: 'file',
   SELECT: 'select',
   CHECKBOX: 'checkbox',
+  HTML: 'html',
 });
 
 export const REGISTER_TYPE = Object.freeze({
@@ -69,6 +70,8 @@ export const REGISTER_TYPE = Object.freeze({
   TITLE: 'title',
   BOARD_ID: 'board_id',
   CONTENT: 'content',
+
+  FILES: 'files',
 });
 
 export const ERROR_MESSAGE = Object.freeze({

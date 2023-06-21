@@ -37,4 +37,12 @@ export const ROUTE = Object.freeze({
   ADVISORS: '/advisors',
   PREPARING: '/preparing',
   PRIVACY_POLICY: '/privacy-policy',
+  ADMIN: Object.freeze({
+    ROOT: '/admin',
+    POST: Object.freeze({
+      ROOT: '/admin/post',
+      UPLOAD: '/admin/post/upload',
+      ALL: '/admin/post/all',
+    }),
+  }),
 });

@@ -24,6 +24,8 @@ const POST = Object.freeze({
   GET_POST_BY_ID: (id: number | string) => `/api/v1/post/${id}`,
   GET_POST_BOARDS: '/api/v1/board/all',
   UPDATE_POST_BY_ID: (id: number | string) => `/api/v1/post/${id}`,
+  UPLOAD_POST: '/api/v1/post/create',
+  DELETE_POST_BY_ID: (id: number | string) => `/api/v1/post/${id}`,
 });
 
 const POPUP = Object.freeze({
