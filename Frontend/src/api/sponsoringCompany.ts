@@ -58,3 +58,21 @@ export const uploadSponsoringCompany = async (
 
   return res;
 };
+
+export const updateSponsoringCompanyById = async (
+  id: number | string,
+  name: string,
+  link: string,
+  year: string
+) => {
+  const res = await authAxios.put(
+    API_ROUTE.SPONSORING_COMPANY.UPDATE_SPONSORING_COMPANY_BY_ID(id),
+    {
+      name: name,
+      link: link,
+      year: year,
+    }
+  );
+
+  return res;
+};

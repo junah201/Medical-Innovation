@@ -87,6 +87,8 @@ const SPONSORING_COMPANY = Object.freeze({
   GET_SPONSORING_COMPANY_BY_ID: (id: number | string) =>
     `/api/v1/sponsoring_company/get/${id}`,
   UPLOAD_SPONSORING_COMPANY: '/api/v1/sponsoring_company/create',
+  UPDATE_SPONSORING_COMPANY_BY_ID: (id: number | string) =>
+    `/api/v1/sponsoring_company/update/${id}`,
 });
 
 const SPONSOR = Object.freeze({
