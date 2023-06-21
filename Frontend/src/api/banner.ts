@@ -56,3 +56,29 @@ export const deleteBannerById = async (id: number | string) => {
 
   return res;
 };
+
+export const getBannerById = async (id: number | string) => {
+  const res = await authAxios.get(
+    API_ROUTE.BANNER.GET_BANNER_BY_ID(id)
+  );
+
+  return res;
+};
+
+export const updateBannerById = async (
+  id: number | string,
+  name: string,
+  link: string,
+  bannerEndAt: string
+) => {
+  const res = await authAxios.put(
+    API_ROUTE.BANNER.UPDATE_BANNER_BY_ID(id),
+    {
+      name: name,
+      link: link,
+      banner_end_at: bannerEndAt,
+    }
+  );
+
+  return res;
+};

@@ -1,5 +1,5 @@
-export * from './auth';
 export * from './Home';
+export * from './auth';
 export * from './error/NotFound';
 export * from './PrivacyPolicy';
 export * from './Mou';
