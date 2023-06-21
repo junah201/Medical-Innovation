@@ -8,6 +8,7 @@ const AUTH = Object.freeze({
 const BANNER = Object.freeze({
   GET_ACTIVE_BANNERS: '/api/v1/banner/all/active',
   GET_BANNERS: '/api/v1/banner/all',
+  UPLOAD_BANNER: '/api/v1/banner/create',
 });
 
 const MOU = Object.freeze({

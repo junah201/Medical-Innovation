@@ -6,7 +6,7 @@ import {
   PasswordConfirmInput,
   NameInput,
   PhoneInput,
-  BirthInput,
+  DateInput,
   InputLabel,
   GenderInput,
   TextInput,
@@ -90,9 +90,9 @@ export const ReactHookInput = ({
             placeholder={placeholder}
           />
         );
-      case INPUT_TYPE.BIRTH:
+      case INPUT_TYPE.DATE:
         return (
-          <BirthInput
+          <DateInput
             id={id}
             register={register}
             errorMessage={errorMessage}

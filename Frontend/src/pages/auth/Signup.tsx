@@ -73,7 +73,7 @@ export const Signup = () => {
           <ReactHookInput
             id={REGISTER_TYPE.BIRTH}
             title="생년월일"
-            type={INPUT_TYPE.BIRTH}
+            type={INPUT_TYPE.DATE}
             register={register}
             errorMessage={errors.birth?.message}
             placeholder=""

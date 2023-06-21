@@ -1,11 +1,10 @@
 import { AxiosError } from 'axios';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useMutation, useQuery } from 'react-query';
+import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { getPostBoards, uploadPost } from '@/api';
+import { uploadBanner } from '@/api';
 import {
   ReactHookInput,
   HtmlInput,
@@ -17,9 +16,8 @@ import { RegisterField } from '@/types';
 
 import '@/static/css/content-styles.css';
 
-export const AdminPostUpload = () => {
+export const AdminBannerUpload = () => {
   const navigate = useNavigate();
-  const [boards, setBoards] = useState([]);
 
   const {
     watch,
@@ -31,32 +29,25 @@ export const AdminPostUpload = () => {
   } = useForm<RegisterField>({
     mode: 'onChange',
     defaultValues: {
-      title: '',
-      board_id: '1',
-      content: '',
-      files: [],
-    },
-  });
-
-  useQuery('boards', () => getPostBoards(0, 10000), {
-    retry: false,
-    onSuccess: (res) => {
-      setBoards(res.data);
+      name: '',
+      link: '',
+      file: [],
+      banner_end_at: '',
     },
   });
 
   const { mutate } = useMutation(
     (userInput) =>
-      uploadPost(
-        userInput?.title,
-        userInput?.board_id,
-        userInput?.content,
-        userInput?.files
+      uploadBanner(
+        userInput?.name,
+        userInput?.link,
+        userInput?.file[0],
+        `${userInput?.banner_end_at}T00:00:00.000Z`
       ),
     {
       onSuccess: () => {
         Toast('업로드 완료', 'success');
-        navigate(ROUTE.ADMIN.POST.ALL);
+        navigate(ROUTE.ADMIN.BANNER.ALL);
       },
       onError: (err: AxiosError) => {
         Toast(
@@ -71,39 +62,36 @@ export const AdminPostUpload = () => {
 
   return (
     <Wrapper>
-      <h1>게시물 업로드</h1>
+      <h1>배너 업로드</h1>
       <Form onSubmit={handleSubmit(onValid)}>
         <ReactHookInput
-          id={REGISTER_TYPE.TITLE}
-          title="제목"
+          id={REGISTER_TYPE.NAME}
+          title="회사명"
+          placeholder='회사명을 입력해주세요. ex) "플레이데이터"'
           type={INPUT_TYPE.TEXT}
           register={register}
-          errorMessage={errors[REGISTER_TYPE.TITLE]?.message}
+          errorMessage={errors[REGISTER_TYPE.NAME]?.message}
         />
         <ReactHookInput
-          id={REGISTER_TYPE.BOARD_ID}
-          title="게시판"
-          type={INPUT_TYPE.SELECT}
+          id={REGISTER_TYPE.LINK}
+          title="사이트 링크"
+          placeholder="만약 없다면 공백 하나만 입력해주세요."
+          type={INPUT_TYPE.TEXT}
           register={register}
-          errorMessage={errors[REGISTER_TYPE.BOARD_ID]?.message}
-          options={boards.map((board) => {
-            return {
-              value: board.id,
-              label: board.name,
-            };
-          })}
+          errorMessage={errors[REGISTER_TYPE.LINK]?.message}
         />
-        <HtmlInput
-          title="본문"
-          defaultData={watch()[REGISTER_TYPE.CONTENT]}
-          onChange={(data) => setValue(REGISTER_TYPE.CONTENT, data)}
-          errorMessage={errors[REGISTER_TYPE.CONTENT]?.message}
+        <ReactHookInput
+          id={REGISTER_TYPE.BANNER_END_AT}
+          title="배너 종료 시점"
+          type={INPUT_TYPE.DATE}
+          register={register}
+          errorMessage={errors[REGISTER_TYPE.BANNER_END_AT]?.message}
         />
         <FilesInput
-          title="첨부파일"
-          id={REGISTER_TYPE.FILES}
+          title="배너 이미지"
+          id={REGISTER_TYPE.FILE}
           control={control}
-          maxFiles={10}
+          maxFiles={1}
         />
         <Submit
           isvalid={!Object.keys(errors)[0]}

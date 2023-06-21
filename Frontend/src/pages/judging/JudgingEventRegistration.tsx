@@ -125,7 +125,7 @@ export const JudgingEventRegistration = () => {
         <ReactHookInput
           id={REGISTER_TYPE.BIRTH}
           title="생년월일"
-          type={INPUT_TYPE.BIRTH}
+          type={INPUT_TYPE.DATE}
           register={register}
           errorMessage={errors[REGISTER_TYPE.BIRTH]?.message}
           placeholder="2000-01-01"

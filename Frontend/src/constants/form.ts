@@ -4,7 +4,7 @@ export const INPUT_TYPE = Object.freeze({
   CONFIRM_PASSWORD: 'confirmPassword',
   NAME: 'name',
   PHONE: 'phone',
-  BIRTH: 'birth',
+  DATE: 'date',
   GENDER: 'gender',
   TEXT: 'text',
   RADIO: 'radio',
@@ -72,6 +72,11 @@ export const REGISTER_TYPE = Object.freeze({
   CONTENT: 'content',
 
   FILES: 'files',
+
+  LINK: 'link',
+  FILE: 'file',
+  YEAR: 'year',
+  BANNER_END_AT: 'banner_end_at',
 });
 
 export const ERROR_MESSAGE = Object.freeze({
@@ -97,7 +102,7 @@ export const ERROR_MESSAGE = Object.freeze({
     REQUIRED: '필수 입력 항목입니다.',
     NOT_MATCH: '비밀번호가 일치하지 않습니다.',
   }),
-  BIRTH: Object.freeze({
+  DATE: Object.freeze({
     REQUIRED: '필수 입력 항목입니다.',
   }),
   TEXT: Object.freeze({

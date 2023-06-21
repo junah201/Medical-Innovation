@@ -27,3 +27,24 @@ export const getBanners = async (skip: number, limit: number) => {
 
   return res;
 };
+
+export const uploadBanner = async (
+  name: string,
+  link: string,
+  file: File,
+  banner_end_at: string
+) => {
+  const formData = new FormData();
+  formData.append('name', name);
+  formData.append('link', link);
+  formData.append('file', file);
+  formData.append('year', '2023');
+  formData.append('banner_end_at', banner_end_at);
+
+  const res = await authAxios.postMultipartFormData(
+    API_ROUTE.BANNER.UPLOAD_BANNER,
+    formData
+  );
+
+  return res;
+};
