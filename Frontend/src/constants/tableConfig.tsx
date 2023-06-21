@@ -9,7 +9,11 @@ import {
   getUsers,
 } from '@/api';
 import { StatusButton } from '@/components';
-import { AlertDeletBanner, AlertDeletePost } from '@/libs/Alert';
+import {
+  AlertDeletBanner,
+  AlertDeletePost,
+  AlertDeleteSponsoringCompany,
+} from '@/libs/Alert';
 import { Banner, JudgingParticipant, Post, User } from '@/types';
 import { SponsoringCompany } from '@/types/sponsoringCompany';
 
@@ -253,9 +257,13 @@ const SPONSORING_COMPANY = Object.freeze({
           </Link>
         </td>
         <td>
-          <Link to={`/admin/sponsoring_company/delete/${item.id}`}>
+          <button
+            onClick={() => {
+              AlertDeleteSponsoringCompany(item.id);
+            }}
+          >
             삭제
-          </Link>
+          </button>
         </td>
       </tr>
     );

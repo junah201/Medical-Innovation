@@ -18,3 +18,13 @@ export const getSponsoringCompanies = async (
 
   return res;
 };
+
+export const deleteSponsoringCompanyById = async (
+  id: number | string
+) => {
+  const res = await authAxios.delete(
+    API_ROUTE.SPONSORING_COMPANY.DELETE_SPONSORING_COMPANY_BY_ID(id)
+  );
+
+  return res;
+};
