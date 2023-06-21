@@ -84,6 +84,9 @@ const SPONSORING_COMPANY = Object.freeze({
   GET_SPONSORING_COMPANIES: '/api/v1/sponsoring_company/all',
   DELETE_SPONSORING_COMPANY_BY_ID: (id: number | string) =>
     `/api/v1/sponsoring_company/${id}`,
+  GET_SPONSORING_COMPANY_BY_ID: (id: number | string) =>
+    `/api/v1/sponsoring_company/get/${id}`,
+  UPLOAD_SPONSORING_COMPANY: '/api/v1/sponsoring_company/create',
 });
 
 const SPONSOR = Object.freeze({

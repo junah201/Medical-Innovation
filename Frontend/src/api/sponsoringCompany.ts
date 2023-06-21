@@ -28,3 +28,33 @@ export const deleteSponsoringCompanyById = async (
 
   return res;
 };
+
+export const getSponsoringCompanyById = async (
+  id: number | string
+) => {
+  const res = await authAxios.get(
+    API_ROUTE.SPONSORING_COMPANY.GET_SPONSORING_COMPANY_BY_ID(id)
+  );
+
+  return res;
+};
+
+export const uploadSponsoringCompany = async (
+  name: string,
+  link: string,
+  year: string,
+  file: File
+) => {
+  const formData = new FormData();
+  formData.append('name', name);
+  formData.append('link', link);
+  formData.append('year', year);
+  formData.append('file', file);
+
+  const res = await authAxios.postMultipartFormData(
+    API_ROUTE.SPONSORING_COMPANY.UPLOAD_SPONSORING_COMPANY,
+    formData
+  );
+
+  return res;
+};

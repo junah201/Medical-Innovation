@@ -50,6 +50,7 @@ import {
   AdminBannerAll,
   AdminBannerEdit,
   AdminSponsoringCompanyAll,
+  AdminSponsoringCompanyUpload,
 } from '@/pages';
 
 interface RouteConfig {
@@ -457,6 +458,14 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/admin/sponsoring_company/all',
     COMPONENT: AdminSponsoringCompanyAll,
+    HEADER: AdminHeader,
+    WRAPPER: AdminWrapper,
+    AUTH: true,
+    ADMIN: true,
+  },
+  {
+    PATH: '/admin/sponsoring_company/upload',
+    COMPONENT: AdminSponsoringCompanyUpload,
     HEADER: AdminHeader,
     WRAPPER: AdminWrapper,
     AUTH: true,
