@@ -3,11 +3,16 @@ import styled from 'styled-components';
 import { ERROR_MESSAGE } from '@/constants';
 import { RegisterForm, RegisterTypes } from '@/types';
 
+interface Option {
+  value: string | number;
+  label: string | number;
+}
+
 interface SelectInputProps {
   id: RegisterTypes;
   register: RegisterForm;
   errorMessage: string | undefined | any;
-  options: string[];
+  options: Option[];
 }
 
 export const SelectInput = ({
@@ -25,8 +30,8 @@ export const SelectInput = ({
         iserror={!!errorMessage}
       >
         {options.map((option) => (
-          <option key={option} value={option}>
-            {option}
+          <option key={option.value} value={option.value}>
+            {option.label}
           </option>
         ))}
       </Input>

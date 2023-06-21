@@ -19,6 +19,11 @@ import {
 import { INPUT_TYPE } from '@/constants';
 import { RegisterForm, RegisterTypes, InputTypes } from '@/types';
 
+interface Option {
+  value: string | number;
+  label: string | number;
+}
+
 interface ReactHookInputProps {
   id: RegisterTypes;
   title: string;
@@ -26,7 +31,7 @@ interface ReactHookInputProps {
   register: RegisterForm;
   errorMessage: string | undefined | any;
   placeholder?: string;
-  options?: string[];
+  options?: Option[];
 }
 
 export const ReactHookInput = ({

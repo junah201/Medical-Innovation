@@ -3,11 +3,16 @@ import styled from 'styled-components';
 import { ERROR_MESSAGE } from '@/constants';
 import { RegisterForm, RegisterTypes } from '@/types';
 
+interface Option {
+  value: string | number;
+  label: string | number;
+}
+
 interface RadioInputProps {
   id: RegisterTypes;
   register: RegisterForm;
   errorMessage: string | undefined | any;
-  options: string[];
+  options: Option[];
 }
 
 export const RadioInput = ({
@@ -27,10 +32,10 @@ export const RadioInput = ({
                 {...register(id, {
                   required: ERROR_MESSAGE.RADIO.REQUIRED,
                 })}
-                value={option}
+                value={option.value}
                 type="radio"
               />
-              {option}
+              {option.label}
             </Container>
             <br />
           </>

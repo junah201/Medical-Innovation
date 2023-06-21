@@ -32,9 +32,39 @@ export const getPostsByBoardId = async (
   return res;
 };
 
-export const getPostById = async (id: number) => {
+export const getPostById = async (id: number | string) => {
   const res = await unAuthAxios.get(
     API_ROUTE.POST.GET_POST_BY_ID(id)
+  );
+
+  return res;
+};
+
+export const getPostBoards = async (skip: number, limit: number) => {
+  const res = await authAxios.getByParams(
+    API_ROUTE.POST.GET_POST_BOARDS,
+    {
+      skip: skip,
+      limit: limit,
+    }
+  );
+
+  return res;
+};
+
+export const updatePostById = async (
+  id: number | string,
+  title: string,
+  boardId: number | string,
+  content: string
+) => {
+  const res = await authAxios.put(
+    API_ROUTE.POST.UPDATE_POST_BY_ID(id),
+    {
+      title: title,
+      board_id: boardId,
+      content: content,
+    }
   );
 
   return res;

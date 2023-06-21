@@ -137,7 +137,12 @@ export const EventRegistration = () => {
             '일반',
             '제약분야',
             '기타',
-          ]}
+          ].map((option) => {
+            return {
+              value: option,
+              label: option,
+            };
+          })}
         />
         <ReactHookInput
           id={REGISTER_TYPE.INTEREST_FIELD_DETAIL}
@@ -163,7 +168,12 @@ export const EventRegistration = () => {
             '의료기관',
             '정부',
             '기타',
-          ]}
+          ].map((option) => {
+            return {
+              value: option,
+              label: option,
+            };
+          })}
         />
         <ReactHookInput
           id={REGISTER_TYPE.ORGANIZATION_NAME}
@@ -218,7 +228,12 @@ export const EventRegistration = () => {
             '석,박사 통합 과정 수료',
             '전문학사 수료',
             '기타',
-          ]}
+          ].map((option) => {
+            return {
+              value: option,
+              label: option,
+            };
+          })}
         />
         <ReactHookInput
           id={REGISTER_TYPE.ENGAGEMENT_TYPE}
@@ -228,7 +243,14 @@ export const EventRegistration = () => {
           errorMessage={
             errors[REGISTER_TYPE.ENGAGEMENT_TYPE]?.message
           }
-          options={['현장 참가', '유튜브 라이브 시청', '기타']}
+          options={['현장 참가', '유튜브 라이브 시청', '기타'].map(
+            (option) => {
+              return {
+                value: option,
+                label: option,
+              };
+            }
+          )}
         />
         <ReactHookInput
           id={REGISTER_TYPE.PARTICIPANT_MOTIVATION}

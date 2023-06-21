@@ -134,7 +134,12 @@ export const PrivateEventRegistration = () => {
             '일반',
             '제약분야',
             '기타',
-          ]}
+          ].map((option) => {
+            return {
+              value: option,
+              label: option,
+            };
+          })}
         />
         <ReactHookInput
           id={REGISTER_TYPE.INTEREST_FIELD_DETAIL}
@@ -160,7 +165,12 @@ export const PrivateEventRegistration = () => {
             '의료기관',
             '정부',
             '기타',
-          ]}
+          ].map((option) => {
+            return {
+              value: option,
+              label: option,
+            };
+          })}
         />
         <ReactHookInput
           id={REGISTER_TYPE.ORGANIZATION_NAME}
@@ -215,7 +225,12 @@ export const PrivateEventRegistration = () => {
             '석,박사 통합 과정 수료',
             '전문학사 수료',
             '기타',
-          ]}
+          ].map((option) => {
+            return {
+              value: option,
+              label: option,
+            };
+          })}
         />
         <ReactHookInput
           id={REGISTER_TYPE.PARTICIPANT_MOTIVATION}

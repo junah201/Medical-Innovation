@@ -110,7 +110,10 @@ export const AdminUserPermissionEdit = () => {
           register={register}
           errorMessage={errors[REGISTER_TYPE.JUDGING_EVENT]?.message}
           options={events.map((event) => {
-            return event.name;
+            return {
+              value: event.id,
+              label: event.name,
+            };
           })}
         />
         <ReactHookInput

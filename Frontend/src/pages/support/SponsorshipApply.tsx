@@ -95,7 +95,12 @@ export const SponsorshipApply = () => {
               '연구자 창업 지원',
               '의학생명과학 아카데미',
               '기타유관분야 부대사업',
-            ]}
+            ].map((option) => {
+              return {
+                value: option,
+                label: option,
+              };
+            })}
           />
           <ReactHookInput
             id={REGISTER_TYPE.SPONSORSHIP_DETAIL}

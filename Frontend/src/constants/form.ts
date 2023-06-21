@@ -65,6 +65,10 @@ export const REGISTER_TYPE = Object.freeze({
   JUDGING_EVENT: 'judging_event',
   FIRST_JUDGING_PERMISSION: 'first_judging_permission',
   SECOND_JUDGING_PERMISSION: 'second_judging_permission',
+
+  TITLE: 'title',
+  BOARD_ID: 'board_id',
+  CONTENT: 'content',
 });
 
 export const ERROR_MESSAGE = Object.freeze({
