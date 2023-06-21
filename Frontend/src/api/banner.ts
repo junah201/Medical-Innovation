@@ -48,3 +48,11 @@ export const uploadBanner = async (
 
   return res;
 };
+
+export const deleteBannerById = async (id: number | string) => {
+  const res = await authAxios.delete(
+    API_ROUTE.BANNER.DELETE_BANNER_BY_ID(id)
+  );
+
+  return res;
+};

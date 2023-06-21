@@ -9,6 +9,8 @@ const BANNER = Object.freeze({
   GET_ACTIVE_BANNERS: '/api/v1/banner/all/active',
   GET_BANNERS: '/api/v1/banner/all',
   UPLOAD_BANNER: '/api/v1/banner/create',
+  DELETE_BANNER_BY_ID: (id: number | string) =>
+    `/api/v1/banner/${id}`,
 });
 
 const MOU = Object.freeze({

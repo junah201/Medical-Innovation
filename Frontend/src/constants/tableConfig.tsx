@@ -8,7 +8,7 @@ import {
   getUsers,
 } from '@/api';
 import { StatusButton } from '@/components';
-import { AlertDeletePost } from '@/libs/Alert';
+import { AlertDeletBanner, AlertDeletePost } from '@/libs/Alert';
 import { Banner, JudgingParticipant, Post, User } from '@/types';
 
 const { VITE_CDN_URL } = import.meta.env;
@@ -199,7 +199,13 @@ const BANNERS = Object.freeze({
           <Link to={`/admin/banner/edit/${item.id}`}>수정</Link>
         </td>
         <td>
-          <Link to={`/admin/banner/delete/${item.id}`}>삭제</Link>
+          <button
+            onClick={() => {
+              AlertDeletBanner(item.id);
+            }}
+          >
+            삭제
+          </button>
         </td>
       </tr>
     );
