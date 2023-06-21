@@ -1,9 +1,17 @@
 import { Link } from 'react-router-dom';
 
-import { getJudgingParticipants, getPosts, getUsers } from '@/api';
+import {
+  getActiveBanners,
+  getBanners,
+  getJudgingParticipants,
+  getPosts,
+  getUsers,
+} from '@/api';
 import { StatusButton } from '@/components';
 import { AlertDeletePost } from '@/libs/Alert';
-import { JudgingParticipant, Post, User } from '@/types';
+import { Banner, JudgingParticipant, Post, User } from '@/types';
+
+const { VITE_CDN_URL } = import.meta.env;
 
 const JUDGING_PARTICIPANTS = Object.freeze({
   headers: [
@@ -150,8 +158,57 @@ const POSTS = Object.freeze({
   },
 });
 
+const BANNERS = Object.freeze({
+  headers: [
+    '번호',
+    '회사명',
+    '파일명',
+    '링크',
+    '배너 종료 시점',
+    '배너 생성 시점',
+    '배너 수정 시점',
+    '수정',
+    '삭제',
+  ],
+  size: 40,
+  getDatas: async (
+    id: number | string,
+    page: number,
+    size: number
+  ) => {
+    return getBanners(page, size);
+  },
+  itemToElement: (item: Banner, id: number) => {
+    return (
+      <tr key={item.id}>
+        <td>{item.id}</td>
+        <td>{item.name}</td>
+        <td>
+          <a
+            href={`${VITE_CDN_URL}/banner/${item.filename}`}
+            alt={item.filename}
+          >
+            {item.filename}
+          </a>
+        </td>
+        <td>{item.link}</td>
+        <td>{item.banner_end_at.replace('T', ' ')}</td>
+        <td>{item.created_at.replace('T', ' ')}</td>
+        <td>{item.updated_at.replace('T', ' ')}</td>
+        <td>
+          <Link to={`/admin/banner/edit/${item.id}`}>수정</Link>
+        </td>
+        <td>
+          <Link to={`/admin/banner/delete/${item.id}`}>삭제</Link>
+        </td>
+      </tr>
+    );
+  },
+});
+
 export const TABLE_CONFIG = Object.freeze({
   JUDGING_PARTICIPANTS,
   USERS,
   POSTS,
+  BANNERS,
 });

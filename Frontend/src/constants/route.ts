@@ -44,5 +44,10 @@ export const ROUTE = Object.freeze({
       UPLOAD: '/admin/post/upload',
       ALL: '/admin/post/all',
     }),
+    BANNER: Object.freeze({
+      ROOT: '/admin/banner',
+      UPLOAD: '/admin/banner/upload',
+      ALL: '/admin/banner/all',
+    }),
   }),
 });

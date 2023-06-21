@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { useMediaQuery } from 'react-responsive';
 
-import { getBanners } from '@/api';
+import { getActiveBanners } from '@/api';
 import { MobileBanners, DesktopBanners } from '@/components/banner';
 import { Banner as IBanner } from '@/types';
 
 export const Banner = () => {
   const [banners, setBanners] = useState<IBanner[]>([]);
 
-  useQuery('banners', getBanners, {
+  useQuery('banners', getActiveBanners, {
     retry: false,
     onSuccess: (res) => {
       setBanners(res.data);

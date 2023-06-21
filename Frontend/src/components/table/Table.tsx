@@ -31,7 +31,10 @@ export const Table = ({
     queryFn: () => getDatas(id, page, size),
     onSuccess: (res: AxiosResponse) => {
       setData(
-        res.data.participants || res.data.users || res.data.posts
+        res.data.participants ||
+          res.data.users ||
+          res.data.posts ||
+          res.data.banners
       );
       setTotal(res.data.total);
     },

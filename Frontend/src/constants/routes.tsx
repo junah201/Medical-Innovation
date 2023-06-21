@@ -47,6 +47,7 @@ import {
   AdminPostAll,
   AdminPostEdit,
   AdminPostUpload,
+  AdminBannerAll,
 } from '@/pages';
 
 interface RouteConfig {
@@ -414,6 +415,22 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/admin/post/edit/:id',
     COMPONENT: AdminPostEdit,
+    HEADER: AdminHeader,
+    WRAPPER: AdminWrapper,
+    AUTH: true,
+    ADMIN: true,
+  },
+  {
+    PATH: '/admin/banner',
+    COMPONENT: AdminBannerAll,
+    HEADER: AdminHeader,
+    WRAPPER: AdminWrapper,
+    AUTH: true,
+    ADMIN: true,
+  },
+  {
+    PATH: '/admin/banner/all',
+    COMPONENT: AdminBannerAll,
     HEADER: AdminHeader,
     WRAPPER: AdminWrapper,
     AUTH: true,
