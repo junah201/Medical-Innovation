@@ -12,7 +12,7 @@ export const AdminBannerAll = () => {
       <NavWarpper>
         <Link to={ROUTE.ADMIN.BANNER.UPLOAD}>배너 업로드</Link>
       </NavWarpper>
-      <Table {...TABLE_CONFIG.BANNERS} />
+      <Table {...TABLE_CONFIG.BANNER} />
     </>
   );
 };

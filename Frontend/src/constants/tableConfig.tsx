@@ -5,15 +5,17 @@ import {
   getBanners,
   getJudgingParticipants,
   getPosts,
+  getSponsoringCompanies,
   getUsers,
 } from '@/api';
 import { StatusButton } from '@/components';
 import { AlertDeletBanner, AlertDeletePost } from '@/libs/Alert';
 import { Banner, JudgingParticipant, Post, User } from '@/types';
+import { SponsoringCompany } from '@/types/sponsoringCompany';
 
 const { VITE_CDN_URL } = import.meta.env;
 
-const JUDGING_PARTICIPANTS = Object.freeze({
+const JUDGING_PARTICIPANT = Object.freeze({
   headers: [
     '이름',
     '이메일',
@@ -74,7 +76,7 @@ const JUDGING_PARTICIPANTS = Object.freeze({
   },
 });
 
-const USERS = Object.freeze({
+const USER = Object.freeze({
   headers: [
     '고유ID',
     '이름',
@@ -113,7 +115,7 @@ const USERS = Object.freeze({
   },
 });
 
-const POSTS = Object.freeze({
+const POST = Object.freeze({
   headers: [
     '번호',
     '게시판',
@@ -158,7 +160,7 @@ const POSTS = Object.freeze({
   },
 });
 
-const BANNERS = Object.freeze({
+const BANNER = Object.freeze({
   headers: [
     '번호',
     '회사명',
@@ -212,9 +214,58 @@ const BANNERS = Object.freeze({
   },
 });
 
+const SPONSORING_COMPANY = Object.freeze({
+  headers: [
+    '번호',
+    '기업명',
+    '링크',
+    '파일명',
+    '연도',
+    '수정',
+    '삭제',
+  ],
+  size: 40,
+  getDatas: async (
+    id: number | string,
+    page: number,
+    size: number
+  ) => {
+    return getSponsoringCompanies(page, size);
+  },
+  itemToElement: (item: SponsoringCompany, id: number) => {
+    return (
+      <tr key={item.id}>
+        <td>{item.id}</td>
+        <td>{item.name}</td>
+        <td>{item.link}</td>
+        <td>
+          <a
+            href={`${VITE_CDN_URL}/banner/${item.filename}`}
+            alt={item.filename}
+          >
+            {item.filename}
+          </a>
+        </td>
+        <td>{item.year}</td>
+        <td>
+          <Link to={`/admin/sponsoring_company/edit/${item.id}`}>
+            수정
+          </Link>
+        </td>
+        <td>
+          <Link to={`/admin/sponsoring_company/delete/${item.id}`}>
+            삭제
+          </Link>
+        </td>
+      </tr>
+    );
+  },
+});
+
 export const TABLE_CONFIG = Object.freeze({
-  JUDGING_PARTICIPANTS,
-  USERS,
-  POSTS,
-  BANNERS,
+  JUDGING_PARTICIPANT,
+  USER,
+  POST,
+  BANNER,
+  SPONSORING_COMPANY,
 });

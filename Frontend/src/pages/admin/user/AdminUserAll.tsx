@@ -5,7 +5,7 @@ export const AdminUserAll = () => {
   return (
     <>
       <h1>회원 목록</h1>
-      <Table {...TABLE_CONFIG.USERS} />
+      <Table {...TABLE_CONFIG.USER} />
     </>
   );
 };

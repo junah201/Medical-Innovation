@@ -49,5 +49,10 @@ export const ROUTE = Object.freeze({
       UPLOAD: '/admin/banner/upload',
       ALL: '/admin/banner/all',
     }),
+    SPONSORING_COMPANY: Object.freeze({
+      ROOT: '/admin/sponsoring_company',
+      UPLOAD: '/admin/sponsoring_company/upload',
+      ALL: '/admin/sponsoring_company/all',
+    }),
   }),
 });

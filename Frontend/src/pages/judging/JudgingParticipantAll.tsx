@@ -71,7 +71,7 @@ export const JudgingParticipantAll = () => {
       <h1>심사 목록</h1>
       <Table
         id={params.event_id}
-        {...TABLE_CONFIG.JUDGING_PARTICIPANTS}
+        {...TABLE_CONFIG.JUDGING_PARTICIPANT}
       />
     </>
   );

@@ -34,7 +34,9 @@ export const Table = ({
         res.data.participants ||
           res.data.users ||
           res.data.posts ||
-          res.data.banners
+          res.data.banners ||
+          res.data.sponsoring_companies ||
+          []
       );
       setTotal(res.data.total);
     },

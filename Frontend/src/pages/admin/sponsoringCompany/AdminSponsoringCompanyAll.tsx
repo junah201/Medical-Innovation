@@ -5,14 +5,16 @@ import { Table } from '@/components';
 import { ROUTE } from '@/constants';
 import { TABLE_CONFIG } from '@/constants/tableConfig';
 
-export const AdminPostAll = () => {
+export const AdminSponsoringCompanyAll = () => {
   return (
     <>
-      <h1>게시물 목록</h1>
+      <h1>후원 기업 목록</h1>
       <NavWarpper>
-        <Link to={ROUTE.ADMIN.POST.UPLOAD}>게시물 업로드</Link>
+        <Link to={ROUTE.ADMIN.SPONSORING_COMPANY.UPLOAD}>
+          후원 기업 생성
+        </Link>
       </NavWarpper>
-      <Table {...TABLE_CONFIG.POST} />
+      <Table {...TABLE_CONFIG.SPONSORING_COMPANY} />
     </>
   );
 };
