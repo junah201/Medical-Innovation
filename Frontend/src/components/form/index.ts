@@ -16,3 +16,4 @@ export * from './SelectInput';
 export * from './CheckboxInput';
 export * from './HtmlInput';
 export * from './FilesInput';
+export * from './CropImageInput';

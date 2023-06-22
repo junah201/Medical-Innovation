@@ -4,11 +4,12 @@ import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { uploadBanner } from '@/api';
+import { uploadBanner, uploadBannerV2 } from '@/api';
 import {
   ReactHookInput,
   HtmlInput,
   FilesInput,
+  CropImageInput,
 } from '@/components/form';
 import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
 import { Toast } from '@/libs/Toast';
@@ -38,7 +39,7 @@ export const AdminBannerUpload = () => {
 
   const { mutate } = useMutation(
     (userInput) =>
-      uploadBanner(
+      uploadBannerV2(
         userInput?.name,
         userInput?.link,
         userInput?.file[0],
@@ -87,16 +88,14 @@ export const AdminBannerUpload = () => {
           register={register}
           errorMessage={errors[REGISTER_TYPE.BANNER_END_AT]?.message}
         />
-        {/* <FilesInput
-          title="배너 이미지"
+        <CropImageInput
           id={REGISTER_TYPE.FILE}
+          title="배너 이미지"
           control={control}
-          options={{
-            acceptedFileTypes: ['image/*'],
-            labelIdle: '배너 이미지를 업로드해주세요.',
-            maxFiles: 1,
-          }}
-        /> */}
+          ratio={20 / 11}
+          maxFileCount={1}
+          acceptFileType="image/*"
+        />
         <Submit
           isvalid={!Object.keys(errors)[0]}
           disabled={isSubmitting}

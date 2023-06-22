@@ -60,6 +60,7 @@ import {
   AdminAdvisorUpload,
   AdminAdvisorEdit,
   Test,
+  AdminBannerUpload,
 } from '@/pages';
 
 interface RouteConfig {
@@ -450,7 +451,7 @@ export const ROUTE_MAP: RouteMap = [
   },
   {
     PATH: '/admin/banner/upload',
-    COMPONENT: AdminBannerEdit,
+    COMPONENT: AdminBannerUpload,
     HEADER: AdminHeader,
     WRAPPER: AdminWrapper,
     AUTH: true,

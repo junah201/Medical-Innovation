@@ -3,6 +3,8 @@ import styled, { keyframes } from 'styled-components';
 
 import { Banner } from '@/types';
 
+const { VITE_CDN_URL } = import.meta.env;
+
 const move = (x: number) => keyframes`
 	100%{
 		transform: translateX(-${x + 190}px);
@@ -95,7 +97,7 @@ export const DesktopBanners = ({
                   rel="noopener noreferrer"
                 >
                   <img
-                    src={`https://medical-innovation.s3.ap-northeast-2.amazonaws.com/banner/${item.filename}`}
+                    src={`${VITE_CDN_URL}/upload/${item.filename}`}
                     alt={item.name}
                   />
                 </a>

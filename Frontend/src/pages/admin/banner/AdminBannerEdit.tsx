@@ -1,11 +1,12 @@
 import { AxiosError } from 'axios';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQuery } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { getBannerById, updateBannerById } from '@/api';
-import { ReactHookInput } from '@/components/form';
+import { CropImageInput, ReactHookInput } from '@/components/form';
 import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
 import { Toast } from '@/libs/Toast';
 import { RegisterField } from '@/types';
@@ -17,10 +18,12 @@ export const AdminBannerEdit = () => {
   const { id } = useParams() as { id: string };
 
   const {
+    watch,
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     setValue,
+    control,
   } = useForm<RegisterField>({
     mode: 'onChange',
     defaultValues: {
@@ -31,35 +34,48 @@ export const AdminBannerEdit = () => {
     },
   });
 
-  useQuery('getBanner', () => getBannerById(id), {
-    retry: false,
-    cacheTime: 0,
-    onSuccess: (res) => {
-      const { name, link, banner_end_at } = res.data;
-      setValue(REGISTER_TYPE.NAME, name);
-      setValue(REGISTER_TYPE.LINK, link);
+  useEffect(() => {
+    async function initLoad() {
+      const res = await getBannerById(id);
+      setValue(REGISTER_TYPE.NAME, res.data.name);
+      setValue(REGISTER_TYPE.LINK, res.data.link);
       setValue(
         REGISTER_TYPE.BANNER_END_AT,
-        banner_end_at.slice(0, 10)
+        res.data.banner_end_at.slice(0, 10)
       );
-    },
-  });
+      setValue(REGISTER_TYPE.FILE, [res.data.filename]);
+    }
+
+    initLoad();
+  }, []);
 
   const { mutate } = useMutation(
-    (userInput) =>
-      updateBannerById(
+    (userInput) => {
+      if (!userInput?.file[0]) {
+        console.log('no file');
+        throw new Error('파일을 첨부해주세요.');
+      }
+
+      return updateBannerById(
         id,
         userInput?.name,
         userInput?.link,
-        `${userInput?.banner_end_at}T00:00:00.000Z`
-      ),
+        `${userInput?.banner_end_at}T00:00:00.000Z`,
+        userInput?.file[0]
+      );
+    },
     {
       onSuccess: () => {
         Toast('수정 완료', 'success');
         navigate(ROUTE.ADMIN.BANNER.ALL);
       },
       onError: (err: AxiosError) => {
-        Toast(`수정에 실패했습니다. ${err?.response?.data}`, 'error');
+        Toast(
+          `수정에 실패했습니다. ${
+            err?.response?.data || err.message
+          } `,
+          'error'
+        );
       },
     }
   );
@@ -69,6 +85,7 @@ export const AdminBannerEdit = () => {
   return (
     <Wrapper>
       <h1>배너 수정</h1>
+      {JSON.stringify(watch())}
       <Form onSubmit={handleSubmit(onValid)}>
         <ReactHookInput
           id={REGISTER_TYPE.NAME}
@@ -92,6 +109,14 @@ export const AdminBannerEdit = () => {
           type={INPUT_TYPE.DATE}
           register={register}
           errorMessage={errors[REGISTER_TYPE.BANNER_END_AT]?.message}
+        />
+        <CropImageInput
+          id={REGISTER_TYPE.FILE}
+          title="배너 이미지"
+          control={control}
+          ratio={20 / 11}
+          maxFileCount={1}
+          acceptFileType="image/*"
         />
         <Submit
           isvalid={!Object.keys(errors)[0]}

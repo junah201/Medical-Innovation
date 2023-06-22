@@ -44,6 +44,23 @@ export const uploadFileV2 = async (files: File[]) => {
   return res;
 };
 
+export const uploadCropImage = async (
+  files: File[],
+  ratio: string
+) => {
+  const formData = new FormData();
+  files.forEach((file) => {
+    formData.append('files', file);
+  });
+
+  const res = await authAxios.postMultipartFormData(
+    `${API_ROUTE.FILE_V2.UPLOAD_CROP_IMAGE}?crop_ratio=${ratio}`,
+    formData
+  );
+
+  return res;
+};
+
 export const deleteFileV2 = async (filename: string) => {
   const res = await authAxios.delete(
     API_ROUTE.FILE_V2.DELETE_FILE(filename)

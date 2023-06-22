@@ -126,6 +126,7 @@ const FILE_V2 = Object.freeze({
   UPLOAD_FILES: '/api/v2/file',
   DOWNLOAD_FILE: (filename: string) => `/api/v2/file/${filename}`,
   DELETE_FILE: (filename: string) => `/api/v2/file/${filename}`,
+  UPLOAD_CROP_IMAGE: '/api/v2/file/crop',
 });
 
 const ADVISOR_V2 = Object.freeze({
@@ -142,6 +143,15 @@ const POST_V2 = Object.freeze({
   GET_POSTS: '/api/v2/post/all',
   UPLOAD_POST: '/api/v2/post',
   UPDATE_POST_BY_ID: (id: number | string) => `/api/v2/post/${id}`,
+});
+
+const BANNER_V2 = Object.freeze({
+  GET_BANNERS: '/api/v2/banner/all',
+  UPLOAD_BANNER: '/api/v2/banner',
+  DELETE_BANNER_BY_ID: (id: number | string) =>
+    `/api/v2/banner/${id}`,
+  UPDATE_BANNER_BY_ID: (id: number | string) =>
+    `/api/v2/banner/${id}`,
 });
 
 export const API_ROUTE = Object.freeze({
@@ -164,6 +174,7 @@ export const API_ROUTE = Object.freeze({
   PRIVATE_PARTICIPANT,
   USER,
   FILE_V2,
-  ADVISOR_V2,
   POST_V2,
+  ADVISOR_V2,
+  BANNER_V2,
 });

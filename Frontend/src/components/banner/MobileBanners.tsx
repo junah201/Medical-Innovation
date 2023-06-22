@@ -40,7 +40,7 @@ export const MobileBanners = ({
                   rel="noopener noreferrer"
                 >
                   <img
-                    src={`${VITE_CDN_URL}/banner/${item.filename}`}
+                    src={`${VITE_CDN_URL}/upload/${item.filename}`}
                     alt={item.name}
                   />
                 </a>

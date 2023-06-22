@@ -49,6 +49,26 @@ export const uploadBanner = async (
   return res;
 };
 
+export const uploadBannerV2 = async (
+  name: string,
+  link: string,
+  filename: string,
+  banner_end_at: string
+) => {
+  const res = await authAxios.post(
+    API_ROUTE.BANNER_V2.UPLOAD_BANNER,
+    {
+      name: name,
+      link: link,
+      filename: filename,
+      year: '2023',
+      banner_end_at: banner_end_at,
+    }
+  );
+
+  return res;
+};
+
 export const deleteBannerById = async (id: number | string) => {
   const res = await authAxios.delete(
     API_ROUTE.BANNER.DELETE_BANNER_BY_ID(id)
@@ -69,14 +89,16 @@ export const updateBannerById = async (
   id: number | string,
   name: string,
   link: string,
-  bannerEndAt: string
+  bannerEndAt: string,
+  filename: string
 ) => {
   const res = await authAxios.put(
-    API_ROUTE.BANNER.UPDATE_BANNER_BY_ID(id),
+    API_ROUTE.BANNER_V2.UPDATE_BANNER_BY_ID(id),
     {
       name: name,
       link: link,
       banner_end_at: bannerEndAt,
+      filename: filename,
     }
   );
 

@@ -161,18 +161,18 @@ class PostList(BaseModel):
     posts: list[Post]
 
 
-@form_body
 class BannerCreate(BaseModel):
     name: str
     link: str
-    year: int = 2023
     banner_end_at: datetime
+    filename: str
 
 
 class BannerEdit(BaseModel):
     name: str
     link: str
     banner_end_at: datetime
+    filename: str
 
 
 class Banner(BaseModel):
