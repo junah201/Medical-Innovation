@@ -3,3 +3,4 @@ export * from './post';
 export * from './banner';
 export * from './sponsoringCompany';
 export * from './sponsor';
+export * from './mou';

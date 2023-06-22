@@ -1,1 +1,1 @@
-export * from './SponsorAll';
+export * from './AdminSponsorAll';

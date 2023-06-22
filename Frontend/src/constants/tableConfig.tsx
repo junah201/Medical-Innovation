@@ -4,6 +4,7 @@ import {
   getActiveBanners,
   getBanners,
   getJudgingParticipants,
+  getMous,
   getPosts,
   getSponsoringCompanies,
   getSponsors,
@@ -18,6 +19,7 @@ import {
 import {
   Banner,
   JudgingParticipant,
+  Mou,
   Post,
   Sponsor,
   User,
@@ -311,6 +313,43 @@ const SPONSOR = Object.freeze({
   },
 });
 
+const MOU = Object.freeze({
+  headers: [
+    '번호',
+    '이름',
+    '링크',
+    '생성 시간',
+    '수정 시간',
+    '수정',
+    '삭제',
+  ],
+  size: 1000,
+  getDatas: async (
+    id: number | string,
+    page: number,
+    size: number
+  ) => {
+    return getMous(page, size);
+  },
+  itemToElement: (item: Mou, id: number) => {
+    return (
+      <tr key={item.id}>
+        <td>{item.id}</td>
+        <td>{item.name}</td>
+        <td>{item.link}</td>
+        <td>{item.created_at.replace('T', ' ')}</td>
+        <td>{item.updated_at.replace('T', ' ')}</td>
+        <td>
+          <Link to={`/admin/mou/edit/${item.id}`}>수정</Link>
+        </td>
+        <td>
+          <Link to={`/admin/mou/delete/${item.id}`}>삭제</Link>
+        </td>
+      </tr>
+    );
+  },
+});
+
 export const TABLE_CONFIG = Object.freeze({
   JUDGING_PARTICIPANT,
   USER,
@@ -318,4 +357,5 @@ export const TABLE_CONFIG = Object.freeze({
   BANNER,
   SPONSORING_COMPANY,
   SPONSOR,
+  MOU,
 });
