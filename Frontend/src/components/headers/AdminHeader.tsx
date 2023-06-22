@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { ROUTE } from '@/constants';
+
 export const AdminHeader = () => {
   return (
     <Wrapper>
@@ -12,19 +14,21 @@ export const AdminHeader = () => {
       <nav>
         <ul>
           <li>
-            <Link to="/admin/user/all">회원 목록</Link>
+            <Link to={ROUTE.ADMIN.USER.ALL}>회원 목록</Link>
           </li>
           <li>
-            <Link to="/admin/post/all">게시물</Link>
+            <Link to={ROUTE.ADMIN.POST.ALL}>게시물</Link>
           </li>
           <li>
-            <Link to="/admin/banner/all">배너</Link>
+            <Link to={ROUTE.ADMIN.BANNER.ALL}>배너</Link>
           </li>
           <li>
-            <Link to="/admin/sponsoring_company/all">후원 기업</Link>
+            <Link to={ROUTE.ADMIN.SPONSORING_COMPANY.ALL}>
+              후원 기업
+            </Link>
           </li>
           <li>
-            <Link to="/admin/sponsoring/all">후원 목록</Link>
+            <Link to={ROUTE.ADMIN.SPONSOR.ALL}>후원 목록</Link>
           </li>
           <li>
             <Link to="/admin/mou/all">Mou 목록</Link>

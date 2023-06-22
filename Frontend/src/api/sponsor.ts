@@ -13,3 +13,15 @@ export const submitSponsor = async (data: Sponsor) => {
 
   return res;
 };
+
+export const getSponsors = async (skip: number, limit: number) => {
+  const res = await authAxios.getByParams(
+    API_ROUTE.SPONSOR.GET_SPONSORS,
+    {
+      skip: skip,
+      limit: limit,
+    }
+  );
+
+  return res;
+};

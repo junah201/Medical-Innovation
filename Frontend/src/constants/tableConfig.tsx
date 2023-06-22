@@ -6,6 +6,7 @@ import {
   getJudgingParticipants,
   getPosts,
   getSponsoringCompanies,
+  getSponsors,
   getUsers,
 } from '@/api';
 import { StatusButton } from '@/components';
@@ -14,7 +15,13 @@ import {
   AlertDeletePost,
   AlertDeleteSponsoringCompany,
 } from '@/libs/Alert';
-import { Banner, JudgingParticipant, Post, User } from '@/types';
+import {
+  Banner,
+  JudgingParticipant,
+  Post,
+  Sponsor,
+  User,
+} from '@/types';
 import { SponsoringCompany } from '@/types/sponsoringCompany';
 
 const { VITE_CDN_URL } = import.meta.env;
@@ -269,6 +276,40 @@ const SPONSORING_COMPANY = Object.freeze({
     );
   },
 });
+const SPONSOR = Object.freeze({
+  headers: [
+    '고유 ID',
+    '유저 고유 ID',
+    '성명 (단체명)',
+    '전화번호',
+    '주민등록번호 (사업자등록번호)',
+    '주소',
+    '희망 사용처',
+    '기부 내용',
+  ],
+  size: 40,
+  getDatas: async (
+    id: number | string,
+    page: number,
+    size: number
+  ) => {
+    return getSponsors(page, size);
+  },
+  itemToElement: (item: Sponsor, id: number) => {
+    return (
+      <tr key={item.id}>
+        <td>{item.id}</td>
+        <td>{item.user.id}</td>
+        <td>{item.name}</td>
+        <td>{item.phone}</td>
+        <td>{item.identification_number}</td>
+        <td>{item.address}</td>
+        <td>{item.usage}</td>
+        <td>{item.detail}</td>
+      </tr>
+    );
+  },
+});
 
 export const TABLE_CONFIG = Object.freeze({
   JUDGING_PARTICIPANT,
@@ -276,4 +317,5 @@ export const TABLE_CONFIG = Object.freeze({
   POST,
   BANNER,
   SPONSORING_COMPANY,
+  SPONSOR,
 });

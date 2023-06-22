@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 
 import { ROUTE } from '@/constants';
+import { Toast } from '@/libs/Toast';
 import { checkAuth } from '@/util/validateToken';
 
 export type AuthRouteProps = {
@@ -20,6 +21,7 @@ export function AuthRoute({ element, ...rest }: AuthRouteProps) {
   useEffect(() => {
     const checkValidation = async () => {
       const auth = await checkAuth();
+      if (!auth) Toast('로그인이 필요합니다.', 'error');
       setIsAuth(auth);
       setLoading(false);
     };

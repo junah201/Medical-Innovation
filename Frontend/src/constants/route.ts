@@ -39,6 +39,10 @@ export const ROUTE = Object.freeze({
   PRIVACY_POLICY: '/privacy-policy',
   ADMIN: Object.freeze({
     ROOT: '/admin',
+    USER: Object.freeze({
+      ROOT: '/admin/user',
+      ALL: '/admin/user/all',
+    }),
     POST: Object.freeze({
       ROOT: '/admin/post',
       UPLOAD: '/admin/post/upload',
@@ -53,6 +57,10 @@ export const ROUTE = Object.freeze({
       ROOT: '/admin/sponsoring_company',
       UPLOAD: '/admin/sponsoring_company/upload',
       ALL: '/admin/sponsoring_company/all',
+    }),
+    SPONSOR: Object.freeze({
+      ROOT: '/admin/sponsor',
+      ALL: '/admin/sponsor/all',
     }),
   }),
 });

@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 
 import { ROUTE } from '@/constants';
+import { Toast } from '@/libs/Toast';
 import { checkAdmin } from '@/util/validateToken';
 
 export type AdminRouteProps = {
@@ -20,6 +21,7 @@ export function AdminRoute({ element, ...rest }: AdminRouteProps) {
   useEffect(() => {
     const checkValidation = async () => {
       const auth = await checkAdmin();
+      if (!auth) Toast('권한이 부족합니다.', 'error');
       setIsAuth(auth);
       setLoading(false);
     };
