@@ -450,7 +450,13 @@ interface PostItemProps {
   type?: string;
 }
 
-const PostItem = ({ title, link, index, date, type }: PostItemProps) => {
+const PostItem = ({
+  title,
+  link,
+  index,
+  date,
+  type,
+}: PostItemProps) => {
   try {
     date = new Intl.DateTimeFormat('kr', {}).format(new Date(date));
   } catch {
@@ -459,7 +465,11 @@ const PostItem = ({ title, link, index, date, type }: PostItemProps) => {
 
   if (type === 'link') {
     return (
-      <StyledPostItemA href={link} target="_blank" rel="noopener noreferrer">
+      <StyledPostItemA
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <StyledPostItemIndex>{index}.</StyledPostItemIndex>
         <StyledPostItemTitle>{title}</StyledPostItemTitle>
         <StyledPostItemDate>{date}</StyledPostItemDate>
@@ -501,7 +511,11 @@ interface DocumentItemProps {
 
 const DocumentItem = ({ src, alt }: DocumentItemProps) => {
   return (
-    <StyledDocumentItem href={src} target="_blank" rel="noopener noreferrer">
+    <StyledDocumentItem
+      href={src}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <img src={src} alt={alt} />
     </StyledDocumentItem>
   );

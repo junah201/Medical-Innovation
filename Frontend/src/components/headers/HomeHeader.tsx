@@ -26,17 +26,29 @@ export const HomeHeader = () => {
       </TopWrapper>
       <BottomWrapper>
         <StyledUl>
-          <HeaderNavLi link={ROUTE.INTRODUCTION.ROOT} text="재단소개" />
+          <HeaderNavLi
+            link={ROUTE.INTRODUCTION.ROOT}
+            text="재단소개"
+          />
           <HeaderNavLi link={ROUTE.PROGRAM.ROOT} text="사업소개" />
           <HeaderNavLi link={ROUTE.NEWS.ROOT} text="재단소식" />
-          <HeaderNavLi link={ROUTE.SUPPORT.SPONSORSHIP} text="후원안내" />
+          <HeaderNavLi
+            link={ROUTE.SUPPORT.SPONSORSHIP}
+            text="후원안내"
+          />
         </StyledUl>
       </BottomWrapper>
     </>
   );
 };
 
-const HeaderNavLi = ({ link, text }: { link: string; text: string }) => {
+const HeaderNavLi = ({
+  link,
+  text,
+}: {
+  link: string;
+  text: string;
+}) => {
   return (
     <StyledLi>
       <Link to={link}>{text}</Link>

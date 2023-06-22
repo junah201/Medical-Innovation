@@ -27,6 +27,7 @@ const MOU = Object.freeze({
 
 const ADVISOR = Object.freeze({
   GET_ADVISORS: '/api/v1/advisor/all',
+  UPLOAD_ADVISOR: '/api/v1/advisor/create',
 });
 
 const POST = Object.freeze({
@@ -121,6 +122,24 @@ const USER = Object.freeze({
   ) => `/api/v1/user/${userId}/judging_permission/${judgingEventId}`,
 });
 
+const FILE_V2 = Object.freeze({
+  UPLOAD_FILE: '/api/v2/file/upload',
+  UPLOAD_FILES: '/api/v2/file/uploads',
+  DOWNLOAD_FILE: (filename: string) =>
+    `/api/v2/file/download/${filename}`,
+  DELETE_FILE: (fileId: string) => `/api/v2/file/delete/${fileId}`,
+});
+
+const ADVISOR_V2 = Object.freeze({
+  GET_ADVISORS: '/api/v2/advisor/all',
+  UPLOAD_ADVISOR: '/api/v2/advisor',
+  DELETE_ADVISOR_BY_ID: (id: number | string) =>
+    `/api/v2/advisor/${id}`,
+  GET_ADVISOR_BY_ID: (id: number | string) => `/api/v2/advisor/${id}`,
+  UPDATE_ADVISOR_BY_ID: (id: number | string) =>
+    `/api/v2/advisor/${id}`,
+});
+
 export const API_ROUTE = Object.freeze({
   AUTH,
   BANNER,
@@ -140,4 +159,6 @@ export const API_ROUTE = Object.freeze({
   FILE,
   PRIVATE_PARTICIPANT,
   USER,
+  FILE_V2,
+  ADVISOR_V2,
 });

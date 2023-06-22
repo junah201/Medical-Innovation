@@ -11,7 +11,9 @@ export const getPopups = async () => {
 };
 
 export const getActivePopups = async () => {
-  const res = await unAuthAxios.get(API_ROUTE.POPUP.GET_ACTIVE_POPUPS);
+  const res = await unAuthAxios.get(
+    API_ROUTE.POPUP.GET_ACTIVE_POPUPS
+  );
 
   return res;
 };

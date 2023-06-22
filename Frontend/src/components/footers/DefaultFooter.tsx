@@ -59,7 +59,8 @@ export const DefaultFooter = () => {
           <p>이사장 : 전승호</p>
           <p>주소 : (04736) 서울특별시 성동구 독서당로 166</p>
           <p>
-            Copyright(c) 2016 재단법인 미래의학연구재단. All rights reserved.
+            Copyright(c) 2016 재단법인 미래의학연구재단. All rights
+            reserved.
           </p>
         </div>
         <div>

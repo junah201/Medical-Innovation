@@ -17,7 +17,11 @@ export const MainLeftGrid = () => {
           }}
         >
           <Link to={ROUTE.INTRODUCTION.FOUNDER}>
-            <img src="/images/KimHyoSoo.png" width="250px" alt="김효수" />
+            <img
+              src="/images/KimHyoSoo.png"
+              width="250px"
+              alt="김효수"
+            />
           </Link>
         </div>
       </StyledGridImgItem>
@@ -38,8 +42,8 @@ export const MainLeftGrid = () => {
       <StyledGridItem color="#008ACE">
         <h3>후원 안내</h3>
         <p>
-          대한민국 보건의료의 발전을 추구하시는 여러분 모두가 후원자가 되어
-          주십시오.
+          대한민국 보건의료의 발전을 추구하시는 여러분 모두가 후원자가
+          되어 주십시오.
         </p>
         <Link to={ROUTE.SUPPORT.SPONSORSHIP}>후원하기</Link>
         <Link to={ROUTE.SUPPORT.SPONSOR}>후원기업</Link>

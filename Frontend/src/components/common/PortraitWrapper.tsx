@@ -39,7 +39,9 @@ export const PortraitWrapper = ({
   }, [isFourBanner, isThreeBanner, isTwoBanner, isOneBanner]);
 
   return (
-    <StyledPortraitWrapper count={count}>{children}</StyledPortraitWrapper>
+    <StyledPortraitWrapper count={count}>
+      {children}
+    </StyledPortraitWrapper>
   );
 };
 

@@ -66,7 +66,9 @@ const Input = styled.input<{ iserror: boolean }>`
   border-radius: 50%;
   border: solid 2px
     ${(props) =>
-      props.iserror ? props.theme.errorColor : props.theme.validColor};
+      props.iserror
+        ? props.theme.errorColor
+        : props.theme.validColor};
   margin-right: 8px;
   transition: background-color 0.15s ease-in-out;
 

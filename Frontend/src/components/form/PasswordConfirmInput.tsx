@@ -16,10 +16,15 @@ export const PasswordConfirmInput = ({
   errorMessage,
   placeholder,
 }: PasswordConfirmInputProps) => {
-  const validatePasswordConfirm = (input: string, values: RegisterField) => {
+  const validatePasswordConfirm = (
+    input: string,
+    values: RegisterField
+  ) => {
     const password = values[REGISTER_TYPE.PASSWORD];
 
-    return input === password || ERROR_MESSAGE.CONFIRM_PASSWORD.NOT_MATCH;
+    return (
+      input === password || ERROR_MESSAGE.CONFIRM_PASSWORD.NOT_MATCH
+    );
   };
 
   return (
@@ -44,7 +49,9 @@ const Input = styled.input<{ iserror: boolean }>`
   font-weight: 600;
   border: solid 2px
     ${(props) =>
-      props.iserror ? props.theme.errorColor : props.theme.validColor};
+      props.iserror
+        ? props.theme.errorColor
+        : props.theme.validColor};
   transition: ${({ theme }) => theme.transitionOption};
   background: ${({ theme }) => theme.loginBackgroundColor};
   :focus {

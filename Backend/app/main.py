@@ -31,9 +31,7 @@ from app.routers.v1 import (
     judging_participant_router,
     judging_result_router
 )
-from app.routers.v2 import (
-    file_router as file_router_v2,
-)
+from app.routers.v2 import v2_router
 
 models.Base.metadata.create_all(bind=engine, checkfirst=True)
 
@@ -54,32 +52,35 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(user_router.router)
-app.include_router(post_router.router)
-app.include_router(board_router.router)
-app.include_router(file_router.router)
-app.include_router(sponsor_router.router)
-app.include_router(advisor_router.router)
-app.include_router(mou_router.router)
-app.include_router(banner_router.router)
-app.include_router(sponsoring_company_router.router)
-app.include_router(public_event_router.router)
-app.include_router(participant_router.router)
-app.include_router(ad_email_router.router)
-app.include_router(history_router.router)
-app.include_router(supporting_startup_router.router)
-app.include_router(private_event_router.router)
-app.include_router(private_participant_router.router)
-app.include_router(popup_router.router)
-app.include_router(judging_event_router.router)
-app.include_router(judging_participant_router.router)
-app.include_router(judging_result_router.router)
-app.include_router(file_router_v2.router)
+for router in [
+    user_router,
+    post_router,
+    board_router,
+    file_router,
+    sponsor_router,
+    advisor_router,
+    mou_router,
+    banner_router,
+    sponsoring_company_router,
+    public_event_router,
+    participant_router,
+    ad_email_router,
+    history_router,
+    supporting_startup_router,
+    private_event_router,
+    private_participant_router,
+    popup_router,
+    judging_event_router,
+    judging_participant_router,
+    judging_result_router,
+]:
+    app.include_router(router.router, tags=["v1"])
+
+app.include_router(v2_router.router)
 
 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
-
     exc_str = f'{exc}'.replace('\n', ' ').replace('   ', ' ')
     print(request, exc_str)
     print(request.body)

@@ -27,6 +27,10 @@ const Wrapper = styled.main`
   }
 `;
 
-export const HomeWrapper = ({ children }: { children: React.ReactNode }) => {
+export const HomeWrapper = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   return <Wrapper>{children}</Wrapper>;
 };

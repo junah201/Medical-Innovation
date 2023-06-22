@@ -2,7 +2,11 @@ import styled from 'styled-components';
 
 import { DEVICES } from '@/constants';
 
-export const Message = ({ children }: { children: React.ReactNode }) => {
+export const Message = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   return <Wrapper>{children}</Wrapper>;
 };
 

@@ -61,7 +61,11 @@ const StyledBannerItem = styled.div`
   }
 `;
 
-export const DesktopBanners = ({ banners }: { banners: Banner[] }) => {
+export const DesktopBanners = ({
+  banners,
+}: {
+  banners: Banner[];
+}) => {
   const [bannerIndex, setBannerIndex] = useState(0);
 
   useEffect(() => {
@@ -85,7 +89,11 @@ export const DesktopBanners = ({ banners }: { banners: Banner[] }) => {
           {banners.map((item) => {
             return (
               <StyledBannerItem key={item.id}>
-                <a href={item.link} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img
                     src={`https://medical-innovation.s3.ap-northeast-2.amazonaws.com/banner/${item.filename}`}
                     alt={item.name}

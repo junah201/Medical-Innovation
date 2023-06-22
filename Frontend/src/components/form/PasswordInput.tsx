@@ -43,7 +43,9 @@ const Input = styled.input<{ iserror: boolean }>`
   font-weight: 600;
   border: solid 2px
     ${(props) =>
-      props.iserror ? props.theme.errorColor : props.theme.validColor};
+      props.iserror
+        ? props.theme.errorColor
+        : props.theme.validColor};
   transition: ${({ theme }) => theme.transitionOption};
   background: ${({ theme }) => theme.loginBackgroundColor};
   :focus {

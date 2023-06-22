@@ -34,7 +34,11 @@ export const MobileBanners = ({
           {banners.map((item) => {
             return (
               <StyledBannerItem key={item.id}>
-                <a href={item.link} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img
                     src={`${VITE_CDN_URL}/banner/${item.filename}`}
                     alt={item.name}

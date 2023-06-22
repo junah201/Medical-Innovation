@@ -126,12 +126,17 @@ export class Axios {
     });
   }
 
-  postMultipartFormData(endPoint: EndPoint, data: FormData) {
+  postMultipartFormData(
+    endPoint: EndPoint,
+    data: FormData,
+    headers = {}
+  ) {
     return this.#instance({
       method: 'POST',
       url: `${endPoint}`,
       headers: {
         'Content-Type': 'multipart/form-data',
+        ...headers,
       },
       data,
     });

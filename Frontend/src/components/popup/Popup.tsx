@@ -13,7 +13,11 @@ interface PopupProps {
   link: string;
 }
 
-export const Popup = ({ title, image_filename, link }: PopupProps) => {
+export const Popup = ({
+  title,
+  image_filename,
+  link,
+}: PopupProps) => {
   const [show, setShow] = useState(false);
 
   const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -29,7 +33,9 @@ export const Popup = ({ title, image_filename, link }: PopupProps) => {
   return (
     <>
       <StyledPopupView isDesktop={isDesktop}>
-        <StyledPopupTitle isDesktop={isDesktop}>{title}</StyledPopupTitle>
+        <StyledPopupTitle isDesktop={isDesktop}>
+          {title}
+        </StyledPopupTitle>
         <br />
         <StyledPopupContent>
           <a href={link} target="_blank" rel="noopener noreferrer">

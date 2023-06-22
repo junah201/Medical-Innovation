@@ -12,7 +12,9 @@ const Wrapper = styled.div`
 
   @media screen and (${DEVICES.MOBILE}) {
     padding: 15px;
-    min-height: calc(100vh - ${HEADER.MOBILE_HEIGHT} - ${FOOTER.MOBILE_HEIGHT});
+    min-height: calc(
+      100vh - ${HEADER.MOBILE_HEIGHT} - ${FOOTER.MOBILE_HEIGHT}
+    );
   }
 
   @media screen and (${DEVICES.DESKTOP}) {
@@ -40,7 +42,11 @@ const Container = styled.div`
   }
 `;
 
-export const DefaultWrapper = ({ children }: { children: React.ReactNode }) => {
+export const DefaultWrapper = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   return (
     <Wrapper>
       <Container>{children}</Container>

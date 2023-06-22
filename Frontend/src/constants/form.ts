@@ -77,6 +77,10 @@ export const REGISTER_TYPE = Object.freeze({
   FILE: 'file',
   YEAR: 'year',
   BANNER_END_AT: 'banner_end_at',
+
+  DESCRIPTION: 'description',
+  TYPE: 'type',
+  FILENAME: 'filename',
 });
 
 export const ERROR_MESSAGE = Object.freeze({

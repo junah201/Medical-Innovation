@@ -13,7 +13,10 @@ export const OrgchartAndProject = () => {
       <StyledOrgchartWrapper>
         <h1>주요사업</h1>
         <img src="/images/주요사업.png" alt="조직도" />
-        <img src="/images/창업기획자사업모델.png" alt="창업기획자사업모델" />
+        <img
+          src="/images/창업기획자사업모델.png"
+          alt="창업기획자사업모델"
+        />
       </StyledOrgchartWrapper>
     </>
   );
