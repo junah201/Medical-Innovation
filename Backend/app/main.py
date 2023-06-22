@@ -31,6 +31,9 @@ from app.routers.v1 import (
     judging_participant_router,
     judging_result_router
 )
+from app.routers.v2 import (
+    file_router as file_router_v2,
+)
 
 models.Base.metadata.create_all(bind=engine, checkfirst=True)
 
@@ -71,6 +74,7 @@ app.include_router(popup_router.router)
 app.include_router(judging_event_router.router)
 app.include_router(judging_participant_router.router)
 app.include_router(judging_result_router.router)
+app.include_router(file_router_v2.router)
 
 
 @app.exception_handler(RequestValidationError)
