@@ -2,6 +2,7 @@ import { confirmAlert } from 'react-confirm-alert';
 
 import {
   deleteBannerById,
+  deleteMouById,
   deletePostById,
   deleteSponsoringCompanyById,
 } from '@/api';
@@ -56,6 +57,26 @@ export const AlertDeleteSponsoringCompany = (id: string | number) => {
         label: '삭제',
         onClick: () => {
           deleteSponsoringCompanyById(id).then(() => {
+            location.reload();
+          });
+        },
+      },
+      {
+        label: '취소',
+      },
+    ],
+  });
+};
+
+export const AlertDeleteMou = (id: string | number) => {
+  confirmAlert({
+    title: `${id}번 MOU를 정말로 삭제하시겠습니까?`,
+    message: '삭제 후 복구가 불가능합니다.',
+    buttons: [
+      {
+        label: '삭제',
+        onClick: () => {
+          deleteMouById(id).then(() => {
             location.reload();
           });
         },

@@ -13,6 +13,7 @@ import {
 import { StatusButton } from '@/components';
 import {
   AlertDeletBanner,
+  AlertDeleteMou,
   AlertDeletePost,
   AlertDeleteSponsoringCompany,
 } from '@/libs/Alert';
@@ -343,7 +344,13 @@ const MOU = Object.freeze({
           <Link to={`/admin/mou/edit/${item.id}`}>수정</Link>
         </td>
         <td>
-          <Link to={`/admin/mou/delete/${item.id}`}>삭제</Link>
+          <button
+            onClick={() => {
+              AlertDeleteMou(item.id);
+            }}
+          >
+            삭제
+          </button>
         </td>
       </tr>
     );

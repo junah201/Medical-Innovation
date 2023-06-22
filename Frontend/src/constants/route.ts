@@ -62,5 +62,10 @@ export const ROUTE = Object.freeze({
       ROOT: '/admin/sponsor',
       ALL: '/admin/sponsor/all',
     }),
+    MOU: Object.freeze({
+      ROOT: '/admin/mou',
+      UPLOAD: '/admin/mou/upload',
+      ALL: '/admin/mou/all',
+    }),
   }),
 });

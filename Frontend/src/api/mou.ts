@@ -12,3 +12,11 @@ export const getMous = async (skip = 0, limit = 1000) => {
 
   return res;
 };
+
+export const deleteMouById = async (id: string | number) => {
+  const res = await authAxios.delete(
+    API_ROUTE.MOU.DELETE_MOU_BY_ID(id)
+  );
+
+  return res;
+};
