@@ -67,5 +67,10 @@ export const ROUTE = Object.freeze({
       UPLOAD: '/admin/mou/upload',
       ALL: '/admin/mou/all',
     }),
+    ADVISOR: Object.freeze({
+      ROOT: '/admin/advisor',
+      UPLOAD: '/admin/advisor/upload',
+      ALL: '/admin/advisor/all',
+    }),
   }),
 });

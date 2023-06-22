@@ -36,6 +36,7 @@ export const Table = ({
           res.data.posts ||
           res.data.banners ||
           res.data.sponsoring_companies ||
+          res.data.advisors ||
           res.data ||
           []
       );

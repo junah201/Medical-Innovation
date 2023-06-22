@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 
 import {
   getActiveBanners,
+  getAdvisors,
   getBanners,
   getJudgingParticipants,
   getMous,
@@ -18,6 +19,7 @@ import {
   AlertDeleteSponsoringCompany,
 } from '@/libs/Alert';
 import {
+  Advisor,
   Banner,
   JudgingParticipant,
   Mou,
@@ -357,6 +359,49 @@ const MOU = Object.freeze({
   },
 });
 
+const ADVISOR = Object.freeze({
+  headers: [
+    '번호',
+    '이름',
+    '자문단 종류',
+    '이미지',
+    '생성일',
+    '수정일',
+    '수정',
+    '삭제',
+  ],
+  size: 1000,
+  getDatas: async (
+    id: number | string,
+    page: number,
+    size: number
+  ) => {
+    return getAdvisors(page, size);
+  },
+  itemToElement: (item: Advisor, id: number) => {
+    return (
+      <tr key={item.id}>
+        <td>{item.id}</td>
+        <td>{item.name}</td>
+        <td>{item.type}</td>
+        <td>
+          <a href={`${VITE_CDN_URL}/upload/${item.filename}`}>
+            {item.filename}
+          </a>
+        </td>
+        <td>{item.created_at.replace('T', ' ')}</td>
+        <td>{item.updated_at.replace('T', ' ')}</td>
+        <td>
+          <Link to={`/admin/advisor/edit/${item.id}`}>수정</Link>
+        </td>
+        <td>
+          <Link to={`/admin/advisor/delete/${item.id}`}>삭제</Link>
+        </td>
+      </tr>
+    );
+  },
+});
+
 export const TABLE_CONFIG = Object.freeze({
   JUDGING_PARTICIPANT,
   USER,
@@ -365,4 +410,5 @@ export const TABLE_CONFIG = Object.freeze({
   SPONSORING_COMPANY,
   SPONSOR,
   MOU,
+  ADVISOR,
 });

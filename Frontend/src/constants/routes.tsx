@@ -56,6 +56,7 @@ import {
   AdminMouAll,
   AdminMouUpload,
   AdminMouEdit,
+  AdminAdvisorAll,
 } from '@/pages';
 
 interface RouteConfig {
@@ -511,6 +512,14 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/admin/mou/edit/:id',
     COMPONENT: AdminMouEdit,
+    HEADER: AdminHeader,
+    WRAPPER: AdminWrapper,
+    AUTH: true,
+    ADMIN: true,
+  },
+  {
+    PATH: '/admin/advisor/all',
+    COMPONENT: AdminAdvisorAll,
     HEADER: AdminHeader,
     WRAPPER: AdminWrapper,
     AUTH: true,
