@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 
 import {
-  getActiveBanners,
   getAdvisors,
   getBanners,
   getJudgingParticipants,
@@ -14,6 +13,7 @@ import {
 import { StatusButton } from '@/components';
 import {
   AlertDeletBanner,
+  AlertDeleteAdvisor,
   AlertDeleteMou,
   AlertDeletePost,
   AlertDeleteSponsoringCompany,
@@ -395,7 +395,13 @@ const ADVISOR = Object.freeze({
           <Link to={`/admin/advisor/edit/${item.id}`}>수정</Link>
         </td>
         <td>
-          <Link to={`/admin/advisor/delete/${item.id}`}>삭제</Link>
+          <button
+            onClick={() => {
+              AlertDeleteAdvisor(item.id);
+            }}
+          >
+            삭제
+          </button>
         </td>
       </tr>
     );

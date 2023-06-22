@@ -87,7 +87,7 @@ export const AdminBannerUpload = () => {
           register={register}
           errorMessage={errors[REGISTER_TYPE.BANNER_END_AT]?.message}
         />
-        <FilesInput
+        {/* <FilesInput
           title="배너 이미지"
           id={REGISTER_TYPE.FILE}
           control={control}
@@ -96,7 +96,7 @@ export const AdminBannerUpload = () => {
             labelIdle: '배너 이미지를 업로드해주세요.',
             maxFiles: 1,
           }}
-        />
+        /> */}
         <Submit
           isvalid={!Object.keys(errors)[0]}
           disabled={isSubmitting}

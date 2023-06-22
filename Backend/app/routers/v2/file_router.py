@@ -10,29 +10,23 @@ from app.utils import aws_s3
 from typing import List
 
 router = APIRouter(
-    prefix="/api/v2/file",
+    prefix="/file",
 )
 
 
-@router.post("/upload")
-async def upload_file(file: UploadFile = File(...)):
-    filename: str = aws_s3.upload_file(file, "upload")
-    return filename
-
-
-@ router.post("/uploads")
-async def upload_files(files: List[UploadFile]):
+@router.post("")
+async def upload_files(files: List[UploadFile], current_user: models.User = Depends(get_current_user)):
     filenames: List[str] = list()
     for file in files:
         filenames.append(aws_s3.upload_file(file, "upload"))
     return filenames
 
 
-@ router.get("/download/{filename}", response_class=RedirectResponse)
+@router.get("/{filename}", response_class=RedirectResponse)
 async def download_file(filename: str):
     return RedirectResponse(f"https://medical-innovation.s3.ap-northeast-2.amazonaws.com/upload/{filename}")
 
 
-@ router.delete("/delete/{filename}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/{filename}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_file(filename: str):
     aws_s3.delete_file(filename, "upload")

@@ -8,11 +8,11 @@ from app.utils.aws_s3 import upload_file, delete_file
 from typing import Optional
 
 router = APIRouter(
-    prefix="/api/v2/advisor",
+    prefix="/advisor",
 )
 
 
-@router.post("/", status_code=status.HTTP_204_NO_CONTENT)
+@router.post("", status_code=status.HTTP_204_NO_CONTENT)
 def create_advisor(advisor_create: schemas_v2.AdvisorCreate, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
     if not current_user.is_admin:
         raise HTTPException(
@@ -76,5 +76,24 @@ def update_advisor_content(advisor_id: int, advisor_update: schemas_v2.AdvisorUp
             status_code=status.HTTP_403_FORBIDDEN,
             detail="You do not have permission to update a advisor"
         )
-    crud.update_advisor_content(
-        db=db, advisor_id=advisor_id, advisor_update=advisor_update)
+
+    db_advisor: Optional[models.Advisor] = crud.get_advisor(
+        db=db, advisor_id=advisor_id)
+
+    if not db_advisor:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Advisor not found"
+        )
+
+    if advisor_update.filename != db_advisor.filename:
+        if db_advisor.filename and db_advisor.filename != "defualt_user.png":
+            delete_file(db_advisor.filename, "upload")
+
+    db_advisor.name = advisor_update.name
+    db_advisor.type = advisor_update.type
+    db_advisor.filename = advisor_update.filename
+    db_advisor.description = advisor_update.description
+
+    db.commit()
+    db.refresh(db_advisor)

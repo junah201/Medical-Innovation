@@ -5,7 +5,7 @@ import { useMutation, useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { getPostBoards, uploadPost } from '@/api';
+import { getPostBoards, uploadPost, uploadPostV2 } from '@/api';
 import {
   ReactHookInput,
   HtmlInput,
@@ -47,7 +47,7 @@ export const AdminPostUpload = () => {
 
   const { mutate } = useMutation(
     (userInput) =>
-      uploadPost(
+      uploadPostV2(
         userInput?.title,
         userInput?.board_id,
         userInput?.content,
@@ -103,10 +103,7 @@ export const AdminPostUpload = () => {
           title="첨부파일"
           id={REGISTER_TYPE.FILES}
           control={control}
-          options={{
-            maxFiles: 10,
-            labelIdle: '첨부파일을 업로드해주세요.',
-          }}
+          maxFileCount={10}
         />
         <Submit
           isvalid={!Object.keys(errors)[0]}

@@ -123,11 +123,9 @@ const USER = Object.freeze({
 });
 
 const FILE_V2 = Object.freeze({
-  UPLOAD_FILE: '/api/v2/file/upload',
-  UPLOAD_FILES: '/api/v2/file/uploads',
-  DOWNLOAD_FILE: (filename: string) =>
-    `/api/v2/file/download/${filename}`,
-  DELETE_FILE: (fileId: string) => `/api/v2/file/delete/${fileId}`,
+  UPLOAD_FILES: '/api/v2/file',
+  DOWNLOAD_FILE: (filename: string) => `/api/v2/file/${filename}`,
+  DELETE_FILE: (filename: string) => `/api/v2/file/${filename}`,
 });
 
 const ADVISOR_V2 = Object.freeze({
@@ -138,6 +136,12 @@ const ADVISOR_V2 = Object.freeze({
   GET_ADVISOR_BY_ID: (id: number | string) => `/api/v2/advisor/${id}`,
   UPDATE_ADVISOR_BY_ID: (id: number | string) =>
     `/api/v2/advisor/${id}`,
+});
+
+const POST_V2 = Object.freeze({
+  GET_POSTS: '/api/v2/post/all',
+  UPLOAD_POST: '/api/v2/post',
+  UPDATE_POST_BY_ID: (id: number | string) => `/api/v2/post/${id}`,
 });
 
 export const API_ROUTE = Object.freeze({
@@ -161,4 +165,5 @@ export const API_ROUTE = Object.freeze({
   USER,
   FILE_V2,
   ADVISOR_V2,
+  POST_V2,
 });

@@ -86,7 +86,7 @@ export const AdminSponsoringCompanyUpload = () => {
           register={register}
           errorMessage={errors[REGISTER_TYPE.YEAR]?.message}
         />
-        <FilesInput
+        {/* <FilesInput
           title="배너 이미지"
           id={REGISTER_TYPE.FILE}
           control={control}
@@ -94,7 +94,7 @@ export const AdminSponsoringCompanyUpload = () => {
             acceptedFileTypes: ['image/*'],
             maxFiles: 1,
           }}
-        />
+        /> */}
         <Submit
           isvalid={!Object.keys(errors)[0]}
           disabled={isSubmitting}

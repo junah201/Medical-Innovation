@@ -2,12 +2,17 @@ import { AxiosError } from 'axios';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { getPostBoards, getPostById, updatePostById } from '@/api';
-import { ReactHookInput, HtmlInput } from '@/components';
-import { INPUT_TYPE, REGISTER_TYPE } from '@/constants';
+import {
+  getPostBoards,
+  getPostById,
+  updatePostById,
+  updatePostByIdV2,
+} from '@/api';
+import { ReactHookInput, HtmlInput, FilesInput } from '@/components';
+import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
 import { Toast } from '@/libs/Toast';
 import { RegisterField } from '@/types';
 
@@ -17,6 +22,8 @@ export const AdminPostEdit = () => {
   const { id } = useParams() as {
     id: string;
   };
+  const navigate = useNavigate();
+
   const [boards, setBoards] = useState([]);
 
   const {
@@ -25,12 +32,14 @@ export const AdminPostEdit = () => {
     handleSubmit,
     formState: { errors, isSubmitting },
     setValue,
+    control,
   } = useForm<RegisterField>({
     mode: 'onChange',
     defaultValues: {
       title: '',
       board_id: '1',
       content: '',
+      files: [],
     },
   });
 
@@ -47,20 +56,23 @@ export const AdminPostEdit = () => {
       setValue(REGISTER_TYPE.TITLE, res.data.title);
       setValue(REGISTER_TYPE.BOARD_ID, res.data.board_id);
       setValue(REGISTER_TYPE.CONTENT, res.data.content);
+      setValue(REGISTER_TYPE.FILES, res.data.files);
     },
   });
 
   const { mutate } = useMutation(
     (userInput) =>
-      updatePostById(
+      updatePostByIdV2(
         id,
-        userInput.title,
-        userInput.board_id,
-        userInput.content
+        userInput?.title,
+        userInput?.board_id,
+        userInput?.content,
+        userInput?.files
       ),
     {
       onSuccess: () => {
         Toast('수정되었습니다.', 'success');
+        navigate(ROUTE.ADMIN.POST.ALL);
       },
       onError: (err: AxiosError) => {
         Toast(`수정에 실패했습니다. ${err?.response?.data}`, 'error');
@@ -73,6 +85,7 @@ export const AdminPostEdit = () => {
   return (
     <Wrapper>
       <h1>게시물 수정</h1>
+      {JSON.stringify(watch())}
       <Form onSubmit={handleSubmit(onValid)}>
         <ReactHookInput
           id={REGISTER_TYPE.TITLE}
@@ -94,14 +107,18 @@ export const AdminPostEdit = () => {
             };
           })}
         />
-        <br />
         <HtmlInput
           title="본문"
           defaultData={watch()[REGISTER_TYPE.CONTENT]}
           onChange={(data) => setValue(REGISTER_TYPE.CONTENT, data)}
           errorMessage={errors[REGISTER_TYPE.CONTENT]?.message}
         />
-        <br />
+        <FilesInput
+          title="첨부파일"
+          maxFileCount={10}
+          id={REGISTER_TYPE.FILES}
+          control={control}
+        />
         <Submit
           isvalid={!Object.keys(errors)[0]}
           disabled={isSubmitting}

@@ -1,6 +1,7 @@
 import { confirmAlert } from 'react-confirm-alert';
 
 import {
+  deleteAdvisorById,
   deleteBannerById,
   deleteMouById,
   deletePostById,
@@ -77,6 +78,26 @@ export const AlertDeleteMou = (id: string | number) => {
         label: '삭제',
         onClick: () => {
           deleteMouById(id).then(() => {
+            location.reload();
+          });
+        },
+      },
+      {
+        label: '취소',
+      },
+    ],
+  });
+};
+
+export const AlertDeleteAdvisor = (id: string | number) => {
+  confirmAlert({
+    title: `${id}번 자문단을 정말로 삭제하시겠습니까?`,
+    message: '삭제 후 복구가 불가능합니다.',
+    buttons: [
+      {
+        label: '삭제',
+        onClick: () => {
+          deleteAdvisorById(id).then(() => {
             location.reload();
           });
         },

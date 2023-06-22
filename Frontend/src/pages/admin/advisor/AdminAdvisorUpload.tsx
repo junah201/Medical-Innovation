@@ -5,13 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { uploadAdvisorV2 } from '@/api';
-import { FilepondSingleInput } from '@/components';
-import { ReactHookInput } from '@/components/form';
+import { FilesInput, ReactHookInput } from '@/components/form';
 import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
 import { Toast } from '@/libs/Toast';
 import { RegisterField } from '@/types';
-
-import '@/static/css/content-styles.css';
 
 export const AdminAdvisorUpload = () => {
   const navigate = useNavigate();
@@ -21,6 +18,7 @@ export const AdminAdvisorUpload = () => {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+    setValue,
     control,
   } = useForm<RegisterField>({
     mode: 'onChange',
@@ -28,20 +26,21 @@ export const AdminAdvisorUpload = () => {
       name: '',
       type: '',
       description: '',
-      filename: '',
+      filename: [],
     },
   });
 
   const { mutate } = useMutation(
     (userInput) => {
       if (!userInput?.filename) {
-        userInput.filename = 'defualt_user.png';
+        throw new Error('파일을 첨부해주세요.');
       }
+
       return uploadAdvisorV2(
         userInput?.name,
         userInput?.type,
         userInput?.description,
-        userInput?.filename
+        userInput?.filename[0]
       );
     },
     {
@@ -65,7 +64,6 @@ export const AdminAdvisorUpload = () => {
   return (
     <Wrapper>
       <h1>자문단 업로드</h1>
-      {JSON.stringify(watch())}
       <Form onSubmit={handleSubmit(onValid)}>
         <ReactHookInput
           id={REGISTER_TYPE.NAME}
@@ -99,19 +97,11 @@ export const AdminAdvisorUpload = () => {
           register={register}
           errorMessage={errors[REGISTER_TYPE.DESCRIPTION]?.message}
         />
-        <FilepondSingleInput
-          title="프로필 이미지"
+        <FilesInput
+          title="자문단 프로필 이미지"
           id={REGISTER_TYPE.FILENAME}
           control={control}
-          options={{
-            acceptedFileTypes: ['image/*'],
-            labelIdle: '프로필 이미지를 업로드해주세요.',
-            allowImageCrop: true,
-            imageCropAspectRatio: '3:4',
-            allowImageTransform: true,
-            imageResizeTargetWidth: 300,
-            imageResizeTargetHeight: 400,
-          }}
+          maxFileCount={1}
         />
         <Submit
           isvalid={!Object.keys(errors)[0]}

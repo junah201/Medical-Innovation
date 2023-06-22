@@ -54,3 +54,39 @@ export const uploadAdvisorV2 = async (
 
   return res;
 };
+
+export const deleteAdvisorById = async (id: string | number) => {
+  const res = await authAxios.delete(
+    API_ROUTE.ADVISOR_V2.DELETE_ADVISOR_BY_ID(id)
+  );
+
+  return res;
+};
+
+export const getAdvisorById = async (id: string | number) => {
+  const res = await unAuthAxios.get(
+    API_ROUTE.ADVISOR_V2.GET_ADVISOR_BY_ID(id)
+  );
+
+  return res;
+};
+
+export const updateAdvisorById = async (
+  id: string | number,
+  name: string,
+  type: string,
+  description: string,
+  filename: string
+) => {
+  const res = await authAxios.put(
+    API_ROUTE.ADVISOR_V2.UPDATE_ADVISOR_BY_ID(id),
+    {
+      name: name,
+      type: type,
+      description: description,
+      filename: filename,
+    }
+  );
+
+  return res;
+};

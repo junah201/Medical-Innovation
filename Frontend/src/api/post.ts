@@ -75,6 +75,22 @@ export const uploadPost = async (
   return res;
 };
 
+export const uploadPostV2 = async (
+  title: string,
+  boardId: number | string,
+  content: string,
+  files: string[]
+) => {
+  const res = await authAxios.post(API_ROUTE.POST_V2.UPLOAD_POST, {
+    title: title,
+    board_id: boardId,
+    content: content,
+    files: files,
+  });
+
+  return res;
+};
+
 export const updatePostById = async (
   id: number | string,
   title: string,
@@ -87,6 +103,26 @@ export const updatePostById = async (
       title: title,
       board_id: boardId,
       content: content,
+    }
+  );
+
+  return res;
+};
+
+export const updatePostByIdV2 = async (
+  id: number | string,
+  title: string,
+  boardId: number | string,
+  content: string,
+  files: string[]
+) => {
+  const res = await authAxios.put(
+    API_ROUTE.POST_V2.UPDATE_POST_BY_ID(id),
+    {
+      title: title,
+      board_id: boardId,
+      content: content,
+      files: files,
     }
   );
 

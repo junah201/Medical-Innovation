@@ -30,21 +30,23 @@ export const uploadFiles = async (files: File[]) => {
   return res;
 };
 
-export const uploadFileV2 = async (file: File) => {
+export const uploadFileV2 = async (files: File[]) => {
   const formData = new FormData();
-  formData.append('file', file);
+  files.forEach((file) => {
+    formData.append('files', file);
+  });
 
   const res = await authAxios.postMultipartFormData(
-    API_ROUTE.FILE_V2.UPLOAD_FILE,
+    API_ROUTE.FILE_V2.UPLOAD_FILES,
     formData
   );
 
   return res;
 };
 
-export const deleteFileV2 = async (fileId: string) => {
+export const deleteFileV2 = async (filename: string) => {
   const res = await authAxios.delete(
-    API_ROUTE.FILE_V2.DELETE_FILE(fileId)
+    API_ROUTE.FILE_V2.DELETE_FILE(filename)
   );
 
   return res;

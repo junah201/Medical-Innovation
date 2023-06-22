@@ -1,22 +1,18 @@
 import { AxiosError } from 'axios';
 import { useForm } from 'react-hook-form';
-import { useMutation } from 'react-query';
-import { useNavigate } from 'react-router-dom';
+import { useMutation, useQuery } from 'react-query';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-
-import { uploadBanner, uploadMou } from '@/api';
-import {
-  ReactHookInput,
-  HtmlInput,
-  FilesInput,
-} from '@/components/form';
+import { useEffect } from 'react';
+import { getAdvisorById, updateAdvisorById } from '@/api';
+import { ReactHookInput, FilesInput } from '@/components/form';
 import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
 import { Toast } from '@/libs/Toast';
 import { RegisterField } from '@/types';
 
-import '@/static/css/content-styles.css';
+export const AdminAdvisorEdit = () => {
+  const { id } = useParams();
 
-export const AdminMouUpload = () => {
   const navigate = useNavigate();
 
   const {
@@ -24,39 +20,52 @@ export const AdminMouUpload = () => {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    setValue,
     control,
+    setValue,
   } = useForm<RegisterField>({
     mode: 'onChange',
     defaultValues: {
       name: '',
-      link: '',
-      file: [],
-      banner_end_at: '',
+      type: '',
+      description: '',
+      filename: [],
     },
   });
 
+  useEffect(() => {
+    console.log('rerender');
+    async function getAdvisor() {
+      const res = await getAdvisorById(id);
+      console.log(res);
+      setValue(REGISTER_TYPE.NAME, res.data.name);
+      setValue(REGISTER_TYPE.TYPE, res.data.type);
+      setValue(REGISTER_TYPE.DESCRIPTION, res.data.description);
+      setValue(REGISTER_TYPE.FILENAME, [res.data.filename]);
+    }
+    getAdvisor();
+  }, []);
+
   const { mutate } = useMutation(
     (userInput) => {
-      if (!userInput?.file[0]) {
-        throw Error('MOU 이미지를 업로드해주세요.');
+      if (!userInput?.filename[0]) {
+        throw new Error('파일을 첨부해주세요.');
       }
-      return uploadMou(
+      return updateAdvisorById(
+        id,
         userInput?.name,
-        userInput?.link,
-        userInput?.file[0]
+        userInput?.type,
+        userInput?.description,
+        userInput?.filename[0]
       );
     },
     {
       onSuccess: () => {
-        Toast('업로드 완료', 'success');
-        navigate(ROUTE.ADMIN.MOU.ALL);
+        Toast('수정 완료', 'success');
+        navigate(ROUTE.ADMIN.ADVISOR.ALL);
       },
       onError: (err: AxiosError) => {
         Toast(
-          `업로드에 실패했습니다. ${
-            err?.response?.data || err.message
-          }`,
+          `수정 실패했습니다. ${err?.response?.data || err.message}`,
           'error'
         );
       },
@@ -67,7 +76,8 @@ export const AdminMouUpload = () => {
 
   return (
     <Wrapper>
-      <h1>MOU 업로드</h1>
+      <h1>자문단 수정</h1>
+      {JSON.stringify(watch())}
       <Form onSubmit={handleSubmit(onValid)}>
         <ReactHookInput
           id={REGISTER_TYPE.NAME}
@@ -78,33 +88,55 @@ export const AdminMouUpload = () => {
           errorMessage={errors[REGISTER_TYPE.NAME]?.message}
         />
         <ReactHookInput
-          id={REGISTER_TYPE.LINK}
-          title="사이트 링크"
-          placeholder="만약 없다면 # 하나만 입력해주세요."
-          type={INPUT_TYPE.TEXT}
+          id={REGISTER_TYPE.TYPE}
+          title="자문단 종류"
+          type={INPUT_TYPE.SELECT}
+          options={[
+            '이사',
+            '고문',
+            '전문심의위원회',
+            '자문위원회',
+            '창업기획자 전문가그룹장',
+            '창업기획자 전문가그룹 자문단',
+            '칼럼니스트',
+          ].map((data) => ({ value: data, label: data }))}
           register={register}
           errorMessage={errors[REGISTER_TYPE.LINK]?.message}
         />
-        {/* <FilesInput
-          title="배너 이미지"
-          id={REGISTER_TYPE.FILE}
+        <ReactHookInput
+          id={REGISTER_TYPE.DESCRIPTION}
+          title="자문단 소개"
+          placeholder="해당 자문단에 대한 소개를 , 단위로 나누어서 입력해주세요."
+          type={INPUT_TYPE.TEXTAREA}
+          register={register}
+          errorMessage={errors[REGISTER_TYPE.DESCRIPTION]?.message}
+        />
+        <FilesInput
+          id={REGISTER_TYPE.FILENAME}
+          title="프로필 이미지"
           control={control}
+          maxFileCount={1}
+        />
+        {/* <FilepondSingleInput
+          title="프로필 이미지"
+          id={REGISTER_TYPE.FILENAME}
+          control={control}
+          initFile={initFile}
           options={{
-            maxFiles: 1,
             acceptedFileTypes: ['image/*'],
-            labelIdle: 'MOU 이미지를 업로드해주세요.',
+            labelIdle: '프로필 이미지를 업로드해주세요.',
             allowImageCrop: true,
-            imageCropAspectRatio: '20:11',
+            imageCropAspectRatio: '3:4',
             allowImageTransform: true,
-            imageResizeTargetWidth: 400,
-            imageResizeTargetHeight: 220,
+            imageResizeTargetWidth: 300,
+            imageResizeTargetHeight: 400,
           }}
         /> */}
         <Submit
           isvalid={!Object.keys(errors)[0]}
           disabled={isSubmitting}
         >
-          업로드
+          수정하기
         </Submit>
       </Form>
     </Wrapper>

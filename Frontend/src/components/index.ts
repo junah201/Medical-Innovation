@@ -7,4 +7,3 @@ export * from './nav';
 export * from './table';
 export * from './form';
 export * from './route';
-export * from './filepond';
