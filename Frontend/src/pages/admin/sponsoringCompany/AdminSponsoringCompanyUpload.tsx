@@ -90,7 +90,10 @@ export const AdminSponsoringCompanyUpload = () => {
           title="배너 이미지"
           id={REGISTER_TYPE.FILE}
           control={control}
-          maxFiles={1}
+          options={{
+            acceptedFileTypes: ['image/*'],
+            maxFiles: 1,
+          }}
         />
         <Submit
           isvalid={!Object.keys(errors)[0]}

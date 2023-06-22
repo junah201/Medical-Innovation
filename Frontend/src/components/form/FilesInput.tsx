@@ -1,27 +1,34 @@
 import { FilePondFile } from 'filepond';
+import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
+import FilePondPluginImageCrop from 'filepond-plugin-image-crop';
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
+import FilePondPluginImageTransform from 'filepond-plugin-image-transform';
 import { FilePond, registerPlugin } from 'react-filepond';
 import { Control, Controller } from 'react-hook-form';
 import { styled } from 'styled-components';
 
 import { InputLabel } from '@/components/form';
 import { RegisterField, RegisterTypes } from '@/types';
-
 import 'filepond/dist/filepond.min.css';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 
-registerPlugin(FilePondPluginImagePreview);
+registerPlugin(
+  FilePondPluginImagePreview,
+  FilePondPluginFileValidateType,
+  FilePondPluginImageCrop,
+  FilePondPluginImageTransform
+);
 
 export const FilesInput = ({
   id,
   title,
   control,
-  maxFiles = 5,
+  options = {},
 }: {
   id: RegisterTypes;
   title: string;
   control: Control<RegisterField, any>;
-  maxFiles?: number;
+  options?: any;
 }) => {
   return (
     <Wrapper>
@@ -32,7 +39,6 @@ export const FilesInput = ({
         render={({ field }) => (
           <>
             <FilePond
-              maxFiles={maxFiles}
               allowMultiple={true}
               onupdatefiles={(fileItems: FilePondFile[]) => {
                 field.onChange(
@@ -40,6 +46,7 @@ export const FilesInput = ({
                 );
               }}
               labelIdle='파일을 여기로 드래그하거나  <span class="filepond--label-action">찾아보기</span>'
+              {...options}
             />
           </>
         )}

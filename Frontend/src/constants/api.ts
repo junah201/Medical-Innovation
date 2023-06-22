@@ -19,6 +19,10 @@ const BANNER = Object.freeze({
 const MOU = Object.freeze({
   GET_MOUS: '/api/v1/mou/all',
   DELETE_MOU_BY_ID: (id: number | string) => `/api/v1/mou/${id}`,
+  UPLOAD_MOU: '/api/v1/mou/create',
+  GET_MOU_BY_ID: (id: number | string) => `/api/v1/mou/get/${id}`,
+  UPDATE_MOU_BY_ID: (id: number | string) =>
+    `/api/v1/mou/update/${id}`,
 });
 
 const ADVISOR = Object.freeze({

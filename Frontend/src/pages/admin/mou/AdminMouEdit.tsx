@@ -1,11 +1,15 @@
 import { AxiosError } from 'axios';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQuery } from 'react-query';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { getPostBoards, uploadPost } from '@/api';
+import {
+  getMouById,
+  updateMouById,
+  uploadBanner,
+  uploadMou,
+} from '@/api';
 import {
   ReactHookInput,
   HtmlInput,
@@ -17,50 +21,46 @@ import { RegisterField } from '@/types';
 
 import '@/static/css/content-styles.css';
 
-export const AdminPostUpload = () => {
+export const AdminMouEdit = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
-  const [boards, setBoards] = useState([]);
 
   const {
-    watch,
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     setValue,
-    control,
   } = useForm<RegisterField>({
     mode: 'onChange',
     defaultValues: {
-      title: '',
-      board_id: '1',
-      content: '',
-      files: [],
+      name: '',
+      link: '',
     },
   });
 
-  useQuery('boards', () => getPostBoards(0, 10000), {
+  useQuery('mous', () => getMouById(id), {
     retry: false,
+    cacheTime: 0,
     onSuccess: (res) => {
-      setBoards(res.data);
+      setValue(REGISTER_TYPE.NAME, res.data.name);
+      setValue(REGISTER_TYPE.LINK, res.data.link);
     },
   });
 
   const { mutate } = useMutation(
-    (userInput) =>
-      uploadPost(
-        userInput?.title,
-        userInput?.board_id,
-        userInput?.content,
-        userInput?.files
-      ),
+    (userInput) => {
+      return updateMouById(id, userInput?.name, userInput?.link);
+    },
     {
       onSuccess: () => {
-        Toast('업로드 완료', 'success');
-        navigate(ROUTE.ADMIN.POST.ALL);
+        Toast('수정 완료', 'success');
+        navigate(ROUTE.ADMIN.MOU.ALL);
       },
       onError: (err: AxiosError) => {
         Toast(
-          `업로드에 실패했습니다. ${err?.response?.data}`,
+          `수정에 실패했습니다. ${
+            err?.response?.data || err.message
+          }`,
           'error'
         );
       },
@@ -71,42 +71,23 @@ export const AdminPostUpload = () => {
 
   return (
     <Wrapper>
-      <h1>게시물 업로드</h1>
+      <h1>MOU 수정</h1>
       <Form onSubmit={handleSubmit(onValid)}>
         <ReactHookInput
-          id={REGISTER_TYPE.TITLE}
-          title="제목"
+          id={REGISTER_TYPE.NAME}
+          title="회사명"
+          placeholder='회사명을 입력해주세요. ex) "플레이데이터"'
           type={INPUT_TYPE.TEXT}
           register={register}
-          errorMessage={errors[REGISTER_TYPE.TITLE]?.message}
+          errorMessage={errors[REGISTER_TYPE.NAME]?.message}
         />
         <ReactHookInput
-          id={REGISTER_TYPE.BOARD_ID}
-          title="게시판"
-          type={INPUT_TYPE.SELECT}
+          id={REGISTER_TYPE.LINK}
+          title="사이트 링크"
+          placeholder="만약 없다면 # 하나만 입력해주세요."
+          type={INPUT_TYPE.TEXT}
           register={register}
-          errorMessage={errors[REGISTER_TYPE.BOARD_ID]?.message}
-          options={boards.map((board) => {
-            return {
-              value: board.id,
-              label: board.name,
-            };
-          })}
-        />
-        <HtmlInput
-          title="본문"
-          defaultData={watch()[REGISTER_TYPE.CONTENT]}
-          onChange={(data) => setValue(REGISTER_TYPE.CONTENT, data)}
-          errorMessage={errors[REGISTER_TYPE.CONTENT]?.message}
-        />
-        <FilesInput
-          title="첨부파일"
-          id={REGISTER_TYPE.FILES}
-          control={control}
-          options={{
-            maxFiles: 10,
-            labelIdle: '첨부파일을 업로드해주세요.',
-          }}
+          errorMessage={errors[REGISTER_TYPE.LINK]?.message}
         />
         <Submit
           isvalid={!Object.keys(errors)[0]}

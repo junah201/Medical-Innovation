@@ -75,7 +75,7 @@ export const AdminBannerUpload = () => {
         <ReactHookInput
           id={REGISTER_TYPE.LINK}
           title="사이트 링크"
-          placeholder="만약 없다면 공백 하나만 입력해주세요."
+          placeholder="만약 없다면 # 하나만 입력해주세요."
           type={INPUT_TYPE.TEXT}
           register={register}
           errorMessage={errors[REGISTER_TYPE.LINK]?.message}
@@ -91,7 +91,11 @@ export const AdminBannerUpload = () => {
           title="배너 이미지"
           id={REGISTER_TYPE.FILE}
           control={control}
-          maxFiles={1}
+          options={{
+            acceptedFileTypes: ['image/*'],
+            labelIdle: '배너 이미지를 업로드해주세요.',
+            maxFiles: 1,
+          }}
         />
         <Submit
           isvalid={!Object.keys(errors)[0]}
