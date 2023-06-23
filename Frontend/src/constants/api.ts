@@ -48,7 +48,11 @@ const PUBLIC_EVENT = Object.freeze({
 
 const PUBLIC_PARTICIPANT = Object.freeze({
   SUBMIT_PUBLIC_EVENT: (id: number | string) =>
-    `/api/v1/participant/${id}/create`,
+    `/api/v2/public_participant/${id}`,
+  GET_PUBLIC_PARTICIPANTS_BY_EVENT_ID: (id: number | string) =>
+    `/api/v2/public_participant/${id}/all`,
+  GET_PUBLIC_PARTICIPANT_BY_ID: (id: number | string) =>
+    `/api/v2/public_participant/${id}`,
 });
 
 const JUDGING_EVENT = Object.freeze({

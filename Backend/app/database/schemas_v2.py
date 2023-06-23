@@ -408,7 +408,7 @@ class Participant(BaseModel):
 
 class ParticipantList(BaseModel):
     total: int
-    participants: list[Participant]
+    items: list[Participant]
 
 
 class AdEmailCreate(BaseModel):

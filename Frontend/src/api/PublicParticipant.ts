@@ -16,3 +16,21 @@ export const submitPublicEvnet = async (
 
   return res;
 };
+
+export const getPublicParticipantsByEventId = async (
+  eventId: number | string,
+  skip: number,
+  limit: number
+) => {
+  const res = await authAxios.getByParams(
+    API_ROUTE.PUBLIC_PARTICIPANT.GET_PUBLIC_PARTICIPANTS_BY_EVENT_ID(
+      eventId
+    ),
+    {
+      skip: skip,
+      limit: limit,
+    }
+  );
+
+  return res;
+};

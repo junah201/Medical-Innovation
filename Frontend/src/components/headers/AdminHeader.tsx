@@ -40,7 +40,9 @@ export const AdminHeader = () => {
             <Link to="/admin/public_event/all">행사 목록</Link>
           </li>
           <li>
-            <Link to="/admin/participant/all">행사 참여자</Link>
+            <Link to="/admin/public_participant/all">
+              행사 참여자
+            </Link>
           </li>
           <li>
             <Link to="/admin/private_event/all">
@@ -87,14 +89,14 @@ export const AdminHeader = () => {
 };
 
 const Wrapper = styled.header`
-  background-color: #2763ba;
-  position: fixed;
   display: flex;
   flex-direction: column;
+  background-color: #2763ba;
+  position: fixed;
   min-width: 250px;
   min-height: 100vh;
   height: 100%;
-  text-align: center;
+  text-align: left;
 
   & li {
     border-bottom: 1px solid #ffffff;

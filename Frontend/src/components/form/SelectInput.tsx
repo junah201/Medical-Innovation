@@ -47,6 +47,7 @@ const Wrapper = styled.div`
 `;
 
 const Input = styled.select<{ iserror: boolean }>`
+  width: 100%;
   display: flex;
   flex-direction: row;
   font-size: 18px;

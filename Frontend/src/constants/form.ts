@@ -86,6 +86,8 @@ export const REGISTER_TYPE = Object.freeze({
   END_DATE: 'end_date',
   JOIN_START_DATE: 'join_start_date',
   JOIN_END_DATE: 'join_end_date',
+
+  SELECT_EVENT_ID: 'select_event_id',
 });
 
 export const ERROR_MESSAGE = Object.freeze({

@@ -9,6 +9,7 @@ from app.routers.v2 import (
     mou_router,
     user_router,
     public_event_router,
+    public_participant_router,
 )
 
 router = APIRouter(
@@ -24,3 +25,4 @@ router.include_router(sponsoring_company_router.router)
 router.include_router(mou_router.router)
 router.include_router(user_router.router)
 router.include_router(public_event_router.router)
+router.include_router(public_participant_router.router)

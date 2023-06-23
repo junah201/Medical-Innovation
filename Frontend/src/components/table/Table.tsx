@@ -27,7 +27,7 @@ export const Table = ({
   const [data, setData] = useState<any[]>([]);
 
   const { isLoading, isError, error } = useQuery({
-    queryKey: ['datas', page, total],
+    queryKey: ['datas', page, total, id],
     queryFn: () => getDatas(id, page, size),
     onSuccess: (res: AxiosResponse) => {
       setData(res.data.items);
@@ -36,6 +36,8 @@ export const Table = ({
   });
 
   if (isLoading) return <>로딩중...</>;
+
+  if (isError) return <>에러가 발생했습니다. {error}</>;
 
   return (
     <>

@@ -1,4 +1,5 @@
 export interface PublicParticipant {
+  id?: number;
   name: string;
   english_name: string;
   gender: string;
