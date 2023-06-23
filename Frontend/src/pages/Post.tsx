@@ -32,7 +32,8 @@ export const Post = () => {
 
   if (isLoading) return <div>로딩중...</div>;
 
-  if (isError) return <div>에러가 발생했습니다. {error}</div>;
+  if (isError)
+    return <div>에러가 발생했습니다. {JSON.stringify(error)}</div>;
 
   return (
     <>

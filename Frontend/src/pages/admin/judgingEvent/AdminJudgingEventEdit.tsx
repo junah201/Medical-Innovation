@@ -5,11 +5,7 @@ import { useMutation } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import {
-  getJudgingEventById,
-  updateJudgingEventById,
-  uploadJudgingEvent,
-} from '@/api';
+import { getJudgingEventById, updateJudgingEventById } from '@/api';
 import {
   ReactHookInput,
   HtmlInput,

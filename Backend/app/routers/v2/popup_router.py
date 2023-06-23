@@ -5,6 +5,7 @@ from app.database.database import get_db
 from app.utils.oauth2 import get_current_user
 from app.utils.aws_s3 import upload_file, delete_file
 from typing import List
+from datetime import datetime
 
 router = APIRouter(
     prefix="/popup",
@@ -42,8 +43,20 @@ async def get_popups(skip: int = 0, limit: int = 40, db: Session = Depends(get_d
 
 
 @router.get("/all/active", response_model=schemas_v2.PopupList)
-async def get_active_popups(db: Session = Depends(get_db), ):
-    return crud.get_active_popups(db=db)
+async def get_active_popups(db: Session = Depends(get_db)):
+    now = datetime.now().date()
+    db_popups = db.query(models.Popup).order_by(
+        models.Popup.popup_start_date.desc()
+    ).filter(
+        models.Popup.popup_start_date <= now
+    ).filter(
+        models.Popup.popup_end_date >= now
+    )
+
+    return schemas_v2.PopupList(
+        total=db_popups.count(),
+        items=db_popups.all()
+    )
 
 
 @router.get("/{popup_id}", response_model=schemas_v2.Popup)

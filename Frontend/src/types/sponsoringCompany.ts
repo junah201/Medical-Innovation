@@ -10,5 +10,5 @@ export interface SponsoringCompany {
 
 export interface SponsoringCompanyList {
   total: number;
-  sponsoring_companies: SponsoringCompany[];
+  items: SponsoringCompany[];
 }

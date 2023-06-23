@@ -1,13 +1,10 @@
-import { AxiosError } from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useQuery } from 'react-query';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { getJudgingResultById } from '@/api';
 import {
-  Message,
   JudgingForm,
   ReactHookInput,
   InputLabel,

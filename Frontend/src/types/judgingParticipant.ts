@@ -1,34 +1,4 @@
-export interface JudgingResult {
-  id: number;
-  nth: number;
-  judging_event_id: number;
-  user: any;
-  participant_id: number;
-  participant_name: string;
-  technical_score1: number;
-  technical_score2: number;
-  technical_score3: number;
-  technical_score4: number;
-  technical_score5: number;
-  technical_score6: number;
-  marketability_score1: number;
-  marketability_score2: number;
-  marketability_score3: number;
-  marketability_score4: number;
-  business_score1: number;
-  business_score2: number;
-  business_score3: number;
-  business_score4: number;
-  business_score5: number;
-  business_score6: number;
-  business_score7: number;
-  business_score8: number;
-  other_score1: number;
-  total_score: number;
-  other_comment: string;
-  created_at: string;
-  updated_at: string;
-}
+import { JudgingResult } from './judgingResult';
 
 export interface JudgingParticipant {
   id: number;

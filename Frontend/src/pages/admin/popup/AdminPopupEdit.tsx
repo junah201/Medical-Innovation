@@ -1,21 +1,17 @@
 import { AxiosError } from 'axios';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { getPopupById, updatePopupById } from '@/api';
-import {
-  ReactHookInput,
-  CropImageInput,
-  FilesInput,
-} from '@/components/form';
+import { ReactHookInput, FilesInput } from '@/components/form';
 import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
 import { Toast } from '@/libs/Toast';
 import { RegisterField } from '@/types';
 
 import '@/static/css/content-styles.css';
-import { useEffect } from 'react';
 
 export const AdminPopupEdit = () => {
   const navigate = useNavigate();
