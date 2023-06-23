@@ -27,6 +27,7 @@ import {
   AlertDeleteAdvisor,
   AlertDeleteHistory,
   AlertDeleteMou,
+  AlertDeletePopup,
   AlertDeletePost,
   AlertDeleteSponsoringCompany,
 } from '@/libs/Alert';
@@ -845,7 +846,13 @@ const POPUP = Object.freeze({
           <Link to={`/admin/popup/edit/${item.id}`}>수정</Link>
         </td>
         <td>
-          <Link to={`/admin/popup/delete/${item.id}`}>삭제</Link>
+          <button
+            onClick={() => {
+              AlertDeletePopup(item.id);
+            }}
+          >
+            삭제
+          </button>
         </td>
       </tr>
     );

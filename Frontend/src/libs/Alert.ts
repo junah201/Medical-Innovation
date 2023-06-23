@@ -6,6 +6,7 @@ import {
   deleteBannerById,
   deleteHistoryById,
   deleteMouById,
+  deletePopupById,
   deletePostById,
   deleteSponsoringCompanyById,
 } from '@/api';
@@ -156,6 +157,28 @@ export const AlertDeleteHistory = (id: string | number) => {
             location.reload();
           }
           deleteHistory();
+        },
+      },
+      {
+        label: '취소',
+      },
+    ],
+  });
+};
+
+export const AlertDeletePopup = (id: string | number) => {
+  confirmAlert({
+    title: `${id}번 팝업을 정말로 삭제하시겠습니까?`,
+    message: '삭제 후 복구가 불가능합니다.',
+    buttons: [
+      {
+        label: '삭제',
+        onClick: () => {
+          async function deletePopup() {
+            await deletePopupById(id);
+            location.reload();
+          }
+          deletePopup();
         },
       },
       {
