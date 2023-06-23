@@ -61,6 +61,7 @@ const JUDGING_EVENT = Object.freeze({
   GET_JUDGING_EVENTS: '/api/v2/judging_event/all',
   GET_JUDGING_EVENT_BY_ID: (id: number | string) =>
     `/api/v2/judging_event/${id}`,
+  UPLOAD_JUDGING_EVENT: '/api/v2/judging_event',
 });
 
 const JUDGING_PARTICIPANT = Object.freeze({

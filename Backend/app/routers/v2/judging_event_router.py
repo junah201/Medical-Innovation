@@ -1,11 +1,10 @@
 from fastapi import APIRouter, HTTPException, Depends, UploadFile, File
 from sqlalchemy.orm import Session
 from starlette import status
-import json
-from app.database import crud, schemas, models
+from app.database import crud, schemas_v2, models
 from app.database.database import get_db
 from app.utils.oauth2 import get_current_user
-from app.utils.aws_s3 import upload_file, delete_file
+from app.utils.aws_s3 import upload_file
 from typing import List, Optional
 
 router = APIRouter(
@@ -14,26 +13,17 @@ router = APIRouter(
 
 
 @router.post("", status_code=status.HTTP_204_NO_CONTENT)
-def create_judging_event(judging_event_create: schemas.JudgingEventCreate = Depends(schemas.JudgingEventCreate), file: Optional[UploadFile] = File(...), current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
+def create_judging_event(judging_event_create: schemas_v2.JudgingEventCreate, current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
     if not current_user.is_admin:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="You do not have permission to create a judging_event"
         )
 
-    filename = None
-    if file:
-        if file.content_type not in ["image/png", "image/jpeg"]:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="File must be png or jpeg"
-            )
-        filename = upload_file(file, "upload")
-
     db_judging_event = models.JudgingEvent(
         name=judging_event_create.name,
         description=judging_event_create.description,
-        thumbnail_filename=filename,
+        thumbnail_filename=judging_event_create.thumbnail_filename,
         join_start_date=judging_event_create.join_start_date,
         join_end_date=judging_event_create.join_end_date,
         judging_1st_start_date=judging_event_create.judging_1st_start_date,
@@ -45,14 +35,14 @@ def create_judging_event(judging_event_create: schemas.JudgingEventCreate = Depe
     db.commit()
 
 
-@router.get("/all", response_model=schemas.JudgingEventList)
+@router.get("/all", response_model=schemas_v2.JudgingEventList)
 def get_all_judging_events(skip: int = 0, limit: int = 40, db: Session = Depends(get_db)):
     db_judging_events = db.query(models.JudgingEvent).order_by(
-        models.JudgingEvent.join_start_date.desc())
-    return schemas.JudgingEventList(total=db_judging_events.count(), items=db_judging_events.offset(skip).limit(limit).all())
+        models.JudgingEvent.id.desc())
+    return schemas_v2.JudgingEventList(total=db_judging_events.count(), items=db_judging_events.offset(skip).limit(limit).all())
 
 
-@router.get("/{judging_event_id}", response_model=schemas.JudgingEvent)
+@router.get("/{judging_event_id}", response_model=schemas_v2.JudgingEvent)
 def get_judging_event(judging_event_id: int, db: Session = Depends(get_db)):
     db_judging_event = crud.get_judging_event(
         db=db,
@@ -67,7 +57,7 @@ def get_judging_event(judging_event_id: int, db: Session = Depends(get_db)):
 
 
 @router.put("/{judging_event_id}", status_code=status.HTTP_204_NO_CONTENT)
-def update_judging_event(judging_event_id: int, judging_event_update: schemas.JudgingEventCreate, current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
+def update_judging_event(judging_event_id: int, judging_event_update: schemas_v2.JudgingEventCreate, current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
     if not current_user.is_admin:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,

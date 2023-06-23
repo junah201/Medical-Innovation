@@ -625,7 +625,6 @@ class PrivateParticipantList(BaseModel):
     items: List[PrivateParticipant]
 
 
-@form_body
 class JudgingEventCreate(BaseModel):
     name: str
     join_start_date: date
@@ -635,6 +634,7 @@ class JudgingEventCreate(BaseModel):
     judging_2nd_start_date: date
     judging_2nd_end_date: date
     description: str
+    thumbnail_filename: str
 
 
 class JudgingEvent(BaseModel):
@@ -657,7 +657,7 @@ class JudgingEvent(BaseModel):
 
 class JudgingEventList(BaseModel):
     total: int
-    events: list[JudgingEvent]
+    items: list[JudgingEvent]
 
 
 class JudgingParticipantCreate(BaseModel):

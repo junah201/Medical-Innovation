@@ -89,6 +89,11 @@ export const REGISTER_TYPE = Object.freeze({
 
   SELECT_EVENT_ID: 'select_event_id',
   EVENT_ID: 'event_id',
+
+  JUDGING_1SH_START_DATE: 'judging_1st_start_date',
+  JUDGING_1SH_END_DATE: 'judging_1st_end_date',
+  JUDGING_2ND_START_DATE: 'judging_2nd_start_date',
+  JUDGING_2ND_END_DATE: 'judging_2nd_end_date',
 });
 
 export const ERROR_MESSAGE = Object.freeze({
