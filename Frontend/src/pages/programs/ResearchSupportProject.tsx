@@ -1,0 +1,158 @@
+import styled from 'styled-components';
+
+import { Message, ProgramSubNav } from '@/components';
+
+const StyledTimelineWrapper = styled.div``;
+
+export const ResearchSupportProject = () => {
+  return (
+    <>
+      <ProgramSubNav select="연구발굴 지원사업"></ProgramSubNav>
+      <Message>
+        재단은 질병을 극복할 수 있는 미래의학을 창조적으로 변모시킬 수
+        있는 혁신적인 기초·중개·의학 융복합 연구를 발굴하고 지원하는
+        사업을 전개합니다. 통상적인 연구 지원 사업에서 소외되기 쉬운,
+        창의적이고 도전적인 연구를 공모를 통해 수집하고 재단의
+        심사절차를 거쳐 선발된 과제를 지원하고 있습니다. 또한
+        구체적으로 연구과제를 특정 하는 것이 아니라,
+        기초-중개-융복합연구를 망라하는 형태의 새로운 실험들을 폭넓게
+        발굴할 것입니다.
+      </Message>
+      <StyledTimelineWrapper>
+        <h1>지원과제</h1>
+        <Message>
+          <StyledTimelineItem date="2021">
+            <p>
+              섬유화 치료효능 검증 플랫폼 구축을 통한 재생 의료활성화
+              방안 개발
+            </p>
+          </StyledTimelineItem>
+          <StyledTimelineItem date="2020">
+            <p>
+              히스톤 리더 단백질인 PHF6의 줄기 세포 분화에서의 기능
+              연구
+            </p>
+          </StyledTimelineItem>
+          <StyledTimelineItem date="2017">
+            <p>
+              위장관 미생물 정보의 통합 분석을 통한 심혈관 질환
+              예방법의 개발
+            </p>
+          </StyledTimelineItem>
+          <StyledTimelineItem date="2017">
+            <p>
+              화합물 (Cocktail N)을 이용한 줄기세포 기반 심근세포
+              분화효율 및 성숙도 증진 기작 연구
+            </p>
+          </StyledTimelineItem>
+          <StyledTimelineItem date="2017">
+            <p>
+              인간 섬유 모세포에서 혈관내피 세포로의 선별된 인자들에
+              의한 이형분화
+            </p>
+          </StyledTimelineItem>
+          <StyledTimelineItem date="2017">
+            <p>
+              혈관세포의 KAI1 enriched exosome 분비기전과 특성 분석
+              연구
+            </p>
+          </StyledTimelineItem>
+        </Message>
+      </StyledTimelineWrapper>
+      <div>
+        <h1>신청 안내</h1>
+        <Message>
+          <div>
+            <h4>신청요건</h4>
+            <p>연구책임자 : 국내 소재 기관 소속의 내국인</p>
+            <p>국내 대학 교원(전임, 비전임) 및 부설 연구소 연구원</p>
+            <p>기업부설연구소(연구개발전담부서 포함) 연구원</p>
+          </div>
+          <div>
+            <h4>신청분야</h4>
+            <p>줄기세포생물학 기반의 기초연구 분야</p>
+            <p>나노바이오테크놀로지 기반의 첨단기기약물 융복합분야</p>
+            <p>빅데이터 또는 AI를 활용한 보건의료분야</p>
+            <p>
+              기타 미래의학생명과학 첨단 바이오 의약품 / 의료기기 분야
+            </p>
+          </div>
+          <div>
+            <h4>접수 기간</h4>
+            <p>상시모집</p>
+          </div>
+          <div>
+            <h4>제출 방법</h4>
+            <p>
+              아래 제출파일을 다운받아 support@medicalinnovation.or.kr
+              으로 보내주세요.
+            </p>
+          </div>
+          <div>
+            <h4>제출 서류</h4>
+            <p>신청서 표지 (양식1)</p>
+            <p>연구계획서 (양식2)</p>
+            <p>관련분야 전문가 추천서 (양식3)</p>
+            <p>기타 증빙서류</p>
+            <p>평가 및 선발방법</p>
+            <br />
+            <p>
+              <a href="https://medical-innovation.s3.ap-northeast-2.amazonaws.com/upload/%EC%97%B0%EA%B5%AC%EB%B0%9C%EA%B5%B4%EC%A7%80%EC%9B%90%EC%82%AC%EC%97%85+%EC%8B%A0%EC%B2%AD%EC%84%9C.zip">
+                신청서 양식 다운로드
+              </a>
+            </p>
+          </div>
+        </Message>
+      </div>
+    </>
+  );
+};
+
+const StyledTimelineItem = styled.div<{ date: string }>`
+  margin-left: 32px;
+  padding: 48px 32px 32px;
+  position: relative;
+  color: #204397;
+  border-left: 2px solid #204397;
+
+  p {
+    font-size: 16px;
+  }
+
+  &::before {
+    position: absolute;
+    left: 2em;
+    font-weight: bold;
+    top: 1em;
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 0.785rem;
+    content: '${(props) => props.date}';
+  }
+
+  &::after {
+    width: 10px;
+    height: 10px;
+    display: block;
+    top: 1em;
+    position: absolute;
+    left: -7px;
+    border-radius: 10px;
+    content: '';
+    border: 2px solid #204397;
+    background: white;
+  }
+
+  &:last-child {
+    border-image: linear-gradient(
+        to bottom,
+        #204397,
+        #204397,
+        #204397,
+        #204397,
+        #ffffff
+      )
+      1 100%;
+  }
+`;

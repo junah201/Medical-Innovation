@@ -34,5 +34,4 @@ def get_all_sponsors(skip: int = 0, limit: int = 200, current_user: models.User 
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid token"
         )
-    print(crud.get_all_sponsors(db=db, skip=skip, limit=limit)[0].user)
     return crud.get_all_sponsors(db=db, skip=skip, limit=limit)

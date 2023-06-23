@@ -61,7 +61,8 @@ class User(Base):
     )
     posts = relationship("Post", back_populates="author")
     sponsors = relationship("Sponsor", back_populates="user")
-    judging_permissions = relationship("JudgingPermission", back_populates="user")
+    judging_permissions = relationship(
+        "JudgingPermission", back_populates="user")
     first_judging_permission = Column(
         BOOLEAN,
         nullable=False,
@@ -91,11 +92,12 @@ class User(Base):
     class Config:
         orm_mode = True
 
+
 class JudgingPermission(Base):
     __tablename__ = "judging_permission"
     __table_args__ = {'mysql_collate': 'utf8_general_ci'}
 
-    id = Column(    
+    id = Column(
         INTEGER(unsigned=True),
         primary_key=True,
         unique=True,
@@ -145,6 +147,7 @@ class JudgingPermission(Base):
         onupdate=func.now(),
         comment="마지막 수정 시점"
     )
+
 
 class Post(Base):
     __tablename__ = "post"
