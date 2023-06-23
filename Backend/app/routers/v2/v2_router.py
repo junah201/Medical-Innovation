@@ -11,7 +11,8 @@ from app.routers.v2 import (
     public_event_router,
     public_participant_router,
     private_event_router,
-    sponsor_router
+    sponsor_router,
+    private_participant_router,
 )
 
 router = APIRouter(
@@ -30,3 +31,4 @@ router.include_router(public_event_router.router)
 router.include_router(public_participant_router.router)
 router.include_router(private_event_router.router)
 router.include_router(sponsor_router.router)
+router.include_router(private_participant_router.router)

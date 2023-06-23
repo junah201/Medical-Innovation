@@ -12,6 +12,7 @@ import {
   getUsers,
   getPrivateEvents,
   getPublicParticipantsByEventId,
+  getPrivateParticipantsByEventId,
 } from '@/api';
 import { StatusButton } from '@/components';
 import {
@@ -552,6 +553,47 @@ const PRIVATE_EVENT = Object.freeze({
   },
 });
 
+const PRIVATE_EVENT_PARTICIPANT = Object.freeze({
+  headers: [
+    '번호',
+    '이름',
+    '성별',
+    '생년월일',
+    '전화번호',
+    '이메일',
+    '소속기관',
+    '직책',
+    '수정',
+  ],
+  size: 40,
+  getDatas: async (
+    id: number | string,
+    page: number,
+    size: number
+  ) => {
+    return getPrivateParticipantsByEventId(id, page, size);
+  },
+  itemToElement: (item: PublicParticipant, id: number) => {
+    return (
+      <tr key={item.id}>
+        <td>{item.id}</td>
+        <td>{item.name}</td>
+        <td>{item.gender}</td>
+        <td>{item.birth}</td>
+        <td>{item.phone}</td>
+        <td>{item.email}</td>
+        <td>{item.organization_name}</td>
+        <td>{item.job_position}</td>
+        <td>
+          <Link to={`/admin/private_participant/edit/${item.id}`}>
+            수정
+          </Link>
+        </td>
+      </tr>
+    );
+  },
+});
+
 export const TABLE_CONFIG = Object.freeze({
   JUDGING_PARTICIPANT,
   USER,
@@ -564,4 +606,5 @@ export const TABLE_CONFIG = Object.freeze({
   PUBLIC_EVENT,
   PUBLIC_EVENT_PARTICIPANT,
   PRIVATE_EVENT,
+  PRIVATE_EVENT_PARTICIPANT,
 });

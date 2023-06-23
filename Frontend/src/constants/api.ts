@@ -101,10 +101,6 @@ const FILE = Object.freeze({
     `/api/v1/file/download/${filename}`,
 });
 
-const PRIVATE_PARTICIPANT = Object.freeze({
-  SUBMIT_PRIVATE_EVENT: '/api/v1/private_participant/create',
-});
-
 const USER = Object.freeze({
   GET_USERS: '/api/v2/user/all',
   GET_USER_BY_ID: (id: number | string) => `/api/v2/user/${id}`,
@@ -155,6 +151,16 @@ const PRIVATE_EVENT = Object.freeze({
   UPLOAD_PRIVATE_EVENT: '/api/v2/private_event',
   UPDATE_PRIVATE_EVENT_BY_ID: (id: number | string) =>
     `/api/v2/private_event/${id}`,
+});
+
+const PRIVATE_PARTICIPANT = Object.freeze({
+  SUBMIT_PRIVATE_EVENT: '/api/v2/private_participant',
+  GET_PRIVATE_PARTICIPANT_BY_EVENT_ID: (id: number | string) =>
+    `/api/v2/private_participant/${id}/all`,
+  GET_PRIVATE_PARTICIPANT_BY_ID: (id: number | string) =>
+    `/api/v2/private_participant/${id}`,
+  UPDATE_PRIVATE_PARTICIPANT_BY_ID: (id: number | string) =>
+    `/api/v2/private_participant/${id}`,
 });
 
 export const API_ROUTE = Object.freeze({

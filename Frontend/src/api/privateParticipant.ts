@@ -15,3 +15,45 @@ export const submitPrivateEvent = async (
 
   return res;
 };
+
+export const getPrivateParticipantsByEventId = async (
+  eventId: number | string,
+  skip: number,
+  limit: number
+) => {
+  const res = await authAxios.getByParams(
+    API_ROUTE.PRIVATE_PARTICIPANT.GET_PRIVATE_PARTICIPANT_BY_EVENT_ID(
+      eventId
+    ),
+    {
+      skip: skip,
+      limit: limit,
+    }
+  );
+
+  return res;
+};
+
+export const getPrivateParticipantById = async (
+  id: number | string
+) => {
+  const res = await authAxios.get(
+    API_ROUTE.PRIVATE_PARTICIPANT.GET_PRIVATE_PARTICIPANT_BY_ID(id)
+  );
+
+  return res;
+};
+
+export const updatePrivateParticipantById = async (
+  id: number | string,
+  data: PrivateEventSubmitInfo
+) => {
+  const res = await authAxios.put(
+    API_ROUTE.PRIVATE_PARTICIPANT.UPDATE_PRIVATE_PARTICIPANT_BY_ID(
+      id
+    ),
+    data
+  );
+
+  return res;
+};
