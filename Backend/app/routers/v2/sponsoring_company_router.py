@@ -1,10 +1,9 @@
-from fastapi import APIRouter, HTTPException, Depends, File,  UploadFile, status
+from fastapi import APIRouter, HTTPException, Depends, status
 from sqlalchemy.orm import Session
 from app.database import crud, schemas_v2, models
 from app.database.database import get_db
 from app.utils.oauth2 import get_current_user
-from app.utils.aws_s3 import upload_file, delete_file
-from typing import List
+from app.utils.aws_s3 import delete_file
 
 router = APIRouter(
     prefix="/sponsoring_company",
@@ -31,7 +30,13 @@ async def create_sponsoring_company(sponsoring_company_create: schemas_v2.Sponso
 
 @router.get("/all", response_model=schemas_v2.SponsoringCompanyList)
 async def get_sponsoring_companies(skip: int = 0, limit: int = 40, db: Session = Depends(get_db)):
-    return crud.get_sponsoring_companies(db=db, skip=skip, limit=limit)
+    db_sponsoring_companies = db.query(models.SponsoringCompany).order_by(
+        models.SponsoringCompany.id.desc())
+
+    return schemas_v2.SponsoringCompanyList(
+        total=db_sponsoring_companies.count(),
+        items=db_sponsoring_companies.offset(skip).limit(limit).all()
+    )
 
 
 @router.get("/{sponsoring_company_id}", response_model=schemas_v2.SponsoringCompany)

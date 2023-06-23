@@ -73,7 +73,7 @@ class User(BaseModel):
 
 class UserList(BaseModel):
     total: int
-    users: list[User]
+    items: list[User]
 
 
 class JudgingPermissionCreate(BaseModel):
@@ -158,7 +158,7 @@ class Post(BaseModel):
 
 class PostList(BaseModel):
     total: int
-    posts: list[Post]
+    items: list[Post]
 
 
 class BannerCreate(BaseModel):
@@ -191,7 +191,7 @@ class Banner(BaseModel):
 
 class BannerList(BaseModel):
     total: int
-    banners: list[Banner]
+    items: list[Banner]
 
 
 class MouCreate(BaseModel):
@@ -277,7 +277,7 @@ class SponsoringCompany(BaseModel):
 
 class SponsoringCompanyList(BaseModel):
     total: int
-    sponsoring_companies: list[SponsoringCompany]
+    items: List[SponsoringCompany]
 
 
 class AdvisorCreate(BaseModel):
@@ -309,10 +309,9 @@ class Advisor(BaseModel):
 
 class AdvisorList(BaseModel):
     total: int
-    advisors: list[Advisor]
+    items: list[Advisor]
 
 
-@form_body
 class PublicEventCreate(BaseModel):
     name: str
     english_name: str
@@ -321,6 +320,7 @@ class PublicEventCreate(BaseModel):
     end_date: date
     join_start_date: date
     join_end_date: date
+    thumbnail_filename: str
 
 
 class PublicEventContentUpdate(BaseModel):
@@ -331,6 +331,7 @@ class PublicEventContentUpdate(BaseModel):
     end_date: date
     join_start_date: date
     join_end_date: date
+    thumbnail_filename: str
 
 
 class PublicEvent(BaseModel):
@@ -352,7 +353,7 @@ class PublicEvent(BaseModel):
 
 class PublicEventList(BaseModel):
     total: int
-    events: list[PublicEvent]
+    items: list[PublicEvent]
 
 
 class ParticipantCreate(BaseModel):

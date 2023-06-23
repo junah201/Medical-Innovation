@@ -52,7 +52,6 @@ export const AdminBannerEdit = () => {
   const { mutate } = useMutation(
     (userInput) => {
       if (!userInput?.file[0]) {
-        console.log('no file');
         throw new Error('파일을 첨부해주세요.');
       }
 

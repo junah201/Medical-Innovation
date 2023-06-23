@@ -12,10 +12,10 @@ import { Advisor } from '@/types';
 export const Advisors = () => {
   const [advisors, setAdvisors] = useState<Advisor[]>([]);
 
-  useQuery('advisors', getAdvisors, {
+  useQuery('advisors', () => getAdvisors(0, 10000), {
     retry: false,
     onSuccess: (res) => {
-      setAdvisors(res.data.advisors);
+      setAdvisors(res.data.items);
     },
   });
 

@@ -9,10 +9,11 @@ import { Banner as IBanner } from '@/types';
 export const Banner = () => {
   const [banners, setBanners] = useState<IBanner[]>([]);
 
-  useQuery('banners', getActiveBanners, {
+  useQuery('activeBanners', getActiveBanners, {
     retry: false,
+    cacheTime: 3600,
     onSuccess: (res) => {
-      setBanners(res.data);
+      setBanners(res.data.items);
     },
   });
 

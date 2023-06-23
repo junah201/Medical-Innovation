@@ -379,7 +379,7 @@ const ADVISOR = Object.freeze({
     '수정',
     '삭제',
   ],
-  size: 1000,
+  size: 40,
   getDatas: async (
     id: number | string,
     page: number,

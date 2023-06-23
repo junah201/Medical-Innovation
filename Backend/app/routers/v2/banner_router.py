@@ -5,6 +5,7 @@ from app.database.database import get_db
 from app.utils.oauth2 import get_current_user
 from app.utils.aws_s3 import upload_file, delete_file
 from typing import List, Optional
+from datetime import datetime
 
 router = APIRouter(
     prefix="/banner",
@@ -38,18 +39,23 @@ async def get_banners(skip: int, limit: int, db: Session = Depends(get_db), curr
             detail="You do not have permission to access"
         )
 
-    return crud.get_banners(db=db, skip=skip, limit=limit)
+    db_banners = db.query(models.Banner)
+
+    return schemas_v2.BannerList(
+        total=db_banners.count(),
+        items=db_banners.offset(skip).limit(limit).all()
+    )
 
 
-@router.get("/all/active", response_model=List[schemas_v2.Banner])
-async def get_active_banners(db: Session = Depends(get_db)):
-    db_banners = crud.get_active_banners(db=db)
-    if not db_banners:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="not found"
-        )
-    return db_banners
+@router.get("/all/active", response_model=schemas_v2.BannerList)
+async def get_active_banners(skip: int = 0, limit: int = 1000, db: Session = Depends(get_db)):
+    db_banners = db.query(models.Banner).filter(
+        models.Banner.banner_end_at > datetime.utcnow())
+
+    return schemas_v2.BannerList(
+        total=db_banners.count(),
+        items=db_banners.offset(skip).limit(limit).all()
+    )
 
 
 @router.get("/{banner_id}", response_model=schemas_v2.Banner)

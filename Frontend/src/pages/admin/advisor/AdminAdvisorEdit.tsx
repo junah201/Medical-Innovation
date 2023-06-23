@@ -6,11 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { getAdvisorById, updateAdvisorById } from '@/api';
-import {
-  ReactHookInput,
-  FilesInput,
-  CropImageInput,
-} from '@/components/form';
+import { ReactHookInput, CropImageInput } from '@/components/form';
 import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
 import { Toast } from '@/libs/Toast';
 import { RegisterField } from '@/types';
@@ -21,7 +17,6 @@ export const AdminAdvisorEdit = () => {
   const navigate = useNavigate();
 
   const {
-    watch,
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
@@ -81,7 +76,6 @@ export const AdminAdvisorEdit = () => {
   return (
     <Wrapper>
       <h1>자문단 수정</h1>
-      {JSON.stringify(watch())}
       <Form onSubmit={handleSubmit(onValid)}>
         <ReactHookInput
           id={REGISTER_TYPE.NAME}

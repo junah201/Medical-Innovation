@@ -29,25 +29,28 @@ export const MainRightGrid = () => {
 
   useQuery({
     queryKey: ['posts', 2],
+    cacheTime: 3600,
     queryFn: () => getPostsByBoardId(2, 0, 6),
     onSuccess: (res: AxiosResponse) => {
-      setNoticePosts(res.data.posts);
+      setNoticePosts(res.data.items);
     },
   });
 
   useQuery({
     queryKey: ['posts', 3],
+    cacheTime: 3600,
     queryFn: () => getPostsByBoardId(3, 0, 6),
     onSuccess: (res: AxiosResponse) => {
-      setPressReleases(res.data.posts);
+      setPressReleases(res.data.items);
     },
   });
 
   useQuery({
     queryKey: ['posts', 5],
+    cacheTime: 3600,
     queryFn: () => getPostsByBoardId(5, 0, 6),
     onSuccess: (res: AxiosResponse) => {
-      setColumns(res.data.posts);
+      setColumns(res.data.items);
     },
   });
 

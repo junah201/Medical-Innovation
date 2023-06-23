@@ -1,4 +1,4 @@
-import { API_ROUTE, BANNER } from '@/constants';
+import { API_ROUTE } from '@/constants';
 import { Axios } from '@/libs/Axios';
 
 const unAuthAxios = new Axios();
@@ -31,20 +31,15 @@ export const getBanners = async (skip: number, limit: number) => {
 export const uploadBanner = async (
   name: string,
   link: string,
-  file: File,
+  filename: string,
   banner_end_at: string
 ) => {
-  const formData = new FormData();
-  formData.append('name', name);
-  formData.append('link', link);
-  formData.append('file', file);
-  formData.append('year', '2023');
-  formData.append('banner_end_at', banner_end_at);
-
-  const res = await authAxios.postMultipartFormData(
-    API_ROUTE.BANNER.UPLOAD_BANNER,
-    formData
-  );
+  const res = await authAxios.post(API_ROUTE.BANNER.UPLOAD_BANNER, {
+    name: name,
+    link: link,
+    filename: filename,
+    banner_end_at: banner_end_at,
+  });
 
   return res;
 };
@@ -55,16 +50,13 @@ export const uploadBannerV2 = async (
   filename: string,
   banner_end_at: string
 ) => {
-  const res = await authAxios.post(
-    API_ROUTE.BANNER_V2.UPLOAD_BANNER,
-    {
-      name: name,
-      link: link,
-      filename: filename,
-      year: '2023',
-      banner_end_at: banner_end_at,
-    }
-  );
+  const res = await authAxios.post(API_ROUTE.BANNER.UPLOAD_BANNER, {
+    name: name,
+    link: link,
+    filename: filename,
+    year: '2023',
+    banner_end_at: banner_end_at,
+  });
 
   return res;
 };
@@ -93,7 +85,7 @@ export const updateBannerById = async (
   filename: string
 ) => {
   const res = await authAxios.put(
-    API_ROUTE.BANNER_V2.UPDATE_BANNER_BY_ID(id),
+    API_ROUTE.BANNER.UPDATE_BANNER_BY_ID(id),
     {
       name: name,
       link: link,

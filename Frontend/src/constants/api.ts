@@ -1,19 +1,8 @@
 const AUTH = Object.freeze({
-  LOG_IN: '/api/v1/user/login',
-  SIGN_UP: '/api/v1/user/create',
-  VALIDATE_TOKEN: '/api/v1/user/me',
-  ME: '/api/v1/user/me',
-});
-
-const BANNER = Object.freeze({
-  GET_ACTIVE_BANNERS: '/api/v1/banner/all/active',
-  GET_BANNERS: '/api/v1/banner/all',
-  GET_BANNER_BY_ID: (id: number | string) => `/api/v1/banner/${id}`,
-  UPLOAD_BANNER: '/api/v1/banner/create',
-  DELETE_BANNER_BY_ID: (id: number | string) =>
-    `/api/v1/banner/${id}`,
-  UPDATE_BANNER_BY_ID: (id: number | string) =>
-    `/api/v1/banner/${id}`,
+  LOG_IN: '/api/v2/user/login',
+  SIGN_UP: '/api/v2/user/signup',
+  VALIDATE_TOKEN: '/api/v2/user/me',
+  ME: '/api/v2/user/me',
 });
 
 const MOU = Object.freeze({
@@ -25,14 +14,14 @@ const MOU = Object.freeze({
 });
 
 const ADVISOR = Object.freeze({
-  GET_ADVISORS: '/api/v1/advisor/all',
+  GET_ADVISORS: '/api/v2/advisor/all',
   UPLOAD_ADVISOR: '/api/v1/advisor/create',
 });
 
 const POST = Object.freeze({
-  GET_POSTS: '/api/v1/post/all',
+  GET_POSTS: '/api/v2/post/all',
   GET_POSTS_BY_BOARD: (id: number | string) =>
-    `/api/v1/post/${id}/all`,
+    `/api/v2/post/${id}/all`,
   GET_POST_BY_ID: (id: number | string) => `/api/v1/post/${id}`,
   GET_POST_BOARDS: '/api/v1/board/all',
   UPDATE_POST_BY_ID: (id: number | string) => `/api/v1/post/${id}`,
@@ -86,11 +75,11 @@ const JUDGING_RESULT = Object.freeze({
 });
 
 const SPONSORING_COMPANY = Object.freeze({
-  GET_SPONSORING_COMPANIES: '/api/v1/sponsoring_company/all',
+  GET_SPONSORING_COMPANIES: '/api/v2/sponsoring_company/all',
   DELETE_SPONSORING_COMPANY_BY_ID: (id: number | string) =>
-    `/api/v1/sponsoring_company/${id}`,
+    `/api/v2/sponsoring_company/${id}`,
   GET_SPONSORING_COMPANY_BY_ID: (id: number | string) =>
-    `/api/v1/sponsoring_company/get/${id}`,
+    `/api/v2/sponsoring_company/${id}`,
   UPLOAD_SPONSORING_COMPANY: '/api/v2/sponsoring_company',
   UPDATE_SPONSORING_COMPANY_BY_ID: (id: number | string) =>
     `/api/v2/sponsoring_company/${id}`,
@@ -113,12 +102,12 @@ const PRIVATE_PARTICIPANT = Object.freeze({
 });
 
 const USER = Object.freeze({
-  GET_USERS: '/api/v1/user/all',
-  GET_USER_BY_ID: (id: number | string) => `/api/v1/user/${id}/get`,
+  GET_USERS: '/api/v2/user/all',
+  GET_USER_BY_ID: (id: number | string) => `/api/v2/user/${id}`,
   UPDATE_JUDGING_PERMISSION: (
     userId: number | string,
     judgingEventId: number | string
-  ) => `/api/v1/user/${userId}/judging_permission/${judgingEventId}`,
+  ) => `/api/v2/user/${userId}/judging_permission/${judgingEventId}`,
 });
 
 const FILE_V2 = Object.freeze({
@@ -144,13 +133,15 @@ const POST_V2 = Object.freeze({
   UPDATE_POST_BY_ID: (id: number | string) => `/api/v2/post/${id}`,
 });
 
-const BANNER_V2 = Object.freeze({
+const BANNER = Object.freeze({
+  GET_ACTIVE_BANNERS: '/api/v2/banner/all/active',
   GET_BANNERS: '/api/v2/banner/all',
   UPLOAD_BANNER: '/api/v2/banner',
   DELETE_BANNER_BY_ID: (id: number | string) =>
     `/api/v2/banner/${id}`,
   UPDATE_BANNER_BY_ID: (id: number | string) =>
     `/api/v2/banner/${id}`,
+  GET_BANNER_BY_ID: (id: number | string) => `/api/v2/banner/${id}`,
 });
 
 export const API_ROUTE = Object.freeze({
@@ -175,5 +166,4 @@ export const API_ROUTE = Object.freeze({
   FILE_V2,
   POST_V2,
   ADVISOR_V2,
-  BANNER_V2,
 });

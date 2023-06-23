@@ -33,7 +33,12 @@ def create_advisor(advisor_create: schemas_v2.AdvisorCreate, db: Session = Depen
 
 @router.get("/all", response_model=schemas_v2.AdvisorList)
 def get_advisors(skip: int = 0, limit: int = 15, db: Session = Depends(get_db)):
-    return crud.get_advisors(db=db, skip=skip, limit=limit)
+    db_advisors = db.query(models.Advisor)
+
+    return schemas_v2.AdvisorList(
+        total=db_advisors.count(),
+        items=db_advisors.offset(skip).limit(limit).all()
+    )
 
 
 @router.get("/{advisor_id}", response_model=schemas_v2.Advisor)

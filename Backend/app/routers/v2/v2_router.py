@@ -6,7 +6,9 @@ from app.routers.v2 import (
     post_router,
     banner_router,
     sponsoring_company_router,
-    mou_router
+    mou_router,
+    user_router,
+    public_event_router,
 )
 
 router = APIRouter(
@@ -20,3 +22,5 @@ router.include_router(post_router.router)
 router.include_router(banner_router.router)
 router.include_router(sponsoring_company_router.router)
 router.include_router(mou_router.router)
+router.include_router(user_router.router)
+router.include_router(public_event_router.router)

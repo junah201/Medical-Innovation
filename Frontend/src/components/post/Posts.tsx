@@ -27,7 +27,7 @@ export const Posts = ({
     queryKey: ['posts', boardId, page, total],
     queryFn: () => getPostsByBoardId(boardId, page, SIZE),
     onSuccess: (res: AxiosResponse) => {
-      setPosts(res.data.posts);
+      setPosts(res.data.items);
       setTotal(res.data.total);
     },
   });
