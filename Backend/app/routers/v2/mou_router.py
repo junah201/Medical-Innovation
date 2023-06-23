@@ -29,15 +29,14 @@ async def create_mou(mou_create: schemas_v2.MouCreate, current_user: models.User
     db.refresh(db_mou)
 
 
-@router.get("/all", response_model=List[schemas_v2.Mou])
-async def get_mous(db: Session = Depends(get_db)):
-    db_mous = crud.get_mous(db=db)
-    if not db_mous:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="not found"
-        )
-    return db_mous
+@router.get("/all", response_model=schemas_v2.MouList)
+async def get_mous(skip: int = 0, limit: int = 1000, db: Session = Depends(get_db)):
+    db_mous = db.query(models.Mou)
+
+    return schemas_v2.MouList(
+        total=db_mous.count(),
+        items=db_mous.offset(skip).limit(limit).all()
+    )
 
 
 @router.get("/{mou_id}", response_model=schemas_v2.Mou)

@@ -9,12 +9,18 @@ import { Mou as IMou } from '@/types/mou';
 export const Mou = () => {
   const [mous, setMous] = useState<IMou[]>([]);
 
-  useQuery('mous', getMous, {
-    retry: false,
-    onSuccess: (res) => {
-      setMous(res.data);
+  useQuery(
+    'mous',
+    () => {
+      return getMous(0, 10000);
     },
-  });
+    {
+      retry: false,
+      onSuccess: (res) => {
+        setMous(res?.data?.items);
+      },
+    }
+  );
 
   return (
     <>

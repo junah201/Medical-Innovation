@@ -218,6 +218,11 @@ class Mou(BaseModel):
         orm_mode = True
 
 
+class MouList(BaseModel):
+    total: int
+    items: List[Mou]
+
+
 class SponsorCreate(BaseModel):
     name: str
     phone: str
