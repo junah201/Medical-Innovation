@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { Controller, Control } from 'react-hook-form';
 import { styled } from 'styled-components';
 
-import { uploadCropImage, deleteFileV2, uploadFileV2 } from '@/api';
+import { uploadCropImage, deleteFileV2 } from '@/api';
 import { InputLabel } from '@/components/form';
 import { RegisterField, RegisterTypes } from '@/types';
 

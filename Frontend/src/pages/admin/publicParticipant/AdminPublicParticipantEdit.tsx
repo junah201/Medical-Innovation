@@ -1,7 +1,7 @@
-import { AxiosError, AxiosResponse } from 'axios';
-import { useState, useEffect } from 'react';
+import { AxiosError } from 'axios';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useQuery, useMutation } from 'react-query';
+import { useMutation } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 

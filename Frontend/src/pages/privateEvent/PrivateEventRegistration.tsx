@@ -9,16 +9,11 @@ import {
   getPublicEventById,
   uploadFiles,
   submitPrivateEvent,
-  submitPublicEvnet,
 } from '@/api';
 import { Message, PostContent } from '@/components';
 import { ReactHookInput } from '@/components/form';
 import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
-import {
-  PrivateEventSubmitInfo,
-  PublicEvent,
-  RegisterField,
-} from '@/types';
+import { PublicEvent, RegisterField } from '@/types';
 
 export const PrivateEventRegistration = () => {
   const navigate = useNavigate();

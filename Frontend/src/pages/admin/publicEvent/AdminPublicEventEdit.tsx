@@ -5,11 +5,7 @@ import { useMutation } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import {
-  getPublicEventById,
-  updatePublicEventById,
-  uploadPublicEvent,
-} from '@/api';
+import { getPublicEventById, updatePublicEventById } from '@/api';
 import {
   ReactHookInput,
   FilesInput,

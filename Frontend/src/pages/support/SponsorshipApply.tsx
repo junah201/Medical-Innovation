@@ -1,5 +1,3 @@
-import { AxiosError } from 'axios';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
@@ -8,12 +6,8 @@ import styled from 'styled-components';
 import { submitSponsor } from '@/api/sponsor';
 import { Message } from '@/components';
 import { ReactHookInput } from '@/components/form';
-import {
-  INPUT_TYPE,
-  ROUTE,
-  COOKIE,
-  REGISTER_TYPE,
-} from '@/constants';
+import { INPUT_TYPE, REGISTER_TYPE } from '@/constants';
+import { Toast } from '@/libs/Toast';
 import { RegisterField } from '@/types';
 
 export const SponsorshipApply = () => {
@@ -32,7 +26,11 @@ export const SponsorshipApply = () => {
       navigate(-1);
     },
     onError: (err) => {
-      alert('후원 신청에 실패했습니다.');
+      Toast(
+        '후원 신청에 실패했습니다.' +
+          `${err.response.data.message || err.message}`,
+        'error'
+      );
     },
   });
 

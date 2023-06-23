@@ -1,21 +1,17 @@
 import { AxiosError } from 'axios';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import {
-  getPrivateEventById,
-  updatePrivateEventById,
-  uploadPrivateEvent,
-} from '@/api';
+import { getPrivateEventById, updatePrivateEventById } from '@/api';
 import { ReactHookInput, HtmlInput } from '@/components/form';
 import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
 import { Toast } from '@/libs/Toast';
 import { RegisterField } from '@/types';
 
 import '@/static/css/content-styles.css';
-import { useEffect } from 'react';
 
 export const AdminPrivateEventEdit = () => {
   const navigate = useNavigate();

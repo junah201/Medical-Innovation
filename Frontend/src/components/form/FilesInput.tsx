@@ -31,7 +31,7 @@ export const FilesInput = ({
           <Container>
             {value?.length < maxFileCount && (
               <UploadFill
-                onClick={(e) => {
+                onClick={() => {
                   uploader?.current?.click();
                 }}
               >

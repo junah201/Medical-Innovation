@@ -5,11 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { uploadAdvisor } from '@/api';
-import {
-  CropImageInput,
-  FilesInput,
-  ReactHookInput,
-} from '@/components/form';
+import { CropImageInput, ReactHookInput } from '@/components/form';
 import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
 import { Toast } from '@/libs/Toast';
 import { RegisterField } from '@/types';
@@ -18,11 +14,9 @@ export const AdminAdvisorUpload = () => {
   const navigate = useNavigate();
 
   const {
-    watch,
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    setValue,
     control,
   } = useForm<RegisterField>({
     mode: 'onChange',

@@ -5,7 +5,7 @@ import { useMutation, useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { getPostBoards, uploadPost, uploadPostV2 } from '@/api';
+import { getPostBoards, uploadPostV2 } from '@/api';
 import {
   ReactHookInput,
   HtmlInput,

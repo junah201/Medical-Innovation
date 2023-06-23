@@ -4,13 +4,8 @@ import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { uploadBanner, uploadMou } from '@/api';
-import {
-  ReactHookInput,
-  HtmlInput,
-  FilesInput,
-  CropImageInput,
-} from '@/components/form';
+import { uploadMou } from '@/api';
+import { ReactHookInput, CropImageInput } from '@/components/form';
 import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
 import { Toast } from '@/libs/Toast';
 import { RegisterField } from '@/types';
@@ -21,11 +16,9 @@ export const AdminMouUpload = () => {
   const navigate = useNavigate();
 
   const {
-    watch,
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    setValue,
     control,
   } = useForm<RegisterField>({
     mode: 'onChange',

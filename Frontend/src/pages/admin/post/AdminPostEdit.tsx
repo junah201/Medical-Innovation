@@ -5,12 +5,7 @@ import { useMutation, useQuery } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import {
-  getPostBoards,
-  getPostById,
-  updatePostById,
-  updatePostByIdV2,
-} from '@/api';
+import { getPostBoards, getPostById, updatePostByIdV2 } from '@/api';
 import { ReactHookInput, HtmlInput, FilesInput } from '@/components';
 import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
 import { Toast } from '@/libs/Toast';

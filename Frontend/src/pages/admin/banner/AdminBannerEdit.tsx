@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useMutation, useQuery } from 'react-query';
+import { useMutation } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -18,7 +18,6 @@ export const AdminBannerEdit = () => {
   const { id } = useParams() as { id: string };
 
   const {
-    watch,
     register,
     handleSubmit,
     formState: { errors, isSubmitting },

@@ -17,9 +17,11 @@ export const AlertDeletePost = (id: string | number) => {
       {
         label: '삭제',
         onClick: () => {
-          deletePostById(id).then(() => {
+          async function deletePost() {
+            await deletePostById(id);
             location.reload();
-          });
+          }
+          deletePost();
         },
       },
       {
@@ -37,9 +39,11 @@ export const AlertDeletBanner = (id: string | number) => {
       {
         label: '삭제',
         onClick: () => {
-          deleteBannerById(id).then(() => {
+          async function deleteBanner() {
+            await deleteBannerById(id);
             location.reload();
-          });
+          }
+          deleteBanner();
         },
       },
       {
@@ -57,9 +61,11 @@ export const AlertDeleteSponsoringCompany = (id: string | number) => {
       {
         label: '삭제',
         onClick: () => {
-          deleteSponsoringCompanyById(id).then(() => {
+          async function deleteSponsoringCompany() {
+            await deleteSponsoringCompanyById(id);
             location.reload();
-          });
+          }
+          deleteSponsoringCompany();
         },
       },
       {
@@ -77,9 +83,11 @@ export const AlertDeleteMou = (id: string | number) => {
       {
         label: '삭제',
         onClick: () => {
-          deleteMouById(id).then(() => {
+          async function deleteMou() {
+            await deleteMouById(id);
             location.reload();
-          });
+          }
+          deleteMou();
         },
       },
       {
@@ -97,9 +105,11 @@ export const AlertDeleteAdvisor = (id: string | number) => {
       {
         label: '삭제',
         onClick: () => {
-          deleteAdvisorById(id).then(() => {
+          async function deleteAdvisor() {
+            await deleteAdvisorById(id);
             location.reload();
-          });
+          }
+          deleteAdvisor();
         },
       },
       {

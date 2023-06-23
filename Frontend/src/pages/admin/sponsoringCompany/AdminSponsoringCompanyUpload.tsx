@@ -4,13 +4,8 @@ import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { uploadBanner, uploadSponsoringCompany } from '@/api';
-import {
-  ReactHookInput,
-  HtmlInput,
-  FilesInput,
-  CropImageInput,
-} from '@/components/form';
+import { uploadSponsoringCompany } from '@/api';
+import { ReactHookInput, CropImageInput } from '@/components/form';
 import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
 import { Toast } from '@/libs/Toast';
 import { RegisterField } from '@/types';

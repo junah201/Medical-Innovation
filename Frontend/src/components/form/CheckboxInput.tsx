@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-import { ERROR_MESSAGE, CONFIG } from '@/constants';
 import { RegisterForm, RegisterTypes } from '@/types';
 
 interface CheckboxInputProps {

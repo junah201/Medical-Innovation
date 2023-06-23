@@ -12,7 +12,6 @@ import {
   Query,
   Params,
   DataForm,
-  ID,
 } from '@/types';
 
 const { VITE_API_URL } = import.meta.env;
