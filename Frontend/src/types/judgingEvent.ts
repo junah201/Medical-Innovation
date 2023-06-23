@@ -18,7 +18,7 @@ export interface JudgingEvent {
 
 export interface JudgingEventList {
   total: number;
-  events: JudgingEvent[];
+  items: JudgingEvent[];
 }
 
 export interface JudgingPermission {

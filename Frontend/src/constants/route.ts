@@ -90,5 +90,10 @@ export const ROUTE = Object.freeze({
       ROOT: '/admin/private_participant',
       ALL: '/admin/private_participant/all',
     }),
+    JUDGING_EVENT: Object.freeze({
+      ROOT: '/admin/judging_event',
+      ALL: '/admin/judging_event/all',
+      UPLOAD: '/admin/judging_event/upload',
+    }),
   }),
 });

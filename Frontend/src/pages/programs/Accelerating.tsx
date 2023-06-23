@@ -46,7 +46,7 @@ export const Accelerating = () => {
         <h1>창업지원 사업목록</h1>
         {events && (
           <Events
-            events={events.events}
+            events={events.items}
             itemToLink={(item) => {
               return `/judging/event/${item.id}/detail`;
             }}

@@ -75,9 +75,11 @@ class UserList(BaseModel):
     total: int
     users: list[User]
 
+
 class JudgingPermissionCreate(BaseModel):
     first_judging_permission: bool
     second_judging_permission: bool
+
 
 class JudgingPermission(BaseModel):
     id: int
@@ -87,6 +89,7 @@ class JudgingPermission(BaseModel):
     second_judging_permission: bool
     created_at: datetime
     updated_at: datetime
+
 
 class Token(BaseModel):
     access_token: str
@@ -405,7 +408,6 @@ class AdEmailCreate(BaseModel):
     etc_info: Optional[str] = None
 
 
-
 class AdEmail(BaseModel):
     id: PositiveInt
     user_id: Optional[PositiveInt] = None
@@ -600,7 +602,7 @@ class JudgingEvent(BaseModel):
 
 class JudgingEventList(BaseModel):
     total: int
-    events: list[JudgingEvent]
+    items: list[JudgingEvent]
 
 
 class JudgingParticipantCreate(BaseModel):
@@ -684,7 +686,7 @@ class JudgingResultCreate(BaseModel):
 class JudgingResult(JudgingResultCreate):
     id: PositiveInt
     user: Optional[User] = None
-    participant_name : str = ""
+    participant_name: str = ""
     total_score: int
     created_at: datetime
     updated_at: datetime

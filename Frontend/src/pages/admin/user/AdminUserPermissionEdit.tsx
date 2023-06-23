@@ -35,7 +35,7 @@ export const AdminUserPermissionEdit = () => {
   useQuery('JudgingEvents', () => getJudgingEvents(0, 10000), {
     retry: false,
     onSuccess: (res) => {
-      setEvents(res.data.events);
+      setEvents(res.data.items);
     },
   });
 

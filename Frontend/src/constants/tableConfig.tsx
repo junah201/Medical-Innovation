@@ -13,6 +13,7 @@ import {
   getPrivateEvents,
   getPublicParticipantsByEventId,
   getPrivateParticipantsByEventId,
+  getJudgingEvents,
 } from '@/api';
 import { StatusButton } from '@/components';
 import {
@@ -34,6 +35,7 @@ import {
   Sponsor,
   User,
   SponsoringCompany,
+  JudgingEvent,
 } from '@/types';
 
 const { VITE_CDN_URL } = import.meta.env;
@@ -594,6 +596,57 @@ const PRIVATE_EVENT_PARTICIPANT = Object.freeze({
   },
 });
 
+const JUDGING_EVENT = Object.freeze({
+  headers: [
+    '번호',
+    '이름',
+    '이미지',
+    '참가 신청 시작일',
+    '참가 신청 마감일',
+    '1차 심사 시작일',
+    '1차 심사 종료일',
+    '2차 심사 시작일',
+    '2차 심사 종료일',
+    '수정',
+  ],
+  size: 40,
+  getDatas: async (
+    id: number | string,
+    page: number,
+    size: number
+  ) => {
+    return getJudgingEvents(page, size);
+  },
+  itemToElement: (item: JudgingEvent, id: number) => {
+    return (
+      <tr key={item.id}>
+        <td>{item.id}</td>
+        <td>{item.name}</td>
+        <td>
+          <a
+            href={`${VITE_CDN_URL}/upload/${
+              item.thumbnail_filename || 'null.png'
+            }`}
+          >
+            {item.thumbnail_filename || 'null.png'}
+          </a>
+        </td>
+        <td>{item.join_start_date}</td>
+        <td>{item.join_end_date}</td>
+        <td>{item.judging_1st_start_date}</td>
+        <td>{item.judging_1st_end_date}</td>
+        <td>{item.judging_2nd_start_date}</td>
+        <td>{item.judging_2nd_end_date}</td>
+        <td>
+          <Link to={`/admin/judging_event/edit/${item.id}`}>
+            수정
+          </Link>
+        </td>
+      </tr>
+    );
+  },
+});
+
 export const TABLE_CONFIG = Object.freeze({
   JUDGING_PARTICIPANT,
   USER,
@@ -607,4 +660,5 @@ export const TABLE_CONFIG = Object.freeze({
   PUBLIC_EVENT_PARTICIPANT,
   PRIVATE_EVENT,
   PRIVATE_EVENT_PARTICIPANT,
+  JUDGING_EVENT,
 });

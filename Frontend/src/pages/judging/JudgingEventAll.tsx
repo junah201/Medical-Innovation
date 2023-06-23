@@ -51,7 +51,7 @@ export const JudgingEventAll = () => {
       <h1>심사 행사</h1>
       {events && (
         <Events
-          events={events.events}
+          events={events.items}
           itemToLink={(item) => {
             return `/judging/result/${item.id}/all`;
           }}

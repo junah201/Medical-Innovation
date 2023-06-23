@@ -58,9 +58,9 @@ const PUBLIC_PARTICIPANT = Object.freeze({
 });
 
 const JUDGING_EVENT = Object.freeze({
-  GET_JUDGING_EVENTS: '/api/v1/judging_event/all',
+  GET_JUDGING_EVENTS: '/api/v2/judging_event/all',
   GET_JUDGING_EVENT_BY_ID: (id: number | string) =>
-    `/api/v1/judging_event/get/${id}`,
+    `/api/v2/judging_event/${id}`,
 });
 
 const JUDGING_PARTICIPANT = Object.freeze({

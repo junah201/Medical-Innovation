@@ -71,6 +71,7 @@ import {
   AdminPrivateEventEdit,
   AdminPrivateParticipantAll,
   AdminPrivateParticipantEdit,
+  AdminJudgingEventAll,
 } from '@/pages';
 
 interface RouteConfig {
@@ -653,8 +654,8 @@ export const ROUTE_MAP: RouteMap = [
     AUTH: true,
   },
   {
-    PATH: '/admin/private_participant/edit/:id',
-    COMPONENT: AdminPrivateParticipantEdit,
+    PATH: '/admin/judging_event/all',
+    COMPONENT: AdminJudgingEventAll,
     HEADER: AdminHeader,
     WRAPPER: AdminWrapper,
     ADMIN: true,
