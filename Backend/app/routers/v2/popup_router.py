@@ -12,20 +12,22 @@ router = APIRouter(
 
 
 @router.post("", status_code=status.HTTP_204_NO_CONTENT)
-async def create_popup(popup_create: schemas_v2.PopupCreate = Depends(schemas_v2.PopupCreate), file: UploadFile = File(...), current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
+async def create_popup(popup_create: schemas_v2.PopupCreate, current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
     if not current_user.is_admin:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="You do not have permission to create popup"
         )
 
-    image_filename = upload_file(file, "upload")
-
-    crud.create_popup(
-        db=db,
-        popup_create=popup_create,
-        image_filename=image_filename
+    db_popup = models.Popup(
+        title=popup_create.title,
+        link=popup_create.link,
+        popup_start_date=popup_create.popup_start_date,
+        popup_end_date=popup_create.popup_end_date,
+        image_filename=popup_create.image_filename
     )
+    db.add(db_popup)
+    db.commit()
 
 
 @router.get("/all", response_model=schemas_v2.PopupList)

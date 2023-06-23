@@ -761,6 +761,7 @@ class PopupCreate(BaseModel):
     link: str
     popup_start_date: date
     popup_end_date: date
+    image_filename: str
 
 
 class PopupUpdate(BaseModel):

@@ -39,3 +39,21 @@ export const deletePopupById = async (id: string | number) => {
 
   return res;
 };
+
+export const uploadPopup = async (
+  title: string,
+  link: string,
+  popup_start_date: string,
+  popup_end_date: string,
+  image_filename: string
+) => {
+  const res = await authAxios.post(API_ROUTE.POPUP.UPLOAD_POPUP, {
+    title: title,
+    link: link,
+    popup_start_date: popup_start_date,
+    popup_end_date: popup_end_date,
+    image_filename: image_filename,
+  });
+
+  return res;
+};
