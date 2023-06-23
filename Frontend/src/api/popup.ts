@@ -57,3 +57,25 @@ export const uploadPopup = async (
 
   return res;
 };
+
+export const updatePopupById = async (
+  id: string | number,
+  title: string,
+  link: string,
+  popup_start_date: string,
+  popup_end_date: string,
+  image_filename: string
+) => {
+  const res = await authAxios.put(
+    API_ROUTE.POPUP.UPDATE_POPUP_BY_ID(id),
+    {
+      title: title,
+      link: link,
+      popup_start_date: popup_start_date,
+      popup_end_date: popup_end_date,
+      image_filename: image_filename,
+    }
+  );
+
+  return res;
+};
