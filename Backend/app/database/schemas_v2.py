@@ -752,7 +752,7 @@ class JudgingResult(JudgingResultCreate):
 
 class JudgingResultList(BaseModel):
     total: int
-    results: List[JudgingResult]
+    items: List[JudgingResult]
 
 
 @form_body

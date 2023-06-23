@@ -30,3 +30,19 @@ export const submitJudgingResult = async (data: JudgingResult) => {
 
   return res;
 };
+
+export const getJudgingResultsByEventId = async (
+  id: number | string,
+  skip: number,
+  limit: number
+) => {
+  const res = await authAxios.getByParams(
+    API_ROUTE.JUDGING_RESULT.GET_JUDGING_RESULTS_BY_EVENT_ID(id),
+    {
+      skip: skip,
+      limit: limit,
+    }
+  );
+
+  return res;
+};

@@ -15,6 +15,7 @@ from app.routers.v2 import (
     private_participant_router,
     judging_event_router,
     judging_participant_router,
+    judging_result_router,
 )
 
 router = APIRouter(
@@ -36,3 +37,4 @@ router.include_router(sponsor_router.router)
 router.include_router(private_participant_router.router)
 router.include_router(judging_event_router.router)
 router.include_router(judging_participant_router.router)
+router.include_router(judging_result_router.router)

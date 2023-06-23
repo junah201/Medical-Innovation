@@ -76,10 +76,12 @@ const JUDGING_PARTICIPANT = Object.freeze({
 });
 
 const JUDGING_RESULT = Object.freeze({
-  SUBMIT_JUDGING_RESULT: '/api/v1/judging_result/create',
-  GET_JUDGING_RESULT: '/api/v1/judging_result/get',
+  SUBMIT_JUDGING_RESULT: '/api/v2/judging_result',
+  GET_JUDGING_RESULT: '/api/v2/judging_result/get',
   GET_JUDGING_RESULT_BY_ID: (id: number | string) =>
     `/api/v1/judging_result/get/${id}`,
+  GET_JUDGING_RESULTS_BY_EVENT_ID: (id: number | string) =>
+    `/api/v2/judging_result/${id}/all`,
 });
 
 const SPONSORING_COMPANY = Object.freeze({

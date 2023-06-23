@@ -15,6 +15,7 @@ import {
   getPrivateParticipantsByEventId,
   getJudgingEvents,
   getJudgingParticipantsByEventId,
+  getJudgingResultsByEventId,
 } from '@/api';
 import { StatusButton } from '@/components';
 import {
@@ -37,6 +38,7 @@ import {
   User,
   SponsoringCompany,
   JudgingEvent,
+  JudgingResult,
 } from '@/types';
 
 const { VITE_CDN_URL } = import.meta.env;
@@ -689,6 +691,45 @@ const JUDGING_EVENT_PARTICIPANT = Object.freeze({
   },
 });
 
+const JUDGING_RESULT = Object.freeze({
+  headers: [
+    '번호',
+    '심사자 이름',
+    '심사자 대상자 이름',
+    'N차',
+    '점수',
+    '생성일',
+    '수정일',
+    '상세정보',
+  ],
+  size: 40,
+  getDatas: async (
+    id: number | string,
+    page: number,
+    size: number
+  ) => {
+    return getJudgingResultsByEventId(id, page, size);
+  },
+  itemToElement: (item: JudgingResult, id: number) => {
+    return (
+      <tr key={item.id}>
+        <td>{item.id}</td>
+        <td>{item?.user?.name}</td>
+        <td>{item?.participant_name}</td>
+        <td>{item.nth}차</td>
+        <td>{item.total_score}</td>
+        <td>{item.created_at.replace('T', ' ')}</td>
+        <td>{item.updated_at.replace('T', ' ')}</td>
+        <td>
+          <Link to={`/admin/judging_result/detail/${item.id}`}>
+            상세정보
+          </Link>
+        </td>
+      </tr>
+    );
+  },
+});
+
 export const TABLE_CONFIG = Object.freeze({
   JUDGING_PARTICIPANT,
   USER,
@@ -704,4 +745,5 @@ export const TABLE_CONFIG = Object.freeze({
   PRIVATE_EVENT_PARTICIPANT,
   JUDGING_EVENT,
   JUDGING_EVENT_PARTICIPANT,
+  JUDGING_RESULT,
 });
