@@ -8,5 +8,5 @@ export interface History {
 
 export interface HistoryList {
   total: number;
-  histories: History[];
+  items: History[];
 }

@@ -17,12 +17,14 @@ import {
   getJudgingParticipantsByEventId,
   getJudgingResultsByEventId,
   getAdEmails,
+  getHistorys,
 } from '@/api';
 import { StatusButton } from '@/components';
 import {
   AlertDeletBanner,
   AlertDeleteAdEmail,
   AlertDeleteAdvisor,
+  AlertDeleteHistory,
   AlertDeleteMou,
   AlertDeletePost,
   AlertDeleteSponsoringCompany,
@@ -771,6 +773,39 @@ const AD_EMAIL = Object.freeze({
   },
 });
 
+const HISTORY = Object.freeze({
+  headers: ['번호', '제목', '생성일', '수정', '삭제'],
+  size: 40,
+  getDatas: async (
+    id: number | string,
+    page: number,
+    size: number
+  ) => {
+    return getHistorys(page, size);
+  },
+  itemToElement: (item: any, id: number) => {
+    return (
+      <tr key={item.id}>
+        <td>{item.id}</td>
+        <td>{item.title}</td>
+        <td>{item?.created_at?.replace('T', ' ')}</td>
+        <td>
+          <Link to={`/admin/history/edit/${item.id}`}>수정</Link>
+        </td>
+        <td>
+          <button
+            onClick={() => {
+              AlertDeleteHistory(item.id);
+            }}
+          >
+            삭제
+          </button>
+        </td>
+      </tr>
+    );
+  },
+});
+
 export const TABLE_CONFIG = Object.freeze({
   JUDGING_PARTICIPANT,
   USER,
@@ -788,4 +823,5 @@ export const TABLE_CONFIG = Object.freeze({
   JUDGING_EVENT_PARTICIPANT,
   JUDGING_RESULT,
   AD_EMAIL,
+  HISTORY,
 });

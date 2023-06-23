@@ -4,6 +4,7 @@ import {
   deleteAdEmailById,
   deleteAdvisorById,
   deleteBannerById,
+  deleteHistoryById,
   deleteMouById,
   deletePostById,
   deleteSponsoringCompanyById,
@@ -133,6 +134,28 @@ export const AlertDeleteAdEmail = (id: string | number) => {
             location.reload();
           }
           deleteAdEmail();
+        },
+      },
+      {
+        label: '취소',
+      },
+    ],
+  });
+};
+
+export const AlertDeleteHistory = (id: string | number) => {
+  confirmAlert({
+    title: `${id}번 광고 수신 이메일을 정말로 삭제하시겠습니까?`,
+    message: '삭제 후 복구가 불가능합니다.',
+    buttons: [
+      {
+        label: '삭제',
+        onClick: () => {
+          async function deleteHistory() {
+            await deleteHistoryById(id);
+            location.reload();
+          }
+          deleteHistory();
         },
       },
       {

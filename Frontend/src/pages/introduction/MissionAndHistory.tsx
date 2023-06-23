@@ -108,11 +108,11 @@ export const MissionAndHistory = () => {
       <StyledHistoryWrapper>
         <h1>연혁</h1>
         {histories &&
-          histories.histories.map((histories) => {
+          histories.items.map((history) => {
             return (
               <HistoryItem
-                year={histories.title}
-                content={histories.content}
+                year={history.title}
+                content={history.content}
               />
             );
           })}

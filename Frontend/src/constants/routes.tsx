@@ -54,7 +54,7 @@ import {
   AdminSponsoringCompanyEdit,
   AdminSponsorAll,
   AdminMouAll,
-  AdminMouUpload,
+  AdminHistoryUpload,
   AdminMouEdit,
   AdminAdvisorAll,
   AdminAdvisorUpload,
@@ -79,6 +79,8 @@ import {
   AdminJudgingResultDetail,
   AdminAdEmailAll,
   AdminAdEmailUpload,
+  AdminHistoryAll,
+  AdminHistoryEdit,
 } from '@/pages';
 
 interface RouteConfig {
@@ -526,7 +528,7 @@ export const ROUTE_MAP: RouteMap = [
   },
   {
     PATH: '/admin/mou/upload',
-    COMPONENT: AdminMouUpload,
+    COMPONENT: AdminHistoryUpload,
     HEADER: AdminHeader,
     WRAPPER: AdminWrapper,
     ADMIN: true,
@@ -743,6 +745,38 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/admin/ad_email/upload',
     COMPONENT: AdminAdEmailUpload,
+    HEADER: AdminHeader,
+    WRAPPER: AdminWrapper,
+    ADMIN: true,
+    AUTH: true,
+  },
+  {
+    PATH: '/admin/history',
+    COMPONENT: AdminHistoryAll,
+    HEADER: AdminHeader,
+    WRAPPER: AdminWrapper,
+    ADMIN: true,
+    AUTH: true,
+  },
+  {
+    PATH: '/admin/history/all',
+    COMPONENT: AdminHistoryAll,
+    HEADER: AdminHeader,
+    WRAPPER: AdminWrapper,
+    ADMIN: true,
+    AUTH: true,
+  },
+  {
+    PATH: '/admin/history/upload',
+    COMPONENT: AdminHistoryUpload,
+    HEADER: AdminHeader,
+    WRAPPER: AdminWrapper,
+    ADMIN: true,
+    AUTH: true,
+  },
+  {
+    PATH: '/admin/history/edit/:id',
+    COMPONENT: AdminHistoryEdit,
     HEADER: AdminHeader,
     WRAPPER: AdminWrapper,
     ADMIN: true,

@@ -34,7 +34,13 @@ const SUPPORTING_STARTUP = Object.freeze({
 });
 
 const HISTORY = Object.freeze({
-  GET_HISTORIES: '/api/v1/history/all',
+  GET_HISTORIES: '/api/v2/history/all',
+  DELETE_HISTORY_BY_ID: (id: number | string) =>
+    `/api/v2/history/${id}`,
+  UPLOAD_HISTORY: '/api/v2/history',
+  GET_HISTORY_BY_ID: (id: number | string) => `/api/v2/history/${id}`,
+  UPDATE_HISTORY_BY_ID: (id: number | string) =>
+    `/api/v2/history/${id}`,
 });
 
 const PUBLIC_EVENT = Object.freeze({

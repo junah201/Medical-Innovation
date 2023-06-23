@@ -492,7 +492,7 @@ class History(BaseModel):
 
 class HistoryList(BaseModel):
     total: int
-    histories: List[History]
+    items: List[History]
 
 
 class SupportingStartupCreate(BaseModel):

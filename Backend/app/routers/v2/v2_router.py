@@ -17,6 +17,7 @@ from app.routers.v2 import (
     judging_participant_router,
     judging_result_router,
     ad_email_router,
+    history_router,
 )
 
 router = APIRouter(
@@ -40,3 +41,4 @@ router.include_router(judging_event_router.router)
 router.include_router(judging_participant_router.router)
 router.include_router(judging_result_router.router)
 router.include_router(ad_email_router.router)
+router.include_router(history_router.router)
