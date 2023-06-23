@@ -12,3 +12,4 @@ export * from './privateParticipant';
 export * from './judgingEvent';
 export * from './judgingParticipant';
 export * from './judgingResult';
+export * from './adEmail';

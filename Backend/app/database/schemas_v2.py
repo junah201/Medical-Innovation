@@ -459,7 +459,7 @@ class AdEmail(BaseModel):
 
 class AdEmailList(BaseModel):
     total: int
-    ad_emails: list[AdEmail]
+    items: list[AdEmail]
 
 
 @form_body

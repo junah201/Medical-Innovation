@@ -99,5 +99,10 @@ export const ROUTE = Object.freeze({
       ROOT: '/admin/judging_result',
       ALL: '/admin/judging_result/all',
     }),
+    AD_EMAIL: Object.freeze({
+      ROOT: '/admin/ad_email',
+      ALL: '/admin/ad_email/all',
+      UPLOAD: '/admin/ad_email/upload',
+    }),
   }),
 });

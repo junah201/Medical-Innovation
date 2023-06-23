@@ -1,6 +1,7 @@
 import { confirmAlert } from 'react-confirm-alert';
 
 import {
+  deleteAdEmailById,
   deleteAdvisorById,
   deleteBannerById,
   deleteMouById,
@@ -110,6 +111,28 @@ export const AlertDeleteAdvisor = (id: string | number) => {
             location.reload();
           }
           deleteAdvisor();
+        },
+      },
+      {
+        label: '취소',
+      },
+    ],
+  });
+};
+
+export const AlertDeleteAdEmail = (id: string | number) => {
+  confirmAlert({
+    title: `${id}번 광고 수신 이메일을 정말로 삭제하시겠습니까?`,
+    message: '삭제 후 복구가 불가능합니다.',
+    buttons: [
+      {
+        label: '삭제',
+        onClick: () => {
+          async function deleteAdEmail() {
+            await deleteAdEmailById(id);
+            location.reload();
+          }
+          deleteAdEmail();
         },
       },
       {

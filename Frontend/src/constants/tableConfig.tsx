@@ -16,10 +16,12 @@ import {
   getJudgingEvents,
   getJudgingParticipantsByEventId,
   getJudgingResultsByEventId,
+  getAdEmails,
 } from '@/api';
 import { StatusButton } from '@/components';
 import {
   AlertDeletBanner,
+  AlertDeleteAdEmail,
   AlertDeleteAdvisor,
   AlertDeleteMou,
   AlertDeletePost,
@@ -730,6 +732,45 @@ const JUDGING_RESULT = Object.freeze({
   },
 });
 
+const AD_EMAIL = Object.freeze({
+  headers: [
+    '번호',
+    '유저ID',
+    '이메일',
+    '수신 여부',
+    '기타 정보',
+    '삭제',
+  ],
+  size: 40,
+  getDatas: async (
+    id: number | string,
+    page: number,
+    size: number
+  ) => {
+    return getAdEmails(page, size);
+  },
+  itemToElement: (item: any, id: number) => {
+    return (
+      <tr key={item.id}>
+        <td>{item.id}</td>
+        <td>{item.user_id}</td>
+        <td>{item.email}</td>
+        <td>{`${item.subscribe}`}</td>
+        <td>{item.etc_info}</td>
+        <td>
+          <button
+            onClick={() => {
+              AlertDeleteAdEmail(item.id);
+            }}
+          >
+            삭제
+          </button>
+        </td>
+      </tr>
+    );
+  },
+});
+
 export const TABLE_CONFIG = Object.freeze({
   JUDGING_PARTICIPANT,
   USER,
@@ -746,4 +787,5 @@ export const TABLE_CONFIG = Object.freeze({
   JUDGING_EVENT,
   JUDGING_EVENT_PARTICIPANT,
   JUDGING_RESULT,
+  AD_EMAIL,
 });

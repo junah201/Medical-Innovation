@@ -169,6 +169,17 @@ const PRIVATE_PARTICIPANT = Object.freeze({
     `/api/v2/private_participant/${id}`,
 });
 
+const AD_EMAIL = Object.freeze({
+  GET_AD_EMAILS: '/api/v2/ad_email/all',
+  GET_AD_EMAIL_BY_ID: (id: number | string) =>
+    `/api/v2/ad_email/${id}`,
+  UPLOAD_AD_EMAIL: '/api/v2/ad_email',
+  DELETE_AD_EMAIL_BY_ID: (id: number | string) =>
+    `/api/v2/ad_email/${id}`,
+  UPDATE_AD_EMAIL_BY_ID: (id: number | string) =>
+    `/api/v2/ad_email/${id}`,
+});
+
 export const API_ROUTE = Object.freeze({
   AUTH,
   BANNER,
@@ -191,4 +202,5 @@ export const API_ROUTE = Object.freeze({
   FILE_V2,
   POST_V2,
   PRIVATE_EVENT,
+  AD_EMAIL,
 });

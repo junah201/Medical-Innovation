@@ -17,3 +17,4 @@ export * from './user';
 export * from './sponsor';
 export * from './privateEvent';
 export * from './privateParticipant';
+export * from './adEmail';
