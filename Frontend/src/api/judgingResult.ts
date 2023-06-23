@@ -46,3 +46,11 @@ export const getJudgingResultsByEventId = async (
 
   return res;
 };
+
+export const getJudgingResultById = async (id: number | string) => {
+  const res = await authAxios.get(
+    API_ROUTE.JUDGING_RESULT.GET_JUDGING_RESULT_BY_ID(id)
+  );
+
+  return res;
+};

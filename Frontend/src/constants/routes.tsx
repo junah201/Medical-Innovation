@@ -76,6 +76,7 @@ import {
   AdminJudgingParticipantAll,
   AdminJudgingParticipantEdit,
   AdminJudgingResultAll,
+  AdminJudgingResultDetail,
 } from '@/pages';
 
 interface RouteConfig {
@@ -708,6 +709,14 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/admin/judging_result/all',
     COMPONENT: AdminJudgingResultAll,
+    HEADER: AdminHeader,
+    WRAPPER: AdminWrapper,
+    ADMIN: true,
+    AUTH: true,
+  },
+  {
+    PATH: '/admin/judging_result/detail/:id',
+    COMPONENT: AdminJudgingResultDetail,
     HEADER: AdminHeader,
     WRAPPER: AdminWrapper,
     ADMIN: true,
