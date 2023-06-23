@@ -658,7 +658,7 @@ const JUDGING_EVENT_PARTICIPANT = Object.freeze({
     '이메일',
     '소속기관',
     '직책',
-    '수정',
+    '상세정보',
   ],
   size: 40,
   getDatas: async (
@@ -680,8 +680,8 @@ const JUDGING_EVENT_PARTICIPANT = Object.freeze({
         <td>{item.organization_name}</td>
         <td>{item.job_position}</td>
         <td>
-          <Link to={`/admin/judging_participant/edit/${item.id}`}>
-            수정
+          <Link to={`/admin/judging_participant/detail/${item.id}`}>
+            상세정보
           </Link>
         </td>
       </tr>

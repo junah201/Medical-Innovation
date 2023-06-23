@@ -6,18 +6,22 @@ import { deleteFileV2, uploadFileV2 } from '@/api';
 import { InputLabel } from '@/components/form';
 import { RegisterField, RegisterTypes } from '@/types';
 
+const { VITE_CDN_URL } = import.meta.env;
+
 export const FilesInput = ({
   maxFileCount = 10,
   title,
   control,
   id,
   acceptFileType = '*',
+  disableRemove = false,
 }: {
   maxFileCount?: number;
   title: string;
   control: Control<RegisterField, any>;
   id: RegisterTypes;
   acceptFileType?: string;
+  disableRemove?: boolean;
 }) => {
   const uploader = useRef<HTMLInputElement>();
 
@@ -60,21 +64,25 @@ export const FilesInput = ({
               <UploadFilesWarpper>
                 {value.map((file) => (
                   <UploadFile key={file}>
-                    <span>{file}</span>
-                    <CloseButton
-                      onClick={(e) => {
-                        e.preventDefault();
-                        deleteFileV2(file).then((res) => {
-                          onChange(
-                            value.filter(
-                              (prevFile) => prevFile !== file
-                            )
-                          );
-                        });
-                      }}
-                    >
-                      X
-                    </CloseButton>
+                    <a href={`${VITE_CDN_URL}/upload/${file}`}>
+                      {file}
+                    </a>
+                    {!disableRemove && (
+                      <CloseButton
+                        onClick={(e) => {
+                          e.preventDefault();
+                          deleteFileV2(file).then((res) => {
+                            onChange(
+                              value.filter(
+                                (prevFile) => prevFile !== file
+                              )
+                            );
+                          });
+                        }}
+                      >
+                        X
+                      </CloseButton>
+                    )}
                   </UploadFile>
                 ))}
               </UploadFilesWarpper>
@@ -139,7 +147,8 @@ const UploadFile = styled.div`
     margin-top: 10px;
   }
 
-  & span {
+  & a {
+    color: white;
     width: 100%;
     font-size: 16px;
     height: 24px;
@@ -149,6 +158,10 @@ const UploadFile = styled.div`
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+  }
+
+  & a:hover {
+    text-decoration: underline;
   }
 `;
 
