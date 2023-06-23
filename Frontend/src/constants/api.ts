@@ -67,11 +67,12 @@ const JUDGING_EVENT = Object.freeze({
 });
 
 const JUDGING_PARTICIPANT = Object.freeze({
-  SUBMIT_JUDGING_EVENT: '/api/v1/judging_participant/create',
-  GET_JUDGING_PARTICIPANTS: (id: number | string) =>
-    `/api/v1/judging_participant/${id}/all`,
+  SUBMIT_JUDGING_EVENT: '/api/v2/judging_participant',
+  GET_JUDGING_PARTICIPANTS: '/api/v2/judging_participant/all',
   GET_JUDGING_PARTICIPANT_BY_ID: (id: number | string) =>
-    `/api/v1/judging_participant/get/${id}`,
+    `/api/v2/judging_participant/${id}`,
+  GET_JUDGING_PARTICIPANTS_BY_EVENT_ID: (id: number | string) =>
+    `/api/v2/judging_participant/${id}/all`,
 });
 
 const JUDGING_RESULT = Object.freeze({

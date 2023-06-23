@@ -17,12 +17,11 @@ export const submitJudgingEvent = async (
 };
 
 export const getJudgingParticipants = async (
-  id: number | string,
   skip: number,
   limit: number
 ) => {
   const res = await authAxios.getByParams(
-    API_ROUTE.JUDGING_PARTICIPANT.GET_JUDGING_PARTICIPANTS(id),
+    API_ROUTE.JUDGING_PARTICIPANT.GET_JUDGING_PARTICIPANTS,
     {
       skip: skip,
       limit: limit,
@@ -37,6 +36,24 @@ export const getJudgingParticipantById = async (
 ) => {
   const res = await authAxios.get(
     API_ROUTE.JUDGING_PARTICIPANT.GET_JUDGING_PARTICIPANT_BY_ID(id)
+  );
+
+  return res;
+};
+
+export const getJudgingParticipantsByEventId = async (
+  id: number | string,
+  skip: number,
+  limit: number
+) => {
+  const res = await authAxios.getByParams(
+    API_ROUTE.JUDGING_PARTICIPANT.GET_JUDGING_PARTICIPANTS_BY_EVENT_ID(
+      id
+    ),
+    {
+      skip: skip,
+      limit: limit,
+    }
   );
 
   return res;

@@ -14,6 +14,7 @@ import {
   getPublicParticipantsByEventId,
   getPrivateParticipantsByEventId,
   getJudgingEvents,
+  getJudgingParticipantsByEventId,
 } from '@/api';
 import { StatusButton } from '@/components';
 import {
@@ -57,7 +58,7 @@ const JUDGING_PARTICIPANT = Object.freeze({
     size: number,
     eventId: number | string
   ) => {
-    return getJudgingParticipants(eventId, page, size);
+    return getJudgingParticipantsByEventId(eventId, page, size);
   },
   itemToElement: (item: JudgingParticipant, id: number) => {
     return (
@@ -647,6 +648,47 @@ const JUDGING_EVENT = Object.freeze({
   },
 });
 
+const JUDGING_EVENT_PARTICIPANT = Object.freeze({
+  headers: [
+    '번호',
+    '이름',
+    '성별',
+    '생년월일',
+    '전화번호',
+    '이메일',
+    '소속기관',
+    '직책',
+    '수정',
+  ],
+  size: 40,
+  getDatas: async (
+    id: number | string,
+    page: number,
+    size: number
+  ) => {
+    return getJudgingParticipantsByEventId(id, page, size);
+  },
+  itemToElement: (item: JudgingParticipant, id: number) => {
+    return (
+      <tr key={item.id}>
+        <td>{item.id}</td>
+        <td>{item.name}</td>
+        <td>{item.gender}</td>
+        <td>{item.birth}</td>
+        <td>{item.phone}</td>
+        <td>{item.email}</td>
+        <td>{item.organization_name}</td>
+        <td>{item.job_position}</td>
+        <td>
+          <Link to={`/admin/judging_participant/edit/${item.id}`}>
+            수정
+          </Link>
+        </td>
+      </tr>
+    );
+  },
+});
+
 export const TABLE_CONFIG = Object.freeze({
   JUDGING_PARTICIPANT,
   USER,
@@ -661,4 +703,5 @@ export const TABLE_CONFIG = Object.freeze({
   PRIVATE_EVENT,
   PRIVATE_EVENT_PARTICIPANT,
   JUDGING_EVENT,
+  JUDGING_EVENT_PARTICIPANT,
 });

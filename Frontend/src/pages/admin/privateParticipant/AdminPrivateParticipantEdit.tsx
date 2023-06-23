@@ -8,7 +8,6 @@ import styled from 'styled-components';
 import {
   getPrivateParticipantById,
   updatePrivateParticipantById,
-  updatePublicParticipantById,
 } from '@/api';
 import { FilesInput, ReactHookInput } from '@/components/form';
 import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';

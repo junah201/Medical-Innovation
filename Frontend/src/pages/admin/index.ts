@@ -10,3 +10,4 @@ export * from './publicParticipant';
 export * from './privateEvent';
 export * from './privateParticipant';
 export * from './judgingEvent';
+export * from './judgingParticipant';

@@ -709,7 +709,7 @@ class JudgingParticipant(BaseModel):
 
 class JudgingParticipantList(BaseModel):
     total: int
-    participants: List[JudgingParticipant]
+    items: List[JudgingParticipant]
 
 
 class JudgingResultCreate(BaseModel):
