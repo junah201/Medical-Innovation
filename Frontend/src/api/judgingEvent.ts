@@ -55,3 +55,33 @@ export const uploadJudgingEvent = async (
 
   return res;
 };
+
+export const updateJudgingEventById = async (
+  id: number | string,
+  name: string,
+  description: string,
+  join_start_date: string,
+  join_end_date: string,
+  judging_1st_start_date: string,
+  judging_1st_end_date: string,
+  judging_2nd_start_date: string,
+  judging_2nd_end_date: string,
+  file: string
+) => {
+  const res = await authAxios.put(
+    API_ROUTE.JUDGING_EVENT.UPDATE_JUDGING_EVENT_BY_ID(id),
+    {
+      name: name,
+      description: description,
+      join_start_date: join_start_date,
+      join_end_date: join_end_date,
+      judging_1st_start_date: judging_1st_start_date,
+      judging_1st_end_date: judging_1st_end_date,
+      judging_2nd_start_date: judging_2nd_start_date,
+      judging_2nd_end_date: judging_2nd_end_date,
+      thumbnail_filename: file,
+    }
+  );
+
+  return res;
+};

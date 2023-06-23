@@ -64,12 +64,10 @@ def update_judging_event(judging_event_id: int, judging_event_update: schemas_v2
             detail="You do not have permission to update a judging_event"
         )
 
-    judging_event = crud.get_judging_event(
-        db=db,
-        judging_event_id=judging_event_id
-    )
+    db_judging_event: models.JudgingEvent = db.query(models.JudgingEvent).filter(
+        models.JudgingEvent.id == judging_event_id).first()
 
-    if not judging_event:
+    if not db_judging_event:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Public Event not found"
@@ -77,12 +75,14 @@ def update_judging_event(judging_event_id: int, judging_event_update: schemas_v2
 
     db_judging_event: models.JudgingEvent = db.query(models.JudgingEvent).filter(
         models.JudgingEvent.id == judging_event_id).first()
+
     db_judging_event.name = judging_event_update.name
+    db_judging_event.description = judging_event_update.description
+    db_judging_event.thumbnail_filename = judging_event_update.thumbnail_filename
     db_judging_event.join_start_date = judging_event_update.join_start_date
     db_judging_event.join_end_date = judging_event_update.join_end_date
     db_judging_event.judging_1st_start_date = judging_event_update.judging_1st_start_date
     db_judging_event.judging_1st_end_date = judging_event_update.judging_1st_end_date
     db_judging_event.judging_2nd_start_date = judging_event_update.judging_2nd_start_date
     db_judging_event.judging_2nd_end_date = judging_event_update.judging_2nd_end_date
-    db_judging_event.description = judging_event_update.description
     db.commit()
