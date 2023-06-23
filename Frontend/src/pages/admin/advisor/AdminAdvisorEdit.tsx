@@ -1,11 +1,16 @@
 import { AxiosError } from 'axios';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useMutation, useQuery } from 'react-query';
+import { useMutation } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { useEffect } from 'react';
+
 import { getAdvisorById, updateAdvisorById } from '@/api';
-import { ReactHookInput, FilesInput } from '@/components/form';
+import {
+  ReactHookInput,
+  FilesInput,
+  CropImageInput,
+} from '@/components/form';
 import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
 import { Toast } from '@/libs/Toast';
 import { RegisterField } from '@/types';
@@ -33,16 +38,15 @@ export const AdminAdvisorEdit = () => {
   });
 
   useEffect(() => {
-    console.log('rerender');
-    async function getAdvisor() {
+    async function initLoad() {
       const res = await getAdvisorById(id);
-      console.log(res);
       setValue(REGISTER_TYPE.NAME, res.data.name);
       setValue(REGISTER_TYPE.TYPE, res.data.type);
       setValue(REGISTER_TYPE.DESCRIPTION, res.data.description);
       setValue(REGISTER_TYPE.FILENAME, [res.data.filename]);
     }
-    getAdvisor();
+
+    initLoad();
   }, []);
 
   const { mutate } = useMutation(
@@ -111,27 +115,13 @@ export const AdminAdvisorEdit = () => {
           register={register}
           errorMessage={errors[REGISTER_TYPE.DESCRIPTION]?.message}
         />
-        <FilesInput
+        <CropImageInput
+          title="자문단 프로필 이미지"
           id={REGISTER_TYPE.FILENAME}
-          title="프로필 이미지"
           control={control}
           maxFileCount={1}
+          ratio={3 / 4}
         />
-        {/* <FilepondSingleInput
-          title="프로필 이미지"
-          id={REGISTER_TYPE.FILENAME}
-          control={control}
-          initFile={initFile}
-          options={{
-            acceptedFileTypes: ['image/*'],
-            labelIdle: '프로필 이미지를 업로드해주세요.',
-            allowImageCrop: true,
-            imageCropAspectRatio: '3:4',
-            allowImageTransform: true,
-            imageResizeTargetWidth: 300,
-            imageResizeTargetHeight: 400,
-          }}
-        /> */}
         <Submit
           isvalid={!Object.keys(errors)[0]}
           disabled={isSubmitting}

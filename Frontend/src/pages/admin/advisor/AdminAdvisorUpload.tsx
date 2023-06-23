@@ -5,7 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { uploadAdvisorV2 } from '@/api';
-import { FilesInput, ReactHookInput } from '@/components/form';
+import {
+  CropImageInput,
+  FilesInput,
+  ReactHookInput,
+} from '@/components/form';
 import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
 import { Toast } from '@/libs/Toast';
 import { RegisterField } from '@/types';
@@ -32,7 +36,7 @@ export const AdminAdvisorUpload = () => {
 
   const { mutate } = useMutation(
     (userInput) => {
-      if (!userInput?.filename) {
+      if (!userInput?.filename[0]) {
         throw new Error('파일을 첨부해주세요.');
       }
 
@@ -97,11 +101,12 @@ export const AdminAdvisorUpload = () => {
           register={register}
           errorMessage={errors[REGISTER_TYPE.DESCRIPTION]?.message}
         />
-        <FilesInput
+        <CropImageInput
           title="자문단 프로필 이미지"
           id={REGISTER_TYPE.FILENAME}
           control={control}
           maxFileCount={1}
+          ratio={3 / 4}
         />
         <Submit
           isvalid={!Object.keys(errors)[0]}
