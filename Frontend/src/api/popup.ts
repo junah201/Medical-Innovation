@@ -4,8 +4,14 @@ import { Axios } from '@/libs/Axios';
 const unAuthAxios = new Axios();
 const authAxios = new Axios(true);
 
-export const getPopups = async () => {
-  const res = await unAuthAxios.get(API_ROUTE.POPUP.GET_POPUPS);
+export const getPopups = async (skip: number, limit: number) => {
+  const res = await authAxios.getByParams(
+    API_ROUTE.POPUP.GET_POPUPS,
+    {
+      skip: skip,
+      limit: limit,
+    }
+  );
 
   return res;
 };

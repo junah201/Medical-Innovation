@@ -18,6 +18,7 @@ import {
   getJudgingResultsByEventId,
   getAdEmails,
   getHistorys,
+  getPopups,
 } from '@/api';
 import { StatusButton } from '@/components';
 import {
@@ -806,6 +807,51 @@ const HISTORY = Object.freeze({
   },
 });
 
+const POPUP = Object.freeze({
+  headers: [
+    '번호',
+    '제목',
+    '이미지',
+    '팝업 시작 날짜',
+    '팝업 종료 날짜',
+    '수정',
+    '삭제',
+  ],
+  size: 40,
+  getDatas: async (
+    id: number | string,
+    page: number,
+    size: number
+  ) => {
+    return getPopups(page, size);
+  },
+  itemToElement: (item: any, id: number) => {
+    return (
+      <tr key={item.id}>
+        <td>{item.id}</td>
+        <td>{item.title}</td>
+        <td>
+          <a
+            href={`${VITE_CDN_URL}/upload/${item.image_filename}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {item.image_filename}
+          </a>
+        </td>
+        <td>{item.popup_start_date}</td>
+        <td>{item.popup_end_date}</td>
+        <td>
+          <Link to={`/admin/popup/edit/${item.id}`}>수정</Link>
+        </td>
+        <td>
+          <Link to={`/admin/popup/delete/${item.id}`}>삭제</Link>
+        </td>
+      </tr>
+    );
+  },
+});
+
 export const TABLE_CONFIG = Object.freeze({
   JUDGING_PARTICIPANT,
   USER,
@@ -824,4 +870,5 @@ export const TABLE_CONFIG = Object.freeze({
   JUDGING_RESULT,
   AD_EMAIL,
   HISTORY,
+  POPUP,
 });

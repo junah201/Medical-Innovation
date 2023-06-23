@@ -81,6 +81,7 @@ import {
   AdminAdEmailUpload,
   AdminHistoryAll,
   AdminHistoryEdit,
+  AdminPopupAll,
 } from '@/pages';
 
 interface RouteConfig {
@@ -777,6 +778,14 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/admin/history/edit/:id',
     COMPONENT: AdminHistoryEdit,
+    HEADER: AdminHeader,
+    WRAPPER: AdminWrapper,
+    ADMIN: true,
+    AUTH: true,
+  },
+  {
+    PATH: '/admin/popup/all',
+    COMPONENT: AdminPopupAll,
     HEADER: AdminHeader,
     WRAPPER: AdminWrapper,
     ADMIN: true,

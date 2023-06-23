@@ -25,8 +25,12 @@ const POST = Object.freeze({
 });
 
 const POPUP = Object.freeze({
-  GET_POPUPS: '/api/v1/popup/all',
-  GET_ACTIVE_POPUPS: '/api/v1/popup/all/active',
+  GET_POPUPS: '/api/v2/popup/all',
+  GET_ACTIVE_POPUPS: '/api/v2/popup/all/active',
+  GET_POPUP_BY_ID: (id: number | string) => `/api/v2/popup/${id}`,
+  UPLOAD_POPUP: '/api/v2/popup',
+  UPDATE_POPUP_BY_ID: (id: number | string) => `/api/v2/popup/${id}`,
+  DELETE_POPUP_BY_ID: (id: number | string) => `/api/v2/popup/${id}`,
 });
 
 const SUPPORTING_STARTUP = Object.freeze({

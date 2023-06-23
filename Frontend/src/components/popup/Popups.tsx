@@ -11,7 +11,7 @@ export const Popups = () => {
   const { isLoading, isError } = useQuery('popups', getActivePopups, {
     retry: false,
     onSuccess: (res) => {
-      setPopups(res.data.popups);
+      setPopups(res.data.items);
     },
   });
 

@@ -109,5 +109,10 @@ export const ROUTE = Object.freeze({
       ALL: '/admin/history/all',
       UPLOAD: '/admin/history/upload',
     }),
+    POPUP: Object.freeze({
+      ROOT: '/admin/popup',
+      ALL: '/admin/popup/all',
+      UPLOAD: '/admin/popup/upload',
+    }),
   }),
 });

@@ -786,4 +786,4 @@ class Popup(BaseModel):
 
 class PopupList(BaseModel):
     total: int
-    popups: List[Popup]
+    items: List[Popup]

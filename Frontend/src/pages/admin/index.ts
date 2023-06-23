@@ -14,3 +14,4 @@ export * from './judgingParticipant';
 export * from './judgingResult';
 export * from './adEmail';
 export * from './history';
+export * from './popup';
