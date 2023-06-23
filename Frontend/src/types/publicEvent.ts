@@ -14,5 +14,5 @@ export interface PublicEvent {
 
 export interface PublicEventList {
   total: number;
-  events: PublicEvent[];
+  items: PublicEvent[];
 }

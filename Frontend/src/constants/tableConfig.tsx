@@ -6,6 +6,7 @@ import {
   getJudgingParticipants,
   getMous,
   getPosts,
+  getPublicEvents,
   getSponsoringCompanies,
   getSponsors,
   getUsers,
@@ -24,6 +25,7 @@ import {
   JudgingParticipant,
   Mou,
   Post,
+  PublicEvent,
   Sponsor,
   User,
 } from '@/types';
@@ -417,6 +419,50 @@ const ADVISOR = Object.freeze({
   },
 });
 
+const PUBLIC_EVENT = Object.freeze({
+  headers: [
+    '번호',
+    '이름',
+    '이미지',
+    '참가 신청 시작일',
+    '참가 신청 마감일',
+    '행사 시작일',
+    '행사 종료일',
+    '수정',
+  ],
+  size: 40,
+  getDatas: async (
+    id: number | string,
+    page: number,
+    size: number
+  ) => {
+    return getPublicEvents(page, size);
+  },
+  itemToElement: (item: PublicEvent, id: number) => {
+    return (
+      <tr key={item.id}>
+        <td>{item.id}</td>
+        <td>{item.name}</td>
+        <td>
+          <a
+            href={`${VITE_CDN_URL}/upload/${
+              item.thumbnail_filename || 'null.png'
+            }`}
+          >
+            {item.thumbnail_filename || 'null.png'}
+          </a>
+        </td>
+        <td>{item.join_start_date}</td>
+        <td>{item.join_end_date}</td>
+        <td>{item.start_date}</td>
+        <td>{item.end_date}</td>
+        <td>
+          <Link to={`/admin/public_event/edit/${item.id}`}>수정</Link>
+        </td>
+      </tr>
+    );
+  },
+});
 export const TABLE_CONFIG = Object.freeze({
   JUDGING_PARTICIPANT,
   USER,
@@ -426,4 +472,5 @@ export const TABLE_CONFIG = Object.freeze({
   SPONSOR,
   MOU,
   ADVISOR,
+  PUBLIC_EVENT,
 });

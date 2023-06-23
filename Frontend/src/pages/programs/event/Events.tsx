@@ -8,16 +8,16 @@ import {
   Message,
   Events as CEvents,
 } from '@/components';
-import { PublicEvent, PublicEventList } from '@/types';
+import { PublicEvent } from '@/types';
 
 export const Events = () => {
-  const [events, setEvents] = useState<PublicEventList>();
+  const [events, setEvents] = useState<PublicEvent[]>();
 
   useQuery({
     queryKey: 'public_events',
     queryFn: () => getPublicEvents(0, 10000),
     onSuccess: (res: AxiosResponse) => {
-      setEvents(res.data);
+      setEvents(res.data.items);
     },
   });
 
@@ -31,7 +31,7 @@ export const Events = () => {
       </Message>
       {events && (
         <CEvents
-          events={events.events}
+          events={events}
           itemToLink={(item: PublicEvent) => {
             return `/programs/event/${item.id}/detail`;
           }}

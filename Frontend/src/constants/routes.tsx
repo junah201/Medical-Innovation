@@ -61,6 +61,7 @@ import {
   AdminAdvisorEdit,
   Test,
   AdminBannerUpload,
+  AdminPublicEventAll,
 } from '@/pages';
 
 interface RouteConfig {
@@ -541,6 +542,22 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/admin/advisor/edit/:id',
     COMPONENT: AdminAdvisorEdit,
+    HEADER: AdminHeader,
+    WRAPPER: AdminWrapper,
+    ADMIN: true,
+    AUTH: true,
+  },
+  {
+    PATH: '/admin/public_event',
+    COMPONENT: AdminPublicEventAll,
+    HEADER: AdminHeader,
+    WRAPPER: AdminWrapper,
+    ADMIN: true,
+    AUTH: true,
+  },
+  {
+    PATH: '/admin/public_event/all',
+    COMPONENT: AdminPublicEventAll,
     HEADER: AdminHeader,
     WRAPPER: AdminWrapper,
     ADMIN: true,

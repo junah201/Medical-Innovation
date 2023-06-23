@@ -13,20 +13,15 @@ const MOU = Object.freeze({
   UPDATE_MOU_BY_ID: (id: number | string) => `/api/v2/mou/${id}`,
 });
 
-const ADVISOR = Object.freeze({
-  GET_ADVISORS: '/api/v2/advisor/all',
-  UPLOAD_ADVISOR: '/api/v1/advisor/create',
-});
-
 const POST = Object.freeze({
   GET_POSTS: '/api/v2/post/all',
   GET_POSTS_BY_BOARD: (id: number | string) =>
     `/api/v2/post/${id}/all`,
-  GET_POST_BY_ID: (id: number | string) => `/api/v1/post/${id}`,
+  GET_POST_BY_ID: (id: number | string) => `/api/v2/post/${id}`,
   GET_POST_BOARDS: '/api/v1/board/all',
-  UPDATE_POST_BY_ID: (id: number | string) => `/api/v1/post/${id}`,
-  UPLOAD_POST: '/api/v1/post/create',
-  DELETE_POST_BY_ID: (id: number | string) => `/api/v1/post/${id}`,
+  UPDATE_POST_BY_ID: (id: number | string) => `/api/v2/post/${id}`,
+  UPLOAD_POST: '/api/v2/post',
+  DELETE_POST_BY_ID: (id: number | string) => `/api/v2/post/${id}`,
 });
 
 const POPUP = Object.freeze({
@@ -43,9 +38,9 @@ const HISTORY = Object.freeze({
 });
 
 const PUBLIC_EVENT = Object.freeze({
-  GET_PUBLIC_EVENTS: '/api/v1/public_event/all',
+  GET_PUBLIC_EVENTS: '/api/v2/public_event/all',
   GET_PUBLIC_EVENT_BY_ID: (id: number | string) =>
-    `/api/v1/public_event/get/${id}`,
+    `/api/v2/public_event/${id}`,
 });
 
 const PUBLIC_PARTICIPANT = Object.freeze({
@@ -117,7 +112,7 @@ const FILE_V2 = Object.freeze({
   UPLOAD_CROP_IMAGE: '/api/v2/file/crop',
 });
 
-const ADVISOR_V2 = Object.freeze({
+const ADVISOR = Object.freeze({
   GET_ADVISORS: '/api/v2/advisor/all',
   UPLOAD_ADVISOR: '/api/v2/advisor',
   DELETE_ADVISOR_BY_ID: (id: number | string) =>
@@ -165,5 +160,4 @@ export const API_ROUTE = Object.freeze({
   USER,
   FILE_V2,
   POST_V2,
-  ADVISOR_V2,
 });

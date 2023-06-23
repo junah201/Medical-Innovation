@@ -4,7 +4,7 @@ import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { uploadAdvisorV2 } from '@/api';
+import { uploadAdvisor } from '@/api';
 import {
   CropImageInput,
   FilesInput,
@@ -40,7 +40,7 @@ export const AdminAdvisorUpload = () => {
         throw new Error('파일을 첨부해주세요.');
       }
 
-      return uploadAdvisorV2(
+      return uploadAdvisor(
         userInput?.name,
         userInput?.type,
         userInput?.description,
