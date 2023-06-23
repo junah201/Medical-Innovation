@@ -203,7 +203,7 @@ const BANNER = Object.freeze({
         <td>{item.name}</td>
         <td>
           <a
-            href={`${VITE_CDN_URL}/banner/${item.filename}`}
+            href={`${VITE_CDN_URL}/upload/${item.filename}`}
             alt={item.filename}
           >
             {item.filename}
@@ -256,7 +256,7 @@ const SPONSORING_COMPANY = Object.freeze({
         <td>{item.link}</td>
         <td>
           <a
-            href={`${VITE_CDN_URL}/banner/${item.filename}`}
+            href={`${VITE_CDN_URL}/upload/${item.filename}`}
             alt={item.filename}
           >
             {item.filename}
@@ -321,6 +321,7 @@ const MOU = Object.freeze({
     '번호',
     '이름',
     '링크',
+    '파일',
     '생성 시간',
     '수정 시간',
     '수정',
@@ -340,6 +341,14 @@ const MOU = Object.freeze({
         <td>{item.id}</td>
         <td>{item.name}</td>
         <td>{item.link}</td>
+        <td>
+          <a
+            href={`${VITE_CDN_URL}/upload/${item.filename}`}
+            alt={item.filename}
+          >
+            {item.filename}
+          </a>
+        </td>
         <td>{item.created_at.replace('T', ' ')}</td>
         <td>{item.updated_at.replace('T', ' ')}</td>
         <td>

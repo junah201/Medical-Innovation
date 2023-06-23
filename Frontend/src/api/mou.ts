@@ -24,17 +24,13 @@ export const deleteMouById = async (id: string | number) => {
 export const uploadMou = async (
   name: string,
   link: string,
-  file: File
+  filename: string
 ) => {
-  const formData = new FormData();
-  formData.append('name', name);
-  formData.append('link', link);
-  formData.append('file', file);
-
-  const res = await authAxios.postMultipartFormData(
-    API_ROUTE.MOU.UPLOAD_MOU,
-    formData
-  );
+  const res = await authAxios.post(API_ROUTE.MOU.UPLOAD_MOU, {
+    name: name,
+    link: link,
+    filename: filename,
+  });
 
   return res;
 };
@@ -48,13 +44,15 @@ export const getMouById = async (id: string | number) => {
 export const updateMouById = async (
   id: string | number,
   name: string,
-  link: string
+  link: string,
+  filename: string
 ) => {
   const res = await authAxios.put(
     API_ROUTE.MOU.UPDATE_MOU_BY_ID(id),
     {
       name: name,
       link: link,
+      filename: filename,
     }
   );
 

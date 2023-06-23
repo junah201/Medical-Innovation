@@ -43,17 +43,16 @@ export const uploadSponsoringCompany = async (
   name: string,
   link: string,
   year: string,
-  file: File
+  filename: string
 ) => {
-  const formData = new FormData();
-  formData.append('name', name);
-  formData.append('link', link);
-  formData.append('year', year);
-  formData.append('file', file);
-
-  const res = await authAxios.postMultipartFormData(
+  const res = await authAxios.post(
     API_ROUTE.SPONSORING_COMPANY.UPLOAD_SPONSORING_COMPANY,
-    formData
+    {
+      name: name,
+      link: link,
+      year: year,
+      filename: filename,
+    }
   );
 
   return res;
@@ -63,7 +62,8 @@ export const updateSponsoringCompanyById = async (
   id: number | string,
   name: string,
   link: string,
-  year: string
+  year: string,
+  filename: string
 ) => {
   const res = await authAxios.put(
     API_ROUTE.SPONSORING_COMPANY.UPDATE_SPONSORING_COMPANY_BY_ID(id),
@@ -71,6 +71,7 @@ export const updateSponsoringCompanyById = async (
       name: name,
       link: link,
       year: year,
+      filename: filename,
     }
   );
 

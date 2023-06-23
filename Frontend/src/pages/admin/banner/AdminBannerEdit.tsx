@@ -85,7 +85,6 @@ export const AdminBannerEdit = () => {
   return (
     <Wrapper>
       <h1>배너 수정</h1>
-      {JSON.stringify(watch())}
       <Form onSubmit={handleSubmit(onValid)}>
         <ReactHookInput
           id={REGISTER_TYPE.NAME}

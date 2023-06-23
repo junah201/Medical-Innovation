@@ -7,7 +7,6 @@ import styled from 'styled-components';
 import {
   getSponsoringCompanyById,
   updateSponsoringCompanyById,
-  uploadSponsoringCompany,
 } from '@/api';
 import { ReactHookInput, FilesInput } from '@/components/form';
 import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
@@ -15,6 +14,7 @@ import { Toast } from '@/libs/Toast';
 import { RegisterField } from '@/types';
 
 import '@/static/css/content-styles.css';
+import { useEffect } from 'react';
 
 export const AdminSponsoringCompanyEdit = () => {
   const { id } = useParams() as {
@@ -23,6 +23,7 @@ export const AdminSponsoringCompanyEdit = () => {
   const navigate = useNavigate();
 
   const {
+    control,
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
@@ -37,36 +38,42 @@ export const AdminSponsoringCompanyEdit = () => {
     },
   });
 
-  useQuery(
-    'getSponsoringCompany',
-    () => getSponsoringCompanyById(id),
-    {
-      retry: false,
-      cacheTime: 0,
-      onSuccess: (res) => {
-        const { name, link, year } = res.data;
-        setValue(REGISTER_TYPE.NAME, name);
-        setValue(REGISTER_TYPE.LINK, link);
-        setValue(REGISTER_TYPE.YEAR, year);
-      },
+  useEffect(() => {
+    async function initLoad() {
+      const res = await getSponsoringCompanyById(id);
+      setValue(REGISTER_TYPE.NAME, res.data.name);
+      setValue(REGISTER_TYPE.LINK, res.data.link);
+      setValue(REGISTER_TYPE.YEAR, res.data.year);
+      setValue(REGISTER_TYPE.FILE, [res.data.filename]);
     }
-  );
+
+    initLoad();
+  }, []);
 
   const { mutate } = useMutation(
-    (userInput) =>
+    (userInput) => {
+      if (!userInput?.file[0]) {
+        throw new Error('파일을 첨부해주세요.');
+      }
+
       updateSponsoringCompanyById(
         id,
         userInput?.name,
         userInput?.link,
-        userInput?.year
-      ),
+        userInput?.year,
+        userInput?.file[0]
+      );
+    },
     {
       onSuccess: () => {
         Toast('수정 완료', 'success');
         navigate(ROUTE.ADMIN.SPONSORING_COMPANY.ALL);
       },
       onError: (err: AxiosError) => {
-        Toast(`수정 실패했습니다. ${err?.response?.data}`, 'error');
+        Toast(
+          `수정 실패했습니다. ${err?.response?.data || err?.message}`,
+          'error'
+        );
       },
     }
   );
@@ -100,6 +107,12 @@ export const AdminSponsoringCompanyEdit = () => {
           type={INPUT_TYPE.TEXT}
           register={register}
           errorMessage={errors[REGISTER_TYPE.YEAR]?.message}
+        />
+        <FilesInput
+          id={REGISTER_TYPE.FILE}
+          title="로고"
+          control={control}
+          maxFileCount={1}
         />
         <Submit
           isvalid={!Object.keys(errors)[0]}

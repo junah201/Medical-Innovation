@@ -4,22 +4,14 @@ import { useMutation, useQuery } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import {
-  getMouById,
-  updateMouById,
-  uploadBanner,
-  uploadMou,
-} from '@/api';
-import {
-  ReactHookInput,
-  HtmlInput,
-  FilesInput,
-} from '@/components/form';
+import { getMouById, updateMouById } from '@/api';
+import { ReactHookInput, CropImageInput } from '@/components/form';
 import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
 import { Toast } from '@/libs/Toast';
 import { RegisterField } from '@/types';
 
 import '@/static/css/content-styles.css';
+import { useEffect } from 'react';
 
 export const AdminMouEdit = () => {
   const { id } = useParams();
@@ -30,26 +22,38 @@ export const AdminMouEdit = () => {
     handleSubmit,
     formState: { errors, isSubmitting },
     setValue,
+    control,
   } = useForm<RegisterField>({
     mode: 'onChange',
     defaultValues: {
       name: '',
       link: '',
+      file: [],
     },
   });
 
-  useQuery('mous', () => getMouById(id), {
-    retry: false,
-    cacheTime: 0,
-    onSuccess: (res) => {
+  useEffect(() => {
+    async function initLoad() {
+      const res = await getMouById(id);
       setValue(REGISTER_TYPE.NAME, res.data.name);
       setValue(REGISTER_TYPE.LINK, res.data.link);
-    },
-  });
+      setValue(REGISTER_TYPE.FILE, [res.data.filename]);
+    }
+
+    initLoad();
+  }, []);
 
   const { mutate } = useMutation(
     (userInput) => {
-      return updateMouById(id, userInput?.name, userInput?.link);
+      if (!userInput?.file[0]) {
+        throw Error('MOU 이미지를 업로드해주세요.');
+      }
+      return updateMouById(
+        id,
+        userInput?.name,
+        userInput?.link,
+        userInput?.file[0]
+      );
     },
     {
       onSuccess: () => {
@@ -88,6 +92,13 @@ export const AdminMouEdit = () => {
           type={INPUT_TYPE.TEXT}
           register={register}
           errorMessage={errors[REGISTER_TYPE.LINK]?.message}
+        />
+        <CropImageInput
+          id={REGISTER_TYPE.FILE}
+          title="MOU 이미지"
+          control={control}
+          maxFileCount={1}
+          ratio={20 / 11}
         />
         <Submit
           isvalid={!Object.keys(errors)[0]}

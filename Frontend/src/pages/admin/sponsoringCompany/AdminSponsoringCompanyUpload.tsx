@@ -9,6 +9,7 @@ import {
   ReactHookInput,
   HtmlInput,
   FilesInput,
+  CropImageInput,
 } from '@/components/form';
 import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
 import { Toast } from '@/libs/Toast';
@@ -35,13 +36,18 @@ export const AdminSponsoringCompanyUpload = () => {
   });
 
   const { mutate } = useMutation(
-    (userInput) =>
-      uploadSponsoringCompany(
+    (userInput) => {
+      if (!userInput?.file[0]) {
+        throw new Error('파일을 첨부해주세요.');
+      }
+
+      return uploadSponsoringCompany(
         userInput?.name,
         userInput?.link,
         userInput?.year,
         userInput?.file[0]
-      ),
+      );
+    },
     {
       onSuccess: () => {
         Toast('업로드 완료', 'success');
@@ -86,15 +92,13 @@ export const AdminSponsoringCompanyUpload = () => {
           register={register}
           errorMessage={errors[REGISTER_TYPE.YEAR]?.message}
         />
-        {/* <FilesInput
+        <CropImageInput
           title="배너 이미지"
           id={REGISTER_TYPE.FILE}
           control={control}
-          options={{
-            acceptedFileTypes: ['image/*'],
-            maxFiles: 1,
-          }}
-        /> */}
+          acceptFileType="image/*"
+          ratio={20 / 11}
+        />
         <Submit
           isvalid={!Object.keys(errors)[0]}
           disabled={isSubmitting}

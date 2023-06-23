@@ -194,15 +194,16 @@ class BannerList(BaseModel):
     banners: list[Banner]
 
 
-@form_body
 class MouCreate(BaseModel):
     name: str
     link: str
+    filename: str
 
 
 class MouUpdate(BaseModel):
     name: str
     link: str
+    filename: str
 
 
 class Mou(BaseModel):
@@ -236,6 +237,7 @@ class SponsoringCompanyUpdate(BaseModel):
     name: str
     link: str
     year: int
+    filename: str
 
 
 class Sponsor(SponsorCreate):
@@ -248,11 +250,11 @@ class Sponsor(SponsorCreate):
         orm_mode = True
 
 
-@form_body
 class SponsoringCompanyCreate(BaseModel):
     name: str
     link: str
     year: int
+    filename: str
 
 
 class SponsoringCompany(BaseModel):

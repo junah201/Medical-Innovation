@@ -17,12 +17,11 @@ const BANNER = Object.freeze({
 });
 
 const MOU = Object.freeze({
-  GET_MOUS: '/api/v1/mou/all',
-  DELETE_MOU_BY_ID: (id: number | string) => `/api/v1/mou/${id}`,
-  UPLOAD_MOU: '/api/v1/mou/create',
-  GET_MOU_BY_ID: (id: number | string) => `/api/v1/mou/get/${id}`,
-  UPDATE_MOU_BY_ID: (id: number | string) =>
-    `/api/v1/mou/update/${id}`,
+  GET_MOUS: '/api/v2/mou/all',
+  DELETE_MOU_BY_ID: (id: number | string) => `/api/v2/mou/${id}`,
+  UPLOAD_MOU: '/api/v2/mou',
+  GET_MOU_BY_ID: (id: number | string) => `/api/v2/mou/${id}`,
+  UPDATE_MOU_BY_ID: (id: number | string) => `/api/v2/mou/${id}`,
 });
 
 const ADVISOR = Object.freeze({
@@ -92,9 +91,9 @@ const SPONSORING_COMPANY = Object.freeze({
     `/api/v1/sponsoring_company/${id}`,
   GET_SPONSORING_COMPANY_BY_ID: (id: number | string) =>
     `/api/v1/sponsoring_company/get/${id}`,
-  UPLOAD_SPONSORING_COMPANY: '/api/v1/sponsoring_company/create',
+  UPLOAD_SPONSORING_COMPANY: '/api/v2/sponsoring_company',
   UPDATE_SPONSORING_COMPANY_BY_ID: (id: number | string) =>
-    `/api/v1/sponsoring_company/update/${id}`,
+    `/api/v2/sponsoring_company/${id}`,
 });
 
 const SPONSOR = Object.freeze({

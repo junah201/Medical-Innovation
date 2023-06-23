@@ -9,6 +9,7 @@ import {
   ReactHookInput,
   HtmlInput,
   FilesInput,
+  CropImageInput,
 } from '@/components/form';
 import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
 import { Toast } from '@/libs/Toast';
@@ -85,21 +86,13 @@ export const AdminMouUpload = () => {
           register={register}
           errorMessage={errors[REGISTER_TYPE.LINK]?.message}
         />
-        {/* <FilesInput
-          title="배너 이미지"
+        <CropImageInput
+          title="MOU 이미지"
           id={REGISTER_TYPE.FILE}
           control={control}
-          options={{
-            maxFiles: 1,
-            acceptedFileTypes: ['image/*'],
-            labelIdle: 'MOU 이미지를 업로드해주세요.',
-            allowImageCrop: true,
-            imageCropAspectRatio: '20:11',
-            allowImageTransform: true,
-            imageResizeTargetWidth: 400,
-            imageResizeTargetHeight: 220,
-          }}
-        /> */}
+          maxFileCount={1}
+          ratio={20 / 11}
+        />
         <Submit
           isvalid={!Object.keys(errors)[0]}
           disabled={isSubmitting}
@@ -114,14 +107,6 @@ export const AdminMouUpload = () => {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-
-  & .ck-editor {
-    width: 800px;
-  }
-
-  & .ck-editor__editable_inline {
-    min-height: 600px;
-  }
 `;
 
 const Form = styled.form`
