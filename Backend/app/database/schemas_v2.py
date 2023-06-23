@@ -377,6 +377,27 @@ class ParticipantCreate(BaseModel):
     interest_field_detail: Optional[str] = None
 
 
+class ParticipantUpdate(BaseModel):
+    name: str
+    english_name: Optional[str] = None
+    gender: Optional[str] = None
+    birth: Optional[date] = None
+    phone: str
+    email: EmailStr
+    organization_type: Optional[str] = None
+    organization_name: str
+    organization_english_name: Optional[str]
+    job_position: str
+    address: Optional[str] = None
+    final_degree: Optional[str] = None
+    engagement_type: Optional[str] = None
+    participant_motivation: Optional[str] = None
+    participant_type: Optional[str] = None
+    interest_disease: Optional[str] = None
+    interest_field: Optional[str] = None
+    interest_field_detail: Optional[str] = None
+
+
 class Participant(BaseModel):
     id: PositiveInt
     public_event_id: PositiveInt

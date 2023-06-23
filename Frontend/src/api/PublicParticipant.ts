@@ -34,3 +34,25 @@ export const getPublicParticipantsByEventId = async (
 
   return res;
 };
+
+export const getPublicParticipantById = async (
+  id: number | string
+) => {
+  const res = await authAxios.get(
+    API_ROUTE.PUBLIC_PARTICIPANT.GET_PUBLIC_PARTICIPANT_BY_ID(id)
+  );
+
+  return res;
+};
+
+export const updatePublicParticipantById = async (
+  id: number | string,
+  data: PublicParticipant
+) => {
+  const res = await authAxios.put(
+    API_ROUTE.PUBLIC_PARTICIPANT.UPDATE_PUBLIC_PARTICIPANT_BY_ID(id),
+    data
+  );
+
+  return res;
+};

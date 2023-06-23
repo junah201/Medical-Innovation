@@ -1,1 +1,2 @@
-export * from './publicParticipantAll';
+export * from './AdminPublicParticipantAll';
+export * from './AdminPublicParticipantEdit';

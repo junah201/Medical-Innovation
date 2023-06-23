@@ -77,5 +77,9 @@ export const ROUTE = Object.freeze({
       UPLOAD: '/admin/public_event/upload',
       ALL: '/admin/public_event/all',
     }),
+    PUBLIC_PARTICIPANT: Object.freeze({
+      ROOT: '/admin/public_participant',
+      ALL: '/admin/public_participant/all',
+    }),
   }),
 });

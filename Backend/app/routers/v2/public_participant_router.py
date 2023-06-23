@@ -7,6 +7,7 @@ from app.database.database import get_db
 import io
 import openpyxl
 import csv
+from typing import List, Optional
 
 router = APIRouter(
     prefix="/public_participant",
@@ -84,6 +85,49 @@ def get_all_participant_excel_by_event_id(public_event_id: int, db: Session = De
     return FileResponse("참가자목록.xlsx")
 
 
-@router.get("/{participant_id}", response_model=schemas_v2.PublicEvent)
+@router.get("/{participant_id}", response_model=schemas_v2.Participant)
 def get_participant(participant_id: int, db: Session = Depends(get_db)):
-    return crud.get_participant(db=db, participant_id=participant_id)
+    db_public_participant: Optional[models.Participant] = db.query(models.Participant).filter(
+        models.Participant.id == participant_id).first()
+
+    if not db_public_participant:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Participant not found"
+        )
+
+    return db_public_participant
+
+
+@router.put("/{participant_id}", status_code=status.HTTP_204_NO_CONTENT)
+def update_participant(participant_id: int, participant_update: schemas_v2.ParticipantUpdate, db: Session = Depends(get_db)):
+    db_public_participant: models.Participant = db.query(models.Participant).filter(
+        models.Participant.id == participant_id).first()
+
+    if not db_public_participant:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Participant not found"
+        )
+
+    db_public_participant.name = participant_update.name
+    db_public_participant.english_name = participant_update.english_name
+    db_public_participant.gender = participant_update.gender
+    db_public_participant.birth = participant_update.birth
+    db_public_participant.phone = participant_update.phone
+    db_public_participant.email = participant_update.email
+    db_public_participant.organization_type = participant_update.organization_type
+    db_public_participant.organization_name = participant_update.organization_name
+    db_public_participant.organization_english_name = participant_update.organization_english_name
+    db_public_participant.job_position = participant_update.job_position
+    db_public_participant.address = participant_update.address
+    db_public_participant.final_degree = participant_update.final_degree
+    db_public_participant.engagement_type = participant_update.engagement_type
+    db_public_participant.participant_motivation = participant_update.participant_motivation
+    db_public_participant.participant_type = participant_update.participant_type
+    db_public_participant.interest_disease = participant_update.interest_disease
+    db_public_participant.interest_field = participant_update.interest_field
+    db_public_participant.interest_field_detail = participant_update.interest_field_detail
+
+    db.commit()
+    db.refresh(db_public_participant)
