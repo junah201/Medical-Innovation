@@ -122,14 +122,6 @@ export const AdminAdvisorUpload = () => {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-
-  & .ck-editor {
-    width: 800px;
-  }
-
-  & .ck-editor__editable_inline {
-    min-height: 600px;
-  }
 `;
 
 const Form = styled.form`

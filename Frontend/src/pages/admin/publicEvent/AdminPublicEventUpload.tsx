@@ -4,12 +4,11 @@ import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { uploadBanner, uploadBannerV2 } from '@/api';
+import { uploadPublicEvent } from '@/api';
 import {
   ReactHookInput,
-  HtmlInput,
   FilesInput,
-  CropImageInput,
+  HtmlInput,
 } from '@/components/form';
 import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
 import { Toast } from '@/libs/Toast';
@@ -17,42 +16,55 @@ import { RegisterField } from '@/types';
 
 import '@/static/css/content-styles.css';
 
-export const AdminBannerUpload = () => {
+export const AdminPublicEventUpload = () => {
   const navigate = useNavigate();
 
   const {
-    watch,
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    setValue,
     control,
+    setValue,
   } = useForm<RegisterField>({
     mode: 'onChange',
     defaultValues: {
       name: '',
-      link: '',
+      english_name: '',
+      description: '행사 설명을 입력해주세요.',
       file: [],
-      banner_end_at: '',
+      start_date: '2000-01-01',
+      end_date: '2023-01-01',
+      join_start_date: '2000-01-01',
+      join_end_date: '2023-01-01',
     },
   });
 
   const { mutate } = useMutation(
-    (userInput) =>
-      uploadBannerV2(
+    (userInput) => {
+      if (!userInput?.file[0]) {
+        throw Error('행사 이미지를 업로드해주세요.');
+      }
+      return uploadPublicEvent(
         userInput?.name,
-        userInput?.link,
+        userInput?.english_name,
+        userInput?.description,
         userInput?.file[0],
-        `${userInput?.banner_end_at}T00:00:00.000Z`
-      ),
+        userInput?.start_date,
+        userInput?.end_date,
+        userInput?.join_start_date,
+        userInput?.join_end_date
+      );
+    },
     {
       onSuccess: () => {
         Toast('업로드 완료', 'success');
-        navigate(ROUTE.ADMIN.BANNER.ALL);
+        navigate(ROUTE.ADMIN.PUBLIC_EVENT.ALL);
       },
       onError: (err: AxiosError) => {
         Toast(
-          `업로드에 실패했습니다. ${err?.response?.data}`,
+          `업로드에 실패했습니다. ${
+            err?.response?.data || err.message
+          }`,
           'error'
         );
       },
@@ -60,39 +72,66 @@ export const AdminBannerUpload = () => {
   );
 
   const onValid = (userInput: RegisterField) => mutate(userInput);
-
   return (
     <Wrapper>
-      <h1>배너 업로드</h1>
+      <h1>공개 행사 생성</h1>
       <Form onSubmit={handleSubmit(onValid)}>
         <ReactHookInput
           id={REGISTER_TYPE.NAME}
-          title="회사명"
-          placeholder='회사명을 입력해주세요. ex) "플레이데이터"'
+          title="행사명"
+          placeholder='행사명을 입력해주세요. ex) "플레이데이터"'
           type={INPUT_TYPE.TEXT}
           register={register}
           errorMessage={errors[REGISTER_TYPE.NAME]?.message}
         />
         <ReactHookInput
-          id={REGISTER_TYPE.LINK}
-          title="사이트 링크"
-          placeholder="만약 없다면 # 하나만 입력해주세요."
+          id={REGISTER_TYPE.ENGLISH_NAME}
+          title="행사명 (영문)"
+          placeholder='영문 행사명을 입력해주세요. ex) "playdata"'
           type={INPUT_TYPE.TEXT}
           register={register}
-          errorMessage={errors[REGISTER_TYPE.LINK]?.message}
+          errorMessage={errors[REGISTER_TYPE.ENGLISH_NAME]?.message}
+        />
+        <HtmlInput
+          title="행사 설명"
+          onChange={(e) => setValue(REGISTER_TYPE.DESCRIPTION, e)}
+          errorMessage={errors[REGISTER_TYPE.DESCRIPTION]?.message}
+          defaultData="<p>행사 설명을 입력해주세요.</p>"
         />
         <ReactHookInput
-          id={REGISTER_TYPE.BANNER_END_AT}
-          title="배너 종료 시점"
+          id={REGISTER_TYPE.START_DATA}
+          title="행사 시작일"
           type={INPUT_TYPE.DATE}
           register={register}
-          errorMessage={errors[REGISTER_TYPE.BANNER_END_AT]?.message}
+          errorMessage={errors[REGISTER_TYPE.START_DATA]?.message}
         />
-        <CropImageInput
+        <ReactHookInput
+          id={REGISTER_TYPE.END_DATE}
+          title="행사 종료일"
+          type={INPUT_TYPE.DATE}
+          register={register}
+          errorMessage={errors[REGISTER_TYPE.END_DATE]?.message}
+        />
+        <ReactHookInput
+          id={REGISTER_TYPE.JOIN_START_DATE}
+          title="행사 종료일"
+          type={INPUT_TYPE.DATE}
+          register={register}
+          errorMessage={
+            errors[REGISTER_TYPE.JOIN_START_DATE]?.message
+          }
+        />
+        <ReactHookInput
+          id={REGISTER_TYPE.JOIN_END_DATE}
+          title="행사 종료일"
+          type={INPUT_TYPE.DATE}
+          register={register}
+          errorMessage={errors[REGISTER_TYPE.JOIN_END_DATE]?.message}
+        />
+        <FilesInput
           id={REGISTER_TYPE.FILE}
-          title="배너 이미지"
+          title="행사 이미지"
           control={control}
-          ratio={20 / 11}
           maxFileCount={1}
           acceptFileType="image/*"
         />
@@ -100,7 +139,7 @@ export const AdminBannerUpload = () => {
           isvalid={!Object.keys(errors)[0]}
           disabled={isSubmitting}
         >
-          업로드
+          생성하기
         </Submit>
       </Form>
     </Wrapper>
@@ -110,6 +149,14 @@ export const AdminBannerUpload = () => {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+
+  & .ck-editor {
+    width: 100%;
+  }
+
+  & .ck-editor__editable_inline {
+    min-height: 600px;
+  }
 `;
 
 const Form = styled.form`

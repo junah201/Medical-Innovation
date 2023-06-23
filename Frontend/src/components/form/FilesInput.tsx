@@ -11,11 +11,13 @@ export const FilesInput = ({
   title,
   control,
   id,
+  acceptFileType = '*',
 }: {
   maxFileCount?: number;
   title: string;
   control: Control<RegisterField, any>;
   id: RegisterTypes;
+  acceptFileType?: string;
 }) => {
   const uploader = useRef<HTMLInputElement>();
 
@@ -36,6 +38,7 @@ export const FilesInput = ({
                 <input
                   type="file"
                   ref={uploader}
+                  accept={acceptFileType}
                   onChange={(e) => {
                     if (e.target.files) {
                       if (!e.target.files[0]) return;

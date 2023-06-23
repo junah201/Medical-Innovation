@@ -41,6 +41,9 @@ const PUBLIC_EVENT = Object.freeze({
   GET_PUBLIC_EVENTS: '/api/v2/public_event/all',
   GET_PUBLIC_EVENT_BY_ID: (id: number | string) =>
     `/api/v2/public_event/${id}`,
+  UPLOAD_PUBLIC_EVENT: '/api/v2/public_event',
+  UPDATE_PUBLIC_EVENT_BY_ID: (id: number | string) =>
+    `/api/v2/public_event/${id}`,
 });
 
 const PUBLIC_PARTICIPANT = Object.freeze({

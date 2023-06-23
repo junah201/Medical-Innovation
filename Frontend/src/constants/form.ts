@@ -81,6 +81,11 @@ export const REGISTER_TYPE = Object.freeze({
   DESCRIPTION: 'description',
   TYPE: 'type',
   FILENAME: 'filename',
+
+  START_DATA: 'start_date',
+  END_DATE: 'end_date',
+  JOIN_START_DATE: 'join_start_date',
+  JOIN_END_DATE: 'join_end_date',
 });
 
 export const ERROR_MESSAGE = Object.freeze({

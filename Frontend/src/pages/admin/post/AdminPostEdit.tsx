@@ -135,7 +135,7 @@ const Wrapper = styled.div`
   flex-direction: column;
 
   & .ck-editor {
-    width: 800px;
+    width: 100%;
   }
 
   & .ck-editor__editable_inline {
