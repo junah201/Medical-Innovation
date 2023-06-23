@@ -5,9 +5,12 @@ import { useQuery, useMutation } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { getPublicEventById, uploadFiles } from '@/api';
-import { submitPrivateEvent } from '@/api/privateParticipant';
-import { submitPublicEvnet } from '@/api/PublicParticipant';
+import {
+  getPublicEventById,
+  uploadFiles,
+  submitPrivateEvent,
+  submitPublicEvnet,
+} from '@/api';
 import { Message, PostContent } from '@/components';
 import { ReactHookInput } from '@/components/form';
 import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';

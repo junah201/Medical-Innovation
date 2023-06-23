@@ -5,17 +5,13 @@ import { useQuery, useMutation } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { getPublicEventById } from '@/api';
 import {
   getPublicParticipantById,
-  getPublicParticipantsByEventId,
-  submitPublicEvnet,
   updatePublicParticipantById,
-} from '@/api/PublicParticipant';
-import { Message, PostContent } from '@/components';
+} from '@/api';
 import { ReactHookInput } from '@/components/form';
 import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
-import { PublicEvent, RegisterField } from '@/types';
+import { RegisterField } from '@/types';
 
 export const AdminPublicParticipantEdit = () => {
   const navigate = useNavigate();

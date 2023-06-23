@@ -255,6 +255,11 @@ class Sponsor(SponsorCreate):
         orm_mode = True
 
 
+class SponsorList(BaseModel):
+    total: int
+    items: list[Sponsor]
+
+
 class SponsoringCompanyCreate(BaseModel):
     name: str
     link: str
@@ -548,7 +553,7 @@ class PrivateEvent(BaseModel):
 
 class PrivateEventList(BaseModel):
     total: int
-    events: list[PrivateEvent]
+    items: list[PrivateEvent]
 
 
 class PrivateParticipantCreate(BaseModel):

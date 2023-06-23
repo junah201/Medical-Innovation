@@ -7,3 +7,4 @@ export * from './mou';
 export * from './advisor';
 export * from './publicEvent';
 export * from './publicParticipant';
+export * from './privateEvent';

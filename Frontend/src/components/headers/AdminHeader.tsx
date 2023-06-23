@@ -8,7 +8,7 @@ export const AdminHeader = () => {
     <Wrapper>
       <div>
         <Link to="/">
-          <img src="/tight_logo.png" alt="logo" />
+          <img src="/images/tight_logo.png" alt="logo" />
         </Link>
       </div>
       <nav>
@@ -100,15 +100,12 @@ const Wrapper = styled.header`
 
   & li {
     border-bottom: 1px solid #ffffff;
+    padding: 8px 10px;
   }
 
   & div {
     background-color: #ffffff;
     padding: 5px;
-  }
-
-  & li {
-    padding: 8px 0;
   }
 
   & a {

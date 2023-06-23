@@ -17,3 +17,14 @@ export interface PrivateEventSubmitInfo {
   profile_filename: string;
   zip_filename: string;
 }
+
+export interface PrivateEvent {
+  id: number;
+  name: string;
+  thumbnail_filename?: string;
+  join_start_date: string;
+  join_end_date: string;
+  description: string;
+  created_at: string;
+  updated_at: string;
+}

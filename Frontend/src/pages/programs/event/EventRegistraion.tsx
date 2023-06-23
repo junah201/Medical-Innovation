@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { getPublicEventById } from '@/api';
-import { submitPublicEvnet } from '@/api/PublicParticipant';
+import { submitPublicEvnet } from '@/api/publicParticipant';
 import { Message, PostContent } from '@/components';
 import { ReactHookInput } from '@/components/form';
 import { INPUT_TYPE, REGISTER_TYPE } from '@/constants';

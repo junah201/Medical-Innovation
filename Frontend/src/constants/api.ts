@@ -90,8 +90,8 @@ const SPONSORING_COMPANY = Object.freeze({
 });
 
 const SPONSOR = Object.freeze({
-  GET_SPONSORS: '/api/v1/sponsor/all',
-  SUBMIT_SPONSOR: '/api/v1/sponsor/create',
+  GET_SPONSORS: '/api/v2/sponsor/all',
+  SUBMIT_SPONSOR: '/api/v2/sponsor',
 });
 
 const FILE = Object.freeze({
@@ -148,6 +148,15 @@ const BANNER = Object.freeze({
   GET_BANNER_BY_ID: (id: number | string) => `/api/v2/banner/${id}`,
 });
 
+const PRIVATE_EVENT = Object.freeze({
+  GET_PRIVATE_EVENTS: '/api/v2/private_event/all',
+  GET_PRIVATE_EVENT_BY_ID: (id: number | string) =>
+    `/api/v2/private_event/${id}`,
+  UPLOAD_PRIVATE_EVENT: '/api/v2/private_event',
+  UPDATE_PRIVATE_EVENT_BY_ID: (id: number | string) =>
+    `/api/v2/private_event/${id}`,
+});
+
 export const API_ROUTE = Object.freeze({
   AUTH,
   BANNER,
@@ -169,4 +178,5 @@ export const API_ROUTE = Object.freeze({
   USER,
   FILE_V2,
   POST_V2,
+  PRIVATE_EVENT,
 });

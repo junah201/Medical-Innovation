@@ -141,7 +141,7 @@ export const AdminPublicEventEdit = () => {
         />
         <ReactHookInput
           id={REGISTER_TYPE.JOIN_START_DATE}
-          title="행사 종료일"
+          title="참여 신청 시작일"
           type={INPUT_TYPE.DATE}
           register={register}
           errorMessage={
@@ -150,7 +150,7 @@ export const AdminPublicEventEdit = () => {
         />
         <ReactHookInput
           id={REGISTER_TYPE.JOIN_END_DATE}
-          title="행사 종료일"
+          title="참여 신청 종료일"
           type={INPUT_TYPE.DATE}
           register={register}
           errorMessage={errors[REGISTER_TYPE.JOIN_END_DATE]?.message}
