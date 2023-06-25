@@ -680,6 +680,24 @@ class JudgingParticipantCreate(BaseModel):
     zip_filename: str
 
 
+class JudgingParticipantUpdate(BaseModel):
+    name: str
+    english_name: str
+    gender: str
+    birth: date
+    phone: str
+    email: EmailStr
+    organization_type: str
+    organization_name: str
+    organization_english_name: str
+    job_position: str
+    address: str
+    final_degree: str
+    participant_motivation: str
+    profile_filename: str
+    zip_filename: str
+
+
 class JudgingParticipant(BaseModel):
     id: PositiveInt
     user_id: Optional[PositiveInt] = None

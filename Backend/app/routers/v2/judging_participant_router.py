@@ -122,7 +122,7 @@ def get_judging_participants(judging_event_id: int, skip: int = 0, limit: int = 
 
 
 @router.get("/{judging_participant_id}")
-def get_judging_participant(judging_participant_id: int, db: Session = Depends(get_db)):
+def get_judging_participant(judging_participant_id: int, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
     db_judging_participant = crud.get_judging_participant(
         db=db, judging_participant_id=judging_participant_id)
 
@@ -132,4 +132,47 @@ def get_judging_participant(judging_participant_id: int, db: Session = Depends(g
             detail="participant not found"
         )
 
+    if not current_user.is_admin and db_judging_participant.user_id != current_user.id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="You do not have permission to access this participant"
+        )
+
     return db_judging_participant
+
+
+@router.put("/{judging_participant_id}", status_code=status.HTTP_204_NO_CONTENT)
+def update_judging_participant(judging_participant_id: int, judging_participant_update: schemas_v2.JudgingParticipantUpdate,  db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
+    db_judging_participant = crud.get_judging_participant(
+        db=db, judging_participant_id=judging_participant_id)
+
+    if not db_judging_participant:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="participant not found"
+        )
+
+    if not current_user.is_admin and db_judging_participant.user_id != current_user.id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="You do not have permission to access this participant"
+        )
+
+    db_judging_participant.name = judging_participant_update.name
+    db_judging_participant.english_name = judging_participant_update.english_name
+    db_judging_participant.gender = judging_participant_update.gender
+    db_judging_participant.birth = judging_participant_update.birth
+    db_judging_participant.phone = judging_participant_update.phone
+    db_judging_participant.email = judging_participant_update.email
+    db_judging_participant.organization_type = judging_participant_update.organization_type
+    db_judging_participant.organization_name = judging_participant_update.organization_name
+    db_judging_participant.organization_english_name = judging_participant_update.organization_english_name
+    db_judging_participant.job_position = judging_participant_update.job_position
+    db_judging_participant.address = judging_participant_update.address
+    db_judging_participant.final_degree = judging_participant_update.final_degree
+    db_judging_participant.participant_motivation = judging_participant_update.participant_motivation
+    db_judging_participant.profile_filename = judging_participant_update.profile_filename
+    db_judging_participant.zip_filename = judging_participant_update.zip_filename
+
+    db.commit()
+    db.refresh(db_judging_participant)

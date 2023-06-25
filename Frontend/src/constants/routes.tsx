@@ -85,6 +85,7 @@ import {
   AdminPopupUpload,
   AdminPopupEdit,
   Me,
+  JudgingParticipantEdit,
 } from '@/pages';
 
 interface RouteConfig {
@@ -382,6 +383,14 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/judging/event/:event_id/registration',
     COMPONENT: JudgingEventRegistration,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: true,
+  },
+  {
+    PATH: '/judging/participant/edit/:id',
+    COMPONENT: JudgingParticipantEdit,
     HEADER: HomeHeader,
     FOOTER: DefaultFooter,
     WRAPPER: PageWrapper,

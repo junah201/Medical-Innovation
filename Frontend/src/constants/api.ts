@@ -85,6 +85,8 @@ const JUDGING_PARTICIPANT = Object.freeze({
     `/api/v2/judging_participant/${id}/all`,
   GET_JUDGING_PARTICIPANTS_BY_ME:
     '/api/v2/judging_participant/me/all',
+  UPDATE_JUDGING_PARTICIPANT_BY_ID: (id: number | string) =>
+    `/api/v2/judging_participant/${id}`,
 });
 
 const JUDGING_RESULT = Object.freeze({

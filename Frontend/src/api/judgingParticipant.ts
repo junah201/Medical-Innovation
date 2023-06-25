@@ -73,3 +73,17 @@ export const getJudgingParticipantsByMe = async (
 
   return res;
 };
+
+export const updateJudgingParticipantById = async (
+  id: number | string,
+  data: JudgingEventSubmitInfo
+) => {
+  const res = await authAxios.put(
+    API_ROUTE.JUDGING_PARTICIPANT.UPDATE_JUDGING_PARTICIPANT_BY_ID(
+      id
+    ),
+    data
+  );
+
+  return res;
+};
