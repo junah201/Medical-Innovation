@@ -59,6 +59,26 @@ export const getJudgingParticipantsByEventId = async (
   return res;
 };
 
+export const getNthJudgingParticipantsByEventId = async (
+  id: number | string,
+  nth_pass: number,
+  skip: number,
+  limit: number
+) => {
+  const res = await authAxios.getByParams(
+    API_ROUTE.JUDGING_PARTICIPANT.GET_NTH_JUDGING_PARTICIPANTS_BY_EVENT_ID(
+      id,
+      nth_pass
+    ),
+    {
+      skip: skip,
+      limit: limit,
+    }
+  );
+
+  return res;
+};
+
 export const getJudgingParticipantsByMe = async (
   skip: number,
   limit: number
@@ -83,6 +103,21 @@ export const updateJudgingParticipantById = async (
       id
     ),
     data
+  );
+
+  return res;
+};
+
+export const updateJudgingParticipantNthPassById = async (
+  id: number | string,
+  nth_pass: number
+) => {
+  const res = await authAxios.put(
+    API_ROUTE.JUDGING_PARTICIPANT.UPDATE_JUDGING_PARTICIPANT_NTH_PASS_BY_ID(
+      id,
+      nth_pass
+    ),
+    {}
   );
 
   return res;

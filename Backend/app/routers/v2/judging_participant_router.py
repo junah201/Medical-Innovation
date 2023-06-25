@@ -121,6 +121,62 @@ def get_judging_participants(judging_event_id: int, skip: int = 0, limit: int = 
     return results
 
 
+@router.get("/{judging_event_id}/nth_pass/{nth_pass}/all", response_model=schemas_v2.JudgingParticipantList)
+def get_judging_participants(judging_event_id: int, nth_pass: int, skip: int = 0, limit: int = 40, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
+    if nth_pass not in [0, 1, 2, 3]:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="nth_pass must be 0, 1, 2, 3"
+        )
+
+    # 권한 확인
+    if not current_user.is_admin:
+        if nth_pass <= 1:
+            permissions = [permission.first_judging_permission
+                           for permission in current_user.judging_permissions if permission.judging_event_id == judging_event_id]
+            if not all(permissions):
+                raise HTTPException(
+                    status_code=status.HTTP_403_FORBIDDEN,
+                    detail="You do not have permission to access this participant"
+                )
+        else:
+            permissions = [permission.second_judging_permission
+                           for permission in current_user.judging_permissions if permission.judging_event_id == judging_event_id]
+            if not all(permissions):
+                raise HTTPException(
+                    status_code=status.HTTP_403_FORBIDDEN,
+                    detail="You do not have permission to access this participant"
+                )
+
+    db_all_judging_participant = db.query(models.JudgingParticipant).filter(
+        models.JudgingParticipant.event_id == judging_event_id,
+        models.JudgingParticipant.nth_pass >= nth_pass
+    )
+
+    results = schemas_v2.JudgingParticipantList(
+        total=db_all_judging_participant.count(),
+        items=[]
+    )
+
+    for participant in db_all_judging_participant.offset(skip).limit(limit).all():
+        tmp = schemas_v2.JudgingParticipant(**participant.__dict__)
+        tmp.first_judging_result = db.query(models.JudgingResult).filter(
+            models.JudgingResult.nth == 1,
+            models.JudgingResult.participant_id == participant.id,
+            models.JudgingResult.user_id == current_user.id,
+            models.JudgingResult.judging_event_id == judging_event_id
+        ).first()
+        tmp.second_judging_result = db.query(models.JudgingResult).filter(
+            models.JudgingResult.nth == 2,
+            models.JudgingResult.participant_id == participant.id,
+            models.JudgingResult.user_id == current_user.id,
+            models.JudgingResult.judging_event_id == judging_event_id
+        ).first()
+        results.items.append(tmp)
+
+    return results
+
+
 @router.get("/{judging_participant_id}")
 def get_judging_participant(judging_participant_id: int, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
     db_judging_participant = crud.get_judging_participant(
@@ -173,6 +229,29 @@ def update_judging_participant(judging_participant_id: int, judging_participant_
     db_judging_participant.participant_motivation = judging_participant_update.participant_motivation
     db_judging_participant.profile_filename = judging_participant_update.profile_filename
     db_judging_participant.zip_filename = judging_participant_update.zip_filename
+
+    db.commit()
+    db.refresh(db_judging_participant)
+
+
+@router.put("/{judging_participant_id}/nth_pass/{nth_pass}", status_code=status.HTTP_204_NO_CONTENT)
+def update_judging_participant(judging_participant_id: int, nth_pass: int,  db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
+    db_judging_participant = crud.get_judging_participant(
+        db=db, judging_participant_id=judging_participant_id)
+
+    if not db_judging_participant:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="participant not found"
+        )
+
+    if not current_user.is_admin:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="You do not have permission to access this participant"
+        )
+
+    db_judging_participant.nth_pass = nth_pass
 
     db.commit()
     db.refresh(db_judging_participant)

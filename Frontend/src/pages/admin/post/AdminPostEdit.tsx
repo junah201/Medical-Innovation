@@ -70,7 +70,10 @@ export const AdminPostEdit = () => {
         navigate(ROUTE.ADMIN.POST.ALL);
       },
       onError: (err: AxiosError) => {
-        Toast(`수정에 실패했습니다. ${err?.response?.data}`, 'error');
+        Toast(
+          `수정에 실패했습니다. ${err?.response?.data?.message}`,
+          'error'
+        );
       },
     }
   );

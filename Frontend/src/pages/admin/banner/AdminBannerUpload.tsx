@@ -44,7 +44,7 @@ export const AdminBannerUpload = () => {
       },
       onError: (err: AxiosError) => {
         Toast(
-          `업로드에 실패했습니다. ${err?.response?.data}`,
+          `업로드에 실패했습니다. ${err?.response?.data?.message}`,
           'error'
         );
       },

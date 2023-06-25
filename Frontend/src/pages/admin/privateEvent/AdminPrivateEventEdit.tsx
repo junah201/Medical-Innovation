@@ -67,7 +67,7 @@ export const AdminPrivateEventEdit = () => {
       onError: (err: AxiosError) => {
         Toast(
           `업로드에 실패했습니다. ${
-            err?.response?.data || err.message
+            err?.response?.data?.message || err.message
           }`,
           'error'
         );

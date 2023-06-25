@@ -70,7 +70,7 @@ export const AdminBannerEdit = () => {
       onError: (err: AxiosError) => {
         Toast(
           `수정에 실패했습니다. ${
-            err?.response?.data || err.message
+            err?.response?.data?.message || err.message
           } `,
           'error'
         );

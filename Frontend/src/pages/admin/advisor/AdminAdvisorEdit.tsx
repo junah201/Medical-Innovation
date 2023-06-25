@@ -64,7 +64,9 @@ export const AdminAdvisorEdit = () => {
       },
       onError: (err: AxiosError) => {
         Toast(
-          `수정 실패했습니다. ${err?.response?.data || err.message}`,
+          `수정 실패했습니다. ${
+            err?.response?.data?.message || err.message
+          }`,
           'error'
         );
       },

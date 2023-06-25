@@ -1,9 +1,16 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
+import { styled } from 'styled-components';
 
 import { getMe } from '@/api';
 import { ReactHookInput, Table } from '@/components';
-import { INPUT_TYPE, REGISTER_TYPE, TABLE_CONFIG } from '@/constants';
+import {
+  INPUT_TYPE,
+  REGISTER_TYPE,
+  ROUTE,
+  TABLE_CONFIG,
+} from '@/constants';
 import { RegisterField } from '@/types';
 
 export const Me = () => {
@@ -78,6 +85,27 @@ export const Me = () => {
           />
         </>
       </>
+      <>
+        <h1>심사하기 (심사 위원 전용)</h1>
+        <NavWarpper>
+          <Link to={ROUTE.JUDGING.EVENTS}>심사하기</Link>
+        </NavWarpper>
+      </>
     </>
   );
 };
+
+const NavWarpper = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  & a {
+    padding: 12px;
+    font-size: 16px;
+    color: ${(props) => props.theme.pointColor};
+    font-weight: 600;
+    border: 3px solid ${(props) => props.theme.pointColor};
+  }
+`;

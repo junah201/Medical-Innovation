@@ -704,6 +704,7 @@ class JudgingParticipant(BaseModel):
     event: Optional[JudgingEvent] = None
     first_judging_result: Optional[object] = None
     second_judging_result: Optional[object] = None
+    nth_pass: int = 0
     name: str
     english_name: str
     gender: str
