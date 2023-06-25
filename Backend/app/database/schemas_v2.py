@@ -576,7 +576,6 @@ class PrivateParticipantCreate(BaseModel):
 
 
 class PrivateParticipantUpdate(BaseModel):
-    event_id: PositiveInt
     name: str
     english_name: str
     gender: str

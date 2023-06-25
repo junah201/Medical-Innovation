@@ -86,7 +86,6 @@ def update_private_participant_participant(private_participant_participant_id: i
                 detail="You do not have permission to update this private_participant"
             )
 
-    db_private_participant.event_id = private_participant_update.event_id
     db_private_participant.name = private_participant_update.name
     db_private_participant.english_name = private_participant_update.english_name
     db_private_participant.gender = private_participant_update.gender

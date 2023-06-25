@@ -6,48 +6,26 @@ import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import {
-  getJudgingParticipantById,
-  updateJudgingParticipantById,
+  getPrivateParticipantById,
+  updatePrivateParticipantById,
 } from '@/api';
 import { FilesInput, ReactHookInput } from '@/components/form';
 import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
 import { Toast } from '@/libs/Toast';
-import { JudgingEventSubmitInfo, RegisterField } from '@/types';
+import { RegisterField } from '@/types';
 
-export const JudgingParticipantEdit = () => {
+export const PrivateParticipantEdit = () => {
   const navigate = useNavigate();
   const params = useParams();
 
   const {
     register,
     handleSubmit,
-    setValue,
     control,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<RegisterField>({
     mode: 'onChange',
-    defaultValues: {
-      name: '',
-      english_name: '',
-      gender: '남자',
-      birth: '2000-01-01',
-      phone: '',
-      email: '',
-      organization_type: '공공기관',
-      organization_name: '',
-      organization_english_name: '',
-      job_position: '',
-      address: '',
-      final_degree: '학사 과정 중',
-      engagement_type: '현장 참가',
-      participant_motivation: '',
-      participant_type: '',
-      interest_disease: '',
-      interest_field: '연구분야',
-      interest_field_detail: '',
-      profile_filename: '',
-      zip_filename: '',
-    },
   });
 
   useEffect(() => {
@@ -58,7 +36,7 @@ export const JudgingParticipantEdit = () => {
       }
 
       try {
-        const res = await getJudgingParticipantById(params.id);
+        const res = await getPrivateParticipantById(params.id);
 
         setValue(REGISTER_TYPE.NAME, res.data.name);
         setValue(REGISTER_TYPE.ENGLISH_NAME, res.data.english_name);
@@ -116,18 +94,12 @@ export const JudgingParticipantEdit = () => {
 
   const { mutate } = useMutation(
     async (userInput) => {
-      if (!userInput.profile_filename[0]) {
-        throw new Error('증명사진을 첨부해주세요.');
-      }
-      if (!userInput.zip_filename[0]) {
-        throw new Error('제출용 압축파일을 첨부해주세요.');
-      }
       const data: JudgingEventSubmitInfo = {
         ...userInput,
         profile_filename: userInput.profile_filename[0],
         zip_filename: userInput.zip_filename[0],
       };
-      return updateJudgingParticipantById(params.id, data);
+      return updatePrivateParticipantById(params.id, data);
     },
     {
       onSuccess: () => {
@@ -136,7 +108,7 @@ export const JudgingParticipantEdit = () => {
       },
       onError: (err: AxiosError) => {
         Toast(
-          `수정에 실패했습니다. ${
+          `제출에 실패했습니다. ${
             err?.response?.data?.message || err?.message
           }`,
           'error'
@@ -283,7 +255,7 @@ export const JudgingParticipantEdit = () => {
         />
         <ReactHookInput
           id={REGISTER_TYPE.PARTICIPANT_MOTIVATION}
-          title="소재지"
+          title="참여 동기"
           type={INPUT_TYPE.TEXT}
           register={register}
           errorMessage={
