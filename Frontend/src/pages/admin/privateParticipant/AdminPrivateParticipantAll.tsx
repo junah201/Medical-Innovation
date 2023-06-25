@@ -12,21 +12,23 @@ export const AdminPrivateParticipantAll = () => {
     []
   );
 
-  useEffect(() => {
-    async function initLoad() {
-      const res = await getPrivateEvents(0, 10000);
-      setPrivateEvents(res.data.items);
-    }
-    initLoad();
-  }, []);
-
   const {
     watch,
     register,
     formState: { errors },
+    setValue,
   } = useForm<RegisterField>({
     mode: 'onChange',
   });
+
+  useEffect(() => {
+    async function initLoad() {
+      const res = await getPrivateEvents(0, 10000);
+      setPrivateEvents(res.data.items);
+      setValue(REGISTER_TYPE.SELECT_EVENT_ID, res.data.items[0].id);
+    }
+    initLoad();
+  }, []);
 
   return (
     <>

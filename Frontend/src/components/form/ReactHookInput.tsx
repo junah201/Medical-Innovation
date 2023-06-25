@@ -149,6 +149,7 @@ export const ReactHookInput = ({
             register={register}
             errorMessage={errorMessage}
             options={options}
+            placeholder={placeholder}
           />
         );
       case INPUT_TYPE.CHECKBOX:

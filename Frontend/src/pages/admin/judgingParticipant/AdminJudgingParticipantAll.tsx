@@ -12,21 +12,26 @@ export const AdminJudgingParticipantAll = () => {
     []
   );
 
-  useEffect(() => {
-    async function initLoad() {
-      const res = await getJudgingEvents(0, 10000);
-      setPrivateEvents(res.data.items);
-    }
-    initLoad();
-  }, []);
-
   const {
     watch,
     register,
     formState: { errors },
+    setValue,
   } = useForm<RegisterField>({
     mode: 'onChange',
+    defaultValues: {
+      [REGISTER_TYPE.SELECT_EVENT_ID]: undefined,
+    },
   });
+
+  useEffect(() => {
+    async function initLoad() {
+      const res = await getJudgingEvents(0, 10000);
+      setPrivateEvents(res.data.items);
+      setValue(REGISTER_TYPE.SELECT_EVENT_ID, res.data.items[0].id);
+    }
+    initLoad();
+  }, []);
 
   return (
     <>
@@ -43,6 +48,7 @@ export const AdminJudgingParticipantAll = () => {
             label: event.name,
           };
         })}
+        placeholder="행사를 선택해주세요."
       />
       <Table
         id={watch()[REGISTER_TYPE.SELECT_EVENT_ID]}

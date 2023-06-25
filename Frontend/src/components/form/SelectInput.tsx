@@ -13,6 +13,7 @@ interface SelectInputProps {
   register: RegisterForm;
   errorMessage: string | undefined | any;
   options: Option[];
+  placeholder?: string;
 }
 
 export const SelectInput = ({
@@ -20,6 +21,7 @@ export const SelectInput = ({
   register,
   errorMessage,
   options,
+  placeholder = '',
 }: SelectInputProps) => {
   return (
     <Wrapper>
@@ -28,6 +30,7 @@ export const SelectInput = ({
           required: ERROR_MESSAGE.SELECT.REQUIRED,
         })}
         iserror={!!errorMessage}
+        placeholder={placeholder}
       >
         {options.map((option) => (
           <option key={option.value} value={option.value}>
