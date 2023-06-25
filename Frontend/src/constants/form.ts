@@ -60,8 +60,8 @@ export const REGISTER_TYPE = Object.freeze({
   BUSINESS_SCORE6: 'business_score6',
   BUSINESS_SCORE7: 'business_score7',
   BUSINESS_SCORE8: 'business_score8',
-  OTHER_SCORE1: 'other_score1',
   OTHER_COMMENT: 'other_comment',
+  OTHER_SCORE1: 'other_score1',
 
   JUDGING_EVENT: 'judging_event',
   FIRST_JUDGING_PERMISSION: 'first_judging_permission',

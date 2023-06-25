@@ -22,7 +22,7 @@ export const getPrivateParticipantsByEventId = async (
   limit: number
 ) => {
   const res = await authAxios.getByParams(
-    API_ROUTE.PRIVATE_PARTICIPANT.GET_PRIVATE_PARTICIPANT_BY_EVENT_ID(
+    API_ROUTE.PRIVATE_PARTICIPANT.GET_PRIVATE_PARTICIPANTS_BY_EVENT_ID(
       eventId
     ),
     {
@@ -53,6 +53,21 @@ export const updatePrivateParticipantById = async (
       id
     ),
     data
+  );
+
+  return res;
+};
+
+export const getPrivateParticipantsByMe = async (
+  skip: number,
+  limit: number
+) => {
+  const res = await authAxios.getByParams(
+    API_ROUTE.PRIVATE_PARTICIPANT.GET_PRIVATE_PARTICIPANTS_BY_ME,
+    {
+      skip: skip,
+      limit: limit,
+    }
   );
 
   return res;

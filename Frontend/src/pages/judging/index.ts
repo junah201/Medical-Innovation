@@ -3,3 +3,4 @@ export * from './JudgingEventDetail';
 export * from './JudgingEventRegistration';
 export * from './JudgingParticipantAll';
 export * from './JudgingResultCreate';
+export * from './JudgingParticipantEdit';

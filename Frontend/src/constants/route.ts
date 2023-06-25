@@ -37,6 +37,10 @@ export const ROUTE = Object.freeze({
   ADVISORS: '/advisors',
   PREPARING: '/preparing',
   PRIVACY_POLICY: '/privacy-policy',
+  JUDGING: Object.freeze({
+    ROOT: '/judging',
+    EVENTS: '/judging/event/all',
+  }),
   ADMIN: Object.freeze({
     ROOT: '/admin',
     USER: Object.freeze({
@@ -94,6 +98,11 @@ export const ROUTE = Object.freeze({
       ROOT: '/admin/judging_event',
       ALL: '/admin/judging_event/all',
       UPLOAD: '/admin/judging_event/upload',
+    }),
+    JUDGING_PARTICIPANT: Object.freeze({
+      ROOT: '/admin/judging_participant',
+      ALL: '/admin/judging_participant/all',
+      UPLOAD: '/admin/judging_participant/upload',
     }),
     JUDGING_RESULT: Object.freeze({
       ROOT: '/admin/judging_result',

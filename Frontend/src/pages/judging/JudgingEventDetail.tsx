@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { getJudgingEventById } from '@/api';
+import { HtmlContent, Message } from '@/components';
 import { PostContent } from '@/components/post';
 import { JudgingEvent } from '@/types';
 
@@ -50,7 +51,9 @@ export const JudgingEventDetail = () => {
         </div>
       </div>
       <div>
-        <PostContent content={eventDetail.description} />
+        <Message>
+          <HtmlContent content={eventDetail.description} />
+        </Message>
         <StyledEventRegistButton
           to={`/judging/event/${params.event_id}/registration`}
         >

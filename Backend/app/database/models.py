@@ -1081,6 +1081,12 @@ class JudgingParticipant(Base):
     event = relationship(
         "JudgingEvent",
     )
+    nth_pass = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="n차 심사 중"
+    )
     name = Column(
         VARCHAR(50),
         nullable=False,

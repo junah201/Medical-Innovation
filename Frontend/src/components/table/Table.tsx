@@ -13,6 +13,7 @@ interface TableProps {
     size: number
   ) => Promise<any>;
   itemToElement: (item: any, id: number) => React.ReactNode;
+  queryId?: string;
 }
 
 export const Table = ({
@@ -21,6 +22,7 @@ export const Table = ({
   getDatas,
   itemToElement,
   id = '',
+  queryId = '',
 }: TableProps) => {
   const [page, setPage] = useState(0);
   const [total, setTotal] = useState(0);
@@ -28,7 +30,7 @@ export const Table = ({
 
   const { isLoading, isError, error } = useQuery({
     retry: false,
-    queryKey: ['datas', page, total, id],
+    queryKey: ['tableDatas', queryId, page, total, id],
     queryFn: () => getDatas(id, page, size),
     onSuccess: (res: AxiosResponse) => {
       setData(res.data.items);
@@ -39,10 +41,19 @@ export const Table = ({
   if (isLoading) return <>로딩중...</>;
 
   if (error?.response?.status === 404)
-    return <>옵션을 선택한 후에 다시 시도해주세요.</>;
+    return <>404 Not Found (옵션을 선택해주세요.)</>;
 
-  if (isError)
+  if (isError) {
+    if (error?.response?.status === 401) {
+      return <>로그인이 필요합니다.</>;
+    }
+    if (error?.response?.status === 403) {
+      return <>권한이 없습니다.</>;
+    }
     return <>에러가 발생했습니다. {JSON.stringify(error)}</>;
+  }
+
+  if (total === 0) return <>데이터가 없습니다.</>;
 
   return (
     <>

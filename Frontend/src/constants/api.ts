@@ -83,6 +83,18 @@ const JUDGING_PARTICIPANT = Object.freeze({
     `/api/v2/judging_participant/${id}`,
   GET_JUDGING_PARTICIPANTS_BY_EVENT_ID: (id: number | string) =>
     `/api/v2/judging_participant/${id}/all`,
+  GET_JUDGING_PARTICIPANTS_BY_ME:
+    '/api/v2/judging_participant/me/all',
+  UPDATE_JUDGING_PARTICIPANT_BY_ID: (id: number | string) =>
+    `/api/v2/judging_participant/${id}`,
+  UPDATE_JUDGING_PARTICIPANT_NTH_PASS_BY_ID: (
+    id: number | string,
+    nth_pass: number | string
+  ) => `/api/v2/judging_participant/${id}/nth_pass/${nth_pass}`,
+  GET_NTH_JUDGING_PARTICIPANTS_BY_EVENT_ID: (
+    id: number | string,
+    nth_pass: number | string
+  ) => `/api/v2/judging_participant/${id}/nth_pass/${nth_pass}/all`,
 });
 
 const JUDGING_RESULT = Object.freeze({
@@ -171,12 +183,14 @@ const PRIVATE_EVENT = Object.freeze({
 
 const PRIVATE_PARTICIPANT = Object.freeze({
   SUBMIT_PRIVATE_EVENT: '/api/v2/private_participant',
-  GET_PRIVATE_PARTICIPANT_BY_EVENT_ID: (id: number | string) =>
+  GET_PRIVATE_PARTICIPANTS_BY_EVENT_ID: (id: number | string) =>
     `/api/v2/private_participant/${id}/all`,
   GET_PRIVATE_PARTICIPANT_BY_ID: (id: number | string) =>
     `/api/v2/private_participant/${id}`,
   UPDATE_PRIVATE_PARTICIPANT_BY_ID: (id: number | string) =>
     `/api/v2/private_participant/${id}`,
+  GET_PRIVATE_PARTICIPANTS_BY_ME:
+    '/api/v2/private_participant/me/all',
 });
 
 const AD_EMAIL = Object.freeze({

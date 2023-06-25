@@ -1,48 +1,55 @@
 import { AxiosError } from 'axios';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import { useNavigate, useParams } from 'react-router-dom';
+import { styled } from 'styled-components';
 
-import { uploadAdEmail } from '@/api';
-import { ReactHookInput } from '@/components/form';
+import {
+  getJudgingParticipantById,
+  updateJudgingParticipantNthPassById,
+} from '@/api';
+import { ReactHookInput } from '@/components';
 import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
 import { Toast } from '@/libs/Toast';
 import { RegisterField } from '@/types';
 
-export const AdminAdEmailUpload = () => {
+export const AdminJudgingParticipantNthPassEdit = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const {
     register,
     handleSubmit,
+    setValue,
+    control,
     formState: { errors, isSubmitting },
-  } = useForm<RegisterField>({
-    mode: 'onChange',
-    defaultValues: {
-      name: '',
-      link: '',
-      file: [],
-      banner_end_at: '',
-    },
-  });
+  } = useForm<RegisterField>();
+
+  useEffect(() => {
+    async function initLoad() {
+      const res = await getJudgingParticipantById(id);
+    }
+
+    initLoad();
+  }, []);
 
   const { mutate } = useMutation(
     (userInput) => {
-      return uploadAdEmail(
-        userInput?.email,
-        userInput?.othor_comment
+      return updateJudgingParticipantNthPassById(
+        id,
+        userInput[REGISTER_TYPE.OTHER_SCORE1]
       );
     },
     {
       onSuccess: () => {
-        Toast('업로드 완료', 'success');
-        navigate(ROUTE.ADMIN.AD_EMAIL.ALL);
+        Toast('수정 완료', 'success');
+        navigate(ROUTE.ADMIN.JUDGING_PARTICIPANT.ALL);
       },
       onError: (err: AxiosError) => {
         Toast(
-          `업로드에 실패했습니다. ${
-            err?.response?.data?.message || err.message
+          `수정에 실패했습니다. ${
+            err?.response?.data.message || err.message
           }`,
           'error'
         );
@@ -53,40 +60,32 @@ export const AdminAdEmailUpload = () => {
   const onValid = (userInput: RegisterField) => mutate(userInput);
 
   return (
-    <Wrapper>
-      <h1>광고 수신 이메일 업로드</h1>
+    <>
+      <h1>심사 단계 수정</h1>
       <Form onSubmit={handleSubmit(onValid)}>
         <ReactHookInput
-          id={REGISTER_TYPE.EMAIL}
-          title="이메일"
-          placeholder="이메일"
-          type={INPUT_TYPE.EMAIL}
+          id={REGISTER_TYPE.OTHER_SCORE1}
+          type={INPUT_TYPE.SELECT}
+          title="심사 단계"
           register={register}
-          errorMessage={errors[REGISTER_TYPE.EMAIL]?.message}
+          options={[
+            { value: '0', label: '심사 보류' },
+            { value: '1', label: '1차 심사' },
+            { value: '2', label: '2차 심사' },
+            { value: '3', label: '수상' },
+          ]}
+          errorMessage={errors[REGISTER_TYPE.OTHER_SCORE1]?.message}
         />
-        <ReactHookInput
-          id={REGISTER_TYPE.OTHER_COMMENT}
-          title="기타 정보"
-          placeholder="만약 없다면 공백 하나만 입력해주세요."
-          type={INPUT_TYPE.TEXT}
-          register={register}
-          errorMessage={errors[REGISTER_TYPE.OTHER_COMMENT]?.message}
-        />
-        <Submit
+        <Button
           isvalid={!Object.keys(errors)[0]}
           disabled={isSubmitting}
         >
-          업로드
-        </Submit>
+          수정하기
+        </Button>
       </Form>
-    </Wrapper>
+    </>
   );
 };
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
 
 const Form = styled.form`
   width: 100%;
@@ -97,7 +96,7 @@ const Form = styled.form`
   margin: 30px 0;
 `;
 
-const Submit = styled.button<{ isvalid: boolean }>`
+const Button = styled.button<{ isvalid: boolean }>`
   padding: 10px;
   margin-top: 10px;
   border-radius: 5px;

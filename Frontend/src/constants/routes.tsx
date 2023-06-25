@@ -84,6 +84,10 @@ import {
   AdminPopupAll,
   AdminPopupUpload,
   AdminPopupEdit,
+  Me,
+  JudgingParticipantEdit,
+  PrivateParticipantEdit,
+  AdminJudgingParticipantNthPassEdit,
 } from '@/pages';
 
 interface RouteConfig {
@@ -114,6 +118,15 @@ export const ROUTE_MAP: RouteMap = [
     AUTH: false,
   },
   {
+    PATH: '/me',
+    COMPONENT: Me,
+    HEADER: HomeHeader,
+    BANNER: Banner,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: true,
+  },
+  {
     PATH: '/login',
     COMPONENT: Login,
     HEADER: HomeHeader,
@@ -127,7 +140,7 @@ export const ROUTE_MAP: RouteMap = [
     HEADER: HomeHeader,
     FOOTER: DefaultFooter,
     WRAPPER: DefaultWrapper,
-    AUTH: false,
+    AUTH: true,
   },
   {
     PATH: '/signup',
@@ -378,6 +391,14 @@ export const ROUTE_MAP: RouteMap = [
     AUTH: true,
   },
   {
+    PATH: '/judging/participant/edit/:id',
+    COMPONENT: JudgingParticipantEdit,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: true,
+  },
+  {
     PATH: '/judging/result/:event_id/all',
     COMPONENT: JudgingParticipantAll,
     HEADER: HomeHeader,
@@ -402,8 +423,16 @@ export const ROUTE_MAP: RouteMap = [
     AUTH: true,
   },
   {
-    PATH: '/private_event/:id/registraion',
+    PATH: '/private_event/:id/registration',
     COMPONENT: PrivateEventRegistration,
+    HEADER: HomeHeader,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: true,
+  },
+  {
+    PATH: '/private_event/participant/edit/:id',
+    COMPONENT: PrivateParticipantEdit,
     HEADER: HomeHeader,
     FOOTER: DefaultFooter,
     WRAPPER: PageWrapper,
@@ -708,6 +737,14 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/admin/judging_participant/detail/:id',
     COMPONENT: AdminJudgingParticipantEdit,
+    HEADER: AdminHeader,
+    WRAPPER: AdminWrapper,
+    ADMIN: true,
+    AUTH: true,
+  },
+  {
+    PATH: '/admin/judging_participant/nth_pass/edit/:id',
+    COMPONENT: AdminJudgingParticipantNthPassEdit,
     HEADER: AdminHeader,
     WRAPPER: AdminWrapper,
     ADMIN: true,

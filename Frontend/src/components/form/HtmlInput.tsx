@@ -35,7 +35,7 @@ export const HtmlInput = ({
               })
               .catch((err) => {
                 Toast(
-                  `업로드에 실패했습니다. ${err?.response?.data}`,
+                  `업로드에 실패했습니다. ${err?.response?.data?.message}`,
                   'error'
                 );
                 reject(err);

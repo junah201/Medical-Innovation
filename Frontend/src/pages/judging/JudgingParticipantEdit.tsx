@@ -1,41 +1,28 @@
-import { AxiosError, AxiosResponse } from 'axios';
-import { useState } from 'react';
+import { AxiosError } from 'axios';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useQuery, useMutation } from 'react-query';
+import { useMutation } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import {
-  getJudgingEventById,
-  uploadFiles,
-  submitJudgingEvent,
+  getJudgingParticipantById,
+  updateJudgingParticipantById,
 } from '@/api';
-import { Message, PostContent } from '@/components';
-import { ReactHookInput } from '@/components/form';
-import { INPUT_TYPE, REGISTER_TYPE } from '@/constants';
-import {
-  JudgingEventSubmitInfo,
-  PublicEvent,
-  RegisterField,
-} from '@/types';
+import { FilesInput, ReactHookInput } from '@/components/form';
+import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
+import { Toast } from '@/libs/Toast';
+import { JudgingEventSubmitInfo, RegisterField } from '@/types';
 
-export const JudgingEventRegistration = () => {
+export const JudgingParticipantEdit = () => {
   const navigate = useNavigate();
   const params = useParams();
-
-  const [eventDetail, setEventDetail] = useState<PublicEvent>();
-
-  useQuery({
-    queryKey: 'judging_evnet',
-    queryFn: () => getJudgingEventById(params.event_id),
-    onSuccess: (res: AxiosResponse) => {
-      setEventDetail(res.data);
-    },
-  });
 
   const {
     register,
     handleSubmit,
+    setValue,
+    control,
     formState: { errors, isSubmitting },
   } = useForm<RegisterField>({
     mode: 'onChange',
@@ -52,6 +39,7 @@ export const JudgingEventRegistration = () => {
       job_position: '',
       address: '',
       final_degree: '학사 과정 중',
+      engagement_type: '현장 참가',
       participant_motivation: '',
       participant_type: '',
       interest_disease: '',
@@ -62,26 +50,97 @@ export const JudgingEventRegistration = () => {
     },
   });
 
+  useEffect(() => {
+    async function initLoad() {
+      if (!params.id) {
+        Toast('잘못된 접근입니다.', 'error');
+        navigate(-1);
+      }
+
+      try {
+        const res = await getJudgingParticipantById(params.id);
+
+        setValue(REGISTER_TYPE.NAME, res.data.name);
+        setValue(REGISTER_TYPE.ENGLISH_NAME, res.data.english_name);
+        setValue(REGISTER_TYPE.GENDER, res.data.gender);
+        setValue(REGISTER_TYPE.BIRTH, res.data.birth);
+        setValue(REGISTER_TYPE.PHONE, res.data.phone);
+        setValue(REGISTER_TYPE.EMAIL, res.data.email);
+        setValue(
+          REGISTER_TYPE.ORGANIZATION_TYPE,
+          res.data.organization_type
+        );
+        setValue(
+          REGISTER_TYPE.ORGANIZATION_NAME,
+          res.data.organization_name
+        );
+        setValue(
+          REGISTER_TYPE.ORGANIZATION_ENGLISH_NAME,
+          res.data.organization_english_name
+        );
+        setValue(REGISTER_TYPE.JOB_POSITION, res.data.job_position);
+        setValue(REGISTER_TYPE.ADDRESS, res.data.address);
+        setValue(REGISTER_TYPE.FINAL_DEGREE, res.data.final_degree);
+        setValue(
+          REGISTER_TYPE.ENGAGEMENT_TYPE,
+          res.data.engagement_type
+        );
+        setValue(
+          REGISTER_TYPE.PARTICIPANT_MOTIVATION,
+          res.data.participant_motivation
+        );
+        setValue(
+          REGISTER_TYPE.INTEREST_DISEASE,
+          res.data.interest_disease
+        );
+        setValue(
+          REGISTER_TYPE.INTEREST_FIELD,
+          res.data.interest_field
+        );
+        setValue(
+          REGISTER_TYPE.INTEREST_FIELD_DETAIL,
+          res.data.interest_field_detail
+        );
+        setValue(REGISTER_TYPE.PROFILE_FILE, [
+          res.data.profile_filename,
+        ]);
+        setValue(REGISTER_TYPE.ZIP_FILE, [res.data.zip_filename]);
+      } catch (err) {
+        Toast('잘못된 접근입니다.', 'error');
+        navigate(-1);
+      }
+    }
+
+    initLoad();
+  }, []);
+
   const { mutate } = useMutation(
     async (userInput) => {
-      const res = await uploadFiles([
-        userInput.profile_filename[0],
-        userInput.zip_filename[0],
-      ]);
+      if (!userInput.profile_filename[0]) {
+        throw new Error('증명사진을 첨부해주세요.');
+      }
+      if (!userInput.zip_filename[0]) {
+        throw new Error('제출용 압축파일을 첨부해주세요.');
+      }
       const data: JudgingEventSubmitInfo = {
         ...userInput,
-        profile_filename: res.data.filenames[0],
-        zip_filename: res.data.filenames[1],
-        event_id: params.event_id,
+        profile_filename: userInput.profile_filename[0],
+        zip_filename: userInput.zip_filename[0],
       };
-      return submitJudgingEvent(data);
+      return updateJudgingParticipantById(params.id, data);
     },
     {
       onSuccess: () => {
-        navigate(-1);
+        Toast('수정되었습니다.', 'success');
+        navigate(ROUTE.ME);
       },
       onError: (err: AxiosError) => {
-        alert('제출에 실패했습니다.' + err?.response?.data?.message);
+        Toast(
+          `수정에 실패했습니다. ${
+            err?.response?.data?.message || err?.message
+          }`,
+          'error'
+        );
       },
     }
   );
@@ -90,12 +149,7 @@ export const JudgingEventRegistration = () => {
 
   return (
     <>
-      <h1>참가 신청</h1>
-      <Message>
-        {eventDetail && (
-          <PostContent content={eventDetail?.description} />
-        )}
-      </Message>
+      <h1>참가 신청 수정</h1>
       <Form onSubmit={handleSubmit(onValid)}>
         <ReactHookInput
           id={REGISTER_TYPE.NAME}
@@ -237,25 +291,25 @@ export const JudgingEventRegistration = () => {
           }
           placeholder="지인 추천"
         />
-        <ReactHookInput
+        <FilesInput
           id={REGISTER_TYPE.PROFILE_FILE}
+          control={control}
           title="증명사진"
-          type={INPUT_TYPE.FILE}
-          register={register}
-          errorMessage={errors[REGISTER_TYPE.PROFILE_FILE]?.message}
+          maxFileCount={1}
+          acceptFileType="image/*"
         />
-        <ReactHookInput
+        <FilesInput
           id={REGISTER_TYPE.ZIP_FILE}
+          control={control}
           title="제출용 압축파일"
-          type={INPUT_TYPE.FILE}
-          register={register}
-          errorMessage={errors[REGISTER_TYPE.ZIP_FILE]?.message}
+          maxFileCount={1}
+          acceptFileType=".zip"
         />
         <Button
           isvalid={!Object.keys(errors)[0]}
           disabled={isSubmitting}
         >
-          제출하기
+          수정하기
         </Button>
       </Form>
     </>
