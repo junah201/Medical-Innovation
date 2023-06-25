@@ -28,7 +28,7 @@ export const Table = ({
 
   const { isLoading, isError, error } = useQuery({
     retry: false,
-    queryKey: ['datas', page, total, id],
+    queryKey: ['tableDatas', page, total, id],
     queryFn: () => getDatas(id, page, size),
     onSuccess: (res: AxiosResponse) => {
       setData(res.data.items);

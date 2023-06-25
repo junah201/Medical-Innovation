@@ -79,6 +79,18 @@ def create_judging_participant(judging_participant_create: schemas_v2.JudgingPar
     )
 
 
+@router.get("/me/all", response_model=schemas_v2.JudgingParticipantList)
+def get_judging_participants(skip: int = 0, limit: int = 40, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
+    db_all_judging_participant = db.query(models.JudgingParticipant).filter(
+        models.JudgingParticipant.user_id == current_user.id
+    )
+
+    return schemas_v2.JudgingParticipantList(
+        total=db_all_judging_participant.count(),
+        items=db_all_judging_participant.offset(skip).limit(limit).all()
+    )
+
+
 @router.get("/{judging_event_id}/all", response_model=schemas_v2.JudgingParticipantList)
 def get_judging_participants(judging_event_id: int, skip: int = 0, limit: int = 40, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
     db_all_judging_participant = db.query(models.JudgingParticipant).filter(

@@ -598,6 +598,7 @@ class PrivateParticipant(BaseModel):
     id: PositiveInt
     user_id: Optional[PositiveInt] = None
     event_id: PositiveInt
+    event: Optional[PrivateEvent] = None
     name: str
     english_name: str
     gender: str
@@ -683,6 +684,7 @@ class JudgingParticipant(BaseModel):
     id: PositiveInt
     user_id: Optional[PositiveInt] = None
     event_id: PositiveInt
+    event: Optional[JudgingEvent] = None
     first_judging_result: Optional[object] = None
     second_judging_result: Optional[object] = None
     name: str

@@ -19,6 +19,8 @@ import {
   getAdEmails,
   getHistorys,
   getPopups,
+  getPrivateParticipantsByMe,
+  getJudgingParticipantsByMe,
 } from '@/api';
 import { StatusButton } from '@/components';
 import {
@@ -605,6 +607,41 @@ const PRIVATE_EVENT_PARTICIPANT = Object.freeze({
   },
 });
 
+const USER_PRIVATE_EVENT_PARTICIPANT = Object.freeze({
+  headers: [
+    '신청번호',
+    '행사명',
+    '신청자',
+    '생성일',
+    '수정일',
+    '수정',
+  ],
+  size: 40,
+  getDatas: async (
+    id: number | string,
+    page: number,
+    size: number
+  ) => {
+    return getPrivateParticipantsByMe(page, size);
+  },
+  itemToElement: (item: PublicParticipant, id: number) => {
+    return (
+      <tr key={item.id}>
+        <td>{item.id}</td>
+        <td>{item?.event?.name}</td>
+        <td>{item.name}</td>
+        <td>{item.created_at.replace('T', ' ')}</td>
+        <td>{item.updated_at.replace('T', ' ')}</td>
+        <td>
+          <Link to={`/private_event/participant/edit/${item.id}`}>
+            수정
+          </Link>
+        </td>
+      </tr>
+    );
+  },
+});
+
 const JUDGING_EVENT = Object.freeze({
   headers: [
     '번호',
@@ -690,6 +727,41 @@ const JUDGING_EVENT_PARTICIPANT = Object.freeze({
         <td>
           <Link to={`/admin/judging_participant/detail/${item.id}`}>
             상세정보
+          </Link>
+        </td>
+      </tr>
+    );
+  },
+});
+
+const USER_JUDGING_EVENT_PARTICIPANT = Object.freeze({
+  headers: [
+    '신청번호',
+    '행사명',
+    '신청자',
+    '생성일',
+    '수정일',
+    '수정',
+  ],
+  size: 40,
+  getDatas: async (
+    id: number | string,
+    page: number,
+    size: number
+  ) => {
+    return getJudgingParticipantsByMe(page, size);
+  },
+  itemToElement: (item: JudgingParticipant, id: number) => {
+    return (
+      <tr key={item.id}>
+        <td>{item.id}</td>
+        <td>{item?.event?.name}</td>
+        <td>{item.name}</td>
+        <td>{item.created_at.replace('T', ' ')}</td>
+        <td>{item.updated_at.replace('T', ' ')}</td>
+        <td>
+          <Link to={`/judging/participant/edit/${item.id}`}>
+            수정
           </Link>
         </td>
       </tr>
@@ -872,8 +944,10 @@ export const TABLE_CONFIG = Object.freeze({
   PUBLIC_EVENT_PARTICIPANT,
   PRIVATE_EVENT,
   PRIVATE_EVENT_PARTICIPANT,
+  USER_PRIVATE_EVENT_PARTICIPANT,
   JUDGING_EVENT,
   JUDGING_EVENT_PARTICIPANT,
+  USER_JUDGING_EVENT_PARTICIPANT,
   JUDGING_RESULT,
   AD_EMAIL,
   HISTORY,

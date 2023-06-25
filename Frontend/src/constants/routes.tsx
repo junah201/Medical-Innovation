@@ -84,6 +84,7 @@ import {
   AdminPopupAll,
   AdminPopupUpload,
   AdminPopupEdit,
+  Me,
 } from '@/pages';
 
 interface RouteConfig {
@@ -114,6 +115,15 @@ export const ROUTE_MAP: RouteMap = [
     AUTH: false,
   },
   {
+    PATH: '/me',
+    COMPONENT: Me,
+    HEADER: HomeHeader,
+    BANNER: Banner,
+    FOOTER: DefaultFooter,
+    WRAPPER: PageWrapper,
+    AUTH: true,
+  },
+  {
     PATH: '/login',
     COMPONENT: Login,
     HEADER: HomeHeader,
@@ -127,7 +137,7 @@ export const ROUTE_MAP: RouteMap = [
     HEADER: HomeHeader,
     FOOTER: DefaultFooter,
     WRAPPER: DefaultWrapper,
-    AUTH: false,
+    AUTH: true,
   },
   {
     PATH: '/signup',
@@ -402,7 +412,7 @@ export const ROUTE_MAP: RouteMap = [
     AUTH: true,
   },
   {
-    PATH: '/private_event/:id/registraion',
+    PATH: '/private_event/:id/registration',
     COMPONENT: PrivateEventRegistration,
     HEADER: HomeHeader,
     FOOTER: DefaultFooter,

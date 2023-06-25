@@ -28,6 +28,7 @@ def create_private_participant_participant(private_participant_create: schemas_v
         user_id=current_user.id,
         private_participant_create=private_participant_create,
     )
+
     send_email(
         receiver_address=private_participant_create.email,
         subject=f"{db_private_participant_event.name} 참여 신청 완료",
@@ -37,6 +38,17 @@ def create_private_participant_participant(private_participant_create: schemas_v
         receiver_address="support@medicalinnovation.or.kr",
         subject=f"{db_private_participant_event.name} 참여 신청 완료",
         content=f"{private_participant_create.name}님 {db_private_participant_event.name}에 참여 신청이 완료되었습니다.",
+    )
+
+
+@router.get("/me/all", response_model=schemas_v2.PrivateParticipantList)
+def get_private_participant_participants(skip: int = 0, limit: int = 40, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
+    db_all_private_participant = db.query(models.PrivateParticipant).filter(models.PrivateParticipant.user_id == current_user.id).order_by(
+        models.PrivateParticipant.id.desc())
+
+    return schemas_v2.PrivateParticipantList(
+        total=db_all_private_participant.count(),
+        items=db_all_private_participant.offset(skip).limit(limit).all(),
     )
 
 
