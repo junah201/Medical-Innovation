@@ -161,14 +161,13 @@ export const JudgingResultCreate = () => {
     <>
       <h1>심사 대상자 정보</h1>
       <Message>
-        <p>이름 : {judgingParticipant?.name}</p>
-        <p>조직명 : {judgingParticipant?.organization_name}</p>
-        <p>직위 : {judgingParticipant?.job_position}</p>
+        <p>신청자 : {judgingParticipant?.name}</p>
+        <p>소속 : {judgingParticipant?.organization_name}</p>
         <br />
         <a
           href={`${VITE_CDN_URL}/upload/${judgingParticipant?.zip_filename}`}
         >
-          제출 서류 다운로드
+          <strong>제출서류 다운로드하기</strong>
         </a>
       </Message>
       <Form onSubmit={handleSubmit(onValid)}>
