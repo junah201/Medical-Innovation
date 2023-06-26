@@ -10,6 +10,7 @@ import { ReactHookInput } from '@/components/form';
 import { INPUT_TYPE, ROUTE, COOKIE } from '@/constants';
 import { getCookie, setCookie } from '@/libs/Cookie';
 import { RegisterField } from '@/types';
+import { Toast } from '@/libs/Toast';
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -38,15 +39,24 @@ export const Login = () => {
     },
     onError: (err: AxiosError) => {
       if (err.response?.status === 400) {
-        alert(
-          '해당 이메일이 존재하지 않거나 비밀번호가 일치하지 않습니다.'
+        Toast(
+          '해당 이메일이 존재하지 않거나 비밀번호가 일치하지 않습니다.',
+          'error'
         );
         return;
       }
       if (err.response?.status === 401) {
-        alert('비밀번호가 일치하지 않습니다.');
+        Toast('비밀번호가 일치하지 않습니다.', 'error');
         return;
       }
+      Toast(
+        `로그인에 실패하였습니다. ${
+          err?.response?.data?.message ||
+          err?.meesage ||
+          JSON.stringify(err)
+        }`,
+        'error'
+      );
     },
   });
 

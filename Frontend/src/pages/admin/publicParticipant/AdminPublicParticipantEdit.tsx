@@ -12,6 +12,7 @@ import {
 import { ReactHookInput } from '@/components/form';
 import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
 import { RegisterField } from '@/types';
+import { Toast } from '@/libs/Toast';
 
 export const AdminPublicParticipantEdit = () => {
   const navigate = useNavigate();
@@ -104,7 +105,14 @@ export const AdminPublicParticipantEdit = () => {
         navigate(ROUTE.ADMIN.PUBLIC_PARTICIPANT.ALL);
       },
       onError: (err: AxiosError) => {
-        alert(`제출에 실패했습니다. ${err?.response?.data?.message}`);
+        Toast(
+          `제출에 실패했습니다. ${
+            err?.response?.data?.message ||
+            err?.meesage ||
+            JSON.stringify(err)
+          }`,
+          'error'
+        );
       },
     }
   );

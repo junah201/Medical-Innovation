@@ -11,6 +11,7 @@ import { Message, PostContent } from '@/components';
 import { ReactHookInput } from '@/components/form';
 import { INPUT_TYPE, REGISTER_TYPE } from '@/constants';
 import { PublicEvent, RegisterField } from '@/types';
+import { Toast } from '@/libs/Toast';
 
 export const EventRegistration = () => {
   const navigate = useNavigate();
@@ -61,7 +62,14 @@ export const EventRegistration = () => {
         navigate(-1);
       },
       onError: (err: AxiosError) => {
-        alert(`제출에 실패했습니다. ${err?.response?.data?.message}`);
+        Toast(
+          `제출에 실패했습니다. ${
+            err?.response?.data?.message ||
+            err?.meesage ||
+            JSON.stringify(err)
+          }`,
+          'error'
+        );
       },
     }
   );
