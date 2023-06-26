@@ -15,6 +15,7 @@ import {
 } from '@/constants';
 import { getCookie } from '@/libs/Cookie';
 import { RegisterField } from '@/types';
+import { Toast } from '@/libs/Toast';
 
 export const Signup = () => {
   const navigate = useNavigate();
@@ -40,10 +41,17 @@ export const Signup = () => {
     },
     onError: (err: AxiosError) => {
       if (err.response?.status === 409) {
-        alert('이미 가입된 이메일입니다.');
-      } else {
-        alert('회원가입에 실패했습니다.');
+        Toast('이미 가입된 이메일입니다.', 'error');
+        return;
       }
+      Toast(
+        `회원가입에 실패했습니다. ${
+          err?.response?.data?.message ||
+          err?.meesage ||
+          JSON.stringify(err)
+        }`,
+        'error'
+      );
     },
   });
 

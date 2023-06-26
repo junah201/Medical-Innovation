@@ -17,6 +17,7 @@ import {
   JudgingPermission,
   RegisterField,
 } from '@/types';
+import { Toast } from '@/libs/Toast';
 
 export const AdminUserPermissionEdit = () => {
   const { id } = useParams() as { id: string };
@@ -85,10 +86,17 @@ export const AdminUserPermissionEdit = () => {
       ),
     {
       onSuccess: () => {
-        alert('수정되었습니다.');
+        Toast('수정되었습니다.', 'success');
       },
       onError: (err: AxiosError) => {
-        alert(err?.response?.data);
+        Toast(
+          `수정에 실패했습니다. ${
+            err?.response?.data?.message ||
+            err?.meesage ||
+            JSON.stringify(err)
+          }`,
+          'error'
+        );
       },
     }
   );

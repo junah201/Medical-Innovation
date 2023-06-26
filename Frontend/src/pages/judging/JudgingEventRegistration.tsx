@@ -18,6 +18,7 @@ import {
   PublicEvent,
   RegisterField,
 } from '@/types';
+import { Toast } from '@/libs/Toast';
 
 export const JudgingEventRegistration = () => {
   const navigate = useNavigate();
@@ -81,7 +82,14 @@ export const JudgingEventRegistration = () => {
         navigate(-1);
       },
       onError: (err: AxiosError) => {
-        alert('제출에 실패했습니다.' + err?.response?.data?.message);
+        Toast(
+          `제출에 실패했습니다. ${
+            err?.response?.data?.message ||
+            err?.meesage ||
+            JSON.stringify(err)
+          }`,
+          'error'
+        );
       },
     }
   );

@@ -1,4 +1,4 @@
-import { AxiosError } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQuery } from 'react-query';
@@ -6,7 +6,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import {
-  getJudgingEventById,
   getJudgingParticipantById,
   getJudgingResult,
   getMe,
@@ -31,6 +30,7 @@ import {
   JudgingPermission,
   JudgingResultSubmitInfo,
 } from '@/types';
+import { Toast } from '@/libs/Toast';
 
 const { VITE_CDN_URL } = import.meta.env;
 
@@ -66,7 +66,14 @@ export const JudgingResultCreate = () => {
         navigate(-1);
       },
       onError: (err: AxiosError) => {
-        alert(err.response?.data.message);
+        Toast(
+          `제출에 실패했습니다. ${
+            err?.response?.data?.message ||
+            err?.meesage ||
+            JSON.stringify(err)
+          }`,
+          'error'
+        );
       },
     }
   );
@@ -110,28 +117,17 @@ export const JudgingResultCreate = () => {
       if (checkJudgingPermission(res.data.judging_permissions))
         return;
 
-      alert('심사 권한이 없습니다.');
+      Toast('심사 권한이 없습니다.', 'error');
       navigate(-1);
     },
   });
-
-  useQuery(
-    'judging_event',
-    () => getJudgingEventById(params.event_id),
-    {
-      retry: false,
-      onSuccess: (res) => {
-        return;
-      },
-    }
-  );
 
   useQuery(
     'judging_participant',
     () => getJudgingParticipantById(params.participant_id),
     {
       retry: false,
-      onSuccess: (res) => {
+      onSuccess: (res: AxiosResponse) => {
         setJudgingParticipant(res.data);
       },
     }

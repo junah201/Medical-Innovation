@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { getJudgingEvents, getMe } from '@/api';
 import { Events } from '@/components';
 import { JudgingEventList, JudgingPermission } from '@/types';
+import { Toast } from '@/libs/Toast';
+import { AxiosResponse } from 'axios';
 
 export const JudgingEventAll = () => {
   const [events, setEvents] = useState<JudgingEventList>();
@@ -34,14 +36,14 @@ export const JudgingEventAll = () => {
       if (checkJudgingPermission(res.data.judging_permissions))
         return;
 
-      alert('심사 권한이 없습니다.');
+      Toast('심사 권한이 없습니다.', 'error');
       navigate(-1);
     },
   });
 
   useQuery('judging_events', () => getJudgingEvents(0, 1000), {
     retry: false,
-    onSuccess: (res) => {
+    onSuccess: (res: AxiosResponse) => {
       setEvents(res.data);
     },
   });
