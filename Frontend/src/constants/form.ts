@@ -146,8 +146,7 @@ export const ERROR_MESSAGE = Object.freeze({
 
 export const CONFIG = Object.freeze({
   EMAIL: Object.freeze({
-    REGEX:
-      /^[^\s@+]+(\+[^\s@+]+)?@[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)*(\.[a-zA-Z]{2,})$/,
+    REGEX: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
   }),
   PHONE: Object.freeze({
     REGEX: /^\d+$/,
