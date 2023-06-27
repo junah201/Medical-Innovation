@@ -6,6 +6,7 @@ import { InputLabel } from '@/components/form';
 import { Toast } from '@/libs/Toast';
 
 import '@/static/css/content-styles.css';
+import { uploadFile } from '@/api';
 
 const { VITE_CDN_URL } = import.meta.env;
 
@@ -22,11 +23,14 @@ export const HtmlInput = ({
   onChange,
   errorMessage,
 }: HtmlInputProps) => {
-  const customUploadAdapter = (loader: any) => {
+  const customUploadAdapter = (loader) => {
     return {
       upload() {
         return new Promise((resolve, reject) => {
-          loader.file.then((file: File) => {
+          const data = new FormData();
+          loader.file.then((file) => {
+            data.append('file', file);
+
             uploadFile(file)
               .then((res) => {
                 resolve({
@@ -35,10 +39,13 @@ export const HtmlInput = ({
               })
               .catch((err) => {
                 Toast(
-                  `업로드에 실패했습니다. ${err?.response?.data?.message}`,
+                  `이미지 업로드 실패 ${
+                    err?.response?.data?.message ||
+                    err?.message ||
+                    JSON.stringify(err)
+                  }`,
                   'error'
                 );
-                reject(err);
               });
           });
         });
