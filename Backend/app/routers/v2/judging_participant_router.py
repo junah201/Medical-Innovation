@@ -11,7 +11,7 @@ router = APIRouter(
 )
 
 
-@router.post("/", status_code=status.HTTP_204_NO_CONTENT)
+@router.post("", status_code=status.HTTP_204_NO_CONTENT)
 def create_judging_participant(judging_participant_create: schemas_v2.JudgingParticipantCreate, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
     db_judging_participant_event = crud.get_judging_event(
         db=db, judging_event_id=judging_participant_create.event_id)
@@ -189,10 +189,14 @@ def get_judging_participant(judging_participant_id: int, db: Session = Depends(g
         )
 
     if not current_user.is_admin and db_judging_participant.user_id != current_user.id:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="You do not have permission to access this participant"
-        )
+        # 권한 확인
+        permissions = [permission.first_judging_permission or permission.second_judging_permission
+                       for permission in current_user.judging_permissions if permission.judging_event_id == db_judging_participant.event_id]
+        if not all(permissions):
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="You do not have permission to access this participant"
+            )
 
     return db_judging_participant
 

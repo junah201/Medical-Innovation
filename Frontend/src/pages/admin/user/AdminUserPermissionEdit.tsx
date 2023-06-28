@@ -23,48 +23,14 @@ export const AdminUserPermissionEdit = () => {
   const { id } = useParams() as { id: string };
 
   const [events, setEvents] = useState<JudgingEvent[]>([]);
-  const [selectedEvent, setSelectedEvent] = useState(4);
-  const [firstJudgingPermission, setFirstJudgingPermission] =
-    useState(false);
-  const [secondJudgingPermission, setSecondJudgingPermission] =
-    useState(false);
 
   const [userPermissions, setUserPermissions] = useState<
     JudgingPermission[]
   >([]);
 
-  useQuery('JudgingEvents', () => getJudgingEvents(0, 10000), {
-    retry: false,
-    onSuccess: (res) => {
-      setEvents(res.data.items);
-    },
-  });
-
-  useQuery('getUserById', () => getUserById(id), {
-    retry: false,
-    onSuccess: (res) => {
-      setUserPermissions(res.data.judging_permissions);
-    },
-  });
-
-  useEffect(() => {
-    const userPermission = userPermissions.find((permission) => {
-      return permission.judging_event_id === selectedEvent;
-    });
-    if (userPermission) {
-      setFirstJudgingPermission(
-        userPermission.first_judging_permission
-      );
-      setSecondJudgingPermission(
-        userPermission.second_judging_permission
-      );
-    } else {
-      setFirstJudgingPermission(false);
-      setSecondJudgingPermission(false);
-    }
-  }, []);
-
   const {
+    watch,
+    setValue,
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
@@ -80,13 +46,14 @@ export const AdminUserPermissionEdit = () => {
     (userInput) =>
       updateJudgingPermission(
         id,
-        selectedEvent,
+        userInput[REGISTER_TYPE.JUDGING_EVENT],
         userInput?.first_judging_permission,
         userInput?.second_judging_permission
       ),
     {
       onSuccess: () => {
         Toast('수정되었습니다.', 'success');
+        location.reload();
       },
       onError: (err: AxiosError) => {
         Toast(
@@ -100,6 +67,45 @@ export const AdminUserPermissionEdit = () => {
       },
     }
   );
+
+  useEffect(() => {
+    async function initLoad() {
+      const res = await getJudgingEvents(0, 10000);
+      setEvents(res.data.items);
+      setValue(REGISTER_TYPE.JUDGING_EVENT, res.data.items[0].id);
+    }
+    initLoad();
+  }, []);
+
+  useEffect(() => {
+    async function initLoad() {
+      const res = await getUserById(id);
+      setUserPermissions(res.data.judging_permissions);
+    }
+    initLoad();
+  }, []);
+
+  useEffect(() => {
+    const userPermission = userPermissions.find((permission) => {
+      return (
+        permission.judging_event_id ===
+        parseInt(watch()[REGISTER_TYPE.JUDGING_EVENT])
+      );
+    });
+    if (userPermission) {
+      setValue(
+        REGISTER_TYPE.FIRST_JUDGING_PERMISSION,
+        userPermission.first_judging_permission
+      );
+      setValue(
+        REGISTER_TYPE.SECOND_JUDGING_PERMISSION,
+        userPermission.second_judging_permission
+      );
+    } else {
+      setValue(REGISTER_TYPE.FIRST_JUDGING_PERMISSION, false);
+      setValue(REGISTER_TYPE.SECOND_JUDGING_PERMISSION, false);
+    }
+  }, [watch()[REGISTER_TYPE.JUDGING_EVENT], userPermissions]);
 
   const onValid = (userInput: RegisterField) => mutate(userInput);
 
