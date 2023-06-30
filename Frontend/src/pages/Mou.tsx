@@ -6,6 +6,8 @@ import { getMous } from '@/api';
 import { Message } from '@/components/common';
 import { Mou as IMou } from '@/types/mou';
 
+const { VITE_CDN_URL } = import.meta.env;
+
 export const Mou = () => {
   const [mous, setMous] = useState<IMou[]>([]);
 
@@ -145,7 +147,7 @@ const MouItem = ({ item }: { item: IMou }) => {
       <a href={item.link} target="_blank" rel="noopener noreferrer">
         <div>
           <img
-            src={`https://medical-innovation.s3.ap-northeast-2.amazonaws.com/mou/${item.filename}`}
+            src={`${VITE_CDN_URL}/upload/${item.filename}`}
             alt={item.filename}
           />
         </div>
