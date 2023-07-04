@@ -462,11 +462,11 @@ class AdEmailList(BaseModel):
     items: list[AdEmail]
 
 
-@form_body
 class AdEmailContent(BaseModel):
     email: Optional[EmailStr] = None
     title: str
     content: str
+    files: List[str]
 
 
 class HistoryCreate(BaseModel):

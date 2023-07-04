@@ -39,3 +39,39 @@ export const deleteAdEmailById = async (id: number | string) => {
 
   return res;
 };
+
+export const sendAdEmailAll = async (
+  title: string,
+  content: string,
+  files: string[]
+) => {
+  const res = await authAxios.post(
+    API_ROUTE.AD_EMAIL.SEND_AD_EMAIL_ALL,
+    {
+      title: title,
+      content: content,
+      files: files,
+    }
+  );
+
+  return res;
+};
+
+export const sendAdEmailOne = async (
+  title: string,
+  content: string,
+  files: string[],
+  email: string
+) => {
+  const res = await authAxios.post(
+    API_ROUTE.AD_EMAIL.SEND_AD_EMAIL_ONE,
+    {
+      email: email,
+      title: title,
+      content: content,
+      files: files,
+    }
+  );
+
+  return res;
+};

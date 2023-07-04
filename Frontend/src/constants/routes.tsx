@@ -88,6 +88,7 @@ import {
   JudgingParticipantEdit,
   PrivateParticipantEdit,
   AdminJudgingParticipantNthPassEdit,
+  AdminAdEmailSendAll,
 } from '@/pages';
 
 interface RouteConfig {
@@ -785,6 +786,14 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/admin/ad_email/upload',
     COMPONENT: AdminAdEmailUpload,
+    HEADER: AdminHeader,
+    WRAPPER: AdminWrapper,
+    ADMIN: true,
+    AUTH: true,
+  },
+  {
+    PATH: '/admin/ad_email/send/all',
+    COMPONENT: AdminAdEmailSendAll,
     HEADER: AdminHeader,
     WRAPPER: AdminWrapper,
     ADMIN: true,

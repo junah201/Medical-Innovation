@@ -9,8 +9,11 @@ import {
   deletePopupById,
   deletePostById,
   deleteSponsoringCompanyById,
+  sendAdEmailAll,
+  sendAdEmailOne,
 } from '@/api';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import { Toast } from '@/libs/Toast';
 
 export const AlertDeletePost = (id: string | number) => {
   confirmAlert({
@@ -179,6 +182,90 @@ export const AlertDeletePopup = (id: string | number) => {
             location.reload();
           }
           deletePopup();
+        },
+      },
+      {
+        label: '취소',
+      },
+    ],
+  });
+};
+
+export const AlertSendAdEmailAll = (
+  title: string,
+  content: string,
+  file: string[]
+) => {
+  confirmAlert({
+    title: '수신 동의를 한 전원에게 이메일을 발송하시겠습니까?',
+    message: '발송 후 취소가 불가능합니다.',
+    buttons: [
+      {
+        label: '발송',
+        onClick: () => {
+          async function send() {
+            try {
+              const res = await sendAdEmailAll(title, content, file);
+              if (res.status === 200)
+                Toast('성공적으로 발송되었습니다.', 'success');
+              else throw new Error(`${res?.data?.message}`);
+            } catch (e) {
+              Toast(
+                `발송에 실패했습니다. ${
+                  e?.response?.data?.message ||
+                  e?.message ||
+                  JSON.stringify(e)
+                }`,
+                'error'
+              );
+            }
+          }
+          send();
+        },
+      },
+      {
+        label: '취소',
+      },
+    ],
+  });
+};
+
+export const AlertSendAdEmailOne = (
+  title: string,
+  content: string,
+  file: string[],
+  email: string
+) => {
+  confirmAlert({
+    title: `${email}님께 이메일을 발송하시겠습니까?`,
+    message: '발송 후 취소가 불가능합니다.',
+    buttons: [
+      {
+        label: '발송',
+        onClick: () => {
+          async function send() {
+            try {
+              const res = await sendAdEmailOne(
+                title,
+                content,
+                file,
+                email
+              );
+              if (res.status === 200)
+                Toast('성공적으로 발송되었습니다.', 'success');
+              else throw new Error(`${res?.data?.message}`);
+            } catch (e) {
+              Toast(
+                `발송에 실패했습니다. ${
+                  e?.response?.data?.message ||
+                  e?.message ||
+                  JSON.stringify(e)
+                }`,
+                'error'
+              );
+            }
+          }
+          send();
         },
       },
       {
