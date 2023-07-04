@@ -5,8 +5,9 @@ from app.database import crud, schemas_v2, models
 from app.database.database import get_db
 from app.utils.oauth2 import get_current_user
 from app.utils.email import send_email
-
+import urllib
 from typing import List, Optional
+import io
 
 router = APIRouter(
     prefix="/ad_email",
@@ -87,9 +88,7 @@ def update_ad_email(ad_email_id: int, ad_email_update: schemas_v2.AdEmailCreate,
 @router.post("/send/all", status_code=status.HTTP_200_OK)
 def send_ad_email_all(
     background_tasks: BackgroundTasks,
-    email_content: schemas_v2.AdEmailContent = Depends(
-        schemas_v2.AdEmailContent),
-    files: Optional[List[UploadFile]] = None,
+    email_content: schemas_v2.AdEmailContent,
     db: Session = Depends(get_db),
     current_user: models.User = Depends(get_current_user)
 ):
@@ -100,27 +99,55 @@ def send_ad_email_all(
         )
     db_ad_emails = crud.get_ad_emails(db=db, skip=0, limit=10000000)
 
+    new_files = []
+    for file in email_content.files:
+        print(
+            f'https://d2zkiuln09byg.cloudfront.net/upload/{urllib.parse.quote(file)}')
+        with urllib.request.urlopen(f'https://d2zkiuln09byg.cloudfront.net/upload/{urllib.parse.quote(file)}') as url:
+            s = url.read()
+            binary_io = io.BytesIO()
+            binary_io.write(s)
+            new_files.append(UploadFile(
+                filename=file,
+                file=binary_io,
+                content_type='application/octet-stream'
+            ))
+
     for db_ad_email in db_ad_emails.ad_emails:
         background_tasks.add_task(
             send_email,
             receiver_address=db_ad_email.email,
             subject=email_content.title,
             content=email_content.content,
-            files=files
+            files=new_files
         )
 
 
 @router.post("/send/one", status_code=status.HTTP_200_OK)
-async def send_ad_email_one(email_content: schemas_v2.AdEmailContent = Depends(schemas_v2.AdEmailContent), files: List[UploadFile] = [], current_user: models.User = Depends(get_current_user)):
+async def send_ad_email_one(email_content: schemas_v2.AdEmailContent, current_user: models.User = Depends(get_current_user)):
     if not current_user.is_admin:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="You do not have permission to send a test ad_email"
         )
 
+    new_files = []
+    for file in email_content.files:
+        print(
+            f'https://d2zkiuln09byg.cloudfront.net/upload/{urllib.parse.quote(file)}')
+        with urllib.request.urlopen(f'https://d2zkiuln09byg.cloudfront.net/upload/{urllib.parse.quote(file)}') as url:
+            s = url.read()
+            binary_io = io.BytesIO()
+            binary_io.write(s)
+            new_files.append(UploadFile(
+                filename=file,
+                file=binary_io,
+                content_type='application/octet-stream'
+            ))
+
     send_email(
         receiver_address=email_content.email,
         subject=email_content.title,
         content=email_content.content,
-        files=files
+        files=new_files
     )

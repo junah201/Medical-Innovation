@@ -202,6 +202,8 @@ const AD_EMAIL = Object.freeze({
     `/api/v2/ad_email/${id}`,
   UPDATE_AD_EMAIL_BY_ID: (id: number | string) =>
     `/api/v2/ad_email/${id}`,
+  SEND_AD_EMAIL_ALL: '/api/v2/ad_email/send/all',
+  SEND_AD_EMAIL_ONE: '/api/v2/ad_email/send/one',
 });
 
 export const API_ROUTE = Object.freeze({

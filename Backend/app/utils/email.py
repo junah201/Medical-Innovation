@@ -8,6 +8,7 @@ from app.common.config import MAIL_SENDER, MAIL_PASSWARD
 from typing import List
 from email.mime.base import MIMEBase
 
+
 def send_email(receiver_address: str, subject: str, content: str, files: List[UploadFile] = list()) -> None:
     message = MIMEMultipart()
     message['From'] = "미래의학연구재단"
@@ -31,16 +32,24 @@ def send_email(receiver_address: str, subject: str, content: str, files: List[Up
 
         # MIME 타입 지정
         if ext == 'pdf':
-            attachment.add_header('Content-Disposition', 'attachment', filename=filename)
+            attachment.add_header('Content-Disposition',
+                                  'attachment', filename=filename)
             mime_type = 'application/pdf'
         elif ext == 'png':
-            attachment.add_header('Content-Disposition', 'attachment', filename=filename)
+            attachment.add_header('Content-Disposition',
+                                  'attachment', filename=filename)
             mime_type = 'image/png'
         elif ext == 'jpg' or ext == 'jpeg':
-            attachment.add_header('Content-Disposition', 'attachment', filename=filename)
+            attachment.add_header('Content-Disposition',
+                                  'attachment', filename=filename)
             mime_type = 'image/jpeg'
+        elif ext == 'gif':
+            attachment.add_header('Content-Disposition',
+                                  'attachment', filename=filename)
+            mime_type = 'image/gif'
         else:
-            attachment.add_header('Content-Disposition', 'attachment', filename=filename)
+            attachment.add_header('Content-Disposition',
+                                  'attachment', filename=filename)
             mime_type = 'application/octet-stream'
 
         # MIME 타입 설정

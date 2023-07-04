@@ -112,6 +112,7 @@ export const ROUTE = Object.freeze({
       ROOT: '/admin/ad_email',
       ALL: '/admin/ad_email/all',
       UPLOAD: '/admin/ad_email/upload',
+      SEND_ALL: '/admin/ad_email/send/all',
     }),
     HISTORY: Object.freeze({
       ROOT: '/admin/history',
