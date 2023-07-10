@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from starlette import status
 from app.database import crud, schemas_v2, models
 from app.database.database import get_db
+from app.utils.oauth2 import get_current_user
 import io
 import openpyxl
 import csv
@@ -131,3 +132,24 @@ def update_participant(participant_id: int, participant_update: schemas_v2.Parti
 
     db.commit()
     db.refresh(db_public_participant)
+
+
+@router.delete("/{participant_id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_participant(participant_id: int, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
+    if not current_user.is_admin:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="You do not have permission to delete a public_participant"
+        )
+
+    db_public_participant: models.Participant = db.query(models.Participant).filter(
+        models.Participant.id == participant_id).first()
+
+    if not db_public_participant:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Participant not found"
+        )
+
+    db.delete(db_public_participant)
+    db.commit()

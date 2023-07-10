@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import {
   getAdvisors,
   getBanners,
-  getJudgingParticipants,
   getMous,
   getPosts,
   getPublicEvents,
@@ -32,6 +31,7 @@ import {
   AlertDeleteMou,
   AlertDeletePopup,
   AlertDeletePost,
+  AlertDeletePublicParticipant,
   AlertDeleteSponsoringCompany,
 } from '@/libs/Alert';
 import {
@@ -520,6 +520,7 @@ const PUBLIC_EVENT_PARTICIPANT = Object.freeze({
     '소속기관',
     '직책',
     '수정',
+    '삭제',
   ],
   size: 40,
   getDatas: async (
@@ -544,6 +545,15 @@ const PUBLIC_EVENT_PARTICIPANT = Object.freeze({
           <Link to={`/admin/public_participant/edit/${item.id}`}>
             수정
           </Link>
+        </td>
+        <td>
+          <button
+            onClick={() => {
+              AlertDeletePublicParticipant(item.id);
+            }}
+          >
+            삭제
+          </button>
         </td>
       </tr>
     );
