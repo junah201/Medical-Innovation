@@ -22,7 +22,7 @@ import {
   getJudgingParticipantsByMe,
   getNthJudgingParticipantsByEventId,
 } from '@/api';
-import { StatusButton } from '@/components';
+import { Status } from '@/components';
 import {
   AlertDeletBanner,
   AlertDeleteAdEmail,
@@ -78,12 +78,12 @@ const JUDGING_1ST_PARTICIPANT = Object.freeze({
         <td>{item.job_position}</td>
         <td>
           {item.first_judging_result ? (
-            <StatusButton color="green">
+            <Status color="green">
               심사 완료 ({item.first_judging_result?.total_score}
               점)
-            </StatusButton>
+            </Status>
           ) : (
-            <StatusButton color="gray">미심사</StatusButton>
+            <Status color="gray">미심사</Status>
           )}
         </td>
         <td>
@@ -122,12 +122,12 @@ const JUDGING_2ND_PARTICIPANT = Object.freeze({
         <td>{item.job_position}</td>
         <td>
           {item.second_judging_result ? (
-            <StatusButton color="green">
+            <Status color="green">
               심사 완료 ({item.second_judging_result?.total_score}
               점)
-            </StatusButton>
+            </Status>
           ) : (
-            <StatusButton color="gray">미심사</StatusButton>
+            <Status color="gray">미심사</Status>
           )}
         </td>
         <td>
