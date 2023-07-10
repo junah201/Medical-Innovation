@@ -1,5 +1,5 @@
 import { AxiosError, AxiosResponse } from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQuery } from 'react-query';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import {
   getJudgingParticipantById,
   getJudgingResult,
+  getJudgingResultsByEventId,
   getMe,
   submitJudgingResult,
 } from '@/api';
@@ -49,6 +50,21 @@ export const JudgingResultCreate = () => {
   } = useForm<RegisterField>({
     mode: 'onChange',
   });
+
+  useEffect(() => {
+    async function initLoad() {
+      const res = await getJudgingResult(
+        params.event_id,
+        params.participant_id,
+        params.nth
+      );
+
+      for (const key in res.data) {
+        setValue(key, `${res.data[key]}`);
+      }
+    }
+    initLoad();
+  }, []);
 
   const { mutate } = useMutation(
     (userInfo) => {

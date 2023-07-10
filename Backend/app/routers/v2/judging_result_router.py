@@ -148,13 +148,6 @@ def get_judging_results(judging_event_id: int, skip: int = 0, limit: int = 40, d
     )
 
 
-@router.get("/{judging_result_id}", response_model=Optional[schemas_v2.JudgingResult])
-def get_judging_participant_by_id(judging_result_id: int, db: Session = Depends(get_db)):
-    return db.query(models.JudgingResult).filter(
-        models.JudgingResult.id == judging_result_id
-    ).first()
-
-
 @router.get("/get", response_model=Optional[schemas_v2.JudgingResult])
 def get_judging_participant(judging_event_id: int, participant_id: int, nth: int, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
     db_judging_result: Optional[models.JudgingResult] = db.query(models.JudgingResult).filter(
@@ -171,6 +164,13 @@ def get_judging_participant(judging_event_id: int, participant_id: int, nth: int
         )
 
     return db_judging_result
+
+
+@router.get("/{judging_result_id}", response_model=Optional[schemas_v2.JudgingResult])
+def get_judging_participant_by_id(judging_result_id: int, db: Session = Depends(get_db)):
+    return db.query(models.JudgingResult).filter(
+        models.JudgingResult.id == judging_result_id
+    ).first()
 
 
 @router.get("/{judging_event_id}/all/excel")

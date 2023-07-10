@@ -133,29 +133,18 @@ const TableWrapper = styled.table`
     padding: 2px;
   }
 
-  /* & td:nth-child(3) {
-    margin-top: 0.25rem;
-    height: 18px;
-    overflow: hidden;
-    font-size: 12px;
-    text-overflow: ellipsis;
-    word-wrap: brek-word;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-  } */
-
   & button {
-    background-color: ${(props) => props.theme.errorColor};
     padding: 3px;
     border-radius: 4px;
-    color: #ffffff;
     font-weight: 600;
     border: none;
+    background-color: ${(props) => props.theme.errorColor};
+    color: #ffffff;
   }
 
   & a {
     color: #0000ff;
+    text-decoration: none;
   }
 
   & a:hover {

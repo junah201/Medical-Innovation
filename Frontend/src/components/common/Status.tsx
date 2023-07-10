@@ -13,10 +13,7 @@ interface StatusButtonProps {
   children: React.ReactNode;
 }
 
-export const StatusButton = ({
-  color,
-  children,
-}: StatusButtonProps) => {
+export const Status = ({ color, children }: StatusButtonProps) => {
   return (
     <StyledStatusButton textColor={colors[color]}>
       {children}
@@ -31,7 +28,7 @@ const StyledStatusButton = styled.button<{ textColor: string }>`
   border-radius: 8px;
   border: none;
   background-color: ${(props) => props.color};
-  color: ${(props) => props.textColor};
+  background-color: ${(props) => props.textColor};
   text-align: center;
   font-weight: bold;
 `;
