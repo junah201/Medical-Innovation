@@ -11,6 +11,7 @@ import {
   deleteSponsoringCompanyById,
   sendAdEmailAll,
   sendAdEmailOne,
+  deletePublicParticipantById,
 } from '@/api';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Toast } from '@/libs/Toast';
@@ -266,6 +267,27 @@ export const AlertSendAdEmailOne = (
             }
           }
           send();
+        },
+      },
+      {
+        label: '취소',
+      },
+    ],
+  });
+};
+export const AlertDeletePublicParticipant = (id: string | number) => {
+  confirmAlert({
+    title: `${id}번 공개 행사 참여자을 정말로 삭제하시겠습니까?`,
+    message: '삭제 후 복구가 불가능합니다.',
+    buttons: [
+      {
+        label: '삭제',
+        onClick: () => {
+          async function deletePublicParticipant() {
+            await deletePublicParticipantById(id);
+            location.reload();
+          }
+          deletePublicParticipant();
         },
       },
       {

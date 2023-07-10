@@ -65,6 +65,8 @@ const PUBLIC_PARTICIPANT = Object.freeze({
     `/api/v2/public_participant/${id}`,
   UPDATE_PUBLIC_PARTICIPANT_BY_ID: (id: number | string) =>
     `/api/v2/public_participant/${id}`,
+  DELETE_PUBLIC_PARTICIPANT_BY_ID: (id: number | string) =>
+    `/api/v2/public_participant/${id}`,
 });
 
 const JUDGING_EVENT = Object.freeze({

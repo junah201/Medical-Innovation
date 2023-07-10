@@ -56,3 +56,13 @@ export const updatePublicParticipantById = async (
 
   return res;
 };
+
+export const deletePublicParticipantById = async (
+  id: number | string
+) => {
+  const res = await authAxios.delete(
+    API_ROUTE.PUBLIC_PARTICIPANT.DELETE_PUBLIC_PARTICIPANT_BY_ID(id)
+  );
+
+  return res;
+};
