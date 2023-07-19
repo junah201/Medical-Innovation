@@ -98,7 +98,7 @@ export const AdminAdvisorEdit = () => {
             '자문위원회',
             'VC 자문단',
             '창업기획자 전문가그룹장',
-            '창업기획자 전문가그룹 자문단',
+            '창업기획자 전문가그룹',
             '칼럼니스트',
           ].map((data) => ({ value: data, label: data }))}
           register={register}
