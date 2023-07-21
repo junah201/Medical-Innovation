@@ -32,7 +32,7 @@ export const ParticipationChart = () => {
           },
           {
             year: '2023',
-            참가자: 350,
+            참가자: 450,
           },
         ]}
         keys={['참가자']}
