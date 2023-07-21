@@ -23,7 +23,7 @@ export const MainRightGrid = () => {
     queryKey: 'supporting_startup',
     queryFn: () => getSupportingStartups(0, 6),
     onSuccess: (res: AxiosResponse) => {
-      setSupportingStartups(res.data.supporting_startups);
+      setSupportingStartups(res.data.items);
     },
   });
 

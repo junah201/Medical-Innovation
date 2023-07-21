@@ -12,6 +12,7 @@ import {
   sendAdEmailAll,
   sendAdEmailOne,
   deletePublicParticipantById,
+  deleteSupportingStartupById,
 } from '@/api';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Toast } from '@/libs/Toast';
@@ -183,6 +184,28 @@ export const AlertDeletePopup = (id: string | number) => {
             location.reload();
           }
           deletePopup();
+        },
+      },
+      {
+        label: '취소',
+      },
+    ],
+  });
+};
+
+export const AlertSupportingStartup = (id: string | number) => {
+  confirmAlert({
+    title: `${id}번 스타트업을 정말로 삭제하시겠습니까?`,
+    message: '삭제 후 복구가 불가능합니다.',
+    buttons: [
+      {
+        label: '삭제',
+        onClick: () => {
+          async function deleteSupportingStartup() {
+            await deleteSupportingStartupById(id);
+            location.reload();
+          }
+          deleteSupportingStartup();
         },
       },
       {

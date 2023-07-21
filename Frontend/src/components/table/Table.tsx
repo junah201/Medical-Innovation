@@ -33,7 +33,7 @@ export const Table = ({
     queryKey: ['tableDatas', queryId, page, total, id],
     queryFn: () => getDatas(id, page, size),
     onSuccess: (res: AxiosResponse) => {
-      setData(res.data.items);
+      setData(res.data.items || res.data || []);
       setTotal(res.data.total);
     },
   });

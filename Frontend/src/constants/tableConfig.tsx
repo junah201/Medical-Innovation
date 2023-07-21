@@ -21,6 +21,7 @@ import {
   getPrivateParticipantsByMe,
   getJudgingParticipantsByMe,
   getNthJudgingParticipantsByEventId,
+  getSupportingStartups,
 } from '@/api';
 import { Status } from '@/components';
 import {
@@ -33,6 +34,7 @@ import {
   AlertDeletePost,
   AlertDeletePublicParticipant,
   AlertDeleteSponsoringCompany,
+  AlertSupportingStartup,
 } from '@/libs/Alert';
 import {
   Advisor,
@@ -978,6 +980,51 @@ const POPUP = Object.freeze({
   },
 });
 
+const SUPPORTING_STARTUP = Object.freeze({
+  headers: [
+    '번호',
+    '회사명',
+    '링크',
+    '생성일',
+    '수정일',
+    '수정',
+    '삭제',
+  ],
+  size: 40,
+  getDatas: async (
+    id: number | string,
+    page: number,
+    size: number
+  ) => {
+    return getSupportingStartups(page, size);
+  },
+  itemToElement: (item: any, id: number) => {
+    return (
+      <tr key={item.id}>
+        <td>{item.id}</td>
+        <td>{item.name}</td>
+        <td>{item.link}</td>
+        <td>{item.created_at.replace('T', ' ')}</td>
+        <td>{item.updated_at.replace('T', ' ')}</td>
+        <td>
+          <Link to={`/admin/supporting_startup/edit/${item.id}`}>
+            수정
+          </Link>
+        </td>
+        <td>
+          <button
+            onClick={() => {
+              AlertSupportingStartup(item.id);
+            }}
+          >
+            삭제
+          </button>
+        </td>
+      </tr>
+    );
+  },
+});
+
 export const TABLE_CONFIG = Object.freeze({
   JUDGING_1ST_PARTICIPANT,
   JUDGING_2ND_PARTICIPANT,
@@ -1000,4 +1047,5 @@ export const TABLE_CONFIG = Object.freeze({
   AD_EMAIL,
   HISTORY,
   POPUP,
+  SUPPORTING_STARTUP,
 });

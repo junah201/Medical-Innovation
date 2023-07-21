@@ -124,5 +124,10 @@ export const ROUTE = Object.freeze({
       ALL: '/admin/popup/all',
       UPLOAD: '/admin/popup/upload',
     }),
+    SUPPORTING_STARTUP: Object.freeze({
+      ROOT: '/admin/supporting_startup',
+      ALL: '/admin/supporting_startup/all',
+      UPLOAD: '/admin/supporting_startup/upload',
+    }),
   }),
 });

@@ -521,7 +521,7 @@ class SupportingStartup(BaseModel):
 
 class SupportingStartupList(BaseModel):
     total: int
-    supporting_startups: List[SupportingStartup]
+    items: List[SupportingStartup]
 
 
 class PrivateEventCreate(BaseModel):
