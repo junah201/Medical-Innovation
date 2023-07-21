@@ -34,7 +34,14 @@ const POPUP = Object.freeze({
 });
 
 const SUPPORTING_STARTUP = Object.freeze({
-  GET_SUPPORTING_STARTUPS: '/api/v1/supporting_startup/all',
+  GET_SUPPORTING_STARTUPS: '/api/v2/supporting_startup/all',
+  UPLOAD_SUPPORTING_STARTUP: '/api/v2/supporting_startup',
+  DELETE_SUPPORTING_STARTUP_BY_ID: (id: number | string) =>
+    `/api/v2/supporting_startup/${id}`,
+  GET_SUPPORTING_STARTUP_BY_ID: (id: number | string) =>
+    `/api/v2/supporting_startup/${id}`,
+  UPDATE_SUPPORTING_STARTUP_BY_ID: (id: number | string) =>
+    `/api/v2/supporting_startup/${id}`,
 });
 
 const HISTORY = Object.freeze({

@@ -70,7 +70,6 @@ import {
   AdminPrivateEventUpload,
   AdminPrivateEventEdit,
   AdminPrivateParticipantAll,
-  AdminPrivateParticipantEdit,
   AdminJudgingEventAll,
   AdminJudgingEventEdit,
   AdminJudgingParticipantAll,
@@ -89,6 +88,9 @@ import {
   PrivateParticipantEdit,
   AdminJudgingParticipantNthPassEdit,
   AdminAdEmailSendAll,
+  AdminSupportingStartupAll,
+  AdminSupportingStartupUpload,
+  AdminSupportingStartupEdit,
 } from '@/pages';
 
 interface RouteConfig {
@@ -850,6 +852,30 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/admin/popup/edit/:id',
     COMPONENT: AdminPopupEdit,
+    HEADER: AdminHeader,
+    WRAPPER: AdminWrapper,
+    ADMIN: true,
+    AUTH: true,
+  },
+  {
+    PATH: '/admin/supporting_startup/all',
+    COMPONENT: AdminSupportingStartupAll,
+    HEADER: AdminHeader,
+    WRAPPER: AdminWrapper,
+    ADMIN: true,
+    AUTH: true,
+  },
+  {
+    PATH: '/admin/supporting_startup/upload',
+    COMPONENT: AdminSupportingStartupUpload,
+    HEADER: AdminHeader,
+    WRAPPER: AdminWrapper,
+    ADMIN: true,
+    AUTH: true,
+  },
+  {
+    PATH: '/admin/supporting_startup/edit/:id',
+    COMPONENT: AdminSupportingStartupEdit,
     HEADER: AdminHeader,
     WRAPPER: AdminWrapper,
     ADMIN: true,

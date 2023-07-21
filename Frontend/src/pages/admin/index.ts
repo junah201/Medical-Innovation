@@ -15,3 +15,4 @@ export * from './judgingResult';
 export * from './adEmail';
 export * from './history';
 export * from './popup';
+export * from './supportingStartup';
