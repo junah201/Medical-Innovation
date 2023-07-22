@@ -221,20 +221,18 @@ export const EventRegistration = () => {
         />
         <ReactHookInput
           id={REGISTER_TYPE.FINAL_DEGREE}
-          title="(최종)학위과정"
+          title="(최종)학위"
           type={INPUT_TYPE.RADIO}
           register={register}
           errorMessage={errors[REGISTER_TYPE.FINAL_DEGREE]?.message}
           options={[
+            '전문학사',
             '학사 과정 중',
-            '학사 수료',
+            '학사',
             '석사 과정 중',
-            '석사 수료',
+            '석사',
             '박사 과정 중',
-            '박사 수료',
-            '석,박사 통합 과정 중',
-            '석,박사 통합 과정 수료',
-            '전문학사 수료',
+            '박사',
             '기타',
           ].map((option) => {
             return {
