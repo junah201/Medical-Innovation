@@ -191,15 +191,6 @@ export const AdminPublicParticipantEdit = () => {
           })}
         />
         <ReactHookInput
-          id={REGISTER_TYPE.INTEREST_FIELD_DETAIL}
-          title="세부분야"
-          type={INPUT_TYPE.TEXT}
-          register={register}
-          errorMessage={
-            errors[REGISTER_TYPE.INTEREST_FIELD_DETAIL]?.message
-          }
-        />
-        <ReactHookInput
           id={REGISTER_TYPE.ORGANIZATION_TYPE}
           title="소속"
           type={INPUT_TYPE.RADIO}
