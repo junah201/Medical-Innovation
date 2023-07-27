@@ -1,10 +1,15 @@
 from fastapi import APIRouter, HTTPException, Depends
+from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 from starlette import status
 from app.database import crud, schemas_v2, models
 from app.database.database import get_db
 from app.utils.oauth2 import get_current_user
 from app.utils.email import send_email
+from typing import List, Optional
+import io
+import openpyxl
+import csv
 
 router = APIRouter(
     prefix="/judging_participant",
@@ -119,6 +124,46 @@ def get_judging_participants(judging_event_id: int, skip: int = 0, limit: int = 
         results.items.append(tmp)
 
     return results
+
+
+@router.get("/{judging_event_id}/all/excel")
+def get_all_participant_excel_by_event_id(judging_event_id: int, db: Session = Depends(get_db)):
+    db_all_judging_participant: List[schemas_v2.JudgingParticipant] = db.query(models.JudgingParticipant).filter(
+        models.JudgingParticipant.event_id == judging_event_id
+    ).all()
+
+    workbook = openpyxl.Workbook()
+    worksheet = workbook.active
+
+    worksheet.append(["id", "이름", "영문 이름", "성별", "생년월일", "전화번호", "이메일", "참가자 소속 분류", "참가자 소속기관명", "참가자 소속기관명 (영문)", "참가자 직위", "참가자 소재지",
+                      "참가자 최종 학력", "참가자 참여동기",  "생성 시점", "마지막 수정 시점"])
+
+    for db_participant in db_all_judging_participant:
+        worksheet.append(
+            [
+                str(item) for item in [
+                    db_participant.id,
+                    db_participant.name,
+                    db_participant.english_name,
+                    db_participant.gender,
+                    db_participant.birth,
+                    db_participant.phone,
+                    db_participant.email,
+                    db_participant.organization_type,
+                    db_participant.organization_name,
+                    db_participant.organization_english_name,
+                    db_participant.job_position,
+                    db_participant.address,
+                    db_participant.final_degree,
+                    db_participant.participant_motivation,
+                    db_participant.created_at,
+                    db_participant.updated_at,
+                ]
+            ]
+        )
+
+    workbook.save("참가자목록.xlsx")
+    return FileResponse("참가자목록.xlsx")
 
 
 @router.get("/{judging_event_id}/nth_pass/{nth_pass}/all", response_model=schemas_v2.JudgingParticipantList)
