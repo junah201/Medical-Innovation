@@ -79,6 +79,7 @@ export const JudgingResultCreate = () => {
     },
     {
       onSuccess: () => {
+        Toast('제출에 성공했습니다.', 'success');
         navigate(-1);
       },
       onError: (err: AxiosError) => {

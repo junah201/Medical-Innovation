@@ -54,6 +54,7 @@ export const PrivateEventRegistration = () => {
     },
     {
       onSuccess: () => {
+        Toast('제출에 성공했습니다.', 'success');
         navigate(ROUTE.HOME);
       },
       onError: (err: AxiosError) => {
