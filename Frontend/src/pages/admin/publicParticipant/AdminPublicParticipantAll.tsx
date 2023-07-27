@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 import { getPublicEvents } from '@/api';
 import { ReactHookInput, Table } from '@/components';
@@ -13,21 +13,23 @@ const { VITE_API_URL } = import.meta.env;
 export const AdminPublicParticipantAll = () => {
   const [publicEvents, setPublicEvents] = useState<PublicEvent[]>([]);
 
-  useEffect(() => {
-    async function initLoad() {
-      const res = await getPublicEvents(0, 10000);
-      setPublicEvents(res.data.items);
-    }
-    initLoad();
-  }, []);
-
   const {
     watch,
     register,
     formState: { errors },
+    setValue,
   } = useForm<RegisterField>({
     mode: 'onChange',
   });
+
+  useEffect(() => {
+    async function initLoad() {
+      const res = await getPublicEvents(0, 10000);
+      setPublicEvents(res.data.items);
+      setValue(REGISTER_TYPE.SELECT_EVENT_ID, res.data.items[0].id);
+    }
+    initLoad();
+  }, []);
 
   return (
     <>

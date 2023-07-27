@@ -16,22 +16,24 @@ export const AdminJudgingResultAll = () => {
     []
   );
 
-  useEffect(() => {
-    async function initLoad() {
-      const res = await getJudgingEvents(0, 10000);
-      setJudgingEvents(res.data.items);
-    }
-
-    initLoad();
-  }, []);
-
   const {
     watch,
     register,
     formState: { errors },
+    setValue,
   } = useForm<RegisterField>({
     mode: 'onChange',
   });
+
+  useEffect(() => {
+    async function initLoad() {
+      const res = await getJudgingEvents(0, 10000);
+      setJudgingEvents(res.data.items);
+      setValue(REGISTER_TYPE.SELECT_EVENT_ID, res.data.items[0].id);
+    }
+
+    initLoad();
+  }, []);
 
   return (
     <>
