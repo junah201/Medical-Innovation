@@ -19,6 +19,7 @@ export const AdminBannerUpload = () => {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+    control,
   } = useForm<RegisterField>({
     mode: 'onChange',
     defaultValues: {
