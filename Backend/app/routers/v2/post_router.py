@@ -34,7 +34,7 @@ def create_post(post_create: schemas_v2.PostCreate, current_user: models.User = 
 
 @router.get("/all", response_model=schemas_v2.PostList)
 def get_all_posts(skip: int = 0, limit: int = 40, db: Session = Depends(get_db)):
-    db_posts = db.query(models.Post).order_by(models.Post.created_at.desc())
+    db_posts = db.query(models.Post).order_by(models.Post.id.desc())
     total = db_posts.count()
     post_list: models.Post = db_posts.offset(skip).limit(limit).all()
     new_post_list = []
@@ -47,7 +47,7 @@ def get_all_posts(skip: int = 0, limit: int = 40, db: Session = Depends(get_db))
 @router.get("/{board_id}/all", response_model=schemas_v2.PostList)
 def get_posts(board_id: int, skip: int = 0, limit: int = 15, db: Session = Depends(get_db)):
     db_posts = db.query(models.Post).filter(
-        models.Post.board_id == board_id).order_by(models.Post.created_at.desc())
+        models.Post.board_id == board_id).order_by(models.Post.id.desc())
     total = db_posts.count()
     post_list: models.Post = db_posts.offset(skip).limit(limit).all()
     new_post_list = []
