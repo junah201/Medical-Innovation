@@ -11,7 +11,7 @@ import { JudgingEvent, RegisterField } from '@/types';
 
 const { VITE_API_URL } = import.meta.env;
 
-export const AdminJudgingResultAll = () => {
+export const AdminJudging2ndResultAll = () => {
   const [judgingEvents, setJudgingEvents] = useState<JudgingEvent[]>(
     []
   );
@@ -37,16 +37,25 @@ export const AdminJudgingResultAll = () => {
 
   return (
     <>
-      <h1>심사 결과 목록</h1>
+      <h1>2차 심사 결과 목록</h1>
       <NavWarpper>
         {watch()[REGISTER_TYPE.SELECT_EVENT_ID] && (
-          <Link
-            to={`${VITE_API_URL}/api/v2/judging_result/${
-              watch()[REGISTER_TYPE.SELECT_EVENT_ID]
-            }/all/excel`}
-          >
-            심사 결과 목록 다운로드
-          </Link>
+          <>
+            {/* <Link
+              to={`${VITE_API_URL}/api/v2/judging_result/${
+                watch()[REGISTER_TYPE.SELECT_EVENT_ID]
+              }/all/excel`}
+            >
+              2차 심사 결과 목록 다운로드
+            </Link> */}
+            <Link
+              to={`/admin/judging_2nd_result/${
+                watch()[REGISTER_TYPE.SELECT_EVENT_ID]
+              }/upload`}
+            >
+              2차 심사 결과 추가
+            </Link>
+          </>
         )}
       </NavWarpper>
       <ReactHookInput
@@ -64,7 +73,7 @@ export const AdminJudgingResultAll = () => {
       />
       <Table
         id={watch()[REGISTER_TYPE.SELECT_EVENT_ID]}
-        {...TABLE_CONFIG.JUDGING_RESULT}
+        {...TABLE_CONFIG.JUDGING_2ND_RESULT}
       />
     </>
   );
@@ -72,7 +81,6 @@ export const AdminJudgingResultAll = () => {
 
 const NavWarpper = styled.nav`
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 
@@ -82,5 +90,9 @@ const NavWarpper = styled.nav`
     color: ${(props) => props.theme.pointColor};
     font-weight: 600;
     border: 3px solid ${(props) => props.theme.pointColor};
+  }
+
+  & a + a {
+    margin-left: 10px;
   }
 `;

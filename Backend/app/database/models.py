@@ -1369,6 +1369,154 @@ class JudgingResult(Base):
     )
 
 
+class Judging2ndResult(Base):
+    __tablename__ = "judging_2nd_result"
+    __table_args__ = {'mysql_collate': 'utf8_general_ci'}
+
+    id = Column(
+        INTEGER(unsigned=True),
+        primary_key=True,
+        unique=True,
+        comment="고유 번호"
+    )
+    judging_event_id = Column(
+        INTEGER(unsigned=True),
+        ForeignKey("judging_event.id"),
+        nullable=False,
+        comment="행사 고유 번호"
+    )
+    judging_event = relationship(
+        "JudgingEvent",
+    )
+    participant_id = Column(
+        INTEGER(unsigned=True),
+        ForeignKey("judging_participant.id"),
+        nullable=False,
+        comment="참가자 고유 번호"
+    )
+    participant = relationship(
+        "JudgingParticipant",
+    )
+    user_id = Column(
+        INTEGER(unsigned=True),
+        ForeignKey("user.id"),
+        nullable=False,
+        comment="심사위원 고유 번호"
+    )
+    user = relationship(
+        "User",
+    )
+    efficacy_and_stability_score1 = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="유효성 안전성 심사 1점수"
+    )
+    efficacy_and_stability_score2 = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="유효성 안전성 심사 2점수"
+    )
+    efficacy_and_stability_score3 = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="유효성 안전성 심사 3점수"
+    )
+    efficacy_and_stability_score4 = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="유효성 안전성 심사 4점수"
+    )
+    technical_score1 = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="기술성 심사 1점수"
+    )
+    technical_score2 = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="기술성 심사 2점수"
+    )
+    technical_score3 = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="기술성 심사 3점수"
+    )
+    business_score1 = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="시장·사업성 심사 1점수"
+    )
+    business_score2 = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="시장·사업성 심사 2점수"
+    )
+    business_score3 = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="시장·사업성 심사 3점수"
+    )
+    business_score4 = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="시장·사업성 심사 4점수"
+    )
+    business_score5 = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="시장·사업성 심사 5점수"
+    )
+    business_score6 = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="시장·사업성 심사 6점수"
+    )
+    other_score1 = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="기타 심사 점수"
+    )
+    total_score = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="총점"
+    )
+    other_comment = Column(
+        VARCHAR(1000),
+        nullable=False,
+        default="",
+        comment="기타 의견"
+    )
+    created_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        comment="생성 시점"
+    )
+    updated_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        onupdate=func.now(),
+        comment="마지막 수정 시점"
+    )
+
+
 class Popup(Base):
     __tablename__ = "popup"
     __table_args__ = {'mysql_collate': 'utf8_general_ci'}

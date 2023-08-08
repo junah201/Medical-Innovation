@@ -55,3 +55,49 @@ export interface JudgingResult {
   created_at: string;
   updated_at: string;
 }
+
+export interface Judging2ndResultSubmitInfo {
+  judging_event_id: number;
+  participant_id: number;
+  efficacy_and_stability_score1: number;
+  efficacy_and_stability_score2: number;
+  efficacy_and_stability_score3: number;
+  efficacy_and_stability_score4: number;
+  technical_score1: number;
+  technical_score2: number;
+  technical_score3: number;
+  business_score1: number;
+  business_score2: number;
+  business_score3: number;
+  business_score4: number;
+  business_score5: number;
+  business_score6: number;
+  other_score1: number;
+  other_comment: string;
+}
+
+export interface Judging2ndResult {
+  judging_event_id: string;
+  participant_id: string;
+  efficacy_and_stability_score1: number;
+  efficacy_and_stability_score2: number;
+  efficacy_and_stability_score3: number;
+  efficacy_and_stability_score4: number;
+  technical_score1: number;
+  technical_score2: number;
+  technical_score3: number;
+  business_score1: number;
+  business_score2: number;
+  business_score3: number;
+  business_score4: number;
+  business_score5: number;
+  business_score6: number;
+  other_score1: string;
+  other_comment: string;
+  id: string;
+  user: any;
+  participant_name: string;
+  total_score: string;
+  created_at: string;
+  updated_at: string;
+}

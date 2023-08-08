@@ -17,3 +17,4 @@ export * from './CheckboxInput';
 export * from './HtmlInput';
 export * from './FilesInput';
 export * from './CropImageInput';
+export * from './JudgingNumberForm';

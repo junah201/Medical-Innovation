@@ -18,3 +18,4 @@ export * from './sponsor';
 export * from './privateEvent';
 export * from './privateParticipant';
 export * from './adEmail';
+export * from './judging2ndResult';
