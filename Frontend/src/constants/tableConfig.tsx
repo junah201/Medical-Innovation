@@ -22,6 +22,7 @@ import {
   getJudgingParticipantsByMe,
   getNthJudgingParticipantsByEventId,
   getSupportingStartups,
+  getJudging2ndResultsByEventId,
 } from '@/api';
 import { Status } from '@/components';
 import {
@@ -34,6 +35,7 @@ import {
   AlertDeletePost,
   AlertDeletePublicParticipant,
   AlertDeleteSponsoringCompany,
+  AlertJudging2ndResultPopup,
   AlertSupportingStartup,
 } from '@/libs/Alert';
 import {
@@ -823,7 +825,6 @@ const JUDGING_RESULT = Object.freeze({
     '번호',
     '심사자 이름',
     '심사자 대상자 이름',
-    'N차',
     '점수',
     '생성일',
     '수정일',
@@ -843,7 +844,6 @@ const JUDGING_RESULT = Object.freeze({
         <td>{item.id}</td>
         <td>{item?.user?.name}</td>
         <td>{item?.participant_name}</td>
-        <td>{item.nth}차</td>
         <td>{item.total_score}</td>
         <td>{item.created_at.replace('T', ' ')}</td>
         <td>{item.updated_at.replace('T', ' ')}</td>
@@ -851,6 +851,53 @@ const JUDGING_RESULT = Object.freeze({
           <Link to={`/admin/judging_result/detail/${item.id}`}>
             상세정보
           </Link>
+        </td>
+      </tr>
+    );
+  },
+});
+
+const JUDGING_2ND_RESULT = Object.freeze({
+  headers: [
+    '번호',
+    '심사자 이름',
+    '심사자 대상자 이름',
+    '점수',
+    '생성일',
+    '수정일',
+    '상세정보',
+    '삭제',
+  ],
+  size: 40,
+  getDatas: async (
+    id: number | string,
+    page: number,
+    size: number
+  ) => {
+    return getJudging2ndResultsByEventId(id, page, size);
+  },
+  itemToElement: (item: JudgingResult, id: number) => {
+    return (
+      <tr key={item.id}>
+        <td>{item.id}</td>
+        <td>{item?.user?.name}</td>
+        <td>{item?.participant_name}</td>
+        <td>{item.total_score}</td>
+        <td>{item.created_at.replace('T', ' ')}</td>
+        <td>{item.updated_at.replace('T', ' ')}</td>
+        <td>
+          <Link to={`/admin/judging_2nd_result/detail/${item.id}`}>
+            상세정보
+          </Link>
+        </td>
+        <td>
+          <button
+            onClick={() => {
+              AlertJudging2ndResultPopup(item.id);
+            }}
+          >
+            삭제
+          </button>
         </td>
       </tr>
     );
@@ -1044,6 +1091,7 @@ export const TABLE_CONFIG = Object.freeze({
   JUDGING_EVENT_PARTICIPANT,
   USER_JUDGING_EVENT_PARTICIPANT,
   JUDGING_RESULT,
+  JUDGING_2ND_RESULT,
   AD_EMAIL,
   HISTORY,
   POPUP,

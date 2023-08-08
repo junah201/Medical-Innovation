@@ -775,6 +775,47 @@ class JudgingResultList(BaseModel):
     items: List[JudgingResult]
 
 
+class Judging2ndResultCreate(BaseModel):
+    judging_event_id: PositiveInt
+    participant_id: PositiveInt
+    efficacy_and_stability_score1: int
+    efficacy_and_stability_score2: int
+    efficacy_and_stability_score3: int
+    efficacy_and_stability_score4: int
+    technical_score1: int
+    technical_score2: int
+    technical_score3: int
+    business_score1: int
+    business_score2: int
+    business_score3: int
+    business_score4: int
+    business_score5: int
+    business_score6: int
+    other_score1: int
+    other_comment: str = ""
+
+
+class Judging2ndResultAdminCreate(Judging2ndResultCreate):
+    user_id: int
+
+
+class Judging2ndResult(Judging2ndResultCreate):
+    id: PositiveInt
+    user: Optional[User] = None
+    participant_name: str = ""
+    total_score: int
+    created_at: datetime
+    updated_at: datetime
+
+    class Config:
+        orm_mode = True
+
+
+class Judging2ndResultList(BaseModel):
+    total: int
+    items: List[Judging2ndResult]
+
+
 @form_body
 class PopupCreate(BaseModel):
     title: str

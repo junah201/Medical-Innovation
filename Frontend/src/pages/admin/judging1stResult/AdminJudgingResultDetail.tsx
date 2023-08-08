@@ -24,7 +24,7 @@ export const AdminJudgingResultDetail = () => {
   const {
     register,
     setValue,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<RegisterField>({
     mode: 'onChange',
   });

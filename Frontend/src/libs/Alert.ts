@@ -13,6 +13,7 @@ import {
   sendAdEmailOne,
   deletePublicParticipantById,
   deleteSupportingStartupById,
+  deleteJudging2ndResultById,
 } from '@/api';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Toast } from '@/libs/Toast';
@@ -311,6 +312,28 @@ export const AlertDeletePublicParticipant = (id: string | number) => {
             location.reload();
           }
           deletePublicParticipant();
+        },
+      },
+      {
+        label: '취소',
+      },
+    ],
+  });
+};
+
+export const AlertJudging2ndResultPopup = (id: string | number) => {
+  confirmAlert({
+    title: `${id}번 2차 심사 결과을 정말로 삭제하시겠습니까?`,
+    message: '삭제 후 복구가 불가능합니다.',
+    buttons: [
+      {
+        label: '삭제',
+        onClick: () => {
+          async function deleteJudgingResult() {
+            await deleteJudging2ndResultById(id);
+            location.reload();
+          }
+          deleteJudgingResult();
         },
       },
       {

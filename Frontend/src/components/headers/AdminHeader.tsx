@@ -63,7 +63,12 @@ export const AdminHeader = () => {
             </Link>
           </li>
           <li>
-            <Link to="/admin/judging_result/all">심사 결과</Link>
+            <Link to="/admin/judging_result/all">1차 심사 결과</Link>
+          </li>
+          <li>
+            <Link to="/admin/judging_2nd_result/all">
+              2차 심사 결과
+            </Link>
           </li>
           <li>
             <Link to="/admin/ad_email/all">광고 수신 이메일</Link>

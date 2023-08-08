@@ -19,7 +19,8 @@ from app.routers.v2 import (
     ad_email_router,
     history_router,
     popup_router,
-    supporting_startup_router
+    supporting_startup_router,
+    judging_2nd_result_router
 )
 
 router = APIRouter(
@@ -46,3 +47,4 @@ router.include_router(ad_email_router.router)
 router.include_router(history_router.router)
 router.include_router(popup_router.router)
 router.include_router(supporting_startup_router.router)
+router.include_router(judging_2nd_result_router.router)

@@ -91,6 +91,9 @@ import {
   AdminSupportingStartupAll,
   AdminSupportingStartupUpload,
   AdminSupportingStartupEdit,
+  AdminJudging2ndResultAll,
+  AdminJudging2ndResultUpload,
+  AdminJudging2thResultDetail,
 } from '@/pages';
 
 interface RouteConfig {
@@ -770,6 +773,30 @@ export const ROUTE_MAP: RouteMap = [
     AUTH: true,
   },
   {
+    PATH: '/admin/judging_2nd_result/all',
+    COMPONENT: AdminJudging2ndResultAll,
+    HEADER: AdminHeader,
+    WRAPPER: AdminWrapper,
+    ADMIN: true,
+    AUTH: true,
+  },
+  {
+    PATH: '/admin/judging_2nd_result/:event_id/upload',
+    COMPONENT: AdminJudging2ndResultUpload,
+    HEADER: AdminHeader,
+    WRAPPER: AdminWrapper,
+    ADMIN: true,
+    AUTH: true,
+  },
+  {
+    PATH: '/admin/judging_2nd_result/detail/:id',
+    COMPONENT: AdminJudging2thResultDetail,
+    HEADER: AdminHeader,
+    WRAPPER: AdminWrapper,
+    ADMIN: true,
+    AUTH: true,
+  },
+  {
     PATH: '/admin/ad_email',
     COMPONENT: AdminAdEmailAll,
     HEADER: AdminHeader,
@@ -884,16 +911,10 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/Test',
     COMPONENT: Test,
-    HEADER: () => {
-      return <></>;
-    },
-    FOOTER: () => {
-      return <></>;
-    },
-    WRAPPER: ({ children }) => {
-      return <>{children}</>;
-    },
-    AUTH: false,
+    HEADER: AdminHeader,
+    WRAPPER: AdminWrapper,
+    ADMIN: true,
+    AUTH: true,
   },
   {
     PATH: '*',

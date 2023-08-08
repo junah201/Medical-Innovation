@@ -115,6 +115,17 @@ const JUDGING_RESULT = Object.freeze({
     `/api/v2/judging_result/${id}/all`,
 });
 
+const JUDGING_2ND_RESULT = Object.freeze({
+  SUBMIT_JUDGING_RESULT: '/api/v2/judging_2nd_result/admin',
+  GET_JUDGING_RESULT: '/api/v2/judging_2nd_result/get',
+  GET_JUDGING_RESULT_BY_ID: (id: number | string) =>
+    `/api/v2/judging_2nd_result/${id}`,
+  GET_JUDGING_RESULTS_BY_EVENT_ID: (id: number | string) =>
+    `/api/v2/judging_2nd_result/${id}/all`,
+  DELETE_JUDGING_RESULT_BY_ID: (id: number | string) =>
+    `/api/v2/judging_2nd_result/${id}`,
+});
+
 const SPONSORING_COMPANY = Object.freeze({
   GET_SPONSORING_COMPANIES: '/api/v2/sponsoring_company/all',
   DELETE_SPONSORING_COMPANY_BY_ID: (id: number | string) =>
@@ -238,4 +249,5 @@ export const API_ROUTE = Object.freeze({
   POST_V2,
   PRIVATE_EVENT,
   AD_EMAIL,
+  JUDGING_2ND_RESULT,
 });
