@@ -11,7 +11,7 @@ router = APIRouter(
 )
 
 
-@router.post("/", status_code=status.HTTP_204_NO_CONTENT)
+@router.post("", status_code=status.HTTP_204_NO_CONTENT)
 async def create_mou(mou_create: schemas_v2.MouCreate, current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
     if not current_user.is_admin:
         raise HTTPException(

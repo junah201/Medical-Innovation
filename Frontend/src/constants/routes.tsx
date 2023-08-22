@@ -94,6 +94,7 @@ import {
   AdminJudging2ndResultAll,
   AdminJudging2ndResultUpload,
   AdminJudging2thResultDetail,
+  AdminMouUpload,
 } from '@/pages';
 
 interface RouteConfig {
@@ -566,7 +567,7 @@ export const ROUTE_MAP: RouteMap = [
   },
   {
     PATH: '/admin/mou/upload',
-    COMPONENT: AdminHistoryUpload,
+    COMPONENT: AdminMouUpload,
     HEADER: AdminHeader,
     WRAPPER: AdminWrapper,
     ADMIN: true,
