@@ -41,7 +41,7 @@ def get_url(start: int = 1):
 
 def new_post_checker() -> list[str]:
     response = requests.get(
-        url=f"{API_URL}/api/v1/post/{ARTICLE_BOARD_ID}/all?skip=0&limit=1",
+        url=f"{API_URL}/api/v2/post/{ARTICLE_BOARD_ID}/all?skip=0&limit=1",
         headers={
             "accept": "application/json",
             "Content-Type": "application/json"
@@ -49,9 +49,12 @@ def new_post_checker() -> list[str]:
     )
 
     last_uploaded_at = datetime.datetime.strptime(json.loads(
-        response.text)["posts"][0]['created_at'].split('T')[0], "%Y-%m-%d")
+        response.text)["items"][0]['created_at'].split('T')[0], "%Y-%m-%d")
     last_uploaded_at = last_uploaded_at.strftime("%Y.%m.%d.")
-    last_uploaded_title = json.loads(response.text)["posts"][0]['title']
+    last_uploaded_title = json.loads(response.text)["items"][0]['title']
+
+    print("last_uploaded_at", last_uploaded_at)
+    print("last_uploaded_title", last_uploaded_title)
 
     results = list()
 
@@ -65,53 +68,61 @@ def new_post_checker() -> list[str]:
     )
     access_token = json.loads(response.text)["access_token"]
 
-    for page in range(1, 1, 10):
-        response = requests.get(
-            url=get_url(page),
-            headers=HEADER
+    page = 1
+
+    response = requests.get(
+        url=get_url(page),
+        headers=HEADER
+    )
+    soup = BeautifulSoup(response.text, 'html.parser')
+    articles = soup.select('div.group_news > ul.list_news > li.bx')
+
+    new_articles = list()
+
+    for article in articles:
+        tmp = {}
+        tmp["newspaper"] = article.select_one(
+            "div.info_group > a.info.press").text
+        tmp['title'] = article.select_one("div.api_txt_lines.tit").text
+        tmp['url'] = article.select_one("a.news_tit").get('href')
+        tmp['date'] = article.select_one("div.info_group > span.info").text
+
+        if tmp['title'] == last_uploaded_title:
+            break
+
+        new_articles.append(tmp)
+
+        print(f"{tmp['newspaper']} {tmp['title']}")
+        print(tmp['title'] == last_uploaded_title)
+
+    for new_article in new_articles[::-1]:
+        m = MultipartEncoder(
+            fields={
+                "title": new_article["title"],
+                "board_id": f"{ARTICLE_BOARD_ID}",
+                "content": new_article['url'],
+            },
         )
-        soup = BeautifulSoup(response.text, 'html.parser')
-        articles = soup.select('div.group_news > ul.list_news > li.bx')
 
-        for article in articles:
-            tmp = {}
-            tmp["newspaper"] = article.select_one(
-                "div.info_group > a.info.press").text
-            tmp['title'] = article.select_one("div.api_txt_lines.tit").text
-            tmp['url'] = article.select_one("a.news_tit").get('href')
-            tmp['date'] = article.select_one("div.info_group > span.info").text
-
-            if tmp['title'] == last_uploaded_title:
-                return results
-
-            print(f"{tmp['newspaper']} {tmp['title']}")
-
-            m = MultipartEncoder(
-                fields={
-                    "title": tmp["title"],
-                    "board_id": f"{ARTICLE_BOARD_ID}",
-                    "content": tmp['url'],
-                },
-            )
-
-            res = requests.post(
-                f"{API_URL}/api/v1/post/create",
-                data=m,
-                headers={
-                    "accept": "application/json",
-                    "Content-Type": m.content_type,
-                    "Authorization": f"Bearer {access_token}"
-                }
-            )
-            print(res.status_code)
-            print(res.text)
-            results.append(f"{tmp['newspaper']} - {tmp['title']}")
+        res = requests.post(
+            f"{API_URL}/api/v1/post/create",
+            data=m,
+            headers={
+                "accept": "application/json",
+                "Content-Type": m.content_type,
+                "Authorization": f"Bearer {access_token}"
+            }
+        )
+        print(res.status_code)
+        print(res.text)
+        results.append(f"{new_article['newspaper']} - {new_article['title']}")
 
     return results
 
 
 def lambda_handler(event, context):
     article = new_post_checker()
+    print(article)
     if article:
         for address in RECEIVER_ADDRESS:
             send_email(
