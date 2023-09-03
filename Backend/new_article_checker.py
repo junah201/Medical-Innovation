@@ -28,10 +28,10 @@ HEADER: dict = {
 }
 
 RECEIVER_ADDRESS = [
-    "medicalinnovation.or@gmail.com"
-    "turtree@gmail.com",
+    # "medicalinnovation.or@gmail.com"
+    # "turtree@gmail.com",
     "junah.dev@gmail.com",
-    "support@medicalinnovation.or.kr",
+    # "support@medicalinnovation.or.kr",
 ]
 
 
@@ -65,7 +65,7 @@ def new_post_checker() -> list[str]:
     )
     access_token = json.loads(response.text)["access_token"]
 
-    for page in range(1, 100, 10):
+    for page in range(1, 1, 10):
         response = requests.get(
             url=get_url(page),
             headers=HEADER
