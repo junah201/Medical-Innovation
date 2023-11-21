@@ -19,8 +19,8 @@ export const Popups = () => {
 
   return (
     <>
-      {popups?.map((popup) => {
-        return <Popup key={popup.id} {...popup} />;
+      {popups?.map((popup, idx) => {
+        return <Popup key={popup.id} idx={idx} {...popup} />;
       })}
     </>
   );

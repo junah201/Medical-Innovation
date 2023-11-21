@@ -11,12 +11,14 @@ interface PopupProps {
   title: string;
   image_filename: string;
   link: string;
+  idx: number;
 }
 
 export const Popup = ({
   title,
   image_filename,
   link,
+  idx,
 }: PopupProps) => {
   const [show, setShow] = useState(false);
 
@@ -32,20 +34,20 @@ export const Popup = ({
 
   return (
     <>
-      <StyledPopupView isDesktop={isDesktop}>
+      <StyledPopupView isDesktop={isDesktop} index={idx}>
         <StyledPopupTitle isDesktop={isDesktop}>
           {title}
         </StyledPopupTitle>
-        <br />
-        <StyledPopupContent>
+        <StyledPopupContent isDesktop={isDesktop}>
           <a href={link} target="_blank" rel="noopener noreferrer">
             <img
               src={`${VITE_CDN_URL}/upload/${image_filename}`}
               alt={image_filename}
-            ></img>
+            />
           </a>
         </StyledPopupContent>
         <StyledCloseButton
+          isDesktop={isDesktop}
           onClick={() => {
             setShow(false);
             setCookie('closePopup', '1', {
@@ -62,32 +64,38 @@ export const Popup = ({
   );
 };
 
-const StyledPopupView = styled.div<{ isDesktop: boolean }>`
+const StyledPopupView = styled.div<{
+  isDesktop: boolean;
+  index: number;
+}>`
   position: fixed;
   top: ${(props) => (props.isDesktop ? '120px' : '20%')};
-  right: ${(props) => (props.isDesktop ? '100px' : '5%')};
-  width: ${(props) => (props.isDesktop ? '600px' : '90%')};
+  right: ${(props) =>
+    props.isDesktop
+      ? `${100 + 50 * props.index}px`
+      : `${5 + 10 * props.index}%`};
+  width: ${(props) => (props.isDesktop ? '600px' : '80%')};
   background-color: rgba(255, 255, 255);
   z-index: 1000;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
+  padding: 10px;
   border-radius: 3px;
   border: 1px solid black;
 `;
 
 const StyledPopupTitle = styled.h1<{ isDesktop: boolean }>`
-  font-size: ${(props) => (props.isDesktop ? '30px' : '25px')};
+  font-size: ${(props) => (props.isDesktop ? '30px' : '18px')};
   text-align: center;
   word-break: keep-all;
+  margin-bottom: 5px;
 `;
 
-const StyledPopupContent = styled.div`
+const StyledPopupContent = styled.div<{ isDesktop: boolean }>`
   margin: 0;
   padding: 0%;
-
   overflow: hidden;
 
   & img {
@@ -97,12 +105,13 @@ const StyledPopupContent = styled.div`
   }
 `;
 
-const StyledCloseButton = styled.button`
+const StyledCloseButton = styled.button<{ isDesktop: boolean }>`
   border: none;
   width: 100%;
-  padding: 10px;
+  padding: ${(props) => (props.isDesktop ? '8px' : '4px')};
   background-color: #dedede;
   color: black;
-  font-size: 20px;
+  font-size: ${(props) => (props.isDesktop ? '18px' : '16px')};
   font-weight: bold;
+  cursor: pointer;
 `;
