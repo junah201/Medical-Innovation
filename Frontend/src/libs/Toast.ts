@@ -6,7 +6,7 @@ export const Toast = (
   type: 'success' | 'error' | 'warning' | 'info' | 'default'
 ) => {
   toast(message, {
-    position: 'top-right',
+    position: 'bottom-center',
     autoClose: 10000,
     hideProgressBar: false,
     closeOnClick: true,
