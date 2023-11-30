@@ -7,7 +7,7 @@ export const Toast = (
 ) => {
   toast(message, {
     position: 'top-right',
-    autoClose: 2000,
+    autoClose: 10000,
     hideProgressBar: false,
     closeOnClick: true,
     draggable: true,
