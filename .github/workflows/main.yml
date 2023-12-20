@@ -2,64 +2,56 @@ name: Backend
 
 on:
   push:
-    branches:
-      - main
-    path:
-      - Backend
+    branches: ["main"]
+    paths:
+      - "Backend/**"
+      - ".github/workflows/**"
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Connect repository
-        uses: cloudtype-github-actions/connect@v1
+      - uses: actions/checkout@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
         with:
-          token: ${{ secrets.CLOUDTYPE_TOKEN }}
-          ghtoken: ${{ secrets.GHP_TOKEN }}
-      - name: Deploy
-        uses: cloudtype-github-actions/deploy@v1
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build & Push
+        uses: docker/build-push-action@v3
         with:
-          token: ${{ secrets.CLOUDTYPE_TOKEN }}
-          project: medical-innovation
-          stage: master
-          yaml: |-
-            name: medical-innovation
-            app: python@3.9
-            options:
-              env:
-                - name: AWS__ACCESS_KEY_ID
-                  value: ${{ secrets.AWS__ACCESS_KEY_ID }}
-                - name: AWS__S3_BUCKET_NAME
-                  value: ${{ secrets.AWS__S3_BUCKET_NAME }}
-                - name: AWS__SECRET_ACCESS_KEY
-                  value: ${{ secrets.AWS__SECRET_ACCESS_KEY }}
-                - name: DATABASE_URL
-                  value: ${{ secrets.DATABASE_URL }}
-                - name: JWT_ALGORITHM
-                  value: ${{ secrets.JWT_ALGORITHM }}
-                - name: JWT_PRIVATE_KEY
-                  value: ${{ secrets.JWT_PRIVATE_KEY }}
-                - name: JWT_PUBLIC_KEY
-                  value: ${{ secrets.JWT_PUBLIC_KEY }}
-                - name: JWT_SECRET_KEY
-                  value: ${{ secrets.JWT_SECRET_KEY }}
-                - name: MAIL_SENDER
-                  value: ${{ secrets.MAIL_SENDER }}
-                - name: MAIL_PASSWARD
-                  value: ${{ secrets.MAIL_PASSWARD }}
-              git:
-                ref: ${{ github.ref }}
-                url: git@github.com:${{ github.repository }}.git
-              ports: 8000
-              nodeversion: 18
-              
-              intstall: pip install -r requirements.txt
-              build: pip install -r requiremants.txt
-              start: uvicorn app.main:app --host=0.0.0.0 --port=8000
-            context:
-              git:
-                url: git@github.com:${{ github.repository }}.git
-                ref: ${{ github.ref }}
-                path: /Backend
+          context: ./Backend
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_PROJECT_NAME }}:latest
+
+  deploy:
+    needs: build
+    runs-on: [self-hosted]
+    steps:
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Prev Container Stop
+        run: |
+          docker stop ${{ secrets.DOCKERHUB_PROJECT_NAME }} && docker rm ${{ secrets.DOCKERHUB_PROJECT_NAME }} && docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_PROJECT_NAME }}:latest
+
+      - name: Container Run
+        run: |
+          docker run -d --name ${{ secrets.DOCKERHUB_PROJECT_NAME }} -p 443:8000 \
+          -v /:/host \
+          -e AWS__ACCESS_KEY_ID=${{ secrets.AWS__ACCESS_KEY_ID }} \
+          -e AWS__S3_BUCKET_NAME=${{ secrets.AWS__S3_BUCKET_NAME }} \
+          -e AWS__SECRET_ACCESS_KEY=${{ secrets.AWS__SECRET_ACCESS_KEY }} \
+          -e DATABASE_URL=${{ secrets.DATABASE_URL }} \
+          -e JWT_ALGORITHM=${{ secrets.JWT_ALGORITHM }} \
+          -e JWT_PRIVATE_KEY=${{ secrets.JWT_PRIVATE_KEY }} \
+          -e JWT_PUBLIC_KEY=${{ secrets.JWT_PUBLIC_KEY }} \
+          -e JWT_SECRET_KEY=${{ secrets.JWT_SECRET_KEY }} \
+          -e MAIL_SENDER=${{ secrets.MAIL_SENDER }} \
+          -e MAIL_PASSWARD=${{ secrets.MAIL_PASSWARD }} \
+          --restart always ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_PROJECT_NAME }}:latest
