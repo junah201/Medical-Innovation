@@ -46,7 +46,7 @@ export const MainLeftGrid = () => {
           되어 주십시오.
         </p>
         <Link to={ROUTE.SUPPORT.SPONSORSHIP}>후원하기</Link>
-        <Link to={ROUTE.SUPPORT.SPONSOR}>후원기업</Link>
+        <Link to={ROUTE.SUPPORT.SPONSORS}>후원기업</Link>
       </StyledGridItem>
       <StyledGridBottomItem>
         <div>
