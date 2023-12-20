@@ -82,9 +82,11 @@ export const Sponsors = () => {
         <h1>후원기업 리스트</h1>
         <StyledSponsorContainer>
           {sponsorshipStatus &&
-            sponsorshipStatus.items.map((item) => {
-              return <SponsorItem item={item} key={item.id} />;
-            })}
+            sponsorshipStatus.items
+              .sort((a, b) => b.year - a.year)
+              .map((item) => {
+                return <SponsorItem item={item} key={item.id} />;
+              })}
         </StyledSponsorContainer>
       </div>
     </>
