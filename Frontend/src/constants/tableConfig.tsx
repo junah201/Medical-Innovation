@@ -65,7 +65,7 @@ const JUDGING_1ST_PARTICIPANT = Object.freeze({
     '1차 심사 여부',
     '1차 심사',
   ],
-  size: 40,
+  size: 15,
   getDatas: async (
     eventId: number | string,
     page: number,
@@ -109,7 +109,7 @@ const JUDGING_2ND_PARTICIPANT = Object.freeze({
     '2차 심사 여부',
     '2차 심사',
   ],
-  size: 40,
+  size: 15,
   getDatas: async (
     eventId: number | string,
     page: number,
@@ -154,7 +154,7 @@ const USER = Object.freeze({
     '계정 생성일',
     '심사 권한 수정',
   ],
-  size: 40,
+  size: 20,
   getDatas: async (
     eventId: number | string,
     page: number,
@@ -189,11 +189,10 @@ const POST = Object.freeze({
     '제목',
     '작성자',
     '생성일',
-    '수정일',
     '수정',
     '삭제',
   ],
-  size: 40,
+  size: 20,
   getDatas: async (
     id: number | string,
     page: number,
@@ -209,7 +208,6 @@ const POST = Object.freeze({
         <td>{item.title}</td>
         <td>{item.author_name}</td>
         <td>{item.created_at.replace('T', ' ')}</td>
-        <td>{item.updated_at.replace('T', ' ')}</td>
         <td>
           <Link to={`/admin/post/edit/${item.id}`}>수정</Link>
         </td>
@@ -526,7 +524,7 @@ const PUBLIC_EVENT_PARTICIPANT = Object.freeze({
     '수정',
     '삭제',
   ],
-  size: 40,
+  size: 20,
   getDatas: async (
     id: number | string,
     page: number,
@@ -573,7 +571,7 @@ const PRIVATE_EVENT = Object.freeze({
     '참가 신청 마감일',
     '수정',
   ],
-  size: 40,
+  size: 20,
   getDatas: async (
     id: number | string,
     page: number,
@@ -619,7 +617,7 @@ const PRIVATE_EVENT_PARTICIPANT = Object.freeze({
     '직책',
     '수정',
   ],
-  size: 40,
+  size: 20,
   getDatas: async (
     id: number | string,
     page: number,
@@ -657,7 +655,7 @@ const USER_PRIVATE_EVENT_PARTICIPANT = Object.freeze({
     '수정일',
     '수정',
   ],
-  size: 40,
+  size: 20,
   getDatas: async (
     id: number | string,
     page: number,
@@ -696,7 +694,7 @@ const JUDGING_EVENT = Object.freeze({
     '2차 심사 종료일',
     '수정',
   ],
-  size: 40,
+  size: 30,
   getDatas: async (
     id: number | string,
     page: number,
@@ -748,7 +746,7 @@ const JUDGING_EVENT_PARTICIPANT = Object.freeze({
     '심사 단계 수정',
     '상세정보',
   ],
-  size: 40,
+  size: 20,
   getDatas: async (
     id: number | string,
     page: number,
@@ -794,7 +792,7 @@ const USER_JUDGING_EVENT_PARTICIPANT = Object.freeze({
     '수정일',
     '수정',
   ],
-  size: 40,
+  size: 20,
   getDatas: async (
     id: number | string,
     page: number,
@@ -830,7 +828,7 @@ const JUDGING_RESULT = Object.freeze({
     '수정일',
     '상세정보',
   ],
-  size: 40,
+  size: 15,
   getDatas: async (
     id: number | string,
     page: number,
@@ -868,7 +866,7 @@ const JUDGING_2ND_RESULT = Object.freeze({
     '상세정보',
     '삭제',
   ],
-  size: 40,
+  size: 15,
   getDatas: async (
     id: number | string,
     page: number,
@@ -913,7 +911,7 @@ const AD_EMAIL = Object.freeze({
     '기타 정보',
     '삭제',
   ],
-  size: 40,
+  size: 30,
   getDatas: async (
     id: number | string,
     page: number,
@@ -945,7 +943,7 @@ const AD_EMAIL = Object.freeze({
 
 const HISTORY = Object.freeze({
   headers: ['번호', '제목', '생성일', '수정', '삭제'],
-  size: 40,
+  size: 20,
   getDatas: async (
     id: number | string,
     page: number,
