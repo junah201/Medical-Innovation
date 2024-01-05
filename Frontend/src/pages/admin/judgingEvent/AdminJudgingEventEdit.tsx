@@ -26,6 +26,7 @@ export const AdminJudgingEventEdit = () => {
     handleSubmit,
     formState: { errors, isSubmitting },
     setValue,
+    watch,
     control,
   } = useForm<RegisterField>({
     mode: 'onChange',
@@ -125,9 +126,9 @@ export const AdminJudgingEventEdit = () => {
         />
         <HtmlInput
           title="행사 설명"
+          defaultData={watch()[REGISTER_TYPE.DESCRIPTION]}
           onChange={(e) => setValue(REGISTER_TYPE.DESCRIPTION, e)}
           errorMessage={errors[REGISTER_TYPE.DESCRIPTION]?.message}
-          defaultData="<p>행사 설명을 입력해주세요.</p>"
         />
         <ReactHookInput
           id={REGISTER_TYPE.JOIN_START_DATE}
