@@ -35,11 +35,11 @@ def create_judging_event(judging_event_create: schemas_v2.JudgingEventCreate, cu
     db.commit()
 
 
-@router.get("/all", response_model=schemas_v2.JudgingEventList)
+@router.get("/all", response_model=schemas_v2.LimitedJudgingEventList)
 def get_all_judging_events(skip: int = 0, limit: int = 40, db: Session = Depends(get_db)):
     db_judging_events = db.query(models.JudgingEvent).order_by(
         models.JudgingEvent.id.desc())
-    return schemas_v2.JudgingEventList(total=db_judging_events.count(), items=db_judging_events.offset(skip).limit(limit).all())
+    return schemas_v2.LimitedJudgingEventList(total=db_judging_events.count(), items=db_judging_events.offset(skip).limit(limit).all())
 
 
 @router.get("/{judging_event_id}", response_model=schemas_v2.JudgingEvent)

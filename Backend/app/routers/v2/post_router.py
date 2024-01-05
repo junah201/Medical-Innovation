@@ -32,7 +32,7 @@ def create_post(post_create: schemas_v2.PostCreate, current_user: models.User = 
     db.commit()
 
 
-@router.get("/all", response_model=schemas_v2.PostList)
+@router.get("/all", response_model=schemas_v2.LimitedPostList)
 def get_all_posts(skip: int = 0, limit: int = 40, db: Session = Depends(get_db)):
     db_posts = db.query(models.Post).order_by(models.Post.id.desc())
     total = db_posts.count()
@@ -41,7 +41,7 @@ def get_all_posts(skip: int = 0, limit: int = 40, db: Session = Depends(get_db))
     for post in post_list:
         post.files = json.loads(post.files)
         new_post_list.append(post)
-    return schemas_v2.PostList(total=total, items=new_post_list)
+    return schemas_v2.LimitedPostList(total=total, items=new_post_list)
 
 
 @router.get("/{board_id}/all", response_model=schemas_v2.PostList)

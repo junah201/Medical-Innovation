@@ -161,6 +161,23 @@ class PostList(BaseModel):
     items: list[Post]
 
 
+class LimitedPost(BaseModel):
+    id: PositiveInt
+    title: str
+    board_id: int
+    board: Board
+    author_name: str
+    created_at: datetime
+
+    class Config:
+        orm_mode = True
+
+
+class LimitedPostList(BaseModel):
+    total: int
+    items: list[LimitedPost]
+
+
 class BannerCreate(BaseModel):
     name: str
     link: str
@@ -361,6 +378,24 @@ class PublicEventList(BaseModel):
     items: list[PublicEvent]
 
 
+class LimitedPublicEvent(BaseModel):
+    id: PositiveInt
+    name: str
+    thumbnail_filename: Optional[str] = None
+    start_date: date
+    end_date: date
+    join_start_date: date
+    join_end_date: date
+
+    class Config:
+        orm_mode = True
+
+
+class LimitedPublicEventList(BaseModel):
+    total: int
+    items: list[LimitedPublicEvent]
+
+
 class ParticipantCreate(BaseModel):
     name: str
     english_name: Optional[str] = None
@@ -435,6 +470,26 @@ class Participant(BaseModel):
 class ParticipantList(BaseModel):
     total: int
     items: list[Participant]
+
+
+class LimitedParticipant(BaseModel):
+    id: PositiveInt
+    public_event_id: PositiveInt
+    name: str
+    gender: Optional[str] = None
+    birth: Optional[date] = None
+    phone: str
+    email: EmailStr
+    organization_name: str
+    job_position: str
+
+    class Config:
+        orm_mode = True
+
+
+class LimitedParticipantList(BaseModel):
+    total: int
+    items: list[LimitedParticipant]
 
 
 class AdEmailCreate(BaseModel):
@@ -658,6 +713,27 @@ class JudgingEvent(BaseModel):
 class JudgingEventList(BaseModel):
     total: int
     items: list[JudgingEvent]
+
+
+class LimitedjudgingEvent(BaseModel):
+    id: PositiveInt
+    name: str
+    join_start_date: date
+    join_end_date: date
+    judging_1st_start_date: date
+    judging_1st_end_date: date
+    judging_2nd_start_date: date
+    judging_2nd_end_date: date
+    description: str
+    thumbnail_filename: Optional[str]
+
+    class Config:
+        orm_mode = True
+
+
+class LimitedJudgingEventList(BaseModel):
+    total: int
+    items: list[LimitedjudgingEvent]
 
 
 class JudgingParticipantCreate(BaseModel):

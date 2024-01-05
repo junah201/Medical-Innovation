@@ -24,13 +24,13 @@ def create_participant(public_event_id: int, participant_create: schemas_v2.Part
     )
 
 
-@router.get("/{public_event_id}/all", response_model=schemas_v2.ParticipantList)
+@router.get("/{public_event_id}/all", response_model=schemas_v2.LimitedParticipantList)
 def get_all_participant_by_event_id(public_event_id: int, skip: int = 0, limit: int = 40, db: Session = Depends(get_db)):
     db_participants = db.query(models.Participant)\
         .filter(models.Participant.public_event_id == public_event_id)\
         .order_by(models.Participant.id.desc())
 
-    return schemas_v2.ParticipantList(
+    return schemas_v2.LimitedParticipantList(
         total=db_participants.count(),
         items=db_participants.offset(skip).limit(limit).all()
     )

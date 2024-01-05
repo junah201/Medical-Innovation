@@ -35,13 +35,13 @@ def create_public_event(public_event_create: schemas_v2.PublicEventCreate, curre
     db.commit()
 
 
-@router.get("/all", response_model=schemas_v2.PublicEventList)
+@router.get("/all", response_model=schemas_v2.LimitedJudgingEventList)
 def get_all_public_events(skip: int = 0, limit: int = 40, db: Session = Depends(get_db)):
     db_public_events = db.query(models.PublicEvent).order_by(
         models.PublicEvent.id.desc()
     )
 
-    return schemas_v2.PublicEventList(
+    return schemas_v2.LimitedJudgingEventList(
         total=db_public_events.count(),
         items=db_public_events.offset(skip).limit(limit).all()
     )
