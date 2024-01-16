@@ -5,10 +5,9 @@ from starlette import status
 from app.database import crud, schemas_v2, models
 from app.database.database import get_db
 from app.utils.oauth2 import get_current_user
-import io
 import openpyxl
-import csv
 from typing import List, Optional
+import urllib
 
 router = APIRouter(
     prefix="/public_participant",
@@ -40,14 +39,19 @@ def get_all_participant_by_event_id(public_event_id: int, skip: int = 0, limit: 
 def get_all_participant_excel_by_event_id(public_event_id: int, db: Session = Depends(get_db)):
     db_participants: List[models.Participant] = db.query(models.Participant).filter(
         models.Participant.public_event_id == public_event_id).all()
-    file_content = ",".join(["id", "이름", "영문 이름", "성별", "생년월일", "연락처", "이메일", "참가자 소속 분류", "참가자 소속기관명", "참가자 소속기관명 (영문)", "참가자 직위", "참가자 소재지",
-                             "참가자 최종 학력", "참가자 참여유형", "참가자 참여동기", "참가자 유형", "참가자 관심 질환", "참가자 관심 분야", "참가자 관심 분야 상세", "생성 시점", "마지막 수정 시점"])
-    file_content += "\n"
+
+    workbook = openpyxl.Workbook()
+    worksheet = workbook.active
+
+    worksheet.append(
+        ["id", "이름", "영문 이름", "성별", "생년월일", "연락처", "이메일", "참가자 소속 분류", "참가자 소속기관명", "참가자 소속기관명 (영문)", "참가자 직위", "참가자 소재지",
+         "참가자 최종 학력", "참가자 참여유형", "참가자 참여동기", "참가자 유형", "참가자 관심 질환", "참가자 관심 분야", "참가자 관심 분야 상세", "생성 시점", "마지막 수정 시점"]
+    )
 
     for db_participant in db_participants:
-        file_content += ",".join(
+        worksheet.append(
             [
-                str(item) for item in [
+                str(item) if item is not None else "" for item in [
                     db_participant.id,
                     db_participant.name,
                     db_participant.english_name,
@@ -73,17 +77,19 @@ def get_all_participant_excel_by_event_id(public_event_id: int, db: Session = De
             ]
         )
 
-        file_content += "\n"
+    file_name = "참가자목록.xlsx"
+    encoded_file_name = urllib.parse.quote(file_name.encode("utf-8"))
 
-    workbook = openpyxl.Workbook()
-    worksheet = workbook.active
-    reader = csv.reader(io.StringIO(file_content))
-    for row in reader:
-        worksheet.append(row)
+    workbook.save(file_name)
 
-    workbook.save("참가자목록.xlsx")
-
-    return FileResponse("참가자목록.xlsx")
+    return FileResponse(
+        file_name,
+        headers={
+            'Content-Disposition': f'attachment; filename*=UTF-8\'\'{encoded_file_name}'
+        },
+        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        filename=file_name
+    )
 
 
 @router.get("/{participant_id}", response_model=schemas_v2.Participant)
