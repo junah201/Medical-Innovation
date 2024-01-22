@@ -57,6 +57,24 @@ export const Accelerating = () => {
         <h1>FMI's Biohealth Innovation Competition</h1>
         <SyledBioVentureCompetitionContainer>
           <WinnerItem
+            year="2023"
+            awardType="최우수상"
+            winnerName="김기웅 대표"
+            winnerDetail="㈜플랜비포유"
+          />
+          <WinnerItem
+            year="2023"
+            awardType="우수상"
+            winnerName="박갑주 대표"
+            winnerDetail="㈜레드진"
+          />
+          <WinnerItem
+            year="2023"
+            awardType="장려상"
+            winnerName="김세나 대표"
+            winnerDetail="㈜메디아크"
+          />
+          <WinnerItem
             year="2022"
             awardType="최우수상"
             winnerName="김희승 대표이사"
