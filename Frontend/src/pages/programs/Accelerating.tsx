@@ -59,7 +59,13 @@ export const Accelerating = () => {
           <WinnerItem
             year="2023"
             awardType="최우수상"
-            winnerName="김기웅 대표"
+            winnerName={
+              <>
+                김기웅 대표
+                <br />
+                <small>정우진 팀장 대리 수상</small>
+              </>
+            }
             winnerDetail="㈜플랜비포유"
           />
           <WinnerItem
@@ -160,9 +166,15 @@ const StyledWinnerItem = styled.div`
   }
 
   & h6 {
+    text-align: center;
     margin: 5px 0;
     font-size: 18px;
     font-weight: 600;
+
+    & small {
+      font-size: 14px;
+      font-weight: 400;
+    }
   }
 
   & p {
@@ -181,7 +193,7 @@ const StyledWinnerItem = styled.div`
 interface WinnerItemProps {
   year: string;
   awardType: string;
-  winnerName: string;
+  winnerName: string | JSX.Element;
   winnerDetail: string;
 }
 
@@ -196,7 +208,7 @@ const WinnerItem = ({
       <div>
         <img
           src={`/images/BioVentureCompetition/${year} ${awardType}.jpg`}
-          alt={winnerName}
+          alt={`${year} ${awardType}`}
         />
       </div>
       <h6>{winnerName}</h6>
