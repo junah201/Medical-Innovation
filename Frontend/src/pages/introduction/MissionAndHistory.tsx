@@ -68,6 +68,16 @@ export const MissionAndHistory = () => {
               '한국신약개발연구조합 이사',
             ]}
           />
+          <Portrait
+            src="upload/이승규.jpg"
+            name="제4대 이승규"
+            description={[
+              '한국바이오협회 상임부회장',
+              '국가신약개발재단 투자심의위원/ 이사',
+              '국회산하 한국과학기술정책연구회 이사',
+              '한국미생물생물공학회 부회장',
+            ]}
+          />
         </div>
       </StyledChairmanWrapper>
       <StyledMissionWrapper>

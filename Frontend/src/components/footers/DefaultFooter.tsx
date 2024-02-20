@@ -56,7 +56,7 @@ export const DefaultFooter = () => {
       <StyledBottomFooter>
         <div>
           <strong>재단법인 미래의학연구재단</strong>
-          <p>이사장 : 전승호</p>
+          <p>이사장 : 이승규</p>
           <p>주소 : (03127) 서울특별시 종로구 율곡로 204, 201호</p>
           <p>
             Copyright(c) 2016 재단법인 미래의학연구재단. All rights

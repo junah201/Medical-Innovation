@@ -8,7 +8,7 @@ export const ChairmanMessage = () => {
     <>
       <IntroductionSubNav select="이사장 인사말" />
       <h1>
-        <span>전승호</span> 이사장
+        <span>이승규</span> 이사장
       </h1>
       <Message>
         <StyledChairmanProfile>
@@ -33,8 +33,8 @@ export const ChairmanMessage = () => {
           </div>
 
           <img
-            src="/images/전승호.png"
-            alt="전승호"
+            src="/images/이승규.jpg"
+            alt="이승규"
             height="300px"
             width="260px"
           />
