@@ -110,7 +110,11 @@ def get_all_users_excel(db: Session = Depends(get_db)):
         ])
 
     workbook.save("유저목록.xlsx")
-    return FileResponse("유저목록.xlsx")
+    return FileResponse(
+        "유저목록.xlsx",
+        media_type='application/octet-stream',
+        filename=f"유저목록.xlsx"
+    )
 
 
 @router.get("/{user_id}", response_model=schemas_v2.User)

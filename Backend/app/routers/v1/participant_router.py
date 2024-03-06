@@ -79,7 +79,11 @@ def get_all_participant_excel_by_event_id(public_event_id: int, db: Session = De
 
     workbook.save("참가자목록.xlsx")
 
-    return FileResponse("참가자목록.xlsx")
+    return FileResponse(
+        "참가자목록.xlsx",
+        media_type='application/octet-stream',
+        filename=f"참가자목록.xlsx"
+    )
 
 
 @router.get("/get/{participant_id}", response_model=schemas.PublicEvent)

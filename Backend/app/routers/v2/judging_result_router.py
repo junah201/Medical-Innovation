@@ -219,4 +219,8 @@ def get_all_participant_excel_by_event_id(judging_event_id: int, db: Session = D
 
     workbook.save("results.xlsx")
 
-    return FileResponse("results.xlsx")
+    return FileResponse(
+        "results.xlsx",
+        media_type='application/octet-stream',
+        filename=f"results.xlsx"
+    )

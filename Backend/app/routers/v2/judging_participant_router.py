@@ -163,7 +163,12 @@ def get_all_participant_excel_by_event_id(judging_event_id: int, db: Session = D
         )
 
     workbook.save("참가자목록.xlsx")
-    return FileResponse("참가자목록.xlsx")
+
+    return FileResponse(
+        "참가자목록.xlsx",
+        media_type='application/octet-stream',
+        filename=f"참가자목록.xlsx"
+    )
 
 
 @router.get("/{judging_event_id}/nth_pass/{nth_pass}/all", response_model=schemas_v2.JudgingParticipantList)

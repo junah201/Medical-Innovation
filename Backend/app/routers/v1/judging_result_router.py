@@ -65,8 +65,6 @@ def create_judging_result(judging_result_create: schemas.JudgingResultCreate, db
     total_score += judging_result_create.business_score8
     total_score += judging_result_create.other_score1
 
-
-
     if db_judging_result:
         db_judging_result.user_id = current_user.id
         db_judging_result.judging_event_id = judging_result_create.judging_event_id
@@ -117,13 +115,12 @@ def create_judging_result(judging_result_create: schemas.JudgingResultCreate, db
             business_score6=judging_result_create.business_score6,
             business_score7=judging_result_create.business_score7,
             business_score8=judging_result_create.business_score8,
-            other_score1 = judging_result_create.other_score1,
+            other_score1=judging_result_create.other_score1,
             other_comment=judging_result_create.other_comment,
-            total_score = total_score
+            total_score=total_score
         )
         db.add(db_judging_result)
         db.commit()
-
 
 
 @router.get("/{judging_event_id}/all", response_model=schemas.JudgingResultList)
@@ -177,24 +174,25 @@ def get_judging_participant(judging_event_id: int, participant_id: int, nth: int
 
     return db_judging_result
 
+
 @router.get("/{judging_event_id}/all/excel")
 def get_all_participant_excel_by_event_id(judging_event_id: int, db: Session = Depends(get_db)):
     db_judging_results: List[models.JudgingResult] = db.query(models.JudgingResult).filter(
         models.JudgingResult.judging_event_id == judging_event_id).all()
-    
+
     file_content = ",".join(
         [
             "N차 심사", "",
-            "평가자 ID", "평가자 이름", "평가자 이메일","",
+            "평가자 ID", "평가자 이름", "평가자 이메일", "",
             "심사 대상자 ID", "심사 대상자 이름", "심사 대상자 이메일", "",
             "총점", "",
             "우월성", "혁신성", "차별성", "기술 경쟁강도", "파급성", "혁신성", "",
-            "시장진입 가능성", "시장 경쟁강도", "시장 경쟁의 변화", "시장의 성장전망", "", 
-            "예상 시장 점유율", "사업화 준비기간", "사업화 소요자금", "생산 용이성", "매출 성장추세", "수익성", "파생적 매출", "신제품 출현 가능성","",
-            "기타 고려 사항" , "종합의견"
+            "시장진입 가능성", "시장 경쟁강도", "시장 경쟁의 변화", "시장의 성장전망", "",
+            "예상 시장 점유율", "사업화 준비기간", "사업화 소요자금", "생산 용이성", "매출 성장추세", "수익성", "파생적 매출", "신제품 출현 가능성", "",
+            "기타 고려 사항", "종합의견"
         ]
     )
-    
+
     file_content += "\n"
 
     for db_judgint_result in db_judging_results:
@@ -223,4 +221,8 @@ def get_all_participant_excel_by_event_id(judging_event_id: int, db: Session = D
 
     workbook.save("results.xlsx")
 
-    return FileResponse("results.xlsx")
+    return FileResponse(
+        "results.xlsx",
+        media_type='application/octet-stream',
+        filename=f"results.xlsx"
+    )

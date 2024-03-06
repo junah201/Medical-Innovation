@@ -83,12 +83,9 @@ def get_all_participant_excel_by_event_id(public_event_id: int, db: Session = De
     workbook.save(file_name)
 
     return FileResponse(
-        file_name,
-        headers={
-            'Content-Disposition': f'attachment; filename*=UTF-8\'\'{encoded_file_name}'
-        },
-        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        filename=file_name
+        "참가자목록.xlsx",
+        media_type='application/octet-stream',
+        filename=f"참가자목록.xlsx"
     )
 
 
