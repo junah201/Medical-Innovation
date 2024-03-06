@@ -1,7 +1,9 @@
 from datetime import timedelta, datetime
 
 from fastapi import APIRouter, HTTPException, Depends
+from fastapi.responses import FileResponse
 from fastapi.security import OAuth2PasswordRequestForm
+import openpyxl
 from sqlalchemy.orm import Session
 from starlette import status
 
@@ -77,6 +79,38 @@ def get_all_users(skip: int, limit: int, db: Session = Depends(get_db), current_
         total=total,
         items=user_list
     )
+
+
+@router.get("/all/excel")
+def get_all_users_excel(db: Session = Depends(get_db)):
+    users = db.query(models.User).all()
+
+    workbook = openpyxl.Workbook()
+    sheet = workbook.active
+
+    sheet.append([
+        "ID",
+        "이름",
+        "전화번호",
+        "이메일",
+        "생년월일",
+        "이메일 수신 여부",
+    ])
+
+    for user in users:
+        sheet.append([
+            str(v) for v in [
+                user.id,
+                user.name,
+                user.phone,
+                user.email,
+                user.birth,
+                user.email_enable,
+            ]
+        ])
+
+    workbook.save("유저목록.xlsx")
+    return FileResponse("유저목록.xlsx")
 
 
 @router.get("/{user_id}", response_model=schemas_v2.User)
