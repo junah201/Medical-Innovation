@@ -69,12 +69,12 @@ const StyledPopupView = styled.div<{
   index: number;
 }>`
   position: fixed;
-  top: ${(props) => (props.isDesktop ? '120px' : '20%')};
+  top: ${(props) => (props.isDesktop ? '100px' : '20%')};
   right: ${(props) =>
     props.isDesktop
       ? `${100 + 50 * props.index}px`
       : `${5 + 10 * props.index}%`};
-  width: ${(props) => (props.isDesktop ? '600px' : '80%')};
+  width: ${(props) => (props.isDesktop ? '500px' : '80%')};
   background-color: rgba(255, 255, 255);
   z-index: 1000;
   display: flex;
