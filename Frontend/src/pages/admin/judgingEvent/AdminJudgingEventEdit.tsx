@@ -114,7 +114,7 @@ export const AdminJudgingEventEdit = () => {
   const onValid = (userInput: RegisterField) => mutate(userInput);
   return (
     <Wrapper>
-      <h1>심사 행사 생성</h1>
+      <h1>심사 행사 수정</h1>
       <Form onSubmit={handleSubmit(onValid)}>
         <ReactHookInput
           id={REGISTER_TYPE.NAME}
