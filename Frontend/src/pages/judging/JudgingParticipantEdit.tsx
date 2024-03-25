@@ -281,7 +281,7 @@ export const JudgingParticipantEdit = () => {
         />
         <ReactHookInput
           id={REGISTER_TYPE.PARTICIPANT_MOTIVATION}
-          title="소재지"
+          title="신청 동기"
           type={INPUT_TYPE.TEXT}
           register={register}
           errorMessage={

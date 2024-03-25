@@ -13,12 +13,12 @@ import {
 import { Message, PostContent } from '@/components';
 import { ReactHookInput } from '@/components/form';
 import { INPUT_TYPE, REGISTER_TYPE } from '@/constants';
+import { Toast } from '@/libs/Toast';
 import {
   JudgingEventSubmitInfo,
   PublicEvent,
   RegisterField,
 } from '@/types';
-import { Toast } from '@/libs/Toast';
 
 export const JudgingEventRegistration = () => {
   const navigate = useNavigate();
@@ -236,7 +236,7 @@ export const JudgingEventRegistration = () => {
         />
         <ReactHookInput
           id={REGISTER_TYPE.PARTICIPANT_MOTIVATION}
-          title="소재지"
+          title="신청 동기"
           type={INPUT_TYPE.TEXT}
           register={register}
           errorMessage={
