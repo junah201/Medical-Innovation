@@ -10,8 +10,8 @@ import { submitPublicEvnet } from '@/api/publicParticipant';
 import { Message, PostContent } from '@/components';
 import { ReactHookInput } from '@/components/form';
 import { INPUT_TYPE, REGISTER_TYPE } from '@/constants';
-import { PublicEvent, RegisterField } from '@/types';
 import { Toast } from '@/libs/Toast';
+import { PublicEvent, RegisterField } from '@/types';
 
 export const EventRegistration = () => {
   const navigate = useNavigate();
@@ -23,6 +23,19 @@ export const EventRegistration = () => {
     queryKey: 'public_event',
     queryFn: () => getPublicEventById(id),
     onSuccess: (res: AxiosResponse) => {
+      const now = new Date().toISOString().slice(0, 10);
+
+      if (res.data.join_start_date > now) {
+        Toast('아직 신청 기간이 아닙니다.', 'error');
+        navigate(-1);
+        return;
+      }
+      if (res.data.join_end_date < now) {
+        Toast('신청 기간이 종료되었습니다.', 'error');
+        navigate(-1);
+        return;
+      }
+
       setEventDetail(res.data);
     },
   });
