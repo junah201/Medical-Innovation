@@ -41,7 +41,7 @@ def login(
 
     if not verify_password(form_data.password, user.password):
         raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
+            status_code=status.HTTP_400_BAD_REQUEST,
             detail="Incorrect Email or Password",
             headers={"WWW-Authenticate": "Bearer"},
         )

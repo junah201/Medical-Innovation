@@ -45,16 +45,6 @@ export const AdminHeader = () => {
             </Link>
           </li>
           <li>
-            <Link to="/admin/private_event/all">
-              로그인 필수 행사
-            </Link>
-          </li>
-          <li>
-            <Link to="/admin/private_participant/all">
-              로그인 필수 행사 참여자
-            </Link>
-          </li>
-          <li>
             <Link to="/admin/judging_event/all">심사 행사</Link>
           </li>
           <li>
