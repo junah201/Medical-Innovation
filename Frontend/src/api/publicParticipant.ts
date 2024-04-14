@@ -1,16 +1,21 @@
 import { API_ROUTE } from '@/constants';
 import { Axios } from '@/libs/Axios';
-import { PublicParticipant } from '@/types';
+import {
+  PublicParticipant,
+  PublicParticipantUpdate,
+} from '@/types';
 
 const unAuthAxios = new Axios();
 const authAxios = new Axios(true);
 
 export const submitPublicEvnet = async (
   eventId: number | string,
-  data: PublicParticipant
+  data: Record<string, any>
 ) => {
   const res = await unAuthAxios.post(
-    API_ROUTE.PUBLIC_PARTICIPANT.SUBMIT_PUBLIC_EVENT(eventId),
+    API_ROUTE.PUBLIC_PARTICIPANT.SUBMIT_PUBLIC_EVENT(
+      eventId
+    ),
     data
   );
 
@@ -39,7 +44,9 @@ export const getPublicParticipantById = async (
   id: number | string
 ) => {
   const res = await authAxios.get(
-    API_ROUTE.PUBLIC_PARTICIPANT.GET_PUBLIC_PARTICIPANT_BY_ID(id)
+    API_ROUTE.PUBLIC_PARTICIPANT.GET_PUBLIC_PARTICIPANT_BY_ID(
+      id
+    )
   );
 
   return res;
@@ -47,10 +54,12 @@ export const getPublicParticipantById = async (
 
 export const updatePublicParticipantById = async (
   id: number | string,
-  data: PublicParticipant
+  data: any
 ) => {
   const res = await authAxios.put(
-    API_ROUTE.PUBLIC_PARTICIPANT.UPDATE_PUBLIC_PARTICIPANT_BY_ID(id),
+    API_ROUTE.PUBLIC_PARTICIPANT.UPDATE_PUBLIC_PARTICIPANT_BY_ID(
+      id
+    ),
     data
   );
 
@@ -61,7 +70,9 @@ export const deletePublicParticipantById = async (
   id: number | string
 ) => {
   const res = await authAxios.delete(
-    API_ROUTE.PUBLIC_PARTICIPANT.DELETE_PUBLIC_PARTICIPANT_BY_ID(id)
+    API_ROUTE.PUBLIC_PARTICIPANT.DELETE_PUBLIC_PARTICIPANT_BY_ID(
+      id
+    )
   );
 
   return res;

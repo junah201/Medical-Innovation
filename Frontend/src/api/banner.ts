@@ -16,7 +16,10 @@ export const getActiveBanners = async () => {
   return res;
 };
 
-export const getBanners = async (skip: number, limit: number) => {
+export const getBanners = async (
+  skip: number,
+  limit: number
+) => {
   const res = await authAxios.getByParams(
     API_ROUTE.BANNER.GET_BANNERS,
     {
@@ -34,34 +37,40 @@ export const uploadBanner = async (
   filename: string,
   banner_end_at: string
 ) => {
-  const res = await authAxios.post(API_ROUTE.BANNER.UPLOAD_BANNER, {
-    name: name,
-    link: link,
-    filename: filename,
-    banner_end_at: banner_end_at,
-  });
+  const res = await authAxios.post(
+    API_ROUTE.BANNER.UPLOAD_BANNER,
+    {
+      name: name,
+      link: link,
+      filename: filename,
+      banner_end_at: banner_end_at,
+    }
+  );
 
   return res;
 };
+
+interface BannerCreate {
+  name: string;
+  link: string;
+  filename: string;
+  banner_end_at: string;
+}
 
 export const uploadBannerV2 = async (
-  name: string,
-  link: string,
-  filename: string,
-  banner_end_at: string
+  userInput: BannerCreate
 ) => {
-  const res = await authAxios.post(API_ROUTE.BANNER.UPLOAD_BANNER, {
-    name: name,
-    link: link,
-    filename: filename,
-    year: '2023',
-    banner_end_at: banner_end_at,
-  });
+  const res = await authAxios.post(
+    API_ROUTE.BANNER.UPLOAD_BANNER,
+    userInput
+  );
 
   return res;
 };
 
-export const deleteBannerById = async (id: number | string) => {
+export const deleteBannerById = async (
+  id: number | string
+) => {
   const res = await authAxios.delete(
     API_ROUTE.BANNER.DELETE_BANNER_BY_ID(id)
   );
@@ -69,7 +78,9 @@ export const deleteBannerById = async (id: number | string) => {
   return res;
 };
 
-export const getBannerById = async (id: number | string) => {
+export const getBannerById = async (
+  id: number | string
+) => {
   const res = await authAxios.get(
     API_ROUTE.BANNER.GET_BANNER_BY_ID(id)
   );
@@ -77,21 +88,15 @@ export const getBannerById = async (id: number | string) => {
   return res;
 };
 
+type BannerUpdate = BannerCreate;
+
 export const updateBannerById = async (
   id: number | string,
-  name: string,
-  link: string,
-  bannerEndAt: string,
-  filename: string
+  userInput: BannerUpdate
 ) => {
   const res = await authAxios.put(
     API_ROUTE.BANNER.UPDATE_BANNER_BY_ID(id),
-    {
-      name: name,
-      link: link,
-      banner_end_at: bannerEndAt,
-      filename: filename,
-    }
+    userInput
   );
 
   return res;

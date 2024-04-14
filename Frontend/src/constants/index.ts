@@ -7,3 +7,4 @@ export * from './layout';
 export * from './mediaQuery';
 export * from './tableConfig';
 export * from './judgingConfig';
+export * from './query';

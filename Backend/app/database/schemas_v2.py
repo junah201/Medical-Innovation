@@ -164,9 +164,11 @@ class PostList(BaseModel):
 class LimitedPost(BaseModel):
     id: PositiveInt
     title: str
+    content: str
     board_id: int
     board: Board
     author_name: str
+    files: List[str]
     created_at: datetime
 
     class Config:
@@ -181,24 +183,16 @@ class LimitedPostList(BaseModel):
 class BannerCreate(BaseModel):
     name: str
     link: str
-    banner_end_at: datetime
+    banner_end_at: date
     filename: str
 
 
-class BannerEdit(BaseModel):
-    name: str
-    link: str
-    banner_end_at: datetime
-    filename: str
+class BannerEdit(BannerCreate):
+    pass
 
 
-class Banner(BaseModel):
+class Banner(BannerCreate):
     id: int
-    name: str
-    filename: str
-    link: str
-    year: int = 2023
-    banner_end_at: datetime
     created_at: datetime
     updated_at: datetime
 
@@ -381,6 +375,8 @@ class PublicEventList(BaseModel):
 class LimitedPublicEvent(BaseModel):
     id: PositiveInt
     name: str
+    english_name: str
+    description: str
     thumbnail_filename: Optional[str] = None
     start_date: date
     end_date: date
@@ -394,6 +390,19 @@ class LimitedPublicEvent(BaseModel):
 class LimitedPublicEventList(BaseModel):
     total: int
     items: list[LimitedPublicEvent]
+
+
+class LLimitedPublicEvent(BaseModel):
+    id: PositiveInt
+    name: str
+
+    class Config:
+        orm_mode = True
+
+
+class LLimitedPublicEventList(BaseModel):
+    total: int
+    items: list[LLimitedPublicEvent]
 
 
 class ParticipantCreate(BaseModel):

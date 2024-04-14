@@ -9,16 +9,13 @@ import {
   getSponsoringCompanies,
   getSponsors,
   getUsers,
-  getPrivateEvents,
   getPublicParticipantsByEventId,
-  getPrivateParticipantsByEventId,
   getJudgingEvents,
   getJudgingParticipantsByEventId,
   getJudgingResultsByEventId,
   getAdEmails,
   getHistorys,
   getPopups,
-  getPrivateParticipantsByMe,
   getJudgingParticipantsByMe,
   getNthJudgingParticipantsByEventId,
   getSupportingStartups,
@@ -44,7 +41,6 @@ import {
   JudgingParticipant,
   Mou,
   Post,
-  PrivateEvent,
   PublicEvent,
   PublicParticipant,
   Sponsor,
@@ -71,7 +67,12 @@ const JUDGING_1ST_PARTICIPANT = Object.freeze({
     page: number,
     size: number
   ) => {
-    return getNthJudgingParticipantsByEventId(eventId, 1, page, size);
+    return getNthJudgingParticipantsByEventId(
+      eventId,
+      1,
+      page,
+      size
+    );
   },
   itemToElement: (item: JudgingParticipant, id: number) => {
     return (
@@ -83,7 +84,8 @@ const JUDGING_1ST_PARTICIPANT = Object.freeze({
         <td>
           {item.first_judging_result ? (
             <Status color="green">
-              심사 완료 ({item.first_judging_result?.total_score}
+              심사 완료 (
+              {item.first_judging_result?.total_score}
               점)
             </Status>
           ) : (
@@ -91,7 +93,9 @@ const JUDGING_1ST_PARTICIPANT = Object.freeze({
           )}
         </td>
         <td>
-          <Link to={`/judging/result/${id}/${item.id}/1/create`}>
+          <Link
+            to={`/judging/result/${id}/${item.id}/1/create`}
+          >
             심사하기
           </Link>
         </td>
@@ -115,7 +119,12 @@ const JUDGING_2ND_PARTICIPANT = Object.freeze({
     page: number,
     size: number
   ) => {
-    return getNthJudgingParticipantsByEventId(eventId, 2, page, size);
+    return getNthJudgingParticipantsByEventId(
+      eventId,
+      2,
+      page,
+      size
+    );
   },
   itemToElement: (item: JudgingParticipant, id: number) => {
     return (
@@ -127,7 +136,8 @@ const JUDGING_2ND_PARTICIPANT = Object.freeze({
         <td>
           {item.second_judging_result ? (
             <Status color="green">
-              심사 완료 ({item.second_judging_result?.total_score}
+              심사 완료 (
+              {item.second_judging_result?.total_score}
               점)
             </Status>
           ) : (
@@ -135,7 +145,9 @@ const JUDGING_2ND_PARTICIPANT = Object.freeze({
           )}
         </td>
         <td>
-          <Link to={`/judging/result/${id}/${item.id}/2/create`}>
+          <Link
+            to={`/judging/result/${id}/${item.id}/2/create`}
+          >
             심사하기
           </Link>
         </td>
@@ -173,7 +185,9 @@ const USER = Object.freeze({
         <td>{`${item.email_enable}`}</td>
         <td>{item.created_at.replace('T', ' ')}</td>
         <td>
-          <Link to={`/admin/user/permission/edit/${item.id}`}>
+          <Link
+            to={`/admin/user/permission/edit/${item.id}`}
+          >
             심사 권한 수정
           </Link>
         </td>
@@ -209,7 +223,9 @@ const POST = Object.freeze({
         <td>{item.author_name}</td>
         <td>{item.created_at.replace('T', ' ')}</td>
         <td>
-          <Link to={`/admin/post/edit/${item.id}`}>수정</Link>
+          <Link to={`/admin/post/edit/${item.id}`}>
+            수정
+          </Link>
         </td>
         <td>
           <button
@@ -263,7 +279,9 @@ const BANNER = Object.freeze({
         <td>{item.created_at.replace('T', ' ')}</td>
         <td>{item.updated_at.replace('T', ' ')}</td>
         <td>
-          <Link to={`/admin/banner/edit/${item.id}`}>수정</Link>
+          <Link to={`/admin/banner/edit/${item.id}`}>
+            수정
+          </Link>
         </td>
         <td>
           <button
@@ -313,7 +331,9 @@ const SPONSORING_COMPANY = Object.freeze({
         </td>
         <td>{item.year}</td>
         <td>
-          <Link to={`/admin/sponsoring_company/edit/${item.id}`}>
+          <Link
+            to={`/admin/sponsoring_company/edit/${item.id}`}
+          >
             수정
           </Link>
         </td>
@@ -401,7 +421,9 @@ const MOU = Object.freeze({
         <td>{item.created_at.replace('T', ' ')}</td>
         <td>{item.updated_at.replace('T', ' ')}</td>
         <td>
-          <Link to={`/admin/mou/edit/${item.id}`}>수정</Link>
+          <Link to={`/admin/mou/edit/${item.id}`}>
+            수정
+          </Link>
         </td>
         <td>
           <button
@@ -443,14 +465,18 @@ const ADVISOR = Object.freeze({
         <td>{item.name}</td>
         <td>{item.type}</td>
         <td>
-          <a href={`${VITE_CDN_URL}/upload/${item.filename}`}>
+          <a
+            href={`${VITE_CDN_URL}/upload/${item.filename}`}
+          >
             {item.filename}
           </a>
         </td>
         <td>{item.created_at.replace('T', ' ')}</td>
         <td>{item.updated_at.replace('T', ' ')}</td>
         <td>
-          <Link to={`/admin/advisor/edit/${item.id}`}>수정</Link>
+          <Link to={`/admin/advisor/edit/${item.id}`}>
+            수정
+          </Link>
         </td>
         <td>
           <button
@@ -504,7 +530,9 @@ const PUBLIC_EVENT = Object.freeze({
         <td>{item.start_date}</td>
         <td>{item.end_date}</td>
         <td>
-          <Link to={`/admin/public_event/edit/${item.id}`}>수정</Link>
+          <Link to={`/admin/public_event/edit/${item.id}`}>
+            수정
+          </Link>
         </td>
       </tr>
     );
@@ -536,15 +564,19 @@ const PUBLIC_EVENT_PARTICIPANT = Object.freeze({
     return (
       <tr key={item.id}>
         <td>{item.id}</td>
-        <td>{item.name}</td>
-        <td>{item.gender}</td>
-        <td>{item.birth}</td>
-        <td>{item.phone}</td>
-        <td>{item.email}</td>
-        <td>{item.organization_name}</td>
-        <td>{item.job_position}</td>
+        <td>{item.application?.name || '?'}</td>
+        <td>{item.application?.gender || '?'}</td>
+        <td>{item.application?.birth || '?'}</td>
+        <td>{item.application?.phone || '?'}</td>
+        <td>{item.application?.email || '?'}</td>
         <td>
-          <Link to={`/admin/public_participant/edit/${item.id}`}>
+          {item.application?.organization_name || '?'}
+        </td>
+        <td>{item.application?.job_position || '?'}</td>
+        <td>
+          <Link
+            to={`/admin/public_participant/edit/${item.id}`}
+          >
             수정
           </Link>
         </td>
@@ -556,125 +588,6 @@ const PUBLIC_EVENT_PARTICIPANT = Object.freeze({
           >
             삭제
           </button>
-        </td>
-      </tr>
-    );
-  },
-});
-
-const PRIVATE_EVENT = Object.freeze({
-  headers: [
-    '번호',
-    '이름',
-    '이미지',
-    '참가 신청 시작일',
-    '참가 신청 마감일',
-    '수정',
-  ],
-  size: 20,
-  getDatas: async (
-    id: number | string,
-    page: number,
-    size: number
-  ) => {
-    return getPrivateEvents(page, size);
-  },
-  itemToElement: (item: PrivateEvent, id: number) => {
-    return (
-      <tr key={item.id}>
-        <td>{item.id}</td>
-        <td>{item.name}</td>
-        <td>
-          <a
-            href={`${VITE_CDN_URL}/upload/${
-              item.thumbnail_filename || 'null.png'
-            }`}
-          >
-            {item.thumbnail_filename || 'null.png'}
-          </a>
-        </td>
-        <td>{item.join_start_date}</td>
-        <td>{item.join_end_date}</td>
-        <td>
-          <Link to={`/admin/private_event/edit/${item.id}`}>
-            수정
-          </Link>
-        </td>
-      </tr>
-    );
-  },
-});
-
-const PRIVATE_EVENT_PARTICIPANT = Object.freeze({
-  headers: [
-    '번호',
-    '이름',
-    '성별',
-    '생년월일',
-    '전화번호',
-    '이메일',
-    '소속기관',
-    '직책',
-    '수정',
-  ],
-  size: 20,
-  getDatas: async (
-    id: number | string,
-    page: number,
-    size: number
-  ) => {
-    return getPrivateParticipantsByEventId(id, page, size);
-  },
-  itemToElement: (item: PublicParticipant, id: number) => {
-    return (
-      <tr key={item.id}>
-        <td>{item.id}</td>
-        <td>{item.name}</td>
-        <td>{item.gender}</td>
-        <td>{item.birth}</td>
-        <td>{item.phone}</td>
-        <td>{item.email}</td>
-        <td>{item.organization_name}</td>
-        <td>{item.job_position}</td>
-        <td>
-          <Link to={`/admin/private_participant/edit/${item.id}`}>
-            수정
-          </Link>
-        </td>
-      </tr>
-    );
-  },
-});
-
-const USER_PRIVATE_EVENT_PARTICIPANT = Object.freeze({
-  headers: [
-    '신청번호',
-    '행사명',
-    '신청자',
-    '생성일',
-    '수정일',
-    '수정',
-  ],
-  size: 20,
-  getDatas: async (
-    id: number | string,
-    page: number,
-    size: number
-  ) => {
-    return getPrivateParticipantsByMe(page, size);
-  },
-  itemToElement: (item: PublicParticipant, id: number) => {
-    return (
-      <tr key={item.id}>
-        <td>{item.id}</td>
-        <td>{item?.event?.name}</td>
-        <td>{item.name}</td>
-        <td>{item.created_at.replace('T', ' ')}</td>
-        <td>{item.updated_at.replace('T', ' ')}</td>
-        <td>
-          <Link to={`/private_event/participant/edit/${item.id}`}>
-            수정
-          </Link>
         </td>
       </tr>
     );
@@ -774,7 +687,9 @@ const JUDGING_EVENT_PARTICIPANT = Object.freeze({
           </Link>
         </td>
         <td>
-          <Link to={`/admin/judging_participant/detail/${item.id}`}>
+          <Link
+            to={`/admin/judging_participant/detail/${item.id}`}
+          >
             상세정보
           </Link>
         </td>
@@ -846,7 +761,9 @@ const JUDGING_RESULT = Object.freeze({
         <td>{item.created_at.replace('T', ' ')}</td>
         <td>{item.updated_at.replace('T', ' ')}</td>
         <td>
-          <Link to={`/admin/judging_result/detail/${item.id}`}>
+          <Link
+            to={`/admin/judging_result/detail/${item.id}`}
+          >
             상세정보
           </Link>
         </td>
@@ -884,7 +801,9 @@ const JUDGING_2ND_RESULT = Object.freeze({
         <td>{item.created_at.replace('T', ' ')}</td>
         <td>{item.updated_at.replace('T', ' ')}</td>
         <td>
-          <Link to={`/admin/judging_2nd_result/detail/${item.id}`}>
+          <Link
+            to={`/admin/judging_2nd_result/detail/${item.id}`}
+          >
             상세정보
           </Link>
         </td>
@@ -958,7 +877,9 @@ const HISTORY = Object.freeze({
         <td>{item.title}</td>
         <td>{item?.created_at?.replace('T', ' ')}</td>
         <td>
-          <Link to={`/admin/history/edit/${item.id}`}>수정</Link>
+          <Link to={`/admin/history/edit/${item.id}`}>
+            수정
+          </Link>
         </td>
         <td>
           <button
@@ -1009,7 +930,9 @@ const POPUP = Object.freeze({
         <td>{item.popup_start_date}</td>
         <td>{item.popup_end_date}</td>
         <td>
-          <Link to={`/admin/popup/edit/${item.id}`}>수정</Link>
+          <Link to={`/admin/popup/edit/${item.id}`}>
+            수정
+          </Link>
         </td>
         <td>
           <button
@@ -1052,7 +975,9 @@ const SUPPORTING_STARTUP = Object.freeze({
         <td>{item.created_at.replace('T', ' ')}</td>
         <td>{item.updated_at.replace('T', ' ')}</td>
         <td>
-          <Link to={`/admin/supporting_startup/edit/${item.id}`}>
+          <Link
+            to={`/admin/supporting_startup/edit/${item.id}`}
+          >
             수정
           </Link>
         </td>
@@ -1082,9 +1007,6 @@ export const TABLE_CONFIG = Object.freeze({
   ADVISOR,
   PUBLIC_EVENT,
   PUBLIC_EVENT_PARTICIPANT,
-  PRIVATE_EVENT,
-  PRIVATE_EVENT_PARTICIPANT,
-  USER_PRIVATE_EVENT_PARTICIPANT,
   JUDGING_EVENT,
   JUDGING_EVENT_PARTICIPANT,
   USER_JUDGING_EVENT_PARTICIPANT,

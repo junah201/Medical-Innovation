@@ -47,6 +47,18 @@ def get_all_public_events(skip: int = 0, limit: int = 40, db: Session = Depends(
     )
 
 
+@router.get("/all/limited", response_model=schemas_v2.LLimitedPublicEventList)
+def get_all_public_events(skip: int = 0, limit: int = 40, db: Session = Depends(get_db)):
+    db_public_events = db.query(models.PublicEvent).order_by(
+        models.PublicEvent.id.desc()
+    )
+
+    return schemas_v2.LLimitedPublicEventList(
+        total=db_public_events.count(),
+        items=db_public_events.offset(skip).limit(limit).all()
+    )
+
+
 @router.get("/{public_event_id}", response_model=schemas_v2.PublicEvent)
 def get_public_event(public_event_id: int, db: Session = Depends(get_db)):
     db_public_event = crud.get_public_event(

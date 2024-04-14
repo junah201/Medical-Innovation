@@ -10,9 +10,7 @@ from app.routers.v2 import (
     user_router,
     public_event_router,
     public_participant_router,
-    private_event_router,
     sponsor_router,
-    private_participant_router,
     judging_event_router,
     judging_participant_router,
     judging_result_router,
@@ -37,9 +35,7 @@ router.include_router(mou_router.router)
 router.include_router(user_router.router)
 router.include_router(public_event_router.router)
 router.include_router(public_participant_router.router)
-router.include_router(private_event_router.router)
 router.include_router(sponsor_router.router)
-router.include_router(private_participant_router.router)
 router.include_router(judging_event_router.router)
 router.include_router(judging_participant_router.router)
 router.include_router(judging_result_router.router)

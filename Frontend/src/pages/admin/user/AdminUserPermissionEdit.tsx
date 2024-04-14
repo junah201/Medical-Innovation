@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useQuery, useMutation } from 'react-query';
+import { useMutation } from 'react-query';
 import { useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 
@@ -12,12 +12,12 @@ import {
 } from '@/api';
 import { Message, ReactHookInput } from '@/components';
 import { INPUT_TYPE, REGISTER_TYPE } from '@/constants';
+import { Toast } from '@/libs/Toast';
 import {
   JudgingEvent,
   JudgingPermission,
   RegisterField,
 } from '@/types';
-import { Toast } from '@/libs/Toast';
 
 export const AdminUserPermissionEdit = () => {
   const { id } = useParams() as { id: string };
@@ -72,7 +72,10 @@ export const AdminUserPermissionEdit = () => {
     async function initLoad() {
       const res = await getJudgingEvents(0, 10000);
       setEvents(res.data.items);
-      setValue(REGISTER_TYPE.JUDGING_EVENT, res.data.items[0].id);
+      setValue(
+        REGISTER_TYPE.JUDGING_EVENT,
+        res.data.items[0].id
+      );
     }
     initLoad();
   }, []);
@@ -86,12 +89,14 @@ export const AdminUserPermissionEdit = () => {
   }, []);
 
   useEffect(() => {
-    const userPermission = userPermissions.find((permission) => {
-      return (
-        permission.judging_event_id ===
-        parseInt(watch()[REGISTER_TYPE.JUDGING_EVENT])
-      );
-    });
+    const userPermission = userPermissions.find(
+      (permission) => {
+        return (
+          permission.judging_event_id ===
+          parseInt(watch()[REGISTER_TYPE.JUDGING_EVENT])
+        );
+      }
+    );
     if (userPermission) {
       setValue(
         REGISTER_TYPE.FIRST_JUDGING_PERMISSION,
@@ -102,19 +107,29 @@ export const AdminUserPermissionEdit = () => {
         userPermission.second_judging_permission
       );
     } else {
-      setValue(REGISTER_TYPE.FIRST_JUDGING_PERMISSION, false);
-      setValue(REGISTER_TYPE.SECOND_JUDGING_PERMISSION, false);
+      setValue(
+        REGISTER_TYPE.FIRST_JUDGING_PERMISSION,
+        false
+      );
+      setValue(
+        REGISTER_TYPE.SECOND_JUDGING_PERMISSION,
+        false
+      );
     }
-  }, [watch()[REGISTER_TYPE.JUDGING_EVENT], userPermissions]);
+  }, [
+    watch()[REGISTER_TYPE.JUDGING_EVENT],
+    userPermissions,
+  ]);
 
-  const onValid = (userInput: RegisterField) => mutate(userInput);
+  const onValid = (userInput: RegisterField) =>
+    mutate(userInput);
 
   return (
     <>
       <h1>유저 심사권한 수정</h1>
       <Message>
-        심사권한을 수정하시고, 다시 들어오면 아무런 값도 없지만,
-        실제로는 수정된 값이 서버에 들어가있습니다.
+        심사권한을 수정하시고, 다시 들어오면 아무런 값도
+        없지만, 실제로는 수정된 값이 서버에 들어가있습니다.
       </Message>
       <Form onSubmit={handleSubmit(onValid)}>
         <ReactHookInput
@@ -122,7 +137,9 @@ export const AdminUserPermissionEdit = () => {
           title="심사 행사"
           type={INPUT_TYPE.SELECT}
           register={register}
-          errorMessage={errors[REGISTER_TYPE.JUDGING_EVENT]?.message}
+          errorMessage={
+            errors[REGISTER_TYPE.JUDGING_EVENT]?.message
+          }
           options={events.map((event) => {
             return {
               value: event.id,
@@ -136,7 +153,8 @@ export const AdminUserPermissionEdit = () => {
           type={INPUT_TYPE.CHECKBOX}
           register={register}
           errorMessage={
-            errors[REGISTER_TYPE.FIRST_JUDGING_PERMISSION]?.message
+            errors[REGISTER_TYPE.FIRST_JUDGING_PERMISSION]
+              ?.message
           }
         />
         <ReactHookInput
@@ -145,7 +163,8 @@ export const AdminUserPermissionEdit = () => {
           type={INPUT_TYPE.CHECKBOX}
           register={register}
           errorMessage={
-            errors[REGISTER_TYPE.SECOND_JUDGING_PERMISSION]?.message
+            errors[REGISTER_TYPE.SECOND_JUDGING_PERMISSION]
+              ?.message
           }
         />
         <>

@@ -4,7 +4,10 @@ import { Axios } from '@/libs/Axios';
 const unAuthAxios = new Axios();
 const authAxios = new Axios(true);
 
-export const getAdvisors = async (skip = 0, limit = 1000) => {
+export const getAdvisors = async (
+  skip = 0,
+  limit = 1000
+) => {
   const res = await unAuthAxios.getByParams(
     API_ROUTE.ADVISOR.GET_ADVISORS,
     {
@@ -16,23 +19,27 @@ export const getAdvisors = async (skip = 0, limit = 1000) => {
   return res;
 };
 
+interface AdvisorUpdate {
+  name: string;
+  type: string;
+  description: string;
+  filename: string;
+}
+
 export const uploadAdvisor = async (
-  name: string,
-  type: string,
-  description: string,
-  filename: string
+  userInput: AdvisorUpdate
 ) => {
-  const res = await authAxios.post(API_ROUTE.ADVISOR.UPLOAD_ADVISOR, {
-    name: name,
-    type: type,
-    description: description,
-    filename: filename,
-  });
+  const res = await authAxios.post(
+    API_ROUTE.ADVISOR.UPLOAD_ADVISOR,
+    userInput
+  );
 
   return res;
 };
 
-export const deleteAdvisorById = async (id: string | number) => {
+export const deleteAdvisorById = async (
+  id: string | number
+) => {
   const res = await authAxios.delete(
     API_ROUTE.ADVISOR.DELETE_ADVISOR_BY_ID(id)
   );
@@ -40,7 +47,9 @@ export const deleteAdvisorById = async (id: string | number) => {
   return res;
 };
 
-export const getAdvisorById = async (id: string | number) => {
+export const getAdvisorById = async (
+  id: string | number
+) => {
   const res = await unAuthAxios.get(
     API_ROUTE.ADVISOR.GET_ADVISOR_BY_ID(id)
   );
@@ -50,19 +59,11 @@ export const getAdvisorById = async (id: string | number) => {
 
 export const updateAdvisorById = async (
   id: string | number,
-  name: string,
-  type: string,
-  description: string,
-  filename: string
+  userInput: AdvisorUpdate
 ) => {
   const res = await authAxios.put(
     API_ROUTE.ADVISOR.UPDATE_ADVISOR_BY_ID(id),
-    {
-      name: name,
-      type: type,
-      description: description,
-      filename: filename,
-    }
+    userInput
   );
 
   return res;

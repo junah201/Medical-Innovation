@@ -1,6 +1,9 @@
 import { Banner } from '@/components/banner';
 import { DefaultFooter } from '@/components/footers';
-import { AdminHeader, HomeHeader } from '@/components/headers';
+import {
+  AdminHeader,
+  HomeHeader,
+} from '@/components/headers';
 import {
   AdminWrapper,
   DefaultWrapper,
@@ -41,37 +44,27 @@ import {
   JudgingEventRegistration,
   JudgingParticipantAll,
   JudgingResultCreate,
-  PrivateEventRegistration,
   AdminUserAll,
   AdminUserPermissionEdit,
   AdminPostAll,
-  AdminPostEdit,
-  AdminPostUpload,
+  AdminBannerUpload,
   AdminBannerAll,
   AdminBannerEdit,
   AdminSponsoringCompanyAll,
   AdminSponsoringCompanyUpload,
   AdminSponsoringCompanyEdit,
-  AdminSponsorAll,
   AdminMouAll,
   AdminHistoryUpload,
-  AdminMouEdit,
   AdminAdvisorAll,
   AdminAdvisorUpload,
   AdminAdvisorEdit,
   Test,
-  AdminBannerUpload,
+  AdminPostUpload,
   AdminPublicEventAll,
   AdminPublicEventUpload,
-  AdminPublicEventEdit,
   AdminPublicParticipantAll,
   AdminPublicParticipantEdit,
-  AdminPrivateEventAll,
-  AdminPrivateEventUpload,
-  AdminPrivateEventEdit,
-  AdminPrivateParticipantAll,
   AdminJudgingEventAll,
-  AdminJudgingEventEdit,
   AdminJudgingParticipantAll,
   AdminJudgingParticipantEdit,
   AdminJudgingResultAll,
@@ -85,7 +78,6 @@ import {
   AdminPopupEdit,
   Me,
   JudgingParticipantEdit,
-  PrivateParticipantEdit,
   AdminJudgingParticipantNthPassEdit,
   AdminAdEmailSendAll,
   AdminSupportingStartupAll,
@@ -113,9 +105,7 @@ interface RouteConfig {
   ADMIN?: boolean;
 }
 
-type RouteMap = RouteConfig[];
-
-export const ROUTE_MAP: RouteMap = [
+export const ROUTE_MAP: RouteConfig[] = [
   {
     PATH: '/',
     COMPONENT: Home,
@@ -431,22 +421,6 @@ export const ROUTE_MAP: RouteMap = [
     AUTH: true,
   },
   {
-    PATH: '/private_event/:id/registration',
-    COMPONENT: PrivateEventRegistration,
-    HEADER: HomeHeader,
-    FOOTER: DefaultFooter,
-    WRAPPER: PageWrapper,
-    AUTH: true,
-  },
-  {
-    PATH: '/private_event/participant/edit/:id',
-    COMPONENT: PrivateParticipantEdit,
-    HEADER: HomeHeader,
-    FOOTER: DefaultFooter,
-    WRAPPER: PageWrapper,
-    AUTH: true,
-  },
-  {
     PATH: '/admin',
     COMPONENT: AdminUserAll,
     HEADER: AdminHeader,
@@ -481,14 +455,6 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/admin/post/upload',
     COMPONENT: AdminPostUpload,
-    HEADER: AdminHeader,
-    WRAPPER: AdminWrapper,
-    ADMIN: true,
-    AUTH: true,
-  },
-  {
-    PATH: '/admin/post/edit/:id',
-    COMPONENT: AdminPostEdit,
     HEADER: AdminHeader,
     WRAPPER: AdminWrapper,
     ADMIN: true,
@@ -551,14 +517,6 @@ export const ROUTE_MAP: RouteMap = [
     AUTH: true,
   },
   {
-    PATH: '/admin/sponsor/all',
-    COMPONENT: AdminSponsorAll,
-    HEADER: AdminHeader,
-    WRAPPER: AdminWrapper,
-    ADMIN: true,
-    AUTH: true,
-  },
-  {
     PATH: '/admin/mou/all',
     COMPONENT: AdminMouAll,
     HEADER: AdminHeader,
@@ -569,14 +527,6 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/admin/mou/upload',
     COMPONENT: AdminMouUpload,
-    HEADER: AdminHeader,
-    WRAPPER: AdminWrapper,
-    ADMIN: true,
-    AUTH: true,
-  },
-  {
-    PATH: '/admin/mou/edit/:id',
-    COMPONENT: AdminMouEdit,
     HEADER: AdminHeader,
     WRAPPER: AdminWrapper,
     ADMIN: true,
@@ -631,14 +581,6 @@ export const ROUTE_MAP: RouteMap = [
     AUTH: true,
   },
   {
-    PATH: '/admin/public_event/edit/:id',
-    COMPONENT: AdminPublicEventEdit,
-    HEADER: AdminHeader,
-    WRAPPER: AdminWrapper,
-    ADMIN: true,
-    AUTH: true,
-  },
-  {
     PATH: '/admin/public_participant',
     COMPONENT: AdminPublicParticipantAll,
     HEADER: AdminHeader,
@@ -663,46 +605,6 @@ export const ROUTE_MAP: RouteMap = [
     AUTH: true,
   },
   {
-    PATH: '/admin/private_event',
-    COMPONENT: AdminPrivateEventAll,
-    HEADER: AdminHeader,
-    WRAPPER: AdminWrapper,
-    ADMIN: true,
-    AUTH: true,
-  },
-  {
-    PATH: '/admin/private_event/all',
-    COMPONENT: AdminPrivateEventAll,
-    HEADER: AdminHeader,
-    WRAPPER: AdminWrapper,
-    ADMIN: true,
-    AUTH: true,
-  },
-  {
-    PATH: '/admin/private_event/upload',
-    COMPONENT: AdminPrivateEventUpload,
-    HEADER: AdminHeader,
-    WRAPPER: AdminWrapper,
-    ADMIN: true,
-    AUTH: true,
-  },
-  {
-    PATH: '/admin/private_event/edit/:id',
-    COMPONENT: AdminPrivateEventEdit,
-    HEADER: AdminHeader,
-    WRAPPER: AdminWrapper,
-    ADMIN: true,
-    AUTH: true,
-  },
-  {
-    PATH: '/admin/private_participant/all',
-    COMPONENT: AdminPrivateParticipantAll,
-    HEADER: AdminHeader,
-    WRAPPER: AdminWrapper,
-    ADMIN: true,
-    AUTH: true,
-  },
-  {
     PATH: '/admin/judging_event/all',
     COMPONENT: AdminJudgingEventAll,
     HEADER: AdminHeader,
@@ -713,14 +615,6 @@ export const ROUTE_MAP: RouteMap = [
   {
     PATH: '/admin/judging_event/upload',
     COMPONENT: AdminJudgingEventUpload,
-    HEADER: AdminHeader,
-    WRAPPER: AdminWrapper,
-    ADMIN: true,
-    AUTH: true,
-  },
-  {
-    PATH: '/admin/judging_event/edit/:id',
-    COMPONENT: AdminJudgingEventEdit,
     HEADER: AdminHeader,
     WRAPPER: AdminWrapper,
     ADMIN: true,

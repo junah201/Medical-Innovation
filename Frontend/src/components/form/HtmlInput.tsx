@@ -40,7 +40,8 @@ export const HtmlInput = ({
               .catch((err) => {
                 Toast(
                   `이미지 업로드 실패 ${
-                    err?.response?.data?.message ||
+                    err?.response?.data
+                      ?.message ||
                     err?.message ||
                     JSON.stringify(err)
                   }`,
@@ -54,16 +55,19 @@ export const HtmlInput = ({
   };
 
   function uploadPlugin(editor) {
-    editor.plugins.get('FileRepository').createUploadAdapter = (
-      loader
-    ) => {
+    editor.plugins.get(
+      'FileRepository'
+    ).createUploadAdapter = (loader) => {
       return customUploadAdapter(loader);
     };
   }
 
   return (
     <Wrapper>
-      <InputLabel value={title} errorMessage={errorMessage} />
+      <InputLabel
+        value={title}
+        errorMessage={errorMessage}
+      />
       <CKEditor
         editor={ClassicEditor}
         data={defaultData}

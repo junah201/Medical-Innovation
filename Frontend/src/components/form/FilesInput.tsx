@@ -1,22 +1,29 @@
 import { useRef } from 'react';
-import { Controller, Control } from 'react-hook-form';
+import {
+  Controller,
+  Control,
+} from 'react-hook-form';
 import { styled } from 'styled-components';
 
-import { deleteFileV2, uploadFileV2 } from '@/api';
+import {
+  deleteFileV2,
+  uploadFileV2,
+} from '@/api';
 import { InputLabel } from '@/components/form';
-import { RegisterField, RegisterTypes } from '@/types';
+import {
+  RegisterField,
+  RegisterTypes,
+} from '@/types';
 
 const { VITE_CDN_URL } = import.meta.env;
 
 export const FilesInput = ({
-  maxFileCount = 10,
   title,
   control,
   id,
   acceptFileType = '*',
   disableRemove = false,
 }: {
-  maxFileCount?: number;
   title: string;
   control: Control<RegisterField, any>;
   id: RegisterTypes;
@@ -31,53 +38,62 @@ export const FilesInput = ({
       <Controller
         name={id}
         control={control}
-        render={({ field: { onChange, value } }) => (
+        render={({
+          field: { onChange, value },
+        }) => (
           <Container>
-            {value?.length < maxFileCount && (
-              <UploadFill
-                onClick={() => {
-                  uploader?.current?.click();
+            <UploadFill
+              onClick={() => {
+                uploader?.current?.click();
+              }}
+            >
+              <input
+                type="file"
+                ref={uploader}
+                accept={acceptFileType}
+                onChange={(e) => {
+                  if (e.target.files) {
+                    if (!e.target.files[0])
+                      return;
+
+                    uploadFileV2(
+                      Array.from(e.target.files)
+                    ).then((res) => {
+                      onChange([
+                        ...value,
+                        ...res.data,
+                      ]);
+                    });
+                  }
                 }}
-              >
-                <input
-                  type="file"
-                  ref={uploader}
-                  accept={acceptFileType}
-                  onChange={(e) => {
-                    if (e.target.files) {
-                      if (!e.target.files[0]) return;
-
-                      uploadFileV2(Array.from(e.target.files)).then(
-                        (res) => {
-                          onChange([...value, ...res.data]);
-                        }
-                      );
-                    }
-                  }}
-                  style={{ display: 'none' }}
-                />
-                이곳을 눌러 파일을 업로드하세요.
-              </UploadFill>
-            )}
-
+                style={{ display: 'none' }}
+              />
+              이곳을 눌러 파일을 업로드하세요.
+            </UploadFill>
             {value && (
               <UploadFilesWarpper>
                 {value.map((file) => (
                   <UploadFile key={file}>
-                    <a href={`${VITE_CDN_URL}/upload/${file}`}>
+                    <a
+                      href={`${VITE_CDN_URL}/upload/${file}`}
+                    >
                       {file}
                     </a>
                     {!disableRemove && (
                       <CloseButton
                         onClick={(e) => {
                           e.preventDefault();
-                          deleteFileV2(file).then((res) => {
-                            onChange(
-                              value.filter(
-                                (prevFile) => prevFile !== file
-                              )
-                            );
-                          });
+                          deleteFileV2(file).then(
+                            (res) => {
+                              onChange(
+                                value.filter(
+                                  (prevFile) =>
+                                    prevFile !==
+                                    file
+                                )
+                              );
+                            }
+                          );
                         }}
                       >
                         X
@@ -106,8 +122,10 @@ const Container = styled.div`
   flex-direction: column;
   padding: 10px;
   border-radius: 0.5em;
-  transition: ${({ theme }) => theme.transitionOption};
-  background-color: ${({ theme }) => theme.loginBackgroundColor};
+  transition: ${({ theme }) =>
+    theme.transitionOption};
+  background-color: ${({ theme }) =>
+    theme.loginBackgroundColor};
 `;
 
 const UploadFill = styled.div`
@@ -118,7 +136,8 @@ const UploadFill = styled.div`
   font-weight: 600;
   text-align: center;
   height: 100px;
-  background-color: ${({ theme }) => theme.loginBackgroundColor};
+  background-color: ${({ theme }) =>
+    theme.loginBackgroundColor};
   color: ${({ theme }) => theme.pointColor};
   padding: 10px;
   border-radius: 0.5em;
@@ -127,7 +146,8 @@ const UploadFill = styled.div`
 const UploadFilesWarpper = styled.div`
   display: flex;
   flex-direction: column;
-  transition: ${({ theme }) => theme.transitionOption};
+  transition: ${({ theme }) =>
+    theme.transitionOption};
 `;
 
 const UploadFile = styled.div`
@@ -136,12 +156,14 @@ const UploadFile = styled.div`
   padding: 10px;
   width: 100%;
   height: 50px;
-  border: 1px solid ${({ theme }) => theme.pointColor};
+  border: 1px solid
+    ${({ theme }) => theme.pointColor};
   background-color: #767b8b;
   border-radius: 0.5em;
   color: white;
   text-align: left;
-  transition: ${({ theme }) => theme.transitionOption};
+  transition: ${({ theme }) =>
+    theme.transitionOption};
 
   & + & {
     margin-top: 10px;

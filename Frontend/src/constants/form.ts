@@ -36,6 +36,7 @@ export const REGISTER_TYPE = Object.freeze({
   INTEREST_DISEASE: 'interest_disease',
   INTEREST_FIELD: 'interest_field',
   INTEREST_FIELD_DETAIL: 'interest_field_detail',
+  // 후원 관련
   IDENTIFICATION_NUMBER: 'identification_number',
   USAGE_INTENT: 'usage',
   SPONSORSHIP_DETAIL: 'detail',
@@ -63,14 +64,22 @@ export const REGISTER_TYPE = Object.freeze({
   BUSINESS_SCORE7: 'business_score7',
   BUSINESS_SCORE8: 'business_score8',
 
-  EFFICACY_AND_STABILITY_SCORE1: 'efficacy_and_stability_score1',
-  EFFICACY_AND_STABILITY_SCORE2: 'efficacy_and_stability_score2',
-  EFFICACY_AND_STABILITY_SCORE3: 'efficacy_and_stability_score3',
-  EFFICACY_AND_STABILITY_SCORE4: 'efficacy_and_stability_score4',
-  EFFICACY_AND_STABILITY_SCORE5: 'efficacy_and_stability_score5',
-  EFFICACY_AND_STABILITY_SCORE6: 'efficacy_and_stability_score6',
-  EFFICACY_AND_STABILITY_SCORE7: 'efficacy_and_stability_score7',
-  EFFICACY_AND_STABILITY_SCORE8: 'efficacy_and_stability_score8',
+  EFFICACY_AND_STABILITY_SCORE1:
+    'efficacy_and_stability_score1',
+  EFFICACY_AND_STABILITY_SCORE2:
+    'efficacy_and_stability_score2',
+  EFFICACY_AND_STABILITY_SCORE3:
+    'efficacy_and_stability_score3',
+  EFFICACY_AND_STABILITY_SCORE4:
+    'efficacy_and_stability_score4',
+  EFFICACY_AND_STABILITY_SCORE5:
+    'efficacy_and_stability_score5',
+  EFFICACY_AND_STABILITY_SCORE6:
+    'efficacy_and_stability_score6',
+  EFFICACY_AND_STABILITY_SCORE7:
+    'efficacy_and_stability_score7',
+  EFFICACY_AND_STABILITY_SCORE8:
+    'efficacy_and_stability_score8',
 
   OTHER_COMMENT: 'other_comment',
   OTHER_SCORE1: 'other_score1',
@@ -118,7 +127,8 @@ export const ERROR_MESSAGE = Object.freeze({
   }),
   PHONE: Object.freeze({
     REQUIRED: '필수 입력 항목입니다.',
-    IS_PHONE: '공백이나 백틱(-) 없이 숫자로만 입력해주세요.',
+    IS_PHONE:
+      '공백이나 백틱(-) 없이 숫자로만 입력해주세요.',
     MIN_LENGTH: '전화번호가 너무 짧습니다.',
     MAX_LENGTH: '전화번호가 너무 깁니다.',
   }),
@@ -157,7 +167,8 @@ export const ERROR_MESSAGE = Object.freeze({
   JUDGING_NUMBER: Object.freeze({
     REQUIRED: '필수 입력 항목입니다.',
     MIN_VALUE: '0점 이상 입력해주세요.',
-    MAX_VALUE: (max: number) => `${max}점 이하로 입력해주세요.`,
+    MAX_VALUE: (max: number) =>
+      `${max}점 이하로 입력해주세요.`,
   }),
 });
 

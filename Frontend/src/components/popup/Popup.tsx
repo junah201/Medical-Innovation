@@ -39,7 +39,11 @@ export const Popup = ({
           {title}
         </StyledPopupTitle>
         <StyledPopupContent isDesktop={isDesktop}>
-          <a href={link} target="_blank" rel="noopener noreferrer">
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img
               src={`${VITE_CDN_URL}/upload/${image_filename}`}
               alt={image_filename}
@@ -87,13 +91,16 @@ const StyledPopupView = styled.div<{
 `;
 
 const StyledPopupTitle = styled.h1<{ isDesktop: boolean }>`
-  font-size: ${(props) => (props.isDesktop ? '30px' : '18px')};
+  font-size: ${(props) =>
+    props.isDesktop ? '26px' : '18px'};
   text-align: center;
   word-break: keep-all;
   margin-bottom: 5px;
 `;
 
-const StyledPopupContent = styled.div<{ isDesktop: boolean }>`
+const StyledPopupContent = styled.div<{
+  isDesktop: boolean;
+}>`
   margin: 0;
   padding: 0%;
   overflow: hidden;
@@ -105,13 +112,16 @@ const StyledPopupContent = styled.div<{ isDesktop: boolean }>`
   }
 `;
 
-const StyledCloseButton = styled.button<{ isDesktop: boolean }>`
+const StyledCloseButton = styled.button<{
+  isDesktop: boolean;
+}>`
   border: none;
   width: 100%;
   padding: ${(props) => (props.isDesktop ? '8px' : '4px')};
   background-color: #dedede;
   color: black;
-  font-size: ${(props) => (props.isDesktop ? '18px' : '16px')};
+  font-size: ${(props) =>
+    props.isDesktop ? '18px' : '16px'};
   font-weight: bold;
   cursor: pointer;
 `;

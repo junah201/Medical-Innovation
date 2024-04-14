@@ -1,6 +1,11 @@
-import { InternalAxiosRequestConfig, AxiosResponse } from 'axios';
+import {
+  InternalAxiosRequestConfig,
+  AxiosResponse,
+  AxiosError,
+} from 'axios';
 
-export type AxiosInterceptorReqConfig = InternalAxiosRequestConfig;
+export type AxiosInterceptorReqConfig =
+  InternalAxiosRequestConfig;
 export type AuthReqConfig = any;
 export type ReqRejected = any;
 
@@ -19,3 +24,14 @@ export interface DataForm {
   [key: string]: any;
 }
 export type ID = number | string;
+export interface ErrDetail {
+  loc: (string | number)[];
+  msg: string;
+  type: string;
+}
+export type AxiosErr = AxiosError<{
+  data: any;
+  message: string;
+  status_code: number;
+  detail: string | ErrDetail | any;
+}>;

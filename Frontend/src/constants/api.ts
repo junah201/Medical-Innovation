@@ -7,30 +7,39 @@ const AUTH = Object.freeze({
 
 const MOU = Object.freeze({
   GET_MOUS: '/api/v2/mou/all',
-  DELETE_MOU_BY_ID: (id: number | string) => `/api/v2/mou/${id}`,
+  DELETE_MOU_BY_ID: (id: number | string) =>
+    `/api/v2/mou/${id}`,
   UPLOAD_MOU: '/api/v2/mou',
-  GET_MOU_BY_ID: (id: number | string) => `/api/v2/mou/${id}`,
-  UPDATE_MOU_BY_ID: (id: number | string) => `/api/v2/mou/${id}`,
+  GET_MOU_BY_ID: (id: number | string) =>
+    `/api/v2/mou/${id}`,
+  UPDATE_MOU_BY_ID: (id: number | string) =>
+    `/api/v2/mou/${id}`,
 });
 
 const POST = Object.freeze({
   GET_POSTS: '/api/v2/post/all',
   GET_POSTS_BY_BOARD: (id: number | string) =>
     `/api/v2/post/${id}/all`,
-  GET_POST_BY_ID: (id: number | string) => `/api/v2/post/${id}`,
+  GET_POST_BY_ID: (id: number | string) =>
+    `/api/v2/post/${id}`,
   GET_POST_BOARDS: '/api/v1/board/all',
-  UPDATE_POST_BY_ID: (id: number | string) => `/api/v2/post/${id}`,
+  UPDATE_POST_BY_ID: (id: number | string) =>
+    `/api/v2/post/${id}`,
   UPLOAD_POST: '/api/v2/post',
-  DELETE_POST_BY_ID: (id: number | string) => `/api/v2/post/${id}`,
+  DELETE_POST_BY_ID: (id: number | string) =>
+    `/api/v2/post/${id}`,
 });
 
 const POPUP = Object.freeze({
   GET_POPUPS: '/api/v2/popup/all',
   GET_ACTIVE_POPUPS: '/api/v2/popup/all/active',
-  GET_POPUP_BY_ID: (id: number | string) => `/api/v2/popup/${id}`,
+  GET_POPUP_BY_ID: (id: number | string) =>
+    `/api/v2/popup/${id}`,
   UPLOAD_POPUP: '/api/v2/popup',
-  UPDATE_POPUP_BY_ID: (id: number | string) => `/api/v2/popup/${id}`,
-  DELETE_POPUP_BY_ID: (id: number | string) => `/api/v2/popup/${id}`,
+  UPDATE_POPUP_BY_ID: (id: number | string) =>
+    `/api/v2/popup/${id}`,
+  DELETE_POPUP_BY_ID: (id: number | string) =>
+    `/api/v2/popup/${id}`,
 });
 
 const SUPPORTING_STARTUP = Object.freeze({
@@ -49,13 +58,16 @@ const HISTORY = Object.freeze({
   DELETE_HISTORY_BY_ID: (id: number | string) =>
     `/api/v2/history/${id}`,
   UPLOAD_HISTORY: '/api/v2/history',
-  GET_HISTORY_BY_ID: (id: number | string) => `/api/v2/history/${id}`,
+  GET_HISTORY_BY_ID: (id: number | string) =>
+    `/api/v2/history/${id}`,
   UPDATE_HISTORY_BY_ID: (id: number | string) =>
     `/api/v2/history/${id}`,
 });
 
 const PUBLIC_EVENT = Object.freeze({
   GET_PUBLIC_EVENTS: '/api/v2/public_event/all',
+  GET_LIMITED_PUBLIC_EVENTS:
+    '/api/v2/public_event/all/limited',
   GET_PUBLIC_EVENT_BY_ID: (id: number | string) =>
     `/api/v2/public_event/${id}`,
   UPLOAD_PUBLIC_EVENT: '/api/v2/public_event',
@@ -65,15 +77,16 @@ const PUBLIC_EVENT = Object.freeze({
 
 const PUBLIC_PARTICIPANT = Object.freeze({
   SUBMIT_PUBLIC_EVENT: (id: number | string) =>
-    `/api/v2/public_participant/${id}`,
-  GET_PUBLIC_PARTICIPANTS_BY_EVENT_ID: (id: number | string) =>
-    `/api/v2/public_participant/${id}/all`,
+    `/api/v3/public_participant/${id}`,
+  GET_PUBLIC_PARTICIPANTS_BY_EVENT_ID: (
+    id: number | string
+  ) => `/api/v3/public_participant/${id}/all`,
   GET_PUBLIC_PARTICIPANT_BY_ID: (id: number | string) =>
-    `/api/v2/public_participant/${id}`,
+    `/api/v3/public_participant/${id}`,
   UPDATE_PUBLIC_PARTICIPANT_BY_ID: (id: number | string) =>
-    `/api/v2/public_participant/${id}`,
+    `/api/v3/public_participant/${id}`,
   DELETE_PUBLIC_PARTICIPANT_BY_ID: (id: number | string) =>
-    `/api/v2/public_participant/${id}`,
+    `/api/v3/public_participant/${id}`,
 });
 
 const JUDGING_EVENT = Object.freeze({
@@ -87,11 +100,13 @@ const JUDGING_EVENT = Object.freeze({
 
 const JUDGING_PARTICIPANT = Object.freeze({
   SUBMIT_JUDGING_EVENT: '/api/v2/judging_participant',
-  GET_JUDGING_PARTICIPANTS: '/api/v2/judging_participant/all',
+  GET_JUDGING_PARTICIPANTS:
+    '/api/v2/judging_participant/all',
   GET_JUDGING_PARTICIPANT_BY_ID: (id: number | string) =>
     `/api/v2/judging_participant/${id}`,
-  GET_JUDGING_PARTICIPANTS_BY_EVENT_ID: (id: number | string) =>
-    `/api/v2/judging_participant/${id}/all`,
+  GET_JUDGING_PARTICIPANTS_BY_EVENT_ID: (
+    id: number | string
+  ) => `/api/v2/judging_participant/${id}/all`,
   GET_JUDGING_PARTICIPANTS_BY_ME:
     '/api/v2/judging_participant/me/all',
   UPDATE_JUDGING_PARTICIPANT_BY_ID: (id: number | string) =>
@@ -99,11 +114,13 @@ const JUDGING_PARTICIPANT = Object.freeze({
   UPDATE_JUDGING_PARTICIPANT_NTH_PASS_BY_ID: (
     id: number | string,
     nth_pass: number | string
-  ) => `/api/v2/judging_participant/${id}/nth_pass/${nth_pass}`,
+  ) =>
+    `/api/v2/judging_participant/${id}/nth_pass/${nth_pass}`,
   GET_NTH_JUDGING_PARTICIPANTS_BY_EVENT_ID: (
     id: number | string,
     nth_pass: number | string
-  ) => `/api/v2/judging_participant/${id}/nth_pass/${nth_pass}/all`,
+  ) =>
+    `/api/v2/judging_participant/${id}/nth_pass/${nth_pass}/all`,
 });
 
 const JUDGING_RESULT = Object.freeze({
@@ -127,7 +144,8 @@ const JUDGING_2ND_RESULT = Object.freeze({
 });
 
 const SPONSORING_COMPANY = Object.freeze({
-  GET_SPONSORING_COMPANIES: '/api/v2/sponsoring_company/all',
+  GET_SPONSORING_COMPANIES:
+    '/api/v2/sponsoring_company/all',
   DELETE_SPONSORING_COMPANY_BY_ID: (id: number | string) =>
     `/api/v2/sponsoring_company/${id}`,
   GET_SPONSORING_COMPANY_BY_ID: (id: number | string) =>
@@ -151,17 +169,21 @@ const FILE = Object.freeze({
 
 const USER = Object.freeze({
   GET_USERS: '/api/v2/user/all',
-  GET_USER_BY_ID: (id: number | string) => `/api/v2/user/${id}`,
+  GET_USER_BY_ID: (id: number | string) =>
+    `/api/v2/user/${id}`,
   UPDATE_JUDGING_PERMISSION: (
     userId: number | string,
     judgingEventId: number | string
-  ) => `/api/v2/user/${userId}/judging_permission/${judgingEventId}`,
+  ) =>
+    `/api/v2/user/${userId}/judging_permission/${judgingEventId}`,
 });
 
 const FILE_V2 = Object.freeze({
   UPLOAD_FILES: '/api/v2/file',
-  DOWNLOAD_FILE: (filename: string) => `/api/v2/file/${filename}`,
-  DELETE_FILE: (filename: string) => `/api/v2/file/${filename}`,
+  DOWNLOAD_FILE: (filename: string) =>
+    `/api/v2/file/${filename}`,
+  DELETE_FILE: (filename: string) =>
+    `/api/v2/file/${filename}`,
   UPLOAD_CROP_IMAGE: '/api/v2/file/crop',
 });
 
@@ -170,7 +192,8 @@ const ADVISOR = Object.freeze({
   UPLOAD_ADVISOR: '/api/v2/advisor',
   DELETE_ADVISOR_BY_ID: (id: number | string) =>
     `/api/v2/advisor/${id}`,
-  GET_ADVISOR_BY_ID: (id: number | string) => `/api/v2/advisor/${id}`,
+  GET_ADVISOR_BY_ID: (id: number | string) =>
+    `/api/v2/advisor/${id}`,
   UPDATE_ADVISOR_BY_ID: (id: number | string) =>
     `/api/v2/advisor/${id}`,
 });
@@ -178,7 +201,8 @@ const ADVISOR = Object.freeze({
 const POST_V2 = Object.freeze({
   GET_POSTS: '/api/v2/post/all',
   UPLOAD_POST: '/api/v2/post',
-  UPDATE_POST_BY_ID: (id: number | string) => `/api/v2/post/${id}`,
+  UPDATE_POST_BY_ID: (id: number | string) =>
+    `/api/v2/post/${id}`,
 });
 
 const BANNER = Object.freeze({
@@ -189,7 +213,8 @@ const BANNER = Object.freeze({
     `/api/v2/banner/${id}`,
   UPDATE_BANNER_BY_ID: (id: number | string) =>
     `/api/v2/banner/${id}`,
-  GET_BANNER_BY_ID: (id: number | string) => `/api/v2/banner/${id}`,
+  GET_BANNER_BY_ID: (id: number | string) =>
+    `/api/v2/banner/${id}`,
 });
 
 const PRIVATE_EVENT = Object.freeze({
@@ -203,8 +228,9 @@ const PRIVATE_EVENT = Object.freeze({
 
 const PRIVATE_PARTICIPANT = Object.freeze({
   SUBMIT_PRIVATE_EVENT: '/api/v2/private_participant',
-  GET_PRIVATE_PARTICIPANTS_BY_EVENT_ID: (id: number | string) =>
-    `/api/v2/private_participant/${id}/all`,
+  GET_PRIVATE_PARTICIPANTS_BY_EVENT_ID: (
+    id: number | string
+  ) => `/api/v2/private_participant/${id}/all`,
   GET_PRIVATE_PARTICIPANT_BY_ID: (id: number | string) =>
     `/api/v2/private_participant/${id}`,
   UPDATE_PRIVATE_PARTICIPANT_BY_ID: (id: number | string) =>

@@ -1,62 +1,61 @@
-import { AxiosError } from 'axios';
-import { useState } from 'react';
-import { useQuery } from 'react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 import { getPostById } from '@/api';
 import { PostContent } from '@/components/post';
-import { Post as IPost } from '@/types/post';
+import { useCustomQuery } from '@/libs/Query';
 
 const { VITE_CDN_URL } = import.meta.env;
 
 export const Post = () => {
-  const [data, setData] = useState<IPost>({} as IPost);
-
   const params = useParams();
-  const navigate = useNavigate();
 
-  const { isLoading, isError, error } = useQuery({
-    queryKey: ['post', params.id],
-    queryFn: () => getPostById(params.id),
-    retry: false,
-    onSuccess: (res) => {
-      setData(res.data);
-    },
-    onError: (err: AxiosError) => {
-      if (err?.response?.status === 404) {
-        navigate('/404');
+  const { data, isLoading, isError, error } =
+    useCustomQuery(
+      ['post', params.id],
+      () => getPostById(params.id),
+      {
+        staleTime: Infinity,
+        cacheTime: Infinity,
       }
-    },
-  });
+    );
 
   if (isLoading) return <div>로딩중...</div>;
 
   if (isError)
-    return <div>에러가 발생했습니다. {JSON.stringify(error)}</div>;
+    return (
+      <div>
+        에러가 발생했습니다. {JSON.stringify(error)}
+      </div>
+    );
+
+  if (!data) return null;
 
   return (
     <>
-      <h1>{data.title}</h1>
+      <h1>{data.data.title}</h1>
       <StyledPostDetail>
         <span>
           <small>작성자</small>
-          {data.author_name}
+          {data.data.author_name}
         </span>
         <span>
-          <small>작성일</small> {data.created_at}
+          <small>작성일</small> {data.data.created_at}
         </span>
         <span>
-          <small>게시판</small> {data.board.name}
+          <small>게시판</small> {data.data.board.name}
         </span>
       </StyledPostDetail>
-      <PostContent content={data.content} />
-      {data.files.length ? (
+      <PostContent content={data.data.content} />
+      {data.data.files.length ? (
         <StyledPostFiles>
           <span>첨부파일</span>
-          {data.files.map((file) => {
+          {data.data.files.map((file) => {
             return (
-              <a href={`${VITE_CDN_URL}/upload/${file}`} key={file}>
+              <a
+                href={`${VITE_CDN_URL}/upload/${file}`}
+                key={file}
+              >
                 {file}
               </a>
             );

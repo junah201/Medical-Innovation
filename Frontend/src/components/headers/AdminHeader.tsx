@@ -28,16 +28,15 @@ export const AdminHeader = () => {
             </Link>
           </li>
           <li>
-            <Link to={ROUTE.ADMIN.SPONSOR.ALL}>후원 목록</Link>
-          </li>
-          <li>
             <Link to="/admin/mou/all">Mou 목록</Link>
           </li>
           <li>
             <Link to="/admin/advisor/all">자문단</Link>
           </li>
           <li>
-            <Link to="/admin/public_event/all">행사 목록</Link>
+            <Link to="/admin/public_event/all">
+              행사 목록
+            </Link>
           </li>
           <li>
             <Link to="/admin/public_participant/all">
@@ -53,7 +52,9 @@ export const AdminHeader = () => {
             </Link>
           </li>
           <li>
-            <Link to="/admin/judging_result/all">1차 심사 결과</Link>
+            <Link to="/admin/judging_result/all">
+              1차 심사 결과
+            </Link>
           </li>
           <li>
             <Link to="/admin/judging_2nd_result/all">
@@ -61,7 +62,9 @@ export const AdminHeader = () => {
             </Link>
           </li>
           <li>
-            <Link to="/admin/ad_email/all">광고 수신 이메일</Link>
+            <Link to="/admin/ad_email/all">
+              광고 수신 이메일
+            </Link>
           </li>
           <li>
             <Link to="/admin/history/all">연혁</Link>
@@ -73,9 +76,6 @@ export const AdminHeader = () => {
           </li>
           <li>
             <Link to="/admin/popup/all">페이지 팝업</Link>
-          </li>
-          <li>
-            <Link to="/preparing">기타 설정</Link>
           </li>
         </ul>
       </nav>

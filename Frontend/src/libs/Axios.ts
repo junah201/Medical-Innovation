@@ -14,7 +14,10 @@ import {
   DataForm,
 } from '@/types';
 
-const { VITE_API_URL } = import.meta.env;
+const { VITE_API_URL } = import.meta.env as Record<
+  string,
+  string
+>;
 
 export class Axios {
   #instance;
@@ -50,7 +53,9 @@ export class Axios {
     return newConfig;
   }
 
-  #setAuthReq(config: AxiosInterceptorReqConfig): AuthReqConfig {
+  #setAuthReq(
+    config: AxiosInterceptorReqConfig
+  ): AuthReqConfig {
     const { headers } = config;
     const newConfig = {
       ...config,
@@ -74,15 +79,23 @@ export class Axios {
     const { authorization, refreshtoken } = res.headers;
 
     if (authorization) {
-      this.#cookie.set(COOKIE.KEY.ACCESS_TOKEN, authorization, {
-        ...COOKIE.CONFIG.DEFAULT,
-      });
+      this.#cookie.set(
+        COOKIE.KEY.ACCESS_TOKEN,
+        authorization,
+        {
+          ...COOKIE.CONFIG.DEFAULT,
+        }
+      );
     }
 
     if (refreshtoken) {
-      this.#cookie.set(COOKIE.KEY.REFRESH_TOKEN, refreshtoken, {
-        ...COOKIE.CONFIG.DEFAULT,
-      });
+      this.#cookie.set(
+        COOKIE.KEY.REFRESH_TOKEN,
+        refreshtoken,
+        {
+          ...COOKIE.CONFIG.DEFAULT,
+        }
+      );
     }
 
     return res;
@@ -92,15 +105,15 @@ export class Axios {
     return Promise.reject(error);
   }
 
-  get(endPoint: EndPoint) {
-    return this.#instance({
+  get<T = any>(endPoint: EndPoint) {
+    return this.#instance<T>({
       method: METHOD.GET,
       url: endPoint,
     });
   }
 
-  getByQuery(endPoint: EndPoint, query: Query) {
-    return this.#instance({
+  getByQuery<T = any>(endPoint: EndPoint, query: Query) {
+    return this.#instance<T>({
       method: METHOD.GET,
       url: endPoint,
       params: {
@@ -109,8 +122,8 @@ export class Axios {
     });
   }
 
-  getByParams(endPoint: EndPoint, params: Params) {
-    return this.#instance({
+  getByParams<T = any>(endPoint: EndPoint, params: Params) {
+    return this.#instance<T>({
       method: METHOD.GET,
       url: `${endPoint}`,
       params: params,

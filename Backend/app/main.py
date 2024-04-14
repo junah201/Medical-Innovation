@@ -4,7 +4,6 @@ from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.exceptions import RequestValidationError
-
 from starlette import status
 import datetime
 
@@ -25,14 +24,13 @@ from app.routers.v1 import (
     ad_email_router,
     history_router,
     supporting_startup_router,
-    private_event_router,
-    private_participant_router,
     popup_router,
     judging_event_router,
     judging_participant_router,
     judging_result_router
 )
 from app.routers.v2 import v2_router
+from app.routers.v3 import v3_router
 
 models.Base.metadata.create_all(bind=engine, checkfirst=True)
 
@@ -69,8 +67,6 @@ for router in [
     ad_email_router,
     history_router,
     supporting_startup_router,
-    private_event_router,
-    private_participant_router,
     popup_router,
     judging_event_router,
     judging_participant_router,
@@ -79,6 +75,7 @@ for router in [
     app.include_router(router.router, tags=["v1"])
 
 app.include_router(v2_router.router)
+app.include_router(v3_router.router)
 
 
 @app.exception_handler(RequestValidationError)

@@ -11,7 +11,12 @@ export interface Post {
   updated_at: string;
 }
 
-interface Board {
+export interface PostList {
+  datas: Post[];
+  total: number;
+}
+
+export interface Board {
   id: number;
   name: string;
   created_at: string;
