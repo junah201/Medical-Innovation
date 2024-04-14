@@ -12,6 +12,7 @@ import {
   useCustomMutation,
   useCustomQuery,
 } from '@/libs/Query';
+import { Toast } from '@/libs/Toast';
 
 export const EventRegistration = () => {
   const navigate = useNavigate();
@@ -28,6 +29,20 @@ export const EventRegistration = () => {
     {
       staleTime: Infinity,
       cacheTime: Infinity,
+      onSuccess: (res) => {
+        const now = new Date().toISOString().slice(0, 10);
+
+        if (res.data.join_start_date > now) {
+          Toast('아직 신청 기간이 아닙니다.', 'error');
+          navigate(-1);
+          return;
+        }
+        if (res.data.join_end_date < now) {
+          Toast('신청 기간이 종료되었습니다.', 'error');
+          navigate(-1);
+          return;
+        }
+      },
     }
   );
 
