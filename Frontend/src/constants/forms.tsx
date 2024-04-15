@@ -22,7 +22,10 @@ export interface FormRules<RegisterField = any> {
     value: RegExp;
     message: string;
   };
-  validate?: (input: string, values: RegisterField) => boolean | string;
+  validate?: (
+    input: string,
+    values: RegisterField
+  ) => boolean | string;
 }
 
 export interface Option {
@@ -97,10 +100,16 @@ export const INPUT = Object.freeze({
     disabled: false,
     rules: {
       required: '비밀번호를 다시 입력해주세요',
-      validate: (input: string, values: Record<string, any>) => {
+      validate: (
+        input: string,
+        values: Record<string, any>
+      ) => {
         const password = values['password'];
 
-        return input === password || '비밀번호가 일치하지 않습니다.';
+        return (
+          input === password ||
+          '비밀번호가 일치하지 않습니다.'
+        );
       },
     },
   }),
@@ -818,9 +827,10 @@ export const INPUT = Object.freeze({
     type: INPUT_TYPE.JUDGING,
     helperText: (
       <>
-        대상기술의 유형을 파생기술, 응용기술, 원천기술 등으로 구분하고, 기술적
-        우월성을 판단함. 가장 높은 범주인 원천기술이란 해당 기술이 속해있는
-        분야에서 기술표준을 주도하는 기술을 의미함.
+        대상기술의 유형을 파생기술, 응용기술, 원천기술
+        등으로 구분하고, 기술적 우월성을 판단함. 가장 높은
+        범주인 원천기술이란 해당 기술이 속해있는 분야에서
+        기술표준을 주도하는 기술을 의미함.
       </>
     ),
     options: [
@@ -840,14 +850,15 @@ export const INPUT = Object.freeze({
     type: INPUT_TYPE.JUDGING,
     helperText: (
       <>
-        대상기술을 기술혁신의 응용과 확산 정도에 따라 혁신기술(revolutionary),
-        주요 개량기술(major improvement), 보통 개량기술(minor improvement),
+        대상기술을 기술혁신의 응용과 확산 정도에 따라
+        혁신기술(revolutionary), 주요 개량기술(major
+        improvement), 보통 개량기술(minor improvement),
         일부개량 및 기존 기술과 유사 등으로 구분하여 평가함.
         <br />
         <small>
-          ∴여기서 혁신기술이랑 기존기술을 대체할 수 있는 신기술을 의미하고,
-          개량기술은 기존 제품 혹은 서비스에 기술적 우위성을 부가하는 기술을
-          의미함.
+          ∴여기서 혁신기술이랑 기존기술을 대체할 수 있는
+          신기술을 의미하고, 개량기술은 기존 제품 혹은
+          서비스에 기술적 우위성을 부가하는 기술을 의미함.
         </small>
       </>
     ),
@@ -868,10 +879,11 @@ export const INPUT = Object.freeze({
     type: INPUT_TYPE.JUDGING,
     helperText: (
       <>
-        경쟁기술 대비 대상기술의 차별적 속성을 평가함. 차별적 속성을 비교할 수
-        있는 항목 중 단일 항목의 차별성이 매우 높은 경우 혹은 복수 항목의
-        차별성이 모두 유의한 경우에 양호 또는 우수로 평가할 수 있음. 기술의
-        차별성을 평가할 수 있는 항목은 다음과 같음.
+        경쟁기술 대비 대상기술의 차별적 속성을 평가함.
+        차별적 속성을 비교할 수 있는 항목 중 단일 항목의
+        차별성이 매우 높은 경우 혹은 복수 항목의 차별성이
+        모두 유의한 경우에 양호 또는 우수로 평가할 수 있음.
+        기술의 차별성을 평가할 수 있는 항목은 다음과 같음.
         <br />
         <small>
           {'<검토항목>'}
@@ -906,8 +918,9 @@ export const INPUT = Object.freeze({
     type: INPUT_TYPE.JUDGING,
     helperText: (
       <>
-        현재 목표시장에서 대상기술과 연관이 있는 경쟁기술(유사기술)의 수, 기술
-        간 상호 경쟁관계 등을 파악하고 기술간 경쟁구조와 경쟁환경이 대상기술의
+        현재 목표시장에서 대상기술과 연관이 있는
+        경쟁기술(유사기술)의 수, 기술 간 상호 경쟁관계 등을
+        파악하고 기술간 경쟁구조와 경쟁환경이 대상기술의
         사업화에 미치는 영향을 평가함.
       </>
     ),
@@ -928,8 +941,9 @@ export const INPUT = Object.freeze({
     type: INPUT_TYPE.JUDGING,
     helperText: (
       <>
-        대상기술이 현재 적용될 수 있는 시장 및 제품 이외에 향후 응용 가능성 및
-        융합기술의 개발에 적용될 가능성을 평가함. 즉, 대상기술의 향후 타제품 및
+        대상기술이 현재 적용될 수 있는 시장 및 제품 이외에
+        향후 응용 가능성 및 융합기술의 개발에 적용될
+        가능성을 평가함. 즉, 대상기술의 향후 타제품 및
         시장으로의 확장, 적용 가능성을 평가함.
       </>
     ),
@@ -950,13 +964,15 @@ export const INPUT = Object.freeze({
     type: INPUT_TYPE.JUDGING,
     helperText: (
       <>
-        기술수준의 고도성 또는 복잡성으로 인해 모방이 어려운 정도를 평가함. 외부
-        공개 자료에 의한 모방 가능성 정도, 출시 제품에 대한 리버스 엔지니어링을
-        통한 모방 가능성 정도 등을 종합적으로 고려함.
+        기술수준의 고도성 또는 복잡성으로 인해 모방이 어려운
+        정도를 평가함. 외부 공개 자료에 의한 모방 가능성
+        정도, 출시 제품에 대한 리버스 엔지니어링을 통한 모방
+        가능성 정도 등을 종합적으로 고려함.
         <br />
         <small>
-          - 대상기술의 모방 난이도가 높을수록 상당기간 동안 모방이 어렵기 때문에
-          기술위험이 상대적으로 낮아지고 사업화 위험도 낮아짐.
+          - 대상기술의 모방 난이도가 높을수록 상당기간 동안
+          모방이 어렵기 때문에 기술위험이 상대적으로
+          낮아지고 사업화 위험도 낮아짐.
         </small>
       </>
     ),
@@ -977,7 +993,8 @@ export const INPUT = Object.freeze({
     type: INPUT_TYPE.JUDGING,
     helperText: (
       <>
-        시장진입 장애요인을 분석하여 대상기술의 시장진입 가능성을 평가함.
+        시장진입 장애요인을 분석하여 대상기술의 시장진입
+        가능성을 평가함.
         <br />
         <small>
           {'<검토항목>'}
@@ -986,7 +1003,8 @@ export const INPUT = Object.freeze({
           <br />
           - 제품 차별화 요인이 크지 않아 시장진입이 어렵다
           <br />
-          - 기존 경쟁자의 유통망이 견고하여 시장진입이 어렵다
+          - 기존 경쟁자의 유통망이 견고하여 시장진입이
+          어렵다
           <br />
           - 시장에 진입하기 위한 소요자본 규모가 크다
           <br />- 법·제도적인 장애요인이 많다
@@ -1010,15 +1028,16 @@ export const INPUT = Object.freeze({
     type: INPUT_TYPE.JUDGING,
     helperText: (
       <>
-        대상기술이 속한 목표시장의 경쟁구조, 시장지배자의 유형, 독과점 여부,
-        경쟁제품의 수 등 시장의 경쟁강도가 대상기술의 사업화에 미치는 영향을
-        평가함.
+        대상기술이 속한 목표시장의 경쟁구조, 시장지배자의
+        유형, 독과점 여부, 경쟁제품의 수 등 시장의
+        경쟁강도가 대상기술의 사업화에 미치는 영향을 평가함.
         <br />
         <small>
-          - 일반적으로 독과점 정도가 높을수록 혹은 시장 선도기업들의 경쟁이
-          치열할수록 시장침투가 용이하지 않을수록 시장위험이 상대적으로 커지게
-          됨. 그러나 대상기업이 경쟁력이 있고, 이미 목표시장에 진입한 경우
-          독과점 시장구조가 사업화에 유리할 수 있음.
+          - 일반적으로 독과점 정도가 높을수록 혹은 시장
+          선도기업들의 경쟁이 치열할수록 시장침투가 용이하지
+          않을수록 시장위험이 상대적으로 커지게 됨. 그러나
+          대상기업이 경쟁력이 있고, 이미 목표시장에 진입한
+          경우 독과점 시장구조가 사업화에 유리할 수 있음.
         </small>
       </>
     ),
@@ -1039,8 +1058,9 @@ export const INPUT = Object.freeze({
     type: INPUT_TYPE.JUDGING,
     helperText: (
       <>
-        향후 3-5년 이내 경쟁상황(경쟁제품의 수, 경쟁기업의 수 등)의 변화가
-        대상기술의 사업화에 미치는 영향을 평가함.
+        향후 3-5년 이내 경쟁상황(경쟁제품의 수, 경쟁기업의
+        수 등)의 변화가 대상기술의 사업화에 미치는 영향을
+        평가함.
       </>
     ),
     options: [
@@ -1059,7 +1079,10 @@ export const INPUT = Object.freeze({
     label: '시장의 성장전망',
     type: INPUT_TYPE.JUDGING,
     helperText: (
-      <>향후 5년간 목표시장의 연평균 성장률을 통해 시장의 성장성을 평가함.</>
+      <>
+        향후 5년간 목표시장의 연평균 성장률을 통해 시장의
+        성장성을 평가함.
+      </>
     ),
     options: [
       '목표시장의 향후 연평균 성장률이 마이너스(-)로 예상됨.',
@@ -1078,9 +1101,10 @@ export const INPUT = Object.freeze({
     type: INPUT_TYPE.JUDGING,
     helperText: (
       <>
-        시장 내 경쟁자 수, 경쟁상황, 대상기술 제품의 경쟁력, 사업주체의 사업화
-        역량 등을 종합적으로 고려하여 대상기술 제품이 목표시장에서 점유할 수
-        있는 최대 시장점유율을 통해 예상 시장점유율을 평가함.
+        시장 내 경쟁자 수, 경쟁상황, 대상기술 제품의 경쟁력,
+        사업주체의 사업화 역량 등을 종합적으로 고려하여
+        대상기술 제품이 목표시장에서 점유할 수 있는 최대
+        시장점유율을 통해 예상 시장점유율을 평가함.
       </>
     ),
     options: [
@@ -1098,7 +1122,12 @@ export const INPUT = Object.freeze({
     name: 'business_score2',
     label: '사업화 준비기간',
     type: INPUT_TYPE.JUDGING,
-    helperText: <>기술사업화까지 소요되는 준비기간이 어느 정도인지를 평가함.</>,
+    helperText: (
+      <>
+        기술사업화까지 소요되는 준비기간이 어느 정도인지를
+        평가함.
+      </>
+    ),
     options: [
       '기술사업화를 위해 2년 이상의 준비기간이 필요함.',
       '기술사업화를 위해 1-2년 미만의 준비기간이 필요함.',
@@ -1116,8 +1145,9 @@ export const INPUT = Object.freeze({
     type: INPUT_TYPE.JUDGING,
     helperText: (
       <>
-        대상기술의 사업화를 위해 필요한 소요자본 규모를 추정하고 아래의 기준에
-        의해 평가함. 예상되는 자본투자 규모가 상당히 클 경우 사업화 추진에
+        대상기술의 사업화를 위해 필요한 소요자본 규모를
+        추정하고 아래의 기준에 의해 평가함. 예상되는
+        자본투자 규모가 상당히 클 경우 사업화 추진에
         애로사항이 될 수 있음.
       </>
     ),
@@ -1138,8 +1168,9 @@ export const INPUT = Object.freeze({
     type: INPUT_TYPE.JUDGING,
     helperText: (
       <>
-        제품을 생산하는데 필요한 생상활동과 관련된 아래 사항들을 고려하여
-        생산용이성을 평가함. *전체 외주생산의 경우에는 최대 3점까지 부여가능
+        제품을 생산하는데 필요한 생상활동과 관련된 아래
+        사항들을 고려하여 생산용이성을 평가함. *전체
+        외주생산의 경우에는 최대 3점까지 부여가능
         <br />
         <small>
           {'<검토항목>'}
@@ -1174,13 +1205,15 @@ export const INPUT = Object.freeze({
     type: INPUT_TYPE.JUDGING,
     helperText: (
       <>
-        대상기술 제품의 예상 연평균 매출액 성장률과 동업종의 최근 3년간 연평균
-        매출액 성장률을 비교하여 평가함. (평가 대상기업은 향후 3년까지
-        예상매출액을 제시할 것)
+        대상기술 제품의 예상 연평균 매출액 성장률과 동업종의
+        최근 3년간 연평균 매출액 성장률을 비교하여 평가함.
+        (평가 대상기업은 향후 3년까지 예상매출액을 제시할
+        것)
         <br />
         <small>
-          *비교대상 동업종 자료는 한국은행의 ‘기업경영분석’ 및 기타 신뢰할 수
-          있는 기업재무정보 제공기관에서의 세세분류 업종 자료 사용을 권장함.
+          *비교대상 동업종 자료는 한국은행의 ‘기업경영분석’
+          및 기타 신뢰할 수 있는 기업재무정보 제공기관에서의
+          세세분류 업종 자료 사용을 권장함.
         </small>
       </>
     ),
@@ -1201,12 +1234,13 @@ export const INPUT = Object.freeze({
     type: INPUT_TYPE.JUDGING,
     helperText: (
       <>
-        대상기술 제품의 예상 영업이익률과 동업종의 최근 3년간 평균 영업이익률을
-        비교하여 평가함.
+        대상기술 제품의 예상 영업이익률과 동업종의 최근
+        3년간 평균 영업이익률을 비교하여 평가함.
         <br />
         <small>
-          *비교대상 동업종 자료는 한국은행의 ‘기업경영분석’ 및 기타 신뢰할 수
-          있는 기업재무정보 제공기관에서의 세세분류 업종 자료 사용을 권장함.
+          *비교대상 동업종 자료는 한국은행의 ‘기업경영분석’
+          및 기타 신뢰할 수 있는 기업재무정보 제공기관에서의
+          세세분류 업종 자료 사용을 권장함.
         </small>
       </>
     ),
@@ -1227,8 +1261,9 @@ export const INPUT = Object.freeze({
     type: INPUT_TYPE.JUDGING,
     helperText: (
       <>
-        대상기술 도입 또는 적용으로 인해 타 산업 분야에서 매출이 발생할 가능성을
-        평가함. (한국표준산업분류 참고)
+        대상기술 도입 또는 적용으로 인해 타 산업 분야에서
+        매출이 발생할 가능성을 평가함. (한국표준산업분류
+        참고)
       </>
     ),
     options: [
@@ -1248,7 +1283,8 @@ export const INPUT = Object.freeze({
     type: INPUT_TYPE.JUDGING,
     helperText: (
       <>
-        목표시장에서 향후 3년 이내에 경쟁 신제품이 출현할 가능성에 대해 평가함.
+        목표시장에서 향후 3년 이내에 경쟁 신제품이 출현할
+        가능성에 대해 평가함.
       </>
     ),
     options: [
@@ -1266,7 +1302,8 @@ export const INPUT = Object.freeze({
     name: 'other_score1',
     label: '기타 고려 사항',
     type: INPUT_TYPE.NUMBER,
-    helperText: '위과 같은 항목을 근거로 정성적으로 1~10점을 기재해 주십시오.',
+    helperText:
+      '위과 같은 항목을 근거로 정성적으로 1~10점을 기재해 주십시오.',
     rule: {
       min: {
         value: 0,
@@ -1366,8 +1403,17 @@ export const INPUT = Object.freeze({
     helperText:
       '위 평가항목에 대한 지적사항이나 보완할 사항, 기타 심의의견 등을 기재해 주십시오.',
   }),
+  // Ad email
+  AD_EMAIL_INFO: Object.freeze({
+    name: 'othor_comment',
+    label: '기타 정보',
+    type: INPUT_TYPE.MULTILINE,
+    helperText: '기타 정보를 입력해주세요.',
+    placeholder: '만약 없다면 공백하나만 입력해주세요.',
+  }),
 });
 
-export type RegisterTypes = (typeof INPUT)[keyof typeof INPUT]['name'];
+export type RegisterTypes =
+  (typeof INPUT)[keyof typeof INPUT]['name'];
 export type RegisterField = Record<RegisterTypes, any>;
 export type RegisterForm = UseFormRegister<RegisterField>;

@@ -4,14 +4,18 @@ import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
-import { sendAdEmailAll, sendAdEmailOne } from '@/api';
+import { sendAdEmailAll } from '@/api';
 import { Message } from '@/components';
 import {
   ReactHookInput,
   HtmlInput,
   FilesInput,
 } from '@/components/form';
-import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
+import {
+  INPUT_TYPE,
+  REGISTER_TYPE,
+  ROUTE,
+} from '@/constants';
 import {
   AlertSendAdEmailAll,
   AlertSendAdEmailOne,
@@ -63,14 +67,15 @@ export const AdminAdEmailSendAll = () => {
     }
   );
 
-  const onValid = (userInput: RegisterField) => mutate(userInput);
+  const onValid = (userInput: RegisterField) =>
+    mutate(userInput);
 
   return (
     <>
       <h1>광고 수신 이메일</h1>
       <Message>
-        수신 동의를 한 모두에게 이메일을 전송합니다. 중간에 취소
-        불가능하니 주의해주세요.
+        수신 동의를 한 모두에게 이메일을 전송합니다. 중간에
+        취소 불가능하니 주의해주세요.
       </Message>
       <Form>
         <ReactHookInput
@@ -79,12 +84,18 @@ export const AdminAdEmailSendAll = () => {
           placeholder="제목"
           type={INPUT_TYPE.TEXT}
           register={register}
-          errorMessage={errors[REGISTER_TYPE.TITLE]?.message}
+          errorMessage={
+            errors[REGISTER_TYPE.TITLE]?.message
+          }
         />
         <HtmlInput
           title="내용"
-          errorMessage={errors[REGISTER_TYPE.CONTENT]?.message}
-          onChange={(value) => setValue(REGISTER_TYPE.CONTENT, value)}
+          errorMessage={
+            errors[REGISTER_TYPE.CONTENT]?.message
+          }
+          onChange={(value) =>
+            setValue(REGISTER_TYPE.CONTENT, value)
+          }
           defaultData=""
         />
         <FilesInput
@@ -99,7 +110,9 @@ export const AdminAdEmailSendAll = () => {
           placeholder="테스트 이메일"
           type={INPUT_TYPE.EMAIL}
           register={register}
-          errorMessage={errors[REGISTER_TYPE.EMAIL]?.message}
+          errorMessage={
+            errors[REGISTER_TYPE.EMAIL]?.message
+          }
         />
         <Submit
           isvalid={!Object.keys(errors)[0]}

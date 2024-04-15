@@ -29,7 +29,7 @@ export const Post = () => {
       </div>
     );
 
-  if (!data) return null;
+  if (!data) return <></>;
 
   return (
     <>

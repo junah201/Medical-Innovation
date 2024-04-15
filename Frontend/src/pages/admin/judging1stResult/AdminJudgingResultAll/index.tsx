@@ -9,7 +9,6 @@ import {
   getJudgingParticipantsByEventId,
   getJudgingResultsByEventId,
 } from '@/api';
-import { NavLinkButton } from '@/components/buttons';
 import { BasicInput } from '@/components/CustomInput';
 import MuiTable from '@/components/MuiTable';
 import { INPUT_TYPE } from '@/constants/forms';
