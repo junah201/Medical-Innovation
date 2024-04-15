@@ -881,6 +881,18 @@ class JudgingEvent(Base):
         default="2023-01-01",
         comment="2차 심사 종료 날짜"
     )
+    judging_1st_form_type = Column(
+        VARCHAR(32),
+        nullable=False,
+        default="",
+        comment="1차 심사 양식"
+    )
+    judging_2nd_form_type = Column(
+        VARCHAR(32),
+        nullable=False,
+        default="",
+        comment="2차 심사 양식"
+    )
     description = Column(
         String(6000),
         nullable=False,
@@ -1039,6 +1051,130 @@ class JudgingParticipant(Base):
 
     class Config:
         orm_mode = True
+
+
+class JudgingParticipant2(Base):
+    __tablename__ = "judging_participant2"
+    __table_args__ = {'mysql_collate': 'utf8_general_ci'}
+
+    id = Column(
+        INTEGER(unsigned=True),
+        primary_key=True,
+        unique=True,
+        comment="참가자 고유 번호"
+    )
+    user_id = Column(
+        INTEGER(unsigned=True),
+        ForeignKey("user.id"),
+        nullable=True,
+        comment="참가자 고유 번호"
+    )
+    user = relationship(
+        "User",
+    )
+    nth_pass = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="n차 심사 중"
+    )
+    event_id = Column(
+        INTEGER(unsigned=True),
+        ForeignKey("judging_event.id"),
+    )
+    event = relationship(
+        "JudgingEvent",
+    )
+    application = Column(
+        VARCHAR(5000),
+        nullable=False,
+        comment="참가자 정보"
+    )
+    created_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        comment="생성 시점"
+    )
+    updated_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        onupdate=func.now(),
+        comment="마지막 수정 시점"
+    )
+
+    class Config:
+        orm_mode = True
+
+
+class JudgingResult2(Base):
+    __tablename__ = "judging_result2"
+    __table_args__ = {'mysql_collate': 'utf8_general_ci'}
+
+    id = Column(
+        INTEGER(unsigned=True),
+        primary_key=True,
+        unique=True,
+        comment="고유 번호"
+    )
+    judging_event_id = Column(
+        INTEGER(unsigned=True),
+        ForeignKey("judging_event.id"),
+        nullable=False,
+        comment="행사 고유 번호"
+    )
+    judging_event = relationship(
+        "JudgingEvent",
+    )
+    participant_id = Column(
+        INTEGER(unsigned=True),
+        ForeignKey("judging_participant2.id"),
+        nullable=False,
+        comment="참가자 고유 번호"
+    )
+    participant = relationship(
+        "JudgingParticipant2",
+    )
+    user_id = Column(
+        INTEGER(unsigned=True),
+        ForeignKey("user.id"),
+        nullable=False,
+        comment="심사위원 고유 번호"
+    )
+    user = relationship(
+        "User",
+    )
+    nth = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=1,
+        comment="n차 심사"
+    )
+    total_score = Column(
+        INTEGER(unsigned=True),
+        nullable=False,
+        default=0,
+        comment="총점"
+    )
+    results = Column(
+        VARCHAR(5000),
+        nullable=False,
+        comment="심사 결과"
+    )
+    created_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        comment="생성 시점"
+    )
+    updated_at = Column(
+        DateTime,
+        nullable=False,
+        default=func.now(),
+        onupdate=func.now(),
+        comment="마지막 수정 시점"
+    )
 
 
 class JudgingResult(Base):

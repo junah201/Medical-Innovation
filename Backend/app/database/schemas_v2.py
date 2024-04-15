@@ -697,21 +697,14 @@ class JudgingEventCreate(BaseModel):
     judging_1st_end_date: date
     judging_2nd_start_date: date
     judging_2nd_end_date: date
+    judging_1st_form_type: str
+    judging_2nd_form_type: str
     description: str
     thumbnail_filename: str
 
 
-class JudgingEvent(BaseModel):
+class JudgingEvent(JudgingEventCreate):
     id: PositiveInt
-    name: str
-    join_start_date: date
-    join_end_date: date
-    judging_1st_start_date: date
-    judging_1st_end_date: date
-    judging_2nd_start_date: date
-    judging_2nd_end_date: date
-    description: str
-    thumbnail_filename: Optional[str]
     created_at: datetime
     updated_at: datetime
 
@@ -727,14 +720,6 @@ class JudgingEventList(BaseModel):
 class LimitedjudgingEvent(BaseModel):
     id: PositiveInt
     name: str
-    join_start_date: date
-    join_end_date: date
-    judging_1st_start_date: date
-    judging_1st_end_date: date
-    judging_2nd_start_date: date
-    judging_2nd_end_date: date
-    description: str
-    thumbnail_filename: Optional[str]
 
     class Config:
         orm_mode = True

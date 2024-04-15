@@ -91,6 +91,8 @@ const PUBLIC_PARTICIPANT = Object.freeze({
 
 const JUDGING_EVENT = Object.freeze({
   GET_JUDGING_EVENTS: '/api/v2/judging_event/all',
+  GET_LIMITED_JUDGING_EVENTS:
+    '/api/v2/judging_event/all/limited',
   GET_JUDGING_EVENT_BY_ID: (id: number | string) =>
     `/api/v2/judging_event/${id}`,
   UPLOAD_JUDGING_EVENT: '/api/v2/judging_event',
@@ -99,28 +101,28 @@ const JUDGING_EVENT = Object.freeze({
 });
 
 const JUDGING_PARTICIPANT = Object.freeze({
-  SUBMIT_JUDGING_EVENT: '/api/v2/judging_participant',
+  SUBMIT_JUDGING_EVENT: '/api/v3/judging_participant',
   GET_JUDGING_PARTICIPANTS:
-    '/api/v2/judging_participant/all',
+    '/api/v3/judging_participant/all',
   GET_JUDGING_PARTICIPANT_BY_ID: (id: number | string) =>
-    `/api/v2/judging_participant/${id}`,
+    `/api/v3/judging_participant/${id}`,
   GET_JUDGING_PARTICIPANTS_BY_EVENT_ID: (
     id: number | string
-  ) => `/api/v2/judging_participant/${id}/all`,
+  ) => `/api/v3/judging_participant/${id}/all`,
   GET_JUDGING_PARTICIPANTS_BY_ME:
-    '/api/v2/judging_participant/me/all',
+    '/api/v3/judging_participant/me/all',
   UPDATE_JUDGING_PARTICIPANT_BY_ID: (id: number | string) =>
-    `/api/v2/judging_participant/${id}`,
+    `/api/v3/judging_participant/${id}`,
   UPDATE_JUDGING_PARTICIPANT_NTH_PASS_BY_ID: (
     id: number | string,
     nth_pass: number | string
   ) =>
-    `/api/v2/judging_participant/${id}/nth_pass/${nth_pass}`,
+    `/api/v3/judging_participant/${id}/nth_pass/${nth_pass}`,
   GET_NTH_JUDGING_PARTICIPANTS_BY_EVENT_ID: (
     id: number | string,
     nth_pass: number | string
   ) =>
-    `/api/v2/judging_participant/${id}/nth_pass/${nth_pass}/all`,
+    `/api/v3/judging_participant/${id}/nth_pass/${nth_pass}/all`,
 });
 
 const JUDGING_RESULT = Object.freeze({

@@ -10,8 +10,10 @@ export interface JudgingEvent {
   join_end_date: string;
   judging_1st_start_date: string;
   judging_1st_end_date: string;
+  judging_1st_form_type: string;
   judging_2nd_start_date: string;
   judging_2nd_end_date: string;
+  judging_2nd_form_type: string;
   created_at: string;
   updated_at: string;
 }

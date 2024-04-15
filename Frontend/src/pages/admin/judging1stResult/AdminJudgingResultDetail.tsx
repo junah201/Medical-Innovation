@@ -4,11 +4,7 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { getJudgingResultById } from '@/api';
-import {
-  JudgingForm,
-  ReactHookInput,
-  InputLabel,
-} from '@/components';
+import { JudgingForm, ReactHookInput, InputLabel } from '@/components';
 import {
   CONFIG,
   ERROR_MESSAGE,
@@ -79,9 +75,7 @@ export const AdminJudgingResultDetail = () => {
             value="기타 고려 사항"
             errorMessage={errors[REGISTER_TYPE.OTHER_SCORE1]?.message}
           />
-          <StyledDiv
-            iserror={!!errors[REGISTER_TYPE.OTHER_SCORE1]?.message}
-          >
+          <StyledDiv iserror={!!errors[REGISTER_TYPE.OTHER_SCORE1]?.message}>
             <div
               style={{
                 gridColumn: '1 / 3',
@@ -124,8 +118,7 @@ export const AdminJudgingResultDetail = () => {
                 gridRow: '2 / 3',
               }}
             >
-              아래과 같은 항목을 근거로 정성적으로 1~10점을 기재해
-              주십시오.
+              아래과 같은 항목을 근거로 정성적으로 1~10점을 기재해 주십시오.
             </div>
             <div>특허/지식재산권 보유</div>
             <div>장관 및 대통령 표창 수상</div>
@@ -167,9 +160,7 @@ const Submit = styled.button<{ isvalid: boolean }>`
   margin-top: 10px;
   border-radius: 5px;
   background: ${(props) =>
-    props.isvalid
-      ? props.theme.pointColor
-      : props.theme.loginDisabledColor};
+    props.isvalid ? props.theme.pointColor : props.theme.loginDisabledColor};
   color: #ffffff;
   font-weight: 600;
   border: none;
@@ -194,9 +185,7 @@ const StyledDiv = styled.div<{ iserror: boolean }>`
 
   border: solid 2px
     ${(props) =>
-      props.iserror
-        ? props.theme.errorColor
-        : props.theme.validColor};
+      props.iserror ? props.theme.errorColor : props.theme.validColor};
 
   & > div + div {
     border-top: 1px solid silver;

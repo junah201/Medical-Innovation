@@ -11,3 +11,5 @@ export * from './FileInput';
 export * from './HtmlInput';
 export * from './CropImageInput';
 export * from './PublicEventInput';
+export * from './JudgingEventInput';
+export * from './JudgingInput';

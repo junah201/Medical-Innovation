@@ -23,6 +23,8 @@ import {
   CropImageInput,
   FileInput,
   PublicEventInput,
+  JudgingEventInput,
+  JudgingInput,
 } from './form';
 
 interface InitInputProps {
@@ -225,6 +227,32 @@ export const BasicInput = ({
             errorMessage={errorMessage}
             helperText={helperText}
             placeholader={placeholder}
+            disabled={disabled}
+          />
+        );
+      case INPUT_TYPE.JUDGING_EVENT:
+        return (
+          <JudgingEventInput
+            name={name}
+            label={label}
+            value={value}
+            onChange={onChange}
+            errorMessage={errorMessage}
+            helperText={helperText}
+            placeholader={placeholder}
+            disabled={disabled}
+          />
+        );
+      case INPUT_TYPE.JUDGING:
+        return (
+          <JudgingInput
+            name={name}
+            label={label}
+            value={value}
+            onChange={onChange}
+            errorMessage={errorMessage}
+            helperText={helperText}
+            options={options}
             disabled={disabled}
           />
         );

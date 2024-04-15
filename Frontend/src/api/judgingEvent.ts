@@ -21,6 +21,22 @@ export const getJudgingEvents = async (
   return res;
 };
 
+export const getLimitedJudgingEvents = async (
+  skip: number,
+  limit: number
+) => {
+  const res =
+    await unAuthAxios.getByParams<JudgingEventList>(
+      API_ROUTE.JUDGING_EVENT.GET_LIMITED_JUDGING_EVENTS,
+      {
+        skip: skip,
+        limit: limit,
+      }
+    );
+
+  return res;
+};
+
 export const getJudgingEventById = async (
   id: number | string
 ) => {
