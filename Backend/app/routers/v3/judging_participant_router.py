@@ -51,16 +51,16 @@ def create_judging_participant(event_id: int, judging_participant_create: dict, 
         db.add(db_judging_participant)
         db.commit()
 
-    # send_email(
-    #     receiver_address=judging_participant_create.email,
-    #     subject=f"{db_judging_participant_event.name} 참여 신청 완료",
-    #     content=f"{judging_participant_create.name}님 {db_judging_participant_event.name}에 참여 신청이 완료되었습니다.",
-    # )
-    # send_email(
-    #     receiver_address="support@medicalinnovation.or.kr",
-    #     subject=f"{db_judging_participant_event.name} 참여 신청 완료",
-    #     content=f"{judging_participant_create.name}님 {db_judging_participant_event.name}에 참여 신청이 완료되었습니다.",
-    # )
+    send_email(
+        receiver_address=judging_participant_create.email,
+        subject=f"{db_judging_participant_event.name} 참여 신청 완료",
+        content=f"{judging_participant_create.name}님 {db_judging_participant_event.name}에 참여 신청이 완료되었습니다.",
+    )
+    send_email(
+        receiver_address="support@medicalinnovation.or.kr",
+        subject=f"{db_judging_participant_event.name} 참여 신청 완료",
+        content=f"{judging_participant_create.name}님 {db_judging_participant_event.name}에 참여 신청이 완료되었습니다.",
+    )
 
 
 @router.get(

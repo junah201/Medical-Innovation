@@ -5,7 +5,10 @@ import { useMutation } from 'react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { getJudgingResultById, submitJudging2ndResult } from '@/api';
+import {
+  getJudgingResultById,
+  submitJudging2ndResult,
+} from '@/api';
 import {
   ReactHookInput,
   InputLabel,
@@ -24,7 +27,10 @@ import {
   BioForm,
   TechForm,
 } from '@/pages/admin/judging2ndResult/components';
-import { Judging2ndResultSubmitInfo, RegisterField } from '@/types';
+import {
+  Judging2ndResultSubmitInfo,
+  RegisterField,
+} from '@/types';
 
 export const AdminJudging2ndResultUpload = () => {
   const params = useParams();
@@ -63,7 +69,8 @@ export const AdminJudging2ndResultUpload = () => {
     }
   );
 
-  const onValid = (userInput: RegisterField) => mutate(userInput);
+  const onValid = (userInput: RegisterField) =>
+    mutate(userInput);
 
   return (
     <>
@@ -74,7 +81,9 @@ export const AdminJudging2ndResultUpload = () => {
           title="심사 종류"
           type={INPUT_TYPE.SELECT}
           register={register}
-          errorMessage={errors[REGISTER_TYPE.SELECT_EVENT_ID]}
+          errorMessage={
+            errors[REGISTER_TYPE.SELECT_EVENT_ID]
+          }
           options={[
             { value: 'bio', label: '바이오' },
             { value: 'tech', label: '테크' },
@@ -85,16 +94,21 @@ export const AdminJudging2ndResultUpload = () => {
           title="심사자 유저 ID"
           type={INPUT_TYPE.TEXT}
           register={register}
-          errorMessage={errors[REGISTER_TYPE.PARTICIPANT_ID]}
+          errorMessage={
+            errors[REGISTER_TYPE.PARTICIPANT_ID]
+          }
         />
         <ReactHookInput
           id={REGISTER_TYPE.PARTICIPANT_ID}
           title="심사 대상자 ID"
           type={INPUT_TYPE.TEXT}
           register={register}
-          errorMessage={errors[REGISTER_TYPE.PARTICIPANT_ID]}
+          errorMessage={
+            errors[REGISTER_TYPE.PARTICIPANT_ID]
+          }
         />
-        {watch()[REGISTER_TYPE.SELECT_EVENT_ID] === 'bio' ? (
+        {watch()[REGISTER_TYPE.SELECT_EVENT_ID] ===
+        'bio' ? (
           <BioForm register={register} errors={errors} />
         ) : (
           <TechForm register={register} errors={errors} />

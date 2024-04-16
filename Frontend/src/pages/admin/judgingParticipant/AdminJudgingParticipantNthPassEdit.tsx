@@ -10,7 +10,11 @@ import {
   updateJudgingParticipantNthPassById,
 } from '@/api';
 import { ReactHookInput } from '@/components';
-import { INPUT_TYPE, REGISTER_TYPE, ROUTE } from '@/constants';
+import {
+  INPUT_TYPE,
+  REGISTER_TYPE,
+  ROUTE,
+} from '@/constants';
 import { Toast } from '@/libs/Toast';
 import { RegisterField } from '@/types';
 
@@ -21,8 +25,6 @@ export const AdminJudgingParticipantNthPassEdit = () => {
   const {
     register,
     handleSubmit,
-    setValue,
-    control,
     formState: { errors, isSubmitting },
   } = useForm<RegisterField>();
 
@@ -57,7 +59,8 @@ export const AdminJudgingParticipantNthPassEdit = () => {
     }
   );
 
-  const onValid = (userInput: RegisterField) => mutate(userInput);
+  const onValid = (userInput: RegisterField) =>
+    mutate(userInput);
 
   return (
     <>
@@ -74,7 +77,9 @@ export const AdminJudgingParticipantNthPassEdit = () => {
             { value: '2', label: '2차 심사' },
             { value: '3', label: '수상' },
           ]}
-          errorMessage={errors[REGISTER_TYPE.OTHER_SCORE1]?.message}
+          errorMessage={
+            errors[REGISTER_TYPE.OTHER_SCORE1]?.message
+          }
         />
         <Button
           isvalid={!Object.keys(errors)[0]}

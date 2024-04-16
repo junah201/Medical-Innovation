@@ -86,6 +86,7 @@ import {
   AdminJudging2thResultDetail,
   AdminMouUpload,
   AdminJudgingEventUpload,
+  AdminBannerUpload,
 } from '@/pages';
 
 interface RouteConfig {
@@ -476,7 +477,7 @@ export const ROUTE_MAP: RouteConfig[] = [
   },
   {
     PATH: '/admin/banner/upload',
-    COMPONENT: AdminAdEmailUpload,
+    COMPONENT: AdminBannerUpload,
     HEADER: AdminHeader,
     WRAPPER: AdminWrapper,
     ADMIN: true,
@@ -693,6 +694,14 @@ export const ROUTE_MAP: RouteConfig[] = [
   {
     PATH: '/admin/ad_email/all',
     COMPONENT: AdminAdEmailAll,
+    HEADER: AdminHeader,
+    WRAPPER: AdminWrapper,
+    ADMIN: true,
+    AUTH: true,
+  },
+  {
+    PATH: '/admin/ad_email/upload',
+    COMPONENT: AdminAdEmailUpload,
     HEADER: AdminHeader,
     WRAPPER: AdminWrapper,
     ADMIN: true,

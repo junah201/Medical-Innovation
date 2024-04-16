@@ -108,6 +108,25 @@ export const AdminJudgingParticipantAll = () => {
         },
       },
       {
+        id: 'edit_nthpass',
+        accessorKey: 'id',
+        header: '심사 단계 수정',
+        cell: (
+          info: CellContext<JudgingParticipant, number>
+        ) => {
+          return (
+            <NavLinkButton
+              config={{
+                size: 'small',
+              }}
+              to={`/admin/judging_participant/nth_pass/edit/${info.getValue()}`}
+            >
+              심사 단계 수정
+            </NavLinkButton>
+          );
+        },
+      },
+      {
         id: 'edit',
         accessorFn: (row) => row,
         header: '수정',
