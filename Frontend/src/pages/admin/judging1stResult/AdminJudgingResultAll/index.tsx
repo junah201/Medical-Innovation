@@ -37,7 +37,7 @@ export const AdminJudgingResultAll = () => {
       },
       {
         id: 'name',
-        accessorFn: (row) => row?.user?.name,
+        accessorFn: (row) => row.user.name,
         header: '심사자',
         cell: (
           info: CellContext<JudgingResult, string>
@@ -46,8 +46,8 @@ export const AdminJudgingResultAll = () => {
         },
       },
       {
-        id: 'name',
-        accessorFn: (row) => row?.participant_name,
+        id: 'participant_name',
+        accessorFn: (row) => row.participant.user.name,
         header: '심사자 대상자',
         cell: (
           info: CellContext<JudgingResult, string>

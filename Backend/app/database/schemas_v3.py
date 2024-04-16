@@ -6,7 +6,27 @@ from pydantic.types import PositiveInt
 from typing import Optional, List, Union, TypeVar, Generic
 from pydantic.generics import GenericModel
 
+from app.database.schemas_v2 import JudgingEvent
+
 T = TypeVar("T", bound=BaseModel)
+
+
+class LimitedUser(BaseModel):
+    id: PositiveInt
+    name: str
+
+    class Config:
+        orm_mode = True
+
+
+class LimitedJudgingEvent(BaseModel):
+    id: PositiveInt
+    name: str
+    judging_1st_form_type: str
+    judging_2nd_form_type: str
+
+    class Config:
+        orm_mode = True
 
 
 class PublicParticipant(BaseModel):
@@ -23,7 +43,7 @@ class PublicParticipant(BaseModel):
 class JudgingParticipant(BaseModel):
     id: PositiveInt
     user_id: PositiveInt
-    user: Optional[object] = None
+    user: LimitedUser
     first_judging_result: Optional[object] = None
     second_judging_result: Optional[object] = None
     nth_pass: int
@@ -44,11 +64,11 @@ class JudgingParticipantList(BaseModel):
 class JudgingResult(BaseModel):
     id: PositiveInt
     judging_event_id: PositiveInt
-    judging_event: None
+    judging_event: LimitedJudgingEvent
     participant_id: PositiveInt
     participant: JudgingParticipant
     user_id: PositiveInt
-    user: None
+    user: LimitedUser
     nth: int
     total_score: int
     results: dict

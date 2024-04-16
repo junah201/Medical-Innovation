@@ -54,8 +54,10 @@ interface JudgingEventCreate {
   join_end_date: string;
   judging_1st_start_date: string;
   judging_1st_end_date: string;
+  judging_1sh_form_type: string;
   judging_2nd_start_date: string;
   judging_2nd_end_date: string;
+  judging_2nd_form_type: string;
   thumbnail_filename: string;
 }
 

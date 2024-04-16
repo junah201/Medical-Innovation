@@ -1,12 +1,11 @@
-import { JudgingResult } from './judgingResult';
+import { User } from '.';
 
 export interface JudgingParticipant {
   id: number;
   user_id: number;
+  user: User;
   event_id: number;
   nth_pass: number;
-  // first_judging_result: JudgingResult;
-  // second_judging_result: JudgingResult;
   application: any;
   created_at: string;
   updated_at: string;

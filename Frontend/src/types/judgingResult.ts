@@ -1,3 +1,5 @@
+import { JudgingEvent, JudgingParticipant } from '.';
+
 export interface JudgingResultSubmitInfo {
   judging_event_id: number;
   participant_id: number;
@@ -26,7 +28,9 @@ export interface JudgingResultSubmitInfo {
 
 export interface JudgingResult {
   judging_event_id: string;
+  judging_event: JudgingEvent;
   participant_id: string;
+  participant: JudgingParticipant;
   nth: string;
   total_score: string;
   results: any;
@@ -35,6 +39,11 @@ export interface JudgingResult {
   participant_name: string;
   created_at: string;
   updated_at: string;
+}
+
+export interface JudgingResultList {
+  total: number;
+  items: JudgingResult[];
 }
 
 export interface Judging2ndResultSubmitInfo {

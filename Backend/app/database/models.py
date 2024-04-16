@@ -1134,7 +1134,7 @@ class JudgingResult2(Base):
         comment="참가자 고유 번호"
     )
     participant = relationship(
-        "JudgingParticipant2",
+        "JudgingParticipant2", foreign_keys=[participant_id]
     )
     user_id = Column(
         INTEGER(unsigned=True),
@@ -1143,7 +1143,7 @@ class JudgingResult2(Base):
         comment="심사위원 고유 번호"
     )
     user = relationship(
-        "User",
+        "User", foreign_keys=[user_id]
     )
     nth = Column(
         INTEGER(unsigned=True),

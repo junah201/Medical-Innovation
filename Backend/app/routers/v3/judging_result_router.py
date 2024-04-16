@@ -1,9 +1,9 @@
 import json
+from pprint import pprint
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
-from fastapi.responses import FileResponse
 from starlette import status
-from app.database import crud, schemas_v2, models, schemas_v3
+from app.database import models, schemas_v3
 from app.database.database import get_db
 from app.utils.oauth2 import get_current_user
 from typing import List, Optional
@@ -103,7 +103,10 @@ def get_judging_results(judging_event_id: int, skip: int = 0, limit: int = 40, d
         skip).limit(limit).all()
 
     for db_judging_result in results:
-        db_judging_result.participant_name = db_judging_result.participant.name
+        db_judging_result.results = json.loads(db_judging_result.results)
+        if isinstance(db_judging_result.participant.application, str):
+            db_judging_result.participant.application = json.loads(
+                db_judging_result.participant.application)
 
     return schemas_v3.JudgingResultList(
         total=db_all_judging_result.count(),

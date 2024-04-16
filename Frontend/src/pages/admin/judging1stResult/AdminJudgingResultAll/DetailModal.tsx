@@ -19,7 +19,12 @@ const DetailModal = ({ row }: EditModalProps) => {
 
   return (
     <Grid container spacing={1} sx={{ mt: 1, mb: 1 }}>
-      <Judging1stStandardForm control={control} />
+      {row.judging_event.judging_1st_form_type ===
+      '기본' ? (
+        <Judging1stStandardForm control={control} />
+      ) : (
+        <ResearchPlanReviewForm control={control} />
+      )}
     </Grid>
   );
 };

@@ -2,7 +2,8 @@ from fastapi import APIRouter
 
 from app.routers.v3 import (
     public_participant_router,
-    judging_participant_router
+    judging_participant_router,
+    judging_result_router
 )
 
 router = APIRouter(
@@ -13,3 +14,4 @@ router = APIRouter(
 
 router.include_router(public_participant_router.router)
 router.include_router(judging_participant_router.router)
+router.include_router(judging_result_router.router)
