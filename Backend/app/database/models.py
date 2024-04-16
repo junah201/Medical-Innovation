@@ -1084,6 +1084,7 @@ class JudgingParticipant2(Base):
     )
     event = relationship(
         "JudgingEvent",
+        foreign_keys=[event_id]
     )
     application = Column(
         VARCHAR(5000),

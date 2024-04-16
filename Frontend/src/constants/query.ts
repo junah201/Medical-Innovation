@@ -15,6 +15,8 @@ const KEY = Object.freeze({
   ALL_JUDGING_PARTICIPANT: 'all_judging_participant',
   ALL_JUDGING_RESULT: 'all_judging_result',
   ALL_AD_EMALL: 'all_ad_email',
+  JUDGING_EVENT_BY_ID: 'judging_event_by_id',
+  JUDGING_PARTICIPANT: 'judging_participant',
 });
 
 export const QUERY = Object.freeze({

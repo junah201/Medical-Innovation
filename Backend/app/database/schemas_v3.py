@@ -40,14 +40,23 @@ class PublicParticipant(BaseModel):
         orm_mode = True
 
 
+class LimitedJudgingResult(BaseModel):
+    id: PositiveInt
+    total_score: int
+
+    class Config:
+        orm_mode = True
+
+
 class JudgingParticipant(BaseModel):
     id: PositiveInt
     user_id: PositiveInt
     user: LimitedUser
-    first_judging_result: Optional[object] = None
-    second_judging_result: Optional[object] = None
+    first_judging_result: Optional[LimitedJudgingResult] = None
+    second_judging_result: Optional[LimitedJudgingResult] = None
     nth_pass: int
     event_id: PositiveInt
+    event: LimitedJudgingEvent
     application: dict
     created_at: datetime
     updated_at: datetime

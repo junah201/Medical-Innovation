@@ -59,7 +59,7 @@ def create_judging_result(
             total_score += int(item)
 
     if db_judging_result:
-        db_judging_result.result = json.dumps(
+        db_judging_result.results = json.dumps(
             judging_result_create,
             ensure_ascii=False
         )
@@ -71,7 +71,7 @@ def create_judging_result(
             judging_event_id=event_id,
             participant_id=participant_id,
             nth=nth,
-            result=json.dumps(
+            results=json.dumps(
                 judging_result_create,
                 ensure_ascii=False
             ),
@@ -119,7 +119,7 @@ def get_judging_results(judging_event_id: int, skip: int = 0, limit: int = 40, d
     response_model=Optional[schemas_v3.JudgingResult],
     summary="특정 심사 결과 조회"
 )
-def get_judging_participant(
+def get_judging_participant_nth(
     judging_event_id: int,
     participant_id: int,
     nth: int,
@@ -139,6 +139,10 @@ def get_judging_participant(
             detail="해당 심사 결과를 찾을 수 없습니다."
         )
 
+    db_judging_result.results = json.loads(db_judging_result.results)
+    db_judging_result.participant.application = json.loads(
+        db_judging_result.participant.application)
+
     return db_judging_result
 
 
@@ -148,6 +152,12 @@ def get_judging_participant(
     summary="특정 ID의 심사 결과 조회"
 )
 def get_judging_participant_by_id(judging_result_id: int, db: Session = Depends(get_db)):
-    return db.query(models.JudgingResult2).filter(
+    result: Optional[models.JudgingResult2] = db.query(models.JudgingResult2).filter(
         models.JudgingResult2.id == judging_result_id
     ).first()
+
+    if not result:
+        return None
+
+    result.results = json.loads(result.results)
+    return result

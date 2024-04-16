@@ -843,6 +843,9 @@ export const INPUT = Object.freeze({
       value: `${index + 1}`,
       label: item,
     })),
+    rules: {
+      required: '필수 입력 항목입니다.',
+    },
   }),
   TECHNICAL_SCORE_2: Object.freeze({
     name: 'technical_score2',
@@ -872,6 +875,9 @@ export const INPUT = Object.freeze({
       value: `${index + 1}`,
       label: item,
     })),
+    rules: {
+      required: '필수 입력 항목입니다.',
+    },
   }),
   TECHNICAL_SCORE_3: Object.freeze({
     name: 'technical_score3',
@@ -911,6 +917,9 @@ export const INPUT = Object.freeze({
       value: `${index + 1}`,
       label: item,
     })),
+    rules: {
+      required: '필수 입력 항목입니다.',
+    },
   }),
   TECHNICAL_SCORE_4: Object.freeze({
     name: 'technical_score4',
@@ -934,6 +943,9 @@ export const INPUT = Object.freeze({
       value: index + 1,
       label: item,
     })),
+    rules: {
+      required: '필수 입력 항목입니다.',
+    },
   }),
   TECHNICAL_SCORE_5: Object.freeze({
     name: 'technical_score5',
@@ -957,6 +969,9 @@ export const INPUT = Object.freeze({
       value: index + 1,
       label: item,
     })),
+    rules: {
+      required: '필수 입력 항목입니다.',
+    },
   }),
   TECHNICAL_SCORE_6: Object.freeze({
     name: 'technical_score6',
@@ -986,6 +1001,9 @@ export const INPUT = Object.freeze({
       value: index + 1,
       label: item,
     })),
+    rules: {
+      required: '필수 입력 항목입니다.',
+    },
   }),
   MARKETABILITY_SCORE_1: Object.freeze({
     name: 'marketability_score1',
@@ -1021,6 +1039,9 @@ export const INPUT = Object.freeze({
       value: index + 1,
       label: item,
     })),
+    rules: {
+      required: '필수 입력 항목입니다.',
+    },
   }),
   MARKETABILITY_SCORE_2: Object.freeze({
     name: 'marketability_score2',
@@ -1051,6 +1072,9 @@ export const INPUT = Object.freeze({
       value: index + 1,
       label: item,
     })),
+    rules: {
+      required: '필수 입력 항목입니다.',
+    },
   }),
   MARKETABILITY_SCORE_3: Object.freeze({
     name: 'marketability_score3',
@@ -1073,6 +1097,9 @@ export const INPUT = Object.freeze({
       value: index + 1,
       label: item,
     })),
+    rules: {
+      required: '필수 입력 항목입니다.',
+    },
   }),
   MARKETABILITY_SCORE_4: Object.freeze({
     name: 'marketability_score4',
@@ -1094,6 +1121,9 @@ export const INPUT = Object.freeze({
       value: index + 1,
       label: item,
     })),
+    rules: {
+      required: '필수 입력 항목입니다.',
+    },
   }),
   BUSINESS_SCORE_1: Object.freeze({
     name: 'business_score1',
@@ -1117,6 +1147,9 @@ export const INPUT = Object.freeze({
       value: index + 1,
       label: item,
     })),
+    rules: {
+      required: '필수 입력 항목입니다.',
+    },
   }),
   BUSINESS_SCORE_2: Object.freeze({
     name: 'business_score2',
@@ -1138,6 +1171,9 @@ export const INPUT = Object.freeze({
       value: index + 1,
       label: item,
     })),
+    rules: {
+      required: '필수 입력 항목입니다.',
+    },
   }),
   BUSINESS_SCORE_3: Object.freeze({
     name: 'business_score3',
@@ -1161,6 +1197,9 @@ export const INPUT = Object.freeze({
       value: index + 1,
       label: item,
     })),
+    rules: {
+      required: '필수 입력 항목입니다.',
+    },
   }),
   BUSINESS_SCORE_4: Object.freeze({
     name: 'business_score4',
@@ -1198,6 +1237,9 @@ export const INPUT = Object.freeze({
       value: index + 1,
       label: item,
     })),
+    rules: {
+      required: '필수 입력 항목입니다.',
+    },
   }),
   BUSINESS_SCORE_5: Object.freeze({
     name: 'business_score5',
@@ -1227,6 +1269,9 @@ export const INPUT = Object.freeze({
       value: index + 1,
       label: item,
     })),
+    rules: {
+      required: '필수 입력 항목입니다.',
+    },
   }),
   BUSINESS_SCORE_6: Object.freeze({
     name: 'business_score6',
@@ -1254,6 +1299,9 @@ export const INPUT = Object.freeze({
       value: index + 1,
       label: item,
     })),
+    rules: {
+      required: '필수 입력 항목입니다.',
+    },
   }),
   BUSINESS_SCORE_7: Object.freeze({
     name: 'business_score7',
@@ -1276,6 +1324,9 @@ export const INPUT = Object.freeze({
       value: index + 1,
       label: item,
     })),
+    rules: {
+      required: '필수 입력 항목입니다.',
+    },
   }),
   BUSINESS_SCORE_8: Object.freeze({
     name: 'business_score8',
@@ -1297,6 +1348,9 @@ export const INPUT = Object.freeze({
       value: index + 1,
       label: item,
     })),
+    rules: {
+      required: '필수 입력 항목입니다.',
+    },
   }),
   OTHER_SCORE_1: Object.freeze({
     name: 'other_score1',
@@ -1305,6 +1359,7 @@ export const INPUT = Object.freeze({
     helperText:
       '위과 같은 항목을 근거로 정성적으로 1~10점을 기재해 주십시오.',
     rule: {
+      required: '필수 입력 항목입니다.',
       min: {
         value: 0,
         message: '0 이상의 값을 입력해주세요',

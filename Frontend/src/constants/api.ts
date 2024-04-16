@@ -101,7 +101,8 @@ const JUDGING_EVENT = Object.freeze({
 });
 
 const JUDGING_PARTICIPANT = Object.freeze({
-  SUBMIT_JUDGING_EVENT: '/api/v3/judging_participant',
+  SUBMIT_JUDGING_EVENT: (event_id: number | string) =>
+    `/api/v3/judging_participant/${event_id}`,
   GET_JUDGING_PARTICIPANTS:
     '/api/v3/judging_participant/all',
   GET_JUDGING_PARTICIPANT_BY_ID: (id: number | string) =>
@@ -126,7 +127,12 @@ const JUDGING_PARTICIPANT = Object.freeze({
 });
 
 const JUDGING_RESULT = Object.freeze({
-  SUBMIT_JUDGING_RESULT: '/api/v3/judging_result',
+  SUBMIT_JUDGING_RESULT: (
+    event_id: number | string,
+    participant_id: number | string,
+    nth: number | string
+  ) =>
+    `/api/v3/judging_result/${event_id}/${participant_id}/${nth}`,
   GET_JUDGING_RESULT: '/api/v3/judging_result/get',
   GET_JUDGING_RESULT_BY_ID: (id: number | string) =>
     `/api/v3/judging_result/${id}`,

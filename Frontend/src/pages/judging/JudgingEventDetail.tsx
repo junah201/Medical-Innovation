@@ -5,14 +5,14 @@ import styled from 'styled-components';
 
 import { getJudgingEventById } from '@/api';
 import { HtmlContent, Message } from '@/components';
-import { PostContent } from '@/components/post';
 import { JudgingEvent } from '@/types';
 
 const { VITE_CDN_URL } = import.meta.env;
 
 export const JudgingEventDetail = () => {
   const params = useParams();
-  const [eventDetail, setEventDetail] = useState<JudgingEvent>();
+  const [eventDetail, setEventDetail] =
+    useState<JudgingEvent>();
 
   useQuery(
     'JudgingEventDetail',

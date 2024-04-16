@@ -21,9 +21,18 @@ export const getJudgingResult = async (
   return res;
 };
 
-export const submitJudgingResult = async (data: object) => {
+export const submitJudgingResult = async (
+  event_id: number | string,
+  participant_id: number | string,
+  nth: number | string,
+  data: object
+) => {
   const res = await authAxios.post(
-    API_ROUTE.JUDGING_RESULT.SUBMIT_JUDGING_RESULT,
+    API_ROUTE.JUDGING_RESULT.SUBMIT_JUDGING_RESULT(
+      event_id,
+      participant_id,
+      nth
+    ),
     data
   );
 

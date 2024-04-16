@@ -108,3 +108,73 @@ def delete_participant(participant_id: int, db: Session = Depends(get_db), curre
 
     db.delete(db_public_participant)
     db.commit()
+
+
+@router.get(
+    "/{judging_event_id}/nth_pass/{nth_pass}/all",
+    response_model=schemas_v3.JudgingParticipantList,
+    summary="특정 심사 행사의 nth_pass에 해당하는 참가자 리스트를 가져옵니다. (n 이상 심사 패스)"
+)
+def get_judging_participants(
+    judging_event_id: int,
+    nth_pass: int,
+    skip: int = 0,
+    limit: int = 40,
+    db: Session = Depends(get_db),
+    current_user: models.User = Depends(get_current_user)
+):
+    if nth_pass not in [0, 1, 2, 3]:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="nth_pass must be 0, 1, 2, 3"
+        )
+
+    # 권한 확인
+    if not current_user.is_admin:
+        if nth_pass <= 1:
+            permissions = [
+                permission.first_judging_permission
+                for permission in current_user.judging_permissions if permission.judging_event_id == judging_event_id
+            ]
+            if not all(permissions):
+                raise HTTPException(
+                    status_code=status.HTTP_403_FORBIDDEN,
+                    detail="You do not have permission to access this participant"
+                )
+        else:
+            permissions = [
+                permission.second_judging_permission
+                for permission in current_user.judging_permissions if permission.judging_event_id == judging_event_id
+            ]
+            if not all(permissions):
+                raise HTTPException(
+                    status_code=status.HTTP_403_FORBIDDEN,
+                    detail="You do not have permission to access this participant"
+                )
+
+    db_all_judging_participant = db.query(models.JudgingParticipant2).filter(
+        models.JudgingParticipant2.event_id == judging_event_id,
+        models.JudgingParticipant2.nth_pass >= nth_pass
+    )
+
+    results: List[models.JudgingParticipant2] = db_all_judging_participant.offset(
+        skip).limit(limit).all()
+
+    for participant in results:
+        results.first_judging_result = db.query(models.JudgingResult2).filter(
+            models.JudgingResult.nth == 1,
+            models.JudgingResult.participant_id == participant.id,
+            models.JudgingResult.user_id == current_user.id,
+            models.JudgingResult.judging_event_id == judging_event_id
+        ).first()
+        results.second_judging_result = db.query(models.JudgingResult2).filter(
+            models.JudgingResult.nth == 2,
+            models.JudgingResult.participant_id == participant.id,
+            models.JudgingResult.user_id == current_user.id,
+            models.JudgingResult.judging_event_id == judging_event_id
+        ).first()
+
+    return schemas_v3.JudgingParticipantList(
+        total=db_all_judging_participant.count(),
+        items=results
+    )

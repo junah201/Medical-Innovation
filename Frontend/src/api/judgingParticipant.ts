@@ -1,15 +1,21 @@
 import { API_ROUTE } from '@/constants';
 import { Axios } from '@/libs/Axios';
-import { JudgingEventSubmitInfo } from '@/types';
+import {
+  JudgingEventSubmitInfo,
+  JudgingParticipant,
+  JudgingResultList,
+} from '@/types';
 
-const unAuthAxios = new Axios();
 const authAxios = new Axios(true);
 
 export const submitJudgingEvent = async (
-  data: JudgingEventSubmitInfo
+  event_id: number | string,
+  data: object
 ) => {
   const res = await authAxios.post(
-    API_ROUTE.JUDGING_PARTICIPANT.SUBMIT_JUDGING_EVENT,
+    API_ROUTE.JUDGING_PARTICIPANT.SUBMIT_JUDGING_EVENT(
+      event_id
+    ),
     data
   );
 
@@ -34,8 +40,10 @@ export const getJudgingParticipants = async (
 export const getJudgingParticipantById = async (
   id: number | string
 ) => {
-  const res = await authAxios.get(
-    API_ROUTE.JUDGING_PARTICIPANT.GET_JUDGING_PARTICIPANT_BY_ID(id)
+  const res = await authAxios.get<JudgingParticipant>(
+    API_ROUTE.JUDGING_PARTICIPANT.GET_JUDGING_PARTICIPANT_BY_ID(
+      id
+    )
   );
 
   return res;
@@ -65,16 +73,17 @@ export const getNthJudgingParticipantsByEventId = async (
   skip: number,
   limit: number
 ) => {
-  const res = await authAxios.getByParams(
-    API_ROUTE.JUDGING_PARTICIPANT.GET_NTH_JUDGING_PARTICIPANTS_BY_EVENT_ID(
-      id,
-      nth_pass
-    ),
-    {
-      skip: skip,
-      limit: limit,
-    }
-  );
+  const res =
+    await authAxios.getByParams<JudgingResultList>(
+      API_ROUTE.JUDGING_PARTICIPANT.GET_NTH_JUDGING_PARTICIPANTS_BY_EVENT_ID(
+        id,
+        nth_pass
+      ),
+      {
+        skip: skip,
+        limit: limit,
+      }
+    );
 
   return res;
 };
@@ -84,7 +93,8 @@ export const getJudgingParticipantsByMe = async (
   limit: number
 ) => {
   const res = await authAxios.getByParams(
-    API_ROUTE.JUDGING_PARTICIPANT.GET_JUDGING_PARTICIPANTS_BY_ME,
+    API_ROUTE.JUDGING_PARTICIPANT
+      .GET_JUDGING_PARTICIPANTS_BY_ME,
     {
       skip: skip,
       limit: limit,

@@ -1,6 +1,6 @@
 import { API_ROUTE } from '@/constants';
 import { Axios } from '@/libs/Axios';
-import { JudgingEventList } from '@/types';
+import { JudgingEvent, JudgingEventList } from '@/types';
 
 const unAuthAxios = new Axios();
 const authAxios = new Axios(true);
@@ -40,7 +40,7 @@ export const getLimitedJudgingEvents = async (
 export const getJudgingEventById = async (
   id: number | string
 ) => {
-  const res = await unAuthAxios.get(
+  const res = await unAuthAxios.get<JudgingEvent>(
     API_ROUTE.JUDGING_EVENT.GET_JUDGING_EVENT_BY_ID(id)
   );
 

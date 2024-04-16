@@ -23,7 +23,7 @@ def create_judging_result(judging_result_create: schemas_v2.JudgingResultCreate,
     if not db_judging_participant_event:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="event not found"
+            detail="해당 행사를 찾을 수 없습니다."
         )
 
     db_judging_participant = crud.get_judging_participant(

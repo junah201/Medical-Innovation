@@ -51,16 +51,16 @@ def create_judging_participant(event_id: int, judging_participant_create: dict, 
         db.add(db_judging_participant)
         db.commit()
 
-    send_email(
-        receiver_address=judging_participant_create.email,
-        subject=f"{db_judging_participant_event.name} 참여 신청 완료",
-        content=f"{judging_participant_create.name}님 {db_judging_participant_event.name}에 참여 신청이 완료되었습니다.",
-    )
-    send_email(
-        receiver_address="support@medicalinnovation.or.kr",
-        subject=f"{db_judging_participant_event.name} 참여 신청 완료",
-        content=f"{judging_participant_create.name}님 {db_judging_participant_event.name}에 참여 신청이 완료되었습니다.",
-    )
+    # send_email(
+    #     receiver_address=judging_participant_create.email,
+    #     subject=f"{db_judging_participant_event.name} 참여 신청 완료",
+    #     content=f"{judging_participant_create.name}님 {db_judging_participant_event.name}에 참여 신청이 완료되었습니다.",
+    # )
+    # send_email(
+    #     receiver_address="support@medicalinnovation.or.kr",
+    #     subject=f"{db_judging_participant_event.name} 참여 신청 완료",
+    #     content=f"{judging_participant_create.name}님 {db_judging_participant_event.name}에 참여 신청이 완료되었습니다.",
+    # )
 
 
 @router.get(
@@ -135,25 +135,25 @@ def get_judging_participants(judging_event_id: int, nth_pass: int, skip: int = 0
                     detail="You do not have permission to access this participant"
                 )
 
-    db_all_judging_participant = db.query(models.JudgingParticipant).filter(
-        models.JudgingParticipant.event_id == judging_event_id,
-        models.JudgingParticipant.nth_pass >= nth_pass
+    db_all_judging_participant = db.query(models.JudgingParticipant2).filter(
+        models.JudgingParticipant2.event_id == judging_event_id,
+        models.JudgingParticipant2.nth_pass >= nth_pass
     )
 
     data = db_all_judging_participant.offset(skip).limit(limit).all()
 
     for participant in data:
-        participant.first_judging_result = db.query(models.JudgingResult).filter(
-            models.JudgingResult.nth == 1,
-            models.JudgingResult.participant_id == participant.id,
-            models.JudgingResult.user_id == current_user.id,
-            models.JudgingResult.judging_event_id == judging_event_id
+        participant.first_judging_result = db.query(models.JudgingResult2).filter(
+            models.JudgingResult2.nth == 1,
+            models.JudgingResult2.participant_id == participant.id,
+            models.JudgingResult2.user_id == current_user.id,
+            models.JudgingResult2.judging_event_id == judging_event_id
         ).first()
-        participant.second_judging_result = db.query(models.JudgingResult).filter(
-            models.JudgingResult.nth == 2,
-            models.JudgingResult.participant_id == participant.id,
-            models.JudgingResult.user_id == current_user.id,
-            models.JudgingResult.judging_event_id == judging_event_id
+        participant.second_judging_result = db.query(models.JudgingResult2).filter(
+            models.JudgingResult2.nth == 2,
+            models.JudgingResult2.participant_id == participant.id,
+            models.JudgingResult2.user_id == current_user.id,
+            models.JudgingResult2.judging_event_id == judging_event_id
         ).first()
         participant.application = json.loads(participant.application)
 
@@ -165,7 +165,8 @@ def get_judging_participants(judging_event_id: int, nth_pass: int, skip: int = 0
 
 @router.get(
     "/{judging_participant_id}",
-    summary="특정 ID의 심사 행사 참가자 조회"
+    summary="특정 ID의 심사 행사 참가자 조회",
+    response_model=schemas_v3.JudgingParticipant
 )
 def get_judging_participant(
     judging_participant_id: int,
@@ -192,6 +193,9 @@ def get_judging_participant(
                 status_code=status.HTTP_403_FORBIDDEN,
                 detail="You do not have permission to access this participant"
             )
+
+    db_judging_participant.application = json.loads(
+        db_judging_participant.application)
 
     return db_judging_participant
 
