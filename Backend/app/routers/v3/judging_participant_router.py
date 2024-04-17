@@ -244,9 +244,15 @@ def update_judging_participant(
     status_code=status.HTTP_204_NO_CONTENT,
     summary="특정 ID의 심사 행사 참가자의 nth_pass 수정"
 )
-def update_judging_participant_nth_pass(judging_participant_id: int, nth_pass: int,  db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
-    db_judging_participant = crud.get_judging_participant(
-        db=db, judging_participant_id=judging_participant_id)
+def update_judging_participant_nth_pass(
+    judging_participant_id: int,
+    nth_pass: int,
+    db: Session = Depends(get_db),
+    current_user: models.User = Depends(get_current_user)
+):
+    db_judging_participant: Optional[models.JudgingParticipant2] = db.query(models.JudgingParticipant2).filter(
+        models.JudgingParticipant2.id == judging_participant_id
+    ).first()
 
     if not db_judging_participant:
         raise HTTPException(
