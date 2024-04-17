@@ -7,7 +7,6 @@ import Form from './Form';
 import Info from './Info';
 
 export const JudgingEventRegistration = () => {
-  const navigate = useNavigate();
   const params = useParams() as {
     [key: string]: string;
   };
@@ -17,7 +16,6 @@ export const JudgingEventRegistration = () => {
     () => getJudgingEventById(params.event_id),
     {
       retry: 0,
-      onSuccess: () => navigate(-1),
     }
   );
 
