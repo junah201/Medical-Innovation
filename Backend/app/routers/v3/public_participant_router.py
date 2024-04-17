@@ -178,3 +178,80 @@ def get_judging_participants(
         total=db_all_judging_participant.count(),
         items=results
     )
+
+
+@router.get("/{event_id}/all/excel")
+def get_all_participant_excel_by_event_id(event_id: int, db: Session = Depends(get_db)):
+    db_event: Optional[models.PublicEvent] = db.query(models.PublicEvent).filter(
+        models.PublicEvent.id == event_id
+    ).first()
+
+    if not db_event:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="event not found"
+        )
+
+    db_all_participant: List[models.PublicParticipant] = db.query(models.PublicParticipant).filter(
+        models.PublicParticipant.public_event_id == event_id
+    ).all()
+
+    workbook = openpyxl.Workbook()
+    worksheet = workbook.active
+
+    tmp = [
+        ("이름", "name"),
+        ("영문 이름", "english_name"),
+        ("성별", "gender"),
+        ("생년월일", "birth"),
+        ("전화번호", "phone"),
+        ("이메일", "email"),
+        ("소속 분류", "organization_type"),
+        ("소속기관명", "organization_name"),
+        ("소속기관명 (영문)", "organization_english_name"),
+        ("직위", "job_position"),
+        ("소재지", "address"),
+        ("최종 학력", "final_degree"),
+        ("참여동기", "participant_motivation"),
+        ("참여유형", "participant_type"),
+        ("관심 질환", "interest_disease"),
+        ("관심 분야", "interest_field"),
+        ("관심 분야 상세", "interest_field_detail"),
+    ]
+    worksheet.append(["id", *[item[0] for item in tmp], "생성 시점", "마지막 수정 시점"])
+
+    for p in db_all_participant:
+        application = p.application
+        if isinstance(p.application, str):
+            application = json.loads(p.application)
+
+        worksheet.append(
+            [
+                p.id,
+                *[
+                    str(application.get(item[1], ""))
+                    for item in tmp
+                ],
+                str(p.created_at),
+                str(p.updated_at),
+            ]
+        )
+
+    for column in worksheet.columns:
+        max_length = 0
+        column_letter = column[0].column_letter
+        for cell in column:
+            try:
+                max_length = max(max_length, len(str(cell.value)))
+            except:
+                pass
+        adjusted_width = (min(20, max_length) + 2) * 1.2
+        worksheet.column_dimensions[column_letter].width = adjusted_width
+
+    workbook.save("참가자목록.xlsx")
+
+    return FileResponse(
+        "참가자목록.xlsx",
+        media_type='application/octet-stream',
+        filename=f"참가자목록.xlsx"
+    )
