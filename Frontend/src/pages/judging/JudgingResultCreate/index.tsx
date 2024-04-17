@@ -86,7 +86,7 @@ export const JudgingResultCreate = () => {
     () => getJudgingResult(event_id, participant_id, nth),
     {
       retry: 0,
-      ErrorMessage: '기존에 작성한 평가 결과가 없습니다.',
+      disableErrorToast: true,
     }
   );
 

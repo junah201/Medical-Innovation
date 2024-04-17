@@ -1,5 +1,6 @@
 import { Button, Grid } from '@mui/material';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 import { submitJudgingEvent } from '@/api';
 import JudgingRegistForm from '@/components/forms/JudgingRegistForm';
@@ -16,6 +17,7 @@ const Form = ({ event_id }: FormProps) => {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<RegisterField, any>();
+  const navigate = useNavigate();
 
   const { mutate, isLoading } = useCustomMutation(
     (userInput: RegisterField) =>
@@ -23,6 +25,7 @@ const Form = ({ event_id }: FormProps) => {
     {
       SuccessMessage: '제출되었습니다.',
       ErrorMessage: '제출 실패했습니다.',
+      onSuccess: () => navigate(-1),
     }
   );
 

@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { getJudgingEventById } from '@/api';
 import { useCustomQuery } from '@/libs/Query';

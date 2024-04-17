@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { submitJudgingResult } from '@/api';
 import Judging1stStandardForm from '@/components/forms/Judging1stStandardForm';
 import ResearchPlanReviewForm from '@/components/forms/ResearchPlanReviewForm';
+import { QUERY } from '@/constants';
 import { RegisterField } from '@/constants/forms';
 import { useCustomMutation } from '@/libs/Query';
 
@@ -46,10 +47,9 @@ const Form = ({
       onSuccess: () => navigate(-1),
       SuccessMessage: '제출에 성공했습니다.',
       ErrorMessage: '제출에 실패했습니다.',
+      SuccessQueryKey: QUERY.KEY.JUDGING_PARTICIPANT,
     }
   );
-
-  console.log(form);
 
   return (
     <Grid container spacing={2} mt={2}>

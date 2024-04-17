@@ -1358,7 +1358,7 @@ export const INPUT = Object.freeze({
     type: INPUT_TYPE.NUMBER,
     helperText:
       '위과 같은 항목을 근거로 정성적으로 1~10점을 기재해 주십시오.',
-    rule: {
+    rules: {
       required: '필수 입력 항목입니다.',
       min: {
         value: 0,
@@ -1376,8 +1376,8 @@ export const INPUT = Object.freeze({
     label: '연구신청서의 연구과제명 및 내용의 적합성',
     type: INPUT_TYPE.NUMBER,
     helperText: '0점에서 20점으로 입력해주세요.',
-    rule: {
-      min: {
+    rules: {
+      minValue: {
         value: 0,
         message: '0 이상의 값을 입력해주세요',
       },
@@ -1392,7 +1392,7 @@ export const INPUT = Object.freeze({
     label: '연구계획서 내용의 명확성 및 독창성',
     type: INPUT_TYPE.NUMBER,
     helperText: '0점에서 20점으로 입력해주세요.',
-    rule: {
+    rules: {
       min: {
         value: 0,
         message: '0 이상의 값을 입력해주세요',
@@ -1408,7 +1408,7 @@ export const INPUT = Object.freeze({
     label: '연구계획서 구성 및 기술방법의 적절성',
     type: INPUT_TYPE.NUMBER,
     helperText: '0점에서 20점으로 입력해주세요.',
-    rule: {
+    rules: {
       min: {
         value: 0,
         message: '0 이상의 값을 입력해주세요',
@@ -1424,7 +1424,7 @@ export const INPUT = Object.freeze({
     label: '연구계획서의 수집된 자료에 대한 신뢰성',
     type: INPUT_TYPE.NUMBER,
     helperText: '0점에서 20점으로 입력해주세요.',
-    rule: {
+    rules: {
       min: {
         value: 0,
         message: '0 이상의 값을 입력해주세요',
@@ -1440,7 +1440,7 @@ export const INPUT = Object.freeze({
     label: '제출 서류 및 기한 준수에 대한 성실성',
     type: INPUT_TYPE.NUMBER,
     helperText: '0점에서 20점으로 입력해주세요.',
-    rule: {
+    rules: {
       min: {
         value: 0,
         message: '0 이상의 값을 입력해주세요',

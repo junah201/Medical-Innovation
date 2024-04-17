@@ -23,6 +23,7 @@ interface QueryOptions<DataT> {
   ErrorMessage?: string;
   staleTime?: number;
   cacheTime?: number;
+  disableErrorToast?: boolean;
 }
 
 export const useCustomQuery = <DataT = any>(
@@ -72,7 +73,8 @@ export const useCustomQuery = <DataT = any>(
           err.message ||
           JSON.stringify(err);
 
-        Toast(`${message} (${status} ${error})`, 'error');
+        if (!options.disableErrorToast)
+          Toast(`${message} (${status} ${error})`, 'error');
       }
     },
   });

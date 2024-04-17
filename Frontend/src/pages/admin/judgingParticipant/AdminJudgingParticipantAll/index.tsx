@@ -108,6 +108,18 @@ export const AdminJudgingParticipantAll = () => {
         },
       },
       {
+        id: 'nthpass',
+        accessorKey: 'nth_pass',
+        header: '심사 단계',
+        cell: (
+          info: CellContext<JudgingParticipant, number>
+        ) => {
+          return (
+            <Typography>{info.getValue()}차</Typography>
+          );
+        },
+      },
+      {
         id: 'edit_nthpass',
         accessorKey: 'id',
         header: '심사 단계 수정',
