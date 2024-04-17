@@ -6,7 +6,10 @@ import {
 import { useState, useMemo } from 'react';
 
 import { getPublicParticipantsByEventId } from '@/api';
-import { NavLinkButton } from '@/components/buttons';
+import {
+  APILinkButton,
+  NavLinkButton,
+} from '@/components/buttons';
 import { BasicInput } from '@/components/CustomInput';
 import MuiTable from '@/components/MuiTable';
 import { INPUT_TYPE } from '@/constants/forms';
@@ -128,11 +131,11 @@ export const AdminPublicParticipantAll = () => {
     <Box>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <NavLinkButton
-            to={`/api/v2/public_participant/${value}/all/excel`}
+          <APILinkButton
+            to={`/api/v3/public_participant/${value}/all/excel`}
           >
             참여자 목록 엑셀 다운로드
-          </NavLinkButton>
+          </APILinkButton>
         </Grid>
         <Grid item xs={12}>
           <BasicInput

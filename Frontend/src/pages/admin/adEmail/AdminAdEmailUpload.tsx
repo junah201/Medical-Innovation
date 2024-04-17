@@ -2,7 +2,7 @@ import { Button, Grid, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { uploadBannerV2 } from '@/api';
+import { uploadAdEmail, uploadBannerV2 } from '@/api';
 import AdEmailForm from '@/components/forms/AdEmailFrom';
 import { QUERY } from '@/constants';
 import { RegisterField } from '@/constants/forms';
@@ -19,7 +19,7 @@ export const AdminAdEmailUpload = () => {
   });
 
   const { mutate, isLoading } = useCustomMutation(
-    (userInput: RegisterField) => uploadBannerV2(userInput),
+    (userInput: RegisterField) => uploadAdEmail(userInput),
     {
       SuccessMessage: '광고 이메일이 추가되었습니다.',
       SuccessQueryKey: QUERY.KEY.ALL_AD_EMALL,

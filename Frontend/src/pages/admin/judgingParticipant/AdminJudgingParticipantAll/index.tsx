@@ -6,7 +6,10 @@ import {
 import { useState, useMemo } from 'react';
 
 import { getJudgingParticipantsByEventId } from '@/api';
-import { NavLinkButton } from '@/components/buttons';
+import {
+  APILinkButton,
+  NavLinkButton,
+} from '@/components/buttons';
 import { BasicInput } from '@/components/CustomInput';
 import MuiTable from '@/components/MuiTable';
 import { INPUT_TYPE } from '@/constants/forms';
@@ -159,11 +162,11 @@ export const AdminJudgingParticipantAll = () => {
     <Box>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <NavLinkButton
+          <APILinkButton
             to={`/api/v3/judging_participant/${value}/all/excel`}
           >
             참여자 목록 엑셀 다운로드
-          </NavLinkButton>
+          </APILinkButton>
         </Grid>
         <Grid item xs={12}>
           <BasicInput
