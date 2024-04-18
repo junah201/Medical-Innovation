@@ -184,6 +184,8 @@ const USER = Object.freeze({
     judgingEventId: number | string
   ) =>
     `/api/v2/user/${userId}/judging_permission/${judgingEventId}`,
+  UPDATE_USER_INFO: '/api/v2/user/me',
+  UPDATE_USER_PASSWORD: '/api/v2/user/me/password',
 });
 
 const FILE_V2 = Object.freeze({

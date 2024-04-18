@@ -9,7 +9,7 @@ from starlette import status
 
 from app.database import crud, schemas_v2, models
 from app.database.database import get_db
-from app.utils.verify import verify_password
+from app.utils.verify import hash_password, verify_password
 from app.utils.oauth2 import create_access_token, get_current_user
 from app.common.config import ACCESS_TOKEN_EXPIRES_IN
 
@@ -136,16 +136,14 @@ def get_user_by_id(user_id: int, db: Session = Depends(get_db), current_user: mo
     return db_User
 
 
-@router.put("/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
-def update_user(user_id: int, user_update: schemas_v2.UserUpdate, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
-    if not current_user.is_admin:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="You do not have permission to access this resource."
-        )
-
+@router.put("/me", status_code=status.HTTP_204_NO_CONTENT)
+def update_user(
+    user_update: schemas_v2.UserUpdate,
+    db: Session = Depends(get_db),
+    current_user: models.User = Depends(get_current_user)
+):
     db_user: models.User = db.query(models.User).filter(
-        models.User.id == user_id).first()
+        models.User.id == current_user.id).first()
 
     if not db_user:
         raise HTTPException(
@@ -153,10 +151,40 @@ def update_user(user_id: int, user_update: schemas_v2.UserUpdate, db: Session = 
             detail="User not found."
         )
 
-    db_user.name = user_update.name or db_user.name
-    db_user.phone = user_update.phone or db_user.phone
-    db_user.birth = user_update.birth or db_user.birth
-    db_user.email_enable = user_update.email_enable or db_user.email_enable
+    for key, value in user_update.dict().items():
+        setattr(db_user, key, value)
+
+    db.commit()
+
+
+@router.put("/me/password", status_code=status.HTTP_204_NO_CONTENT)
+def update_user_password(
+    user_update: schemas_v2.UserPasswordUpdate,
+    db: Session = Depends(get_db),
+    current_user: models.User = Depends(get_current_user)
+):
+    db_user: models.User = db.query(models.User).filter(
+        models.User.id == current_user.id).first()
+
+    if not db_user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User not found."
+        )
+
+    if not verify_password(user_update.password, db_user.password):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="비밀번호가 일치하지 않습니다."
+        )
+
+    if user_update.new_password != user_update.confirm_new_password:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="새 비밀번호가 일치하지 않습니다."
+        )
+
+    db_user.password = hash_password(user_update.new_password)
     db.commit()
 
 

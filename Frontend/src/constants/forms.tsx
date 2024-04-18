@@ -1466,6 +1466,48 @@ export const INPUT = Object.freeze({
     helperText: '기타 정보를 입력해주세요.',
     placeholder: '만약 없다면 공백하나만 입력해주세요.',
   }),
+  // 비밀번호 변경
+  NEW_PASSWORD: Object.freeze({
+    name: 'new_password',
+    label: '비밀번호',
+    type: INPUT_TYPE.PASSWORD,
+    placeholder: '비밀번호를 입력해주세요',
+    helperText: '비밀번호를 입력해주세요',
+    disabled: false,
+    rules: {
+      required: '비밀번호를 입력해주세요',
+      minLength: {
+        value: 8,
+        message: '비밀번호는 8자 이상 입력해주세요',
+      },
+      maxLength: {
+        value: 100,
+        message: '비밀번호는 100자 이하로 입력해주세요',
+      },
+    },
+  }),
+  CONFIRM_NEW_PASSWORD: Object.freeze({
+    name: 'confirm_new_password',
+    label: '새 비밀번호 확인',
+    type: INPUT_TYPE.PASSWORD,
+    placeholder: '비밀번호를 다시 입력해주세요',
+    helperText: '비밀번호를 다시 입력해주세요',
+    disabled: false,
+    rules: {
+      required: '비밀번호를 다시 입력해주세요',
+      validate: (
+        input: string,
+        values: Record<string, any>
+      ) => {
+        const password = values['new_password'];
+
+        return (
+          input === password ||
+          '비밀번호가 일치하지 않습니다.'
+        );
+      },
+    },
+  }),
 });
 
 export type RegisterTypes =

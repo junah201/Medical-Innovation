@@ -43,16 +43,16 @@ class UserLogin(BaseModel):
 
 
 class UserUpdate(BaseModel):
-    name: Optional[str] = None
-    phone: Optional[str] = None
-    birth: Optional[str] = None
-    email_enable: Optional[bool] = None
+    name: str
+    email: EmailStr
+    phone: str
+    birth: str
 
-    @validator('name', 'phone', 'birth')
-    def not_empty(cls, v):
-        if not v or not v.strip():
-            raise ValueError('Cannot be empty')
-        return v
+
+class UserPasswordUpdate(BaseModel):
+    password: str
+    new_password: str
+    confirm_new_password: str
 
 
 class User(BaseModel):

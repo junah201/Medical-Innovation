@@ -12,7 +12,7 @@ export const Palette = () => {
         main: '#204397',
         dark: '#204397',
         light: '#2763BA',
-        contrastText: 'rgba(0, 0, 0, 0.87)',
+        contrastText: '#fff',
       },
       secondary: {
         main: '#8c8c8c',
