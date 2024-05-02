@@ -29,7 +29,10 @@ def create_participant(public_event_id: int, participant_create: dict, db: Sessi
 
     db_public_participant = models.PublicParticipant(
         public_event_id=public_event_id,
-        application=participant_create
+        application=json.dumps(
+            participant_create,
+            ensure_ascii=False
+        )
     )
     db.add(db_public_participant)
     db.commit()
