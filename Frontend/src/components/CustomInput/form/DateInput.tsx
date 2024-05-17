@@ -1,4 +1,6 @@
-import { TextField, InputAdornment } from '@mui/material';
+import { InputAdornment, FormControl } from '@mui/material';
+import { DateField } from '@mui/x-date-pickers/DateField';
+import dayjs from 'dayjs';
 
 interface DateInputProps {
   name: string;
@@ -20,24 +22,28 @@ export const DateInput = ({
   disabled,
 }: DateInputProps) => {
   return (
-    <TextField
-      id={name}
-      label={label}
-      type="date"
-      value={value}
-      disabled={disabled}
-      onChange={onChange}
-      fullWidth
-      error={Boolean(errorMessage)}
-      helperText={errorMessage || helperText}
-      variant="outlined"
-      size="medium"
-      inputProps={{ max: '9999-12-31' }}
-      InputProps={{
-        startAdornment: (
-          <InputAdornment position="start"></InputAdornment>
-        ),
-      }}
-    />
+    <FormControl>
+      <DateField
+        id={name}
+        label={label}
+        value={dayjs(value)}
+        disabled={disabled}
+        onChange={(newValue) =>
+          onChange(newValue?.format('YYYY-MM-DD'))
+        }
+        fullWidth
+        helperText={errorMessage || helperText}
+        variant="outlined"
+        size="medium"
+        format="YYYY-MM-DD"
+        inputProps={{ max: '9999-12-31' }}
+        InputProps={{
+          error: Boolean(errorMessage),
+          startAdornment: (
+            <InputAdornment position="start"></InputAdornment>
+          ),
+        }}
+      />
+    </FormControl>
   );
 };
