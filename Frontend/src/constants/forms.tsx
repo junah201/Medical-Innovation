@@ -154,9 +154,7 @@ export const INPUT = Object.freeze({
     placeholder: '생년월일을 입력해주세요',
     helperText: '생년월일을 입력해주세요',
     disabled: false,
-    rules: {
-      required: '생년월일을 입력해주세요',
-    },
+    rules: {},
   }),
   ENGLISH_NAME: Object.freeze({
     name: 'english_name',
