@@ -88,6 +88,8 @@ const StyledPopupView = styled.div<{
   padding: 10px;
   border-radius: 3px;
   border: 1px solid black;
+  max-height: 80vh;
+  overflow: auto;
 `;
 
 const StyledPopupTitle = styled.h1<{ isDesktop: boolean }>`
