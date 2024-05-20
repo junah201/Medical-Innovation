@@ -106,7 +106,7 @@ export const getJudgingParticipantsByMe = async (
 
 export const updateJudgingParticipantById = async (
   id: number | string,
-  data: JudgingEventSubmitInfo
+  data: any
 ) => {
   const res = await authAxios.put(
     API_ROUTE.JUDGING_PARTICIPANT.UPDATE_JUDGING_PARTICIPANT_BY_ID(

@@ -1,7 +1,7 @@
 import { Button, Grid } from '@mui/material';
 import { useForm } from 'react-hook-form';
 
-import { updatePublicParticipantById } from '@/api';
+import { updateJudgingParticipantById } from '@/api';
 import JudgingRegistForm from '@/components/forms/JudgingRegistForm';
 import { QUERY } from '@/constants';
 import { RegisterField } from '@/constants/forms';
@@ -25,7 +25,7 @@ const EditModal = ({ row }: EditModalProps) => {
 
   const { mutate, isLoading } = useCustomMutation(
     (userInput: RegisterField) =>
-      updatePublicParticipantById(row.id, userInput),
+      updateJudgingParticipantById(row.id, userInput),
     {
       SuccessMessage: `${row.id}번 심사 참가자가 수정되었습니다.`,
       SuccessQueryKey: QUERY.KEY.ALL_JUDGING_PARTICIPANT,
