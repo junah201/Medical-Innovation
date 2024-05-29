@@ -9,7 +9,10 @@ export const DefaultFooter = () => {
       <TopContainer>
         <div>
           <a href="/">
-            <img src="/images/long_logo.png" alt="미래의학연구재단" />
+            <img
+              src="/images/long_logo.png"
+              alt="미래의학연구재단"
+            />
           </a>
           <a
             href="http://www.celltherapy.re.kr"
@@ -26,7 +29,10 @@ export const DefaultFooter = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src="/images/연구중심병원.png" alt="연구중심병원" />
+            <img
+              src="/images/연구중심병원.png"
+              alt="연구중심병원"
+            />
           </a>
         </div>
 
@@ -57,15 +63,19 @@ export const DefaultFooter = () => {
         <div>
           <strong>재단법인 미래의학연구재단</strong>
           <p>이사장 : 이승규</p>
-          <p>주소 : (03127) 서울특별시 종로구 율곡로 204, 201호</p>
           <p>
-            Copyright(c) 2016 재단법인 미래의학연구재단. All rights
-            reserved.
+            (04768)서울특별시 성동구 서울숲4길 16, 지하1층
+          </p>
+          <p>
+            Copyright(c) 2016 재단법인 미래의학연구재단. All
+            rights reserved.
           </p>
         </div>
         <div>
           <strong>관련 링크</strong>
-          <Link to={ROUTE.PRIVACY_POLICY}>개인정보처리방침</Link>
+          <Link to={ROUTE.PRIVACY_POLICY}>
+            개인정보처리방침
+          </Link>
           <Link to={ROUTE.MOU}>협력기관</Link>
           <Link to={ROUTE.ADVISORS}>임원현황</Link>
         </div>
