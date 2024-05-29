@@ -1368,6 +1368,14 @@ export const INPUT = Object.freeze({
       },
     },
   }),
+  OTHER_COMMENT: Object.freeze({
+    name: 'other_comment',
+    label: '심의 의견',
+    type: INPUT_TYPE.MULTILINE,
+    helperText:
+      '위 평가항목에 대한 지적사항이나 보완할 사항, 기타 심의의견 등을 기재해 주십시오.',
+    rules: {},
+  }),
   // 연구 계획서 심의표
   RESEARCH_PLAN_SCORE_1: Object.freeze({
     name: 'research_plan_score1',

@@ -8,7 +8,9 @@ interface Judging1stStandardFormProps {
   control: Control<RegisterField, any>;
 }
 
-const Judging1stStandardForm = ({ control }: Judging1stStandardFormProps) => {
+const Judging1stStandardForm = ({
+  control,
+}: Judging1stStandardFormProps) => {
   const TECHNICAL = [
     INPUT.TECHNICAL_SCORE_1,
     INPUT.TECHNICAL_SCORE_2,
@@ -36,12 +38,14 @@ const Judging1stStandardForm = ({ control }: Judging1stStandardFormProps) => {
     INPUT.BUSINESS_SCORE_8,
   ];
 
-  const OTHER = [INPUT.OTHER_SCORE_1];
+  const OTHER = [INPUT.OTHER_SCORE_1, INPUT.OTHER_COMMENT];
 
   return (
     <>
       <Grid item xs={12}>
-        <Typography variant="h3">기술성 평가항목 (30%)</Typography>
+        <Typography variant="h3">
+          기술성 평가항목 (30%)
+        </Typography>
       </Grid>
       {TECHNICAL.map((field) => (
         <Grid item xs={12} key={field.name}>
@@ -49,7 +53,9 @@ const Judging1stStandardForm = ({ control }: Judging1stStandardFormProps) => {
         </Grid>
       ))}
       <Grid item xs={12}>
-        <Typography variant="h3">시장성 평가항목 (20%)</Typography>
+        <Typography variant="h3">
+          시장성 평가항목 (20%)
+        </Typography>
       </Grid>
       {MARKETABILITY.map((field) => (
         <Grid item xs={12} key={field.name}>
@@ -57,7 +63,9 @@ const Judging1stStandardForm = ({ control }: Judging1stStandardFormProps) => {
         </Grid>
       ))}
       <Grid item xs={12}>
-        <Typography variant="h3">사업성 평가항목 (40%)</Typography>
+        <Typography variant="h3">
+          사업성 평가항목 (40%)
+        </Typography>
       </Grid>
       {BISINESS.map((field) => (
         <Grid item xs={12} key={field.name}>
@@ -65,7 +73,9 @@ const Judging1stStandardForm = ({ control }: Judging1stStandardFormProps) => {
         </Grid>
       ))}
       <Grid item xs={12}>
-        <Typography variant="h3">기타 고려 사항 (10%)</Typography>
+        <Typography variant="h3">
+          기타 고려 사항 (10%)
+        </Typography>
       </Grid>
       {[
         '특허/지식재산권 보유',
