@@ -463,7 +463,7 @@ export const INPUT = Object.freeze({
     rules: {
       required: '배너 이미지를 업로드해주세요',
     },
-    radio: 21 / 10,
+    ratio: 21 / 10,
   }),
   // SponsoringCompany
   SPONSORING_COMPANY_NAME: Object.freeze({
@@ -509,7 +509,7 @@ export const INPUT = Object.freeze({
     rules: {
       required: '배너 이미지를 업로드해주세요',
     },
-    radio: 21 / 10,
+    ratio: 21 / 10,
   }),
   // MOU
   MOU_COMPANY_NAME: Object.freeze({
@@ -544,7 +544,7 @@ export const INPUT = Object.freeze({
     rules: {
       required: 'MOU 이미지를 업로드해주세요',
     },
-    radio: 21 / 10,
+    ratio: 21 / 10,
   }),
   ADVISOR_NAME: Object.freeze({
     name: 'name',
@@ -599,7 +599,7 @@ export const INPUT = Object.freeze({
     rules: {
       required: '자문단 이미지를 업로드해주세요',
     },
-    radio: 3 / 4,
+    ratio: 3 / 4,
   }),
   // Public Event
   PUBLIC_EVENT_NAME: Object.freeze({
