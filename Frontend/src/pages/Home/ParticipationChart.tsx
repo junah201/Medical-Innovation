@@ -34,6 +34,10 @@ export const ParticipationChart = () => {
             year: '2023',
             참가자: 1180,
           },
+          {
+            year: '2024',
+            참가자: 501,
+          },
         ]}
         keys={['참가자']}
         indexBy="year"
