@@ -2,6 +2,7 @@ const KEY = Object.freeze({
   PUBLIC_EVENT: 'public_event',
   PUBLIC_PARTICIPANT: 'public_participant',
   ALL_USER: 'all_user',
+  ALL_LIMITED_USER: 'all_limited_user',
   ALL_POST: 'all_post',
   ALL_BAORD: 'all_board',
   ALL_BANNER: 'all_banner',

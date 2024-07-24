@@ -25,6 +25,7 @@ import {
   PublicEventInput,
   JudgingEventInput,
   JudgingInput,
+  UserInput,
 } from './form';
 
 interface InitInputProps {
@@ -254,6 +255,19 @@ export const BasicInput = ({
             helperText={helperText}
             options={options}
             disabled={disabled}
+          />
+        );
+      case INPUT_TYPE.USER:
+        return (
+          <UserInput
+            name={name}
+            label={label}
+            value={value}
+            onChange={onChange}
+            errorMessage={errorMessage}
+            helperText={helperText}
+            disabled={disabled}
+            placeholader={placeholder}
           />
         );
       case INPUT_TYPE.CHECKBOX:

@@ -13,7 +13,7 @@ import {
   INPUT_TYPE,
 } from '@/constants';
 
-export const BioForm = ({ register, errors }) => {
+export const TechForm = ({ register, errors }) => {
   return (
     <>
       <h1>유효성 및 안정성 평가 (30%) </h1>
@@ -24,49 +24,52 @@ export const BioForm = ({ register, errors }) => {
           title="대상기술은 인류의 복지 증진을 목적으로 하는가?"
           maxValue={5}
           errorMessage={
-            errors[REGISTER_TYPE.EFFICACY_AND_STABILITY_SCORE1]
-              ?.message
+            errors[
+              REGISTER_TYPE.EFFICACY_AND_STABILITY_SCORE1
+            ]?.message
           }
         />
         <JudgingNumberForm
           id={REGISTER_TYPE.EFFICACY_AND_STABILITY_SCORE2}
           register={register}
-          title="대상기술은 안전성(독성) 실험을 진행하였는가(In vitro, In vivo)?"
+          title="소프트웨어가 의도한 대로 작동하지 않아 환자에게 위해를 끼칠 가능성이 존재하는가?"
           maxValue={15}
           errorMessage={
-            errors[REGISTER_TYPE.EFFICACY_AND_STABILITY_SCORE2]
-              ?.message
+            errors[
+              REGISTER_TYPE.EFFICACY_AND_STABILITY_SCORE2
+            ]?.message
           }
         />
         <JudgingNumberForm
           id={REGISTER_TYPE.EFFICACY_AND_STABILITY_SCORE3}
           register={register}
-          title="대상기술은 질병(적응증)원인과 타겟이 명확한가?"
+          title="소프트웨어가 의료인의 임상적 판단을 보장하는가?"
           maxValue={10}
           errorMessage={
-            errors[REGISTER_TYPE.EFFICACY_AND_STABILITY_SCORE3]
-              ?.message
+            errors[
+              REGISTER_TYPE.EFFICACY_AND_STABILITY_SCORE3
+            ]?.message
           }
         />
         <JudgingNumberForm
           id={REGISTER_TYPE.EFFICACY_AND_STABILITY_SCORE4}
           register={register}
-          title="대상기술의 효과 물질 또는 장치와 관련한 제조 공정 및 품질 관리가 명확하게 입증될 수 있는가?"
+          title="획득한 환자의 데이터 암호화, 익명화 정책 등 적용하는 보안규격이 구체화 되어 있는가?"
           maxValue={10}
           errorMessage={
-            errors[REGISTER_TYPE.EFFICACY_AND_STABILITY_SCORE4]
-              ?.message
+            errors[
+              REGISTER_TYPE.EFFICACY_AND_STABILITY_SCORE4
+            ]?.message
           }
         />
       </JudgingNumberFormWrapper>
       <br />
       <h1>기술성 평가 (25%) </h1>
-
       <JudgingNumberFormWrapper title="기술성">
         <JudgingNumberForm
           id={REGISTER_TYPE.TECHNICAL_SCORE1}
           register={register}
-          title="대상기술의 독창성 및 우수성, 기술의 완성도, 적용 분야 및 제품, 추가기술의 개발 여부 등에 관한 내용이 충실했는가?"
+          title="확보된 데이터의 관리 원칙, 관리 조직, 품질 관리 프로세스에 대한 체계 및 계획이 수립되어 있는가?"
           maxValue={10}
           errorMessage={
             errors[REGISTER_TYPE.TECHNICAL_SCORE1]?.message
@@ -75,7 +78,7 @@ export const BioForm = ({ register, errors }) => {
         <JudgingNumberForm
           id={REGISTER_TYPE.TECHNICAL_SCORE2}
           register={register}
-          title="대상기술의 기술적 유용성과 경쟁성 분석이 객관적으로 파악이 가능한가?"
+          title="자율 의사결정 능력을 지속적으로 개선하기 위해 소프트웨어 기기를 끊임없이 최적화하는 것이 가능한가?"
           maxValue={10}
           errorMessage={
             errors[REGISTER_TYPE.TECHNICAL_SCORE2]?.message
@@ -84,13 +87,14 @@ export const BioForm = ({ register, errors }) => {
         <JudgingNumberForm
           id={REGISTER_TYPE.TECHNICAL_SCORE3}
           register={register}
-          title="기술성 관점에서 사업화 또는 가치 창출 가능성에 대한 참가자의 의견이 구체적으로 제시되었는가?"
+          title="클라우드 컴퓨팅 기술이 적용될 경우, 클라우드 서비스 형태, 서버의 운영 환경 등이 자체적으로 관리 가능한가? 또는 학습, 의사결정 및 예측과 같은 행동을 구현하거나 작업을 수행하기 위한 알고리즘 또는 모델의 관리체계가 구축되어 있는가?"
           maxValue={5}
           errorMessage={
             errors[REGISTER_TYPE.TECHNICAL_SCORE3]?.message
           }
         />
       </JudgingNumberFormWrapper>
+      <br />
       <h1>시장·사업성 평가 (40%) </h1>
       <JudgingNumberFormWrapper title="시장 · 사업성">
         <JudgingNumberForm
@@ -153,10 +157,14 @@ export const BioForm = ({ register, errors }) => {
       <>
         <InputLabel
           value="기타 고려 사항"
-          errorMessage={errors[REGISTER_TYPE.OTHER_SCORE1]?.message}
+          errorMessage={
+            errors[REGISTER_TYPE.OTHER_SCORE1]?.message
+          }
         />
         <StyledDiv
-          iserror={!!errors[REGISTER_TYPE.OTHER_SCORE1]?.message}
+          iserror={
+            !!errors[REGISTER_TYPE.OTHER_SCORE1]?.message
+          }
         >
           <div
             style={{
@@ -190,7 +198,8 @@ export const BioForm = ({ register, errors }) => {
               },
               min: {
                 value: CONFIG.OTHER_SCORE1.MIN_VALUE,
-                message: ERROR_MESSAGE.OTHER_SCORE1.MIN_VALUE,
+                message:
+                  ERROR_MESSAGE.OTHER_SCORE1.MIN_VALUE,
               },
             })}
           />
@@ -200,8 +209,8 @@ export const BioForm = ({ register, errors }) => {
               gridRow: '2 / 3',
             }}
           >
-            아래과 같은 항목을 근거로 정성적으로 1~5점을 기재해
-            주십시오.
+            아래과 같은 항목을 근거로 정성적으로 1~5점을
+            기재해 주십시오.
           </div>
           <div>특허/지식재산권 보유</div>
           <div>장관 및 대통령 표창 수상</div>
@@ -222,7 +231,9 @@ export const BioForm = ({ register, errors }) => {
         title="종합 의견"
         type={INPUT_TYPE.TEXTAREA}
         register={register}
-        errorMessage={errors[REGISTER_TYPE.OTHER_COMMENT]?.message}
+        errorMessage={
+          errors[REGISTER_TYPE.OTHER_COMMENT]?.message
+        }
         placeholder="위 평가항목에 대한 지적사항이나 보완할 사항, 기타 심의의견 등을 기재해 주십시오."
       />
     </>

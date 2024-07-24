@@ -67,7 +67,6 @@ import {
   AdminJudgingEventAll,
   AdminJudgingParticipantAll,
   AdminJudgingParticipantEdit,
-  AdminJudgingResultAll,
   AdminAdEmailAll,
   AdminHistoryAll,
   AdminHistoryEdit,
@@ -82,12 +81,11 @@ import {
   AdminSupportingStartupUpload,
   AdminSupportingStartupEdit,
   AdminJudging2ndResultAll,
-  AdminJudging2ndResultUpload,
-  AdminJudging2thResultDetail,
   AdminMouUpload,
   AdminJudgingEventUpload,
   AdminBannerUpload,
 } from '@/pages';
+import { AdminJudging2thResultDetail } from '@/pages/admin/judging2ndResult/AdminJudging2thResultDetail';
 
 interface RouteConfig {
   PATH: string;
@@ -653,7 +651,7 @@ export const ROUTE_MAP: RouteConfig[] = [
   },
   {
     PATH: '/admin/judging_result/all',
-    COMPONENT: AdminJudgingResultAll,
+    COMPONENT: AdminJudging2ndResultAll,
     HEADER: AdminHeader,
     WRAPPER: AdminWrapper,
     ADMIN: true,
@@ -667,14 +665,14 @@ export const ROUTE_MAP: RouteConfig[] = [
     ADMIN: true,
     AUTH: true,
   },
-  {
-    PATH: '/admin/judging_2nd_result/:event_id/upload',
-    COMPONENT: AdminJudging2ndResultUpload,
-    HEADER: AdminHeader,
-    WRAPPER: AdminWrapper,
-    ADMIN: true,
-    AUTH: true,
-  },
+  // {
+  //   PATH: '/admin/judging_2nd_result/:event_id/upload',
+  //   COMPONENT: AdminJudging2ndResultUpload,
+  //   HEADER: AdminHeader,
+  //   WRAPPER: AdminWrapper,
+  //   ADMIN: true,
+  //   AUTH: true,
+  // },
   {
     PATH: '/admin/judging_2nd_result/detail/:id',
     COMPONENT: AdminJudging2thResultDetail,

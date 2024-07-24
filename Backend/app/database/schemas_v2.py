@@ -76,6 +76,20 @@ class UserList(BaseModel):
     items: list[User]
 
 
+class LimitedUser(BaseModel):
+    id: int
+    name: str
+    email: str
+
+    class Config:
+        orm_mode = True
+
+
+class LimitedUserList(BaseModel):
+    total: int
+    items: list[LimitedUser]
+
+
 class JudgingPermissionCreate(BaseModel):
     first_judging_permission: bool
     second_judging_permission: bool

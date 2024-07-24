@@ -81,6 +81,24 @@ def get_all_users(skip: int, limit: int, db: Session = Depends(get_db), current_
     )
 
 
+@router.get("/all/limited", response_model=schemas_v2.LimitedUserList)
+def get_all_users(skip: int, limit: int, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
+    if not current_user.is_admin:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="You do not have permission to access this resource."
+        )
+
+    db_users = db.query(models.User).order_by(models.User.id.desc())
+    total = db_users.count()
+    user_list: models.User = db_users.offset(skip).limit(limit).all()
+
+    return schemas_v2.LimitedUserList(
+        total=total,
+        items=user_list
+    )
+
+
 @router.get("/all/excel")
 def get_all_users_excel(db: Session = Depends(get_db)):
     users = db.query(models.User).all()

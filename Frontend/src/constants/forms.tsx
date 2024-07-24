@@ -50,6 +50,7 @@ export const INPUT_TYPE = Object.freeze({
   PUBLIC_EVENT: 'public_event',
   JUDGING_EVENT: 'judging_event',
   JUDGING: 'judging',
+  USER: 'user',
 });
 
 type InputSchema = typeof INPUT_TYPE;
@@ -1512,6 +1513,25 @@ export const INPUT = Object.freeze({
           '비밀번호가 일치하지 않습니다.'
         );
       },
+    },
+  }),
+  // 2차 심사
+  USER_ID: Object.freeze({
+    name: 'user_id',
+    label: '심사자 유저',
+    type: INPUT_TYPE.USER,
+    helperText: '심사자를 선택해주세요.',
+    rules: {
+      required: '심사자를 선택해주세요.',
+    },
+  }),
+  PARTICIPANT_ID: Object.freeze({
+    name: 'participant_id',
+    label: '심사 대상자',
+    type: INPUT_TYPE.USER,
+    helperText: '심사 대상자를 선택해주세요.',
+    rules: {
+      required: '심사 대상자를 선택해주세요.',
     },
   }),
 });

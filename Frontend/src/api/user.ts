@@ -19,6 +19,21 @@ export const getUsers = async (
   return res;
 };
 
+export const getAllLimitedUser = async (
+  skip: number,
+  limit: number
+) => {
+  const res = await authAxios.getByParams(
+    API_ROUTE.USER.GET_ALL_LIMITED_USER,
+    {
+      skip: skip,
+      limit: limit,
+    }
+  );
+
+  return res;
+};
+
 export const getUserById = async (id: number | string) => {
   const res = await authAxios.get(
     API_ROUTE.USER.GET_USER_BY_ID(id)
@@ -54,9 +69,7 @@ interface UserUpdate {
   birth: string;
 }
 
-export const updateUserInfo = async (
-  data: UserUpdate
-) => {
+export const updateUserInfo = async (data: UserUpdate) => {
   const res = await authAxios.put(
     API_ROUTE.USER.UPDATE_USER_INFO,
     data

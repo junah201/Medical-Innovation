@@ -177,6 +177,7 @@ const FILE = Object.freeze({
 
 const USER = Object.freeze({
   GET_USERS: '/api/v2/user/all',
+  GET_ALL_LIMITED_USER: '/api/v2/user/all/limited',
   GET_USER_BY_ID: (id: number | string) =>
     `/api/v2/user/${id}`,
   UPDATE_JUDGING_PERMISSION: (

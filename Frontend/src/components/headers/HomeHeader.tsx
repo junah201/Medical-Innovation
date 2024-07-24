@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { HEADER, DEVICES, ROUTE, COOKIE } from '@/constants';
+import {
+  HEADER,
+  DEVICES,
+  ROUTE,
+  COOKIE,
+} from '@/constants';
 import { getCookie } from '@/libs/Cookie';
 
 export const HomeHeader = () => {
@@ -11,7 +16,10 @@ export const HomeHeader = () => {
     <>
       <TopWrapper>
         <Link to={ROUTE.HOME}>
-          <img src="/images/long_logo.png" alt="미래의학연구재단" />
+          <img
+            src="/images/long_logo.png"
+            alt="미래의학연구재단"
+          />
         </Link>
         {isLoggedIn ? (
           <NavContainer>
@@ -30,8 +38,14 @@ export const HomeHeader = () => {
             link={ROUTE.INTRODUCTION.ROOT}
             text="재단소개"
           />
-          <HeaderNavLi link={ROUTE.PROGRAM.ROOT} text="사업소개" />
-          <HeaderNavLi link={ROUTE.NEWS.ROOT} text="재단소식" />
+          <HeaderNavLi
+            link={ROUTE.PROGRAM.ROOT}
+            text="사업소개"
+          />
+          <HeaderNavLi
+            link={ROUTE.NEWS.ROOT}
+            text="재단소식"
+          />
           <HeaderNavLi
             link={ROUTE.SUPPORT.SPONSORSHIP}
             text="후원안내"
@@ -61,7 +75,8 @@ const TopWrapper = styled.header`
   display: flex;
   justify-content: space-between;
   background-color: ${({ theme }) => theme.headerColor};
-  border-bottom: 1px solid ${({ theme }) => theme.borderColor};
+  border-bottom: 1px solid
+    ${({ theme }) => theme.borderColor};
 
   & img {
     height: 100%;
