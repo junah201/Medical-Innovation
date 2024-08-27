@@ -26,7 +26,3 @@ cd .\Backend\
 alembic revision --autogenerate -m "migration message"
 alembic upgrade head
 ```
-
-## Contribute
-
-Contributions are welcome!
