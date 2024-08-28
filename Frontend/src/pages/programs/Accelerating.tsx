@@ -4,8 +4,14 @@ import { useQuery } from 'react-query';
 import styled from 'styled-components';
 
 import { getJudgingEvents } from '@/api';
-import { Events, Message, ProgramSubNav } from '@/components';
+import {
+  Events,
+  Message,
+  ProgramSubNav,
+} from '@/components';
 import { JudgingEventList } from '@/types';
+
+const { VITE_CDN_URL } = import.meta.env;
 
 const SyledBioVentureCompetitionContainer = styled.div`
   display: grid;
@@ -31,15 +37,17 @@ export const Accelerating = () => {
       <div>
         <h1>연구자 중심 창업지원</h1>
         <Message>
-          재단은 2022년 중소벤처기업부 창업기획자 비영리법인으로
-          등록된 공익적 목적의 연구자 중심 창업 지원 플랫폼입니다.
-          신치료기술 개발의 위험성과 장기화된 과정을 고려하여 지속적인
-          지원을 통해 차세대 인재들의 우수한 혁신기술이 조기에
-          상용화될 수 있도록 꾸준히 노력하고 있습니다. 재단 주도의
-          인적·물적 네트워크를 활용하여 기술 맞춤형 액셀러레이팅
-          프로그램 및 선순환 오픈이노베이션을 지원합니다. 이를 통해
-          창업 기업의 지속적인 성장을 촉진하고 신치료기술 분야에서의
-          혁신과 발전에 기여하고자 합니다.
+          재단은 2022년 중소벤처기업부 창업기획자
+          비영리법인으로 등록된 공익적 목적의 연구자 중심
+          창업 지원 플랫폼입니다. 신치료기술 개발의 위험성과
+          장기화된 과정을 고려하여 지속적인 지원을 통해
+          차세대 인재들의 우수한 혁신기술이 조기에 상용화될
+          수 있도록 꾸준히 노력하고 있습니다. 재단 주도의
+          인적·물적 네트워크를 활용하여 기술 맞춤형
+          액셀러레이팅 프로그램 및 선순환 오픈이노베이션을
+          지원합니다. 이를 통해 창업 기업의 지속적인 성장을
+          촉진하고 신치료기술 분야에서의 혁신과 발전에
+          기여하고자 합니다.
         </Message>
       </div>
       <div>
@@ -56,6 +64,27 @@ export const Accelerating = () => {
       <div>
         <h1>FMI's Biohealth Innovation Competition</h1>
         <SyledBioVentureCompetitionContainer>
+          <WinnerItem
+            year="2024"
+            awardType="최우수상"
+            winnerName="최영빈 대표"
+            winnerDetail="투바이오스㈜"
+            src="1724809784-최우수상-최영빈.jpg"
+          />
+          <WinnerItem
+            year="2024"
+            awardType="우수상"
+            winnerName="조성재 대표"
+            winnerDetail="㈜카본엑스"
+            src="1724809784-우수상-카본엑스.jpg"
+          />
+          <WinnerItem
+            year="2024"
+            awardType="장려상"
+            winnerName="오진우 대표"
+            winnerDetail="㈜젠라이프"
+            src="1724809783-장려상-오진우.jpg"
+          />
           <WinnerItem
             year="2023"
             awardType="최우수상"
@@ -195,6 +224,7 @@ interface WinnerItemProps {
   awardType: string;
   winnerName: string | JSX.Element;
   winnerDetail: string;
+  src?: string;
 }
 
 const WinnerItem = ({
@@ -202,12 +232,17 @@ const WinnerItem = ({
   awardType,
   winnerName,
   winnerDetail,
+  src,
 }: WinnerItemProps) => {
   return (
     <StyledWinnerItem>
       <div>
         <img
-          src={`/images/BioVentureCompetition/${year} ${awardType}.jpg`}
+          src={
+            src
+              ? `${VITE_CDN_URL}/upload/${src}`
+              : `/images/BioVentureCompetition/${year} ${awardType}.jpg`
+          }
           alt={`${year} ${awardType}`}
         />
       </div>
