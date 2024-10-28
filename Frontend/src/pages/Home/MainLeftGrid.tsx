@@ -76,7 +76,7 @@ export const MainLeftGrid = () => {
             <br />
             심혈관연구실
           </a>
-        </div>~
+        </div>
         <div>
           <a href="http://www.celltherapy.re.kr/">
             <img
