@@ -34,10 +34,10 @@ export const MainLeftGrid = () => {
         <Link to={ROUTE.MOU}>협력기관</Link>
         <Link to={ROUTE.ADVISORS}>임원현황</Link>
       </StyledGridItem>
-      <StyledGridItem color="#2CA48F">
-        <h3>FMI 벤처투자조합</h3>
-        <p>바이오헬스 혁신기업의 지속 가능한 성장과 미래</p>
-        <Link to={ROUTE.PREPARING}>바로가기</Link>
+      <StyledGridItem color="#171086">
+        <h3>FMI PARTNERS (AC)</h3>
+        <p>바이오헬스 스타트업의 지속 가능한 성장과 미래를 함께합니다</p>
+        <a href="https://www.fmipartners.kr">바로가기</a>
       </StyledGridItem>
       <StyledGridItem color="#008ACE">
         <h3>후원 안내</h3>
@@ -76,7 +76,7 @@ export const MainLeftGrid = () => {
             <br />
             심혈관연구실
           </a>
-        </div>
+        </div>~
         <div>
           <a href="http://www.celltherapy.re.kr/">
             <img
