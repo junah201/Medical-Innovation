@@ -7,8 +7,6 @@ from app.utils.email import send_email
 
 RECEIVER_ADDRESS = [
     "medicalinnovation.or@gmail.com",
-    "turtree@gmail.com",
-    "junah.dev@gmail.com",
     "support@medicalinnovation.or.kr",
 ]
 
