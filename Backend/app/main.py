@@ -34,7 +34,7 @@ from app.routers.v3 import v3_router
 
 models.Base.metadata.create_all(bind=engine, checkfirst=True)
 
-app = FastAPI()
+app = FastAPI() 
 
 app.mount("/static", StaticFiles(directory="./app/static"), name="static")
 
