@@ -32,6 +32,7 @@ from app.routers.v1 import (
 from app.routers.v2 import v2_router
 from app.routers.v3 import v3_router
 
+
 models.Base.metadata.create_all(bind=engine, checkfirst=True)
 
 app = FastAPI()
