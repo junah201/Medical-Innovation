@@ -52,7 +52,7 @@ jobs:
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
 
       - name: Download Lambda Build.zip
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: medical-innovation
 
